@@ -98,7 +98,7 @@ public:
 public:
     /* 0x0000 */ fopEn_enemy_c enemy;                   ///< @brief Base enemy class instance.
     /* 0x05AC */ request_of_phase_process_class phase;  ///< @brief Phase process request handler.
-    /* 0x05B4 */ s16 mode;  ///< @brief Current sub-action mode within the run action.
+    /* 0x05B4 */ s16 ride_mode;  ///< @brief Current sub-action mode within the run action.
     /* 0x05B8 */ char* resName;   ///< @brief Resource name for loading models/animations.
     /* 0x05BC */ u8 arg0;        ///< @brief Creation parameter 1.
     /* 0x05BD */ u8 arg1;       ///< @brief Creation parameter 2.
@@ -117,7 +117,7 @@ public:
     /* 0x068C */ s8 path_set;  ///< @brief Flag indicating if path has been initialized.
     /* 0x068E */ s16 counter;
     /* 0x0690 */ s16 action;  ///< @brief High-level action ID.
-    /* 0x0692 */ s16 ride_action;
+    /* 0x0692 */ s16 old_action;
     /* 0x0694 */ int shadow_key;     ///< @brief Shadow drawing key.
     /* 0x0698 */ s16 timer[4];
     /* 0x06A0 */ s16 wait_timer;

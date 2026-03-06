@@ -717,17 +717,17 @@ static int e_wb_saku_check(e_wb_class* i_this) {
 static void e_wb_wait(e_wb_class* i_this) {
     fopAc_ac_c* actor = (fopAc_ac_c*)i_this;
     cXyz unused1, unused2;
-    switch (i_this->mode) {
+    switch (i_this->ride_mode) {
     case 0:
         anm_init(i_this, 0x25, 3.0f, 2, 1.0f);
-        i_this->mode = 1;
+        i_this->ride_mode = 1;
     case 1:
         if (actor->speedF > 15.0f) {
             i_this->movement_type = 2;
             i_this->sound.startCreatureSoundLevel(Z2SE_EN_WB_L_SLIP, 0, -1);
         } else {
             anm_init(i_this, 0x2a, 10.0f, 2, 1.0f);
-            i_this->mode = 2;
+            i_this->ride_mode = 2;
             i_this->status_flag |= (u16)0x20;
         }
     case 2:
@@ -738,10 +738,10 @@ static void e_wb_wait(e_wb_class* i_this) {
 
 static void e_wb_ride(e_wb_class* i_this) {
     e_wb_class* unused = i_this;
-    switch (i_this->mode) {
+    switch (i_this->ride_mode) {
     case 0:
         anm_init(i_this, 0x1f, 3.0f, 0, 1.0f);
-        i_this->mode = 1;
+        i_this->ride_mode = 1;
     case 1:
     default:
         return;
@@ -982,10 +982,10 @@ static void e_wb_f_wait(e_wb_class* i_this) {
     fopAc_ac_c* actor = (fopAc_ac_c*)i_this;
     s16 target_angle = fopAcM_searchPlayerAngleY(actor);
 
-    switch (i_this->mode) {
+    switch (i_this->ride_mode) {
     case 0:
         if (lbl_244_bss_45 != 0 && (i_this->arg1 == 1 || i_this->arg1 == 2)) {
-            i_this->mode = 10;
+            i_this->ride_mode = 10;
             anm_init(i_this, 0x28, 5.0f, 2, 1.5f);
 
             if (cM_rndF(1.0) < 0.5f) {
@@ -996,7 +996,7 @@ static void e_wb_f_wait(e_wb_class* i_this) {
             break;
         } else {
             anm_init(i_this, 0x28, 5.0f, 2, 1.5f);
-            i_this->mode = 1;
+            i_this->ride_mode = 1;
             i_this->status_flag |= (u16)4;
         }
         // fallthrough
@@ -1013,7 +1013,7 @@ static void e_wb_f_wait(e_wb_class* i_this) {
             } else {
                 fopAc_ac_c* player = dComIfGp_getPlayer(0);
                 i_this->action = ACT_C_F_RUN;
-                i_this->mode = 0;
+                i_this->ride_mode = 0;
                 i_this->field_0x5d0 = player->current.pos;
             }
             break;
@@ -1030,7 +1030,7 @@ static void e_wb_f_wait(e_wb_class* i_this) {
 
         if (i_this->range < 0x800 && i_this->range > -0x800) {
             anm_init(i_this, 0x2a, 10.0f, 2, 1.0f);
-            i_this->mode = 11;
+            i_this->ride_mode = 11;
         }
         break;
 
@@ -1039,7 +1039,7 @@ static void e_wb_f_wait(e_wb_class* i_this) {
         i_this->range = target_angle - actor->current.angle.y;
 
         if (i_this->range > 0x1000 || i_this->range < -0x1000) {
-            i_this->mode = 10;
+            i_this->ride_mode = 10;
             anm_init(i_this, 0x28, 5.0f, 2, 1.5f);
         }
 
@@ -1048,7 +1048,7 @@ static void e_wb_f_wait(e_wb_class* i_this) {
 
     cLib_addCalc0(&actor->speedF, 1.0f, 2.0f);
 
-    if (i_this->mode >= 10) {
+    if (i_this->ride_mode >= 10) {
         f32 dist = fopAcM_searchPlayerDistanceXZ(actor);
 
         if (!(dist < 500.0f) && !(dist > 1500.0f)) {
@@ -1063,7 +1063,7 @@ static void e_wb_f_wait(e_wb_class* i_this) {
 
         if (i_this->gake_flg == GAKE_FLG_NONE) {
             i_this->action = ACT_C_F_RUN;
-            i_this->mode = 0;
+            i_this->ride_mode = 0;
         }
     }
 }
@@ -1096,7 +1096,7 @@ static void e_wb_f_run(e_wb_class* i_this) {
     f32 acceleration = 1.0f;
     if ((i_this->status_flag & 1) == 0) {
         i_this->action = ACT_A_RUN;
-        i_this->mode = 0;
+        i_this->ride_mode = 0;
     } else {
         e_rd_class* local_90 = (e_rd_class*)fopAcM_SearchByID(i_this->rd_id);
         int saku;
@@ -1118,18 +1118,18 @@ static void e_wb_f_run(e_wb_class* i_this) {
 
         s16 angle = actor->current.angle.y;
 
-        switch (i_this->mode) {
+        switch (i_this->ride_mode) {
         case 0:
             if (i_this->field_0x7a6 == 0) {
                 anm_init(i_this, 0x1b, 3.0f, 0, 1.0f);
-                i_this->mode = 1;
+                i_this->ride_mode = 1;
                 i_this->anm_time = 40.0f;
                 i_this->status_flag |= (u16)8;
             } else {
                 i_this->field_0x7a6 = 0;
                 anm_init(i_this, 0x20, 5.0f, 2, 1.0f);
                 i_this->anm_p->setFrame(cM_rndF(10.0f));
-                i_this->mode = 2;
+                i_this->ride_mode = 2;
                 i_this->status_flag |= (u16)0x10;
                 i_this->sound.startCreatureSound(Z2SE_EN_WB_KICK_GROUND, 0, -1);
             }
@@ -1144,7 +1144,7 @@ static void e_wb_f_run(e_wb_class* i_this) {
 
             if (i_this->anm_p->isStop()) {
                 anm_init(i_this, 0x20, 5.0f, 2, 1.0f);
-                i_this->mode = 2;
+                i_this->ride_mode = 2;
                 i_this->status_flag |= (u16)0x10;
                 i_this->sound.startCreatureSound(Z2SE_EN_WB_KICK_GROUND, 0, -1);
             }
@@ -1218,7 +1218,7 @@ static void e_wb_f_run(e_wb_class* i_this) {
                 }
 
                 if (dist < 400.0f) {
-                    i_this->mode = 3;
+                    i_this->ride_mode = 3;
                     i_this->timer[0] = 40;
                 }
             }
@@ -1233,7 +1233,7 @@ static void e_wb_f_run(e_wb_class* i_this) {
             }
 
             if (i_this->timer[0] == 0) {
-                i_this->mode = 4;
+                i_this->ride_mode = 4;
                 anm_init(i_this, 0x25, 3.0f, 2, 1.0f);
             }
 
@@ -1247,7 +1247,7 @@ static void e_wb_f_run(e_wb_class* i_this) {
 
             if (actor->speedF < 1.0f) {
                 i_this->action = ACT_F_WAIT;
-                i_this->mode = 0;
+                i_this->ride_mode = 0;
                 return;
             }
             break;
@@ -1256,13 +1256,13 @@ static void e_wb_f_run(e_wb_class* i_this) {
         cLib_addCalc2(&actor->speedF, speed, 1.0f, acceleration);
         s16 ya = (-8 + TREG_S(7)) * (actor->current.angle.y - angle);
         cLib_addCalcAngleS2(&i_this->body_angle, ya, 8, 0x200);
-        if (i_this->mode < 4 && i_this->gake_flg > GAKE_FLG_NONE) {
+        if (i_this->ride_mode < 4 && i_this->gake_flg > GAKE_FLG_NONE) {
             i_this->status_flag |= (u16)0x20;
             anm_init(i_this, 0x25, 3.0f, 2, 1.0f);
             if (actor->speedF > 30.0f) {
                 actor->speedF = 30.0f;
             }
-            i_this->mode = 4;
+            i_this->ride_mode = 4;
         }
     }
 }
@@ -1290,19 +1290,19 @@ static void e_wb_b_wait(e_wb_class* i_this) {
         }
     }
 
-    switch (i_this->mode) {
+    switch (i_this->ride_mode) {
     case 0:
         anm_init(i_this, 0x2a, 10.0f, 2, 1.0f);
-        i_this->mode = 1;
+        i_this->ride_mode = 1;
         i_this->timer[0] = cM_rndF(100.0f) + 100.0f;
         i_this->status_flag |= (u16)0x20;
         // fallthrough
     case 1:
         if (i_this->timer[0] == 0 && i_this->path_set != 0) {
-            i_this->mode = 2;
+            i_this->ride_mode = 2;
         } else if (dist < 2000.0f) {
             i_this->action = ACT_B_RUN;
-            i_this->mode = 0;
+            i_this->ride_mode = 0;
             i_this->sound.startCreatureVoice(Z2SE_EN_RDB_V_HOICK, -1);
         }
         break;
@@ -1316,7 +1316,7 @@ static void e_wb_b_wait(e_wb_class* i_this) {
                 }
             } else {
                 i_this->action = ACT_B_WAIT2;
-                i_this->mode = 0;
+                i_this->ride_mode = 0;
             }
         } else if (i_this->anmID != 40) {
             anm_init(i_this, 0x28, 5.0f, 2, 1.0f);
@@ -1342,10 +1342,10 @@ static void e_wb_b_run2(e_wb_class* i_this) {
     s16 angle = actor->current.angle.y;
     f32 target_spd = 1.0f;
 
-    switch (i_this->mode) {
+    switch (i_this->ride_mode) {
     case 0:
         anm_init(i_this, 0x1b, 3.0f, 0, 1.0f);
-        i_this->mode = 1;
+        i_this->ride_mode = 1;
         i_this->status_flag |= (u16)8;
         i_this->anm_time = 40.0f;
         i_this->anm_spd = 1.0f;
@@ -1362,7 +1362,7 @@ static void e_wb_b_run2(e_wb_class* i_this) {
 
         if (i_this->anm_p->isStop()) {
             anm_init(i_this, 0x20, 5.0f, 2, 1.0f);
-            i_this->mode = 2;
+            i_this->ride_mode = 2;
             cXyz path;
             cXyz path2;
             int ten = 0;
@@ -1396,15 +1396,15 @@ static void e_wb_b_run2(e_wb_class* i_this) {
         mae.y = 0.0f;
 
         if (mae.abs() < 600.0f) {
-            int path_dir = 1;
+            int dir = 1;
             mae = b_path2[(i_this->path_ten + 1) & 7] - actor->current.pos;
 
             s16 range = actor->current.angle.y - cM_atan2s(mae.x, mae.z);
 
             if (range < 0x4000 && range > -0x4000) {
-                i_this->path_ten += path_dir;
+                i_this->path_ten += dir;
             } else {
-                i_this->path_ten -= path_dir;
+                i_this->path_ten -= dir;
             }
 
             i_this->path_ten &= 7;
@@ -1424,7 +1424,7 @@ static void e_wb_b_run2(e_wb_class* i_this) {
 
         if (i_this->timer[0] == 0 && dist < 5000.0f) {
             anm_init(i_this, 0x25, 3.0f, 2, 1.0f);
-            i_this->mode = 3;
+            i_this->ride_mode = 3;
         }
         break;
     case 3:
@@ -1434,7 +1434,7 @@ static void e_wb_b_run2(e_wb_class* i_this) {
 
         if (actor->speedF < 1.0f) {
             i_this->action = ACT_B_WAIT;
-            i_this->mode = 0;
+            i_this->ride_mode = 0;
             return;
         }
     }
@@ -1449,20 +1449,20 @@ static void e_wb_b_run2(e_wb_class* i_this) {
         i_this->action = ACT_B_RUN;
 
         if (i_this->anmID == 32) {
-            i_this->mode = 2;
+            i_this->ride_mode = 2;
         } else {
-            i_this->mode = 0;
+            i_this->ride_mode = 0;
             i_this->sound.startCreatureVoice(Z2SE_EN_RDB_V_HOICK, -1);
         }
     }
 
-    if (i_this->mode < 3 && i_this->gake_flg > GAKE_FLG_NONE) {
+    if (i_this->ride_mode < 3 && i_this->gake_flg > GAKE_FLG_NONE) {
         anm_init(i_this, 0x25, 3.0f, 2, 1.0f);
 
         if (actor->speedF > 30.0f)
             actor->speedF = 30.0f;
 
-        i_this->mode = 3;
+        i_this->ride_mode = 3;
     }
 }
 
@@ -1474,21 +1474,21 @@ static void e_wb_b_wait2(e_wb_class* i_this) {
     f32 dist = fopAcM_searchPlayerDistanceXZ(actor);
     s16 target_angle = fopAcM_searchPlayerAngleY(actor);
 
-    switch (i_this->mode) {
+    switch (i_this->ride_mode) {
     case 0:
         if (cM_rndF(1.0f) < 0.5f) {
             i_this->target_ya = target_angle + 0x4000;
         } else {
             i_this->target_ya = target_angle - 0x4000;
         }
-        i_this->mode = 1;
+        i_this->ride_mode = 1;
         // fallthrough
     case 1:
         cLib_addCalcAngleS2(&actor->current.angle.y, i_this->target_ya, 8, 0x200);
         i_this->range = i_this->target_ya - actor->current.angle.y;
         if (i_this->range < 0x800 && i_this->range > -0x800) {
             anm_init(i_this, 0x2a, 10.0f, 2, 1.0f);
-            i_this->mode = 2;
+            i_this->ride_mode = 2;
         } else if (i_this->anmID != 40) {
             anm_init(i_this, 0x28, 5.0f, 2, 1.0f);
         }
@@ -1496,7 +1496,7 @@ static void e_wb_b_wait2(e_wb_class* i_this) {
     case 2:
         if (dist < 4000.0f) {
             i_this->action = ACT_B_RUN;
-            i_this->mode = 0;
+            i_this->ride_mode = 0;
             i_this->sound.startCreatureVoice(Z2SE_EN_RDB_V_HOICK, -1);
         }
         break;
@@ -1523,12 +1523,12 @@ static void e_wb_b_run(e_wb_class* i_this) {
     cXyz mae;
     cXyz ato;
     f32 dist = fopAcM_searchPlayerDistanceXZ(actor);
-    f32 target_speed = 0.0;
+    f32 speed = 0.0;
     f32 acceleration = 1.0;
 
     if ((i_this->status_flag & 1) == 0) {
         i_this->action = ACT_A_RUN;
-        i_this->mode = 0;
+        i_this->ride_mode = 0;
     } else {
         s8 is_player_on_fast_horse = false;
         if (daPy_getPlayerActorClass()->checkHorseRide() &&
@@ -1541,14 +1541,14 @@ static void e_wb_b_run(e_wb_class* i_this) {
         f32 anm_spd = 1.0f;
         s8 regenerate_path = false;
 
-        switch (i_this->mode) {
+        switch (i_this->ride_mode) {
         case 0:
             i_this->status_flag |= (u16)8;
         case 1: // path initialization
             i_this->anm_time = 30.0f;
             i_this->anm_spd = 1.0f;
             anm_init(i_this, 0x20, 5.0f, 2, 1.0f);
-            i_this->mode = 2;
+            i_this->ride_mode = 2;
             i_this->status_flag |= (u16)0x10;
             i_this->sound.startCreatureSound(Z2SE_EN_WB_KICK_GROUND, 0, -1);
 
@@ -1627,18 +1627,18 @@ static void e_wb_b_run(e_wb_class* i_this) {
             cLib_addCalcAngleS2(&i_this->turn_step, 0x400, 1, 0x10);
 
             if (is_player_on_fast_horse) {
-                target_speed = dComIfGp_getHorseActor()->speedF;
+                speed = dComIfGp_getHorseActor()->speedF;
 
-                if (target_speed > l_HIO.leader_cavalry_battle_max_speed) {
-                    target_speed = l_HIO.leader_cavalry_battle_max_speed;
+                if (speed > l_HIO.leader_cavalry_battle_max_speed) {
+                    speed = l_HIO.leader_cavalry_battle_max_speed;
                 } else {
-                    if (target_speed < l_HIO.leader_max_speed) {
-                        target_speed = l_HIO.leader_max_speed;
+                    if (speed < l_HIO.leader_max_speed) {
+                        speed = l_HIO.leader_max_speed;
                     }
                 }
 
                 if (fopAcM_searchPlayerDistanceXZ(actor) < 2000.0f + KREG_F(0)) {
-                    target_speed *= 1.2f;
+                    speed *= 1.2f;
 
                     if (actor->speedF < l_HIO.max_speed) {
                         acceleration = 1.5f;
@@ -1656,11 +1656,11 @@ static void e_wb_b_run(e_wb_class* i_this) {
                     anm_spd = 1.2f;
             } else {
                 acceleration = 3.0;
-                target_speed = l_HIO.leader_max_speed;
+                speed = l_HIO.leader_max_speed;
             }
 
             if (dist > 6000.0f) {
-                i_this->mode = 3;
+                i_this->ride_mode = 3;
                 i_this->timer[0] = 13;
             }
 
@@ -1668,7 +1668,7 @@ static void e_wb_b_run(e_wb_class* i_this) {
             break;
         case 3:
             i_this->pursuit_flg = 1;
-            target_speed = l_HIO.max_speed;
+            speed = l_HIO.max_speed;
             acceleration = 3.0f;
 
             if (i_this->timer[0] == 10) {
@@ -1676,7 +1676,7 @@ static void e_wb_b_run(e_wb_class* i_this) {
             }
 
             if (i_this->timer[0] == 0) {
-                i_this->mode = 4;
+                i_this->ride_mode = 4;
                 anm_init(i_this, 0x25, 3.0f, 2, 1.0f);
             }
 
@@ -1689,12 +1689,12 @@ static void e_wb_b_run(e_wb_class* i_this) {
 
             if (actor->speedF < 1.0f) {
                 i_this->action = ACT_B_WAIT2;
-                i_this->mode = 0;
+                i_this->ride_mode = 0;
             }
 
             break;
         case 10:  // jumping a fence / hit wall
-            target_speed = l_HIO.max_speed;
+            speed = l_HIO.max_speed;
             acceleration = 3.0f;
 
             if (i_this->anmID == 24) {
@@ -1714,13 +1714,13 @@ static void e_wb_b_run(e_wb_class* i_this) {
                 if (i_this->anm_p->isStop()) {
                     anm_init(i_this, 0x20, 2.0f, 2, i_this->anm_spd);
                     i_this->anm_time = 30.0f;
-                    i_this->mode = 2;
+                    i_this->ride_mode = 2;
                 }
             }
         }
 
-        if (i_this->mode < 10) {
-            cLib_addCalc2(&actor->speedF, target_speed, 1.0f, acceleration);
+        if (i_this->ride_mode < 10) {
+            cLib_addCalc2(&actor->speedF, speed, 1.0f, acceleration);
             s16 targetAngle = (TREG_S(7) - 4) * (actor->current.angle.y - initial_facing_angle);
             cLib_addCalcAngleS2(&i_this->body_angle,
                                 targetAngle, 8, 0x200);
@@ -1729,7 +1729,7 @@ static void e_wb_b_run(e_wb_class* i_this) {
 
             if (actor->speedF >= 30.0f && i_this->Bgc.ChkGroundHit()) {
                 if (i_this->Bgc.ChkWallHit() || e_wb_saku_jump_check(i_this)) {
-                    i_this->mode = 10;
+                    i_this->ride_mode = 10;
                     actor->speed.y = 55.0f + WREG_F(1);
                     anm_init(i_this, 0x18, 2.0f, 0, 1.0f);
                     i_this->status_flag |= (u16)0x100;
@@ -1799,10 +1799,10 @@ static void e_wb_b_ikki(e_wb_class* i_this) {
     s16 local_d8 = 0;
     int frame = i_this->anm_p->getFrame();
 
-    switch (i_this->mode) {
+    switch (i_this->ride_mode) {
     case -100:
         anm_init(i_this, 0x27, 5.0f, 2, 1.0f);
-        i_this->mode = -99;
+        i_this->ride_mode = -99;
         i_this->status_flag |= (u16)0x400;
         break;
     case -99:
@@ -1813,7 +1813,7 @@ static void e_wb_b_ikki(e_wb_class* i_this) {
         break;
     case -98:
         anm_init(i_this, 0x26, 10.0f, 0, 1.0f);
-        i_this->mode = -97;
+        i_this->ride_mode = -97;
         i_this->status_flag |= (u16)0x800;
         break;
     case -97:
@@ -1843,7 +1843,7 @@ static void e_wb_b_ikki(e_wb_class* i_this) {
 
         if (i_this->anm_p->isStop()) {
             anm_init(i_this, 0x20, 1.0f, 2, 1.0f);
-            i_this->mode = 4;
+            i_this->ride_mode = 4;
             i_this->acceleration = 0;
             i_this->path_ten = 1;
             i_this->eye = ikki_pos[i_this->path_ten];
@@ -1851,12 +1851,12 @@ static void e_wb_b_ikki(e_wb_class* i_this) {
         break;
     case 0:
         anm_init(i_this, 0x2a, 10.0f, 2, 1.0f);
-        i_this->mode = 1;
+        i_this->ride_mode = 1;
         i_this->timer[3] = 10;
         break;
     case 1:
         if (i_this->timer[3] == 0 && !dComIfGp_event_runCheck()) {
-            i_this->mode = 2;
+            i_this->ride_mode = 2;
             i_this->path_ten = 1;
         }
         break;
@@ -1866,7 +1866,7 @@ static void e_wb_b_ikki(e_wb_class* i_this) {
             i_this->status_flag |= (u16)8;
             i_this->anm_time = 40.0f;
             i_this->eye = ikki_pos[i_this->path_ten];
-            i_this->mode = 3;
+            i_this->ride_mode = 3;
         }
         break;
     case 3:
@@ -1879,7 +1879,7 @@ static void e_wb_b_ikki(e_wb_class* i_this) {
 
         if (i_this->anm_p->isStop()) {
             anm_init(i_this, 0x20, 5.0f, 2, 1.0f);
-            i_this->mode = 4;
+            i_this->ride_mode = 4;
             i_this->status_flag |= (u8)0x10;
             i_this->sound.startCreatureSound(Z2SE_EN_WB_KICK_GROUND, 0, -1);
             i_this->acceleration = 0;
@@ -1900,18 +1900,18 @@ static void e_wb_b_ikki(e_wb_class* i_this) {
         } else {
             i_this->field_0x6da = 2;
         }
-        f32 fVar2;
-        f32 fVar1;
+        f32 search_dist;
+        f32 guidance_dist;
         if (i_this->lap_num == 0) {
-            fVar2 = l_HIO.mSearchIgnoreDistance2;
-            fVar1 = l_HIO.mGuidanceDisplayDistance2;
+            search_dist = l_HIO.mSearchIgnoreDistance2;
+            guidance_dist = l_HIO.mGuidanceDisplayDistance2;
         } else {
-            fVar2 = l_HIO.mSearchIgnoreDistance1;
-            fVar1 = l_HIO.mGuidanceDisplayDistance1;
+            search_dist = l_HIO.mSearchIgnoreDistance1;
+            guidance_dist = l_HIO.mGuidanceDisplayDistance1;
         }
 
         if (range < 0x3000 && range > -0x3000) {
-            if (dist > fVar2) {
+            if (dist > search_dist) {
                 cLib_addCalc2(&actor->current.pos.x, pla->current.pos.x, 0.05f,
                               actor->speedF * i_this->acceleration);
                 cLib_addCalc2(&i_this->acceleration, 0.6f, 1.0f, 0.06f);
@@ -1926,7 +1926,7 @@ static void e_wb_b_ikki(e_wb_class* i_this) {
                     local_d8 = -0x1000;
                 }
             }
-            if (dist < fVar1) {
+            if (dist < guidance_dist) {
                 daPy_getPlayerActorClass()->onSingleBoarAvoid();
             }
         }
@@ -1935,7 +1935,7 @@ static void e_wb_b_ikki(e_wb_class* i_this) {
         i_this->target_ya = (s16)cM_atan2s(mae.x, mae.z);
         if (mae.abs() < 600.0f + AREG_F(8)) {
             anm_init(i_this, 0x25, 3.0f, 2, 1.0f);
-            i_this->mode = 5;
+            i_this->ride_mode = 5;
             i_this->status_flag |= (u16)0x20;
         }
         angle = 2048 + XREG_S(1);
@@ -1947,7 +1947,7 @@ static void e_wb_b_ikki(e_wb_class* i_this) {
             i_this->sound.startCreatureSoundLevel(Z2SE_EN_WB_L_SLIP, 0, -1);
         } else if (actor->speedF < 1.0f) {
             anm_init(i_this, 0x2a, 10.0f, 2, 1.0f);
-            i_this->mode = 6;
+            i_this->ride_mode = 6;
             ANGLE_ADD(i_this->target_ya, 0x8000);
         }
         break;
@@ -1955,7 +1955,7 @@ static void e_wb_b_ikki(e_wb_class* i_this) {
         angle = 0x200;
         i_this->range = i_this->target_ya - actor->current.angle.y;
         if (i_this->range < 0x800 && i_this->range > -0x800) {
-            i_this->mode = 2;
+            i_this->ride_mode = 2;
             i_this->path_ten = 1 - i_this->path_ten;
         } else if (i_this->anmID != 40) {
             anm_init(i_this, 0x28, 5.0f, 2, 1.5f);
@@ -1972,12 +1972,12 @@ static void e_wb_b_ikki(e_wb_class* i_this) {
         actor->current.pos.x = 34243.0f;
     }
 
-    if (i_this->mode == 4 && (range > 16384 || range < -0x4000) && i_this->no_draw) {
+    if (i_this->ride_mode == 4 && (range > 16384 || range < -0x4000) && i_this->no_draw) {
         if (i_this->path_ten == 1 && pla->current.pos.z < ikki_pos[0].z + 12000.0f &&
             actor->current.pos.z > ikki_pos[1].z - 12000.0f)
         {
             actor->current.pos.z = ikki_pos[1].z;
-            i_this->mode = 5;
+            i_this->ride_mode = 5;
             actor->speedF = 0.0f;
             OS_REPORT("   WB CULL !!\n");
         } else {
@@ -1986,7 +1986,7 @@ static void e_wb_b_ikki(e_wb_class* i_this) {
                 actor->current.pos.z < ikki_pos[0].z + 12000.0f)
             {
                 actor->current.pos.z = ikki_pos[0].z;
-                i_this->mode = 5;
+                i_this->ride_mode = 5;
                 actor->speedF = 0.0f;
                 OS_REPORT("   WB CULL !!\n");
             }
@@ -2028,10 +2028,10 @@ static void e_wb_b_ikki_end(e_wb_class* i_this) {
     f32 speed = 0.0;
     f32 acceleration = 1.0f;
 
-    switch (i_this->mode) {
+    switch (i_this->ride_mode) {
     case 0:
         anm_init(i_this, 0x20, 1.0f, 2, 1.0f);
-        i_this->mode = 1;
+        i_this->ride_mode = 1;
         break;
     case 1:
         speed = l_HIO.mSingleRiderSpeed;
@@ -2067,12 +2067,12 @@ static void e_wb_b_ikki2(e_wb_class* i_this) {
     int frame = i_this->anm_p->getFrame();
     e_rd_class* rider = (e_rd_class*)fopAcM_SearchByID(i_this->rd_id);
 
-    switch (i_this->mode) {
+    switch (i_this->ride_mode) {
     case -100: {
         int local_a0 = dComIfGp_getEventManager().getMyStaffId("RiderBoss", NULL, 0);
         if (local_a0 != -1) {
             dComIfGp_getEventManager().cutEnd(local_a0);
-            i_this->mode = -99;
+            i_this->ride_mode = -99;
             anm_init(i_this, 0x2a, 10.0f, 2, 1.0f);
         }
     } break;
@@ -2084,7 +2084,7 @@ static void e_wb_b_ikki2(e_wb_class* i_this) {
             int* p = dComIfGp_evmng_getMyIntegerP(staffId, "action");
             if (p) {
                 rider->mode = 2;
-                i_this->mode = -98;
+                i_this->ride_mode = -98;
             }
         }
     } break;
@@ -2093,13 +2093,13 @@ static void e_wb_b_ikki2(e_wb_class* i_this) {
         break;
     case 0:
         anm_init(i_this, 0x2a, 10.0f, 2, 1.0f);
-        i_this->mode = 1;
+        i_this->ride_mode = 1;
         i_this->timer[3] = 10;
         break;
 
     case 1:
         if (i_this->timer[3] == 0 && !dComIfGp_event_runCheck()) {
-            i_this->mode = 2;
+            i_this->ride_mode = 2;
             i_this->path_ten = 1;
             Z2GetAudioMgr()->subBgmStart(Z2BGM_FACE_OFF_BATTLE);
         }
@@ -2111,7 +2111,7 @@ static void e_wb_b_ikki2(e_wb_class* i_this) {
             i_this->status_flag |= (u16)8;
             i_this->anm_time = 40.0f;
             i_this->eye = ikki2_pos[i_this->path_ten];
-            i_this->mode = 3;
+            i_this->ride_mode = 3;
         }
         break;
 
@@ -2128,7 +2128,7 @@ static void e_wb_b_ikki2(e_wb_class* i_this) {
 
         if (i_this->anm_p->isStop()) {
             anm_init(i_this, 0x20, 5.0f, 2, 1.0f);
-            i_this->mode = 4;
+            i_this->ride_mode = 4;
             i_this->status_flag |= (u8)0x10;
             i_this->sound.startCreatureSound(Z2SE_EN_WB_KICK_GROUND, 0, -1);
             i_this->acceleration = 0.0f;
@@ -2196,7 +2196,7 @@ static void e_wb_b_ikki2(e_wb_class* i_this) {
 
         if (mae.abs() < 700.0f + AREG_F(8)) {
             anm_init(i_this, 0x25, 3.0f, 2, 1.0f);
-            i_this->mode = 5;
+            i_this->ride_mode = 5;
             i_this->status_flag |= (u16)0x20;
         }
 
@@ -2209,7 +2209,7 @@ static void e_wb_b_ikki2(e_wb_class* i_this) {
             i_this->sound.startCreatureSoundLevel(Z2SE_EN_WB_L_SLIP, 0, -1);
         } else if (actor->speedF < 1.0f) {
             anm_init(i_this, 0x2a, 10.0f, 2, 1.0f);
-            i_this->mode = 6;
+            i_this->ride_mode = 6;
             ANGLE_ADD(i_this->target_ya, 0x8000);
         }
     } break;
@@ -2219,7 +2219,7 @@ static void e_wb_b_ikki2(e_wb_class* i_this) {
         i_this->range = i_this->target_ya - actor->current.angle.y;
 
         if (i_this->range < 0x800 && i_this->range > -0x800) {
-            i_this->mode = 2;
+            i_this->ride_mode = 2;
             i_this->path_ten = 1 - i_this->path_ten;
         } else if (i_this->anmID != 40) {
             anm_init(i_this, 0x28, 5.0f, 2, 1.5f);
@@ -2232,14 +2232,14 @@ static void e_wb_b_ikki2(e_wb_class* i_this) {
     cLib_addCalc2(&actor->speedF, target_speed, 1.0f, acceleration);
 
     // Handle position culling logic
-    if (i_this->mode == 4 && (range > 0x4000 || range < -0x4000) &&
+    if (i_this->ride_mode == 4 && (range > 0x4000 || range < -0x4000) &&
         i_this->no_draw)
     {
         if (i_this->path_ten == 1 && pla->current.pos.z < ikki2_pos[0].z + 12000.0f &&
             actor->current.pos.z > ikki2_pos[1].z - 12000.0f)
         {
             actor->current.pos.z = ikki2_pos[1].z;
-            i_this->mode = 5;
+            i_this->ride_mode = 5;
             actor->speedF = 0.0f;
             OS_REPORT("   WB CULL !!\n");
         } else if (i_this->path_ten == 0 &&
@@ -2247,7 +2247,7 @@ static void e_wb_b_ikki2(e_wb_class* i_this) {
                    actor->current.pos.z < ikki2_pos[0].z + 12000.0f)
         {
             actor->current.pos.z = ikki2_pos[0].z;
-            i_this->mode = 5;
+            i_this->ride_mode = 5;
             actor->speedF = 0.0f;
             OS_REPORT("   WB CULL !!\n");
         }
@@ -2257,17 +2257,17 @@ static void e_wb_b_ikki2(e_wb_class* i_this) {
 static void e_wb_b_ikki2_end(e_wb_class* i_this) {
     fopAc_ac_c* actor = (fopAc_ac_c*)i_this;
 
-    switch (i_this->mode) {
+    switch (i_this->ride_mode) {
     case 0:
         actor->current.pos.x = -93620.0f;
         anm_init(i_this, 0x20, 1.0f, 2, 1.0f);
-        i_this->mode = 1;
+        i_this->ride_mode = 1;
         i_this->counter = 0;
         // fallthrough
     case 1:
         if (i_this->counter > (s16)(170 + KREG_S(6)) && i_this->Bgc.ChkWallHit()) {
             i_this->action = ACT_BG_DAMAGE;
-            i_this->mode = 0;
+            i_this->ride_mode = 0;
             i_this->anm_time = 50.0f;
             i_this->sound.startCreatureVoice(Z2SE_EN_WB_V_DAMAGE, -1);
             dComIfGp_getVibration().StartShock(8, 0x4f, cXyz(0.0f, 1.0f, 0.0f));
@@ -2302,10 +2302,10 @@ static void e_wb_b_lv9_end(e_wb_class* i_this) {
     f32 acceleration = 0.5f;
     s16 angle = actor->current.angle.y;
 
-    switch (i_this->mode) {
+    switch (i_this->ride_mode) {
     case 0:
         i_this->timer[0] = 30;
-        i_this->mode = 1;
+        i_this->ride_mode = 1;
         anm_init(i_this, 0x2b, 0.0f, 2, 1.0f);
         actor->current.pos.set(-7080.0f, 50.0f, -6634.0f);
         local_44.x = -10008.0f - actor->current.pos.x;
@@ -2316,7 +2316,7 @@ static void e_wb_b_lv9_end(e_wb_class* i_this) {
         // fallthrough
     case 1:
         if (i_this->timer[0] == 0) {
-            i_this->mode = 2;
+            i_this->ride_mode = 2;
             i_this->timer[0] = KREG_S(6) + 65;
         }
         break;
@@ -2324,7 +2324,7 @@ static void e_wb_b_lv9_end(e_wb_class* i_this) {
         speed = KREG_F(6) + 15.0f;
         if (i_this->timer[0] == 0) {
             anm_init(i_this, 0x2a, 10.0f, 2, 1.0f);
-            i_this->mode = 3;
+            i_this->ride_mode = 3;
             i_this->status_flag |= (u16)8;
             i_this->timer[0] = 40;
         }
@@ -2336,12 +2336,12 @@ static void e_wb_b_lv9_end(e_wb_class* i_this) {
         break;
     case 4:
         anm_init(i_this, 0x1b, 3.0f, 0, 1.0f);
-        i_this->mode = 5;
+        i_this->ride_mode = 5;
         break;
     case 5:
         if (i_this->anm_p->isStop()) {
             anm_init(i_this, 0x20, 2.0f, 2, 1.0f);
-            i_this->mode = 6;
+            i_this->ride_mode = 6;
             i_this->timer[0] = 80;
         }
         break;
@@ -2371,10 +2371,10 @@ static void e_wb_a_run(e_wb_class* i_this) {
     s16 angle = actor->current.angle.y;
     s16 ya;
 
-    switch (i_this->mode) {
+    switch (i_this->ride_mode) {
     case 0:
         anm_init(i_this, 0x20, 5.0f, 2, 1.399999976158142f);
-        i_this->mode = 1;
+        i_this->ride_mode = 1;
         i_this->target_ya = actor->current.angle.y;
         i_this->timer[1] = cM_rndF(30.0f) + 80.0f;
     case 1:
@@ -2389,7 +2389,7 @@ static void e_wb_a_run(e_wb_class* i_this) {
         if (i_this->timer[1] == 1 || i_this->gake_flg == GAKE_FLG_TURN) {
             i_this->action = ACT_LR_DAMAGE;
             i_this->sound.startCreatureVoice(Z2SE_EN_WB_V_DAMAGE, -1);
-            i_this->mode = 0;
+            i_this->ride_mode = 0;
         }
     default:
         cLib_addCalcAngleS2(&actor->current.angle.y, i_this->target_ya, 8, 0x800);
@@ -2405,7 +2405,7 @@ static void e_wb_s_damage(e_wb_class* i_this) {
     cXyz cStack_28;
 
     i_this->wait_timer = 10;
-    switch (i_this->mode) {
+    switch (i_this->ride_mode) {
     case 0:
         if (actor->speedF <= 5.0f) {
             if ((i_this->status_flag & 3) != 0) {
@@ -2418,16 +2418,16 @@ static void e_wb_s_damage(e_wb_class* i_this) {
         } else {
             anm_init(i_this, 0x22, 2.0f, 0, 1.0f);
         }
-        i_this->mode = 1;
+        i_this->ride_mode = 1;
         break;
     case 1:
         if (i_this->anm_p->isStop()) {
             if ((i_this->status_flag & 3) != 0) {
-                i_this->action = i_this->ride_action;
+                i_this->action = i_this->old_action;
                 if (i_this->action == ACT_WAIT2) {
                     i_this->action = ACT_C_F_RUN;
                 } else if (i_this->action == ACT_C_F_RUN) {
-                    i_this->mode = 1;
+                    i_this->ride_mode = 1;
                 } else {
                     if (i_this->action == ACT_PL_RIDE) {
                         i_this->action = ACT_PL_RIDE2;
@@ -2438,11 +2438,11 @@ static void e_wb_s_damage(e_wb_class* i_this) {
                         OS_REPORT(" RIDE RUN START \n");
                         return;
                     }
-                    i_this->mode = 0;
+                    i_this->ride_mode = 0;
                 }
             } else {
                 i_this->action = ACT_A_RUN;
-                i_this->mode = 0;
+                i_this->ride_mode = 0;
             }
         }
         break;
@@ -2459,11 +2459,11 @@ static int e_wb_damage(e_wb_class* i_this) {
     i_this->wait_timer = 10;
     BOOL rt = FALSE;
 
-    switch (i_this->mode) {
+    switch (i_this->ride_mode) {
     case 0:
         dKy_Sound_set(enemy->current.pos, 100, fopAcM_GetID(&i_this->enemy), 5);
         anm_init(i_this, 8, 1.0f, 0, 1.0f);
-        i_this->mode = 1;
+        i_this->ride_mode = 1;
         enemy->speedF = -15.0f + YREG_F(0);
         enemy->speed.y = 50.0f + YREG_F(1) + cM_rndF(20.0f);
         ANGLE_ADD(enemy->current.angle.y, cM_rndFX(3000.0f));
@@ -2472,7 +2472,7 @@ static int e_wb_damage(e_wb_class* i_this) {
 
     case 1:
         if (i_this->Bgc.ChkGroundHit()) {
-            i_this->mode = 2;
+            i_this->ride_mode = 2;
             enemy->speedF *= 0.5f;
             enemy->speed.y = 40.0f + YREG_F(2);
             anm_init(i_this, 0x22, 2.0f, 0, 1.0f);
@@ -2482,7 +2482,7 @@ static int e_wb_damage(e_wb_class* i_this) {
 
     case 2:
         if (i_this->anm_p->isStop()) {
-            i_this->mode = 3;
+            i_this->ride_mode = 3;
             if (cM_rndF(1.0f) < 0.5f) {
                 anm_init(i_this, 0xc, 2.0f, 0, 1.0f);
                 i_this->field_0x6e4 = 0;
@@ -2515,14 +2515,14 @@ static int e_wb_damage(e_wb_class* i_this) {
             } else {
                 anm_init(i_this, 0x11, 2.0f, 0, 1.0f);
             }
-            i_this->mode = 4;
+            i_this->ride_mode = 4;
         }
         break;
 
     case 4:
         if (i_this->anm_p->isStop()) {
             i_this->action = ACT_WAIT;
-            i_this->mode = 0;
+            i_this->ride_mode = 0;
             i_this->rotation.x = 0;
             enemy->current.angle.y += i_this->rotation.y;
             enemy->shape_angle.y = enemy->current.angle.y;
@@ -2533,7 +2533,7 @@ static int e_wb_damage(e_wb_class* i_this) {
 
     i_this->rotation.y += i_this->rotation_spd.y;
 
-    if (i_this->mode >= 3) {
+    if (i_this->ride_mode >= 3) {
         cLib_addCalcAngleS2(&i_this->rotation.x, 0, 1, 0x600);
     } else {
         cLib_addCalcAngleS2(&i_this->rotation.x, -(YREG_S(6) + 0x4000), 1, YREG_S(1) + 0x200);
@@ -2549,11 +2549,11 @@ static int e_wb_bg_damage(e_wb_class* i_this) {
 
     i_this->wait_timer = 10;
 
-    switch (i_this->mode) {
+    switch (i_this->ride_mode) {
     case 0:
         dKy_Sound_set(actor->current.pos, 100, fopAcM_GetID(&i_this->enemy), 5);
         anm_init(i_this, 5, 2.0f, 0, 1.0f);
-        i_this->mode = 1;
+        i_this->ride_mode = 1;
         actor->speedF = 0.0f;
         i_this->status_flag |= (u16)0x80;
         i_this->dash_timer = 0;
@@ -2561,7 +2561,7 @@ static int e_wb_bg_damage(e_wb_class* i_this) {
 
     case 1:
         if (i_this->anm_p->isStop()) {
-            i_this->mode = 2;
+            i_this->ride_mode = 2;
             anm_init(i_this, 7, 2.0f, 2, 1.0f);
             i_this->timer[0] = (s16)(cM_rndF(60.0f) + 150.0f);
         }
@@ -2571,14 +2571,14 @@ static int e_wb_bg_damage(e_wb_class* i_this) {
         rt = TRUE;
         if (i_this->timer[0] == 0) {
             anm_init(i_this, 6, 3.0f, 0, 1.0f);
-            i_this->mode = 3;
+            i_this->ride_mode = 3;
         }
         break;
 
     case 3:
         if (i_this->anm_p->isStop()) {
             i_this->action = ACT_WAIT;
-            i_this->mode = 0;
+            i_this->ride_mode = 0;
         }
         break;
     }
@@ -2594,7 +2594,7 @@ static int e_wb_lr_damage(e_wb_class* i_this) {
 
     i_this->wait_timer = 10;
 
-    switch (i_this->mode) {
+    switch (i_this->ride_mode) {
     case 0: {
         if (cM_rndF(1.0f) < 0.5f || i_this->field_0x1720 != 0) {
             anm_init(i_this, 0xc, 2.0f, 0, 1.0f);
@@ -2603,7 +2603,7 @@ static int e_wb_lr_damage(e_wb_class* i_this) {
             anm_init(i_this, 0xd, 2.0f, 0, 1.0f);
             i_this->field_0x6e4 = 1;
         }
-        i_this->mode = 1;
+        i_this->ride_mode = 1;
         i_this->status_flag |= (u16)0x40;
         i_this->timer[0] = (s16)(cM_rndF(60.0f) + 150.0f);
         i_this->timer[1] = 15 + TREG_S(5);
@@ -2627,7 +2627,7 @@ static int e_wb_lr_damage(e_wb_class* i_this) {
                 } else {
                     anm_init(i_this, 0xf, 2.0f, 2, 1.0f);
                 }
-                i_this->mode = 2;
+                i_this->ride_mode = 2;
                 actor->speedF = 30.0f;
             }
             i_this->landing_flag = 1;
@@ -2635,7 +2635,7 @@ static int e_wb_lr_damage(e_wb_class* i_this) {
         }
 
         if (i_this->anm_p->isStop()) {
-            i_this->mode = 3;
+            i_this->ride_mode = 3;
             if (i_this->anmID == 12) {
                 anm_init(i_this, 0x12, 3.0f, 2, 1.0f);
             } else if (i_this->anmID == 13) {
@@ -2652,7 +2652,7 @@ static int e_wb_lr_damage(e_wb_class* i_this) {
             } else if (i_this->anmID == 15) {
                 anm_init(i_this, 0x13, 3.0f, 2, 1.0f);
             }
-            i_this->mode = 3;
+            i_this->ride_mode = 3;
         }
         // fallthrough
 
@@ -2672,7 +2672,7 @@ static int e_wb_lr_damage(e_wb_class* i_this) {
             } else {
                 anm_init(i_this, 0x11, 3.0f, 0, 1.0f);
             }
-            i_this->mode = 4;
+            i_this->ride_mode = 4;
         }
 
         cLib_addCalcAngleS2(&i_this->rotation_spd.y, 0, 1, 0x64 + YREG_S(3));
@@ -2681,7 +2681,7 @@ static int e_wb_lr_damage(e_wb_class* i_this) {
     case 4: {
         if (i_this->anm_p->isStop()) {
             i_this->action = ACT_WAIT;
-            i_this->mode = 0;
+            i_this->ride_mode = 0;
             actor->current.angle.y += i_this->rotation.y;
             actor->shape_angle.y = actor->current.angle.y;
             i_this->rotation.y = i_this->rotation_spd.y = 0;
@@ -2698,11 +2698,11 @@ static int e_wb_lr_damage(e_wb_class* i_this) {
 static void e_wb_kiba_start(e_wb_class* i_this) {
     fopAc_ac_c* actor = (fopAc_ac_c*)i_this;
     f32 speed = 0.0f;
-    switch (i_this->mode) {
+    switch (i_this->ride_mode) {
     case 0:
         anm_init(i_this, 0x2a, 10.0f, 2, 1.0f);
         i_this->demo_mode = 30;
-        i_this->mode = 1;
+        i_this->ride_mode = 1;
         i_this->kiba = 1;
         break;
     case 1:
@@ -2718,12 +2718,12 @@ static void e_wb_kiba_end(e_wb_class* i_this) {
 
     i_this->wait_timer = 10;
 
-    switch (i_this->mode) {
+    switch (i_this->ride_mode) {
     case 0:
         if (i_this->anmID != 32) {
             anm_init(i_this, 0x20, 1.0f, 2, 1.0f);
         }
-        i_this->mode = 1;
+        i_this->ride_mode = 1;
         i_this->demo_mode = 1;
         break;
 
@@ -2737,7 +2737,7 @@ static void e_wb_kiba_end(e_wb_class* i_this) {
         {
             actor->speed.y = 55.0f + WREG_F(1);
             anm_init(i_this, 0x18, 2.0f, 0, 1.0f);
-            i_this->mode = 2;
+            i_this->ride_mode = 2;
             i_this->sound.startCreatureVoice(Z2SE_EN_RDB_V_HOICK, -1);
             i_this->status_flag |= (u16)0x100;
         }
@@ -2746,7 +2746,7 @@ static void e_wb_kiba_end(e_wb_class* i_this) {
     case 2:
         if (actor->speed.y < 10.0f) {
             anm_init(i_this, 0x19, 10.0f, 0, 1.0f);
-            i_this->mode = 3;
+            i_this->ride_mode = 3;
         }
         break;
 
@@ -2760,7 +2760,7 @@ static void e_wb_kiba_end(e_wb_class* i_this) {
             }
         } else if (i_this->anmID == 26 && i_this->anm_p->isStop()) {
             anm_init(i_this, 0x20, 2.0f, 2, 1.0f);
-            i_this->mode = 4;
+            i_this->ride_mode = 4;
         }
         break;
     case 4:
@@ -2789,9 +2789,9 @@ static void damage_check(e_wb_class* i_this) {
                 fopAcM_GetName(hit_actor) == PROC_ALINK) {
                 ANGLE_ADD(i_this->damage_timer, 2);
                 if (i_this->damage_timer >= 150) {
-                    i_this->ride_action = i_this->action;
+                    i_this->old_action = i_this->action;
                     i_this->action = ACT_S_DAMAGE;
-                    i_this->mode = 0;
+                    i_this->ride_mode = 0;
                     i_this->wait_timer = 20;
                     return;
                 }
@@ -2864,15 +2864,15 @@ static void damage_check(e_wb_class* i_this) {
 
                     if ((i_this->status_flag & 3) != 0) {
                         if (i_this->at_info.mAttackPower < 30) {
-                            i_this->ride_action = i_this->action;
+                            i_this->old_action = i_this->action;
                             i_this->action = ACT_S_DAMAGE;
                         } else {
                             i_this->action = ACT_LR_DAMAGE;
                         }
-                        i_this->mode = 0;
+                        i_this->ride_mode = 0;
                     } else {
                         i_this->action = ACT_S_DAMAGE;
-                        i_this->mode = 0;
+                        i_this->ride_mode = 0;
                     }
                 }
 
@@ -3151,23 +3151,23 @@ static void e_wb_crv_wait(e_wb_class* i_this) {
     fopAc_ac_c* rdb = fopAcM_SearchByName(PROC_E_RDB);
     i_this->wait_timer = 20;
 
-    switch (i_this->mode) {
+    switch (i_this->ride_mode) {
     case 0:
         anm_init(i_this, 0x2a, 10.0f, 2, 1.0f);
-        i_this->mode = 1;
+        i_this->ride_mode = 1;
         // fallthrough
     case 1:
         if (pla->current.pos.x > 482.0f && pla->current.pos.x < 3100.0f &&
             pla->current.pos.z > 0.0f && pla->current.pos.z < 1500.0f)
         {
             i_this->demo_mode = 70;
-            i_this->mode = 2;
+            i_this->ride_mode = 2;
         }
         break;
     case 2:
         if (i_this->demo_mode == 0 && pla->current.pos.z > 550.0f) {
             i_this->demo_mode = 50;
-            i_this->mode = 3;
+            i_this->ride_mode = 3;
         }
         break;
     case 3:
@@ -3208,7 +3208,7 @@ static s8 e_wb_c_run(e_wb_class* i_this) {
 
     if ((i_this->status_flag & 1) == 0) {
         i_this->action = ACT_A_RUN;
-        i_this->mode = 0;
+        i_this->ride_mode = 0;
         return rt;
     }
 
@@ -3217,10 +3217,10 @@ static s8 e_wb_c_run(e_wb_class* i_this) {
     s16 ya;
     dBgS_LinChk lin_chk;
 
-    switch (i_this->mode) {
+    switch (i_this->ride_mode) {
     case 0: {
         anm_init(i_this, 0x2a, 10.0f, 2, 1.0f);
-        i_this->mode = 1;
+        i_this->ride_mode = 1;
         i_this->status_flag |= (u16)0x20;
     }
     // fallthrough
@@ -3231,7 +3231,7 @@ static s8 e_wb_c_run(e_wb_class* i_this) {
         start = target_pos - coach->current.pos;
 
         if (i_this->field_0x7a7 == 0 || JMAFastSqrt(start.x * start.x + start.z * start.z) < 500.0f) {
-            i_this->mode = 2;
+            i_this->ride_mode = 2;
             i_this->field_0x7a7 = 0;
             fopAcM_setStageLayer(actor);
             i_this->field_0x17e1 = 1;
@@ -3241,14 +3241,14 @@ static s8 e_wb_c_run(e_wb_class* i_this) {
     case 2: {
         if (i_this->field_0x7a6 == 0) {
             anm_init(i_this, 0x1b, 3.0f, 0, 1.0f);
-            i_this->mode = 11;
+            i_this->ride_mode = 11;
             i_this->anm_time = 40.0f;
             i_this->status_flag |= (u16)8;
         } else {
             i_this->field_0x7a6 = 0;
             anm_init(i_this, 0x20, 5.0f, 2, 1.0f);
             i_this->anm_p->setFrame(cM_rndF(10.0f));
-            i_this->mode = 12;
+            i_this->ride_mode = 12;
             i_this->status_flag |= (u16)0x10;
             i_this->sound.startCreatureSound(Z2SE_EN_WB_KICK_GROUND, 0, -1);
         }
@@ -3263,13 +3263,13 @@ static s8 e_wb_c_run(e_wb_class* i_this) {
         }
         if (i_this->anm_p->isStop()) {
             anm_init(i_this, 0x20, 5.0f, 2, 1.0f);
-            i_this->mode = 12;
+            i_this->ride_mode = 12;
             i_this->status_flag |= (u8)0x10;
             i_this->sound.startCreatureSound(Z2SE_EN_WB_KICK_GROUND, 0, -1);
         }
     } break;
     case 12: {
-        i_this->mode = 13;
+        i_this->ride_mode = 13;
     }
         // fallthrough
     case 13: {
@@ -3375,7 +3375,7 @@ static s8 e_wb_c_run(e_wb_class* i_this) {
 
     case 20: {
         anm_init(i_this, 0x25, 3.0f, 2, 1.0f);
-        i_this->mode = 21;
+        i_this->ride_mode = 21;
     }
         // fallthrough
 
@@ -3387,14 +3387,14 @@ static s8 e_wb_c_run(e_wb_class* i_this) {
                 i_this->sound.startCreatureSoundLevel(Z2SE_EN_WB_L_SLIP, 0, -1);
             } else {
                 anm_init(i_this, 0x2a, 10.0f, 2, 1.0f);
-                i_this->mode = 22;
+                i_this->ride_mode = 22;
                 i_this->status_flag |= (u16)0x20;
             }
         }
         break;
     }
 
-    if (i_this->mode < 20) {
+    if (i_this->ride_mode < 20) {
         start.x = 4025.0f - coach->current.pos.x;
         start.z = 52319.0f - coach->current.pos.z;
 
@@ -3404,7 +3404,7 @@ static s8 e_wb_c_run(e_wb_class* i_this) {
             start = coach->current.pos - actor->current.pos;
 
             if (start.abs() < 1000.0f) {
-                i_this->mode = 20;
+                i_this->ride_mode = 20;
             }
         }
     }
@@ -3563,7 +3563,7 @@ static void action(e_wb_class* i_this) {
             if (rd_count <= 8) {
                 i_this->field_0x7a7 = 0;
                 i_this->action = ACT_WAIT2;
-                i_this->mode = 0;
+                i_this->ride_mode = 0;
                 i_this->wait_timer = 30;
                 i_this->status_flag = 3;
                 i_this->rotation.set(0, 0, 0);
@@ -3587,7 +3587,7 @@ static void action(e_wb_class* i_this) {
             if (rd_count <= 4) {
                 i_this->field_0x7a6 = 0;
                 i_this->action = ACT_WAIT2;
-                i_this->mode = 0;
+                i_this->ride_mode = 0;
                 i_this->wait_timer = 30;
                 i_this->status_flag = 3;
                 i_this->rotation.set(0, 0, 0);
@@ -3642,7 +3642,7 @@ static void action(e_wb_class* i_this) {
 
     if (lbl_244_bss_45 != 0 && actor->home.pos.y - actor->current.pos.y > 5000.0f) {
         i_this->action = ACT_EVENT;
-        i_this->mode = 0;
+        i_this->ride_mode = 0;
         i_this->status_flag |= (u16)0x40;
         actor->current.pos = actor->home.pos;
         actor->old = actor->current;
@@ -4262,7 +4262,7 @@ static void demo_camera(e_wb_class* i_this) {
             i_this->demo_timer = 0;
             i_this->kiba = 0;
             i_this->action = ACT_B_RUN;
-            i_this->mode = 0;
+            i_this->ride_mode = 0;
             i_this->demo_cam_ctr.set(-8416.0f, 345.0f, 6.0f);
             i_this->demo_cam_eye.set(-8994.0f, 326.0f, 400.0f);
             i_this->sound.startCreatureVoice(Z2SE_EN_RDB_V_HOICK, -1);
@@ -4361,7 +4361,7 @@ static void demo_camera(e_wb_class* i_this) {
             i_this->demo_cam_zoom = 55.0f;
             i_this->demo_mode = 43;
             i_this->demo_timer = 0;
-            i_this->mode = -100;
+            i_this->ride_mode = -100;
         }
     } break;
     case 43: {
@@ -4395,7 +4395,7 @@ static void demo_camera(e_wb_class* i_this) {
         cam_3d_morf(i_this, 0.05f);
         cLib_addCalc2(&i_this->demo_cam_morf, 0.005f, 1.0f, 0.0002f);
         if (i_this->demo_timer == 170) {
-            i_this->mode++;
+            i_this->ride_mode++;
         }
 
         if (i_this->demo_timer == 258) {
@@ -4476,7 +4476,7 @@ static void demo_camera(e_wb_class* i_this) {
         }
         if (i_this->demo_timer == 312) {
             i_this->action = 24;
-            i_this->mode = 0;
+            i_this->ride_mode = 0;
             i_this->sound.startCreatureVoice(Z2SE_EN_WB_V_DAMAGE, -1);
             cXyz pos(enemy->current.pos);
             pos.y += 150.0f;
@@ -4977,7 +4977,7 @@ static void demo_camera(e_wb_class* i_this) {
                     mDoGph_gInf_c::fadeIn(0.066, g_blackColor);
                     i_this->action = ACT_LR_DAMAGE;
                     anm_init(i_this, 0x12, 0.0f, 2, 1.0);
-                    i_this->mode = 3;
+                    i_this->ride_mode = 3;
                     enemy->current.pos.x = 828.0f;
                     enemy->current.pos.z = 554.0f;
                     enemy->current.angle.y = enemy->shape_angle.y = 2048;
@@ -5206,7 +5206,7 @@ static int daE_WB_Execute(e_wb_class* i_this) {
                         dComIfGp_getVibration().StartShock(8, 0x4f, cXyz(0.0f, 1.0f, 0.0f));
                     }
                     i_this->action = ACT_BG_DAMAGE;
-                    i_this->mode = 0;
+                    i_this->ride_mode = 0;
                     i_this->anm_time = 50.0f;
                     i_this->sound.startCreatureVoice(Z2SE_EN_WB_V_DAMAGE, -1);
                 } else {
@@ -5216,7 +5216,7 @@ static int daE_WB_Execute(e_wb_class* i_this) {
                         } else {
                             i_this->action = ACT_WAIT;
                         }
-                        i_this->mode = 0;
+                        i_this->ride_mode = 0;
                     }
                 }
 
@@ -5599,7 +5599,7 @@ static int daE_WB_Create(fopAc_ac_c* actor) {
 
             // Hyrule Field
             if (!strcmp(dComIfGp_getStartStageName(), "F_SP121")) {
-                i_this->mode = -100;
+                i_this->ride_mode = -100;
             }
 
             i_this->target_ya = 0x8000;
@@ -5618,7 +5618,7 @@ static int daE_WB_Create(fopAc_ac_c* actor) {
         } else if (i_this->arg0 == 9) {
             i_this->leader = LEADER_B_LV9;
             i_this->action = ACT_B_LV9_END;
-            i_this->mode = 0;
+            i_this->ride_mode = 0;
         }
 
         i_this->arg1 = (fopAcM_GetParam(actor) & 0xff00) >> 8;
@@ -5771,7 +5771,7 @@ static int daE_WB_Create(fopAc_ac_c* actor) {
                     if (fopAcM_GetRoomNo(actor) == 2) {
                         i_this->action = ACT_LR_DAMAGE;
                         anm_init(i_this, 0x12, 0.0f, 2, 1.0f);
-                        i_this->mode = 3;
+                        i_this->ride_mode = 3;
                         actor->current.pos.x = 828.0f;
                         actor->current.pos.z = 554.0f;
                         actor->current.angle.y = actor->shape_angle.y = 2048;
