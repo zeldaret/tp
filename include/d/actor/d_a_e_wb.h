@@ -83,7 +83,7 @@ public:
     f32 nowAnimeFrame() const { return anm_p->getFrame(); }
     s16 getWaitRollAngle() const { return wait_roll_angle; }
     BOOL checkGetOff() const { return enemy.speedF < 3.0f; }
-    f32 rideSpeedRate() const { return enemy.speedF / mSpeedRate; }
+    f32 rideSpeedRate() const { return enemy.speedF / ride_speed_max; }
     f32 getAnimeFrameRate() { return anm_p->getFrame() / anm_p->getEndFrame(); }
     BOOL checkAnmLoopFrame() { return anm_p->checkFrame(0.0f); }
 
@@ -219,7 +219,7 @@ public:
     /* 0x17E1 */ u8 field_0x17e1;
     /* 0x17E2 */ s16 wait_roll_angle;  ///< @brief Roll angle during wait state.
     /* 0x17E4 */ u8 field_0x17e4[0x17e8 - 0x17e4];
-    /* 0x17E8 */ f32 mSpeedRate;  ///< @brief Speed rate for riding calculations.
+    /* 0x17E8 */ f32 ride_speed_max;  ///< @brief Speed rate for riding calculations.
 };
 
 STATIC_ASSERT(sizeof(e_wb_class) == 0x17EC);

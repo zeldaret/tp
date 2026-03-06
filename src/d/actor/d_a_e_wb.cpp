@@ -5785,7 +5785,7 @@ static int daE_WB_Create(fopAc_ac_c* actor) {
             }
 
             fopAcM_setCullSizeFar(actor, 30000.0f);
-            i_this->mSpeedRate = l_HIO.mPlayerMountedMaxSpeed;
+            i_this->ride_speed_max = l_HIO.mPlayerMountedMaxSpeed;
             c_start = 1;
             daE_WB_Execute(i_this);
             c_start = 0;
