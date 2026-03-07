@@ -457,7 +457,7 @@ void daArrow_c::setBombMoveEffect() {
 bool daArrow_c::checkReget() {
     if (field_0x7cc.ChkCoHit()) {
         dComIfGp_setItemArrowNumCount(1);
-        fopAcM_createItemForSimpleDemo(&current.pos, fpcNm_ITEM_ARROW_1, -1, NULL, NULL, 0.0f, 0.0f);
+        fopAcM_createItemForSimpleDemo(&current.pos, dItemNo_ARROW_1_e, -1, NULL, NULL, 0.0f, 0.0f);
         mDoAud_seStart(Z2SE_CONSUMP_ITEM_GET, 0, 0, 0);
         field_0x93f = 1;
         return true;

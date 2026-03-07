@@ -155,7 +155,7 @@ int daKey_c::create() {
         mIsPrmInit = TRUE;
     }
 
-    m_itemNo = fpcNm_ITEM_SMALL_KEY;
+    m_itemNo = dItemNo_SMALL_KEY_e;
 
     if (strcmp(dComIfGp_getStartStageName(), "F_SP118") == 0) {
         OS_REPORT(" SMKEY 0\n");

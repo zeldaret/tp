@@ -139,13 +139,13 @@ void daObjMATO_c::wait(int i_no) {
 }
 
 static const int l_rupee_itemno_table[] = {
-    fpcNm_ITEM_GREEN_RUPEE,
-    fpcNm_ITEM_BLUE_RUPEE,
-    fpcNm_ITEM_YELLOW_RUPEE,
-    fpcNm_ITEM_RED_RUPEE,
-    fpcNm_ITEM_PURPLE_RUPEE,
-    fpcNm_ITEM_ORANGE_RUPEE,
-    fpcNm_ITEM_SILVER_RUPEE,
+    dItemNo_GREEN_RUPEE_e,
+    dItemNo_BLUE_RUPEE_e,
+    dItemNo_YELLOW_RUPEE_e,
+    dItemNo_RED_RUPEE_e,
+    dItemNo_PURPLE_RUPEE_e,
+    dItemNo_ORANGE_RUPEE_e,
+    dItemNo_SILVER_RUPEE_e,
 };
 
 static const u8 l_rupee_count_table[] = {

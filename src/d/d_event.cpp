@@ -303,7 +303,7 @@ int dEvt_control_c::talkXyCheck(dEvt_order_c* order) {
         return 0;
     }
 
-    if (dComIfGp_getSelectItem(itemIndex) == fpcNm_ITEM_NONE) {
+    if (dComIfGp_getSelectItem(itemIndex) == dItemNo_NONE_e) {
         return 0;
     }
 
@@ -580,7 +580,7 @@ int dEvt_control_c::endProc() {
     field_0xec = 0xFF;
     mTalkXyType = 0;
     mUnkEventId = 255;
-    mPreItemNo = fpcNm_ITEM_NONE;
+    mPreItemNo = dItemNo_NONE_e;
     dComIfGp_getEventManager().setStartDemo(-2);
     return 1;
 }
@@ -1222,7 +1222,7 @@ void dEvt_control_c::remove() {
     mStageEventDt = NULL;
     mUnkEventId = 255;
     mTalkXyType = 0;
-    mPreItemNo = fpcNm_ITEM_NONE;
+    mPreItemNo = dItemNo_NONE_e;
     mEventFlag = 0;
     mFlag2 = 0;
     mChangeActor = NULL;

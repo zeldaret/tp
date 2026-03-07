@@ -5447,7 +5447,7 @@ cPhs_Step daB_DS_c::create() {
                 angle.x = angle.y = angle.z = 0;
                 pos.set(-400.0f, 1775.0f, -4132.0f);
 
-                fopAcM_createItemForBoss(&pos, fpcNm_ITEM_UTAWA_HEART, fopAcM_GetRoomNo(this), &angle, &scale,
+                fopAcM_createItemForBoss(&pos, dItemNo_UTAWA_HEART_e, fopAcM_GetRoomNo(this), &angle, &scale,
                                          0.0f, 0.0f, -1);
             }
 

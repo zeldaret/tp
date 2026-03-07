@@ -11,7 +11,7 @@
 #include "d/d_cc_uty.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_menu_insect.h"
-#include "f_pc/f_pc_name.h"
+#include "d/d_item_data.h"
 #include <cstring>
 
 class daObj_BattaHIO_c : public JORReflexible {
@@ -487,7 +487,7 @@ void daObjBATTA_c::hit_check() {
     }
 }
 
-static u8 const l_batta_sex[2] = {fpcNm_ITEM_M_GRASSHOPPER, fpcNm_ITEM_F_GRASSHOPPER};
+static u8 const l_batta_sex[2] = {dItemNo_M_GRASSHOPPER_e, dItemNo_F_GRASSHOPPER_e};
 
 int daObjBATTA_c::execute() {
     if ( ChkGetDemo()) {

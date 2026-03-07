@@ -110,7 +110,7 @@ static void damage_check(obj_rw_class* i_this) {
                     sp2C.z = 0.0f;
                     MtxPosition(&sp2C, &pos);
                     pos += actor->current.pos;
-                    fopAcM_createItem(&pos, fpcNm_ITEM_HEART, -1, -1, NULL, NULL, 0);
+                    fopAcM_createItem(&pos, dItemNo_HEART_e, -1, -1, NULL, NULL, 0);
                 }
 
                 i_this->field_0x674 = 15;
@@ -122,7 +122,7 @@ static void damage_check(obj_rw_class* i_this) {
                     fopAcM_createDisappear(actor, &pos, 20, 0, actor->field_0x564);
 
                     cXyz scale(1.0f, 1.0f, 1.0f);
-                    fopAcM_createItemForBoss(&pos, fpcNm_ITEM_KAKERA_HEART, fopAcM_GetRoomNo(actor), &actor->shape_angle, &scale, 0.0f, 0.0f, actor->field_0x564);
+                    fopAcM_createItemForBoss(&pos, dItemNo_KAKERA_HEART_e, fopAcM_GetRoomNo(actor), &actor->shape_angle, &scale, 0.0f, 0.0f, actor->field_0x564);
 
                     int swbit = (fopAcM_GetParam(actor) & 0xFF000000) >> 0x18;
                     if (swbit != 0xFF) {
@@ -373,7 +373,7 @@ static int daOBJ_RW_Create(fopAc_ac_c* actor) {
         if (swbit != 0xFF && dComIfGs_isSwitch(swbit, fopAcM_GetRoomNo(actor))) {
             i_this->field_0xe38 = 1;
             cXyz scale(1.0f, 1.0f, 1.0f);
-            fopAcM_createItemForBoss(&actor->current.pos, fpcNm_ITEM_KAKERA_HEART, fopAcM_GetRoomNo(actor), &actor->shape_angle, &scale, 0.0f, 0.0f, actor->field_0x564);
+            fopAcM_createItemForBoss(&actor->current.pos, dItemNo_KAKERA_HEART_e, fopAcM_GetRoomNo(actor), &actor->shape_angle, &scale, 0.0f, 0.0f, actor->field_0x564);
         } else {
             fopAcM_createChild(PROC_OBJ_MAKI, fopAcM_GetID(actor), 0xFFFFFF01, &actor->home.pos, fopAcM_GetRoomNo(actor), &actor->home.angle, NULL, -1, NULL);
             fopAcM_OnStatus(actor, 0);

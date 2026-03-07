@@ -111,7 +111,7 @@ int daE_KK_c::JointCallBack(J3DJoint* i_joint, int param_1) {
 }
 
 int daE_KK_c::draw() {
-    if (field_0x679 == 2 && !checkItemGet(fpcNm_ITEM_IRONBALL, 1)) {
+    if (field_0x679 == 2 && !checkItemGet(dItemNo_IRONBALL_e, 1)) {
         return 1;
     } else {
         cXyz position;
@@ -1262,7 +1262,7 @@ void daE_KK_c::cc_set() {
 
 int daE_KK_c::execute() {
     if (field_0x679 == 2) {
-        if (!checkItemGet(fpcNm_ITEM_IRONBALL, 1)) {
+        if (!checkItemGet(dItemNo_IRONBALL_e, 1)) {
             return 1;
         }
 
@@ -1460,7 +1460,7 @@ int daE_KK_c::create() {
         fopAcM_SetMin(this, -600.0f, -600.0f, -600.0f);
         fopAcM_SetMax(this, 600.0f, 600.0f, 600.0f);
 
-        if (field_0x679 == 2 && !checkItemGet(fpcNm_ITEM_IRONBALL, 1)) {
+        if (field_0x679 == 2 && !checkItemGet(dItemNo_IRONBALL_e, 1)) {
             attention_info.distances[fopAc_attn_BATTLE_e] = 0;
             fopAcM_SetGroup(this, 0);
             fopAcM_OffStatus(this, 0);

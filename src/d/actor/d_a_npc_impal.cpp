@@ -735,7 +735,7 @@ bool daNpcImpal_c::wait(void* param_0) {
                         return true;
                     }
                     u8 preitemno = dComIfGp_event_getPreItemNo();
-                    if (preitemno == fpcNm_ITEM_ANCIENT_DOCUMENT) {
+                    if (preitemno == dItemNo_ANCIENT_DOCUMENT_e) {
                         mFlowID = 5;
                         setAction(&daNpcImpal_c::talk);
                     } else {

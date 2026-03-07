@@ -4108,7 +4108,7 @@ int daB_DR_c::create() {
                     angle.x = angle.y = angle.z = 0;
                     pos.set(224.0f, 0.0f, 762.0f);
 
-                    fopAcM_createItemForBoss(&pos, fpcNm_ITEM_UTAWA_HEART, fopAcM_GetRoomNo(this), &angle, &size, 0.0f, 0.0f, -1);
+                    fopAcM_createItemForBoss(&pos, dItemNo_UTAWA_HEART_e, fopAcM_GetRoomNo(this), &angle, &size, 0.0f, 0.0f, -1);
                 }
 
                 dScnKy_env_light_c* kankyo = dKy_getEnvlight();

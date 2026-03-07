@@ -668,13 +668,13 @@ static void fail(e_sm2_class* i_this) {
             i_this->timers[0] = KREG_S(7) + 9;
         } else {
             static u8 item_no[] = {
-                fpcNm_ITEM_CHUCHU_GREEN,
-                fpcNm_ITEM_CHUCHU_RED,
-                fpcNm_ITEM_CHUCHU_BLUE,
-                fpcNm_ITEM_CHUCHU_YELLOW,
-                fpcNm_ITEM_CHUCHU_PURPLE,
-                fpcNm_ITEM_CHUCHU_RARE,
-                fpcNm_ITEM_CHUCHU_BLACK,
+                dItemNo_CHUCHU_GREEN_e,
+                dItemNo_CHUCHU_RED_e,
+                dItemNo_CHUCHU_BLUE_e,
+                dItemNo_CHUCHU_YELLOW_e,
+                dItemNo_CHUCHU_PURPLE_e,
+                dItemNo_CHUCHU_RARE_e,
+                dItemNo_CHUCHU_BLACK_e,
             };
 
             dComIfGp_att_CatchRequest(actor, item_no[i_this->type], 100.0f, 50.0f, -150.0f, 0x5000, 1);
@@ -1482,7 +1482,7 @@ static int daE_SM2_Create(fopAc_ac_c* i_this) {
             a_this->type = TYPE_GREEN;
         }
 
-        if (!dComIfGs_isItemFirstBit(fpcNm_ITEM_ARMOR) && a_this->type == TYPE_GREEN) {
+        if (!dComIfGs_isItemFirstBit(dItemNo_ARMOR_e) && a_this->type == TYPE_GREEN) {
             return cPhs_ERROR_e;
         }
 
@@ -1503,7 +1503,7 @@ static int daE_SM2_Create(fopAc_ac_c* i_this) {
             }
         }
 
-        if (a_this->type == TYPE_RARE && checkItemGet(fpcNm_ITEM_CHUCHU_RARE, 1)) {
+        if (a_this->type == TYPE_RARE && checkItemGet(dItemNo_CHUCHU_RARE_e, 1)) {
             if (cM_rndF(1.0f) <= 0.5f) {
                 a_this->type = TYPE_RED;
             } else {

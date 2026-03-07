@@ -144,7 +144,7 @@ int daObjLife_c::create() {
     }
 
     m_itemNo = getItemNo();
-    if (m_itemNo != fpcNm_ITEM_KAKERA_HEART && m_itemNo != fpcNm_ITEM_UTAWA_HEART) {
+    if (m_itemNo != dItemNo_KAKERA_HEART_e && m_itemNo != dItemNo_UTAWA_HEART_e) {
         // "Heart Container: Item No is incorrect!<%d>\n"
         OS_REPORT_ERROR("ハートの器：アイテム番号が不正です！<%d>\n", m_itemNo);
     }
@@ -153,7 +153,7 @@ int daObjLife_c::create() {
         return cPhs_ERROR_e;
     }
 
-    if (m_itemNo == fpcNm_ITEM_UTAWA_HEART && dComIfGs_isStageLife()) {
+    if (m_itemNo == dItemNo_UTAWA_HEART_e && dComIfGs_isStageLife()) {
         return cPhs_ERROR_e;
     }
 
@@ -328,7 +328,7 @@ int daObjLife_c::actionGetDemo() {
             fopAcM_onItem(this, savebit);
         }
 
-        if (m_itemNo == fpcNm_ITEM_KAKERA_HEART) {
+        if (m_itemNo == dItemNo_KAKERA_HEART_e) {
             if (strcmp(dComIfGp_getStartStageName(), "F_SP121") == 0) {
                 if (fopAcM_GetRoomNo(this) == 0) {
                     if (savebit == 128) {

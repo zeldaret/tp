@@ -642,7 +642,7 @@ BOOL daNpc_Yelia_c::checkChangeEvt() {
             if (dComIfGp_evmng_ChkPresentEnd()) {
                 mPreItemNo = dComIfGp_event_getPreItemNo();
                 if (mType == TYPE_WOOD_STATUE && daNpcT_chkEvtBit(0x11f)
-                    && mPreItemNo == fpcNm_ITEM_IRIAS_PENDANT)
+                    && mPreItemNo == dItemNo_IRIAS_PENDANT_e)
                 {
                     if (mPendantTimer >= 70) {
                         dStage_changeScene(10, 0.0f, 0, fopAcM_GetRoomNo(this), 0,
@@ -663,7 +663,7 @@ BOOL daNpc_Yelia_c::checkChangeEvt() {
                     mPendantTimer++;
                 }
                 else if (mType == TYPE_KAKARIKO && !daNpcT_chkEvtBit(0x11f)
-                    && mPreItemNo == fpcNm_ITEM_WOOD_STATUE)
+                    && mPreItemNo == dItemNo_WOOD_STATUE_e)
                 {
                     mEvtNo = EVENT_TAKE_WOODSTATUE;
                     evtChange();
@@ -1193,7 +1193,7 @@ BOOL daNpc_Yelia_c::cutTakeWoodStatue(int i_staffId) {
             if (prm == 13) {
                 if (mItemId == fpcM_ERROR_PROCESS_ID_e) {
                     mItemId = fopAcM_createItemForPresentDemo(&current.pos,
-                        fpcNm_ITEM_WOOD_STATUE, 9, -1, fopAcM_GetRoomNo(this), &mCurAngle, &scale);
+                        dItemNo_WOOD_STATUE_e, 9, -1, fopAcM_GetRoomNo(this), &mCurAngle, &scale);
                 }
                 if (fopAcM_SearchByID(mItemId, (fopAc_ac_c**)&item)
                                         && item != NULL && fopAc_IsActor(item)) {

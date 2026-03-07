@@ -180,7 +180,7 @@ int daObjIBone_c::execute() {
             break;
         
         case 1:
-            fopAcM_createItemForDirectGet(&current.pos, fpcNm_ITEM_HEART,
+            fopAcM_createItemForDirectGet(&current.pos, dItemNo_HEART_e,
                 fopAcM_GetRoomNo(this), NULL, NULL, 0.0f, 0.0f);
             setBreakEffect();
             fopAcM_delete(this);
@@ -190,7 +190,7 @@ int daObjIBone_c::execute() {
         case 3: {
             csXyz angle(0, home.angle.y, 0);
 
-            fopAcM_createItem(&current.pos, fpcNm_ITEM_HEART, -1,
+            fopAcM_createItem(&current.pos, dItemNo_HEART_e, -1,
                 fopAcM_GetHomeRoomNo(this), &angle, NULL, 0);
             setBreakEffect();
             fopAcM_delete(this);

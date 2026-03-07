@@ -293,7 +293,7 @@ int daTbox_c::checkEnvEffectTbox() {
         return false;
     }
 
-    if (getItemNo() == fpcNm_ITEM_BOOMERANG || getItemNo() == fpcNm_ITEM_MAP || getItemNo() == fpcNm_ITEM_COMPUS) {
+    if (getItemNo() == dItemNo_BOOMERANG_e || getItemNo() == dItemNo_MAP_e || getItemNo() == dItemNo_COMPUS_e) {
         return true;
     }
 
@@ -1003,7 +1003,7 @@ int daTbox_c::actionDemo() {
         flagOff(0x18);
         dComIfGp_event_setItemPartner(NULL);
 
-        if (getItemNo() == fpcNm_ITEM_KAKERA_HEART) {
+        if (getItemNo() == dItemNo_KAKERA_HEART_e) {
             if (!strcmp(dComIfGp_getStartStageName(), "F_SP121")) {
                 if (fopAcM_GetRoomNo(this) == 0) {
                     switch (getTboxNo()) {
@@ -1085,65 +1085,65 @@ int daTbox_c::actionDropDemo() {
 u8 daTbox_c::getBombItemNo(u8 i_bombType, u8 i_itemNo) {
     u8 new_item_no = i_itemNo;
     switch (i_bombType) {
-    case fpcNm_ITEM_NORMAL_BOMB:
+    case dItemNo_NORMAL_BOMB_e:
         switch (i_itemNo) {
-        case fpcNm_ITEM_WATER_BOMB_5:
-        case fpcNm_ITEM_WATER_BOMB_30:
-        case fpcNm_ITEM_BOMB_INSECT_5:
-        case fpcNm_ITEM_BOMB_INSECT_20:
-            new_item_no = fpcNm_ITEM_BOMB_5;
+        case dItemNo_WATER_BOMB_5_e:
+        case dItemNo_WATER_BOMB_30_e:
+        case dItemNo_BOMB_INSECT_5_e:
+        case dItemNo_BOMB_INSECT_20_e:
+            new_item_no = dItemNo_BOMB_5_e;
             break;
-        case fpcNm_ITEM_WATER_BOMB_10:
-        case fpcNm_ITEM_BOMB_INSECT_10:
-            new_item_no = fpcNm_ITEM_BOMB_10;
+        case dItemNo_WATER_BOMB_10_e:
+        case dItemNo_BOMB_INSECT_10_e:
+            new_item_no = dItemNo_BOMB_10_e;
             break;
-        case fpcNm_ITEM_WATER_BOMB_20:
-            new_item_no = fpcNm_ITEM_BOMB_20;
+        case dItemNo_WATER_BOMB_20_e:
+            new_item_no = dItemNo_BOMB_20_e;
             break;
-        case fpcNm_ITEM_BOMB_INSECT_30:
-            new_item_no = fpcNm_ITEM_BOMB_30;
+        case dItemNo_BOMB_INSECT_30_e:
+            new_item_no = dItemNo_BOMB_30_e;
             break;
         }
         break;
-    case fpcNm_ITEM_WATER_BOMB:
+    case dItemNo_WATER_BOMB_e:
         switch (i_itemNo) {
-        case fpcNm_ITEM_BOMB_INSECT_20:
-        case fpcNm_ITEM_BOMB_INSECT_30:
-            new_item_no = fpcNm_ITEM_WATER_BOMB_30;
+        case dItemNo_BOMB_INSECT_20_e:
+        case dItemNo_BOMB_INSECT_30_e:
+            new_item_no = dItemNo_WATER_BOMB_30_e;
             break;
-        case fpcNm_ITEM_BOMB_5:
-        case fpcNm_ITEM_BOMB_INSECT_5:
-            new_item_no = fpcNm_ITEM_WATER_BOMB_5;
+        case dItemNo_BOMB_5_e:
+        case dItemNo_BOMB_INSECT_5_e:
+            new_item_no = dItemNo_WATER_BOMB_5_e;
             break;
-        case fpcNm_ITEM_BOMB_10:
-        case fpcNm_ITEM_BOMB_INSECT_10:
-            new_item_no = fpcNm_ITEM_WATER_BOMB_10;
+        case dItemNo_BOMB_10_e:
+        case dItemNo_BOMB_INSECT_10_e:
+            new_item_no = dItemNo_WATER_BOMB_10_e;
             break;
-        case fpcNm_ITEM_BOMB_20:
-        case fpcNm_ITEM_BOMB_30:
-            new_item_no = fpcNm_ITEM_WATER_BOMB_20;
+        case dItemNo_BOMB_20_e:
+        case dItemNo_BOMB_30_e:
+            new_item_no = dItemNo_WATER_BOMB_20_e;
             break;
         }
         break;
-    case fpcNm_ITEM_POKE_BOMB:
+    case dItemNo_POKE_BOMB_e:
         switch (i_itemNo) {
-        case fpcNm_ITEM_WATER_BOMB_30:
-            new_item_no = fpcNm_ITEM_BOMB_INSECT_20;
+        case dItemNo_WATER_BOMB_30_e:
+            new_item_no = dItemNo_BOMB_INSECT_20_e;
             break;
-        case fpcNm_ITEM_BOMB_5:
-        case fpcNm_ITEM_WATER_BOMB_5:
-            new_item_no = fpcNm_ITEM_BOMB_INSECT_5;
+        case dItemNo_BOMB_5_e:
+        case dItemNo_WATER_BOMB_5_e:
+            new_item_no = dItemNo_BOMB_INSECT_5_e;
             break;
-        case fpcNm_ITEM_BOMB_10:
-        case fpcNm_ITEM_BOMB_20:
-        case fpcNm_ITEM_BOMB_30:
-        case fpcNm_ITEM_WATER_BOMB_10:
-        case fpcNm_ITEM_WATER_BOMB_20:
-            new_item_no = fpcNm_ITEM_BOMB_INSECT_10;
+        case dItemNo_BOMB_10_e:
+        case dItemNo_BOMB_20_e:
+        case dItemNo_BOMB_30_e:
+        case dItemNo_WATER_BOMB_10_e:
+        case dItemNo_WATER_BOMB_20_e:
+            new_item_no = dItemNo_BOMB_INSECT_10_e;
             break;
         }
         break;
-    case fpcNm_ITEM_BOMB_BAG_LV1:
+    case dItemNo_BOMB_BAG_LV1_e:
         break;
     }
 
@@ -1163,23 +1163,23 @@ u8 daTbox_c::getBombItemNo(u8 i_bombType, u8 i_itemNo) {
 u8 daTbox_c::getBombItemNo2(u8 i_bombType1, u8 i_bombType2, u8 i_itemNo) {
     u8 new_type, new_item_no = i_itemNo;
     switch (i_itemNo) {
-    case fpcNm_ITEM_BOMB_5:
-    case fpcNm_ITEM_BOMB_10:
-    case fpcNm_ITEM_BOMB_20:
-    case fpcNm_ITEM_BOMB_30:
-        new_type = fpcNm_ITEM_NORMAL_BOMB;
+    case dItemNo_BOMB_5_e:
+    case dItemNo_BOMB_10_e:
+    case dItemNo_BOMB_20_e:
+    case dItemNo_BOMB_30_e:
+        new_type = dItemNo_NORMAL_BOMB_e;
         break;
-    case fpcNm_ITEM_WATER_BOMB_5:
-    case fpcNm_ITEM_WATER_BOMB_10:
-    case fpcNm_ITEM_WATER_BOMB_20:
-    case fpcNm_ITEM_WATER_BOMB_30:
-        new_type = fpcNm_ITEM_WATER_BOMB;
+    case dItemNo_WATER_BOMB_5_e:
+    case dItemNo_WATER_BOMB_10_e:
+    case dItemNo_WATER_BOMB_20_e:
+    case dItemNo_WATER_BOMB_30_e:
+        new_type = dItemNo_WATER_BOMB_e;
         break;
-    case fpcNm_ITEM_BOMB_INSECT_5:
-    case fpcNm_ITEM_BOMB_INSECT_10:
-    case fpcNm_ITEM_BOMB_INSECT_20:
-    case fpcNm_ITEM_BOMB_INSECT_30:
-        new_type = fpcNm_ITEM_POKE_BOMB;
+    case dItemNo_BOMB_INSECT_5_e:
+    case dItemNo_BOMB_INSECT_10_e:
+    case dItemNo_BOMB_INSECT_20_e:
+    case dItemNo_BOMB_INSECT_30_e:
+        new_type = dItemNo_POKE_BOMB_e;
         break;
     }
 
@@ -1191,30 +1191,30 @@ u8 daTbox_c::getBombItemNo2(u8 i_bombType1, u8 i_bombType2, u8 i_itemNo) {
     if (i_bombType1 == new_type || i_bombType2 == new_type) {
         // "There's a bag with the same bomb in it\n"
         OS_REPORT("同じ爆弾入りの袋があるのでそこに入れます\n");
-    } else if (i_bombType1 == fpcNm_ITEM_BOMB_BAG_LV1 || i_bombType2 == fpcNm_ITEM_BOMB_BAG_LV1) {
+    } else if (i_bombType1 == dItemNo_BOMB_BAG_LV1_e || i_bombType2 == dItemNo_BOMB_BAG_LV1_e) {
         // "This is an empty bag so put it in\n"
         OS_REPORT("空の袋があるのでそこに入れます\n");
     } else {
         switch (new_type) {
-        case fpcNm_ITEM_NORMAL_BOMB:
-            if (i_bombType1 == fpcNm_ITEM_WATER_BOMB || i_bombType2 == fpcNm_ITEM_WATER_BOMB) {
-                new_item_no = getBombItemNo(fpcNm_ITEM_WATER_BOMB, i_itemNo);
+        case dItemNo_NORMAL_BOMB_e:
+            if (i_bombType1 == dItemNo_WATER_BOMB_e || i_bombType2 == dItemNo_WATER_BOMB_e) {
+                new_item_no = getBombItemNo(dItemNo_WATER_BOMB_e, i_itemNo);
             } else {
-                new_item_no = getBombItemNo(fpcNm_ITEM_POKE_BOMB, i_itemNo);
+                new_item_no = getBombItemNo(dItemNo_POKE_BOMB_e, i_itemNo);
             }
             break;
-        case fpcNm_ITEM_WATER_BOMB:
-            if (i_bombType1 == fpcNm_ITEM_NORMAL_BOMB || i_bombType2 == fpcNm_ITEM_NORMAL_BOMB) {
-                new_item_no = getBombItemNo(fpcNm_ITEM_NORMAL_BOMB, i_itemNo);
+        case dItemNo_WATER_BOMB_e:
+            if (i_bombType1 == dItemNo_NORMAL_BOMB_e || i_bombType2 == dItemNo_NORMAL_BOMB_e) {
+                new_item_no = getBombItemNo(dItemNo_NORMAL_BOMB_e, i_itemNo);
             } else {
-                new_item_no = getBombItemNo(fpcNm_ITEM_POKE_BOMB, i_itemNo);
+                new_item_no = getBombItemNo(dItemNo_POKE_BOMB_e, i_itemNo);
             }
             break;
-        case fpcNm_ITEM_POKE_BOMB:
-            if (i_bombType1 == fpcNm_ITEM_NORMAL_BOMB || i_bombType2 == fpcNm_ITEM_NORMAL_BOMB) {
-                new_item_no = getBombItemNo(fpcNm_ITEM_NORMAL_BOMB, i_itemNo);
+        case dItemNo_POKE_BOMB_e:
+            if (i_bombType1 == dItemNo_NORMAL_BOMB_e || i_bombType2 == dItemNo_NORMAL_BOMB_e) {
+                new_item_no = getBombItemNo(dItemNo_NORMAL_BOMB_e, i_itemNo);
             } else {
-                new_item_no = getBombItemNo(fpcNm_ITEM_WATER_BOMB, i_itemNo);
+                new_item_no = getBombItemNo(dItemNo_WATER_BOMB_e, i_itemNo);
             }
             break;
         }
@@ -1227,23 +1227,23 @@ u8 daTbox_c::getBombItemNo2(u8 i_bombType1, u8 i_bombType2, u8 i_itemNo) {
 u8 daTbox_c::getBombItemNo3(u8 i_bombType1, u8 i_bombType2, u8 i_bombType3, u8 i_itemNo) {
     u8 new_type, new_item_no = i_itemNo;
     switch (i_itemNo) {
-    case fpcNm_ITEM_BOMB_5:
-    case fpcNm_ITEM_BOMB_10:
-    case fpcNm_ITEM_BOMB_20:
-    case fpcNm_ITEM_BOMB_30:
-        new_type = fpcNm_ITEM_NORMAL_BOMB;
+    case dItemNo_BOMB_5_e:
+    case dItemNo_BOMB_10_e:
+    case dItemNo_BOMB_20_e:
+    case dItemNo_BOMB_30_e:
+        new_type = dItemNo_NORMAL_BOMB_e;
         break;
-    case fpcNm_ITEM_WATER_BOMB_5:
-    case fpcNm_ITEM_WATER_BOMB_10:
-    case fpcNm_ITEM_WATER_BOMB_20:
-    case fpcNm_ITEM_WATER_BOMB_30:
-        new_type = fpcNm_ITEM_WATER_BOMB;
+    case dItemNo_WATER_BOMB_5_e:
+    case dItemNo_WATER_BOMB_10_e:
+    case dItemNo_WATER_BOMB_20_e:
+    case dItemNo_WATER_BOMB_30_e:
+        new_type = dItemNo_WATER_BOMB_e;
         break;
-    case fpcNm_ITEM_BOMB_INSECT_5:
-    case fpcNm_ITEM_BOMB_INSECT_10:
-    case fpcNm_ITEM_BOMB_INSECT_20:
-    case fpcNm_ITEM_BOMB_INSECT_30:
-        new_type = fpcNm_ITEM_POKE_BOMB;
+    case dItemNo_BOMB_INSECT_5_e:
+    case dItemNo_BOMB_INSECT_10_e:
+    case dItemNo_BOMB_INSECT_20_e:
+    case dItemNo_BOMB_INSECT_30_e:
+        new_type = dItemNo_POKE_BOMB_e;
         break;
     }
 
@@ -1255,30 +1255,30 @@ u8 daTbox_c::getBombItemNo3(u8 i_bombType1, u8 i_bombType2, u8 i_bombType3, u8 i
     if (i_bombType1 == new_type || i_bombType2 == new_type || i_bombType3 == new_type) {
         // "There's a bag with the same bomb in it\n"
         OS_REPORT("同じ爆弾入りの袋があるのでそこに入れます\n");
-    } else if (i_bombType1 == fpcNm_ITEM_BOMB_BAG_LV1 || i_bombType2 == fpcNm_ITEM_BOMB_BAG_LV1 || i_bombType3 == fpcNm_ITEM_BOMB_BAG_LV1) {
+    } else if (i_bombType1 == dItemNo_BOMB_BAG_LV1_e || i_bombType2 == dItemNo_BOMB_BAG_LV1_e || i_bombType3 == dItemNo_BOMB_BAG_LV1_e) {
         // "This is an empty bag so put it in\n"
         OS_REPORT("空の袋があるのでそこに入れます\n");
     } else {
         switch (new_type) {
-        case fpcNm_ITEM_NORMAL_BOMB:
-            if (i_bombType1 == fpcNm_ITEM_WATER_BOMB || i_bombType2 == fpcNm_ITEM_WATER_BOMB || i_bombType3 == fpcNm_ITEM_WATER_BOMB) {
-                new_item_no = getBombItemNo(fpcNm_ITEM_WATER_BOMB, i_itemNo);
+        case dItemNo_NORMAL_BOMB_e:
+            if (i_bombType1 == dItemNo_WATER_BOMB_e || i_bombType2 == dItemNo_WATER_BOMB_e || i_bombType3 == dItemNo_WATER_BOMB_e) {
+                new_item_no = getBombItemNo(dItemNo_WATER_BOMB_e, i_itemNo);
             } else {
-                new_item_no = getBombItemNo(fpcNm_ITEM_POKE_BOMB, i_itemNo);
+                new_item_no = getBombItemNo(dItemNo_POKE_BOMB_e, i_itemNo);
             }
             break;
-        case fpcNm_ITEM_WATER_BOMB:
-            if (i_bombType1 == fpcNm_ITEM_NORMAL_BOMB || i_bombType2 == fpcNm_ITEM_NORMAL_BOMB || i_bombType3 == fpcNm_ITEM_NORMAL_BOMB) {
-                new_item_no = getBombItemNo(fpcNm_ITEM_NORMAL_BOMB, i_itemNo);
+        case dItemNo_WATER_BOMB_e:
+            if (i_bombType1 == dItemNo_NORMAL_BOMB_e || i_bombType2 == dItemNo_NORMAL_BOMB_e || i_bombType3 == dItemNo_NORMAL_BOMB_e) {
+                new_item_no = getBombItemNo(dItemNo_NORMAL_BOMB_e, i_itemNo);
             } else {
-                new_item_no = getBombItemNo(fpcNm_ITEM_POKE_BOMB, i_itemNo);
+                new_item_no = getBombItemNo(dItemNo_POKE_BOMB_e, i_itemNo);
             }
             break;
-        case fpcNm_ITEM_POKE_BOMB:
-            if (i_bombType1 == fpcNm_ITEM_NORMAL_BOMB || i_bombType2 == fpcNm_ITEM_NORMAL_BOMB || i_bombType3 == fpcNm_ITEM_NORMAL_BOMB) {
-                new_item_no = getBombItemNo(fpcNm_ITEM_NORMAL_BOMB, i_itemNo);
+        case dItemNo_POKE_BOMB_e:
+            if (i_bombType1 == dItemNo_NORMAL_BOMB_e || i_bombType2 == dItemNo_NORMAL_BOMB_e || i_bombType3 == dItemNo_NORMAL_BOMB_e) {
+                new_item_no = getBombItemNo(dItemNo_NORMAL_BOMB_e, i_itemNo);
             } else {
-                new_item_no = getBombItemNo(fpcNm_ITEM_WATER_BOMB, i_itemNo);
+                new_item_no = getBombItemNo(dItemNo_WATER_BOMB_e, i_itemNo);
             }
             break;
         }
@@ -1297,7 +1297,7 @@ u8 daTbox_c::getBombItemNoMain(u8 i_itemNo) {
         bomb_max[i] = dComIfGs_getBombMax(bomb_type[i]);
         bomb_num[i] = dComIfGs_getBombNum(i);
 
-        if (bomb_type[i] != fpcNm_ITEM_NONE) {
+        if (bomb_type[i] != dItemNo_NONE_e) {
             bag_count++;
         }
     }
@@ -1390,9 +1390,9 @@ u8 daTbox_c::getBombItemNoMain(u8 i_itemNo) {
 
 int daTbox_c::setGetDemoItem() {
     u8 item_no = getItemNo();
-    if (item_no == fpcNm_ITEM_BOMB_5 || item_no == fpcNm_ITEM_BOMB_10 || item_no == fpcNm_ITEM_BOMB_20 || item_no == fpcNm_ITEM_BOMB_30 ||
-        item_no == fpcNm_ITEM_WATER_BOMB_5 || item_no == fpcNm_ITEM_WATER_BOMB_10 || item_no == fpcNm_ITEM_WATER_BOMB_20 || item_no == fpcNm_ITEM_WATER_BOMB_30 ||
-        item_no == fpcNm_ITEM_BOMB_INSECT_5 || item_no == fpcNm_ITEM_BOMB_INSECT_10 || item_no == fpcNm_ITEM_BOMB_INSECT_20 || item_no == fpcNm_ITEM_BOMB_INSECT_30)
+    if (item_no == dItemNo_BOMB_5_e || item_no == dItemNo_BOMB_10_e || item_no == dItemNo_BOMB_20_e || item_no == dItemNo_BOMB_30_e ||
+        item_no == dItemNo_WATER_BOMB_5_e || item_no == dItemNo_WATER_BOMB_10_e || item_no == dItemNo_WATER_BOMB_20_e || item_no == dItemNo_WATER_BOMB_30_e ||
+        item_no == dItemNo_BOMB_INSECT_5_e || item_no == dItemNo_BOMB_INSECT_10_e || item_no == dItemNo_BOMB_INSECT_20_e || item_no == dItemNo_BOMB_INSECT_30_e)
     {
         item_no = getBombItemNoMain(item_no);
     }

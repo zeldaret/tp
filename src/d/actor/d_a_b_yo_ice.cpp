@@ -158,7 +158,7 @@ void daB_YOI_c::damage_check() {
             if (pos.y < 50.0f) {
                 pos.y = 50.0f;
             }
-            fopAcM_createItem(&pos, fpcNm_ITEM_HEART, -1, -1, NULL, NULL, 0);
+            fopAcM_createItem(&pos, dItemNo_HEART_e, -1, -1, NULL, NULL, 0);
         }
     }
 }
@@ -197,7 +197,7 @@ void daB_YOI_c::setOperate(int param_0) {
             if (pos.y < 50.0f) {
                 pos.y = 50.0f;
             }
-            fopAcM_createItem(&pos, fpcNm_ITEM_HEART, -1, -1, NULL, NULL, 0);
+            fopAcM_createItem(&pos, dItemNo_HEART_e, -1, -1, NULL, NULL, 0);
         }
         break;
     case 8:

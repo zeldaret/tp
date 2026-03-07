@@ -277,7 +277,7 @@ void daObjCHO_c::Insect_Release() {
     mAction = ACT_MOVE;
 }
 
-static u8 const l_cho_itemno[2] = {fpcNm_ITEM_M_BUTTERFLY, fpcNm_ITEM_F_BUTTERFLY};
+static u8 const l_cho_itemno[2] = {dItemNo_M_BUTTERFLY_e, dItemNo_F_BUTTERFLY_e};
 
 // Some unused function went here.
 // This fake function is here in its place to make the literals match

@@ -64,7 +64,7 @@ int daObjL4DigSand_c::create1st() {
 }
 
 int daObjL4DigSand_c::Execute(Mtx** param_0) {
-    if (daPy_py_c::checkNowWolf() && checkItemGet(fpcNm_ITEM_SMELL_POH, 1)) {
+    if (daPy_py_c::checkNowWolf() && checkItemGet(dItemNo_SMELL_POH_e, 1)) {
         attention_info.flags = fopAc_AttnFlag_ETC_e;
     } else {
         attention_info.flags = 0;

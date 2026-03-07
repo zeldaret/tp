@@ -1134,14 +1134,14 @@ BOOL daNpc_ykM_c::checkChangeEvt() {
 
             case TYPE_COOK:
                 if (!daNpcT_chkEvtBit(4) /* dSv_event_flag_c::TEST_004 - Snowpeak Ruins - Handed over secret ingredient */
-                    && checkItemGet(fpcNm_ITEM_TASTE, 1)) {
+                    && checkItemGet(dItemNo_TASTE_e, 1)) {
                     mEvtNo = EVENT_GET_TASTE;
                     evtChange();
                     return TRUE;
                 }
 
                 if (!daNpcT_chkEvtBit(3) /* dSv_event_flag_c::TEST_003 - Snowpeak Ruins - Handed over tomato puree */
-                    && checkItemGet(fpcNm_ITEM_TOMATO_PUREE, 1)) {
+                    && checkItemGet(dItemNo_TOMATO_PUREE_e, 1)) {
                     mEvtNo = EVENT_GET_TOMATOPUREE;
                     evtChange();
                     return TRUE;
@@ -3349,7 +3349,7 @@ BOOL daNpc_ykM_c::cook(void* param_1) {
             }
             // fallthrough
         case 2: {
-            if (!daPy_py_c::checkNowWolf() && !checkItemGet(fpcNm_ITEM_TOMATO_PUREE, 1) && !checkItemGet(fpcNm_ITEM_TASTE, 1) &&
+            if (!daPy_py_c::checkNowWolf() && !checkItemGet(dItemNo_TOMATO_PUREE_e, 1) && !checkItemGet(dItemNo_TASTE_e, 1) &&
                 !daNpcT_chkEvtBit(10) /* dSv_event_flag_c::F_0006 - Snowpeak Ruins - First conversation with Yeto in kitchen */) {
                 actor_p = mActorMngr[6].getActorP();
                 if (actor_p != NULL &&

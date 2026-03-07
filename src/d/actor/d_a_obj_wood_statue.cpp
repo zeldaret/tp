@@ -158,7 +158,7 @@ int daObjWStatue_c::__CreateHeap() {
 
 int daObjWStatue_c::create() {
     fopAcM_ct(this, daObjWStatue_c);
-    m_itemNo = fpcNm_ITEM_WOOD_STATUE;
+    m_itemNo = dItemNo_WOOD_STATUE_e;
     if (fopAcM_isSwitch(this, getSwbit2())) {
         return cPhs_ERROR_e;
     }

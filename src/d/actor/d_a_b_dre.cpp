@@ -564,7 +564,7 @@ void daB_DRE_c::DrAction() {
 
             sp90 = current.pos;
             sp1C.set(0, shape_angle.y + 0x1000, 0);
-            fopAcM_createItemForBoss(&sp90, fpcNm_ITEM_UTAWA_HEART, fopAcM_GetRoomNo(this), &sp1C,
+            fopAcM_createItemForBoss(&sp90, dItemNo_UTAWA_HEART_e, fopAcM_GetRoomNo(this), &sp1C,
                                      NULL, 6.0f + TREG_F(9), 20.0f + TREG_F(10), -1);
             mTimers[0] = 30;
         }

@@ -1235,15 +1235,15 @@ case1and2:
             if (get_item) {
                 int item_no;
                 if (dComIfGs_getLife() <= 4) {
-                    item_no = fpcNm_ITEM_HEART;
+                    item_no = dItemNo_HEART_e;
                 } else {
                     int rnd = cM_rndF(11.0f);
                     if (rnd <= 5) {
-                        item_no = fpcNm_ITEM_HEART;
+                        item_no = dItemNo_HEART_e;
                     } else if (rnd <= 9) {
-                        item_no = fpcNm_ITEM_GREEN_RUPEE;
+                        item_no = dItemNo_GREEN_RUPEE_e;
                     } else {
-                        item_no = fpcNm_ITEM_BLUE_RUPEE;
+                        item_no = dItemNo_BLUE_RUPEE_e;
                     }
                 }
 

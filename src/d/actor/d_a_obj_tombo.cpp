@@ -11,7 +11,7 @@
 #include "d/d_cc_d.h"
 #include "d/d_com_inf_game.h"
 #include "f_op/f_op_camera_mng.h"
-#include "f_pc/f_pc_name.h"
+#include "d/d_item_data.h"
 #include "m_Do/m_Do_lib.h"
 #include <cstring>
 
@@ -47,7 +47,7 @@ daObj_TomHIO_c::daObj_TomHIO_c() {
 }
 
 static u8 const l_tom_itemno[2] = {
-    fpcNm_ITEM_M_DRAGONFLY, fpcNm_ITEM_F_DRAGONFLY,
+    dItemNo_M_DRAGONFLY_e, dItemNo_F_DRAGONFLY_e,
 };
 
 void daObjTOMBO_c::InitCcSph() {

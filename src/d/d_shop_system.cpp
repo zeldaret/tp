@@ -25,7 +25,7 @@ static daTag_ShopItem_c* dShopSystem_itemActor[7] = {
 };
 
 static u8 dShopSystem_itemNo[7] = {
-    fpcNm_ITEM_NONE, fpcNm_ITEM_NONE, fpcNm_ITEM_NONE, fpcNm_ITEM_NONE, fpcNm_ITEM_NONE, fpcNm_ITEM_NONE, fpcNm_ITEM_NONE,
+    dItemNo_NONE_e, dItemNo_NONE_e, dItemNo_NONE_e, dItemNo_NONE_e, dItemNo_NONE_e, dItemNo_NONE_e, dItemNo_NONE_e,
 };
 
 static u8 dShopSystem_sellItemMax;
@@ -54,7 +54,7 @@ static int dShopSystem_searchItemActor(void* i_actor, void* param_1) {
                 if ((sw == 0xFF || !dComIfGs_isSaveSwitch(sw)) &&
                     (sw2 == 0xFF || dComIfGs_isSaveSwitch(sw2)))
                 {
-                    if (sw != 0xFF && item_no == fpcNm_ITEM_HYLIA_SHIELD && checkItemGet(item_no, true)) {
+                    if (sw != 0xFF && item_no == dItemNo_HYLIA_SHIELD_e && checkItemGet(item_no, true)) {
                         dComIfGs_onSaveSwitch(sw);
                     } else {
                         if (i_posID == 0) {
@@ -113,7 +113,7 @@ void dShopSystem_c::initShopSystem() {
 
     for (int i = 0; i < 7; i++) {
         dShopSystem_itemActor[i] = NULL;
-        dShopSystem_itemNo[i] = fpcNm_ITEM_NONE;
+        dShopSystem_itemNo[i] = dItemNo_NONE_e;
     }
     dShopSystem_item_count = 0;
 
@@ -181,7 +181,7 @@ dShopSystem_c::~dShopSystem_c() {
 
     for (int i = 0; i < 7; i++) {
         dShopSystem_itemActor[i] = NULL;
-        dShopSystem_itemNo[i] = fpcNm_ITEM_NONE;
+        dShopSystem_itemNo[i] = dItemNo_NONE_e;
     }
     dShopSystem_item_count = 0;
 
@@ -690,7 +690,7 @@ int dShopSystem_c::itemRotate() {
     u8 cursor_pos = mCursorPos;
 
     if (cursor_pos != 0 && mSeq != SEQ_WAIT) {
-        if (dShopSystem_itemNo[cursor_pos - 1] == fpcNm_ITEM_ARMOR) {
+        if (dShopSystem_itemNo[cursor_pos - 1] == dItemNo_ARMOR_e) {
             int tmp_index;
             if (isFlag(8) == false) {
                 tmp_index = 0;
@@ -724,7 +724,7 @@ int dShopSystem_c::itemZoom(cXyz* param_0) {
     if (field_0xf60 >= 0) {
         local_1c.set(*param_0);
 
-        if (dShopSystem_itemNo[mCursorPos - 1] == fpcNm_ITEM_OIL_BOTTLE) {
+        if (dShopSystem_itemNo[mCursorPos - 1] == dItemNo_OIL_BOTTLE_e) {
             mItemCtrl.setZoomAnime(mCursorPos, &local_1c,
                                    g_cursorHIO.mSeraShopObjZoomAngleX + -5000,
                                    isFlag(8) ? true : false);
@@ -775,9 +775,9 @@ int dShopSystem_c::itemZoom(cXyz* param_0) {
                              g_cursorHIO.mObjZoom.z + 150.0f);
             } else {
                 if (mMasterType == 5) {
-                    if (dShopSystem_itemNo[mCursorPos - 1] == fpcNm_ITEM_ARROW_10 ||
-                        dShopSystem_itemNo[mCursorPos - 1] == fpcNm_ITEM_ARROW_20 ||
-                        dShopSystem_itemNo[mCursorPos - 1] == fpcNm_ITEM_ARROW_30)
+                    if (dShopSystem_itemNo[mCursorPos - 1] == dItemNo_ARROW_10_e ||
+                        dShopSystem_itemNo[mCursorPos - 1] == dItemNo_ARROW_20_e ||
+                        dShopSystem_itemNo[mCursorPos - 1] == dItemNo_ARROW_30_e)
                     {
                         local_34.set(g_cursorHIO.mObjZoom.x, -50.0f + g_cursorHIO.mObjZoom.y + 5.0f,
                                      (g_cursorHIO.mObjZoom.z + 250.0f) - 60.0f);
@@ -808,7 +808,7 @@ int dShopSystem_c::itemZoom(cXyz* param_0) {
 
         u8 dvar1 = mMasterType;
         if (dvar1 == 1) {
-            if (dShopSystem_itemNo[mCursorPos - 1] == fpcNm_ITEM_OIL_BOTTLE) {
+            if (dShopSystem_itemNo[mCursorPos - 1] == dItemNo_OIL_BOTTLE_e) {
                 mItemCtrl.setZoomAnime(mCursorPos, &local_1c,
                                        g_cursorHIO.mShopObjZoomAngleX + -7000,
                                        isFlag(8) ? true : false);
@@ -817,7 +817,7 @@ int dShopSystem_c::itemZoom(cXyz* param_0) {
                                        isFlag(8) ? true : false);
             }
         } else if (dvar1 == 2) {
-            if (dShopSystem_itemNo[mCursorPos - 1] == fpcNm_ITEM_RED_BOTTLE) {
+            if (dShopSystem_itemNo[mCursorPos - 1] == dItemNo_RED_BOTTLE_e) {
                 mItemCtrl.setZoomAnime(mCursorPos, &local_1c, g_cursorHIO.mShopObjZoomAngleX - 3000,
                                        isFlag(8) ? true : false);
             } else {
@@ -825,9 +825,9 @@ int dShopSystem_c::itemZoom(cXyz* param_0) {
                                        isFlag(8) ? true : false);
             }
         } else if (dvar1 == 5) {
-            if (dShopSystem_itemNo[mCursorPos - 1] == fpcNm_ITEM_ARROW_10 ||
-                dShopSystem_itemNo[mCursorPos - 1] == fpcNm_ITEM_ARROW_20 ||
-                dShopSystem_itemNo[mCursorPos - 1] == fpcNm_ITEM_ARROW_30)
+            if (dShopSystem_itemNo[mCursorPos - 1] == dItemNo_ARROW_10_e ||
+                dShopSystem_itemNo[mCursorPos - 1] == dItemNo_ARROW_20_e ||
+                dShopSystem_itemNo[mCursorPos - 1] == dItemNo_ARROW_30_e)
             {
                 mItemCtrl.setZoomAnime(mCursorPos, &local_1c, g_cursorHIO.mShopObjZoomAngleX - 4000,
                                        isFlag(8) ? true : false);
@@ -1297,7 +1297,7 @@ static shop_item_data* shop_item_pos_data_tbl = &item_seira_shop;
 
 void dShopSystem_c::createShopItem(int itemType) {
     static const u8 item_no[6] = {
-        fpcNm_ITEM_MILK_BOTTLE, fpcNm_ITEM_BEE_CHILD, fpcNm_ITEM_PACHINKO, fpcNm_ITEM_MILK_BOTTLE, fpcNm_ITEM_BEE_CHILD, fpcNm_ITEM_NONE,
+        dItemNo_MILK_BOTTLE_e, dItemNo_BEE_CHILD_e, dItemNo_PACHINKO_e, dItemNo_MILK_BOTTLE_e, dItemNo_BEE_CHILD_e, dItemNo_NONE_e,
     };
 
     if (itemType != -1) {
@@ -1312,7 +1312,7 @@ void dShopSystem_c::createShopItem(int itemType) {
             pos.y = shop_item_pos_data_tbl->mItemPos[i].y + current.pos.y;
             pos.z = shop_item_pos_data_tbl->mItemPos[i].z + current.pos.z;
 
-            if (itemTbl[i] != fpcNm_ITEM_NONE) {
+            if (itemTbl[i] != dItemNo_NONE_e) {
                 u32 index = fopAcM_create(PROC_ShopItem, itemTbl[i], &pos, fopAcM_GetRoomNo(this),
                                           &current.angle, NULL, -1);
                 mItemCtrl.setItemIndex(i, index);
@@ -1352,19 +1352,19 @@ void dShopSystem_c::setSoldOut() {
             return;
         } else if (index == 0) {
             dShopSystem_itemActor[0] = NULL;
-            dShopSystem_itemNo[0] = fpcNm_ITEM_NONE;
+            dShopSystem_itemNo[0] = dItemNo_NONE_e;
             dShopSystem_item_count = 2;
         } else if (index == 1) {
             dShopSystem_itemActor[1] = NULL;
-            dShopSystem_itemNo[1] = fpcNm_ITEM_NONE;
+            dShopSystem_itemNo[1] = dItemNo_NONE_e;
             dShopSystem_item_count = 2;
         } else if (index == 2) {
             dShopSystem_itemActor[2] = NULL;
-            dShopSystem_itemNo[2] = fpcNm_ITEM_NONE;
+            dShopSystem_itemNo[2] = dItemNo_NONE_e;
             dShopSystem_item_count = 2;
         } else if (index == 6) {
             dShopSystem_itemActor[6] = NULL;
-            dShopSystem_itemNo[6] = fpcNm_ITEM_NONE;
+            dShopSystem_itemNo[6] = dItemNo_NONE_e;
             dShopSystem_item_count = 6;
         }
 

@@ -24,7 +24,7 @@ daObj_AriHIO_c::daObj_AriHIO_c() {
     mScaleFemale = 2.0f;
 }
 
-static u8 const l_ari_itemno[2] = {fpcNm_ITEM_M_ANT, fpcNm_ITEM_F_ANT};
+static u8 const l_ari_itemno[2] = {dItemNo_M_ANT_e, dItemNo_F_ANT_e};
 
 void daObjARI_c::InitCcSph() {
     const static dCcD_SrcSph ccSphSrc = {

@@ -237,7 +237,7 @@ int daObjSwBallC_c::demoProc() {
             break;
         case 10:
             field_0x584 = 1;
-            execItemGet(fpcNm_ITEM_LIGHT_SWORD);
+            execItemGet(dItemNo_LIGHT_SWORD_e);
             break;
         }
     }

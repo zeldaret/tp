@@ -409,11 +409,11 @@ BOOL daNpc_Doc_c::checkChangeEvt() {
             if (dComIfGp_evmng_ChkPresentEnd()) {
                 mPreItemNo = dComIfGp_event_getPreItemNo();
                 if (mType == 1) {
-                    if (mPreItemNo == fpcNm_ITEM_WOOD_STATUE) {
+                    if (mPreItemNo == dItemNo_WOOD_STATUE_e) {
                         return 0;
                     }
 
-                    if (!daNpcT_chkEvtBit(0x141) && mPreItemNo == fpcNm_ITEM_BILL) {
+                    if (!daNpcT_chkEvtBit(0x141) && mPreItemNo == dItemNo_BILL_e) {
                         return 0;
                     }
                 }
@@ -756,9 +756,9 @@ int daNpc_Doc_c::talk(void* param_0) {
     case MODE_ENTER:
     case MODE_INIT:
         if (!mStagger.checkStagger()) {
-            if (mPreItemNo == fpcNm_ITEM_BILL) {
+            if (mPreItemNo == dItemNo_BILL_e) {
                 initTalk(0x43F, NULL);
-            } else if (mPreItemNo == fpcNm_ITEM_WOOD_STATUE) {
+            } else if (mPreItemNo == dItemNo_WOOD_STATUE_e) {
                 initTalk(0x447, NULL);
             } else {
                 initTalk(mFlowNodeNo, NULL);
@@ -786,9 +786,9 @@ int daNpc_Doc_c::talk(void* param_0) {
                     if (mMotionSeqMngr.getNo() != 10 || mMotionSeqMngr.checkEndSequence()) {
                         int sp8[] = {-1, -1};
 
-                        if (mPreItemNo == fpcNm_ITEM_BILL) {
+                        if (mPreItemNo == dItemNo_BILL_e) {
                             sp8[0] = 0x1457;
-                        } else if (mPreItemNo == fpcNm_ITEM_WOOD_STATUE) {
+                        } else if (mPreItemNo == dItemNo_WOOD_STATUE_e) {
                             sp8[0] = 0x146E;
                             if (daNpcT_chkEvtBit(0x163)) {
                                 sp8[0] = 0x1472;

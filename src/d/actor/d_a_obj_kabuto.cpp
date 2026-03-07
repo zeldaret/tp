@@ -494,7 +494,7 @@ void daObjKABUTO_c::Insect_Release() {
     mMode = 0;
 }
 
-static u8 const l_kab_itemno[2] = {fpcNm_ITEM_M_BEETLE, fpcNm_ITEM_F_BEETLE};
+static u8 const l_kab_itemno[2] = {dItemNo_M_BEETLE_e, dItemNo_F_BEETLE_e};
 
 // Some unused function went here.
 // This fake function is here in its place to make the literals match

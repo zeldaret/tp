@@ -355,11 +355,11 @@ int daTagStatue_c::demoProc() {
                 // If the player already has 5 Sky Characters, reward them with the completed
                 // Ancient Sky Book, otherwise, reward another character
                 if (getLetterCount() == 5) {
-                    item = fpcNm_ITEM_ANCIENT_DOCUMENT2;
+                    item = dItemNo_ANCIENT_DOCUMENT2_e;
                     /* Sky character - Sky character 6 */
                     dComIfGs_onEventBit(dSv_event_flag_c::F_0796);
                 } else {
-                    item = fpcNm_ITEM_AIR_LETTER;
+                    item = dItemNo_AIR_LETTER_e;
                 }
 
                 mItemId =

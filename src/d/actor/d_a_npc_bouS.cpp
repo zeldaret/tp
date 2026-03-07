@@ -1035,7 +1035,7 @@ bool daNpcBouS_c::wait(void* param_1) {
                 }
             }
 
-            if (!checkItemGet(fpcNm_ITEM_HVY_BOOTS, 1) && dComIfGs_isTbox(2)) {
+            if (!checkItemGet(dItemNo_HVY_BOOTS_e, 1) && dComIfGs_isTbox(2)) {
                 mForcibleTalk = 1;
             }
 

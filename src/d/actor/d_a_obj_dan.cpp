@@ -261,7 +261,7 @@ void daObjDAN_c::Insect_Release() {
     mAction = ACT_MOVE;
 }
 
-static u8 const l_dan_itemno[2] = {fpcNm_ITEM_M_DANGOMUSHI, fpcNm_ITEM_F_DANGOMUSHI};
+static u8 const l_dan_itemno[2] = {dItemNo_M_DANGOMUSHI_e, dItemNo_F_DANGOMUSHI_e};
 
 void daObjDAN_c::Z_BufferChk() {
     cXyz vec2, vec1;

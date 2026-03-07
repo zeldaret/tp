@@ -672,7 +672,7 @@ int daSpinner_c::execute() {
         move_angle = (mDoCPd_c::getStickAngle3D(PAD_1) + 0x10000 + dCam_getControledAngleY(dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0)))) - 0x8000;
 
 #if PLATFORM_WII || VERSION == VERSION_SHIELD_DEBUG
-        if (dComIfG_getTrigB(PAD_1) && dComIfGp_getSelectItem(3) == fpcNm_ITEM_SPINNER) {
+        if (dComIfG_getTrigB(PAD_1) && dComIfGp_getSelectItem(3) == dItemNo_SPINNER_e) {
 #else
         if (dComIfG_getTrigA(PAD_1)) {
 #endif

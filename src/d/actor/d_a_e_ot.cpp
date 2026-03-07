@@ -530,7 +530,7 @@ void daE_OT_c::executeDamage() {
             }
             fopAcM_delete(this);
             if (cM_rnd() < l_HIO.mHeartDropRate) {
-                fopAcM_createItem(&current.pos, fpcNm_ITEM_HEART, -1, -1, NULL, NULL, 0);
+                fopAcM_createItem(&current.pos, dItemNo_HEART_e, -1, -1, NULL, NULL, 0);
             }
         }
         break;
@@ -567,7 +567,7 @@ void daE_OT_c::executeDamage() {
         }
         fopAcM_delete(this);
         if (cM_rnd() < l_HIO.mHeartDropRate) {
-            fopAcM_createItem(&current.pos, fpcNm_ITEM_HEART, -1, -1, NULL, NULL, 0);
+            fopAcM_createItem(&current.pos, dItemNo_HEART_e, -1, -1, NULL, NULL, 0);
         }
         break;
     }

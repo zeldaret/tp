@@ -178,7 +178,7 @@ int daAlink_c::returnCopyRod() {
     offNoResetFlg3(FLG3_COPY_ROD_THROW_AFTER);
 
     BOOL rt;
-    if (mEquipItem == fpcNm_ITEM_COPY_ROD) {
+    if (mEquipItem == dItemNo_COPY_ROD_e) {
         mItemAcKeep = mCopyRodAcKeep;
         onNoResetFlg0(FLG0_UNK_20);
         rt = TRUE;
@@ -408,9 +408,9 @@ int daAlink_c::procCopyRodReviveInit() {
     }
 
     if (mDemo.getParam0() == 0) {
-        if (mEquipItem != fpcNm_ITEM_COPY_ROD) {
+        if (mEquipItem != dItemNo_COPY_ROD_e) {
             deleteEquipItem(FALSE, FALSE);
-            mEquipItem = fpcNm_ITEM_COPY_ROD;
+            mEquipItem = dItemNo_COPY_ROD_e;
             setCopyRodModel();
         }
         field_0x0724->setFrame(0.0f);

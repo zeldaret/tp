@@ -480,7 +480,7 @@ int daNpcTkj_c::wait(void*) {
             mJntAnm.lookNone(0);
         }
 
-        if (mItemNo == fpcNm_ITEM_DUNGEON_EXIT_2 && mItemPartnerId == fpcM_ERROR_PROCESS_ID_e) {
+        if (mItemNo == dItemNo_DUNGEON_EXIT_2_e && mItemPartnerId == fpcM_ERROR_PROCESS_ID_e) {
             dComIfGs_onDungeonItemWarp();
             fopAcM_delete(this);
         }

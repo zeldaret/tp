@@ -615,7 +615,7 @@ int daNpc_Toby_c::checkChangeEvt() {
         if (dComIfGp_event_chkTalkXY()) {
             if (dComIfGp_evmng_ChkPresentEnd()) {
                 mPreItemNo = dComIfGp_event_getPreItemNo();
-                if (mPreItemNo == fpcNm_ITEM_RAFRELS_MEMO) {
+                if (mPreItemNo == dItemNo_RAFRELS_MEMO_e) {
                     return FALSE;
                 }
 
@@ -2098,7 +2098,7 @@ int daNpc_Toby_c::talk(void*) {
             }
 #endif
 
-            if (mPreItemNo == fpcNm_ITEM_RAFRELS_MEMO) {
+            if (mPreItemNo == dItemNo_RAFRELS_MEMO_e) {
                 initTalk(2, NULL);
             } else {
                 initTalk(mFlowNodeNo, NULL);
@@ -2112,7 +2112,7 @@ int daNpc_Toby_c::talk(void*) {
         if (mStagger.checkStagger() == 0) {
             if (mTwilight || mPlayerAngle == mCurAngle.y) {
                 int spC[3] = {-1, -1, -1};
-                if (mPreItemNo == fpcNm_ITEM_RAFRELS_MEMO) {
+                if (mPreItemNo == dItemNo_RAFRELS_MEMO_e) {
                     spC[0] = 0x1420;
                     spC[1] = 0x142D;
                 }

@@ -538,7 +538,7 @@ void daObjNAN_c::action() {
 }
 
 static u8 const l_nan_itemno[2] = {
-    fpcNm_ITEM_M_NANAFUSHI, fpcNm_ITEM_F_NANAFUSHI,
+    dItemNo_M_NANAFUSHI_e, dItemNo_F_NANAFUSHI_e,
 };
 
 int daObjNAN_c::execute() {

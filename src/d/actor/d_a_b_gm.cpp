@@ -1447,7 +1447,7 @@ static void demo_camera(b_gm_class* i_this) {
 
         if (i_this->mDemoModeTimer == 160) {
             csXyz angle(0, player->shape_angle.y - 0x4000, 0);
-            fopAcM_createItemForBoss(&i_this->field_0x1cec, fpcNm_ITEM_UTAWA_HEART, fopAcM_GetRoomNo(a_this), &angle, NULL, 10.0f, 30.0f, -1);
+            fopAcM_createItemForBoss(&i_this->field_0x1cec, dItemNo_UTAWA_HEART_e, fopAcM_GetRoomNo(a_this), &angle, NULL, 10.0f, 30.0f, -1);
         }
 
         if (i_this->mDemoModeTimer == 190) {
@@ -2103,7 +2103,7 @@ static int daB_GM_Create(fopAc_ac_c* i_this) {
             if (!dComIfGs_isStageLife()) {
                 cXyz size(1.0f, 1.0f, 1.0f);
                 pos.set(400.0f, 0.0f, 0.0f);
-                fopAcM_createItemForBoss(&pos, fpcNm_ITEM_UTAWA_HEART, fopAcM_GetRoomNo(i_this), &i_this->shape_angle, &size, 0.0f, 0.0f, -1);
+                fopAcM_createItemForBoss(&pos, dItemNo_UTAWA_HEART_e, fopAcM_GetRoomNo(i_this), &i_this->shape_angle, &size, 0.0f, 0.0f, -1);
             }
 
             return phase_state;

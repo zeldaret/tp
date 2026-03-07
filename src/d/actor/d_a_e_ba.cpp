@@ -818,7 +818,7 @@ static void action(e_ba_class* i_this) {
             if (i_this->mKnockbackSpeed <= 1.0f || i_this->mAcch.ChkWallHit()) {
                 fopAcM_delete(a_this);
                 if (i_this->mHomeType == e_ba_class::HOME_APPEAR) {
-                    // should be fpcNm_ITEM_HEART : fpcNm_ITEM_ARROW_10 but that gives incorrect code
+                    // should be dItemNo_HEART_e : dItemNo_ARROW_10_e but that gives incorrect code
                     int item_no = dComIfGs_getLife() <= 4 ? 0 : 0xE;
                     fopAcM_createItem(&a_this->current.pos, item_no, -1, -1, NULL, NULL, 0);
                     fopAcM_createDisappear(a_this, &a_this->current.pos, 6, 0, 0xff);

@@ -191,7 +191,7 @@ int daAlink_c::procSpinnerWait() {
         return procSmallJumpInit(2);
     }
 
-    int itemSetBtn = checkItemSetButton(fpcNm_ITEM_SPINNER);
+    int itemSetBtn = checkItemSetButton(dItemNo_SPINNER_e);
     if (mProcVar2.field_0x300c == 0) {
         if (!itemButton()) {
             mProcVar2.field_0x300c = 1;
@@ -211,7 +211,7 @@ int daAlink_c::procSpinnerWait() {
             mProcVar3.field_0x300e = shape_angle.y;
         }
     } else {
-        if (checkSetItemTrigger(fpcNm_ITEM_SPINNER) || swordSwingTrigger() || itemSetBtn == 2) {
+        if (checkSetItemTrigger(dItemNo_SPINNER_e) || swordSwingTrigger() || itemSetBtn == 2) {
             if (swordSwingTrigger()) {
                 swordEquip(0);
             }

@@ -1203,7 +1203,7 @@ static int daE_TH_Create(fopAc_ac_c* a_this) {
         OS_REPORT("E_th PARAM %x\n", fopAcM_GetParam(a_this));
 
         i_this->field_0x5b6 = fopAcM_GetParam(a_this);
-        if (i_this->field_0x5b6 == 2 && dComIfGs_isStageMiddleBoss() && checkItemGet(fpcNm_ITEM_IRONBALL, TRUE)) {
+        if (i_this->field_0x5b6 == 2 && dComIfGs_isStageMiddleBoss() && checkItemGet(dItemNo_IRONBALL_e, TRUE)) {
             return cPhs_ERROR_e;
         }
     

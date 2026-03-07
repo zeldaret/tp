@@ -93,7 +93,7 @@ void daObjYOUSEI_c::MoveAction() {
         break;
     case 1:
         if (field_0x5d6 == 100 && mPrm != 0) {
-            execItemGet(fpcNm_ITEM_RECOVERY_FAILY);
+            execItemGet(dItemNo_RECOVERY_FAILY_e);
         }
 
         f32 var_f31 = (25.0f + yREG_F(16)) / field_0x5d6;
@@ -372,7 +372,7 @@ void daObjYOUSEI_c::WaitAction() {
         data_804D1830 = 0;
         fopAcM_delete(this);
     } else {
-        dComIfGp_att_CatchRequest(this, fpcNm_ITEM_FAIRY, 150.0f, 50.0f, -100.0f, 0x5000, 1);
+        dComIfGp_att_CatchRequest(this, dItemNo_FAIRY_e, 150.0f, 50.0f, -100.0f, 0x5000, 1);
         eventInfo.onCondition(0x40);
     }
 
@@ -530,7 +530,7 @@ void daObjYOUSEI_c::LinkAction() {
         data_804D1830 = 0;
         fopAcM_delete(this);
     } else {
-        dComIfGp_att_CatchRequest(this, fpcNm_ITEM_FAIRY, 150.0f, 50.0f, -100.0f, 0x5000, 1);
+        dComIfGp_att_CatchRequest(this, dItemNo_FAIRY_e, 150.0f, 50.0f, -100.0f, 0x5000, 1);
         eventInfo.onCondition(0x40);
     }
 
@@ -833,7 +833,7 @@ int daObjYOUSEI_c::create() {
     mSound.init(&current.pos, &eyePos, 3, 1);
 
     if (mPrm == 0) {
-        execItemGet(fpcNm_ITEM_RECOVERY_FAILY);
+        execItemGet(dItemNo_RECOVERY_FAILY_e);
         CareAction();
         scale.set(0.2f, 0.2f, 0.2f);
     } else {

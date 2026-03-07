@@ -1059,7 +1059,7 @@ int daNpc_Moi_c::setAction(int (daNpc_Moi_c::*param_0)(void*)) {
 }
 
 BOOL daNpc_Moi_c::chkPlayerGetWoodShield() {
-    return (u8)(dComIfGs_isItemFirstBit(fpcNm_ITEM_WOOD_SHIELD) ? 1 : 0);
+    return (u8)(dComIfGs_isItemFirstBit(dItemNo_WOOD_SHIELD_e) ? 1 : 0);
 }
 
 void daNpc_Moi_c::setSSlash(int param_1) {

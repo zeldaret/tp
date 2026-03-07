@@ -2900,7 +2900,7 @@ static void lure_heart(dmg_rod_class* i_this) {
             if (obj_life != NULL) {
                 fopAcM_delete(obj_life);
                 fopAcM_onItem(obj_life, 0x80);
-                execItemGet(fpcNm_ITEM_KAKERA_HEART);
+                execItemGet(dItemNo_KAKERA_HEART_e);
                 u8 eventReg = dComIfGs_getEventReg(0xECFF);
                 eventReg |= (u8)0x40;
                 dComIfGs_setEventReg(0xECFF, eventReg);
@@ -3912,11 +3912,11 @@ static int bb_get(dmg_rod_class* i_this) {
     fopAc_ac_c* actor = (fopAc_ac_c*)i_this;
     for (int i = 0; i < 3; i++) {
         u8 itemno =  dComIfGs_getItem(i + 15, false);
-        if (itemno != fpcNm_ITEM_NONE) {
-            if (itemno == fpcNm_ITEM_BOMB_BAG_LV1) {
-                dComIfGs_setEmptyBombBagItemIn(fpcNm_ITEM_WATER_BOMB, 1, true);
+        if (itemno != dItemNo_NONE_e) {
+            if (itemno == dItemNo_BOMB_BAG_LV1_e) {
+                dComIfGs_setEmptyBombBagItemIn(dItemNo_WATER_BOMB_e, 1, true);
                 return 1;
-            } else if (itemno == fpcNm_ITEM_WATER_BOMB) {
+            } else if (itemno == dItemNo_WATER_BOMB_e) {
                 if (dComIfGs_getBombNum(i) < dComIfGs_getBombMax(itemno)) {
                     dComIfGp_setItemBombNumCount(i, 1);
                     return 1;

@@ -49,8 +49,8 @@ void daObj_KatHIO_c::genMessage(JORMContext* ctx) {
 #endif
 
 static u8 const l_kat_itemno[2] = {
-    fpcNm_ITEM_M_SNAIL,
-    fpcNm_ITEM_F_SNAIL,
+    dItemNo_M_SNAIL_e,
+    dItemNo_F_SNAIL_e,
 };
 
 void daObjKAT_c::InitCcSph() {

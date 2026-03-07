@@ -206,7 +206,7 @@ void daAlink_c::rideGetOff() {
         seStartOnlyReverb(Z2SE_AL_SPINNER_END);
     } else if (checkCanoeRide()) {
         if (mEquipItem == 0x10B) {
-            mEquipItem = fpcNm_ITEM_NONE;
+            mEquipItem = dItemNo_NONE_e;
         }
     } else if (checkBoardRide()) {
         static_cast<daObjIceLeaf_c*>(mRideAcKeep.getActor())->offRide();
@@ -1220,7 +1220,7 @@ int daAlink_c::checkHorseGetOffAndSetDoStatus() {
                 setDoStatus(BUTTON_STATUS_UNK_140);
             }
         } else if ((checkHorseNoUpperAnime() || checkEquipAnime()) && mMidnaTalkDelayTimer == 0 && !checkInputOnR() && isGetOff) {
-            if (mEquipItem == fpcNm_ITEM_NONE) {
+            if (mEquipItem == dItemNo_NONE_e) {
                 off_direction = checkHorseGetOffDirection();
                 if ((off_direction != DIR_LEFT || (checkHorseRide() && horse->checkEnemySearch())) && field_0x2fb4 == 0) {
                     if (!checkSpecialHorseRide()) {
@@ -1259,7 +1259,7 @@ int daAlink_c::setHorseGetOff(int param_0) {
 int daAlink_c::procHorseRideInit() {
     BOOL var_r25 = FALSE;
 
-    if (mEquipItem != fpcNm_ITEM_NONE) {
+    if (mEquipItem != dItemNo_NONE_e) {
         if (mEquipItem == 0x103) {
             var_r25 = 1;
         }
@@ -1519,7 +1519,7 @@ int daAlink_c::procHorseGetOffInit(int param_0) {
     commonProcInit(PROC_HORSE_GETOFF);
     resetUnderAnime(UNDER_2, -1.0f);
 
-    if (mEquipItem != fpcNm_ITEM_NONE) {
+    if (mEquipItem != dItemNo_NONE_e) {
         allUnequip(0);
     }
 

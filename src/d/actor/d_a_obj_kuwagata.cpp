@@ -10,7 +10,7 @@
 #include "d/actor/d_a_player.h"
 #include "d/d_cc_d.h"
 #include "d/d_menu_insect.h"
-#include "f_pc/f_pc_name.h"
+#include "d/d_item_data.h"
 #include <cstring>
 
 class daObj_KuwHIO_c : public JORReflexible{
@@ -517,7 +517,7 @@ void daObjKUW_c::Insect_Release() {
 }
 
 static u8 const l_kuw_itemno[2] = {
-    fpcNm_ITEM_M_STAG_BEETLE, fpcNm_ITEM_F_STAG_BEETLE,
+    dItemNo_M_STAG_BEETLE_e, dItemNo_F_STAG_BEETLE_e,
 };
 
 static f32 dummyFloat() { return -9.0f; }

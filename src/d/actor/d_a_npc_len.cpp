@@ -1213,7 +1213,7 @@ int daNpc_Len_c::talk(void* param_0) {
                  * control) A */
                 daNpcT_offTmpBit(0xB);
             }
-            if (mPreItemNo == fpcNm_ITEM_WOOD_STATUE) {
+            if (mPreItemNo == dItemNo_WOOD_STATUE_e) {
                 initTalk(0x28, NULL);
             } else {
                 initTalk(mFlowNodeNo, NULL);

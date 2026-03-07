@@ -66,7 +66,7 @@ BOOL daAlink_c::checkWaterInKandelaarOffset(f32 param_0) {
 
 void daAlink_c::checkWaterInKandelaar(f32 param_0) {
     if (checkNoResetFlg2(FLG2_UNK_1) && checkWaterInKandelaarOffset(param_0)) {
-        if (mEquipItem == fpcNm_ITEM_KANTERA) {
+        if (mEquipItem == dItemNo_KANTERA_e) {
             deleteEquipItem(TRUE, TRUE);
         } else {
             offKandelaarModel();
@@ -82,7 +82,7 @@ void daAlink_c::offKandelaarModel() {
 
 bool daAlink_c::checkUseKandelaar(int param_0) {
     return (param_0 == 0 && checkNoResetFlg2(FLG2_UNK_1)) ||
-           (param_0 != 0 && mEquipItem == fpcNm_ITEM_KANTERA);
+           (param_0 != 0 && mEquipItem == dItemNo_KANTERA_e);
 }
 
 bool daAlink_c::checkKandelaarSwing(int param_0) const {
@@ -236,7 +236,7 @@ void daAlink_c::resetOilBottleModel() {
 
     if (mProcVar3.field_0x300e != 0) {
         setKandelaarModel();
-        mEquipItem = fpcNm_ITEM_KANTERA;
+        mEquipItem = dItemNo_KANTERA_e;
     }
 
     returnKeepItemData();
@@ -321,7 +321,7 @@ int daAlink_c::commonKandelaarPour(int param_0) {
 }
 
 void daAlink_c::initKandelaarSwing() {
-    if (mEquipItem == fpcNm_ITEM_KANTERA) {
+    if (mEquipItem == dItemNo_KANTERA_e) {
         if (dComIfGs_getOil() != 0) {
             mZ2Link.getKantera().startSound(Z2SE_AL_KANTERA_SWING, 0, mVoiceReverbIntensity);
         } else {

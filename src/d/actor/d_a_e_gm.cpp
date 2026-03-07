@@ -407,12 +407,12 @@ void daE_GM_c::create_item() {
 
         switch ((int)cM_rndF(fVar1)) {
             case 0:
-                fopAcM_createItem(&current.pos, fpcNm_ITEM_HEART, -1, -1, NULL, NULL, 0);
+                fopAcM_createItem(&current.pos, dItemNo_HEART_e, -1, -1, NULL, NULL, 0);
                 break;
 
             case 1:
             case 2:
-                fopAcM_createItem(&current.pos, fpcNm_ITEM_ARROW_1, -1, -1, NULL, NULL, 0);
+                fopAcM_createItem(&current.pos, dItemNo_ARROW_1_e, -1, -1, NULL, NULL, 0);
                 break;
         }
     }

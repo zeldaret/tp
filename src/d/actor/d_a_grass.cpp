@@ -311,7 +311,7 @@ int daGrass_c::create() {
                         (num >= 16 && num <= 21 && i >= 16) ||
                         (num >= 4 && num <= 7 && i >= 4))
                     {
-                        newGrassData(pos, fopAcM_GetRoomNo(this), fpcNm_ITEM_NONE, 0xFF, add_col, temp_r26);
+                        newGrassData(pos, fopAcM_GetRoomNo(this), dItemNo_NONE_e, 0xFF, add_col, temp_r26);
                     } else {
                         newGrassData(pos, fopAcM_GetRoomNo(this), itemNo, itemBitNo, add_col, temp_r26);
                     }

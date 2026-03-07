@@ -5318,7 +5318,7 @@ void dKyr_odour_draw(Mtx drawMtx, u8** tex) {
     GXColor color_reg1;
 
     switch (dComIfGs_getCollectSmell()) {
-    case fpcNm_ITEM_SMELL_YELIA_POUCH:
+    case dItemNo_SMELL_YELIA_POUCH_e:
         color_reg0.r = 0xFF;
         color_reg0.g = 0xFF;
         color_reg0.b = 0xFF;
@@ -5328,7 +5328,7 @@ void dKyr_odour_draw(Mtx drawMtx, u8** tex) {
         color_reg1.b = 0xA8;
         color_reg1.a = 0xFF;
         break;
-    case fpcNm_ITEM_SMELL_FISH:
+    case dItemNo_SMELL_FISH_e:
         color_reg0.r = 0xFF;
         color_reg0.g = 0xA1;
         color_reg0.b = 0x3B;
@@ -5338,7 +5338,7 @@ void dKyr_odour_draw(Mtx drawMtx, u8** tex) {
         color_reg1.b = 0x32;
         color_reg1.a = 0xFF;
         break;
-    case fpcNm_ITEM_SMELL_CHILDREN:
+    case dItemNo_SMELL_CHILDREN_e:
         color_reg0.r = 0xFF;
         color_reg0.g = 0xDB;
         color_reg0.b = 0xFF;
@@ -5348,7 +5348,7 @@ void dKyr_odour_draw(Mtx drawMtx, u8** tex) {
         color_reg1.b = 0x52;
         color_reg1.a = 0xFF;
         break;
-    case fpcNm_ITEM_SMELL_MEDICINE:
+    case dItemNo_SMELL_MEDICINE_e:
         color_reg0.r = 0xD5;
         color_reg0.g = 0xCE;
         color_reg0.b = 0xA7;
@@ -5358,7 +5358,7 @@ void dKyr_odour_draw(Mtx drawMtx, u8** tex) {
         color_reg1.b = 0x27;
         color_reg1.a = 0xFF;
         break;
-    case fpcNm_ITEM_SMELL_POH:
+    case dItemNo_SMELL_POH_e:
         color_reg0.r = 0xFF;
         color_reg0.g = 0xC8;
         color_reg0.b = 0xFF;

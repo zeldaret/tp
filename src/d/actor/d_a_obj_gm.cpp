@@ -575,7 +575,7 @@ static int daObj_Gm_Execute(obj_gm_class* i_this) {
             i_this->mSound.startCreatureSound(JA_SE_OBJ_BREAK_CHINA_S, 0, -1);
 
             if ((fopAcM_GetParam(a_this) & 0xFF) == 32) {
-                fopAcM_createItemForMidBoss(&a_this->current.pos, fpcNm_ITEM_SMALL_KEY, fopAcM_GetRoomNo(a_this), NULL, NULL, 0, fopAcM_GetParam(a_this) >> 24);
+                fopAcM_createItemForMidBoss(&a_this->current.pos, dItemNo_SMALL_KEY_e, fopAcM_GetRoomNo(a_this), NULL, NULL, 0, fopAcM_GetParam(a_this) >> 24);
             }
         } else if (i_this->mType == 1) {
             daObj::make_eff_break_gm_ootubo(a_this);

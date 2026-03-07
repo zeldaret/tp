@@ -113,7 +113,7 @@ bool daAlink_c::checkCutFastReady() {
 
     fopAc_ac_c* target_p = mAttention->LockonTarget(0);
 
-    if (mEquipItem == fpcNm_ITEM_NONE && (dComIfGs_isEventBit(dSv_event_flag_c::F_0342) || checkNoResetFlg3(FLG3_TRANING_CUT_FAST)))
+    if (mEquipItem == dItemNo_NONE_e && (dComIfGs_isEventBit(dSv_event_flag_c::F_0342) || checkNoResetFlg3(FLG3_TRANING_CUT_FAST)))
     {
         if (checkModeFlg(1) && !checkRideOn() && checkSwordGet() && checkModeFlg(4) &&
             !checkModeFlg(0x40000) && mTargetedActor == NULL && checkEnemyGroup(target_p))
@@ -229,7 +229,7 @@ void daAlink_c::setCylAtParam(u32 i_AtType, dCcG_At_Spl i_spl, u8 i_hitMark, u8 
         } else {
             mtrl = dCcD_MTRL_NONE;
         }
-    } else if (mEquipItem == fpcNm_ITEM_WATER_BOTTLE) {
+    } else if (mEquipItem == dItemNo_WATER_BOTTLE_e) {
         mtrl = dCcD_MTRL_UNK_6;
     } else {
         mtrl = dCcD_MTRL_NONE;
@@ -365,11 +365,11 @@ BOOL daAlink_c::checkCutReverseAt(dCcD_GObjInf* i_gobj) {
 }
 
 BOOL daAlink_c::changeCutReverseProc(daAlink_c::daAlink_ANM i_anmID) {
-    if (checkCutReverseAt(&mAtCps[0]) || (mEquipItem != fpcNm_ITEM_COPY_ROD && (checkCutReverseAt(&mAtCps[1]) || checkCutReverseAt(&mAtCps[2])))) {
+    if (checkCutReverseAt(&mAtCps[0]) || (mEquipItem != dItemNo_COPY_ROD_e && (checkCutReverseAt(&mAtCps[1]) || checkCutReverseAt(&mAtCps[2])))) {
         return procCutReverseInit(i_anmID);
     }
 
-    if (checkNoResetFlg0(FLG0_CUT_AT_FLG) || mEquipItem == fpcNm_ITEM_COPY_ROD) {
+    if (checkNoResetFlg0(FLG0_CUT_AT_FLG) || mEquipItem == dItemNo_COPY_ROD_e) {
         cXyz sp28;
         Vec sp1C;
 

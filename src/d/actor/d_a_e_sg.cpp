@@ -736,7 +736,7 @@ static void e_sg_drop(e_sg_class* i_this) {
                 local_48.x += i_this->current.pos.x;
                 local_48.z += i_this->current.pos.z;
                 local_48.y = i_this->mGroundY + 10.0f;
-                fopAcM_createItem(&local_48, fpcNm_ITEM_HEART, -1, -1, NULL, NULL, 0);
+                fopAcM_createItem(&local_48, dItemNo_HEART_e, -1, -1, NULL, NULL, 0);
             }
         }
     }

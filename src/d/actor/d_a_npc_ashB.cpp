@@ -760,7 +760,7 @@ bool daNpcAshB_c::wait(void* param_0) {
                         return true;
                     } else {
                         u8 preitemno = dComIfGp_event_getPreItemNo();
-                        if (preitemno == fpcNm_ITEM_ASHS_SCRIBBLING) {
+                        if (preitemno == dItemNo_ASHS_SCRIBBLING_e) {
                             mFlowID = 504;
                             setAction(&daNpcAshB_c::talk);
                         } else {

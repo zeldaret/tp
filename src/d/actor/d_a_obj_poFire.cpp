@@ -73,8 +73,8 @@ void daPoFire_c::setBaseMtx() {
 }
 
 
-static u8 const itemNo[4] = {fpcNm_ITEM_POU_FIRE1, fpcNm_ITEM_POU_FIRE2, fpcNm_ITEM_POU_FIRE3,
-                             fpcNm_ITEM_POU_FIRE4};
+static u8 const itemNo[4] = {dItemNo_POU_FIRE1_e, dItemNo_POU_FIRE2_e, dItemNo_POU_FIRE3_e,
+                             dItemNo_POU_FIRE4_e};
 
 int daPoFire_c::create() {
     fopAcM_ct(this, daPoFire_c);

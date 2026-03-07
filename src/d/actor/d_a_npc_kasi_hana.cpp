@@ -378,7 +378,7 @@ BOOL daNpcKasi_Mng_c::createHearts() {
             i_pos.y += 115.0f;
             fopAc_ac_c* heart_p = NULL;
             csXyz i_angle(0, cLib_getRndValue<int>(0, 7) << 13, 0);
-            heart_p = fopAcM_fastCreateItem(&i_pos, fpcNm_ITEM_HEART, fopAcM_GetRoomNo(actor_p), &i_angle,
+            heart_p = fopAcM_fastCreateItem(&i_pos, dItemNo_HEART_e, fopAcM_GetRoomNo(actor_p), &i_angle,
                                            &i_scale, &i_speedF, &i_speedY, -1, 0, NULL);
             if (heart_p != NULL) {
                 Z2GetAudioMgr()->seStart(Z2SE_GIRLS_HEART, &i_pos, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);

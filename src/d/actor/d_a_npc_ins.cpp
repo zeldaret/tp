@@ -1246,7 +1246,7 @@ int daNpcIns_c::waitPresent(void* param_1) {
             checkPlayerSearch();
 
             u8 type = dMeter2Info_getInsectSelectType();
-            if (type != fpcNm_ITEM_NONE) {
+            if (type != dItemNo_NONE_e) {
                 if (type != 0 && !isInsect(type)) {
                     break;
                 }
@@ -1605,99 +1605,99 @@ bool daNpcIns_c::isInsectComplete() {
 
 const insect_param_data& daNpcIns_c::getInsectParamData(int i_index) {
     switch (i_index) {
-        case fpcNm_ITEM_M_BEETLE:
+        case dItemNo_M_BEETLE_e:
             i_index = INSECT_M_BEETLE;
             break;
 
-        case fpcNm_ITEM_F_BEETLE:
+        case dItemNo_F_BEETLE_e:
             i_index = INSECT_F_BEETLE;
             break;
 
-        case fpcNm_ITEM_M_BUTTERFLY:
+        case dItemNo_M_BUTTERFLY_e:
             i_index = INSECT_M_BUTTERFLY;
             break;
 
-        case fpcNm_ITEM_F_BUTTERFLY:
+        case dItemNo_F_BUTTERFLY_e:
             i_index = INSECT_F_BUTTERFLY;
             break;
 
-        case fpcNm_ITEM_M_STAG_BEETLE:
+        case dItemNo_M_STAG_BEETLE_e:
             i_index = INSECT_M_STAG_BEETLE;
             break;
 
-        case fpcNm_ITEM_F_STAG_BEETLE:
+        case dItemNo_F_STAG_BEETLE_e:
             i_index = INSECT_F_STAG_BEETLE;
             break;
 
-        case fpcNm_ITEM_M_GRASSHOPPER:
+        case dItemNo_M_GRASSHOPPER_e:
             i_index = INSECT_M_GRASSHOPPER;
             break;
 
-        case fpcNm_ITEM_F_GRASSHOPPER:
+        case dItemNo_F_GRASSHOPPER_e:
             i_index = INSECT_F_GRASSHOPPER;
             break;
 
-        case fpcNm_ITEM_M_NANAFUSHI:
+        case dItemNo_M_NANAFUSHI_e:
             i_index = INSECT_M_NANAFUSHI;
             break;
 
-        case fpcNm_ITEM_F_NANAFUSHI:
+        case dItemNo_F_NANAFUSHI_e:
             i_index = INSECT_F_NANAFUSHI;
             break;
 
-        case fpcNm_ITEM_M_DANGOMUSHI:
+        case dItemNo_M_DANGOMUSHI_e:
             i_index = INSECT_M_DANGOMUSHI;
             break;
 
-        case fpcNm_ITEM_F_DANGOMUSHI:
+        case dItemNo_F_DANGOMUSHI_e:
             i_index = INSECT_F_DANGOMUSHI;
             break;
 
-        case fpcNm_ITEM_M_MANTIS:
+        case dItemNo_M_MANTIS_e:
             i_index = INSECT_M_MANTIS;
             break;
 
-        case fpcNm_ITEM_F_MANTIS:
+        case dItemNo_F_MANTIS_e:
             i_index = INSECT_F_MANTIS;
             break;
 
-        case fpcNm_ITEM_M_LADYBUG:
+        case dItemNo_M_LADYBUG_e:
             i_index = INSECT_M_LADYBUG;
             break;
 
-        case fpcNm_ITEM_F_LADYBUG:
+        case dItemNo_F_LADYBUG_e:
             i_index = INSECT_F_LADYBUG;
             break;
 
-        case fpcNm_ITEM_M_SNAIL:
+        case dItemNo_M_SNAIL_e:
             i_index = INSECT_M_SNAIL;
             break;
 
-        case fpcNm_ITEM_F_SNAIL:
+        case dItemNo_F_SNAIL_e:
             i_index = INSECT_F_SNAIL;
             break;
 
-        case fpcNm_ITEM_M_DRAGONFLY:
+        case dItemNo_M_DRAGONFLY_e:
             i_index = INSECT_M_DRAGONFLY;
             break;
 
-        case fpcNm_ITEM_F_DRAGONFLY:
+        case dItemNo_F_DRAGONFLY_e:
             i_index = INSECT_F_DRAGONFLY;
             break;
 
-        case fpcNm_ITEM_M_ANT:
+        case dItemNo_M_ANT_e:
             i_index = INSECT_M_ANT;
             break;
 
-        case fpcNm_ITEM_F_ANT:
+        case dItemNo_F_ANT_e:
             i_index = INSECT_F_ANT;
             break;
 
-        case fpcNm_ITEM_M_MAYFLY:
+        case dItemNo_M_MAYFLY_e:
             i_index = INSECT_M_MAYFLY;
             break;
 
-        case fpcNm_ITEM_F_MAYFLY:
+        case dItemNo_F_MAYFLY_e:
             i_index = INSECT_F_MAYFLY;
             break;
 

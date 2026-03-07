@@ -1748,7 +1748,7 @@ fopAc_ac_c* dAttCatch_c::convPId(fpc_ProcID i_id) {
 }
 
 void dAttCatch_c::init() {
-    mCatchItemNo = fpcNm_ITEM_WATER_BOTTLE;
+    mCatchItemNo = dItemNo_WATER_BOTTLE_e;
     mRequestActorID = fpcM_ERROR_PROCESS_ID_e;
     mCatghTargetID = fpcM_ERROR_PROCESS_ID_e;
     field_0x4 = 3;
@@ -1759,7 +1759,7 @@ void dAttCatch_c::proc() {
     mChangeItem = mCatchItemNo;
     mRequestActorID = fpcM_ERROR_PROCESS_ID_e;
     field_0x4 = 3;
-    mCatchItemNo = fpcNm_ITEM_WATER_BOTTLE;
+    mCatchItemNo = dItemNo_WATER_BOTTLE_e;
 }
 
 int dAttCatch_c::request(fopAc_ac_c* i_reqActor, u8 i_itemNo, f32 i_horizontalDist, f32 i_upDist,

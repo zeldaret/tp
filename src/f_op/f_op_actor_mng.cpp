@@ -1366,7 +1366,7 @@ fpc_ProcID fopAcM_createItemForPresentDemo(cXyz const* i_pos, int i_itemNo, u8 p
     JUT_ASSERT(3214, 0 <= i_itemNo && i_itemNo < 256);
     dComIfGp_event_setGtItm(i_itemNo);
 
-    if (i_itemNo == fpcNm_ITEM_NONE) {
+    if (i_itemNo == dItemNo_NONE_e) {
         OS_REPORT("プレゼントデモ用なのに「ハズレ」です！[%d]\n", i_itemNo); // Even though it is for a Present Demo, it is a 'Miss'!
         return fpcM_ERROR_PROCESS_ID_e;
     }
@@ -1380,7 +1380,7 @@ fpc_ProcID fopAcM_createItemForTrBoxDemo(cXyz const* i_pos, int i_itemNo, int i_
    JUT_ASSERT(3259, 0 <= i_itemNo && i_itemNo < 256);
    dComIfGp_event_setGtItm(i_itemNo);
 
-    if (i_itemNo == fpcNm_ITEM_NONE) {
+    if (i_itemNo == dItemNo_NONE_e) {
         OS_REPORT("ゲットデモ用なのに「ハズレ」です！[%d]\n", i_itemNo); // Even though it is for a Get Demo, it is a 'Miss'!
         return fpcM_ERROR_PROCESS_ID_e;
     }
@@ -1513,7 +1513,7 @@ fpc_ProcID fopAcM_createItemFromTable(cXyz const* i_pos, int i_itemNo, int i_ite
 #endif
 
     i_itemNo = fopAcM_getItemNoFromTableNo(i_itemNo);
-    if (i_itemNo == fpcNm_ITEM_NONE) {
+    if (i_itemNo == dItemNo_NONE_e) {
         return fpcM_ERROR_PROCESS_ID_e;
     }
 
@@ -1539,7 +1539,7 @@ fpc_ProcID fopAcM_createDemoItem(const cXyz* i_pos, int i_itemNo, int i_itemBitN
     JUT_ASSERT(3824, 0 <= i_itemNo && i_itemNo < 256 && (-1 <= i_itemBitNo && i_itemBitNo < (dSv_info_c::DAN_ITEM + dSv_info_c::MEMORY_ITEM + dSv_info_c::ZONE_ITEM )) || i_itemBitNo == 255);
     // clang-format on
 
-    if (i_itemNo == fpcNm_ITEM_NONE) {
+    if (i_itemNo == dItemNo_NONE_e) {
         return fpcM_ERROR_PROCESS_ID_e;
     }
 
@@ -1598,7 +1598,7 @@ fpc_ProcID fopAcM_createItem(const cXyz* i_pos, int i_itemNo, int i_itemBitNo, i
     JUT_ASSERT(4067, 0 <= i_itemNo && i_itemNo < 256 && (-1 <= i_itemBitNo && i_itemBitNo < (dSv_info_c::DAN_ITEM + dSv_info_c::MEMORY_ITEM + dSv_info_c::ZONE_ITEM )) || i_itemBitNo == 255);
     // clang-format on
 
-    if (i_itemNo == fpcNm_ITEM_NONE) {
+    if (i_itemNo == dItemNo_NONE_e) {
         return fpcM_ERROR_PROCESS_ID_e;
     }
 
@@ -1618,32 +1618,32 @@ fpc_ProcID fopAcM_createItem(const cXyz* i_pos, int i_itemNo, int i_itemBitNo, i
     u32 params = MAKE_ITEM_PARAMS(item_no, i_itemBitNo, unk, param_7);
 
     switch (i_itemNo) {
-    case fpcNm_ITEM_RECOVERY_FAILY:
+    case dItemNo_RECOVERY_FAILY_e:
         ret = fopAcM_create(PROC_Obj_Yousei, 0xFFFFFFFF, i_pos, i_roomNo, i_angle, i_scale, -1);
         break;
 #if DEBUG
 // Return pointer fopAc_ac_c* is uninitialized for these branches
-    case fpcNm_ITEM_SMALL_KEY:
+    case dItemNo_SMALL_KEY_e:
         // "Small Key: Can't support map display, so program generation is prohibited!\n"
         OS_REPORT_ERROR("小さい鍵：マップ表示対応出来ないので、プログラム生成禁止！\n");
         JUT_ASSERT(4145, FALSE);
         break;
-    case fpcNm_ITEM_KANTERA:
+    case dItemNo_KANTERA_e:
         // "Lantern: Program generation is prohibited!\n"
         OS_REPORT_ERROR("カンテラ：プログラム生成禁止！\n");
         JUT_ASSERT(4149, FALSE);
         break;
-    case fpcNm_ITEM_LIGHT_DROP:
+    case dItemNo_LIGHT_DROP_e:
         // "Light Drop: Program generation is prohibited!\n"
         OS_REPORT_ERROR("光の雫：プログラム生成禁止！\n");
         JUT_ASSERT(4153, FALSE);
         break;
 #endif
-    case fpcNm_ITEM_KAKERA_HEART:
-    case fpcNm_ITEM_UTAWA_HEART:
+    case dItemNo_KAKERA_HEART_e:
+    case dItemNo_UTAWA_HEART_e:
         ret = fopAcM_create(PROC_Obj_LifeContainer, params, i_pos, i_roomNo, i_angle, i_scale, -1);
         break;
-    case fpcNm_ITEM_TRIPLE_HEART:
+    case dItemNo_TRIPLE_HEART_e:
         for (i = 0; i < 2; i++) {
             fopAcM_create(PROC_ITEM, params, i_pos, i_roomNo, &item_angle, i_scale, -1);
             item_angle.y = cM_rndFX(0x7FFF);
@@ -1664,7 +1664,7 @@ fopAc_ac_c* fopAcM_fastCreateItem2(const cXyz* i_pos, int i_itemNo, int i_itemBi
 
     csXyz item_angle(csXyz::Zero);
 
-    if (i_itemNo == fpcNm_ITEM_NONE) {
+    if (i_itemNo == dItemNo_NONE_e) {
         return NULL;
     }
 
@@ -1683,34 +1683,34 @@ fopAc_ac_c* fopAcM_fastCreateItem2(const cXyz* i_pos, int i_itemNo, int i_itemBi
     u32 params = MAKE_ITEM_PARAMS(item_no, i_itemBitNo, unk, param_5);
 
     switch (i_itemNo) {
-    case fpcNm_ITEM_RECOVERY_FAILY:
+    case dItemNo_RECOVERY_FAILY_e:
         ret = fopAcM_fastCreate(PROC_Obj_Yousei, 0xFFFFFFFF, i_pos, i_roomNo, i_angle, i_scale, -1,
                                 NULL, NULL);
         break;
 #if DEBUG
 // Return pointer fopAc_ac_c* is uninitialized for these branches
-    case fpcNm_ITEM_SMALL_KEY:
+    case dItemNo_SMALL_KEY_e:
         // "Small Key: Can't support map display, so program generation is prohibited!\n"
         OS_REPORT_ERROR("小さい鍵：マップ表示対応出来ないので、プログラム生成禁止！\n");
         JUT_ASSERT(4268, FALSE);
         break;
-    case fpcNm_ITEM_KANTERA:
+    case dItemNo_KANTERA_e:
         // "Lantern: Program generation is prohibited!\n"
         OS_REPORT_ERROR("カンテラ：プログラム生成禁止！\n");
         JUT_ASSERT(4272, FALSE);
         break;
-    case fpcNm_ITEM_LIGHT_DROP:
+    case dItemNo_LIGHT_DROP_e:
         // "Light Drop: Program generation is prohibited!\n"
         OS_REPORT_ERROR("光の雫：プログラム生成禁止！\n");
         JUT_ASSERT(4276, FALSE);
         break;
 #endif
-    case fpcNm_ITEM_KAKERA_HEART:
-    case fpcNm_ITEM_UTAWA_HEART:
+    case dItemNo_KAKERA_HEART_e:
+    case dItemNo_UTAWA_HEART_e:
         ret = fopAcM_fastCreate(PROC_Obj_LifeContainer, params, i_pos, i_roomNo, i_angle, i_scale,
                                 -1, NULL, NULL);
         break;
-    case fpcNm_ITEM_TRIPLE_HEART:
+    case dItemNo_TRIPLE_HEART_e:
         for (i = 0; i < 2; i++) {
             ret = fopAcM_fastCreate(PROC_ITEM, params, i_pos, i_roomNo, &item_angle, i_scale, -1,
                                     NULL, NULL);
@@ -1730,7 +1730,7 @@ fopAc_ac_c* fopAcM_fastCreateItem(const cXyz* i_pos, int i_itemNo, int i_roomNo,
     JUT_ASSERT(4324, 0 <= i_itemNo && i_itemNo < 256);
     
     csXyz angle;
-    if (i_itemNo == fpcNm_ITEM_NONE) {
+    if (i_itemNo == dItemNo_NONE_e) {
         return NULL;
     }
 
@@ -1748,34 +1748,34 @@ fopAc_ac_c* fopAcM_fastCreateItem(const cXyz* i_pos, int i_itemNo, int i_roomNo,
     }
     
     switch (i_itemNo) {
-    case fpcNm_ITEM_RECOVERY_FAILY:
+    case dItemNo_RECOVERY_FAILY_e:
         ret = fopAcM_fastCreate(PROC_Obj_Yousei, 0xFFFFFFFF, i_pos, i_roomNo, i_angle, i_scale, -1,
                                  NULL, NULL);
         break;
 #if DEBUG
 // Return pointer fopAc_ac_c* is uninitialized for these branches
-    case fpcNm_ITEM_SMALL_KEY:
+    case dItemNo_SMALL_KEY_e:
         // "Small Key: Can't support map display, so program generation is prohibited!\n"
         OS_REPORT_ERROR("小さい鍵：マップ表示対応出来ないので、プログラム生成禁止！\n");
         JUT_ASSERT(4383, FALSE);
         break;
-    case fpcNm_ITEM_KANTERA:
+    case dItemNo_KANTERA_e:
         // "Lantern: Program generation is prohibited!\n"
         OS_REPORT_ERROR("カンテラ：プログラム生成禁止！\n");
         JUT_ASSERT(4387, FALSE);
         break;
-    case fpcNm_ITEM_LIGHT_DROP:
+    case dItemNo_LIGHT_DROP_e:
         // "Light Drop: Program generation is prohibited!\n"
         OS_REPORT_ERROR("光の雫：プログラム生成禁止！\n");
         JUT_ASSERT(4391, FALSE);
         break;
 #endif
-    case fpcNm_ITEM_KAKERA_HEART:
-    case fpcNm_ITEM_UTAWA_HEART:
+    case dItemNo_KAKERA_HEART_e:
+    case dItemNo_UTAWA_HEART_e:
         ret = fopAcM_fastCreate(PROC_Obj_LifeContainer, params, i_pos, i_roomNo, i_angle, i_scale,
                                  -1, NULL, NULL);
         break;
-    case fpcNm_ITEM_TRIPLE_HEART:
+    case dItemNo_TRIPLE_HEART_e:
         for (i = 0; i < 2; i++) {
             if (i_angle != NULL) {
                 angle = *i_angle;

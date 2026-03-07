@@ -3345,7 +3345,7 @@ static int daE_FM_Execute(e_fm_class* i_this) {
             csXyz rot(actor->shape_angle);
             rot.y += 0x800;
 
-            fopAcM_createItemForBoss(&actor->eyePos, fpcNm_ITEM_UTAWA_HEART, fopAcM_GetRoomNo(actor), &rot, NULL, 10.0f + KREG_F(19), 30.0f, -1);
+            fopAcM_createItemForBoss(&actor->eyePos, dItemNo_UTAWA_HEART_e, fopAcM_GetRoomNo(actor), &rot, NULL, 10.0f + KREG_F(19), 30.0f, -1);
         }
 
         if (i_this->field_0x182c == 3) {
@@ -3740,7 +3740,7 @@ static int daE_FM_Create(fopAc_ac_c* i_this) {
             if (!dComIfGs_isStageLife()) {
                 cXyz size(1.0f, 1.0f, 1.0f);
                 pos.set(209.0f, 0.0f, 861.0f);
-                fopAcM_createItemForBoss(&pos, fpcNm_ITEM_UTAWA_HEART, fopAcM_GetRoomNo(i_this), &i_this->shape_angle, &size, 0.0f, 0.0f, -1);
+                fopAcM_createItemForBoss(&pos, dItemNo_UTAWA_HEART_e, fopAcM_GetRoomNo(i_this), &i_this->shape_angle, &size, 0.0f, 0.0f, -1);
             }
 
             g_env_light.mColpatWeather = 2;
