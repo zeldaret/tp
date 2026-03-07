@@ -3538,7 +3538,7 @@ static void action(e_wb_class* i_this) {
     case ACT_PL_RIDE2:
         e_wb_pl_ride(i_this);
         break;
-    case ACT_CRT_WAIT:
+    case ACT_CRV_WAIT:
         e_wb_crv_wait(i_this);
     }
 
@@ -5765,7 +5765,7 @@ static int daE_WB_Create(fopAc_ac_c* actor) {
                 if (fopAcM_GetRoomNo(actor) == 1) {
                     actor->current.pos.set(1500.0f, 0.0f, 1100.0f);
                     actor->current.angle.y = 0x2000;
-                    i_this->action = ACT_CRT_WAIT;
+                    i_this->action = ACT_CRV_WAIT;
                     i_this->field_0x1720 = 1;
                 } else {
                     if (fopAcM_GetRoomNo(actor) == 2) {

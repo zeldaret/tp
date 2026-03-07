@@ -7052,7 +7052,7 @@ static int daE_RD_Delete(e_rd_class* i_this) {
     dComIfG_resDelete(&i_this->phase, i_this->resName);
     if (i_this->hio_set != 0) {
         hio_set = 0;
-        mDoHIO_DELETE_CHILD(l_HIO.field_0x4);
+        mDoHIO_DELETE_CHILD(l_HIO.no);
     }
 
     if (enemy->heap != NULL) {

@@ -53,7 +53,7 @@ enum daE_WB_ACT {
     /* 0x65 */ ACT_PL_RIDE = 0x65,
     /* 0x66 */ ACT_PL_RIDE2,
     /* 0x67 */ ACT_PL_RIDE_NOW,
-    /* 0x6E */ ACT_CRT_WAIT = 0x6E,
+    /* 0x6E */ ACT_CRV_WAIT = 0x6E,
 };
 
 struct himo_s {
