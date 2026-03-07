@@ -145,7 +145,7 @@ public:
     /* 0x0B01 */ s8 dir;
     /* 0x0B04 */ dBgS_AcchCir AcchCir;
     /* 0x0B44 */ dBgS_ObjAcch Bgc;
-    /* 0x0D1C */ dCcD_Stts mStts;
+    /* 0x0D1C */ dCcD_Stts Stts;
     /* 0x0D58 */ dCcD_Sph cc_sph[3];
     /* 0x1100 */ dCcD_Sph at_sph;
     /* 0x1238 */ dCcU_AtInfo at_info;

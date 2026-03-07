@@ -4245,7 +4245,7 @@ static void damage_check(e_rd_class* i_this) {
         return;
     }
 
-    i_this->mStts.Move();
+    i_this->Stts.Move();
 
     if (i_this->damage_timer == 0) {
         if (i_this->actor_set != ACTOR_SET_NONE
@@ -5288,7 +5288,7 @@ static void action(e_rd_class* i_this) {
         }
 
         if (i_this->field_0x9ad != 0) {
-            cXyz* moveP = i_this->mStts.GetCCMoveP();
+            cXyz* moveP = i_this->Stts.GetCCMoveP();
             if (moveP != NULL) {
                 enemy->current.pos.x += moveP->x;
                 enemy->current.pos.z += moveP->z;
@@ -5686,22 +5686,22 @@ static void action(e_rd_class* i_this) {
 static void fire_eff_set(e_rd_class* i_this) {
     fopEn_enemy_c* enemy = (fopEn_enemy_c*)&i_this->enemy;
     cXyz mae, ato;
-    int iVar1;
-    u16 uVar1[2];
+    int num;
+    u16 fire_eff_name[2];
     f32 scale;
 
     if (i_this->weapon_type == WEAPON_TYPE_BARROW) {
-        iVar1 = 2;
-        uVar1[0] = 0x1DF;
-        uVar1[1] = 0x1DE;
+        num = 2;
+        fire_eff_name[0] = ID_ZI_J_ARWB_SMOKE_A;
+        fire_eff_name[1] = ID_ZI_J_ARWB_SMOKE_B;
         i_this->sound.startCreatureSoundLevel(Z2SE_OBJ_BOMB_IGNITION, 0, -1);
         scale = NREG_F(18) + 2.0f;
         mae.x = NREG_F(0) + 62.0f;
         mae.y = NREG_F(1) + 22.0f;
         mae.z = NREG_F(2) + -50.0f;
     } else {
-        iVar1 = 1;
-        uVar1[0] = 0x8113;
+        num = 1;
+        fire_eff_name[0] = dPa_RM(ID_ZI_S_RD_ARROWFIRE_A);
         i_this->sound.startCreatureSoundLevel(Z2SE_OBJ_ARROW_FIRE_READY, 0, -1);
         scale = 1.0f;
         mae.x = NREG_F(0) + 90.0f;
@@ -5715,8 +5715,8 @@ static void fire_eff_set(e_rd_class* i_this) {
     i_this->field_0x127c = ato;
 
     cXyz sc(scale, scale, scale);
-    for (int i = 0 ; i < iVar1; i++) {
-        i_this->fire_eff_id[i] = dComIfGp_particle_set(i_this->fire_eff_id[i], uVar1[i], &ato, &enemy->shape_angle, &sc);
+    for (int i = 0 ; i < num; i++) {
+        i_this->fire_eff_id[i] = dComIfGp_particle_set(i_this->fire_eff_id[i], fire_eff_name[i], &ato, &enemy->shape_angle, &sc);
 
         if (i == 0) {
             JPABaseEmitter* emitter = dComIfGp_particle_getEmitter(i_this->fire_eff_id[i]);
@@ -7519,7 +7519,7 @@ static cPhs_Step daE_RD_Create(fopAc_ac_c* actor) {
 
         actor->field_0x560 = actor->health = 40;
 
-        i_this->mStts.Init(150, 0, actor);
+        i_this->Stts.Init(150, 0, actor);
 
         static dCcD_SrcSph cc_sph_src = {
             {
@@ -7534,7 +7534,7 @@ static cPhs_Step daE_RD_Create(fopAc_ac_c* actor) {
         };
         for (int i = 0; i <= 2; i++) {
             i_this->cc_sph[i].Set(cc_sph_src);
-            i_this->cc_sph[i].SetStts(&i_this->mStts);
+            i_this->cc_sph[i].SetStts(&i_this->Stts);
 
             if (i_this->actor_set != ACTOR_SET_NONE) {
                 i_this->cc_sph[i].SetTgType(0xD8FAFD3F);
@@ -7553,7 +7553,7 @@ static cPhs_Step daE_RD_Create(fopAc_ac_c* actor) {
             } // mSphAttr
         };
         i_this->at_sph.Set(at_sph_src);
-        i_this->at_sph.SetStts(&i_this->mStts);
+        i_this->at_sph.SetStts(&i_this->Stts);
 
         i_this->counter = instanceCount | (u16(cM_rndF(65535.0f)) & 0xFF00);
         instanceCount++;
