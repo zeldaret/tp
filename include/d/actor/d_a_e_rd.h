@@ -155,8 +155,8 @@ public:
     /* 0x1264 */ u32 field_0x1264;
     /* 0x1268 */ u32 w_eff_id[3];
     /* 0x1274 */ u32 fire_eff_id[2];
-    /* 0x127C */ cXyz field_0x127c;
-    /* 0x1288 */ cXyz field_0x1288;
+    /* 0x127C */ cXyz fire_pos;
+    /* 0x1288 */ cXyz fire_eff;
     /* 0x1294 */ s8 field_0x1294;
     /* 0x1295 */ s8 one_hit_kill;
     /* 0x1296 */ s8 field_0x1296;

@@ -5710,9 +5710,9 @@ static void fire_eff_set(e_rd_class* i_this) {
     }
 
     MtxPosition(&mae, &ato);
-    i_this->field_0x1288 = ato - i_this->field_0x127c;
-    i_this->field_0x1288 *= 0.9f;
-    i_this->field_0x127c = ato;
+    i_this->fire_eff = ato - i_this->fire_pos;
+    i_this->fire_eff *= 0.9f;
+    i_this->fire_pos = ato;
 
     cXyz sc(scale, scale, scale);
     for (int i = 0 ; i < num; i++) {
@@ -5722,7 +5722,7 @@ static void fire_eff_set(e_rd_class* i_this) {
             JPABaseEmitter* emitter = dComIfGp_particle_getEmitter(i_this->fire_eff_id[i]);
             if (emitter != NULL) {
                 emitter->setParticleCallBackPtr(dPa_control_c::getParticleTracePCB());
-                emitter->setUserWork((uintptr_t)&i_this->field_0x1288);
+                emitter->setUserWork((uintptr_t)&i_this->fire_eff);
             }
         }
     }
@@ -6828,7 +6828,7 @@ static int daE_RD_Execute(e_rd_class* i_this) {
                     fire_eff_set(i_this);
                 }
             } else {
-                i_this->field_0x127c.set(-200000.0f, -200000.0f, -200000.0f);
+                i_this->fire_pos.set(-200000.0f, -200000.0f, -200000.0f);
             }
         }
 
