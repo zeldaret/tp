@@ -7437,8 +7437,8 @@ static cPhs_Step daE_RD_Create(fopAc_ac_c* actor) {
             }
         } else if (i_this->arg0 == 7) {
             i_this->action = ACTION_NORMAL;
-            u32 path_no = actor->home.angle.x & 0xFF;
-            if (path_no != 0xFF) {
+            u8 path_no = actor->home.angle.x & 0xFF;
+            if ((u32)(path_no) != 0xFF) {
                 i_this->ppd = dPath_GetRoomPath(path_no, fopAcM_GetRoomNo(actor));
                 OS_REPORT("//////////////E_RD PPD %x!!\n", i_this->ppd);
                 if (i_this->ppd == NULL) {
