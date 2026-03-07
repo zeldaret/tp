@@ -5851,7 +5851,7 @@ static void cam_spd_set(e_rd_class* i_this) {
 static void demo_camera(e_rd_class* i_this) {
     fopEn_enemy_c* enemy = (fopEn_enemy_c*)&i_this->enemy;
     daPy_py_c* pla = (daPy_py_c*)dComIfGp_getPlayer(0);
-    camera_class* cam = (camera_class*) dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
+    camera_process_class* cam = (camera_process_class*) dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
     camera_class* cam0 = (camera_class*) dComIfGp_getCamera(0);
     daNPC_TK_c* taka = (daNPC_TK_c*) fopAcM_SearchByName(PROC_NPC_TK);
     fopAc_ac_c* actor = taka;
@@ -5939,7 +5939,7 @@ static void demo_camera(e_rd_class* i_this) {
 
             i_this->demo_cam_ctr = enemy->current.pos;
             i_this->demo_cam_ctr.y = (enemy->eyePos.y - 80.0f) + 60.0f + TREG_F(5);
-            i_this->demo_cam_eye = cam0->lookat.eye;
+            i_this->demo_cam_eye = cam0->view.lookat.eye;
             enemy->current.angle.y = i_this->angleY;
             i_this->demo_cam_eye_z = 2000.0f;
             // fallthrough
@@ -5992,8 +5992,8 @@ static void demo_camera(e_rd_class* i_this) {
             i_this->demo_cam_zoom = 55.0f;
             cam->mCamera.SetTrimSize(3);
 
-            i_this->demo_cam_ctr = cam0->lookat.center;
-            i_this->demo_cam_eye = cam0->lookat.eye;
+            i_this->demo_cam_ctr = cam0->view.lookat.center;
+            i_this->demo_cam_eye = cam0->view.lookat.eye;
             i_this->demo_cam_target.set(-7875.0f, 2125.0f, 7895.0f);
             i_this->demo_cam_way.set(-7527.0f, 2084.0f, 7552.0f);
             cam_spd_set(i_this);
@@ -6607,7 +6607,7 @@ static int daE_RD_Execute(e_rd_class* i_this) {
                 if (i == 0) {
                     mae.set(38.0f, 0.0f, 0.0f);
                     MtxPosition(&mae, &ato);
-                    mae = camera->lookat.eye - ato;
+                    mae = camera->view.lookat.eye - ato;
 
                     y = cM_atan2s(mae.x, mae.z);
                     x = -cM_atan2s(mae.y, JMAFastSqrt(SQUARE(mae.x) + SQUARE(mae.z)));

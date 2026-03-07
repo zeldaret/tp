@@ -3714,8 +3714,8 @@ static void cam_3d_morf(e_wb_class* i_this, f32 i_scale) {
 
 static void demo_camera(e_wb_class* i_this) {
     fopEn_enemy_c* enemy = (fopEn_enemy_c*)i_this;
-    camera_class* cam = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
-    camera_class* cam0 = dComIfGp_getCamera(0);
+    camera_process_class* cam = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
+    camera_process_class* cam0 = dComIfGp_getCamera(0);
     daPy_py_c* pla = (daPy_py_c*)dComIfGp_getPlayer(0);
     daHorse_c* horse;
     e_rd_class* rider;
