@@ -8,14 +8,15 @@
 #include "d/d_path.h"
 #include "f_op/f_op_actor_mng.h"
 #include "m_Do/m_Do_ext.h"
-
 /**
  * @ingroup actors-enemies
  * @class e_rd_class
- * @brief Bulblin
- * 
- * @details 
- * 
+ * @brief Rider (Bulblin / King Bulblin on Boar)
+ *
+ * @details Bulblin enemy that rides a Bullbo (wild boar). Handles mounting,
+ * riding, combat, and dismounting behavior. Bulblins appear as regular riders,
+ * while King Bulblin serves as the boss variant of the boar rider.
+ *
  */
 class e_rd_class {
 public:

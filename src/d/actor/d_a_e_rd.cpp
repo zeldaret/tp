@@ -33,7 +33,7 @@ public:
 
     void genMessage(JORMContext*);
 
-    /* 0x00 */ s8 field_0x4;
+    /* 0x00 */ s8 no;
 
     /* ライダー (Rider) */
     /* 0x08 */ f32 model_size;              // 基本サイズ          (Basic size)
@@ -226,7 +226,7 @@ enum Joint {
 #define HORN_MODE_SHOOT 2  // Horn shot off
 
 daE_RD_HIO_c::daE_RD_HIO_c() {
-    field_0x4 = -1;
+    no = -1;
     model_size = 1.2f;
     leader_size_ratio = 1.2f;
     movement_speed = 3.5f;
@@ -7507,7 +7507,7 @@ static cPhs_Step daE_RD_Create(fopAc_ac_c* actor) {
             i_this->hio_set = 1;
             hio_set = 1;
             // "rider"
-            l_HIO.field_0x4 = mDoHIO_CREATE_CHILD("ライダー", &l_HIO);
+            l_HIO.no = mDoHIO_CREATE_CHILD("ライダー", &l_HIO);
         }
 
         fopAcM_SetMtx(actor, i_this->anm_p->getModel()->getBaseTRMtx());
