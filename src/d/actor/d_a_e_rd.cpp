@@ -5693,7 +5693,7 @@ static void fire_eff_set(e_rd_class* i_this) {
     if (i_this->weapon_type == WEAPON_TYPE_BARROW) {
         num = 2;
         fire_eff_name[0] = ID_ZI_J_ARWB_SMOKE_A;
-        fire_eff_name[1] = ID_ZI_J_ARWB_SMOKE_B;
+        fire_eff_name[1] = ID_ZI_J_ARWB_HIBANA_A;
         i_this->sound.startCreatureSoundLevel(Z2SE_OBJ_BOMB_IGNITION, 0, -1);
         scale = NREG_F(18) + 2.0f;
         mae.x = NREG_F(0) + 62.0f;
