@@ -14,7 +14,8 @@
  * @brief Rider (Bulblin / King Bulblin on Boar)
  *
  * @details Bulblin enemy that rides a Bullbo (wild boar). Handles mounting,
- * riding, combat, and dismounting behavior. Bulblins appear as regular riders,
+ * riding, combat, and dismounting behavior, as well as on-foot actions when
+ * not riding. Bulblins appear as regular riders, 
  * while King Bulblin serves as the boss variant of the boar rider.
  *
  */
