@@ -478,7 +478,7 @@ int daSpinner_c::checkPathMove() {
 
     daTagSppath_c* sppath_tag = (daTagSppath_c*)mCyl.GetAtHitAc();
 
-    if (mCyl.ChkAtHit() && mSpinnerTag == TAG_NONE && sppath_tag != NULL && fopAcM_GetName(sppath_tag) == PROC_Tag_Sppath) {
+    if (mCyl.ChkAtHit() && mSpinnerTag == TAG_NONE && sppath_tag != NULL && fopAcM_GetName(sppath_tag) == fpcNm_Tag_Sppath_e) {
         if (sppath_tag->getKeepPath() == field_0xa68) {
             return 0;
         }
@@ -940,13 +940,13 @@ actor_process_profile_definition g_profile_SPINNER = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 4,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_SPINNER,
+    /* Proc Name    */ fpcNm_SPINNER_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daSpinner_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_SPINNER,
+    /* Draw Prio    */ fpcDwPi_SPINNER_e,
     /* Actor SubMtd */ &l_daSpinner_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_NOPAUSE_e,
     /* Group        */ fopAc_UNK_GROUP_5_e,

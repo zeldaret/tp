@@ -305,9 +305,9 @@ void daNpcBlueNS_c::callEvt_changeYami() {
 
 fpc_ProcID daNpcBlueNS_c::create_Yamijin(int param_0) {
     static const s16 sNameYami[] = {
-        PROC_NPC_YAMIS,
-        PROC_NPC_YAMID,
-        PROC_NPC_YAMIT,
+        fpcNm_NPC_YAMIS_e,
+        fpcNm_NPC_YAMID_e,
+        fpcNm_NPC_YAMIT_e,
     };
 
     int var_r30 = mType / 3;
@@ -509,7 +509,7 @@ void* daNpcBlueNS_c::_search_Tag(void* i_actor, void* i_data) {
         return NULL;
     }
 
-    if (fopAcM_GetName(i_actor) == PROC_TAG_YAMI && ((daNpcBlueNS_c*)i_data)->_chk_TagPrm((fopAc_ac_c*)i_actor)) {
+    if (fopAcM_GetName(i_actor) == fpcNm_TAG_YAMI_e && ((daNpcBlueNS_c*)i_data)->_chk_TagPrm((fopAc_ac_c*)i_actor)) {
         return i_actor;
     }
 
@@ -525,7 +525,7 @@ void* daNpcBlueNS_c::_search_HollyBall_Y(void* i_actor, void* i_data) {
         return NULL;
     }
 
-    if (fopAcM_GetName(i_actor) != PROC_Obj_Carry) {
+    if (fopAcM_GetName(i_actor) != fpcNm_Obj_Carry_e) {
         return NULL;
     }
 
@@ -549,7 +549,7 @@ void* daNpcBlueNS_c::_search_HollyBall_G(void* i_actor, void* i_data) {
         return NULL;
     }
 
-    if (fopAcM_GetName(i_actor) != PROC_Obj_Carry) {
+    if (fopAcM_GetName(i_actor) != fpcNm_Obj_Carry_e) {
         return NULL;
     }
 
@@ -1431,13 +1431,13 @@ actor_process_profile_definition g_profile_NPC_BLUENS = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_NPC_BLUENS,
+    /* Proc Name    */ fpcNm_NPC_BLUENS_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daNpcBlueNS_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_NPC_BLUENS,
+    /* Draw Prio    */ fpcDwPi_NPC_BLUENS_e,
     /* Actor SubMtd */ &daNpcBlueNS_MethodTable,
     /* Status       */ fopAcStts_UNK_0x8000000_e | fopAcStts_UNK_0x40000_e | fopAcStts_UNK_0x4000_e | fopAcStts_CULL_e | fopAcStts_NOEXEC_e,
     /* Group        */ fopAc_NPC_e,

@@ -372,7 +372,7 @@ int daObjLife_c::actionInitBoomerangCarry() {
 }
 
 int daObjLife_c::actionBoomerangCarry() {
-    fopAc_ac_c* boomerang = fopAcM_SearchByName(PROC_BOOMERANG);
+    fopAc_ac_c* boomerang = fopAcM_SearchByName(fpcNm_BOOMERANG_e);
     if (boomerang != NULL) {
         current.pos = boomerang->current.pos;
     } else {
@@ -514,13 +514,13 @@ actor_process_profile_definition g_profile_Obj_LifeContainer = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_Obj_LifeContainer,
+    /* Proc Name    */ fpcNm_Obj_LifeContainer_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daObjLife_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_Obj_LifeContainer,
+    /* Draw Prio    */ fpcDwPi_Obj_LifeContainer_e,
     /* Actor SubMtd */ &l_daObjLife_Method,
     /* Status       */ fopAcStts_UNK_0x80000_e | fopAcStts_UNK_0x40000_e | fopAcStts_UNK_0x4000_e | fopAcStts_CULL_e,
     /* Group        */ fopAc_ACTOR_e,

@@ -102,7 +102,7 @@ void daObjLdy_c::setNormalClothPos() {
         }
     } else {
         if (mCyl.ChkCoHit() != 0) {
-            if (fopAcM_GetName(mCyl.GetCoHitAc()) == PROC_NPC_TK) {
+            if (fopAcM_GetName(mCyl.GetCoHitAc()) == fpcNm_NPC_TK_e) {
                 cXyz position = fopAcM_GetPosition(dComIfGp_getPlayer(0)) - mJoints[1].mPos1;
                 position.normalizeZP();
                 position *= 100.0f;
@@ -287,13 +287,13 @@ actor_process_profile_definition g_profile_Obj_Laundry = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_Obj_Laundry,
+    /* Proc Name    */ fpcNm_Obj_Laundry_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daObjLdy_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_Obj_Laundry,
+    /* Draw Prio    */ fpcDwPi_Obj_Laundry_e,
     /* Actor SubMtd */ &l_daObjLdy_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e | fopAcStts_NOEXEC_e,
     /* Group        */ fopAc_ACTOR_e,

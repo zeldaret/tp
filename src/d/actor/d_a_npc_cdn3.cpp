@@ -834,7 +834,7 @@ int daNpcCdn3_c::ctrlMsgAnm() {
 }
 
 static void* s_sub1(void* param_1, void* param_2) {
-    if (fopAcM_IsActor(param_1) && fopAcM_GetName(param_1) == PROC_Tag_Schedule &&
+    if (fopAcM_IsActor(param_1) && fopAcM_GetName(param_1) == fpcNm_Tag_Schedule_e &&
         static_cast<daNpcCdn3_c*>(param_2)->searchNextScheduleTagSub(
             static_cast<fopAc_ac_c*>(param_1)))
     {
@@ -872,7 +872,7 @@ bool daNpcCdn3_c::searchNextScheduleTagSub(fopAc_ac_c* param_1) {
 }
 
 static void* s_sub2(void* param_1, void* param_2) {
-    if (fopAcM_IsActor(param_1) && fopAcM_GetName(param_1) == PROC_Tag_Schedule &&
+    if (fopAcM_IsActor(param_1) && fopAcM_GetName(param_1) == fpcNm_Tag_Schedule_e &&
         static_cast<daNpcCdn3_c*>(param_2)->searchFirstScheduleTagSub(
             static_cast<fopAc_ac_c*>(param_1)))
     {
@@ -1744,13 +1744,13 @@ actor_process_profile_definition g_profile_NPC_CD3 = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_NPC_CD3,
+    /* Proc Name    */ fpcNm_NPC_CD3_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daNpcCdn3_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_NPC_CD3,
+    /* Draw Prio    */ fpcDwPi_NPC_CD3_e,
     /* Actor SubMtd */ &daNpcCdn3_METHODS,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e | fopAcStts_UNK_0x4_e | fopAcStts_UNK_0x2_e | fopAcStts_UNK_0x1_e,
     /* Group        */ fopAc_NPC_e,

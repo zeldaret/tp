@@ -152,7 +152,7 @@ static BOOL target_bgc[5];
 
 static void* s_w_sub(void* i_proc, void* i_this) {
     if (fopAcM_IsActor(i_proc) &&
-        (fopAcM_GetName(i_proc) == PROC_OBJ_FOOD || fopAcM_GetName(i_proc) == PROC_OBJ_KANBAN2) &&
+        (fopAcM_GetName(i_proc) == fpcNm_OBJ_FOOD_e || fopAcM_GetName(i_proc) == fpcNm_OBJ_KANBAN2_e) &&
         fopAcM_checkCarryNow(static_cast<fopAc_ac_c*>(i_proc)) && target_info_count < 5)
     {
         target_info[target_info_count] = static_cast<fopAc_ac_c*>(i_proc);
@@ -1342,7 +1342,7 @@ static void do_swim(do_class* i_this) {
 }
 
 static void* s_c_sub(void* param_0, void* param_1) {
-    if (fopAcM_IsActor(param_0) && fopAcM_GetName(param_0) == PROC_CANOE) {
+    if (fopAcM_IsActor(param_0) && fopAcM_GetName(param_0) == fpcNm_CANOE_e) {
         return param_0;
     }
     return 0;
@@ -2312,7 +2312,7 @@ static int daDo_Execute(do_class* i_this) {
         obj_food_class* food =
             static_cast<obj_food_class*>(fopAcM_SearchByID(i_this->mFoodActorID));
         if (food != NULL) {
-            if (fopAcM_GetName(food) == PROC_OBJ_FOOD) {
+            if (fopAcM_GetName(food) == fpcNm_OBJ_FOOD_e) {
                 MTXCopy(i_this->mpMorf->getModel()->getAnmMtx(10), *calc_mtx);
                 cMtx_YrotM(*calc_mtx, 0x4000);
                 MtxTrans(0.0f, -7.0f, 25.0f, 1);
@@ -2504,13 +2504,13 @@ actor_process_profile_definition g_profile_DO = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_DO,
+    /* Proc Name    */ fpcNm_DO_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(do_class),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_DO,
+    /* Draw Prio    */ fpcDwPi_DO_e,
     /* Actor SubMtd */ &l_daDo_Method,
     /* Status       */ fopAcStts_UNK_0x8000000_e | fopAcStts_UNK_0x40000_e | fopAcStts_UNK_0x4000_e,
     /* Group        */ fopAc_NPC_e,

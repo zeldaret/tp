@@ -208,7 +208,7 @@ static daE_OC_HIO_c l_HIO;
 static void* s_other_oc(void* arg_lhs, void* arg_rhs) {
     f32 dist;
     if (arg_lhs != arg_rhs && fopAcM_IsActor(arg_lhs)) {
-        if (fpcM_IsCreating(fopAcM_GetID(arg_lhs)) == 0 && fopAcM_GetName(arg_lhs) == PROC_E_OC) {
+        if (fpcM_IsCreating(fopAcM_GetID(arg_lhs)) == 0 && fopAcM_GetName(arg_lhs) == fpcNm_E_OC_e) {
             if (((daE_OC_c*) arg_lhs)->isBattleOn()) {
                 dist = fopAcM_searchActorDistance((fopAc_ac_c*) arg_lhs, (fopAc_ac_c*) arg_rhs);
                 if (dist < l_HIO.battle_participation_radius) {
@@ -331,7 +331,7 @@ bool daE_OC_c::searchPlayer() {
 
 static void* s_obj_sub(void* arg_lhs, void* arg_rhs) {
     if (fopAcM_IsActor(arg_lhs)) {
-        if (fpcM_IsCreating(fopAcM_GetID(arg_lhs)) == 0 && fopAcM_GetName(arg_lhs) == PROC_Obj_RotBridge) {
+        if (fpcM_IsCreating(fopAcM_GetID(arg_lhs)) == 0 && fopAcM_GetName(arg_lhs) == fpcNm_Obj_RotBridge_e) {
             if (fopAcM_GetRoomNo((fopAc_ac_c*) arg_lhs) == fopAcM_GetRoomNo((fopAc_ac_c*) arg_rhs)) {
                 return arg_lhs;
             }
@@ -429,7 +429,7 @@ bool daE_OC_c::searchSound() {
 static void* s_demo_oc(void* arg_lhs, void* arg_rhs) {
     (void) arg_rhs;
     if (fopAcM_IsActor(arg_lhs)) {
-        if (fpcM_IsCreating(fopAcM_GetID(arg_lhs)) == 0 && fopAcM_GetName(arg_lhs) == PROC_E_OC
+        if (fpcM_IsCreating(fopAcM_GetID(arg_lhs)) == 0 && fopAcM_GetName(arg_lhs) == fpcNm_E_OC_e
             && (fopAcM_GetParam(arg_lhs) & 0xFF) == 4) {
             return arg_lhs;
         }
@@ -1286,7 +1286,7 @@ void daE_OC_c::executeFind() {
                         // Forest Temple - Entrance
                         fopAc_ac_c* ks_actor;
                         // Caged girl monkey in 1st room:
-                        fopAcM_SearchByName(PROC_NPC_KS, &ks_actor);
+                        fopAcM_SearchByName(fpcNm_NPC_KS_e, &ks_actor);
                         if (ks_actor) {
                             mWatchPos = ks_actor->current.pos;
                             mWatchPos.y += 100.0f;
@@ -1448,14 +1448,14 @@ void daE_OC_c::executeAttack() {
             fopAc_ac_c* hit_actor;
             if (mSphs_at[0].ChkAtHit()) {
                 hit_actor = dCc_GetAc(mSphs_at[0].GetAtHitObj()->GetAc());
-                if (fopAcM_GetName(hit_actor) == PROC_ALINK) {
+                if (fopAcM_GetName(hit_actor) == fpcNm_ALINK_e) {
                     my_bool = 1;
                 }
             }
 
             if (mSphs_at[1].ChkAtHit()) {
                 hit_actor = dCc_GetAc(mSphs_at[1].GetAtHitObj()->GetAc());
-                if (fopAcM_GetName(hit_actor) == PROC_ALINK) {
+                if (fopAcM_GetName(hit_actor) == fpcNm_ALINK_e) {
                     my_bool = 1;
                 }
             }
@@ -2812,13 +2812,13 @@ actor_process_profile_definition g_profile_E_OC = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_E_OC,
+    /* Proc Name    */ fpcNm_E_OC_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daE_OC_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_E_OC,
+    /* Draw Prio    */ fpcDwPi_E_OC_e,
     /* Actor SubMtd */ &l_daE_OC_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_UNK_0x4000_e | fopAcStts_CULL_e,
     /* Group        */ fopAc_ENEMY_e,

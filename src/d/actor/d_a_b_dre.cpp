@@ -571,7 +571,7 @@ void daB_DRE_c::DrAction() {
         break;
     case 6:
         fopAc_ac_c* lifecon;
-        fopAcM_SearchByName(PROC_Obj_LifeContainer, &lifecon);
+        fopAcM_SearchByName(fpcNm_Obj_LifeContainer_e, &lifecon);
         if (lifecon != NULL) {
             dComIfGp_event_setTalkPartner(lifecon);
             player->changeDemoMode(0x2F, 3, 0, 0);
@@ -597,7 +597,7 @@ void daB_DRE_c::DrAction() {
             cXyz sp6C(0.0f, 0.0f, 0.0f);
             sp90.set(150.0f + aREG_F(0), 400.0f + XREG_F(4), 800.0f);
             cLib_offsetPos(&sp90, &sp90, shape_angle.y + 0x5000, &sp6C);
-            fopAcM_create(PROC_OBJ_YSTONE, 0, &sp90, fopAcM_GetRoomNo(this), NULL, NULL, -1);
+            fopAcM_create(fpcNm_OBJ_YSTONE_e, 0, &sp90, fopAcM_GetRoomNo(this), NULL, NULL, -1);
 
             sp90.set(-325.0f, 0.0f, 215.0f);
             sp1C.set(0, 0, 0);
@@ -618,7 +618,7 @@ void daB_DRE_c::DrAction() {
         }
 
         fopAc_ac_c* ystone;
-        fopAcM_SearchByName(PROC_OBJ_YSTONE, &ystone);
+        fopAcM_SearchByName(fpcNm_OBJ_YSTONE_e, &ystone);
 
         if (ystone != NULL && field_0x638 == 0) {
             field_0x638 = 1;
@@ -947,13 +947,13 @@ actor_process_profile_definition g_profile_B_DRE = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_B_DRE,
+    /* Proc Name    */ fpcNm_B_DRE_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daB_DRE_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_B_DRE,
+    /* Draw Prio    */ fpcDwPi_B_DRE_e,
     /* Actor SubMtd */ &l_daB_DRE_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_UNK_0x4000_e | fopAcStts_CULL_e,
     /* Group        */ fopAc_ENEMY_e,

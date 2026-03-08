@@ -798,7 +798,7 @@ void daNpc_Bans_c::srchActors() {
             }
 
             if (mActorMngrs[3].getActorP() == NULL) {
-                mActorMngrs[3].entry(getNearestActorP(PROC_NPC_LEN));
+                mActorMngrs[3].entry(getNearestActorP(fpcNm_NPC_LEN_e));
             }
             break;
 
@@ -1205,7 +1205,7 @@ fopAc_ac_c* daNpc_Bans_c::getKMsgTagP() {
     int reg_r29 = 0; // unused
     f32 fVar1 = G_CM3D_F_INF;
     mFindCount = 0;
-    mSrchName = PROC_TAG_KMSG;
+    mSrchName = fpcNm_TAG_KMSG_e;
     fopAcM_Search(srchActor, this);
 
     for (int i = 0; i < mFindCount; i++) {
@@ -1864,13 +1864,13 @@ actor_process_profile_definition g_profile_NPC_BANS = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_NPC_BANS,
+    /* Proc Name    */ fpcNm_NPC_BANS_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daNpc_Bans_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_NPC_BANS,
+    /* Draw Prio    */ fpcDwPi_NPC_BANS_e,
     /* Actor SubMtd */ &daNpc_Bans_MethodTable,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e | fopAcStts_UNK_0x4_e | fopAcStts_UNK_0x2_e | fopAcStts_UNK_0x1_e,
     /* Group        */ fopAc_NPC_e,

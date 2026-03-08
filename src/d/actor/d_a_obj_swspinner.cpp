@@ -12,7 +12,7 @@ static void* search_spinner_sub(void* i_actor, void* i_data) {
     daSpinner_c* spinner = (daSpinner_c*)i_actor;
     daObjSwSpinner_c* sw = (daObjSwSpinner_c*)i_data;
 
-    if (spinner != NULL && fopAc_IsActor(spinner) && fpcM_GetProfName(spinner) == PROC_SPINNER) {
+    if (spinner != NULL && fopAc_IsActor(spinner) && fpcM_GetProfName(spinner) == fpcNm_SPINNER_e) {
         if (spinner->current.pos.absXZ(sw->current.pos) < sw->GetR()) {
             if (!sw->mSpinnerIn) {
                 sw->mSpinnerIn = true;
@@ -228,13 +228,13 @@ actor_process_profile_definition g_profile_Obj_SwSpinner = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 3,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_Obj_SwSpinner,
+    /* Proc Name    */ fpcNm_Obj_SwSpinner_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daObjSwSpinner_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_Obj_SwSpinner,
+    /* Draw Prio    */ fpcDwPi_Obj_SwSpinner_e,
     /* Actor SubMtd */ &daObjSwSpinner_METHODS,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e,
     /* Group        */ fopAc_ACTOR_e,

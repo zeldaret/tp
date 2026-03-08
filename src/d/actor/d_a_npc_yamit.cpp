@@ -250,7 +250,7 @@ void* daNpc_yamiT_c::_search_Tag(void* i_actor, void* i_data) {
         return NULL;
     }
 
-    if (fopAcM_GetName(i_actor) == PROC_TAG_YAMI &&
+    if (fopAcM_GetName(i_actor) == fpcNm_TAG_YAMI_e &&
         ((daNpc_yamiT_c*)i_data)->_chk_TagPrm((fopAc_ac_c*)i_actor))
     {
         return i_actor;
@@ -759,13 +759,13 @@ actor_process_profile_definition g_profile_NPC_YAMIT = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_NPC_YAMIT,
+    /* Proc Name    */ fpcNm_NPC_YAMIT_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daNpc_yamiT_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_NPC_YAMIT,
+    /* Draw Prio    */ fpcDwPi_NPC_YAMIT_e,
     /* Actor SubMtd */ &daNpc_yamiT_MethodTable,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_UNK_0x4000_e | fopAcStts_CULL_e | fopAcStts_UNK_0x4_e | fopAcStts_UNK_0x2_e | fopAcStts_UNK_0x1_e,
     /* Group        */ fopAc_NPC_e,

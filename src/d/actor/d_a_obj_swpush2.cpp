@@ -361,7 +361,7 @@ void daObjSwpush2::Act_c::rideCB(dBgW* i_bgw, fopAc_ac_c* i_this, fopAc_ac_c* i_
             a_this->mRideType = 1;
         }
 
-        bool is_player_ride = fopAcM_GetProfName(i_rideActor) == PROC_ALINK;
+        bool is_player_ride = fopAcM_GetProfName(i_rideActor) == fpcNm_ALINK_e;
         if (is_player_ride) {
             a_this->mShockTimer = 4;
         }
@@ -718,13 +718,13 @@ actor_process_profile_definition g_profile_Obj_Swpush2 = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 2,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_Obj_Swpush2,
+    /* Proc Name    */ fpcNm_Obj_Swpush2_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daObjSwpush2::Act_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_Obj_Swpush2,
+    /* Draw Prio    */ fpcDwPi_Obj_Swpush2_e,
     /* Actor SubMtd */ &daObjSwpush2::Mthd_Table,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e,
     /* Group        */ fopAc_ACTOR_e,

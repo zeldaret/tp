@@ -20,7 +20,7 @@ static int CheckCreateHeap(fopAc_ac_c* param_0) {
 }
 
 static void* s_swb_sub(void* param_1, void* param_2) {
-    if (fopAcM_IsActor(param_1) && fopAcM_GetName(param_1) == PROC_Obj_SwBallB &&
+    if (fopAcM_IsActor(param_1) && fopAcM_GetName(param_1) == fpcNm_Obj_SwBallB_e &&
         (u32)((daObjSwBallB_c*)param_1)->getID() == ((daObjSwBallC_c*)param_2)->field_0x582)
     {
         return param_1;
@@ -29,7 +29,7 @@ static void* s_swb_sub(void* param_1, void* param_2) {
 }
 
 static void* s_ballA_sub(void* param_1, void* param_2) {
-    if (fopAcM_IsActor(param_1) && fopAcM_GetName(param_1) == PROC_Obj_Carry &&
+    if (fopAcM_IsActor(param_1) && fopAcM_GetName(param_1) == fpcNm_Obj_Carry_e &&
         ((daObjCarry_c*)param_1)->getType() == daObjCarry_c::TYPE_BALL_S)
     {
         return param_1;
@@ -38,7 +38,7 @@ static void* s_ballA_sub(void* param_1, void* param_2) {
 }
 
 static void* s_ballB_sub(void* param_1, void* param_2) {
-    if (fopAcM_IsActor(param_1) && fopAcM_GetName(param_1) == PROC_Obj_Carry &&
+    if (fopAcM_IsActor(param_1) && fopAcM_GetName(param_1) == fpcNm_Obj_Carry_e &&
         ((daObjCarry_c*)param_1)->getType() == daObjCarry_c::TYPE_BALL_S_2)
     {
         return param_1;
@@ -414,13 +414,13 @@ actor_process_profile_definition g_profile_Obj_SwBallC = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_Obj_SwBallC,
+    /* Proc Name    */ fpcNm_Obj_SwBallC_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daObjSwBallC_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_Obj_SwBallC,
+    /* Draw Prio    */ fpcDwPi_Obj_SwBallC_e,
     /* Actor SubMtd */ &l_daObjSwBallC_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e,
     /* Group        */ fopAc_ACTOR_e,

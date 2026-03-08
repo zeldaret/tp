@@ -20,7 +20,7 @@ static s32 m_group_count;
 
 static void* s_watchge(void* i_guayP, void* i_this) {
     u8 group_no = static_cast<daTagWatchGe_c*>(i_this)->getGroupNo();
-    if (fopAcM_GetName(i_guayP) == PROC_E_GE) {
+    if (fopAcM_GetName(i_guayP) == fpcNm_E_GE_e) {
         if (static_cast<daE_GE_c*>(i_guayP)->getGroupNo() == group_no) {
             m_group_count++;
         }
@@ -98,13 +98,13 @@ actor_process_profile_definition g_profile_Tag_WatchGe = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_Tag_WatchGe,
+    /* Proc Name    */ fpcNm_Tag_WatchGe_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daTagWatchGe_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_Tag_WatchGe,
+    /* Draw Prio    */ fpcDwPi_Tag_WatchGe_e,
     /* Actor SubMtd */ &l_daTagWatchGe_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_UNK_0x4000_e,
     /* Group        */ fopAc_ACTOR_e,

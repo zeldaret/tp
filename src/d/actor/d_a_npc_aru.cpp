@@ -531,7 +531,7 @@ void* daNpc_Aru_c::srchCow(void* i_actor, void* i_data) {
     if (mFindCount < 50) {
         fopAc_ac_c* actor_p = (fopAc_ac_c*) i_actor;
         if (actor_p != NULL && actor_p != data_p) {
-            if (fopAcM_IsExecuting(fopAcM_GetID(actor_p)) && fopAcM_GetName(actor_p) == PROC_COW && !((daCow_c*)actor_p)->isGuardFad()) {
+            if (fopAcM_IsExecuting(fopAcM_GetID(actor_p)) && fopAcM_GetName(actor_p) == fpcNm_COW_e && !((daCow_c*)actor_p)->isGuardFad()) {
                 mFindActorPtrs[mFindCount] = actor_p;
                 mFindCount++;
             }
@@ -546,7 +546,7 @@ void* daNpc_Aru_c::srchUDoor(void* i_actor, void* i_data) {
     if (mFindCount < 50) {
         fopAc_ac_c* actor_p = (fopAc_ac_c*) i_actor;
         if (actor_p != NULL && actor_p != data_p) {
-            if (fopAcM_IsExecuting(fopAcM_GetID(actor_p)) && fopAcM_GetName(actor_p) == PROC_OBJ_UDOOR) {
+            if (fopAcM_IsExecuting(fopAcM_GetID(actor_p)) && fopAcM_GetName(actor_p) == fpcNm_OBJ_UDOOR_e) {
                 mFindActorPtrs[mFindCount] = (fopAc_ac_c*) actor_p;
                 mFindCount++;
             }
@@ -574,7 +574,7 @@ BOOL daNpc_Aru_c::chkThrust(fopAc_ac_c* actor_p) {
             }
         }
 
-        if (fopAcM_GetName(actor_p) == PROC_ALINK && daPy_py_c::checkNowWolf() && actorDistance < mpHIO->m.warning_range) {
+        if (fopAcM_GetName(actor_p) == fpcNm_ALINK_e && daPy_py_c::checkNowWolf() && actorDistance < mpHIO->m.warning_range) {
             return TRUE;
         }
     }
@@ -2217,13 +2217,13 @@ actor_process_profile_definition g_profile_NPC_ARU = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_NPC_ARU,
+    /* Proc Name    */ fpcNm_NPC_ARU_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daNpc_Aru_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_NPC_ARU,
+    /* Draw Prio    */ fpcDwPi_NPC_ARU_e,
     /* Actor SubMtd */ &daNpc_Aru_MethodTable,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e | fopAcStts_UNK_0x4_e | fopAcStts_UNK_0x2_e | fopAcStts_UNK_0x1_e,
     /* Group        */ fopAc_NPC_e,

@@ -853,7 +853,7 @@ int daNpc_myna2_c::waitHovering(void* param_0) {
 }
 
 static void* s_sub(void* i_actor, void* i_data) {
-    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_MYNA2 && ((daNpc_myna2_c*)i_actor)->getType() == 1) {
+    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == fpcNm_MYNA2_e && ((daNpc_myna2_c*)i_actor)->getType() == 1) {
         return i_actor;
     }
 
@@ -1365,13 +1365,13 @@ actor_process_profile_definition g_profile_MYNA2 = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_MYNA2,
+    /* Proc Name    */ fpcNm_MYNA2_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daNpc_myna2_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_MYNA2,
+    /* Draw Prio    */ fpcDwPi_MYNA2_e,
     /* Actor SubMtd */ &daNpc_myna2_MethodTable,
     /* Status       */ fopAcStts_UNK_0x8000000_e | fopAcStts_UNK_0x40000_e | fopAcStts_UNK_0x4000_e | fopAcStts_CULL_e,
     /* Group        */ fopAc_NPC_e,

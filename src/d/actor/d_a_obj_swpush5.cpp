@@ -16,7 +16,7 @@ static void rideCallBack(dBgW* i_bgw, fopAc_ac_c* i_bgActor, fopAc_ac_c* i_rideA
     daObjSw5_c* i_this = (daObjSw5_c*)i_bgActor;
     daPy_py_c* player_p = daPy_getPlayerActorClass();
 
-    if (i_this->checkPushable() && fopAcM_CheckStatus(i_rideActor, fopAcStts_FREEZE_e) && fopAcM_GetName(i_rideActor) == PROC_ALINK) {
+    if (i_this->checkPushable() && fopAcM_CheckStatus(i_rideActor, fopAcStts_FREEZE_e) && fopAcM_GetName(i_rideActor) == fpcNm_ALINK_e) {
         static cXyz l_push_check_pos[4] = {
             cXyz(-50.0f, 0.0f, -50.0f),
             cXyz(50.0f, 0.0f, -50.0f),
@@ -421,13 +421,13 @@ actor_process_profile_definition g_profile_Obj_Swpush5 = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 2,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_Obj_Swpush5,
+    /* Proc Name    */ fpcNm_Obj_Swpush5_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daObjSw5_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_Obj_Swpush5,
+    /* Draw Prio    */ fpcDwPi_Obj_Swpush5_e,
     /* Actor SubMtd */ &l_daObjSw5_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e,
     /* Group        */ fopAc_ACTOR_e,

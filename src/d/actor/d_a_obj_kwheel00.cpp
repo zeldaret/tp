@@ -67,7 +67,7 @@ static void* searchLv3Water(void* param_0, void* i_this) {
     daLv3Water_c* const lv3Water = static_cast<daLv3Water_c*>(param_0);
     daObjKWheel00_c* const kWheel00 = static_cast<daObjKWheel00_c*>(i_this);
 
-    if(lv3Water && fopAcM_IsActor(lv3Water) && fopAcM_GetProfName(lv3Water) == PROC_Obj_Lv3Water) {
+    if(lv3Water && fopAcM_IsActor(lv3Water) && fopAcM_GetProfName(lv3Water) == fpcNm_Obj_Lv3Water_e) {
         if(
             (fopAcM_GetRoomNo(kWheel00) == 7 && lv3Water->getType() == 8) || 
             (fopAcM_GetRoomNo(kWheel00) == 11 && lv3Water->getType() == 14) ||
@@ -359,13 +359,13 @@ actor_process_profile_definition g_profile_Obj_KWheel00 = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 3,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_Obj_KWheel00,
+    /* Proc Name    */ fpcNm_Obj_KWheel00_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daObjKWheel00_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_Obj_KWheel00,
+    /* Draw Prio    */ fpcDwPi_Obj_KWheel00_e,
     /* Actor SubMtd */ &daObjKWheel00_METHODS,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e,
     /* Group        */ fopAc_ACTOR_e,

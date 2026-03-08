@@ -768,7 +768,7 @@ int toGameScene(dScnMenu_c* i_this) {
         dComIfGs_offEventBit(dSv_event_flag_c::saveBitLabels[550]);
         /* Secret techniques - Obtained 1 secret techinques - Shield attack */
         dComIfGs_offEventBit(dSv_event_flag_c::F_0338);
-        rt = fopScnM_ChangeReq(i_this, PROC_PLAY_SCENE, 0, 5);
+        rt = fopScnM_ChangeReq(i_this, fpcNm_PLAY_SCENE_e, 0, 5);
         dComIfGs_init();
         dComIfGp_offEnableNextStage();
         daNpcMsg_setEvtNum(7);
@@ -788,7 +788,7 @@ int toGameScene(dScnMenu_c* i_this) {
             g_env_light.light_mask_type = (u8)(g_env_light.light_mask_type | 0xF0);
         }
 
-        rt = fopScnM_ChangeReq(i_this, PROC_PLAY_SCENE, 0, 5);
+        rt = fopScnM_ChangeReq(i_this, fpcNm_PLAY_SCENE_e, 0, 5);
         dComIfGs_setRestartRoomParam(0);
     }
 
@@ -1331,7 +1331,7 @@ block_24:
         if (g_presetHIO.field_0x2717 == 2) {
             g_presetHIO.field_0x2717 = 0;
             dSm_read_stageset(g_presetHIO.mPresetData);
-            fopScnM_ChangeReq(i_this, PROC_MENU_SCENE, 0, 5);
+            fopScnM_ChangeReq(i_this, fpcNm_MENU_SCENE_e, 0, 5);
         } else {
             dScnMenu_c::cursolStageName[0] = 0;
             toGameScene(i_this);
@@ -2008,7 +2008,7 @@ scene_process_profile_definition g_profile_MENU_SCENE = {
     /* Layer ID     */ fpcLy_ROOT_e,
     /* List ID      */ 1,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_MENU_SCENE,
+    /* Proc Name    */ fpcNm_MENU_SCENE_e,
     /* Proc SubMtd  */ &g_fpcNd_Method.base,
     /* Size         */ sizeof(dScnMenu_c),
     /* Size Other   */ 0,
@@ -2021,7 +2021,7 @@ scene_process_profile_definition g_profile_MENU_SCENE = {
     /* Layer ID     */ fpcLy_ROOT_e,
     /* List ID      */ 1,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_MENU_SCENE,
+    /* Proc Name    */ fpcNm_MENU_SCENE_e,
     /* Proc SubMtd  */ &g_fpcNd_Method.base,
     /* Size         */ 0,
     /* Size Other   */ 0,

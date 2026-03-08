@@ -952,7 +952,7 @@ BOOL daNpc_Uri_c::chkPlayerCarryBasket() {
     fopAc_ac_c* actor = NULL;
     daPy_py_c* player = daPy_getPlayerActorClass();
     if (fopAcM_SearchByID(player->getGrabActorID(), &actor) && actor != NULL &&
-        fopAcM_GetName(actor) == PROC_OBJ_KAGO)
+        fopAcM_GetName(actor) == fpcNm_OBJ_KAGO_e)
     {
         return TRUE;
     }
@@ -1923,13 +1923,13 @@ actor_process_profile_definition g_profile_NPC_URI = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_NPC_URI,
+    /* Proc Name    */ fpcNm_NPC_URI_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daNpc_Uri_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_NPC_URI,
+    /* Draw Prio    */ fpcDwPi_NPC_URI_e,
     /* Actor SubMtd */ &daNpc_Uri_MethodTable,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e | fopAcStts_UNK_0x4_e | fopAcStts_UNK_0x2_e | fopAcStts_UNK_0x1_e,
     /* Group        */ fopAc_NPC_e,

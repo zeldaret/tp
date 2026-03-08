@@ -474,7 +474,7 @@ static bool checkViewArea(cXyz* i_pos) {
 static void e_fs_demowait(e_fs_class* i_this) {
     fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->mEnemy;
     cXyz delta;
-    npc_ks_class* monkey = (npc_ks_class*)fopAcM_SearchByName(PROC_NPC_KS);
+    npc_ks_class* monkey = (npc_ks_class*)fopAcM_SearchByName(fpcNm_NPC_KS_e);
 
     switch (i_this->mMode) {
     case 0:
@@ -856,13 +856,13 @@ actor_process_profile_definition g_profile_E_FS = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_E_FS,
+    /* Proc Name    */ fpcNm_E_FS_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(e_fs_class),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_E_FS,
+    /* Draw Prio    */ fpcDwPi_E_FS_e,
     /* Actor SubMtd */ &l_daE_Fs_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e | fopAcStts_UNK_0x20_e,
     /* Group        */ fopAc_ENEMY_e,

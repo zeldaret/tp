@@ -284,7 +284,7 @@ void daE_RD_HIO_c::genMessage(JORMContext* ctext) {
 static fopAc_ac_c* get_pla(fopAc_ac_c* actor) {
     fopAc_ac_c* pla = dComIfGp_getPlayer(0);
     // "coach" refers to the Ilia/Telma transport wagon:
-    fopAc_ac_c* coach = fopAcM_SearchByName(PROC_NPC_COACH);
+    fopAc_ac_c* coach = fopAcM_SearchByName(fpcNm_NPC_COACH_e);
 
     if (coach == NULL) {
         return dComIfGp_getPlayer(0);
@@ -811,7 +811,7 @@ static void ride_off(e_rd_class* i_this) {
 }
 
 static void* s_wb_sub(void* i_actor, void* i_data) {
-    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_E_WB) {
+    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == fpcNm_E_WB_e) {
         e_wb_class* boar = (e_wb_class*) i_actor;
         e_rd_class* i_this = (e_rd_class*)i_data;
         if (boar->mActionID != ACTION_DROP && boar->mActionID != ACTION_DAMAGE
@@ -1514,7 +1514,7 @@ static void e_rd_fight(e_rd_class* i_this) {
     cLib_addCalc0(&enemy->speedF, 1.0f, 3.0f);
     if (i_this->field_0x9ab != 0) {
         fopAc_ac_c* actor = at_hit_check(i_this);
-        if (actor != NULL && fopAcM_GetName(actor) == PROC_ALINK) {
+        if (actor != NULL && fopAcM_GetName(actor) == fpcNm_ALINK_e) {
             if (daPy_getPlayerActorClass()->checkPlayerGuard()) {
                 i_this->anm_p->setPlaySpeed(-1.0f);
                 dComIfGp_getVibration().StartShock(4, 31, cXyz(0.0f, 1.0f, 0.0f));
@@ -1705,7 +1705,7 @@ static void e_rd_bow(e_rd_class* i_this) {
 }
 
 static void* s_command3_sub(void* i_actor, void* i_data) {
-    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_E_RD && i_actor != i_data && ((e_rd_class*)i_actor)->action == ACTION_COMMANDER) {
+    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == fpcNm_E_RD_e && i_actor != i_data && ((e_rd_class*)i_actor)->action == ACTION_COMMANDER) {
         return i_actor;
     }
 
@@ -1931,7 +1931,7 @@ static void e_rd_wb_search(e_rd_class* i_this) {
                 if (i_this->cc_sph[i].ChkCoHit()) {
                     cCcD_Obj* co_hit_obj_p = i_this->cc_sph[i].GetCoHitObj();
                     fopAc_ac_c* hit_actor = dCc_GetAc(co_hit_obj_p->GetAc());
-                    if (hit_actor != NULL && hit_actor != actor && fopAcM_GetName(hit_actor) == PROC_E_WB) {
+                    if (hit_actor != NULL && hit_actor != actor && fopAcM_GetName(hit_actor) == fpcNm_E_WB_e) {
                         bVar1 = 1;
                     }
                 }
@@ -2425,7 +2425,7 @@ static void e_rd_wb_run(e_rd_class* i_this) {
 }
 
 static void* s_wbrun_sub(void* i_actor, void* i_data) {
-    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_E_WB) {
+    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == fpcNm_E_WB_e) {
         e_wb_class* boar = (e_wb_class*)i_actor;
         fopAc_ac_c* actor = (fopAc_ac_c*)i_data;
         if (boar->field_0x79d == 0) {
@@ -2762,7 +2762,7 @@ static void rd_disappear(e_rd_class* i_this) {
     MtxPosition(&mae, &ato);
 
     u8 type = 0;
-    if (fopAcM_SearchByName(PROC_NPC_COACH) != NULL) {
+    if (fopAcM_SearchByName(fpcNm_NPC_COACH_e) != NULL) {
         fopAcM_createDisappear(enemy, &ato, 10, type, 51);
     } else {
         fopAcM_createDisappear(enemy, &ato, 10, type, 11);
@@ -3171,7 +3171,7 @@ static s16 gake_check(e_rd_class* i_this, f32 param_2) {
 }
 
 static void* s_bikkuri_sub(void* i_actor, void* i_data) {
-    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_E_RD && i_actor != i_data) {
+    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == fpcNm_E_RD_e && i_actor != i_data) {
         if (((e_rd_class*)i_actor)->action == ACTION_BOW3 && ((e_rd_class*)i_actor)->mode <= 2) {
             cXyz sp28 = ((fopAc_ac_c*)i_actor)->current.pos - ((fopAc_ac_c*)i_data)->current.pos;
             if (sp28.abs() < KREG_F(11) + 350.0f) {
@@ -3186,7 +3186,7 @@ static void* s_bikkuri_sub(void* i_actor, void* i_data) {
 }
 
 static void* s_saku_sub(void* i_actor, void* i_data) {
-    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_Obj_H_Saku) {
+    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == fpcNm_Obj_H_Saku_e) {
         cXyz sp14 = ((daObjH_Saku_c*)i_actor)->field_0x5e0 - ((fopAc_ac_c*)i_data)->current.pos;
         if (sp14.abs() < 200.0f) {
             return i_actor;
@@ -3503,7 +3503,7 @@ static s8 e_rd_bow3(e_rd_class* i_this) {
 
 static void* s_command2_sub(void* i_actor, void* i_data) {
     UNUSED(i_data);
-    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_E_RD
+    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == fpcNm_E_RD_e
         && ((e_rd_class*)i_actor)->action == ACTION_BOW3 && ((e_rd_class*)i_actor)->mode < 10) {
         ((e_rd_class*)i_actor)->timer[0] = cM_rndF(10.0f) + 10.0f;
         ((e_rd_class*)i_actor)->mode = 10;
@@ -3513,7 +3513,7 @@ static void* s_command2_sub(void* i_actor, void* i_data) {
 }
 
 static void* s_command4_sub(void* i_actor, void* i_data) {
-    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_E_RD && i_actor != i_data && ((e_rd_class*)i_actor)->action == ACTION_BOW3) {
+    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == fpcNm_E_RD_e && i_actor != i_data && ((e_rd_class*)i_actor)->action == ACTION_BOW3) {
         return i_actor;
     }
 
@@ -3999,7 +3999,7 @@ static void e_rd_ikki2_end(e_rd_class* i_this) {
 
 static void* s_rdb_sub(void* i_actor, void* i_data) {
     UNUSED(i_data);
-    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_E_RDB) {
+    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == fpcNm_E_RDB_e) {
         return i_actor;
     }
 
@@ -4062,7 +4062,7 @@ static void e_rd_lv9_end(e_rd_class* i_this) {
 
 static void* s_boom_sub(void* i_actor, void* i_data) {
     UNUSED(i_data);
-    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_E_RD) {
+    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == fpcNm_E_RD_e) {
         e_rd_class* i_this = (e_rd_class*) i_actor;
         if (i_this->field_0x99a != 0) {
             return i_this;
@@ -4120,7 +4120,7 @@ static void big_damage(e_rd_class* i_this) {
         if (i_this->ride_mode != 0) {
             i_this->field_0x9f6 = cM_rndFX(3000.0f);
         } else {
-            if (fopAcM_GetName(i_this->AtInfo.mpActor) == PROC_E_WB) {
+            if (fopAcM_GetName(i_this->AtInfo.mpActor) == fpcNm_E_WB_e) {
                 i_this->field_0x9f6 = cM_rndFX(8000.0f);
                 enemy->speed.y = cM_rndF(15.0f) + (35.0f + TREG_F(17));
                 i_this->jump_z = -(i_this->AtInfo.mpActor->speedF * 0.5f);
@@ -4508,7 +4508,7 @@ static void damage_check(e_rd_class* i_this) {
 
 static void* s_other_sub(void* i_actor, void* i_data) {
     UNUSED(i_data);
-    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_E_RD && ((e_rd_class*)i_actor)->arg1 != 6) {
+    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == fpcNm_E_RD_e && ((e_rd_class*)i_actor)->arg1 != 6) {
         return i_actor;
     }
 
@@ -4519,7 +4519,7 @@ static void* s_ep_sub(void* i_actor, void* i_data) {
     UNUSED(i_data);
     fopAc_ac_c* player = dComIfGp_getPlayer(0);
 
-    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_Obj_Lv1Cdl00) {
+    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == fpcNm_Obj_Lv1Cdl00_e) {
         if (!fopAcM_isSwitch((fopAc_ac_c*)i_actor, fopAcM_GetParam(i_actor) & 0xFF)) {
             f32 x, z;
             x = ((fopAc_ac_c*)i_actor)->current.pos.x - player->current.pos.x;
@@ -4902,7 +4902,7 @@ static int rd_count;
 
 static void* s_tag_sub(void* i_actor, void* i_data) {
     UNUSED(i_data);
-    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_E_RD && ((e_rd_class*)i_actor)->field_0x5ba != 0) {
+    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == fpcNm_E_RD_e && ((e_rd_class*)i_actor)->field_0x5ba != 0) {
         rd_count++;
     }
 
@@ -4939,7 +4939,7 @@ static void e_rd_tag(e_rd_class* i_this) {
             } else {
                 parameter = 0xFF011123;
             }
-            fopAcM_createChild(PROC_E_RD, fopAcM_GetID(enemy), parameter, &pos, fopAcM_GetRoomNo(enemy), &angl, NULL, -1, NULL);
+            fopAcM_createChild(fpcNm_E_RD_e, fopAcM_GetID(enemy), parameter, &pos, fopAcM_GetRoomNo(enemy), &angl, NULL, -1, NULL);
         }
     }
 }
@@ -5707,7 +5707,7 @@ static void fire_eff_set(e_rd_class* i_this) {
 }
 
 static void* s_wb_sub2(void* i_actor, void* i_data) {
-    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_E_WB) {
+    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == fpcNm_E_WB_e) {
         e_wb_class* boar = (e_wb_class*) i_actor;
         fopAc_ac_c* actor = (fopAc_ac_c*) i_data;
         if (target_info_count < 2) {
@@ -5721,7 +5721,7 @@ static void* s_wb_sub2(void* i_actor, void* i_data) {
 
 static void* s_lv9dn_sub(void* i_actor, void* i_data) {
     UNUSED(i_data);
-    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_E_DN && ((e_dn_class*)i_actor)->status != 0) {
+    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == fpcNm_E_DN_e && ((e_dn_class*)i_actor)->status != 0) {
         ((e_dn_class*)i_actor)->status = 0;
         return i_actor;
     }
@@ -5731,7 +5731,7 @@ static void* s_lv9dn_sub(void* i_actor, void* i_data) {
 
 static void* s_lv9dn_sub2(void* i_actor, void* i_data) {
     UNUSED(i_data);
-    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_E_DN && ((e_dn_class*)i_actor)->status == 0) {
+    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == fpcNm_E_DN_e && ((e_dn_class*)i_actor)->status == 0) {
         ((e_dn_class*)i_actor)->status = 1;
         ((e_dn_class*)i_actor)->mode = 0;
     }
@@ -5741,7 +5741,7 @@ static void* s_lv9dn_sub2(void* i_actor, void* i_data) {
 
 static void* s_lv9dn_sub3(void* i_actor, void* i_data) {
     UNUSED(i_data);
-    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_E_DN) {
+    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == fpcNm_E_DN_e) {
         ((e_dn_class*)i_actor)->mode = 2;
     }
 
@@ -5750,7 +5750,7 @@ static void* s_lv9dn_sub3(void* i_actor, void* i_data) {
 
 static void* s_lv9rd_sub(void* i_actor, void* i_data) {
     UNUSED(i_data);
-    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_E_RD && ((e_rd_class*)i_actor)->field_0xafb != 0) {
+    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == fpcNm_E_RD_e && ((e_rd_class*)i_actor)->field_0xafb != 0) {
         ((e_rd_class*)i_actor)->field_0xafb = 0;
     }
 
@@ -5761,7 +5761,7 @@ static u8 data_80519338;
 
 static void* s_lv9rd_sub2(void* i_actor, void* i_data) {
     UNUSED(i_data);
-    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_E_RD
+    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == fpcNm_E_RD_e
         && ((e_rd_class*)i_actor)->arg1 == data_80519338 && ((e_rd_class*)i_actor)->action != ACTION_DROP) {
         ((e_rd_class*)i_actor)->action = ACTION_DROP;
         ((e_rd_class*)i_actor)->mode = 2;
@@ -5778,7 +5778,7 @@ static void* s_lv9rd_sub2(void* i_actor, void* i_data) {
 
 static void* s_lv9rd_sub3(void* i_actor, void* i_data) {
     UNUSED(i_data);
-    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_E_RD
+    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == fpcNm_E_RD_e
         && (((e_rd_class*)i_actor)->arg1 == 13 || ((e_rd_class*)i_actor)->arg1 == 14)) {
         ((e_rd_class*)i_actor)->field_0x9a4 = 1;
         ((e_rd_class*)i_actor)->attack_range = 50000.0f;
@@ -5789,7 +5789,7 @@ static void* s_lv9rd_sub3(void* i_actor, void* i_data) {
 
 static void* s_lv9arrow_sub(void* i_actor, void* i_data) {
     UNUSED(i_data);
-    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_E_ARROW) {
+    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == fpcNm_E_ARROW_e) {
         ((e_arrow_class*)i_actor)->field_0xa14 = 1;
     }
 
@@ -5798,7 +5798,7 @@ static void* s_lv9arrow_sub(void* i_actor, void* i_data) {
 
 static void* s_lv9arrow_sub2(void* i_actor, void* i_data) {
     UNUSED(i_data);
-    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_E_ARROW) {
+    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == fpcNm_E_ARROW_e) {
         ((e_arrow_class*)i_actor)->field_0xa14 = 0;
         ((e_arrow_class*)i_actor)->mAction = ACTION_BOW_RUN;
         ((e_arrow_class*)i_actor)->mMode = 0;
@@ -5831,7 +5831,7 @@ static void demo_camera(e_rd_class* i_this) {
     daPy_py_c* pla = (daPy_py_c*)dComIfGp_getPlayer(0);
     camera_class* camera = (camera_class*) dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
     camera_class* camera0 = (camera_class*) dComIfGp_getCamera(0);
-    daNPC_TK_c* taka = (daNPC_TK_c*) fopAcM_SearchByName(PROC_NPC_TK);
+    daNPC_TK_c* taka = (daNPC_TK_c*) fopAcM_SearchByName(fpcNm_NPC_TK_e);
     fopAc_ac_c* actor = taka;
     cXyz mae, ato, sp50, target;
     bool sp_0x9 = true; // unused
@@ -6876,7 +6876,7 @@ static int daE_RD_Execute(e_rd_class* i_this) {
                 parameter |= 16;
             }
 
-            fopAcM_createChild(PROC_E_ARROW, fopAcM_GetID(enemy), parameter, &ato, fopAcM_GetRoomNo(enemy), &angl, NULL, -1, NULL);
+            fopAcM_createChild(fpcNm_E_ARROW_e, fopAcM_GetID(enemy), parameter, &ato, fopAcM_GetRoomNo(enemy), &angl, NULL, -1, NULL);
             i_this->arrow_flag = 0;
             i_this->bow_shake_timer = TREG_S(8) + 15;
         }
@@ -7101,7 +7101,7 @@ static void ride_game_actor_set(e_rd_class* i_this) {
             parameter = (i << 8 | 0x80000006);
         }
 
-        fopAcM_create(PROC_E_WB, parameter, &ato, fopAcM_GetRoomNo(a_this), &angl, NULL, -1);
+        fopAcM_create(fpcNm_E_WB_e, parameter, &ato, fopAcM_GetRoomNo(a_this), &angl, NULL, -1);
     }
 }
 
@@ -7124,7 +7124,7 @@ static void coach_game_actor_set(e_rd_class* i_this) {
     angl.y = pla->shape_angle.y;
 
     for (int i = 0; i < NREG_S(7) + 3; i++) {
-        fopAcM_create(PROC_E_WB, (i + 1) * 0x100 | 0x8000000a, &set_pos[i], fopAcM_GetRoomNo(enemy), &angl, NULL, -1);
+        fopAcM_create(fpcNm_E_WB_e, (i + 1) * 0x100 | 0x8000000a, &set_pos[i], fopAcM_GetRoomNo(enemy), &angl, NULL, -1);
     }
 }
 
@@ -7384,7 +7384,7 @@ static cPhs_Step daE_RD_Create(fopAc_ac_c* actor) {
             i_this->action = ACTION_BOW_IKKI;
             i_this->timer[0] = 142 + XREG_S(2);
         } else if (i_this->arg2 == 11) {
-            fopAcM_create(PROC_E_RDY, fopAcM_GetParam(actor), &actor->home.pos, 
+            fopAcM_create(fpcNm_E_RDY_e, fopAcM_GetParam(actor), &actor->home.pos, 
                           fopAcM_GetRoomNo(actor), &actor->home.angle, NULL, -1);
         }
 
@@ -7601,13 +7601,13 @@ actor_process_profile_definition g_profile_E_RD = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_E_RD,
+    /* Proc Name    */ fpcNm_E_RD_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(e_rd_class),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_E_RD,
+    /* Draw Prio    */ fpcDwPi_E_RD_e,
     /* Actor SubMtd */ &l_daE_RD_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_UNK_0x4000_e,
     /* Group        */ fopAc_ENEMY_e,

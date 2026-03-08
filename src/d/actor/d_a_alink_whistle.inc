@@ -23,7 +23,7 @@ static fopAc_ac_c* daAlink_searchWhistle(fopAc_ac_c* i_actor, void* i_data) {
 static fopAc_ac_c* daAlink_searchHawk(fopAc_ac_c* i_actor, void* i_data) {
     UNUSED(i_data);
 
-    if (fopAcM_GetName(i_actor) == PROC_NPC_TK) {
+    if (fopAcM_GetName(i_actor) == fpcNm_NPC_TK_e) {
         return i_actor;
     }
 

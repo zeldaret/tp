@@ -81,7 +81,7 @@ int daHeavySw_c::create() {
 }
 
 void daHeavySw_c::rideCallBack(dBgW* param_0, fopAc_ac_c* param_1, fopAc_ac_c* param_2) {
-    if (fopAcM_GetName(param_2) == PROC_ALINK) {
+    if (fopAcM_GetName(param_2) == fpcNm_ALINK_e) {
         daHeavySw_c* heavySw = static_cast<daHeavySw_c*>(param_1);
         heavySw->field_0x5d8 = 1;
         heavySw->field_0x5dc =
@@ -293,13 +293,13 @@ actor_process_profile_definition g_profile_Obj_HeavySw = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 3,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_Obj_HeavySw,
+    /* Proc Name    */ fpcNm_Obj_HeavySw_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daHeavySw_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_Obj_HeavySw,
+    /* Draw Prio    */ fpcDwPi_Obj_HeavySw_e,
     /* Actor SubMtd */ &l_daHeavySw_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e,
     /* Group        */ fopAc_ACTOR_e,

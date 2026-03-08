@@ -69,7 +69,7 @@ cPhs_Step daObjKWheel01_c::create1st() {
             if (CHECK_KLIFT_EXISTS(i)) {
                 cXyz kLiftPos;
                 MTXMultVec(mNewBgMtx, &l_pos[i], &kLiftPos);
-                m_klift_pid[i] = fopAcM_create(PROC_Obj_KLift00, createLiftParameters, &kLiftPos, fopAcM_GetHomeRoomNo(this), 0, 0, -1);
+                m_klift_pid[i] = fopAcM_create(fpcNm_Obj_KLift00_e, createLiftParameters, &kLiftPos, fopAcM_GetHomeRoomNo(this), 0, 0, -1);
                 JUT_ASSERT(146, m_klift_pid[i] != fpcM_ERROR_PROCESS_ID_e);
 
                 mCreatedKLifts = true;
@@ -192,7 +192,7 @@ int daObjKWheel01_c::Create() {
 
 static void* searchKWheel00(void* param_0, void* i_this) {
     UNUSED(i_this);
-    if (param_0 && fopAcM_IsActor(param_0) && fopAcM_GetProfName(param_0) == PROC_Obj_KWheel00) {
+    if (param_0 && fopAcM_IsActor(param_0) && fopAcM_GetProfName(param_0) == fpcNm_Obj_KWheel00_e) {
         daObjKWheel00_c* const kWheel00 = static_cast<daObjKWheel00_c*>(param_0);
         if (kWheel00->getType() == daObjKWheel00_c::TYPE_LARGE_GOLD) {
             return param_0;
@@ -351,13 +351,13 @@ actor_process_profile_definition g_profile_Obj_KWheel01 = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 3,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_Obj_KWheel01,
+    /* Proc Name    */ fpcNm_Obj_KWheel01_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daObjKWheel01_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_Obj_KWheel01,
+    /* Draw Prio    */ fpcDwPi_Obj_KWheel01_e,
     /* Actor SubMtd */ &daObjKWheel01_METHODS,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e,
     /* Group        */ fopAc_ACTOR_e,

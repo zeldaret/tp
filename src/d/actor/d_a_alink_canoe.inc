@@ -55,7 +55,7 @@ cXyz* daAlink_c::getCanoeLocalPaddleTop() {
 static fopAc_ac_c* daAlink_searchCanoe(fopAc_ac_c* i_actor, void* i_data) {
     UNUSED(i_data);
 
-    if (fopAcM_GetName(i_actor) == PROC_CANOE && ((daCanoe_c*)i_actor)->getModel() != NULL) {
+    if (fopAcM_GetName(i_actor) == fpcNm_CANOE_e && ((daCanoe_c*)i_actor)->getModel() != NULL) {
         return i_actor;
     }
 
@@ -129,7 +129,7 @@ BOOL daAlink_c::checkCanoeJumpRide() {
 
     if (speed.y < 0.0f &&
         canoe != NULL &&
-        fopAcM_GetName(canoe) == PROC_CANOE &&
+        fopAcM_GetName(canoe) == fpcNm_CANOE_e &&
         canoe->checkJumpRideFlg() &&
         !checkDeadHP() &&
         (mProcID != PROC_FALL || mProcVar4.field_0x3010 != 0))
@@ -1627,7 +1627,7 @@ int daAlink_c::procCanoeKandelaarPour() {
 }
 
 void daAlink_c::setGroundFishingRodActor() {
-    mItemAcKeep.setID(fopAcM_create(PROC_MG_ROD, 0xFFFF011D, &mLeftHandPos, -1, NULL, NULL, -1));
+    mItemAcKeep.setID(fopAcM_create(fpcNm_MG_ROD_e, 0xFFFF011D, &mLeftHandPos, -1, NULL, NULL, -1));
     initFishingRodHand();
 }
 

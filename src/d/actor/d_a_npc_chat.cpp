@@ -2929,7 +2929,7 @@ int daNpcChat_c::ctrlJointCallBack(J3DJoint* i_joint, int param_2) {
 }
 
 static void* s_sub(void* i_actor, void* i_data) {
-    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_NPC_CHAT) {
+    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == fpcNm_NPC_CHAT_e) {
         ((daNpcChat_c*)i_data)->setTalkMember((daNpcChat_c*)i_actor);
     }
 
@@ -4147,13 +4147,13 @@ actor_process_profile_definition g_profile_NPC_CHAT = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_NPC_CHAT,
+    /* Proc Name    */ fpcNm_NPC_CHAT_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daNpcChat_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_NPC_CHAT,
+    /* Draw Prio    */ fpcDwPi_NPC_CHAT_e,
     /* Actor SubMtd */ &daNpcChat_MethodTable,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_UNK_0x4000_e | fopAcStts_CULL_e | fopAcStts_UNK_0x4_e | fopAcStts_UNK_0x2_e | fopAcStts_UNK_0x1_e,
     /* Group        */ fopAc_NPC_e,

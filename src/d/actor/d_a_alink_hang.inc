@@ -881,7 +881,7 @@ int daAlink_c::procHangLeverDown() {
 }
 
 void daAlink_c::changeDragonActor(fopAc_ac_c* i_actor) {
-    if (field_0x280c.getActor() != NULL && fopAcM_GetName(field_0x280c.getActor()) == PROC_B_DR) {
+    if (field_0x280c.getActor() != NULL && fopAcM_GetName(field_0x280c.getActor()) == fpcNm_B_DR_e) {
         field_0x280c.setData(i_actor);
     }
 }
@@ -892,7 +892,7 @@ int daAlink_c::setDragonHangPos() {
         return 0;
     }
 
-    if (fopAcM_GetName(dragon) == PROC_B_DR) {
+    if (fopAcM_GetName(dragon) == fpcNm_B_DR_e) {
         mDoMtx_stack_c::copy(((daB_DR_c*)dragon)->getMtx());
     } else {
         mDoMtx_stack_c::copy(((daB_DRE_c*)dragon)->getMtx());
@@ -936,7 +936,7 @@ int daAlink_c::setBossBodyHangPos() {
 int daAlink_c::procBossBodyHangInit(fopAc_ac_c* i_actor) {
     commonProcInit(PROC_BOSS_BODY_HANG);
 
-    if (fopAcM_GetName(i_actor) == PROC_B_DR) {
+    if (fopAcM_GetName(i_actor) == fpcNm_B_DR_e) {
         field_0x32cc = 1;
         setSingleAnimeBase(ANM_DRAGON_HANG);
         setJumpMode();

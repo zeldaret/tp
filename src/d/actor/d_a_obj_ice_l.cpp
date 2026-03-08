@@ -74,7 +74,7 @@ static void rideCallBack(dBgW* param_0, fopAc_ac_c* param_1, fopAc_ac_c* param_2
     cXyz& player_pos = fopAcM_GetPosition(player_p);
 
     //!@bug Missing parentheses causes this comparison to always evaluate to false
-    if (!fopAcM_GetName(param_2) == PROC_ALINK) {
+    if (!fopAcM_GetName(param_2) == fpcNm_ALINK_e) {
         ice_p->field_0x5f4 = 0x100;
         ice_p->field_0x5a4 = -1.0f;
         ice_p->field_0x5ac = 0x500;
@@ -98,7 +98,7 @@ static void rideCallBack(dBgW* param_0, fopAc_ac_c* param_1, fopAc_ac_c* param_2
         ice_p->Check_RideOn(player_pos);
     }
 
-    if (ice_p->field_0x5b1 == 0xFF && fopAcM_GetName(param_2) == PROC_ALINK) {
+    if (ice_p->field_0x5b1 == 0xFF && fopAcM_GetName(param_2) == fpcNm_ALINK_e) {
         ice_p->field_0x5f4 = 0x300;
         ice_p->field_0x5a4 = -6.0f;
         ice_p->field_0x5ac = 0x1000;
@@ -259,13 +259,13 @@ actor_process_profile_definition g_profile_Obj_Ice_l = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 3,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_Obj_Ice_l,
+    /* Proc Name    */ fpcNm_Obj_Ice_l_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ 0x00000640,
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_Obj_Ice_l,
+    /* Draw Prio    */ fpcDwPi_Obj_Ice_l_e,
     /* Actor SubMtd */ &l_daObjIce_l_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_UNK_0x4000_e | fopAcStts_CULL_e | fopAcStts_NOEXEC_e,
     /* Group        */ fopAc_ACTOR_e,

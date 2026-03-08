@@ -24,7 +24,7 @@ void daHoZelda_hio_c::genMessage(JORMContext* context) {
 
 static void* daHoZelda_searchGanon(fopAc_ac_c* i_actor, void* i_data) {
     UNUSED(i_data);
-    if (fopAcM_GetName(i_actor) == PROC_B_GND) {
+    if (fopAcM_GetName(i_actor) == fpcNm_B_GND_e) {
         return i_actor;
     }
 
@@ -942,13 +942,13 @@ actor_process_profile_definition g_profile_HOZELDA = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_HOZELDA,
+    /* Proc Name    */ fpcNm_HOZELDA_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daHoZelda_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_HOZELDA,
+    /* Draw Prio    */ fpcDwPi_HOZELDA_e,
     /* Actor SubMtd */ &l_daHoZelda_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_NOPAUSE_e,
     /* Group        */ fopAc_NPC_e,

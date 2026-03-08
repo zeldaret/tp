@@ -1104,7 +1104,7 @@ static void e_rdy_fight(e_rdy_class* i_this) {
 
     if (i_this->field_0xa7b != 0) {
         fopAc_ac_c* hit_actor = at_hit_check(i_this);
-        if (hit_actor != NULL && fopAcM_GetName(hit_actor) == PROC_ALINK
+        if (hit_actor != NULL && fopAcM_GetName(hit_actor) == fpcNm_ALINK_e
             && daPy_getPlayerActorClass()->checkPlayerGuard())
         {
             i_this->mpMorf->setPlaySpeed(-1.0f);
@@ -1293,7 +1293,7 @@ static void e_rdy_bow(e_rdy_class* i_this) {
 }
 
 static void* s_command3_sub(void* i_proc, void* i_this) {
-    if (fopAcM_IsActor(i_proc) && fopAcM_GetName(i_proc) == PROC_E_RDY) {
+    if (fopAcM_IsActor(i_proc) && fopAcM_GetName(i_proc) == fpcNm_E_RDY_e) {
         if (i_proc != i_this && ((e_rdy_class*)i_proc)->mAction == ACT_COMMANDER) {
             return i_proc;
         }
@@ -1550,7 +1550,7 @@ static void e_rdy_avoid(e_rdy_class* i_this) {
 }
 
 static void* s_kusa_sub(void* i_proc, void* i_this) {
-    if (fopAcM_IsActor(i_proc) && fopAcM_GetName(i_proc) == PROC_Obj_Yobikusa) {
+    if (fopAcM_IsActor(i_proc) && fopAcM_GetName(i_proc) == fpcNm_Obj_Yobikusa_e) {
         cXyz delta = ((fopAc_ac_c*)i_proc)->current.pos - ((fopAc_ac_c*)i_this)->current.pos;
         if (delta.abs() < 1000.0f) {
             return i_proc;
@@ -1566,7 +1566,7 @@ static void e_rdy_tkusa(e_rdy_class* i_this) {
     i_this->mIFrameTimer = 20;
 
     if (i_this->mKargarokID == fpcM_ERROR_PROCESS_ID_e) {
-        i_this->mKargarokID = fopAcM_GetID(fopAcM_SearchByName(PROC_E_YC));
+        i_this->mKargarokID = fopAcM_GetID(fopAcM_SearchByName(fpcNm_E_YC_e));
     }
 
     fopAc_ac_c* a_karg = (fopAc_ac_c*) fopAcM_SearchByID(i_this->mKargarokID);
@@ -1788,7 +1788,7 @@ static void e_rdy_yc_ride(e_rdy_class* i_this) {
     i_this->mIFrameTimer = 20;
 
     if (kargarok2 == NULL) {
-        i_this->mKargarokID = fopAcM_GetID((e_yc_class*)fopAcM_SearchByName(PROC_E_YC));
+        i_this->mKargarokID = fopAcM_GetID((e_yc_class*)fopAcM_SearchByName(fpcNm_E_YC_e));
         return;
     }
 
@@ -2423,7 +2423,7 @@ static s16 gake_check(e_rdy_class* i_this, f32 i_dist) {
 }
 
 static void* s_bikkuri_sub(void* i_proc, void* i_this) {
-    if (fopAcM_IsActor(i_proc) && fopAcM_GetName(i_proc) == PROC_E_RDY) {
+    if (fopAcM_IsActor(i_proc) && fopAcM_GetName(i_proc) == fpcNm_E_RDY_e) {
         if (i_proc != i_this && ((e_rdy_class*)i_proc)->mAction == ACT_BOW3 && ((e_rdy_class*)i_proc)->mMode <= 2) {
             cXyz delta = ((fopAc_ac_c*)i_proc)->current.pos - ((fopAc_ac_c*)i_this)->current.pos;
             if (delta.abs() < 350.0f + KREG_F(11)) {
@@ -2680,7 +2680,7 @@ static s8 e_rdy_bow3(e_rdy_class* i_this) {
 
 static void* s_command2_sub(void* i_proc, void* i_this) {
     UNUSED(i_this);
-    if (fopAcM_IsActor(i_proc) && fopAcM_GetName(i_proc) == PROC_E_RDY) {
+    if (fopAcM_IsActor(i_proc) && fopAcM_GetName(i_proc) == fpcNm_E_RDY_e) {
         if (((e_rdy_class*)i_proc)->mAction == ACT_BOW3 && ((e_rdy_class*)i_proc)->mMode < 10) {
             ((e_rdy_class*)i_proc)->mTimer[0] = cM_rndF(10.0f) + 10.0f;
             ((e_rdy_class*)i_proc)->mMode = 10;
@@ -2690,7 +2690,7 @@ static void* s_command2_sub(void* i_proc, void* i_this) {
 }
 
 static void* s_command4_sub(void* i_proc, void* i_this) {
-    if (fopAcM_IsActor(i_proc) && fopAcM_GetName(i_proc) == PROC_E_RDY) {
+    if (fopAcM_IsActor(i_proc) && fopAcM_GetName(i_proc) == fpcNm_E_RDY_e) {
         if (((e_rdy_class*)i_proc) != i_this && ((e_rdy_class*)i_proc)->mAction == ACT_BOW3) {
             return i_proc;
         }
@@ -3048,7 +3048,7 @@ static void big_damage(e_rdy_class* i_this) {
         i_this->field_0xac6 = -(cM_rndFX(2000.0f) + 4000.0f);
     } else if (i_this->mRideState != 0) {
         i_this->field_0xac6 = cM_rndFX(3000.0f);
-    } else if (fopAcM_GetName(i_this->mAtInfo.mpActor) == PROC_E_WB) {
+    } else if (fopAcM_GetName(i_this->mAtInfo.mpActor) == fpcNm_E_WB_e) {
         i_this->field_0xac6 = cM_rndFX(8000.0f);
         a_this->speed.y = cM_rndF(15.0f) + (35.0f + TREG_F(17));
         i_this->field_0xabc = -(i_this->mAtInfo.mpActor->speedF * 0.5f);
@@ -3784,7 +3784,7 @@ static void cam_3d_morf(e_rdy_class* i_this, f32 i_scale) {
 
 static void* s_adel_sub(void* i_proc, void* i_this) {
     UNUSED(i_this);
-    if (fopAcM_IsActor(i_proc) && fopAcM_GetName(i_proc) == PROC_E_ARROW) {
+    if (fopAcM_IsActor(i_proc) && fopAcM_GetName(i_proc) == fpcNm_E_ARROW_e) {
         fopAcM_delete((fopAc_ac_c*)i_proc);
     }
     return NULL;
@@ -4186,7 +4186,7 @@ static void demo_camera(e_rdy_class* i_this) {
         i_this->mDemoTimer = 0;
         i_this->mMode = 4;
         i_this->mCamDist = 0.0f;
-        e_arrow_class* arrow = (e_arrow_class*)fopAcM_SearchByName(PROC_E_ARROW);
+        e_arrow_class* arrow = (e_arrow_class*)fopAcM_SearchByName(fpcNm_E_ARROW_e);
         arrow->field_0xa00.z = 30000.0f + AREG_F(18);
         cVar12 = 0;
     }
@@ -4238,7 +4238,7 @@ static void demo_camera(e_rdy_class* i_this) {
     }
 
     if (cVar12 != 0) {
-        fopAc_ac_c* a_arr = (fopAc_ac_c*) fopAcM_SearchByName(PROC_E_ARROW);
+        fopAc_ac_c* a_arr = (fopAc_ac_c*) fopAcM_SearchByName(fpcNm_E_ARROW_e);
         if (a_arr != NULL) {
             e_arrow_class* arrow = (e_arrow_class*) a_arr;
             if (cVar12 == 3) {
@@ -4292,10 +4292,10 @@ static void demo_camera(e_rdy_class* i_this) {
             u32 child_params = 0x80000011;
             csXyz angle(0, 0x4000, 0);
             vec2.set(-93652.0f, -5875.0f, 46674.0f);
-            fopAcM_createChild(PROC_E_ARROW, fopAcM_GetID(a_this), child_params, &vec2,
+            fopAcM_createChild(fpcNm_E_ARROW_e, fopAcM_GetID(a_this), child_params, &vec2,
                                fopAcM_GetRoomNo(a_this), &angle, NULL, -1, NULL);
             vec2.set(-93659.0f, -5875.0f, 32500.0f);
-            fopAcM_createChild(PROC_E_ARROW, fopAcM_GetID(a_this), child_params, &vec2,
+            fopAcM_createChild(fpcNm_E_ARROW_e, fopAcM_GetID(a_this), child_params, &vec2,
                                fopAcM_GetRoomNo(a_this), &angle, NULL, -1, NULL);
             Z2GetAudioMgr()->bgmStop(30, 0);
             mDoGph_gInf_c::fadeOut(1.0f, g_blackColor);
@@ -4353,7 +4353,7 @@ static int daE_RDY_Execute(e_rdy_class* i_this) {
     if (i_this->mKargarokDeleteTimer != 0) {
         i_this->mKargarokDeleteTimer--;
         if (i_this->mKargarokDeleteTimer == 0) {
-            daKago_c* kago = (daKago_c*)fopAcM_SearchByName(PROC_KAGO);
+            daKago_c* kago = (daKago_c*)fopAcM_SearchByName(fpcNm_KAGO_e);
             kago->setEvent2();
             fopAcM_delete(a_this);
             fopAcM_delete(fopAcM_SearchByID(i_this->mKargarokID));
@@ -4702,7 +4702,7 @@ static int daE_RDY_Execute(e_rdy_class* i_this) {
             if (i_this->field_0x5b8 == 11) {
                 params |= 0x10;
             }
-            fopAcM_createChild(PROC_E_ARROW, fopAcM_GetID(a_this), params, &vec2,
+            fopAcM_createChild(fpcNm_E_ARROW_e, fopAcM_GetID(a_this), params, &vec2,
                                fopAcM_GetRoomNo(a_this), &arrow_angle, NULL, -1, NULL);
             i_this->mArrowFired = false;
             i_this->mBowRotationTimer = 15 + TREG_S(8);
@@ -4943,7 +4943,7 @@ static cPhs_Step daE_RDY_Create(fopAc_ac_c* i_this) {
                 pos.y += 5000.0f + YREG_F(0);
             }
             _this->mKargarokID = fpcM_ERROR_PROCESS_ID_e;
-            fopAcM_create(PROC_E_YC, 0xffffff00, &pos, fopAcM_GetRoomNo(i_this),
+            fopAcM_create(fpcNm_E_YC_e, 0xffffff00, &pos, fopAcM_GetRoomNo(i_this),
                           &i_this->shape_angle, NULL, 0xff);
         }
 
@@ -5081,13 +5081,13 @@ actor_process_profile_definition g_profile_E_RDY = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_E_RDY,
+    /* Proc Name    */ fpcNm_E_RDY_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(e_rdy_class),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_E_RDY,
+    /* Draw Prio    */ fpcDwPi_E_RDY_e,
     /* Actor SubMtd */ &l_daE_RDY_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_UNK_0x4000_e,
     /* Group        */ fopAc_ENEMY_e,

@@ -1402,18 +1402,18 @@ fopAc_ac_c* dEvent_manager_c::specialCast(const char* staffname, BOOL param_1) {
     }
 
     if (strcmp(staffname, "SHUTTER_DOOR") == 0) {
-        shutterActor = specialCast_Shutter(PROC_KNOB20, param_1);
+        shutterActor = specialCast_Shutter(fpcNm_KNOB20_e, param_1);
         if (shutterActor == NULL) {
-            shutterActor = specialCast_Shutter(PROC_BOSS_DOOR, param_1);
+            shutterActor = specialCast_Shutter(fpcNm_BOSS_DOOR_e, param_1);
         }
         if (shutterActor == NULL) {
-            shutterActor = specialCast_Shutter(PROC_L1BOSS_DOOR, param_1);
+            shutterActor = specialCast_Shutter(fpcNm_L1BOSS_DOOR_e, param_1);
         }
         if (shutterActor == NULL) {
-            shutterActor = specialCast_Shutter(PROC_L1MBOSS_DOOR, param_1);
+            shutterActor = specialCast_Shutter(fpcNm_L1MBOSS_DOOR_e, param_1);
         }
         if (shutterActor == NULL) {
-            shutterActor = specialCast_Shutter(PROC_L5BOSS_DOOR, param_1);
+            shutterActor = specialCast_Shutter(fpcNm_L5BOSS_DOOR_e, param_1);
         }
         if (shutterActor != NULL) {
             dComIfGp_getEvent()->onEventFlag(0x10);

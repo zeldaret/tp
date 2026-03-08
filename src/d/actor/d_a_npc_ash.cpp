@@ -69,16 +69,16 @@ void daNpcAsh_c::setLookMode(int i_lookMode, fopAc_ac_c* i_talkPartner) {
 
 void daNpcAsh_c::searchActors() {
     if (!mActorMngr[1].getActorP()) {
-        mActorMngr[1].entry(fopAcM_SearchByName(PROC_NPC_SHAD));
+        mActorMngr[1].entry(fopAcM_SearchByName(fpcNm_NPC_SHAD_e));
     }
     if (!mActorMngr[2].getActorP()) {
-        mActorMngr[2].entry(fopAcM_SearchByName(PROC_NPC_RAFREL));
+        mActorMngr[2].entry(fopAcM_SearchByName(fpcNm_NPC_RAFREL_e));
     }
     if (!mActorMngr[3].getActorP()) {
-        mActorMngr[3].entry(fopAcM_SearchByName(PROC_NPC_MOIR));
+        mActorMngr[3].entry(fopAcM_SearchByName(fpcNm_NPC_MOIR_e));
     }
     if (isMap() && !mActorMngr[4].getActorP()) {
-        mActorMngr[4].entry(fopAcM_SearchByName(PROC_Obj_Table));
+        mActorMngr[4].entry(fopAcM_SearchByName(fpcNm_Obj_Table_e));
     }
     if (!mActorMngr[5].getActorP()) {
         mActorMngr[5].entry(getEvtAreaTagP(17, 0));
@@ -1339,13 +1339,13 @@ actor_process_profile_definition g_profile_NPC_ASH = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_NPC_ASH,
+    /* Proc Name    */ fpcNm_NPC_ASH_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daNpcAsh_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_NPC_ASH,
+    /* Draw Prio    */ fpcDwPi_NPC_ASH_e,
     /* Actor SubMtd */ &daNpcAsh_MethodTable,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e,
     /* Group        */ fopAc_NPC_e,

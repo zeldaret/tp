@@ -177,7 +177,7 @@ BOOL daAlink_c::checkSubjectEnd(BOOL i_isPlaySe) {
 }
 
 void daAlink_c::searchPeepObj(fopAc_ac_c* i_actor, void* i_data) {
-    if (fopAcM_GetName(i_actor) == PROC_KYTAG05) {
+    if (fopAcM_GetName(i_actor) == fpcNm_KYTAG05_e) {
         f32 var_f31 = current.pos.abs2(i_actor->current.pos);
         if (var_f31 < field_0x3478) {
             field_0x3478 = var_f31;

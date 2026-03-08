@@ -358,7 +358,7 @@ void daE_WS_c::executeAttack() {
         }
         if (mCcSph.ChkAtHit()) {
             cCcD_Obj* r27 = mCcSph.GetAtHitObj();
-            if (fopAcM_GetName(dCc_GetAc(r27->GetAc())) == PROC_ALINK) {
+            if (fopAcM_GetName(dCc_GetAc(r27->GetAc())) == fpcNm_ALINK_e) {
                 r28 = true;
             }
         }
@@ -596,7 +596,7 @@ void daE_WS_c::damage_check() {
                 mSound.startCreatureSound(Z2SE_EN_ST_SHELL_BREAK, 0, -1);
             } else if (mAtInfo.mpCollider->ChkAtType(AT_TYPE_THROW_OBJ)) {
                 fopAc_ac_c* throwobj_p = dCc_GetAc(mAtInfo.mpCollider->GetAc());
-                if (fopAcM_GetName(throwobj_p) == PROC_Obj_Carry && ((daObjCarry_c*)throwobj_p)->getType() == daObjCarry_c::TYPE_BOKKURI) {
+                if (fopAcM_GetName(throwobj_p) == fpcNm_Obj_Carry_e && ((daObjCarry_c*)throwobj_p)->getType() == daObjCarry_c::TYPE_BOKKURI) {
                     mSound.startCreatureSound(Z2SE_EN_ST_SHELL_BREAK, 0, -1);
                 }
             }
@@ -988,13 +988,13 @@ actor_process_profile_definition g_profile_E_WS = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_E_WS,
+    /* Proc Name    */ fpcNm_E_WS_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daE_WS_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_E_WS,
+    /* Draw Prio    */ fpcDwPi_E_WS_e,
     /* Actor SubMtd */ &l_daE_WS_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_UNK_0x10000_e | fopAcStts_CULL_e,
     /* Group        */ fopAc_ENEMY_e,

@@ -57,7 +57,7 @@ void daObjIceBlk_c::PPCallBack(fopAc_ac_c* i_bgActor, fopAc_ac_c* i_pushActor, s
 }
 
 static void rideCallBack(dBgW* i_bgw, fopAc_ac_c* i_bgActor, fopAc_ac_c* i_rideActor) {
-    if (fopAcM_GetName(i_rideActor) == PROC_ALINK) {
+    if (fopAcM_GetName(i_rideActor) == fpcNm_ALINK_e) {
         ((daObjIceBlk_c*)i_bgActor)->mIsPlayerRide = true;
     }
 }
@@ -839,13 +839,13 @@ actor_process_profile_definition g_profile_Obj_IceBlock = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 3,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_Obj_IceBlock,
+    /* Proc Name    */ fpcNm_Obj_IceBlock_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daObjIceBlk_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_Obj_IceBlock,
+    /* Draw Prio    */ fpcDwPi_Obj_IceBlock_e,
     /* Actor SubMtd */ &daObjIceBlk_METHODS,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_FREEZE_e | fopAcStts_CULL_e,
     /* Group        */ fopAc_ACTOR_e,

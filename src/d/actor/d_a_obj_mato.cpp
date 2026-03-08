@@ -102,7 +102,7 @@ void daObjMATO_c::hit_check() {
                 mData[i].ccStts.Move();
                 if (mData[i].ccCyl.ChkCoHit()) {
                     fopAc_ac_c* a_pCoHitAc = dCc_GetAc(mData[i].ccCyl.GetCoHitObj()->GetAc());
-                    if (fopAcM_GetName(a_pCoHitAc) == PROC_ALINK) {
+                    if (fopAcM_GetName(a_pCoHitAc) == fpcNm_ALINK_e) {
                         mData[i].is_hit = TRUE;
                         getRupee(i);
                         setAction(&daObjMATO_c::disappear, i);
@@ -377,13 +377,13 @@ actor_process_profile_definition g_profile_Obj_Mato = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_Obj_Mato,
+    /* Proc Name    */ fpcNm_Obj_Mato_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daObjMATO_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_Obj_Mato,
+    /* Draw Prio    */ fpcDwPi_Obj_Mato_e,
     /* Actor SubMtd */ &l_daObjMATO_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e,
     /* Group        */ fopAc_ACTOR_e,

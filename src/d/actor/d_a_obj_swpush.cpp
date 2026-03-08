@@ -384,7 +384,7 @@ void daObjSwpush::Act_c::rideCB(dBgW* i_bgw, fopAc_ac_c* i_ac, fopAc_ac_c* i_pt)
                         i_this->mRidingMode = 1;
                     }
 
-                    bool is_player = fopAcM_GetProfName(i_pt) == PROC_ALINK;
+                    bool is_player = fopAcM_GetProfName(i_pt) == fpcNm_ALINK_e;
                     if (is_player) {
                         i_this->mVibTimer = 4;
                     }
@@ -395,7 +395,7 @@ void daObjSwpush::Act_c::rideCB(dBgW* i_bgw, fopAc_ac_c* i_ac, fopAc_ac_c* i_pt)
                         }
                     }
 
-                    if (fopAcM_GetProfName(i_pt) == PROC_E_MM_MT) {
+                    if (fopAcM_GetProfName(i_pt) == fpcNm_E_MM_MT_e) {
                         i_this->field_0x5c5 = 1;
                         break;
                     }
@@ -744,9 +744,9 @@ void daObjSwpush::Act_c::demo_runSw() {
 }
 
 bool daObjSwpush::Act_c::check_ride_couple(s16 param_1) {
-    if (param_1 == PROC_ALINK) {
+    if (param_1 == fpcNm_ALINK_e) {
         field_0x5f2 |= 1;
-    } else if (param_1 == PROC_NPC_P2) {
+    } else if (param_1 == fpcNm_NPC_P2_e) {
         field_0x5f2 |= 2;
     }
 
@@ -869,13 +869,13 @@ actor_process_profile_definition g_profile_Obj_Swpush = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 2,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_Obj_Swpush,
+    /* Proc Name    */ fpcNm_Obj_Swpush_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daObjSwpush::Act_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_Obj_Swpush,
+    /* Draw Prio    */ fpcDwPi_Obj_Swpush_e,
     /* Actor SubMtd */ &daObjSwpush::Mthd_Table,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e,
     /* Group        */ fopAc_ACTOR_e,

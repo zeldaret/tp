@@ -351,7 +351,7 @@ static int daB_MGN_Draw(daB_MGN_c* i_this) {
 
 static void* s_obj_sub(void* i_actor, void* i_data) {
     if (fopAcM_IsActor(i_actor)) {
-        if (!fpcM_IsCreating(fopAcM_GetID(i_actor)) && fopAcM_GetName(i_actor) == PROC_ARROW) {
+        if (!fpcM_IsCreating(fopAcM_GetID(i_actor)) && fopAcM_GetName(i_actor) == fpcNm_ARROW_e) {
             if (fopAcM_searchActorDistance((fopAc_ac_c*)i_actor, (fopAc_ac_c*)i_data) < 1500.0f + nREG_F(9)) {
                 if (fopAcM_GetSpeedF((fopAc_ac_c*)i_actor)) {
                     s16 var_r29 = ((fopAc_ac_c*)i_actor)->current.angle.y;
@@ -919,7 +919,7 @@ void daB_MGN_c::offBodySlideAt() {
 bool daB_MGN_c::checkHitSlideAt() {
     for (int i = 0; i < 15; i++) {
         if (mBodyCcSph[i].ChkAtHit() && !mBodyCcSph[i].ChkAtShieldHit()) {
-            if (fopAcM_GetName(dCc_GetAc(mBodyCcSph[i].GetAtHitObj()->GetAc())) == PROC_ALINK) {
+            if (fopAcM_GetName(dCc_GetAc(mBodyCcSph[i].GetAtHitObj()->GetAc())) == fpcNm_ALINK_e) {
                 return true;
             }
         }
@@ -1526,7 +1526,7 @@ void daB_MGN_c::executeDash() {
 
                 if (dComIfG_Bgsp().LineCross(&spE8)) {
                     var_r27 = dComIfG_Bgsp().GetActorPointer(spE8);
-                    if (!var_r27 || fopAcM_GetName(var_r27) != PROC_Obj_BHASHI) {
+                    if (!var_r27 || fopAcM_GetName(var_r27) != fpcNm_Obj_BHASHI_e) {
                         attention_info.flags = 0;
                         field_0x20f4[0].OffTgSetBit();
                         mAtSph.OffAtSetBit();
@@ -1537,7 +1537,7 @@ void daB_MGN_c::executeDash() {
             } else {
                 if (mAcch.ChkWallHit()) {
                     var_r27 = dComIfG_Bgsp().GetActorPointer(mAcchCir);
-                    if (!var_r27 || fopAcM_GetName(var_r27) != PROC_Obj_BHASHI) {
+                    if (!var_r27 || fopAcM_GetName(var_r27) != fpcNm_Obj_BHASHI_e) {
                         if (abs((s16)(mAcchCir.GetWallAngleY() - shape_angle.y)) > 0x6000) {
                             field_0x20f4[0].OffTgSetBit();
                             mAtSph.OffAtSetBit();
@@ -3169,7 +3169,7 @@ void daB_MGN_c::action() {
 
     if (mBodyCcSph[0].ChkAtSPrm(1) && mAcch.ChkWallHit()) {
         daObjBHASHI_c* pillar = (daObjBHASHI_c*)dComIfG_Bgsp().GetActorPointer(mAcchCir);
-        if (pillar != NULL && fopAcM_GetName(pillar) == PROC_Obj_BHASHI) {
+        if (pillar != NULL && fopAcM_GetName(pillar) == fpcNm_Obj_BHASHI_e) {
             pillar->Obj_Damage(current.pos);
         }
     }
@@ -3585,13 +3585,13 @@ actor_process_profile_definition g_profile_B_MGN = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_B_MGN,
+    /* Proc Name    */ fpcNm_B_MGN_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daB_MGN_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_B_MGN,
+    /* Draw Prio    */ fpcDwPi_B_MGN_e,
     /* Actor SubMtd */ &l_daB_MGN_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_UNK_0x4000_e,
     /* Group        */ fopAc_ENEMY_e,

@@ -1472,7 +1472,7 @@ static int daE_YD_Create(fopAc_ac_c* i_this) {
 
         leafRoomNo = fopAcM_GetRoomNo(i_this);
 
-        a_this->mLeafId = fopAcM_createChild(PROC_E_YD_LEAF, fopAcM_GetID(i_this), 0,
+        a_this->mLeafId = fopAcM_createChild(fpcNm_E_YD_LEAF_e, fopAcM_GetID(i_this), 0,
             &i_this->current.pos, leafRoomNo, &i_this->shape_angle, NULL, -1, NULL);
 
         i_this->field_0x565 = fopAcM_GetParam(i_this) >> 16;
@@ -1496,13 +1496,13 @@ actor_process_profile_definition g_profile_E_YD = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_E_YD,
+    /* Proc Name    */ fpcNm_E_YD_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(e_yd_class),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_E_YD,
+    /* Draw Prio    */ fpcDwPi_E_YD_e,
     /* Actor SubMtd */ &l_daE_YD_Method,
     /* Status       */ fopAcStts_UNK_0x10000000_e | fopAcStts_UNK_0x40000_e | fopAcStts_UNK_0x10000_e | fopAcStts_CULL_e,
     /* Group        */ fopAc_ENEMY_e,

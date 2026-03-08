@@ -1379,7 +1379,7 @@ int daDoor20_c::createKey() {
                 roomNo = door_param2_c::getBRoomNo(this);
             }
             field_0x5ec =
-                fopAcM_createChildFromOffset(PROC_Obj_Lv5Key, fopAcM_GetID(this), 0xffffffff,
+                fopAcM_createChildFromOffset(fpcNm_Obj_Lv5Key_e, fopAcM_GetID(this), 0xffffffff,
                                              &cStack_28, roomNo, &cStack_30, &scale, -1, 0);
             break;
         default:
@@ -1398,7 +1398,7 @@ int daDoor20_c::createKey() {
                 }
             }
             field_0x5ec =
-                fopAcM_createChildFromOffset(PROC_OBJ_KEYHOLE, fopAcM_GetID(this), 0xffffffff,
+                fopAcM_createChildFromOffset(fpcNm_OBJ_KEYHOLE_e, fopAcM_GetID(this), 0xffffffff,
                                              &cStack_28, roomNo, &cStack_30, &scale, -1, 0);
         }
 
@@ -2150,13 +2150,13 @@ actor_process_profile_definition g_profile_DOOR20 = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 3,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_DOOR20,
+    /* Proc Name    */ fpcNm_DOOR20_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daDoor20_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_DOOR20,
+    /* Draw Prio    */ fpcDwPi_DOOR20_e,
     /* Actor SubMtd */ &l_daDoor20_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_UNK_0x4000_e,
     /* Group        */ fopAc_ACTOR_e,

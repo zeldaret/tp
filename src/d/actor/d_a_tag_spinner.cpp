@@ -45,7 +45,7 @@ static void* search_spinner_sub(void* tag_0, void* tag_1) {
 
     if (actor != NULL &&
         fopAcM_IsActor(actor) != NULL &&
-        fopAcM_GetProfName(actor) == PROC_SPINNER) {
+        fopAcM_GetProfName(actor) == fpcNm_SPINNER_e) {
         f32 latDist = actor->current.pos.absXZ(actor2->current.pos);
         if (latDist < actor2->GetR()) {
             return actor;
@@ -167,13 +167,13 @@ actor_process_profile_definition g_profile_Tag_Spinner = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 3,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_Tag_Spinner,
+    /* Proc Name    */ fpcNm_Tag_Spinner_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daTagSpinner_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_Tag_Spinner,
+    /* Draw Prio    */ fpcDwPi_Tag_Spinner_e,
     /* Actor SubMtd */ &l_daTagSpinner_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e,
     /* Group        */ fopAc_ACTOR_e,

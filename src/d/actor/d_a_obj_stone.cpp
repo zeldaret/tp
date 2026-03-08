@@ -212,7 +212,7 @@ int daObjStone_c::Create() {
     pos.y += 1.0f;
 
     // Create the mark actor that goes under the stone
-    fopAcM_createChild(PROC_Obj_StoneMark, fopAcM_GetID(this), stoneType, &pos,
+    fopAcM_createChild(fpcNm_Obj_StoneMark_e, fopAcM_GetID(this), stoneType, &pos,
                        fopAcM_GetRoomNo(this), &shape_angle, &scale, -1, 0);
 
     mSound.init(&current.pos, 1);
@@ -299,7 +299,7 @@ void daObjStone_c::mode_proc_call() {
         cCcD_Obj* tgHitObj = mCollider.GetTgHitObj();
         if (tgHitObj != NULL) {
             fopAc_ac_c* tgHitActor = mCollider.GetTgHitAc();
-            if (fopAcM_GetName(tgHitActor) == PROC_OBJ_GRA) {
+            if (fopAcM_GetName(tgHitActor) == fpcNm_OBJ_GRA_e) {
                 init_modeBreak();
             } else {
                 if (tgHitObj->ChkAtType(AT_TYPE_BOMB)) {
@@ -308,7 +308,7 @@ void daObjStone_c::mode_proc_call() {
                 if (tgHitObj->ChkAtType(AT_TYPE_IRON_BALL) && tgHitObj->GetAtAtp() != 1) {
                     init_modeBreak();
                 } else if (tgHitObj->ChkAtType(AT_TYPE_CSTATUE_SWING) &&
-                           (fopAcM_GetName(tgHitActor) == PROC_Obj_VolcanicBomb))
+                           (fopAcM_GetName(tgHitActor) == fpcNm_Obj_VolcanicBomb_e))
                 {
                     init_modeBreak();
                 }
@@ -1025,13 +1025,13 @@ actor_process_profile_definition g_profile_Obj_Stone = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 8,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_Obj_Stone,
+    /* Proc Name    */ fpcNm_Obj_Stone_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daObjStone_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_Obj_Stone,
+    /* Draw Prio    */ fpcDwPi_Obj_Stone_e,
     /* Actor SubMtd */ &l_daObjStone_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e,
     /* Group        */ fopAc_ACTOR_e,

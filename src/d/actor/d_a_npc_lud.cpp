@@ -611,15 +611,15 @@ void daNpc_Lud_c::srchActors() {
     switch (mType) {
     case TYPE_1:
         if (mActorMngr[2].getActorP() == NULL) {
-            mActorMngr[2].entry(getNearestActorP(PROC_NPC_LEN));
+            mActorMngr[2].entry(getNearestActorP(fpcNm_NPC_LEN_e));
         }
         break;
     case TYPE_5:
         if (mActorMngr[0].getActorP() == NULL) {
-            mActorMngr[0].entry(getNearestActorP(PROC_NPC_BESU));
+            mActorMngr[0].entry(getNearestActorP(fpcNm_NPC_BESU_e));
         }
         if (mActorMngr[1].getActorP() == NULL) {
-            mActorMngr[1].entry(getNearestActorP(PROC_NPC_KOLINB));
+            mActorMngr[1].entry(getNearestActorP(fpcNm_NPC_KOLINB_e));
         }
         break;
     }
@@ -1516,13 +1516,13 @@ actor_process_profile_definition g_profile_NPC_LUD = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_NPC_LUD,
+    /* Proc Name    */ fpcNm_NPC_LUD_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daNpc_Lud_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_NPC_LUD,
+    /* Draw Prio    */ fpcDwPi_NPC_LUD_e,
     /* Actor SubMtd */ &daNpc_Lud_MethodTable,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e | fopAcStts_UNK_0x8_e,
     /* Group        */ fopAc_NPC_e,

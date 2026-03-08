@@ -231,9 +231,9 @@ int dEvt_control_c::commonCheck(dEvt_order_c* order, u16 condition, u16 command)
 int dEvt_control_c::talkCheck(dEvt_order_c* order) {
     char* eventname = "DEFAULT_TALK";
     fopAc_ac_c* actor = order->mpTargetActor;
-    if ((fopAcM_GetName(actor) == PROC_Tag_Mhint && ((daTagMhint_c*)actor)->checkNoAttention()) ||
-        (fopAcM_GetName(actor) == PROC_Tag_Mstop && ((daTagMstop_c*)actor)->checkNoAttention()) ||
-        fopAcM_GetName(actor) == PROC_MIDNA)
+    if ((fopAcM_GetName(actor) == fpcNm_Tag_Mhint_e && ((daTagMhint_c*)actor)->checkNoAttention()) ||
+        (fopAcM_GetName(actor) == fpcNm_Tag_Mstop_e && ((daTagMstop_c*)actor)->checkNoAttention()) ||
+        fopAcM_GetName(actor) == fpcNm_MIDNA_e)
     {
         daMidna_c* midna = (daMidna_c*)daPy_py_c::getMidnaActor();
         if (!daPy_py_c::checkNowWolf() || midna->checkNoDraw()) {
@@ -381,7 +381,7 @@ int dEvt_control_c::talkEnd() {
     }
 
     daItemBase_c* item = (daItemBase_c*)fopAcM_getItemEventPartner(NULL);
-    if (item != NULL && fopAcM_GetName(item) == PROC_ITEM) {
+    if (item != NULL && fopAcM_GetName(item) == fpcNm_ITEM_e) {
         item->dead();
     }
 

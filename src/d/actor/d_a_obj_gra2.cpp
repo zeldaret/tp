@@ -222,7 +222,7 @@ static int jointCtrlCallBack(J3DJoint* i_joint, int param_2) {
 void daObj_GrA_c::rideCallBack(dBgW* param_1, fopAc_ac_c* actor_p, fopAc_ac_c* param_3) {
     daObj_GrA_c* aActor_p = (daObj_GrA_c*) actor_p;
     JUT_ASSERT(684, NULL != aActor_p);
-    aActor_p->field_0x10c4 = fopAcM_GetProfName(param_3) == PROC_ALINK;
+    aActor_p->field_0x10c4 = fopAcM_GetProfName(param_3) == fpcNm_ALINK_e;
 }
 
 daObj_GrA_c::daObj_GrA_c() {}
@@ -1542,7 +1542,7 @@ int daObj_GrA_c::ctrlMsgAnm(int& param_1, int& param_2, fopAc_ac_c* param_3) {
 
 static void* s_sub(void* i_actor, void* i_data) {
     daObj_GrA_c* i_this = (daObj_GrA_c*)i_data;
-    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_TAG_GRA && i_this->checkTagGraSub((fopAc_ac_c*)i_actor)) {
+    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == fpcNm_TAG_GRA_e && i_this->checkTagGraSub((fopAc_ac_c*)i_actor)) {
         return i_actor;
     }
     return NULL;
@@ -2133,13 +2133,13 @@ actor_process_profile_definition g_profile_OBJ_GRA = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 3,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_OBJ_GRA,
+    /* Proc Name    */ fpcNm_OBJ_GRA_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daObj_GrA_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_OBJ_GRA,
+    /* Draw Prio    */ fpcDwPi_OBJ_GRA_e,
     /* Actor SubMtd */ &daObj_GrA_MethodTable,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e,
     /* Group        */ fopAc_NPC_e,

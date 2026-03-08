@@ -125,7 +125,7 @@ void daObjPDtile_c::setMtx() {
 
 void daObjPDtile_c::rideActor(fopAc_ac_c* param_1) {
     if (param_1 == daPy_getLinkPlayerActorClass() ||
-        fopAcM_GetProfName(param_1) == PROC_B_GG)
+        fopAcM_GetProfName(param_1) == fpcNm_B_GG_e)
     {
         if (mType == TYPE_0) {
             field_0x7b0 = 200;
@@ -526,13 +526,13 @@ actor_process_profile_definition g_profile_Obj_PDtile = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 3,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_Obj_PDtile,
+    /* Proc Name    */ fpcNm_Obj_PDtile_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daObjPDtile_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_Obj_PDtile,
+    /* Draw Prio    */ fpcDwPi_Obj_PDtile_e,
     /* Actor SubMtd */ &daObjPDtile_METHODS,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e,
     /* Group        */ fopAc_ACTOR_e,

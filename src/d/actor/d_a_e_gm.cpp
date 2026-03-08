@@ -172,7 +172,7 @@ void daE_GM_c::action() {
 }
 
 static void* s_obj_sub2(void* i_actor, void* i_data) {
-    if (!fpcM_IsCreating(fopAcM_GetID(i_actor)) && fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_CSTATUE &&
+    if (!fpcM_IsCreating(fopAcM_GetID(i_actor)) && fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == fpcNm_CSTATUE_e &&
         fopAcM_searchActorDistanceXZ((fopAc_ac_c*)i_actor, (fopAc_ac_c*)i_data) < 4000.0f && ((daCstatue_c*)i_actor)->checkBossAtGroundHit()) {
         return i_actor;
     }
@@ -1827,13 +1827,13 @@ actor_process_profile_definition g_profile_E_GM = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_E_GM,
+    /* Proc Name    */ fpcNm_E_GM_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daE_GM_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_E_GM,
+    /* Draw Prio    */ fpcDwPi_E_GM_e,
     /* Actor SubMtd */ &l_daE_GM_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_UNK_0x4000_e | fopAcStts_CULL_e,
     /* Group        */ fopAc_ENEMY_e,

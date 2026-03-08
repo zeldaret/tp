@@ -375,7 +375,7 @@ static void e_tk_attack(e_tk_class* i_this) {
         if (pl_y_check(i_this)) {
             if ((int)i_this->mpMorf->getFrame() == 24) {
                 i_this->mBallID =
-                    fopAcM_createChild(PROC_E_TK_BALL, fopAcM_GetID(actor), 0, &actor->eyePos,
+                    fopAcM_createChild(fpcNm_E_TK_BALL_e, fopAcM_GetID(actor), 0, &actor->eyePos,
                                        fopAcM_GetRoomNo(actor), &actor->shape_angle, 0, -1, 0);
             }
             if ((int)i_this->mpMorf->getFrame() == 28) {
@@ -816,13 +816,13 @@ actor_process_profile_definition g_profile_E_TK = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_E_TK,
+    /* Proc Name    */ fpcNm_E_TK_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(e_tk_class),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_E_TK,
+    /* Draw Prio    */ fpcDwPi_E_TK_e,
     /* Actor SubMtd */ &l_daE_TK_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e,
     /* Group        */ fopAc_ENEMY_e,

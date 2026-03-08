@@ -1238,7 +1238,7 @@ BOOL dComIfG_resetToOpening(scene_class* i_scene) {
     }
     #endif
 
-    dComIfG_changeOpeningScene(i_scene, PROC_OPENING_SCENE);
+    dComIfG_changeOpeningScene(i_scene, fpcNm_OPENING_SCENE_e);
     mDoAud_bgmStop(30);
     mDoAud_resetProcess();
     #if PLATFORM_WII || VERSION == VERSION_SHIELD_DEBUG

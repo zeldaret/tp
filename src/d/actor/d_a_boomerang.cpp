@@ -495,8 +495,8 @@ static int daBoomerang_Draw(daBoomerang_c* i_this) {
 }
 
 void daBoomerang_c::lockLineCallback(fopAc_ac_c* i_actor) {
-    if (i_actor != NULL && fopAcM_GetName(i_actor) != PROC_Obj_glowSphere &&
-        fopAcM_GetName(i_actor) != PROC_E_VT && fopAcM_GetName(i_actor) != PROC_OBJ_BRG)
+    if (i_actor != NULL && fopAcM_GetName(i_actor) != fpcNm_Obj_glowSphere_e &&
+        fopAcM_GetName(i_actor) != fpcNm_E_VT_e && fopAcM_GetName(i_actor) != fpcNm_OBJ_BRG_e)
     {
         setLockActor(i_actor, TRUE);
     }
@@ -1501,13 +1501,13 @@ actor_process_profile_definition g_profile_BOOMERANG = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 6,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_BOOMERANG,
+    /* Proc Name    */ fpcNm_BOOMERANG_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daBoomerang_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_BOOMERANG,
+    /* Draw Prio    */ fpcDwPi_BOOMERANG_e,
     /* Actor SubMtd */ &l_daBoomerang_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_NOPAUSE_e,
     /* Group        */ fopAc_UNK_GROUP_5_e,

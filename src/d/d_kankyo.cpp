@@ -8304,13 +8304,13 @@ kankyo_process_profile_definition g_profile_KANKYO = {
     /* Layer ID      */ fpcLy_CURRENT_e,
     /* List ID       */ 1,
     /* List Prio     */ fpcPi_CURRENT_e,
-    /* Proc Name     */ PROC_KANKYO,
+    /* Proc Name     */ fpcNm_KANKYO_e,
     /* Proc SubMtd   */ &g_fpcLf_Method.base,
     /* Size          */ sizeof(sub_kankyo__class),
     /* Size Other    */ 0,
     /* Parameters    */ 0,
     /* Leaf SubMtd   */ &g_fopKy_Method,
-    /* Priority      */ PRIO_KANKYO,
+    /* Draw Prio     */ fpcDwPi_KANKYO_e,
     /* Kankyo SubMtd */ &l_dKy_Method,
 };
 

@@ -210,7 +210,7 @@ void daE_SW_c::setActionMode(s16 i_actionMode, s16 i_moveMode) {
 }
 
 static void* s_b_sub(void* i_actor, void* i_data) {
-    if (!fpcM_IsCreating(fopAcM_GetID(i_actor)) && fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_NBOMB &&
+    if (!fpcM_IsCreating(fopAcM_GetID(i_actor)) && fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == fpcNm_NBOMB_e &&
         !fopAcM_checkCarryNow((fopAc_ac_c*)i_actor) && !((dBomb_c*)i_actor)->checkStateExplode()) {
         f32 fVar1 = fopAcM_searchActorDistance((fopAc_ac_c*)i_actor, (fopAc_ac_c*)i_data);
         if (fVar1 < target_dist) {
@@ -1148,7 +1148,7 @@ void daE_SW_c::executeDie() {
 }
 
 static void* s_child_sub(void* i_actor, void* i_data) {
-    if (!fpcM_IsCreating(fopAcM_GetID(i_actor)) && fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_E_SW) {
+    if (!fpcM_IsCreating(fopAcM_GetID(i_actor)) && fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == fpcNm_E_SW_e) {
         if (fopAcM_GetLinkId((fopAc_ac_c*)i_actor) == fopAcM_GetID(i_data)) {
             data_807B0201++;
         }
@@ -1184,7 +1184,7 @@ void daE_SW_c::executeMaster() {
                     }
 
                     u32 param = (iVar1 << 24) | ((fopAcM_GetParam(this) & 0xFFF) | 0x3000);
-                    fopAcM_createChild(PROC_E_SW, fopAcM_GetID(this), param,
+                    fopAcM_createChild(fpcNm_E_SW_e, fopAcM_GetID(this), param,
                                        &home.pos, fopAcM_GetRoomNo(this), &shape_angle, NULL, -1, NULL);
                 }
             }
@@ -1806,13 +1806,13 @@ actor_process_profile_definition g_profile_E_SW = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_E_SW,
+    /* Proc Name    */ fpcNm_E_SW_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daE_SW_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_E_SW,
+    /* Draw Prio    */ fpcDwPi_E_SW_e,
     /* Actor SubMtd */ &l_daE_SW_Method,
     /* Status       */ fopAcStts_UNK_0x80000_e | fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e,
     /* Group        */ fopAc_ENEMY_e,

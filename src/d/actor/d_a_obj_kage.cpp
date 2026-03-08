@@ -113,7 +113,7 @@ static int daObj_Kage_Create(fopAc_ac_c* actor) {
         fopAcM_SetMin(actor, -200.0f, -200.0f, -200.0f);
         fopAcM_SetMax(actor, 200.0f, 200.0f, 200.0f);
 
-        i_this->inko_child_id = fopAcM_createChild(PROC_NPC_INKO, fopAcM_GetID(actor), 0, &actor->current.pos, fopAcM_GetRoomNo(actor), NULL, NULL, -1, NULL);
+        i_this->inko_child_id = fopAcM_createChild(fpcNm_NPC_INKO_e, fopAcM_GetID(actor), 0, &actor->current.pos, fopAcM_GetRoomNo(actor), NULL, NULL, -1, NULL);
 
         daObj_Kage_Execute(i_this);
     }
@@ -133,13 +133,13 @@ actor_process_profile_definition g_profile_OBJ_KAGE = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_OBJ_KAGE,
+    /* Proc Name    */ fpcNm_OBJ_KAGE_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(obj_kage_class),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_OBJ_KAGE,
+    /* Draw Prio    */ fpcDwPi_OBJ_KAGE_e,
     /* Actor SubMtd */ &l_daObj_Kage_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e,
     /* Group        */ fopAc_ACTOR_e,

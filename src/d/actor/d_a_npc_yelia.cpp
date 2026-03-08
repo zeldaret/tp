@@ -749,23 +749,23 @@ void daNpc_Yelia_c::srchActors() {
     switch (mType) {
     case TYPE_KAKARIKO:
         if (mActorMngr[2].getActorP() == NULL) {
-            mActorMngr[2].entry(getNearestActorP(PROC_NPC_GRD));
+            mActorMngr[2].entry(getNearestActorP(fpcNm_NPC_GRD_e));
         }
         if (mActorMngr[3].getActorP() == NULL) {
-            mActorMngr[3].entry(getNearestActorP(PROC_NPC_GRZ));
+            mActorMngr[3].entry(getNearestActorP(fpcNm_NPC_GRZ_e));
         }
         break;
     case TYPE_TWILIGHT:
         if (mActorMngr[0].getActorP() == NULL) {
-            mActorMngr[0].entry(getNearestActorP(PROC_NPC_THE));
+            mActorMngr[0].entry(getNearestActorP(fpcNm_NPC_THE_e));
         }
         if (mActorMngr[1].getActorP() == NULL) {
-            mActorMngr[1].entry(getNearestActorP(PROC_NPC_ZRC));
+            mActorMngr[1].entry(getNearestActorP(fpcNm_NPC_ZRC_e));
         }
         break;
     case TYPE_AFTER_ESCORT:
         if (mActorMngr[1].getActorP() == NULL) {
-            mActorMngr[1].entry(getNearestActorP(PROC_NPC_KOLINB));
+            mActorMngr[1].entry(getNearestActorP(fpcNm_NPC_KOLINB_e));
         }
         break;
     case TYPE_HORSE:
@@ -1592,13 +1592,13 @@ actor_process_profile_definition g_profile_NPC_YELIA = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_NPC_YELIA,
+    /* Proc Name    */ fpcNm_NPC_YELIA_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daNpc_Yelia_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_NPC_YELIA,
+    /* Draw Prio    */ fpcDwPi_NPC_YELIA_e,
     /* Actor SubMtd */ &daNpc_Yelia_MethodTable,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e | fopAcStts_UNK_0x8_e,
     /* Group        */ fopAc_NPC_e,

@@ -1053,7 +1053,7 @@ int daObj_GrA_c::rollAttack(void* param_1) {
 
             if (field_0x1fe9 == 0 && field_0xf50.ChkCoHit() != 0) {
                 fopAc_ac_c* hitobj_p = dCc_GetAc(field_0xf50.GetCoHitObj()->GetAc());
-                if (fopAcM_GetName(hitobj_p) == PROC_ALINK) {
+                if (fopAcM_GetName(hitobj_p) == fpcNm_ALINK_e) {
                     field_0x1fe9 = 1;
                     player->offGoronSideMove();
                     player->offGoronUpStopCancel();

@@ -365,7 +365,7 @@ int daNpc_Raca_c::ctrlJointCallBack(J3DJoint* i_joint, int param_2) {
 }
 
 void* daNpc_Raca_c::srchNi(void* i_actor, void* i_data) {
-    if (mFindCount < 50 && fopAcM_IsActor(i_actor) && i_actor != (daNpc_Raca_c*)i_data && fopAcM_GetName(i_actor) == PROC_NI) {
+    if (mFindCount < 50 && fopAcM_IsActor(i_actor) && i_actor != (daNpc_Raca_c*)i_data && fopAcM_GetName(i_actor) == fpcNm_NI_e) {
         mFindActorPtrs[mFindCount] = (fopAc_ac_c*)i_actor;
         mFindCount++;
     }
@@ -855,13 +855,13 @@ actor_process_profile_definition g_profile_NPC_RACA = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_NPC_RACA,
+    /* Proc Name    */ fpcNm_NPC_RACA_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daNpc_Raca_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_NPC_RACA,
+    /* Draw Prio    */ fpcDwPi_NPC_RACA_e,
     /* Actor SubMtd */ &daNpc_Raca_MethodTable,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e | fopAcStts_UNK_0x4_e | fopAcStts_UNK_0x2_e | fopAcStts_UNK_0x1_e,
     /* Group        */ fopAc_NPC_e,

@@ -610,7 +610,7 @@ void daNpc_Hanjo_c::action() {
     fopAc_ac_c* hitActor = hitChk(&mCyl1, 0xffffffff);
     if (hitActor != NULL) {
         cCcD_Obj* hitObj = mCyl1.GetTgHitObj();
-        if (hitObj->ChkAtType(AT_TYPE_THROW_OBJ) && (fopAcM_GetName(hitActor) != PROC_NPC_TK || mType != TYPE_1))
+        if (hitObj->ChkAtType(AT_TYPE_THROW_OBJ) && (fopAcM_GetName(hitActor) != fpcNm_NPC_TK_e || mType != TYPE_1))
         {
             mStagger.setParam(this,
                                             hitActor, mCurAngle.y);
@@ -1248,7 +1248,7 @@ int daNpc_Hanjo_c::cutPursuitBee(int param_1) {
                 if (mStones[i].getSphP()->ChkCoHit()) {
                     fopAc_ac_c* hitActor = mStones[i].getSphP()->GetCoHitObj()->GetAc();
                     fopAc_ac_c* hitActor2 = dCc_GetAc(hitActor);
-                    if (hitActor2 != NULL && fopAcM_GetName(hitActor2) == PROC_E_NEST) {
+                    if (hitActor2 != NULL && fopAcM_GetName(hitActor2) == fpcNm_E_NEST_e) {
                         mEventTimer = mpHIO->m.field_0xb0;
                     }
                     mStones[i].initialize();
@@ -1963,13 +1963,13 @@ actor_process_profile_definition g_profile_NPC_HANJO = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_NPC_HANJO,
+    /* Proc Name    */ fpcNm_NPC_HANJO_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daNpc_Hanjo_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_NPC_HANJO,
+    /* Draw Prio    */ fpcDwPi_NPC_HANJO_e,
     /* Actor SubMtd */ &daNpc_Hanjo_MethodTable,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e | fopAcStts_UNK_0x4_e | fopAcStts_UNK_0x2_e | fopAcStts_UNK_0x1_e,
     /* Group        */ fopAc_NPC_e,

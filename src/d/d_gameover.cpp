@@ -476,7 +476,7 @@ static int dGameover_Create(msg_class* i_this) {
 
 s32 d_GameOver_Create(u8 i_gameoverType) {
     dMeter2Info_setGameOverType(i_gameoverType);
-    return fopMsgM_create(PROC_GAMEOVER, NULL, NULL, NULL, NULL, NULL);
+    return fopMsgM_create(fpcNm_GAMEOVER_e, NULL, NULL, NULL, NULL, NULL);
 }
 
 bool d_GameOver_Delete(fpc_ProcID& i_id) {
@@ -500,14 +500,14 @@ static leafdraw_method_class l_dGameover_Method = {
 
 msg_process_profile_definition g_profile_GAMEOVER = {
     /* Layer ID    */ fpcLy_CURRENT_e,
-    /* List ID     */ 0x0C,
+    /* List ID     */ 12,
     /* List Prio   */ fpcPi_CURRENT_e,
-    /* Proc Name   */ PROC_GAMEOVER,
+    /* Proc Name   */ fpcNm_GAMEOVER_e,
     /* Proc SubMtd */ &g_fpcLf_Method.base,
     /* Size        */ sizeof(dGameover_c),
     /* Size Other  */ 0,
     /* Parameters  */ 0,
     /* Leaf SubMtd */ &g_fopMsg_Method,
-    /* Priority    */ PRIO_GAMEOVER,
+    /* Draw Prio   */ fpcDwPi_GAMEOVER_e,
     /* Msg SubMtd  */ &l_dGameover_Method,
 };

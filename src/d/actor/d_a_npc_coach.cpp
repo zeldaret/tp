@@ -275,7 +275,7 @@ static int jointCoachCallBack(J3DJoint* i_joint, int param_2) {
 }
 
 static void arrowStickCallBack(dBgW* i_bgw, fopAc_ac_c* a_this, fopAc_ac_c* i_actor, cXyz& i_pos) {
-    if (fopAcM_GetName(i_actor) == PROC_E_ARROW) {
+    if (fopAcM_GetName(i_actor) == fpcNm_E_ARROW_e) {
         if (!daPy_getPlayerActorClass()->checkBoarSingleBattleSecond()) {
             ((daNpcCoach_c*)a_this)->hitFireArrow(i_pos);
             fopAcM_delete(i_actor);
@@ -294,7 +294,7 @@ void daNpcCoach_c::hitFireArrow(cXyz i_pos) {
                 cXyz work;
                 mDoMtx_stack_c::copy(mChCoach.field_0x598);
                 mDoMtx_stack_c::multVec(&i_pos, &work);
-                field_0x247c[i] = fopAcM_createChild(PROC_COACH_FIRE, fopAcM_GetID(this),
+                field_0x247c[i] = fopAcM_createChild(fpcNm_COACH_FIRE_e, fopAcM_GetID(this),
                                                      0, &work, fopAcM_GetRoomNo(this),
                                                      NULL, NULL, -1, NULL);
                 mChCoach.mSound.startSound(Z2SE_COACH_HIT_ARROW, 0, -1);
@@ -415,7 +415,7 @@ void daNpcCoach_c::initCoachPosition(Vec& i_pos, SVec& i_angle) {
 }
 
 static void* s_sub(void* i_actor, void* i_data) {
-    if (fopAc_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_E_KR && ((e_kr_class*)i_actor)->getId() >= 0) {
+    if (fopAc_IsActor(i_actor) && fopAcM_GetName(i_actor) == fpcNm_E_KR_e && ((e_kr_class*)i_actor)->getId() >= 0) {
         return i_actor;
     }
 
@@ -2099,8 +2099,8 @@ void daNpcCoach_c::create_init() {
     mDoMtx_stack_c::multVecZero(&i_pos);
     mDoMtx_MtxToRot(mDoMtx_stack_c::get(), &i_angle);
     int msg_no = getMessageNo();
-    parentActorID = fopAcM_createChild(PROC_NPC_THEB, fopAcM_GetID(this), msg_no, &i_pos, fopAcM_GetRoomNo(this), &i_angle, NULL, -1, NULL);
-    field_0x2554 = fopAcM_createChild(PROC_COACH2D, fopAcM_GetID(this), 0, &current.pos, fopAcM_GetRoomNo(this), NULL, NULL, -1, NULL);
+    parentActorID = fopAcM_createChild(fpcNm_NPC_THEB_e, fopAcM_GetID(this), msg_no, &i_pos, fopAcM_GetRoomNo(this), &i_angle, NULL, -1, NULL);
+    field_0x2554 = fopAcM_createChild(fpcNm_COACH2D_e, fopAcM_GetID(this), 0, &current.pos, fopAcM_GetRoomNo(this), NULL, NULL, -1, NULL);
     field_0x2558 = 0;
     field_0x2559 = 0;
 
@@ -2180,13 +2180,13 @@ actor_process_profile_definition g_profile_NPC_COACH = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 3,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_NPC_COACH,
+    /* Proc Name    */ fpcNm_NPC_COACH_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daNpcCoach_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_NPC_COACH,
+    /* Draw Prio    */ fpcDwPi_NPC_COACH_e,
     /* Actor SubMtd */ &l_daNpcCoach_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e,
     /* Group        */ fopAc_ACTOR_e,

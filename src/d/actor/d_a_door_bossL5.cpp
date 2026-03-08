@@ -325,7 +325,7 @@ int daBdoorL5_c::createKey() {
         cXyz prevPos(current.pos);
         current.pos = home.pos;
         cXyz pos(0.0f, 0.0f, 50.0f);
-        mKeyHoleId = fopAcM_createChildFromOffset(PROC_OBJ_KEYHOLE, fopAcM_GetID(this), 0xffffff05,
+        mKeyHoleId = fopAcM_createChildFromOffset(fpcNm_OBJ_KEYHOLE_e, fopAcM_GetID(this), 0xffffff05,
                                                              &pos, fopAcM_GetRoomNo(this), &shape_angle,
                                                              &scale, -1, 0);
         current.pos = prevPos;
@@ -506,13 +506,13 @@ actor_process_profile_definition g_profile_L5BOSS_DOOR = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_L5BOSS_DOOR,
+    /* Proc Name    */ fpcNm_L5BOSS_DOOR_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daBdoorL5_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_L5BOSS_DOOR,
+    /* Draw Prio    */ fpcDwPi_L5BOSS_DOOR_e,
     /* Actor SubMtd */ &l_daBdoorL5_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_UNK_0x4000_e,
     /* Group        */ fopAc_ACTOR_e,

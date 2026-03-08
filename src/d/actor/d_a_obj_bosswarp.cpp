@@ -243,7 +243,7 @@ int daObjBossWarp_c::execute() {
         if (field_0x595 && midna != NULL) {
             midna->onTagWaitPos(&field_0x620);
         }
-        obj_ystone_class* ystone = (obj_ystone_class*)fopAcM_SearchByName(PROC_OBJ_YSTONE);
+        obj_ystone_class* ystone = (obj_ystone_class*)fopAcM_SearchByName(fpcNm_OBJ_YSTONE_e);
         int level = getNowLevel();
 
         if (ystone != NULL && midna != NULL) {
@@ -314,7 +314,7 @@ void daObjBossWarp_c::actionWait() {
 
 void daObjBossWarp_c::actionOrderEvent() {
     if (eventInfo.checkCommandDemoAccrpt()) {
-        dComIfGp_event_setTalkPartner(fopAcM_SearchByName(PROC_OBJ_YSTONE));
+        dComIfGp_event_setTalkPartner(fopAcM_SearchByName(fpcNm_OBJ_YSTONE_e));
         setAction(ACT_EVENT);
         mStaffId = dComIfGp_evmng_getMyStaffId("WARPHOLE", NULL, 0);
         demoProc();
@@ -446,10 +446,10 @@ int daObjBossWarp_c::demoProc() {
     };
 
     daPy_py_c* player = daPy_getPlayerActorClass();
-    obj_ystone_class* ystone = (obj_ystone_class*)fopAcM_SearchByName(PROC_OBJ_YSTONE);
+    obj_ystone_class* ystone = (obj_ystone_class*)fopAcM_SearchByName(fpcNm_OBJ_YSTONE_e);
     cXyz unused(100000.0f, 0.0f, 0.0f);
     daMidna_c* midna = (daMidna_c*)daPy_py_c::getMidnaActor();
-    daObjLife_c* life_container = (daObjLife_c*)fopAcM_SearchByName(PROC_Obj_LifeContainer);
+    daObjLife_c* life_container = (daObjLife_c*)fopAcM_SearchByName(fpcNm_Obj_LifeContainer_e);
     cXyz life_pos(900.0f, 0.0f, 0.0f);
     int act_idx = dComIfGp_evmng_getMyActIdx(mStaffId, action_table, 15, 0, 0);
 
@@ -674,13 +674,13 @@ actor_process_profile_definition g_profile_Obj_BossWarp = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_Obj_BossWarp,
+    /* Proc Name    */ fpcNm_Obj_BossWarp_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daObjBossWarp_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_Obj_BossWarp,
+    /* Draw Prio    */ fpcDwPi_Obj_BossWarp_e,
     /* Actor SubMtd */ &l_daObjBossWarp_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_UNK_0x4000_e,
     /* Group        */ fopAc_ACTOR_e,

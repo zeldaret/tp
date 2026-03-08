@@ -26,14 +26,14 @@ enum daAlink_CutFinishParamType {
 
 static fopAc_ac_c* daAlink_searchNightStalker(fopAc_ac_c* i_actor, void* i_data) {
     UNUSED(i_data);
-    if (fopAcM_GetName(i_actor) == PROC_E_S1) {
+    if (fopAcM_GetName(i_actor) == fpcNm_E_S1_e) {
         daPy_py_c* player_p = daPy_getLinkPlayerActorClass();
         if (player_p->current.pos.abs2XZ(i_actor->current.pos) < SQUARE(500.0f) &&
             fabsf(player_p->current.pos.y - i_actor->current.pos.y) < 300.0f)
         {
             return i_actor;
         }
-    } else if (fopAcM_GetName(i_actor) == PROC_B_GND && static_cast<b_gnd_class*>(i_actor)->checkAttackChance()) {
+    } else if (fopAcM_GetName(i_actor) == fpcNm_B_GND_e && static_cast<b_gnd_class*>(i_actor)->checkAttackChance()) {
         return i_actor;
     }
 
@@ -309,7 +309,7 @@ void daAlink_c::setSwordAtParam(dCcG_At_Spl i_spl, u8 i_hitMark, u8 i_AtSe, int 
 BOOL daAlink_c::notSwordHitVibActor(fopAc_ac_c* i_actor) {
     if (i_actor != NULL && fopAcM_GetGroup(i_actor) == fopAc_NPC_e) {
         s16 name = fopAcM_GetName(i_actor);
-        if (!checkSpecialNpc(i_actor) && name != PROC_NI && name != PROC_NPC_BLUENS) {
+        if (!checkSpecialNpc(i_actor) && name != fpcNm_NI_e && name != fpcNm_NPC_BLUENS_e) {
             return true;
         }
     }
@@ -793,8 +793,8 @@ BOOL daAlink_c::checkDownAttackState() {
                 && enemy->getDownPos().abs2(current.pos) < SQUARE(800.0f)
                 )
                 || (checkWolf()
-                    && (fopAcM_GetName(mTargetedActor) == PROC_E_PO
-                        || fopAcM_GetName(mTargetedActor) == PROC_E_HP
+                    && (fopAcM_GetName(mTargetedActor) == fpcNm_E_PO_e
+                        || fopAcM_GetName(mTargetedActor) == fpcNm_E_HP_e
                         )
                     && enemy->getDownPos().abs2(current.pos) < SQUARE(800.0f)
                     )
@@ -2042,7 +2042,7 @@ int daAlink_c::procCutDownInit() {
         sp2C = static_cast<fopEn_enemy_c*>(mTargetedActor)->getDownPos();
         field_0x280c.setData(mTargetedActor);
 
-        if (fopAcM_GetName(mTargetedActor) == PROC_B_GND) {
+        if (fopAcM_GetName(mTargetedActor) == fpcNm_B_GND_e) {
             mProcVar3.field_0x300e = 1;
         }
     } else {

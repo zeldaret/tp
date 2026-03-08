@@ -103,7 +103,7 @@ static bool setArchiveBank(int param_0) {
 }
 
 static int objectDeleteJugge(void* i_obj, void*) {
-    if (fpcM_GetProfName(i_obj) != PROC_BG) {
+    if (fpcM_GetProfName(i_obj) != fpcNm_BG_e) {
         if (fopAcM_IsActor(i_obj) && !fopAcM_CheckCondition((fopAc_ac_c*)i_obj, 4)) {
             return 0;
         }
@@ -196,7 +196,7 @@ static bool objectSetCheck(room_of_scene_class* i_this) {
                     }
                 }
 
-                fopAcM_create(PROC_BG, roomNo, NULL, -1, NULL, NULL, -1);
+                fopAcM_create(fpcNm_BG_e, roomNo, NULL, -1, NULL, NULL, -1);
                 dComIfGp_getPEvtManager()->demoInit();
                 dComIfGp_getPEvtManager()->roomInit(roomNo);
                 dStage_dt_c_roomReLoader(i_this->mpDzrRes, i_this->mpRoomDt, roomNo);
@@ -447,7 +447,7 @@ scene_process_profile_definition g_profile_ROOM_SCENE = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 0,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_ROOM_SCENE,
+    /* Proc Name    */ fpcNm_ROOM_SCENE_e,
     /* Proc SubMtd  */ &g_fpcNd_Method.base,
     /* Size         */ sizeof(room_of_scene_class),
     /* Size Other   */ 0,

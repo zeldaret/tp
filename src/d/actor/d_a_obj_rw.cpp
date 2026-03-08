@@ -375,7 +375,7 @@ static int daOBJ_RW_Create(fopAc_ac_c* actor) {
             cXyz scale(1.0f, 1.0f, 1.0f);
             fopAcM_createItemForBoss(&actor->current.pos, dItemNo_KAKERA_HEART_e, fopAcM_GetRoomNo(actor), &actor->shape_angle, &scale, 0.0f, 0.0f, actor->field_0x564);
         } else {
-            fopAcM_createChild(PROC_OBJ_MAKI, fopAcM_GetID(actor), 0xFFFFFF01, &actor->home.pos, fopAcM_GetRoomNo(actor), &actor->home.angle, NULL, -1, NULL);
+            fopAcM_createChild(fpcNm_OBJ_MAKI_e, fopAcM_GetID(actor), 0xFFFFFF01, &actor->home.pos, fopAcM_GetRoomNo(actor), &actor->home.angle, NULL, -1, NULL);
             fopAcM_OnStatus(actor, 0);
             actor->attention_info.flags = fopAc_AttnFlag_BATTLE_e;
         }
@@ -398,13 +398,13 @@ actor_process_profile_definition g_profile_OBJ_RW = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_OBJ_RW,
+    /* Proc Name    */ fpcNm_OBJ_RW_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(obj_rw_class),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_OBJ_RW,
+    /* Draw Prio    */ fpcDwPi_OBJ_RW_e,
     /* Actor SubMtd */ &l_daOBJ_RW_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e,
     /* Group        */ fopAc_ENEMY_e,

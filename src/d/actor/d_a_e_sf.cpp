@@ -577,7 +577,7 @@ static void e_sf_attack_0(e_sf_class* i_this) {
 
     if (i_this->mHitCheckFlag) {
         fopAc_ac_c* actor_p = at_hit_check(i_this);
-        if (actor_p != NULL && fopAcM_GetName(actor_p) == PROC_ALINK) {
+        if (actor_p != NULL && fopAcM_GetName(actor_p) == fpcNm_ALINK_e) {
             if (daPy_getPlayerActorClass()->checkPlayerGuard()) {
                 i_this->mpModelMorf->setPlaySpeed(0.0f);
                 i_this->mAction = ACTION_FIGHT_RUN;
@@ -630,7 +630,7 @@ static void e_sf_attack(e_sf_class* i_this) {
 
     if (i_this->mHitCheckFlag) {
         fopAc_ac_c* actor_p = at_hit_check(i_this);
-        if (actor_p != NULL && fopAcM_GetName(actor_p) == PROC_ALINK) {
+        if (actor_p != NULL && fopAcM_GetName(actor_p) == fpcNm_ALINK_e) {
             if (daPy_getPlayerActorClass()->checkPlayerGuard()) {
                 i_this->mpModelMorf->setPlaySpeed(0.0f);
                 i_this->mAction = ACTION_FIGHT_RUN;
@@ -1888,13 +1888,13 @@ actor_process_profile_definition g_profile_E_SF = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_E_SF,
+    /* Proc Name    */ fpcNm_E_SF_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(e_sf_class),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_E_SF,
+    /* Draw Prio    */ fpcDwPi_E_SF_e,
     /* Actor SubMtd */ &l_daE_SF_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e,
     /* Group        */ fopAc_ENEMY_e,

@@ -492,7 +492,7 @@ void daE_DF_c::SearchAction() {
 
     daObjCarry_c* obj_carry = (daObjCarry_c*)fpcM_Search(s_obj_sub, this);
     if (obj_carry != NULL) {
-        if (fopAcM_GetName(obj_carry) == PROC_Obj_Carry) {
+        if (fopAcM_GetName(obj_carry) == fpcNm_Obj_Carry_e) {
             mEatObjType = EAT_TYPE_OBJ;
             mCarryType = obj_carry->getType();
             fopAcM_delete(obj_carry);
@@ -500,14 +500,14 @@ void daE_DF_c::SearchAction() {
             Set_Angle(obj_pos);
             mAction = ACT_EAT;
 
-        } else if (fopAcM_GetName(obj_carry) == PROC_ALINK && mTimer == 0) {
+        } else if (fopAcM_GetName(obj_carry) == fpcNm_ALINK_e && mTimer == 0) {
             mEatObjType = EAT_TYPE_LINK;
             Set_Angle(player_pos);
             mTargetAngle = cLib_targetAngleY(&current.pos, player_pos);
             mAction = ACT_EAT;
             dComIfGp_getVibration().StartShock(5, 0x1f, cXyz(0.0f, 1.0f, 0.0f));
 
-        } else if (fopAcM_GetName(obj_carry) == PROC_NBOMB) {
+        } else if (fopAcM_GetName(obj_carry) == fpcNm_NBOMB_e) {
             cXyz* obj_pos = &fopAcM_GetPosition(obj_carry);
             Set_Angle(obj_pos);
             mEatObjType = EAT_TYPE_BOMB;
@@ -720,13 +720,13 @@ actor_process_profile_definition g_profile_E_DF = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_E_DF,
+    /* Proc Name    */ fpcNm_E_DF_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daE_DF_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_E_DF,
+    /* Draw Prio    */ fpcDwPi_E_DF_e,
     /* Actor SubMtd */ &l_daE_DF_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e,
     /* Group        */ fopAc_ACTOR_e,

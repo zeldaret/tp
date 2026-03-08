@@ -567,7 +567,7 @@ void daE_KK_c::executeSpearThrow() {
             }
         }
         if ((s32)mpMorfSO->getFrame() == 0x17) {
-            fopAcM_createChild(PROC_E_KK, fopAcM_GetID(this), 0xFF0001, &field_0x698,
+            fopAcM_createChild(fpcNm_E_KK_e, fopAcM_GetID(this), 0xFF0001, &field_0x698,
                                fopAcM_GetRoomNo(this), &shape_angle, NULL, -1, NULL);
             field_0x67d = 1;
             mCyl.OffTgNoHitMark();
@@ -1496,13 +1496,13 @@ actor_process_profile_definition g_profile_E_KK = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_E_KK,
+    /* Proc Name    */ fpcNm_E_KK_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daE_KK_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_E_KK,
+    /* Draw Prio    */ fpcDwPi_E_KK_e,
     /* Actor SubMtd */ &l_daE_KK_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e | fopAcStts_UNK_0x20_e,
     /* Group        */ fopAc_ENEMY_e,

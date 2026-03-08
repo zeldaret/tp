@@ -4,7 +4,7 @@
 
 static void* s_sub2(void* i_actor, void* i_data) {
     daObj_GrA_c* i_this = (daObj_GrA_c*)i_data;
-    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_OBJ_GRA && (u8)i_this->checkGraSub((fopAc_ac_c*)i_actor)) {
+    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == fpcNm_OBJ_GRA_e && (u8)i_this->checkGraSub((fopAc_ac_c*)i_actor)) {
         return i_actor;
     }
     return NULL;
@@ -602,7 +602,7 @@ BOOL daObj_GrA_c::chkActorInSight2(fopAc_ac_c* actor, f32 param_2, s16 param_3) 
 cXyz daObj_GrA_c::getAttentionPos(fopAc_ac_c* i_actor_p) {
     cXyz pos = i_actor_p->attention_info.position;
 
-    if (fopAcM_GetName(i_actor_p) == PROC_ALINK) {
+    if (fopAcM_GetName(i_actor_p) == fpcNm_ALINK_e) {
         pos.y -= daPy_py_c::getAttentionOffsetY();
     }
 

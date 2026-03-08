@@ -125,7 +125,7 @@ void* s_waterfall(void* pProc, void* param_1) {
     UNUSED(param_1);
 
     if (fopAcM_IsActor(pProc) &&
-        fopAcM_GetName(pProc) == PROC_Tag_WaterFall &&
+        fopAcM_GetName(pProc) == fpcNm_Tag_WaterFall_e &&
         !fpcM_IsCreating(fopAcM_GetID(pProc)) &&
         static_cast<daTagWaterFall_c*>(pProc)->checkHitWaterFallCamera()) {
         return pProc;
@@ -338,13 +338,13 @@ actor_process_profile_definition g_profile_Tag_WaterFall = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_Tag_WaterFall,
+    /* Proc Name    */ fpcNm_Tag_WaterFall_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daTagWaterFall_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_Tag_WaterFall,
+    /* Draw Prio    */ fpcDwPi_Tag_WaterFall_e,
     /* Actor SubMtd */ &l_daTagWaterFall_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_UNK_0x4000_e,
     /* Group        */ fopAc_ACTOR_e,

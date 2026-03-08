@@ -64,7 +64,7 @@ static void* s_b_sub(void* i_actor, void* i_data) {
                 bomb->deleteBombAndEffect();
             }
         } else {
-            if (fopAcM_GetName(i_actor) == PROC_Obj_Carry) {
+            if (fopAcM_GetName(i_actor) == fpcNm_Obj_Carry_e) {
                 daObjCarry_c* carry = (daObjCarry_c*)i_actor;
                 if (carry != NULL && data != NULL &&
                     carry->getType() == 2 && carry->current.pos.absXZ(data->current.pos) < 1000.0f)
@@ -326,7 +326,7 @@ void daObjTobyHouse_c::demoProc() {
     static Vec l_shotSmokeOffset = {0.0f, 2500.0f, -600.0f};
     cXyz cStack_24;
     csXyz cStack_98;
-    fopAcM_SearchByName(PROC_NPC_TOBY);
+    fopAcM_SearchByName(fpcNm_NPC_TOBY_e);
     cXyz cStack_30(-600.0f, 70.0f, 380.0f);
     camera_class* camera = dComIfGp_getCamera(dComIfGp_getPlayerCameraID(0));
     cXyz* pCamEye = fopCamM_GetEye_p(camera);
@@ -604,13 +604,13 @@ actor_process_profile_definition g_profile_Obj_TobyHouse = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 3,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_Obj_TobyHouse,
+    /* Proc Name    */ fpcNm_Obj_TobyHouse_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daObjTobyHouse_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_Obj_TobyHouse,
+    /* Draw Prio    */ fpcDwPi_Obj_TobyHouse_e,
     /* Actor SubMtd */ &daObjTobyHouse_METHODS,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e,
     /* Group        */ fopAc_ACTOR_e,

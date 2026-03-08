@@ -66,7 +66,7 @@ int daObjFallObj_c::Create() {
         cXyz acStack_30(0.0f, -300.0f, 0.0f);
         u32 params = uVar1 | (getTime() << 8);
         mChildId = fopAcM_createChildFromOffset(
-            PROC_Obj_FallObj, fopAcM_GetID(this), params, &acStack_30, fopAcM_GetRoomNo(this), &shape_angle,
+            fpcNm_Obj_FallObj_e, fopAcM_GetID(this), params, &acStack_30, fopAcM_GetRoomNo(this), &shape_angle,
             &scale, -1, 0);
     } else {
         mChildId = fpcM_ERROR_PROCESS_ID_e;
@@ -452,13 +452,13 @@ actor_process_profile_definition g_profile_Obj_FallObj = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 3,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_Obj_FallObj,
+    /* Proc Name    */ fpcNm_Obj_FallObj_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daObjFallObj_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_Obj_FallObj,
+    /* Draw Prio    */ fpcDwPi_Obj_FallObj_e,
     /* Actor SubMtd */ &daObjFallObj_METHODS,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e,
     /* Group        */ fopAc_ACTOR_e,

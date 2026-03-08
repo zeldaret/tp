@@ -353,7 +353,7 @@ void daTurara_c::init_modeDropEnd2() {
     current.pos.y -= 100.0f;
     cXyz first_vec(current.pos);
     first_vec.y += 100.0f;
-    mEmID = fopAcM_create(PROC_E_KK, getSwBit1() << 0x10 | 3, &first_vec, fopAcM_GetRoomNo(this), 0, 0, -1);
+    mEmID = fopAcM_create(fpcNm_E_KK_e, getSwBit1() << 0x10 | 3, &first_vec, fopAcM_GetRoomNo(this), 0, 0, -1);
     JUT_ASSERT(770, mEmID != fpcM_ERROR_PROCESS_ID_e);
     cXyz second_vec(0.7f, 0.7f, 0.7f);
     dComIfGp_particle_set(0x8a8f, &first_vec, NULL, &second_vec);
@@ -422,13 +422,13 @@ actor_process_profile_definition g_profile_Obj_Turara = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 3,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_Obj_Turara,
+    /* Proc Name    */ fpcNm_Obj_Turara_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daTurara_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_Obj_Turara,
+    /* Draw Prio    */ fpcDwPi_Obj_Turara_e,
     /* Actor SubMtd */ &l_daTurara_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_UNK_0x4000_e | fopAcStts_CULL_e,
     /* Group        */ fopAc_ACTOR_e,

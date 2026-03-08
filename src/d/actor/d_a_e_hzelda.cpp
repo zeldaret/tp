@@ -181,7 +181,7 @@ static int daE_HZELDA_Draw(e_hzelda_class* i_this) {
 }
 
 static void* shot_s_sub(void* i_actor, void* i_data) {
-    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_ARROW && (fopAcM_GetParam(i_actor) == 1 || fopAcM_GetParam(i_actor) == 2)) {
+    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == fpcNm_ARROW_e && (fopAcM_GetParam(i_actor) == 1 || fopAcM_GetParam(i_actor) == 2)) {
         cXyz vec = ((fopAc_ac_c*)i_data)->current.pos - ((fopAc_ac_c*)i_actor)->current.pos;
         if (vec.abs() < 1000.0f) {
             return i_actor;
@@ -1078,7 +1078,7 @@ static int daE_HZELDA_Execute(e_hzelda_class* i_this) {
                         cCcD_Obj* hitobj = i_this->mBallSphAt.GetAtHitObj();
                         fopAc_ac_c* hit_actor = dCc_GetAc(hitobj->GetAc());
 
-                        if (fopAcM_GetName(hit_actor) == PROC_ALINK) {
+                        if (fopAcM_GetName(hit_actor) == fpcNm_ALINK_e) {
                             if (!daPy_getPlayerActorClass()->checkPlayerGuard()) {
                                 i_this->mSound.startCreatureVoice(Z2SE_EN_HZE_V_LAUGH, -1);
                                 sp64 = 1;
@@ -1538,13 +1538,13 @@ actor_process_profile_definition g_profile_E_HZELDA = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_E_HZELDA,
+    /* Proc Name    */ fpcNm_E_HZELDA_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(e_hzelda_class),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_E_HZELDA,
+    /* Draw Prio    */ fpcDwPi_E_HZELDA_e,
     /* Actor SubMtd */ &l_daE_HZELDA_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_UNK_0x4000_e,
     /* Group        */ fopAc_ENEMY_e,

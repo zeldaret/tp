@@ -637,7 +637,7 @@ void daNpcImpal_c::lookat() {
 }
 
 static void* s_sub1(void* i_actor, void* i_data) {
-    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_Obj_Carry &&
+    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == fpcNm_Obj_Carry_e &&
         ((fopAc_ac_c*)i_actor)->current.pos.absXZ(((fopAc_ac_c*)i_data)->current.pos) < 1000.0f)
     {
         fopAcM_delete((fopAc_ac_c*)i_actor);
@@ -1241,13 +1241,13 @@ actor_process_profile_definition g_profile_NPC_IMPAL = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_NPC_IMPAL,
+    /* Proc Name    */ fpcNm_NPC_IMPAL_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daNpcImpal_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_NPC_IMPAL,
+    /* Draw Prio    */ fpcDwPi_NPC_IMPAL_e,
     /* Actor SubMtd */ &daNpcImpal_MethodTable,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e,
     /* Group        */ fopAc_NPC_e,

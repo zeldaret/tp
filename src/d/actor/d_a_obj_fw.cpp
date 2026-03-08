@@ -34,7 +34,7 @@ static u8 hio_set;
 static daObj_Fw_HIO_c l_HIO;
 
 static void ride_call_back(dBgW* i_bgw, fopAc_ac_c* a_this, fopAc_ac_c* param_3) {
-    if (fopAcM_GetName(param_3) == PROC_ALINK) {
+    if (fopAcM_GetName(param_3) == fpcNm_ALINK_e) {
         obj_fw_class* i_this = (obj_fw_class*)a_this;
         
         if (i_this->field_0x592 == 0) {
@@ -309,13 +309,13 @@ actor_process_profile_definition g_profile_OBJ_FW = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 8,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_OBJ_FW,
+    /* Proc Name    */ fpcNm_OBJ_FW_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(obj_fw_class),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_OBJ_FW,
+    /* Draw Prio    */ fpcDwPi_OBJ_FW_e,
     /* Actor SubMtd */ &l_daObj_Fw_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_UNK_0x4000_e | fopAcStts_CULL_e,
     /* Group        */ fopAc_ACTOR_e,

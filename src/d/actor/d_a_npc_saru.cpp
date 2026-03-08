@@ -436,7 +436,7 @@ int daNpc_Saru_c::ctrlJointCallBack(J3DJoint* i_joint, int param_2) {
 
 void* daNpc_Saru_c::srchYm(void* i_actor, void* i_data) {
     if (mFindCount < 50 && i_actor != NULL && i_actor != i_data) {
-        if (fopAcM_IsExecuting(fopAcM_GetID(i_actor)) && fopAcM_GetName(i_actor) == PROC_E_YM && ((daE_YM_c*)i_actor)->isHide() == 0) {
+        if (fopAcM_IsExecuting(fopAcM_GetID(i_actor)) && fopAcM_GetName(i_actor) == fpcNm_E_YM_e && ((daE_YM_c*)i_actor)->isHide() == 0) {
             mFindActorPtrs[mFindCount] = (fopAc_ac_c*)i_actor;
             mFindCount++;
         }
@@ -1235,13 +1235,13 @@ actor_process_profile_definition g_profile_NPC_SARU = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_NPC_SARU,
+    /* Proc Name    */ fpcNm_NPC_SARU_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daNpc_Saru_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_NPC_SARU,
+    /* Draw Prio    */ fpcDwPi_NPC_SARU_e,
     /* Actor SubMtd */ &daNpc_Saru_MethodTable,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e | fopAcStts_UNK_0x4_e | fopAcStts_UNK_0x2_e | fopAcStts_UNK_0x1_e,
     /* Group        */ fopAc_NPC_e,

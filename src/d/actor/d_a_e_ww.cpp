@@ -320,7 +320,7 @@ void daE_WW_c::damage_check() {
         if (var_r29 != NULL) {
             mAtInfo.mpCollider = var_r29;
             if (mAtInfo.mpCollider->ChkAtType(AT_TYPE_IRON_BALL) != 0) {
-                if (fopAcM_GetName(dCc_GetAc(mAtInfo.mpCollider->GetAc())) == PROC_Obj_Carry) {
+                if (fopAcM_GetName(dCc_GetAc(mAtInfo.mpCollider->GetAc())) == fpcNm_Obj_Carry_e) {
                     S16_ADD(health, 150);
                 } else if (dComIfGp_checkPlayerStatus0(0, 0x400) != 0) {
                     S16_ADD(health, 180);
@@ -528,7 +528,7 @@ void daE_WW_c::setAppearEffect() {
 
 static void* s_child_ww(void* i_actor, void* i_data) {
     if (i_actor != i_data && fopAcM_IsActor(i_actor)
-    && fopAcM_GetName(i_actor) == PROC_E_WW && !fpcM_IsCreating(fopAcM_GetID(i_actor))) {
+    && fopAcM_GetName(i_actor) == fpcNm_E_WW_e && !fpcM_IsCreating(fopAcM_GetID(i_actor))) {
         if (fopAcM_GetLinkId((fopAc_ac_c*)i_actor) == fopAcM_GetID(i_data)) {
             lbl_237_bss_30++;
         }
@@ -545,22 +545,22 @@ static void* s_obj_sub(void* i_proc, void* i_data) {
             if (fVar2 == fVar3) {
                 f32 fVar4 = fopAcM_GetSpeed((fopAc_ac_c *) i_proc).y;
                 if (fVar4 == fVar3) {
-                    if (fopAcM_GetName(i_proc) == PROC_Obj_Carry) {
+                    if (fopAcM_GetName(i_proc) == fpcNm_Obj_Carry_e) {
                         return i_proc;
                     }
 
-                    if (fopAcM_GetName(i_proc) == PROC_NBOMB) {
+                    if (fopAcM_GetName(i_proc) == fpcNm_NBOMB_e) {
                         return i_proc;
                     }
                 }
             }
         }
 
-        if (dist < 500.0f && (fopAcM_GetName(i_proc) == PROC_BOOMERANG || fopAcM_GetName(i_proc) == PROC_NBOMB)) {
+        if (dist < 500.0f && (fopAcM_GetName(i_proc) == fpcNm_BOOMERANG_e || fopAcM_GetName(i_proc) == fpcNm_NBOMB_e)) {
             return i_proc;
         }
 
-        if (dist < 700.0f && fopAcM_GetName(i_proc) == PROC_ARROW) {
+        if (dist < 700.0f && fopAcM_GetName(i_proc) == fpcNm_ARROW_e) {
             f32 fVar5 = fopAcM_GetSpeedF((fopAc_ac_c *) i_proc);
             f32 fVar6 = 0.0f;
             if (fVar5 != fVar6) {
@@ -603,7 +603,7 @@ bool daE_WW_c::checkSideStep() {
 }
 
 static void* s_attack_ww(void* i_actor, void* i_data) {
-    if (i_actor != i_data && fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_E_WW && !fpcM_IsCreating(fopAcM_GetID(i_actor)) && ((daE_WW_c*)i_actor)->isAttack() != 0) {
+    if (i_actor != i_data && fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == fpcNm_E_WW_e && !fpcM_IsCreating(fopAcM_GetID(i_actor)) && ((daE_WW_c*)i_actor)->isAttack() != 0) {
         return i_actor;
     }
 
@@ -628,7 +628,7 @@ void daE_WW_c::createWolf(cXyz param_0, u8 param_1) {
         var_r28 = 1;
     }
 
-    mChildID[var_r29] = fopAcM_createChild(PROC_E_WW, var_r30, (var_r28 << 24) | (field_0x6b4 | (0xF0FF0000 | 0xF000) | (temp_r27 * 0x10)), &param_0, fopAcM_GetRoomNo(this), &sp14, NULL, -1, NULL);
+    mChildID[var_r29] = fopAcM_createChild(fpcNm_E_WW_e, var_r30, (var_r28 << 24) | (field_0x6b4 | (0xF0FF0000 | 0xF000) | (temp_r27 * 0x10)), &param_0, fopAcM_GetRoomNo(this), &sp14, NULL, -1, NULL);
 }
 
 static cXyz create_pos[15] = {
@@ -2309,13 +2309,13 @@ actor_process_profile_definition g_profile_E_WW = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_E_WW,
+    /* Proc Name    */ fpcNm_E_WW_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daE_WW_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_E_WW,
+    /* Draw Prio    */ fpcDwPi_E_WW_e,
     /* Actor SubMtd */ &l_daE_WW_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_UNK_0x4000_e | fopAcStts_CULL_e,
     /* Group        */ fopAc_ENEMY_e,

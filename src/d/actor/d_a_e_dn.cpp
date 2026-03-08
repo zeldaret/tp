@@ -1034,7 +1034,7 @@ int learn_check;
 static void* shot_s_sub(void* i_actor, void* i_data) {
     e_dn_class* i_this = (e_dn_class*)i_data;
     fopEn_enemy_c* actor = (fopEn_enemy_c*)&i_this->actor;
-    if ((fopAcM_IsActor(i_actor) && (learn_check & 0x80000000) != 0 && fopAcM_GetName(i_actor) == PROC_ARROW && (fopAcM_GetParam(i_actor) == 1 ||
+    if ((fopAcM_IsActor(i_actor) && (learn_check & 0x80000000) != 0 && fopAcM_GetName(i_actor) == fpcNm_ARROW_e && (fopAcM_GetParam(i_actor) == 1 ||
         fopAcM_GetParam(i_actor) == 2))) {
         cXyz sp28(actor->current.pos - ((fopAc_ac_c*)i_actor)->current.pos);
         if (sp28.abs() < 1000.0f) {
@@ -1482,7 +1482,7 @@ static void e_dn_attack_0(e_dn_class* i_this) {
 
     if (i_this->at_chk_flag != 0) {
         fopAc_ac_c* actor_p = at_hit_check(i_this);
-        if (actor_p != NULL && fopAcM_GetName(actor_p) == PROC_ALINK && daPy_getPlayerActorClass()->checkPlayerGuard()) {
+        if (actor_p != NULL && fopAcM_GetName(actor_p) == fpcNm_ALINK_e && daPy_getPlayerActorClass()->checkPlayerGuard()) {
             dComIfGp_getVibration().StartShock(3, 31, cXyz(0.0f, 1.0f, 0.0f));
         }
     }
@@ -1541,7 +1541,7 @@ static void e_dn_attack(e_dn_class* i_this) {
     cLib_addCalc0(&actor->speedF, 1.0f, 5.0f);
     if (i_this->at_chk_flag != 0) {
         fopAc_ac_c* actor_p = at_hit_check(i_this);
-        if (actor_p != NULL && fopAcM_GetName(actor_p) == PROC_ALINK && daPy_getPlayerActorClass()->checkPlayerGuard()) {
+        if (actor_p != NULL && fopAcM_GetName(actor_p) == fpcNm_ALINK_e && daPy_getPlayerActorClass()->checkPlayerGuard()) {
             i_this->anm_p->setPlaySpeed(0.0f);
             i_this->action = ACTION_FIGHT_RUN;
             i_this->mode = 0;
@@ -3504,13 +3504,13 @@ actor_process_profile_definition g_profile_E_DN = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_E_DN,
+    /* Proc Name    */ fpcNm_E_DN_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(e_dn_class),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_E_DN,
+    /* Draw Prio    */ fpcDwPi_E_DN_e,
     /* Actor SubMtd */ &l_daE_DN_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e,
     /* Group        */ fopAc_ENEMY_e,

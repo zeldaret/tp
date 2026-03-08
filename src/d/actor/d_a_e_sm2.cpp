@@ -186,7 +186,7 @@ static void cc_stts_init(e_sm2_class* i_this) {
 
 static void* s_s_sub(void* i_actor, void* i_data) {
     cXyz pos_delta;
-    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_E_SM2) {
+    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == fpcNm_E_SM2_e) {
         e_sm2_class* pother = (e_sm2_class*)i_data;
         e_sm2_class* pactor = (e_sm2_class*)i_actor;
 
@@ -909,7 +909,7 @@ static void damage_check(e_sm2_class* i_this) {
                             pos = i_this->field_0x708[j_d[j]];
                             pos.y += cM_rndF(y_ad[i_this->sizetype]);
 
-                            fopAcM_createChild(PROC_E_SM2, fopAcM_GetID(actor), 0xFFFFFF00 | (i_this->type << 4) | 0xB, &pos, fopAcM_GetRoomNo(actor), &rotation, NULL, -1, NULL);
+                            fopAcM_createChild(fpcNm_E_SM2_e, fopAcM_GetID(actor), 0xFFFFFF00 | (i_this->type << 4) | 0xB, &pos, fopAcM_GetRoomNo(actor), &rotation, NULL, -1, NULL);
                         }
 
                         i_this->field_0xfd4 = 1;
@@ -944,7 +944,7 @@ static void damage_check(e_sm2_class* i_this) {
                             pos = work;
                         }
 
-                        fopAcM_createChild(PROC_E_SM2, fopAcM_GetID(actor), parameters, &pos, fopAcM_GetRoomNo(actor), &rotation, NULL, -1, NULL);
+                        fopAcM_createChild(fpcNm_E_SM2_e, fopAcM_GetID(actor), parameters, &pos, fopAcM_GetRoomNo(actor), &rotation, NULL, -1, NULL);
                     }
 
                     i_this->sound.startCreatureSound(Z2SE_EN_SM_HIT2, 0, -1);
@@ -1640,13 +1640,13 @@ actor_process_profile_definition g_profile_E_SM2 = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_E_SM2,
+    /* Proc Name    */ fpcNm_E_SM2_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(e_sm2_class),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_E_SM2,
+    /* Draw Prio    */ fpcDwPi_E_SM2_e,
     /* Actor SubMtd */ &l_daE_SM2_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e | fopAcStts_UNK_0x20_e,
     /* Group        */ fopAc_ENEMY_e,

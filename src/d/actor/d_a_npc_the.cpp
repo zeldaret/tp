@@ -602,7 +602,7 @@ void daNpcThe_c::lookat() {
         actor = daPy_getPlayerActorClass();
         break;
     case LOOK_ACTOR:
-        actor = fopAcM_SearchByName(PROC_NPC_ZRC);
+        actor = fopAcM_SearchByName(fpcNm_NPC_ZRC_e);
         break;
     case LOOK_ATTN:
         break;
@@ -1346,13 +1346,13 @@ actor_process_profile_definition g_profile_NPC_THE = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_NPC_THE,
+    /* Proc Name    */ fpcNm_NPC_THE_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daNpcThe_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_NPC_THE,
+    /* Draw Prio    */ fpcDwPi_NPC_THE_e,
     /* Actor SubMtd */ &daNpcThe_MethodTable,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_UNK_0x4000_e | fopAcStts_CULL_e | fopAcStts_UNK_0x8_e,
     /* Group        */ fopAc_NPC_e,

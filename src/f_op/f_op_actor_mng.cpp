@@ -1130,11 +1130,11 @@ s32 fopAcM_orderDoorEvent(fopAc_ac_c* i_actorA, fopAc_ac_c* i_actorB, u16 i_prio
     s16 evid = i_actorB->eventInfo.getEventId();
     u8 toolid = i_actorB->eventInfo.getMapToolId();
 
-    if (fopAcM_GetProfName(i_actorB) == PROC_Obj_Kshutter) {
+    if (fopAcM_GetProfName(i_actorB) == fpcNm_Obj_Kshutter_e) {
         if (toolid != 0xFF) {
             evid = dComIfGp_getEventManager().getEventIdx(i_actorA, NULL, toolid);
         }
-    } else if (fopAcM_GetProfName(i_actorB) == PROC_Obj_SmgDoor) {
+    } else if (fopAcM_GetProfName(i_actorB) == fpcNm_Obj_SmgDoor_e) {
     }
     OS_REPORT("toolid<%d>evid<%d>\n", toolid, evid);
 
@@ -1544,7 +1544,7 @@ fpc_ProcID fopAcM_createDemoItem(const cXyz* i_pos, int i_itemNo, int i_itemBitN
     }
 
     u32 params = (i_itemNo & 0xFF) << 0x0 | (i_itemBitNo & 0x7F) << 0x8 | (param_7 & 0xFF) << 0x10;
-    return fopAcM_create(PROC_Demo_Item, params, i_pos, i_roomNo, i_angle, scale, -1);
+    return fopAcM_create(fpcNm_Demo_Item_e, params, i_pos, i_roomNo, i_angle, scale, -1);
 }
 
 fpc_ProcID fopAcM_createItemForBoss(const cXyz* i_pos, int i_itemNo, int i_roomNo,
@@ -1553,7 +1553,7 @@ fpc_ProcID fopAcM_createItemForBoss(const cXyz* i_pos, int i_itemNo, int i_roomN
     int _ = -1;
     u32 params = 0xFFFF0000 | param_8 << 8 | (i_itemNo & 0xFF);
 
-    fopAc_ac_c* actor = fopAcM_fastCreate(PROC_Obj_LifeContainer, params, i_pos, i_roomNo, i_angle,
+    fopAc_ac_c* actor = fopAcM_fastCreate(fpcNm_Obj_LifeContainer_e, params, i_pos, i_roomNo, i_angle,
                                           i_scale, -1, NULL, NULL);
     if (actor != NULL) {
         actor->speedF = i_speedF;
@@ -1619,7 +1619,7 @@ fpc_ProcID fopAcM_createItem(const cXyz* i_pos, int i_itemNo, int i_itemBitNo, i
 
     switch (i_itemNo) {
     case dItemNo_RECOVERY_FAILY_e:
-        ret = fopAcM_create(PROC_Obj_Yousei, 0xFFFFFFFF, i_pos, i_roomNo, i_angle, i_scale, -1);
+        ret = fopAcM_create(fpcNm_Obj_Yousei_e, 0xFFFFFFFF, i_pos, i_roomNo, i_angle, i_scale, -1);
         break;
 #if DEBUG
 // Return pointer fopAc_ac_c* is uninitialized for these branches
@@ -1641,15 +1641,15 @@ fpc_ProcID fopAcM_createItem(const cXyz* i_pos, int i_itemNo, int i_itemBitNo, i
 #endif
     case dItemNo_KAKERA_HEART_e:
     case dItemNo_UTAWA_HEART_e:
-        ret = fopAcM_create(PROC_Obj_LifeContainer, params, i_pos, i_roomNo, i_angle, i_scale, -1);
+        ret = fopAcM_create(fpcNm_Obj_LifeContainer_e, params, i_pos, i_roomNo, i_angle, i_scale, -1);
         break;
     case dItemNo_TRIPLE_HEART_e:
         for (i = 0; i < 2; i++) {
-            fopAcM_create(PROC_ITEM, params, i_pos, i_roomNo, &item_angle, i_scale, -1);
+            fopAcM_create(fpcNm_ITEM_e, params, i_pos, i_roomNo, &item_angle, i_scale, -1);
             item_angle.y = cM_rndFX(0x7FFF);
         }
     default:
-        ret = fopAcM_create(PROC_ITEM, params, i_pos, i_roomNo, &item_angle, i_scale, -1);
+        ret = fopAcM_create(fpcNm_ITEM_e, params, i_pos, i_roomNo, &item_angle, i_scale, -1);
         break;
     }
 
@@ -1684,7 +1684,7 @@ fopAc_ac_c* fopAcM_fastCreateItem2(const cXyz* i_pos, int i_itemNo, int i_itemBi
 
     switch (i_itemNo) {
     case dItemNo_RECOVERY_FAILY_e:
-        ret = fopAcM_fastCreate(PROC_Obj_Yousei, 0xFFFFFFFF, i_pos, i_roomNo, i_angle, i_scale, -1,
+        ret = fopAcM_fastCreate(fpcNm_Obj_Yousei_e, 0xFFFFFFFF, i_pos, i_roomNo, i_angle, i_scale, -1,
                                 NULL, NULL);
         break;
 #if DEBUG
@@ -1707,17 +1707,17 @@ fopAc_ac_c* fopAcM_fastCreateItem2(const cXyz* i_pos, int i_itemNo, int i_itemBi
 #endif
     case dItemNo_KAKERA_HEART_e:
     case dItemNo_UTAWA_HEART_e:
-        ret = fopAcM_fastCreate(PROC_Obj_LifeContainer, params, i_pos, i_roomNo, i_angle, i_scale,
+        ret = fopAcM_fastCreate(fpcNm_Obj_LifeContainer_e, params, i_pos, i_roomNo, i_angle, i_scale,
                                 -1, NULL, NULL);
         break;
     case dItemNo_TRIPLE_HEART_e:
         for (i = 0; i < 2; i++) {
-            ret = fopAcM_fastCreate(PROC_ITEM, params, i_pos, i_roomNo, &item_angle, i_scale, -1,
+            ret = fopAcM_fastCreate(fpcNm_ITEM_e, params, i_pos, i_roomNo, &item_angle, i_scale, -1,
                                     NULL, NULL);
             item_angle.y = cM_rndFX(0x7FFF);
         }
     default:
-        ret = fopAcM_fastCreate(PROC_ITEM, params, i_pos, i_roomNo, &item_angle, i_scale, -1, NULL,
+        ret = fopAcM_fastCreate(fpcNm_ITEM_e, params, i_pos, i_roomNo, &item_angle, i_scale, -1, NULL,
                                 NULL);
     }
     return ret;
@@ -1749,7 +1749,7 @@ fopAc_ac_c* fopAcM_fastCreateItem(const cXyz* i_pos, int i_itemNo, int i_roomNo,
     
     switch (i_itemNo) {
     case dItemNo_RECOVERY_FAILY_e:
-        ret = fopAcM_fastCreate(PROC_Obj_Yousei, 0xFFFFFFFF, i_pos, i_roomNo, i_angle, i_scale, -1,
+        ret = fopAcM_fastCreate(fpcNm_Obj_Yousei_e, 0xFFFFFFFF, i_pos, i_roomNo, i_angle, i_scale, -1,
                                  NULL, NULL);
         break;
 #if DEBUG
@@ -1772,7 +1772,7 @@ fopAc_ac_c* fopAcM_fastCreateItem(const cXyz* i_pos, int i_itemNo, int i_roomNo,
 #endif
     case dItemNo_KAKERA_HEART_e:
     case dItemNo_UTAWA_HEART_e:
-        ret = fopAcM_fastCreate(PROC_Obj_LifeContainer, params, i_pos, i_roomNo, i_angle, i_scale,
+        ret = fopAcM_fastCreate(fpcNm_Obj_LifeContainer_e, params, i_pos, i_roomNo, i_angle, i_scale,
                                  -1, NULL, NULL);
         break;
     case dItemNo_TRIPLE_HEART_e:
@@ -1786,7 +1786,7 @@ fopAc_ac_c* fopAcM_fastCreateItem(const cXyz* i_pos, int i_itemNo, int i_roomNo,
             ANGLE_ADD(angle.y, cM_rndFX(0x2000));
 
             ret = (fopAc_ac_c*)fopAcM_fastCreate(
-                PROC_ITEM, params, i_pos, i_roomNo, &angle, i_scale, -1, i_createFunc, NULL);
+                fpcNm_ITEM_e, params, i_pos, i_roomNo, &angle, i_scale, -1, i_createFunc, NULL);
 
             if (ret != NULL) {
                 if (i_speedF != NULL) {
@@ -1806,7 +1806,7 @@ fopAc_ac_c* fopAcM_fastCreateItem(const cXyz* i_pos, int i_itemNo, int i_roomNo,
         }
         angle.z = 0xFF;
 
-        ret = fopAcM_fastCreate(PROC_ITEM, params, i_pos, i_roomNo,
+        ret = fopAcM_fastCreate(fpcNm_ITEM_e, params, i_pos, i_roomNo,
                                                            &angle, i_scale, -1, i_createFunc, NULL);
 
         if (ret != NULL) {
@@ -1838,7 +1838,7 @@ fpc_ProcID fopAcM_createBokkuri(u16 i_setId, const cXyz* i_pos, int i_itemNo, in
     }
 
     daObjCarry_c::make_prm_bokkuri(&params, &params_ex, i_itemNo, i_itemBit, i_itemType, param_8);
-    return fopAcM_create(PROC_Obj_Carry, i_setId, params, i_pos, i_roomNo, &params_ex, NULL, -1, NULL);
+    return fopAcM_create(fpcNm_Obj_Carry_e, i_setId, params, i_pos, i_roomNo, &params_ex, NULL, -1, NULL);
 }
 
 fpc_ProcID fopAcM_createWarpHole(const cXyz* i_pos, const csXyz* i_angle, int i_roomNo, u8 param_4,
@@ -1848,7 +1848,7 @@ fpc_ProcID fopAcM_createWarpHole(const cXyz* i_pos, const csXyz* i_angle, int i_
     }
     u32 actorParams = 0x17000000 + 0xFF;
     u32 actorParamsOut =  actorParams | (param_5 << 0x1B) | (param_6 << 0x10) | (param_4 << 0x8);
-    return fopAcM_create(PROC_Obj_BossWarp, actorParamsOut, i_pos, i_roomNo, i_angle, NULL, -1);
+    return fopAcM_create(fpcNm_Obj_BossWarp_e, actorParamsOut, i_pos, i_roomNo, i_angle, NULL, -1);
 }
 
 void* enemySearchJugge(void* i_actor, void* i_data) {
@@ -1945,7 +1945,7 @@ fpc_ProcID fopAcM_createDisappear(const fopAc_ac_c* i_actor, const cXyz* i_pos, 
                                   u8 i_type, u8 i_enemyID) {
     u32 param = (i_enemyID << 0x10) | (i_size << 0x8) | i_type;
     fopAc_ac_c* actor = fopAcM_fastCreate(
-        PROC_DISAPPEAR, param, i_pos, fopAcM_GetRoomNo(i_actor), &i_actor->current.angle, NULL, 0xFF,
+        fpcNm_DISAPPEAR_e, param, i_pos, fopAcM_GetRoomNo(i_actor), &i_actor->current.angle, NULL, 0xFF,
         NULL, NULL);
     return fopAcM_GetID(actor);
 }

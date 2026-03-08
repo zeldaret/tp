@@ -162,7 +162,7 @@ void daObjCRVFENCE_c::BrokenAction() {
 }
 
 static void* s_obj_sub(void* i_actor, void* i_data) {
-    if (fopAcM_IsActor(i_actor) && fopAcM_searchActorDistance((fopAc_ac_c*)i_data, (fopAc_ac_c*)i_actor) < 600.0f && fopAcM_GetName(i_actor) == PROC_E_WB) {
+    if (fopAcM_IsActor(i_actor) && fopAcM_searchActorDistance((fopAc_ac_c*)i_data, (fopAc_ac_c*)i_actor) < 600.0f && fopAcM_GetName(i_actor) == fpcNm_E_WB_e) {
         return i_actor;
     }
 
@@ -427,13 +427,13 @@ actor_process_profile_definition g_profile_Obj_CRVFENCE = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 3,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_Obj_CRVFENCE,
+    /* Proc Name    */ fpcNm_Obj_CRVFENCE_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daObjCRVFENCE_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_Obj_CRVFENCE,
+    /* Draw Prio    */ fpcDwPi_Obj_CRVFENCE_e,
     /* Actor SubMtd */ &l_daObjCRVFENCE_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e | fopAcStts_NOEXEC_e,
     /* Group        */ fopAc_ACTOR_e,

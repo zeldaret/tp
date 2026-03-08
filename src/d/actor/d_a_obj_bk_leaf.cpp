@@ -17,7 +17,7 @@ void daBkLeaf_c::setBokkuri() {
     u32 sp10 = 0;
     csXyz currentAngle(current.angle);
     daObjCarry_c::make_prm(&sp10, &currentAngle, 6, getItem(), getItemBit(), 1, 2);
-    field_0x578 = fopAcM_createChild(PROC_Obj_Carry, fopAcM_GetID(this), 0, &current.pos,
+    field_0x578 = fopAcM_createChild(fpcNm_Obj_Carry_e, fopAcM_GetID(this), 0, &current.pos,
                                      fopAcM_GetRoomNo(this), &currentAngle, &scale, -1, 0);
 }
 
@@ -163,13 +163,13 @@ actor_process_profile_definition g_profile_Obj_BkLeaf = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_Obj_BkLeaf,
+    /* Proc Name    */ fpcNm_Obj_BkLeaf_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daBkLeaf_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_Obj_BkLeaf,
+    /* Draw Prio    */ fpcDwPi_Obj_BkLeaf_e,
     /* Actor SubMtd */ &l_daBkLeaf_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e,
     /* Group        */ fopAc_ACTOR_e,

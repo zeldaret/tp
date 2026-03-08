@@ -96,7 +96,7 @@ void daAlink_c::setSpinnerSyncPos() {
 
 int daAlink_c::procSpinnerReadyInit() {
     fopAc_ac_c* spinner = (fopAc_ac_c*)fopAcM_fastCreate(
-        PROC_SPINNER, daSpinner_c::getWaitArg(), &current.pos, fopAcM_GetRoomNo(this),
+        fpcNm_SPINNER_e, daSpinner_c::getWaitArg(), &current.pos, fopAcM_GetRoomNo(this),
         &shape_angle, NULL, -1, NULL, NULL);
 
     if (spinner == NULL) {

@@ -550,18 +550,18 @@ void daNpc_Len_c::srchActors() {
         break;
     case TYPE_4:
         if (mActorMngr[0].getActorP() == NULL) {
-            mActorMngr[0].entry(getNearestActorP(PROC_NPC_KOLINB));
+            mActorMngr[0].entry(getNearestActorP(fpcNm_NPC_KOLINB_e));
         }
         break;
     case TYPE_8:
         if (mActorMngr[1].getActorP() == NULL) {
-            mActorMngr[1].entry(getNearestActorP(PROC_NPC_YELIA));
+            mActorMngr[1].entry(getNearestActorP(fpcNm_NPC_YELIA_e));
         }
         if (mActorMngr[2].getActorP() == NULL) {
-            mActorMngr[2].entry(getNearestActorP(PROC_NPC_GRD));
+            mActorMngr[2].entry(getNearestActorP(fpcNm_NPC_GRD_e));
         }
         if (mActorMngr[3].getActorP() == NULL) {
-            mActorMngr[3].entry(getNearestActorP(PROC_NPC_GRZ));
+            mActorMngr[3].entry(getNearestActorP(fpcNm_NPC_GRZ_e));
         }
         break;
     }
@@ -1300,13 +1300,13 @@ actor_process_profile_definition g_profile_NPC_LEN = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_NPC_LEN,
+    /* Proc Name    */ fpcNm_NPC_LEN_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daNpc_Len_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_NPC_LEN,
+    /* Draw Prio    */ fpcDwPi_NPC_LEN_e,
     /* Actor SubMtd */ &daNpc_Len_MethodTable,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e | fopAcStts_UNK_0x4_e | fopAcStts_UNK_0x2_e | fopAcStts_UNK_0x1_e,
     /* Group        */ fopAc_NPC_e,

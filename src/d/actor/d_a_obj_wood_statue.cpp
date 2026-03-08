@@ -103,7 +103,7 @@ static void lifeGetCoCallBack(fopAc_ac_c* i_this, dCcD_GObjInf* param_2, fopAc_a
 static void* s_sh_sub(void* param_1, void* param_2) {
     UNUSED(param_2);
 
-    if (fopAcM_IsActor(param_1) && fopAcM_GetName(param_1) == PROC_E_SH) {
+    if (fopAcM_IsActor(param_1) && fopAcM_GetName(param_1) == fpcNm_E_SH_e) {
         return param_1;
     }
     return NULL;
@@ -338,7 +338,7 @@ int daObjWStatue_c::actionInitBoomerangCarry() {
 }
 
 int daObjWStatue_c::actionBoomerangCarry() {
-    fopAc_ac_c* boomerang = fopAcM_SearchByName(PROC_BOOMERANG);
+    fopAc_ac_c* boomerang = fopAcM_SearchByName(fpcNm_BOOMERANG_e);
     if (boomerang != NULL) {
         current.pos = boomerang->current.pos;
     } else {
@@ -488,13 +488,13 @@ actor_process_profile_definition g_profile_Obj_WoodStatue = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_Obj_WoodStatue,
+    /* Proc Name    */ fpcNm_Obj_WoodStatue_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daObjWStatue_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_Obj_WoodStatue,
+    /* Draw Prio    */ fpcDwPi_Obj_WoodStatue_e,
     /* Actor SubMtd */ &l_daObjWStatue_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_UNK_0x4000_e | fopAcStts_CULL_e,
     /* Group        */ fopAc_ACTOR_e,

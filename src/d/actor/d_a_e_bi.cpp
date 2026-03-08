@@ -646,7 +646,7 @@ static void action(e_bi_class* i_this) {
 }
 
 static void* s_fw_sub(void* i_actor, void* i_data) {
-    if (fopAc_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_OBJ_FW) {
+    if (fopAc_IsActor(i_actor) && fopAcM_GetName(i_actor) == fpcNm_OBJ_FW_e) {
         cXyz sp28 = ((fopAc_ac_c*)i_actor)->current.pos - ((fopAc_ac_c*)i_data)->current.pos;
         if (sp28.abs() < XREG_F(18) + 500.0f) {
             return i_actor;
@@ -967,7 +967,7 @@ static cPhs_Step daE_BI_Create(fopAc_ac_c* actor) {
                 }
             }
 
-            i_this->child_no = fopAcM_createChild(PROC_E_BI_LEAF, fopAcM_GetID(actor), i_this->arg1, &actor->current.pos,
+            i_this->child_no = fopAcM_createChild(fpcNm_E_BI_LEAF_e, fopAcM_GetID(actor), i_this->arg1, &actor->current.pos,
                                                         fopAcM_GetRoomNo(actor), &actor->shape_angle, NULL, -1, NULL);
         } else {
             i_this->mode = -2;
@@ -999,13 +999,13 @@ actor_process_profile_definition g_profile_E_BI = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 9,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_E_BI,
+    /* Proc Name    */ fpcNm_E_BI_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(e_bi_class),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_E_BI,
+    /* Draw Prio    */ fpcDwPi_E_BI_e,
     /* Actor SubMtd */ &l_daE_BI_Method,
     /* Status       */ fopAcStts_UNK_0x10000000_e | fopAcStts_UNK_0x80000_e | fopAcStts_UNK_0x40000_e | fopAcStts_UNK_0x10000_e | fopAcStts_CULL_e,
     /* Group        */ fopAc_ENEMY_e,

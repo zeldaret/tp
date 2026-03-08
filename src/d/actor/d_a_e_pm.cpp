@@ -222,7 +222,7 @@ static int useHeapInit(fopAc_ac_c* i_this) {
 }
 
 static void* s_pm_sub(void* i_proc, void* i_data) {
-    if (fopAc_IsActor(i_proc) && fopAcM_GetName(i_proc) == PROC_E_PM
+    if (fopAc_IsActor(i_proc) && fopAcM_GetName(i_proc) == fpcNm_E_PM_e
                               && static_cast<daE_PM_c*>(i_proc)->SwitchChk() == 1) {
         return i_proc;
     }
@@ -504,7 +504,7 @@ void daE_PM_c::Ap_StartAction() {
         break;
 
     case Mode1:
-        if (fopAcM_SearchByName(PROC_Obj_SmWStone, (fopAc_ac_c**)&stone) && stone != NULL) {
+        if (fopAcM_SearchByName(fpcNm_Obj_SmWStone_e, (fopAc_ac_c**)&stone) && stone != NULL) {
             stone->deleteStone();
         }
 
@@ -592,7 +592,7 @@ void daE_PM_c::Ap_StartAction() {
 
 static void* s_obj_sub(void* i_proc, void* i_data) {
     for (int i = 0; i < 5; i++) {
-        if (fopAc_IsActor(i_proc) && fopAcM_GetName(i_proc) == PROC_E_PM && i_proc != NULL
+        if (fopAc_IsActor(i_proc) && fopAcM_GetName(i_proc) == fpcNm_E_PM_e && i_proc != NULL
                                   && static_cast<daE_PM_c*>(i_proc)->SwitchChk() == 0) {
             return i_proc;
         }
@@ -644,7 +644,7 @@ void daE_PM_c::Ap_CreateAction() {
             for (int i = 0; i < 2; i++) {
                 vec5.set(i * 100.0f + 500.0f, 150.0f, -(i * 100.0f));
                 cLib_offsetPos(&vec2, &current.pos, shape_angle.y, &vec5);
-                mPuppetID[i] = fopAcM_createChild(PROC_E_FS, fopAcM_GetID(this), 0, &vec2,
+                mPuppetID[i] = fopAcM_createChild(fpcNm_E_FS_e, fopAcM_GetID(this), 0, &vec2,
                                                   fopAcM_GetRoomNo(this), &shape_angle,
                                                   NULL, -1, NULL);
             }
@@ -674,7 +674,7 @@ void daE_PM_c::Ap_CreateAction() {
             for (int i = 2; i < 4; i++) {
                 vec5.set(-500.0f - (i - 2) * 100.0f, 150.0f, -((i - 2) * 100.0f));
                 cLib_offsetPos(&vec2, &current.pos, shape_angle.y, &vec5);
-                mPuppetID[i] = fopAcM_createChild(PROC_E_FS, fopAcM_GetID(this), 0, &vec2,
+                mPuppetID[i] = fopAcM_createChild(fpcNm_E_FS_e, fopAcM_GetID(this), 0, &vec2,
                                                   fopAcM_GetRoomNo(this), &shape_angle,
                                                   NULL, -1, NULL);
             }
@@ -1699,7 +1699,7 @@ static void* s_boss_sub(void* i_actor, void* param_1) {
     fopAc_ac_c* actor = static_cast<fopAc_ac_c*>(i_actor);
     cXyz& actor_pos = fopAcM_GetPosition(actor);
     cXyz& player_pos = fopAcM_GetPosition(player);
-    if (fopAc_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_Obj_SM_DOOR) {
+    if (fopAc_IsActor(i_actor) && fopAcM_GetName(i_actor) == fpcNm_Obj_SM_DOOR_e) {
         u8 prm = (fopAcM_GetParam(actor) & 0xF0) >> 4;
         if (player_pos.absXZ(actor_pos) < 16000.0f && prm == 1) {
             return i_actor;
@@ -2276,7 +2276,7 @@ void daE_PM_c::GakkiLoopAction(cXyz param_0, f32 param_1) {
                 s16 angle = shape_angle.y + step * i;
                 cLib_offsetPos(&vec1, &param_0, angle, &vec2);
                 if (!way_bg_check2(this, vec3, vec1) || mStage == 4) {
-                    mPuppetID[i] = fopAcM_createChild(PROC_E_FS, fopAcM_GetID(this), 0xFFFFFFF,
+                    mPuppetID[i] = fopAcM_createChild(fpcNm_E_FS_e, fopAcM_GetID(this), 0xFFFFFFF,
                                                       &vec1, fopAcM_GetRoomNo(this), &shape_angle,
                                                       NULL, -1, NULL);
                 }
@@ -2716,7 +2716,7 @@ void daE_PM_c::SkipChk() {
                 mDoMtx_stack_c::transS(current.pos);
                 mDoMtx_stack_c::YrotM(shape_angle.y);
                 mDoMtx_stack_c::multVec(&vec1, &vec1);
-                mPuppetID[i] = fopAcM_createChild(PROC_E_FS, fopAcM_GetID(this), 0, &vec1,
+                mPuppetID[i] = fopAcM_createChild(fpcNm_E_FS_e, fopAcM_GetID(this), 0, &vec1,
                                                   fopAcM_GetRoomNo(this), &shape_angle,
                                                   NULL, -1, NULL);
             }
@@ -2728,7 +2728,7 @@ void daE_PM_c::SkipChk() {
                 mDoMtx_stack_c::transS(current.pos);
                 mDoMtx_stack_c::YrotM(shape_angle.y);
                 mDoMtx_stack_c::multVec(&vec1, &vec1);
-                mPuppetID[i] = fopAcM_createChild(PROC_E_FS, fopAcM_GetID(this), 0, &vec1,
+                mPuppetID[i] = fopAcM_createChild(fpcNm_E_FS_e, fopAcM_GetID(this), 0, &vec1,
                                                   fopAcM_GetRoomNo(this), &shape_angle,
                                                   NULL, -1, NULL);
             }
@@ -2873,13 +2873,13 @@ actor_process_profile_definition g_profile_E_PM = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_E_PM,
+    /* Proc Name    */ fpcNm_E_PM_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daE_PM_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_E_PM,
+    /* Draw Prio    */ fpcDwPi_E_PM_e,
     /* Actor SubMtd */ &l_daE_PM_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e,
     /* Group        */ fopAc_ENEMY_e,

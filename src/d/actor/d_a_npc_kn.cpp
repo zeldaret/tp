@@ -869,7 +869,7 @@ void daNpc_Kn_c::reset() {
     if (mType <= 6 && (mDivideNo == 0 || mDivideNo > 2)) {
         field_0xe2c = 1;
         parentActorID =
-            fopAcM_createChild(PROC_NPC_GWOLF, fopAcM_GetID(this), 0xFFFFFF02, &current.pos,
+            fopAcM_createChild(fpcNm_NPC_GWOLF_e, fopAcM_GetID(this), 0xFFFFFF02, &current.pos,
                                fopAcM_GetRoomNo(this), &current.angle, 0, -1, 0);
     }
 
@@ -2361,7 +2361,7 @@ int daNpc_Kn_c::teach05_surpriseAttackWait(void* param_0) {
 }
 
 static void* s_sub6(void* i_actor, void* i_other) {
-    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_NPC_KN && i_actor != i_other) {
+    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == fpcNm_NPC_KN_e && i_actor != i_other) {
         ((daNpc_Kn_c*)i_actor)->setActionMode(18);
     }
 
@@ -2369,7 +2369,7 @@ static void* s_sub6(void* i_actor, void* i_other) {
 }
 
 static void* s_subEnd6(void* i_actor, void* i_other) {
-    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_NPC_KN && i_actor != i_other &&
+    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == fpcNm_NPC_KN_e && i_actor != i_other &&
         ((daNpc_Kn_c*)i_actor)->getActionMode() != 17)
     {
         ((daNpc_Kn_c*)i_actor)->setActionMode(17);
@@ -2771,7 +2771,7 @@ int daNpc_Kn_c::teach06_warpDelete(void* param_0) {
 }
 
 static void* s_sub7(void* i_actor, void* i_other) {
-    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_NPC_KN && i_actor != i_other) {
+    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == fpcNm_NPC_KN_e && i_actor != i_other) {
         ((daNpc_Kn_c*)i_actor)->setActionMode(24);
     }
 
@@ -2779,7 +2779,7 @@ static void* s_sub7(void* i_actor, void* i_other) {
 }
 
 static void* s_subEnd7(void* i_actor, void* i_other) {
-    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_NPC_KN && i_actor != i_other &&
+    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == fpcNm_NPC_KN_e && i_actor != i_other &&
         ((daNpc_Kn_c*)i_actor)->getActionMode() != 23)
     {
         ((daNpc_Kn_c*)i_actor)->setActionMode(23);
@@ -3137,7 +3137,7 @@ int daNpc_Kn_c::ECut_secondEncount(int i_idx) {
             break;
         case 2: {
             gwolf_p = (daNpc_GWolf_c*)fpcM_SearchByID(parentActorID);
-            if (fopAcM_GetName(gwolf_p) == PROC_NPC_GWOLF) {
+            if (fopAcM_GetName(gwolf_p) == fpcNm_NPC_GWOLF_e) {
                 gwolf_p->setMotion(4, -1.0f, FALSE);
             }
             break;
@@ -4444,7 +4444,7 @@ int daNpc_Kn_c::ECut_sixthSkillExplain(int i_idx) {
         if (mMotionSeqMngr.getNo() == 0x18 && mMotionSeqMngr.getStepNo() > 0) {
             rt = 1;
             for (int i = 0; i < 2; i++) {
-                fopAcM_createChild(PROC_NPC_KN, fopAcM_GetID(this), ((i + 1) << 8) + 6, &current.pos, fopAcM_GetRoomNo(this), &current.angle, NULL, -1, NULL);
+                fopAcM_createChild(fpcNm_NPC_KN_e, fopAcM_GetID(this), ((i + 1) << 8) + 6, &current.pos, fopAcM_GetRoomNo(this), &current.angle, NULL, -1, NULL);
             }
         }
         break;
@@ -4776,7 +4776,7 @@ int daNpc_Kn_c::ECut_seventhSkillExplain(int i_idx) {
         if (mMotionSeqMngr.getNo() == 0x18 && mMotionSeqMngr.getStepNo() > 0) {
             rt = 1;
             for (int i = 0; i < 2; i++) {
-                fopAcM_createChild(PROC_NPC_KN, fopAcM_GetID(this), ((i + 1) << 8) + 7, &current.pos, fopAcM_GetRoomNo(this), &current.angle, NULL, -1, NULL);
+                fopAcM_createChild(fpcNm_NPC_KN_e, fopAcM_GetID(this), ((i + 1) << 8) + 7, &current.pos, fopAcM_GetRoomNo(this), &current.angle, NULL, -1, NULL);
             }
         }
         break;
@@ -5018,7 +5018,7 @@ void daNpc_Kn_c::calcMagicBallPos() {
     fopAc_ac_c* actor;
 
     if (mType == 1 && fopAcM_SearchByID(parentActorID, &actor) && actor &&
-        fopAcM_GetName(actor) == PROC_KN_BULLET && ((daObjKnBullet_c*)actor)->getActionMode() == 0)
+        fopAcM_GetName(actor) == fpcNm_KN_BULLET_e && ((daObjKnBullet_c*)actor)->getActionMode() == 0)
     {
         cXyz pos(150.0f, 0.0f, 0.0f);
         mDoMtx_stack_c::copy(mpModelMorf[0]->getModel()->getAnmMtx(13));
@@ -5268,13 +5268,13 @@ actor_process_profile_definition g_profile_NPC_KN = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_NPC_KN,
+    /* Proc Name    */ fpcNm_NPC_KN_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daNpc_Kn_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_NPC_KN,
+    /* Draw Prio    */ fpcDwPi_NPC_KN_e,
     /* Actor SubMtd */ &daNpc_Kn_MethodTable,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_UNK_0x4000_e | fopAcStts_CULL_e | fopAcStts_UNK_0x4_e | fopAcStts_UNK_0x2_e | fopAcStts_UNK_0x1_e,
     /* Group        */ fopAc_ENEMY_e,

@@ -353,7 +353,7 @@ void daE_GI_c::setDamageEffect() {
 }
 
 static void* s_other_gi(void* i_actor, void* i_other) {
-    if (i_actor != i_other && fopAcM_IsActor(i_actor) && !fpcM_IsCreating(fopAcM_GetID(i_actor)) && fopAcM_GetName(i_actor) == PROC_E_GI &&
+    if (i_actor != i_other && fopAcM_IsActor(i_actor) && !fpcM_IsCreating(fopAcM_GetID(i_actor)) && fopAcM_GetName(i_actor) == fpcNm_E_GI_e &&
         fopAcM_searchActorDistance((fopAc_ac_c*)i_actor, (fopAc_ac_c*)i_other) < 1000.0f)
     {
         return i_actor;
@@ -363,7 +363,7 @@ static void* s_other_gi(void* i_actor, void* i_other) {
 }
 
 static void* s_battle_gi(void* i_actor, void* i_other) {
-    if (i_actor != i_other && fopAcM_IsActor(i_actor) && !fpcM_IsCreating(fopAcM_GetID(i_actor)) && fopAcM_GetName(i_actor) == PROC_E_GI &&
+    if (i_actor != i_other && fopAcM_IsActor(i_actor) && !fpcM_IsCreating(fopAcM_GetID(i_actor)) && fopAcM_GetName(i_actor) == fpcNm_E_GI_e &&
         ((daE_GI_c*)i_actor)->isBattleOn() && fopAcM_searchActorDistance((fopAc_ac_c*)i_actor, (fopAc_ac_c*)i_other) < 500.0f)
     {
         return i_actor;
@@ -1115,13 +1115,13 @@ actor_process_profile_definition g_profile_E_GI = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_E_GI,
+    /* Proc Name    */ fpcNm_E_GI_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daE_GI_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_E_GI,
+    /* Draw Prio    */ fpcDwPi_E_GI_e,
     /* Actor SubMtd */ &l_daE_GI_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e,
     /* Group        */ fopAc_ENEMY_e,

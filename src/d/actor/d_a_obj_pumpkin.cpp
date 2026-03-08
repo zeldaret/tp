@@ -347,7 +347,7 @@ int daObj_Pumpkin_c::Execute() {
             }
         } else if (field_0xBAD && cM3d_IsZero(speedF) == 0 && mCyl0.ChkCoHit()) {
             fopAc_ac_c* actor_p = dCc_GetAc(mCyl0.GetCoHitObj()->GetAc());
-            if (fopAcM_GetName(actor_p) != PROC_ALINK) {
+            if (fopAcM_GetName(actor_p) != fpcNm_ALINK_e) {
                 sp_0x28 = 1;
             }
         }
@@ -841,7 +841,7 @@ void daObj_Pumpkin_c::setHamonPrtcl() {
 void daObj_Pumpkin_c::crash() {
     fopAc_ac_c* actor_p = NULL;
     s32 reg_r30 = 0;
-    reg_r30 = fopAcM_SearchByName(PROC_NPC_JAGAR, &actor_p);
+    reg_r30 = fopAcM_SearchByName(fpcNm_NPC_JAGAR_e, &actor_p);
     if (reg_r30 && actor_p != NULL) {
         ((daNpc_Jagar_c*)actor_p)->crashPumpkin(this);
     }
@@ -894,13 +894,13 @@ actor_process_profile_definition g_profile_OBJ_PUMPKIN = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 8,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_OBJ_PUMPKIN,
+    /* Proc Name    */ fpcNm_OBJ_PUMPKIN_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daObj_Pumpkin_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_OBJ_PUMPKIN,
+    /* Draw Prio    */ fpcDwPi_OBJ_PUMPKIN_e,
     /* Actor SubMtd */ &daObj_Pumpkin_MethodTable,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_UNK_0x4000_e | fopAcStts_CULL_e,
     /* Group        */ fopAc_ACTOR_e,

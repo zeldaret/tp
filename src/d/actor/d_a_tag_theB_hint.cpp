@@ -21,7 +21,7 @@ int daTagTheBHint_c::execute() {
     }
 
     if (fopAcM_searchPlayerDistanceXZ2(this) < field_0x568) {
-        daNpcTheB_c* the_b = (daNpcTheB_c*)fpcM_SearchByName(PROC_NPC_THEB);
+        daNpcTheB_c* the_b = (daNpcTheB_c*)fpcM_SearchByName(fpcNm_NPC_THEB_e);
         if (the_b) {
             int roomNo = getRoomNo() == 0xff ? fopAcM_GetRoomNo(this) : getRoomNo();
 
@@ -58,13 +58,13 @@ actor_process_profile_definition g_profile_Tag_TheBHint = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_Tag_TheBHint,
+    /* Proc Name    */ fpcNm_Tag_TheBHint_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daTagTheBHint_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_Tag_TheBHint,
+    /* Draw Prio    */ fpcDwPi_Tag_TheBHint_e,
     /* Actor SubMtd */ &l_daTagTheBHint_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e,
     /* Group        */ fopAc_ACTOR_e,

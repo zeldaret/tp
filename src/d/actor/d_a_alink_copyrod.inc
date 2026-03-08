@@ -347,8 +347,8 @@ int daAlink_c::procCopyRodSwingInit() {
     daCstatue_c* statue = (daCstatue_c*)getCopyRodControllActor();
 
     if (statue != NULL &&
-        ((fopAcM_GetName(statue) == PROC_CSTATUE && statue->checkNotSmallType()) ||
-         fopAcM_GetName(statue) != PROC_CSTATUE))
+        ((fopAcM_GetName(statue) == fpcNm_CSTATUE_e && statue->checkNotSmallType()) ||
+         fopAcM_GetName(statue) != fpcNm_CSTATUE_e))
     {
         setSingleAnimeParam(ANM_COPYROD_SWING_LARGE, &mpHIO->mItem.mCopyRod.m.mBigSwingAnm);
         field_0x3478 = 13.0f;

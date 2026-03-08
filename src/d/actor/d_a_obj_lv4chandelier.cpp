@@ -247,7 +247,7 @@ int daObjLv4Chan_c::CreateHeap() {
 
 static void* searchSwChain(void* i_actor, void* i_this) {
     if (i_actor != NULL && fopAcM_IsActor(i_actor) &&
-        fopAcM_GetProfName(i_actor) == PROC_Obj_SwChain)
+        fopAcM_GetProfName(i_actor) == fpcNm_Obj_SwChain_e)
     {
         if (((daObjSwChain_c*)i_actor)->getChainID() == ((daObjLv4Chan_c*)i_this)->getArg0()) {
             return i_actor;
@@ -877,13 +877,13 @@ actor_process_profile_definition g_profile_Obj_Lv4Chan = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 3,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_Obj_Lv4Chan,
+    /* Proc Name    */ fpcNm_Obj_Lv4Chan_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daObjLv4Chan_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_Obj_Lv4Chan,
+    /* Draw Prio    */ fpcDwPi_Obj_Lv4Chan_e,
     /* Actor SubMtd */ &daObjLv4Chan_METHODS,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e,
     /* Group        */ fopAc_ACTOR_e,

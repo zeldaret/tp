@@ -595,7 +595,7 @@ static void core_hand_move(b_ob_class* i_this) {
 static int bf_ct;
 
 static void* s_bf_sub(void* i_this, void* i_data) {
-    if (fopAcM_IsActor(i_this) && fopAcM_GetName(i_this) == PROC_E_OctBg) {
+    if (fopAcM_IsActor(i_this) && fopAcM_GetName(i_this) == fpcNm_E_OctBg_e) {
         bf_ct++;
     }
 
@@ -603,7 +603,7 @@ static void* s_bf_sub(void* i_this, void* i_data) {
 }
 
 static void* s_bfdel_sub(void* i_this, void* i_data) {
-    if (fopAcM_IsActor(i_this) && fopAcM_GetName(i_this) == PROC_E_OctBg) {
+    if (fopAcM_IsActor(i_this) && fopAcM_GetName(i_this) == fpcNm_E_OctBg_e) {
         fopAcM_delete((fopAc_ac_c*)i_this);
     }
 
@@ -611,7 +611,7 @@ static void* s_bfdel_sub(void* i_this, void* i_data) {
 }
 
 static void* s_kaisoudel_sub(void* i_this, void* i_data) {
-    if (fopAcM_IsActor(i_this) && fopAcM_GetName(i_this) == PROC_Obj_Kaisou) {
+    if (fopAcM_IsActor(i_this) && fopAcM_GetName(i_this) == fpcNm_Obj_Kaisou_e) {
         fopAcM_delete((fopAc_ac_c*)i_this);
     }
 
@@ -647,7 +647,7 @@ static void bombfishset(b_ob_class* i_this) {
                 csXyz angle(-0x3800, 0, 0);
                 angle.y = cM_rndF(0x10000);
 
-                fopAcM_createChild(PROC_E_OctBg, fopAcM_GetID(a_this), 0xFFFFFFFF, &pos,
+                fopAcM_createChild(fpcNm_E_OctBg_e, fopAcM_GetID(a_this), 0xFFFFFFFF, &pos,
                                    fopAcM_GetRoomNo(a_this), &angle, NULL, -1, NULL);
                 i_this->mOISound.startCreatureVoice(Z2SE_EN_OI_BG_APPEAR, -1);
             }
@@ -862,7 +862,7 @@ static void core_end(b_ob_class* i_this) {
 
             for (int i = 0; i < 8; i++) {
                 i_this->mTentacleActorIDs[i] =
-                    fopAcM_createChild(PROC_B_OH2, fopAcM_GetID(a_this), i, &a_this->current.pos,
+                    fopAcM_createChild(fpcNm_B_OH2_e, fopAcM_GetID(a_this), i, &a_this->current.pos,
                                        fopAcM_GetRoomNo(a_this), NULL, NULL, -1, NULL);
             }
         }
@@ -1493,7 +1493,7 @@ static int fish_end(b_ob_class* i_this) {
             i_this->mDemoActionTimer = 1;
 
             obj_lv3WaterB_class* water =
-                (obj_lv3WaterB_class*)fopAcM_SearchByName(PROC_OBJ_LV3WATERB);
+                (obj_lv3WaterB_class*)fopAcM_SearchByName(fpcNm_OBJ_LV3WATERB_e);
             water->mAction = LV3WATERB_ACT_REMOVE;
             a_this->home.pos.set(0.0f, -23580.0f, 10300.0f);
 
@@ -1986,7 +1986,7 @@ static void cam_3d_morf(b_ob_class* i_this, f32 i_scale) {
 }
 
 static void* s_hasidel_sub(void* i_this, void* i_data) {
-    if (fopAcM_IsActor(i_this) && fopAcM_GetName(i_this) == PROC_OCTHASHI) {
+    if (fopAcM_IsActor(i_this) && fopAcM_GetName(i_this) == fpcNm_OCTHASHI_e) {
         fopAcM_delete((fopAc_ac_c*)i_this);
     }
 
@@ -2602,7 +2602,7 @@ static void demo_camera(b_ob_class* i_this) {
         i_this->mDemoActionTimer = 0;
         i_this->field_0x5dd8 = 4;
 
-        obj_lv3WaterB_class* water = (obj_lv3WaterB_class*)fopAcM_SearchByName(PROC_OBJ_LV3WATERB);
+        obj_lv3WaterB_class* water = (obj_lv3WaterB_class*)fopAcM_SearchByName(fpcNm_OBJ_LV3WATERB_e);
         water->mAction = LV3WATERB_ACT_END;
         water->field_0x586 = 0;
         var_r27 = 2;
@@ -2749,11 +2749,11 @@ static void demo_camera(b_ob_class* i_this) {
 
             sp64 += player->current.pos;
             OS_REPORT("///YSTONE POS  %d,%d,%d\n", sp64.x, sp64.y, sp64.z);
-            fopAcM_create(PROC_OBJ_YSTONE, 0, &sp64, fopAcM_GetRoomNo(a_this), NULL, NULL, -1);
+            fopAcM_create(fpcNm_OBJ_YSTONE_e, 0, &sp64, fopAcM_GetRoomNo(a_this), NULL, NULL, -1);
         }
 
         if (i_this->mDemoActionTimer == 120) {
-            obj_ystone_class* ystone = (obj_ystone_class*)fopAcM_SearchByName(PROC_OBJ_YSTONE);
+            obj_ystone_class* ystone = (obj_ystone_class*)fopAcM_SearchByName(fpcNm_OBJ_YSTONE_e);
             if (ystone != NULL) {
                 ystone->field_0x59b = 0;
             }
@@ -2782,7 +2782,7 @@ static void demo_camera(b_ob_class* i_this) {
 
             cLib_addCalc2(&i_this->field_0x5cd8, 210.0f, 0.05f, 0.5f);
 
-            obj_ystone_class* ystone = (obj_ystone_class*)fopAcM_SearchByName(PROC_OBJ_YSTONE);
+            obj_ystone_class* ystone = (obj_ystone_class*)fopAcM_SearchByName(fpcNm_OBJ_YSTONE_e);
             if (ystone != NULL) {
                 ystone->setCurrentPos(sp64);
             }
@@ -3610,7 +3610,7 @@ static int daB_OB_Create(fopAc_ac_c* i_this) {
 
         for (int i = 0; i < 8; i++) {
             a_this->mTentacleActorIDs[i] =
-                fopAcM_createChild(PROC_B_OH, fopAcM_GetID(i_this), i, &i_this->current.pos,
+                fopAcM_createChild(fpcNm_B_OH_e, fopAcM_GetID(i_this), i, &i_this->current.pos,
                                    fopAcM_GetRoomNo(i_this), NULL, NULL, -1, NULL);
         }
 
@@ -3652,13 +3652,13 @@ actor_process_profile_definition g_profile_B_OB = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 4,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_B_OB,
+    /* Proc Name    */ fpcNm_B_OB_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(b_ob_class),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_B_OB,
+    /* Draw Prio    */ fpcDwPi_B_OB_e,
     /* Actor SubMtd */ &l_daB_OB_Method,
     /* Status       */ fopAcStts_UNK_0x80000_e | fopAcStts_UNK_0x40000_e | fopAcStts_UNK_0x4000_e,
     /* Group        */ fopAc_ENEMY_e,

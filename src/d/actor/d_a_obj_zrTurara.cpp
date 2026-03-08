@@ -193,7 +193,7 @@ void daZrTurara_c::modeBreak() {
         pos.y -= 200.0f;
         pos.x += l_HIO.mDebrisRange * cM_rndFX(1.0f);
         pos.y += l_HIO.mDebrisRange * cM_rndFX(1.0f);
-        fopAcM_create(PROC_Obj_zrTuraraRc, getScale(), &pos,
+        fopAcM_create(fpcNm_Obj_zrTuraraRc_e, getScale(), &pos,
                       fopAcM_GetRoomNo(this), NULL, NULL, 0xff);
         mDebrisCount++;
         mBreakTimer = cM_rndF(1.0f) * 20.0f;
@@ -264,13 +264,13 @@ actor_process_profile_definition g_profile_Obj_zrTurara = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 3,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_Obj_zrTurara,
+    /* Proc Name    */ fpcNm_Obj_zrTurara_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daZrTurara_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_Obj_zrTurara,
+    /* Draw Prio    */ fpcDwPi_Obj_zrTurara_e,
     /* Actor SubMtd */ &l_daZrTurara_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e,
     /* Group        */ fopAc_ACTOR_e,

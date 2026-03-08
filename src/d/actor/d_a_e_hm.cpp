@@ -497,7 +497,7 @@ void daE_HM_c::CreateExecute() {
         field_0x5b8 = 300;
     }
     if (field_0x5c4 == fpcM_ERROR_PROCESS_ID_e && field_0x5b8 == 0) {
-        field_0x5c4 = fopAcM_createChild(PROC_E_HM, fopAcM_GetID(this), 0xfffff05, &current.pos,
+        field_0x5c4 = fopAcM_createChild(fpcNm_E_HM_e, fopAcM_GetID(this), 0xfffff05, &current.pos,
                                          fopAcM_GetRoomNo(this), &shape_angle, NULL, -1, NULL);
     }
 }
@@ -1606,13 +1606,13 @@ actor_process_profile_definition g_profile_E_HM = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_E_HM,
+    /* Proc Name    */ fpcNm_E_HM_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daE_HM_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_E_HM,
+    /* Draw Prio    */ fpcDwPi_E_HM_e,
     /* Actor SubMtd */ &l_daE_HM_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e,
     /* Group        */ fopAc_ENEMY_e,

@@ -118,7 +118,7 @@ static s16 GetActorName(cBgS_PolyInfo& param_0) {
         }
     }
 
-    return PROC_Obj_SwChain;
+    return fpcNm_Obj_SwChain_e;
 }
 
 static char* l_arcName = "P_Chain";
@@ -494,7 +494,7 @@ void daObjSwChain_c::chain_control() {
         pos.y += 100.0f;
         chains_p1->field_0x4c = 0;
 
-        if (fopAcM_gc_c::gndCheck(&pos) && GetActorName(*fopAcM_gc_c::getGroundCheck()) != PROC_Obj_Lv4DigSand) {
+        if (fopAcM_gc_c::gndCheck(&pos) && GetActorName(*fopAcM_gc_c::getGroundCheck()) != fpcNm_Obj_Lv4DigSand_e) {
             fVar1 = fopAcM_gc_c::getGroundY() + 15.0f;
             if (fVar1 > pcVar2->y) {
                 pcVar2->y = fVar1;
@@ -650,7 +650,7 @@ void daObjSwChain_c::chain_control2() {
             cXyz spc0(*pcVar2);
             spc0.y += 100.0f;
 
-            if (fopAcM_gc_c::gndCheck(&spc0) && GetActorName(*fopAcM_gc_c::getGroundCheck()) != PROC_Obj_Lv4DigSand) {
+            if (fopAcM_gc_c::gndCheck(&spc0) && GetActorName(*fopAcM_gc_c::getGroundCheck()) != fpcNm_Obj_Lv4DigSand_e) {
                 f32 fVar2 = fopAcM_gc_c::getGroundY() + 15.0f;
                 if (fVar2 > pcVar2->y) {
                     pcVar2->y = fVar2;
@@ -1193,13 +1193,13 @@ actor_process_profile_definition g_profile_Obj_SwChain = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_Obj_SwChain,
+    /* Proc Name    */ fpcNm_Obj_SwChain_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daObjSwChain_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_Obj_SwChain,
+    /* Draw Prio    */ fpcDwPi_Obj_SwChain_e,
     /* Actor SubMtd */ &l_daObjSwChain_Method,
     /* Status       */ fopAcStts_UNK_0x80000_e | fopAcStts_UNK_0x40000_e,
     /* Group        */ fopAc_ACTOR_e,

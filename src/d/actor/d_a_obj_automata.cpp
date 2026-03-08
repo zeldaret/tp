@@ -211,7 +211,7 @@ int daObj_AutoMata_c::createHeapCallBack(fopAc_ac_c* i_this) {
 }
 
 void* daObj_AutoMata_c::srchTHouse(fopAc_ac_c* actor, void* param_1) {
-    if (fopAcM_GetName(actor) == PROC_Obj_TobyHouse) {
+    if (fopAcM_GetName(actor) == fpcNm_Obj_TobyHouse_e) {
         if (fopAcM_IsExecuting(fopAcM_GetID(actor))) {
             return actor;
         }
@@ -342,13 +342,13 @@ actor_process_profile_definition g_profile_OBJ_AUTOMATA = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 8,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_OBJ_AUTOMATA,
+    /* Proc Name    */ fpcNm_OBJ_AUTOMATA_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daObj_AutoMata_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_OBJ_AUTOMATA,
+    /* Draw Prio    */ fpcDwPi_OBJ_AUTOMATA_e,
     /* Actor SubMtd */ &daObj_AutoMata_MethodTable,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_UNK_0x4000_e | fopAcStts_CULL_e,
     /* Group        */ fopAc_ACTOR_e,

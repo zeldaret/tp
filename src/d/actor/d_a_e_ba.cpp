@@ -67,7 +67,7 @@ static int daE_BA_Draw(e_ba_class* i_this) {
 }
 
 static void* shot_b_sub(void* i_proc, void* i_this) {
-    if (fopAcM_IsActor(i_proc) && fopAcM_GetName(i_proc) == PROC_BOOMERANG
+    if (fopAcM_IsActor(i_proc) && fopAcM_GetName(i_proc) == fpcNm_BOOMERANG_e
         && !dComIfGp_checkPlayerStatus0(0, 0x80000) && daPy_py_c::checkBoomerangCharge()
         && fopAcM_GetParam(i_proc) == 1)
     {
@@ -1032,7 +1032,7 @@ static cPhs_Step daE_BA_Create(fopAc_ac_c* i_this) {
         }
 
         _this->mFightFlyDistance = (f32)_this->mDistanceParam * 100.0f;
-        if (fopAcM_SearchByName(PROC_E_PZ) != NULL) {
+        if (fopAcM_SearchByName(fpcNm_E_PZ_e) != NULL) {
             _this->mFightFlyDistance = 100000.0f;
         }
 
@@ -1108,13 +1108,13 @@ actor_process_profile_definition g_profile_E_BA = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_E_BA,
+    /* Proc Name    */ fpcNm_E_BA_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(e_ba_class),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_E_BA,
+    /* Draw Prio    */ fpcDwPi_E_BA_e,
     /* Actor SubMtd */ &l_daE_BA_Method,
     /* Status       */ fopAcStts_UNK_0x10000000_e | fopAcStts_UNK_0x40000_e | fopAcStts_UNK_0x10000_e | fopAcStts_CULL_e,
     /* Group        */ fopAc_ENEMY_e,

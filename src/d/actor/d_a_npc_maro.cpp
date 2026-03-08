@@ -429,7 +429,7 @@ void* daNpc_Maro_c::srchArrow(void* arg0, void* arg1) {
     if (mFindCount < 50) {
         fopAc_ac_c* fop0 = (fopAc_ac_c*) arg0;
         if (fop0 != NULL && fop0 != fop1) {
-            if (fopAcM_IsExecuting(fopAcM_GetID(fop0)) && fopAcM_GetName(fop0) == PROC_ARROW) {
+            if (fopAcM_IsExecuting(fopAcM_GetID(fop0)) && fopAcM_GetName(fop0) == fpcNm_ARROW_e) {
                 mFindActorPtrs[mFindCount] = fop0;
                 mFindCount++;
             }
@@ -459,7 +459,7 @@ void* daNpc_Maro_c::srchItaMato(void* arg0, void* arg1) {
     if (mFindCount < 50) {
         fopAc_ac_c* fop0 = (fopAc_ac_c*) arg0;
         if (fop0 != NULL && fop0 != fop1) {
-            if (fopAcM_IsExecuting(fopAcM_GetID(fop0)) && fopAcM_GetName(fop0) == PROC_OBJ_ITAMATO) {
+            if (fopAcM_IsExecuting(fopAcM_GetID(fop0)) && fopAcM_GetName(fop0) == fpcNm_OBJ_ITAMATO_e) {
                 mFindActorPtrs[mFindCount] = fop0;
                 mFindCount++;
             }
@@ -826,37 +826,37 @@ void daNpc_Maro_c::srchActors() {
     switch (mType) {
         case TYPE_0: {
             if (mActorMngr[0].getActorP() == NULL) {
-                mActorMngr[0].entry(getNearestActorP(PROC_NPC_KAKASHI));
+                mActorMngr[0].entry(getNearestActorP(fpcNm_NPC_KAKASHI_e));
             }
 
             if (mActorMngr[1].getActorP() == NULL) {
-                mActorMngr[1].entry(getNearestActorP(PROC_NPC_TARO));
+                mActorMngr[1].entry(getNearestActorP(fpcNm_NPC_TARO_e));
             }
 
             if (mActorMngr[2].getActorP() == NULL) {
-                mActorMngr[2].entry(getNearestActorP(PROC_NPC_BESU));
+                mActorMngr[2].entry(getNearestActorP(fpcNm_NPC_BESU_e));
             }
 
             if (mActorMngr[3].getActorP() == NULL) {
-                mActorMngr[3].entry(getNearestActorP(PROC_NPC_KOLIN));
+                mActorMngr[3].entry(getNearestActorP(fpcNm_NPC_KOLIN_e));
             }
             break;
         }
 
         case TYPE_1: {
             if (mActorMngr[0].getActorP() == NULL) {
-                mActorMngr[0].entry(getNearestActorP(PROC_NPC_KAKASHI));
+                mActorMngr[0].entry(getNearestActorP(fpcNm_NPC_KAKASHI_e));
             }
 
             if (mActorMngr[1].getActorP() == NULL) {
-                mActorMngr[1].entry(getNearestActorP(PROC_NPC_TARO));
+                mActorMngr[1].entry(getNearestActorP(fpcNm_NPC_TARO_e));
             }
             break;
         }
 
         case TYPE_3: {
             if (mActorMngr[8].getActorP() == NULL) {
-                mActorMngr[8].entry(getNearestActorP(PROC_NPC_LEN));
+                mActorMngr[8].entry(getNearestActorP(fpcNm_NPC_LEN_e));
             }
 
             break;
@@ -866,7 +866,7 @@ void daNpc_Maro_c::srchActors() {
         case TYPE_7: {
             if (&daNpc_Maro_c::arrowTutorial == field_0x110c) {
                 if (mActorMngr[1].getActorP() == NULL) {
-                    mActorMngr[1].entry(getNearestActorP(PROC_NPC_TARO));
+                    mActorMngr[1].entry(getNearestActorP(fpcNm_NPC_TARO_e));
                 }
 
                 if (mActorMngr[6].getActorP() == NULL) {
@@ -883,7 +883,7 @@ void daNpc_Maro_c::srchActors() {
 
         case TYPE_10: {
             if (mActorMngr[2].getActorP() == NULL) {
-                mActorMngr[2].entry(getNearestActorP(PROC_NPC_BESU));
+                mActorMngr[2].entry(getNearestActorP(fpcNm_NPC_BESU_e));
             }
 
             break;
@@ -891,34 +891,34 @@ void daNpc_Maro_c::srchActors() {
 
         case TYPE_12: {
             if (mActorMngr[1].getActorP() == NULL) {
-                mActorMngr[1].entry(getNearestActorP(PROC_NPC_TARO));
+                mActorMngr[1].entry(getNearestActorP(fpcNm_NPC_TARO_e));
             }
 
             if (mActorMngr[3].getActorP() == NULL) {
-                mActorMngr[3].entry(getNearestActorP(PROC_NPC_KOLIN));
+                mActorMngr[3].entry(getNearestActorP(fpcNm_NPC_KOLIN_e));
             }
 
             if (mActorMngr[7].getActorP() == NULL) {
-                mActorMngr[7].entry(getNearestActorP(PROC_NPC_SARU));
+                mActorMngr[7].entry(getNearestActorP(fpcNm_NPC_SARU_e));
             }
             break;
         }
 
         case TYPE_13: {
             if (mActorMngr[0].getActorP() == NULL) {
-                mActorMngr[0].entry(getNearestActorP(PROC_NPC_KAKASHI));
+                mActorMngr[0].entry(getNearestActorP(fpcNm_NPC_KAKASHI_e));
             }
 
             if (mActorMngr[1].getActorP() == NULL) {
-                mActorMngr[1].entry(getNearestActorP(PROC_NPC_TARO));
+                mActorMngr[1].entry(getNearestActorP(fpcNm_NPC_TARO_e));
             }
 
             if (mActorMngr[2].getActorP() == NULL) {
-                mActorMngr[2].entry(getNearestActorP(PROC_NPC_BESU));
+                mActorMngr[2].entry(getNearestActorP(fpcNm_NPC_BESU_e));
             }
 
             if (mActorMngr[3].getActorP() == NULL) {
-                mActorMngr[3].entry(getNearestActorP(PROC_NPC_KOLIN));
+                mActorMngr[3].entry(getNearestActorP(fpcNm_NPC_KOLIN_e));
             }
             break;
         }
@@ -3519,13 +3519,13 @@ actor_process_profile_definition g_profile_NPC_MARO = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_NPC_MARO,
+    /* Proc Name    */ fpcNm_NPC_MARO_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daNpc_Maro_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_NPC_MARO,
+    /* Draw Prio    */ fpcDwPi_NPC_MARO_e,
     /* Actor SubMtd */ &daNpc_Maro_MethodTable,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e | fopAcStts_UNK_0x4_e | fopAcStts_UNK_0x2_e | fopAcStts_UNK_0x1_e,
     /* Group        */ fopAc_NPC_e,

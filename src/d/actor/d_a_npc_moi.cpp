@@ -781,7 +781,7 @@ void daNpc_Moi_c::action() {
         }
     }
 
-    if (mSph.ChkAtHit() && fopAcM_GetProfName(mSph.GetAtHitAc()) == PROC_ALINK) {
+    if (mSph.ChkAtHit() && fopAcM_GetProfName(mSph.GetAtHitAc()) == fpcNm_ALINK_e) {
         /* dSv_event_tmp_flag_c::T_0047 - Ordon Village - Right after wrestling with Bo
                                           (Used to connect with conversation after wearing clothes)
          */
@@ -1146,7 +1146,7 @@ void daNpc_Moi_c::torch() {
         if (actor == NULL && field_0x166f == 0) {
             if (field_0x15c0 == 0xFFFFFFFF) {
                 field_0x15c0 =
-                    fopAcM_createChild(PROC_EP, fopAcM_GetID(this), -247, &field_0x1628,
+                    fopAcM_createChild(fpcNm_EP_e, fopAcM_GetID(this), -247, &field_0x1628,
                                        fopAcM_GetRoomNo(this), &mCurAngle, NULL, -1, NULL);
             }
             if (fopAcM_SearchByID(field_0x15c0, &actor) && actor != NULL) {
@@ -1994,13 +1994,13 @@ actor_process_profile_definition g_profile_NPC_MOI = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_NPC_MOI,
+    /* Proc Name    */ fpcNm_NPC_MOI_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daNpc_Moi_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_NPC_MOI,
+    /* Draw Prio    */ fpcDwPi_NPC_MOI_e,
     /* Actor SubMtd */ &daNpc_Moi_MethodTable,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e | fopAcStts_UNK_0x4_e | fopAcStts_UNK_0x2_e | fopAcStts_UNK_0x1_e,
     /* Group        */ fopAc_NPC_e,

@@ -325,7 +325,7 @@ static int daNpc_Inko_Execute(npc_inko_class* i_this) {
     if (daPy_getPlayerActorClass()->checkFrontRollCrash() && temp_f1 < 200.0f) {
         i_this->field_0x59c[2] = 0;
         
-        npc_henna_class* henna = (npc_henna_class*)fopAcM_SearchByName(PROC_NPC_HENNA);
+        npc_henna_class* henna = (npc_henna_class*)fopAcM_SearchByName(fpcNm_NPC_HENNA_e);
         if (henna != NULL) {
             henna->field_0x7b5 = 40;
             data_80450C9D |= (u8)0x40;
@@ -346,7 +346,7 @@ static int daNpc_Inko_Execute(npc_inko_class* i_this) {
         int flowId;
         if (cM_rndF(1.0f) < 0.1f) {
             flowId = 0x361;
-            npc_henna_class* henna = (npc_henna_class*)fopAcM_SearchByName(PROC_NPC_HENNA);
+            npc_henna_class* henna = (npc_henna_class*)fopAcM_SearchByName(fpcNm_NPC_HENNA_e);
             if (henna != NULL) {
                 henna->field_0x7ba = 2;
             }
@@ -492,13 +492,13 @@ actor_process_profile_definition g_profile_NPC_INKO = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 8,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_NPC_INKO,
+    /* Proc Name    */ fpcNm_NPC_INKO_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(npc_inko_class),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_NPC_INKO,
+    /* Draw Prio    */ fpcDwPi_NPC_INKO_e,
     /* Actor SubMtd */ &l_daNpc_Inko_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e,
     /* Group        */ fopAc_ACTOR_e,

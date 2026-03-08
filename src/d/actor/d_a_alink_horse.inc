@@ -13,7 +13,7 @@
 static void* daAlink_searchBoar(fopAc_ac_c* i_actor, void* i_data) {
     UNUSED(i_data);
 
-    if (fopAcM_GetName(i_actor) == PROC_E_WB) {
+    if (fopAcM_GetName(i_actor) == fpcNm_E_WB_e) {
         if (((e_wb_class*)i_actor)->getModel() != NULL) {
             return i_actor;
         }
@@ -25,7 +25,7 @@ static void* daAlink_searchBoar(fopAc_ac_c* i_actor, void* i_data) {
 static fopAc_ac_c* daAlink_searchCoach(fopAc_ac_c* i_actor, void* i_data) {
     UNUSED(i_data);
 
-    if (fopAcM_GetName(i_actor) == PROC_NPC_COACH) {
+    if (fopAcM_GetName(i_actor) == fpcNm_NPC_COACH_e) {
         return i_actor;
     }
 
@@ -64,7 +64,7 @@ BOOL daAlink_c::checkCowGame() {
 int daAlink_c::getReinRideDirection() {
     s16 angle = fopAcM_searchActorAngleY(field_0x27f4, this) - field_0x27f4->shape_angle.y;
 
-    if (fopAcM_GetName(field_0x27f4) == PROC_HORSE && abs(angle) > 0x6800) {
+    if (fopAcM_GetName(field_0x27f4) == fpcNm_HORSE_e && abs(angle) > 0x6800) {
         return DIR_BACKWARD;
     } else if (angle > 0) {
         return DIR_LEFT;
@@ -99,7 +99,7 @@ int daAlink_c::checkReinRideBgCheck() {
     int direction = getReinRideDirection();
 
     const Vec* offset_p;
-    if (fopAcM_GetName(field_0x27f4) == PROC_HORSE) {
+    if (fopAcM_GetName(field_0x27f4) == fpcNm_HORSE_e) {
         if (direction == DIR_BACKWARD) {
             offset_p = &horseLocalBack;
         } else if (direction == DIR_LEFT) {
@@ -1272,7 +1272,7 @@ int daAlink_c::procHorseRideInit() {
     MtxP rideMtx;
     Vec* localRidePos_p;
     u32 mode;
-    if (fopAcM_GetName(field_0x27f4) == PROC_HORSE) {
+    if (fopAcM_GetName(field_0x27f4) == fpcNm_HORSE_e) {
         daHorse_c* horse = (daHorse_c*)field_0x27f4;
         horse->onRideStartFlg();
         rideMtx = horse->getRootMtx();

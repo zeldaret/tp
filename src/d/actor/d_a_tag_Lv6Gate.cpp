@@ -106,7 +106,7 @@ inline bool daTagLv6Gate_c::checkOpenArea() {
 
     for (int i = 0; i < 2; i++) {
         actor =
-            (i == 0) ? daPy_getPlayerActorClass() : fopAcM_SearchByName(PROC_NPC_TKS);
+            (i == 0) ? daPy_getPlayerActorClass() : fopAcM_SearchByName(fpcNm_NPC_TKS_e);
         if (actor != NULL) {
             mDoMtx_stack_c::push();
             mDoMtx_stack_c::multVec(fopAcM_GetPosition_p(actor), &pos);
@@ -172,7 +172,7 @@ inline int daTagLv6Gate_c::execute() {
 
 #if PLATFORM_GCN
                         actor2 = NULL;
-                        fopAcM_SearchByName(PROC_NPC_TKC, &actor2);
+                        fopAcM_SearchByName(fpcNm_NPC_TKC_e, &actor2);
 
                         if (actor2 == NULL) {
                             break;
@@ -295,7 +295,7 @@ void daTagLv6Gate_c::create_init() {
     if (!fopAcM_isSwitch(this, getSwitchNo1())) {
         cXyz i_pos(-13.272481f, 2887.0f, -10373.718f);
         csXyz i_angle(0, 0x7FFF, 0);
-        parentActorID = fopAcM_create(PROC_NPC_TKS, 2, &i_pos,
+        parentActorID = fopAcM_create(fpcNm_NPC_TKS_e, 2, &i_pos,
                                       fopAcM_GetRoomNo(this), &i_angle, NULL, -1);
     }
 }
@@ -382,13 +382,13 @@ actor_process_profile_definition g_profile_Tag_Lv6Gate = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_Tag_Lv6Gate,
+    /* Proc Name    */ fpcNm_Tag_Lv6Gate_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daTagLv6Gate_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_Tag_Lv6Gate,
+    /* Draw Prio    */ fpcDwPi_Tag_Lv6Gate_e,
     /* Actor SubMtd */ &l_daTagLv6Gate_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e,
     /* Group        */ fopAc_ACTOR_e,

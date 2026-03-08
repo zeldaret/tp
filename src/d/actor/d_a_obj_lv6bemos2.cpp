@@ -400,7 +400,7 @@ void daObjLv6Bm_c::action() {
     if (field_0x87c.ChkTgHit()) {
         hitObj = field_0x87c.GetTgHitObj();
         if (hitObj != NULL && hitObj->ChkAtType(AT_TYPE_CSTATUE_SWING)) {
-            if (fopAcM_GetName(field_0x87c.GetTgHitAc()) == PROC_CSTATUE) {
+            if (fopAcM_GetName(field_0x87c.GetTgHitAc()) == fpcNm_CSTATUE_e) {
                 for (int i = 0; i < 3; i++) {
                     dComIfGp_particle_set(l_particle_id[i], &current.pos, NULL, &scale, 0xFF, NULL, -1, NULL, NULL, NULL);
                 }
@@ -1179,13 +1179,13 @@ actor_process_profile_definition g_profile_Obj_Lv6bemos2 = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 3,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_Obj_Lv6bemos2,
+    /* Proc Name    */ fpcNm_Obj_Lv6bemos2_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daObjLv6Bm_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_Obj_Lv6bemos2,
+    /* Draw Prio    */ fpcDwPi_Obj_Lv6bemos2_e,
     /* Actor SubMtd */ &daObjLv6Bm_METHODS,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e,
     /* Group        */ fopAc_ACTOR_e,

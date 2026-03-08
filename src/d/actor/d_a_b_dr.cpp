@@ -842,7 +842,7 @@ void daB_DR_c::chkPartCreate(bool param_0) {
 
             prm |= (BREAK_PARTS_DT[part_no].prm << 8);
             size.x = size.y = size.z = BREAK_PARTS_DT[part_no].size;
-            fopAcM_create(PROC_B_DR, prm, &pos, fopAcM_GetRoomNo(this), &rot, &size, -1);
+            fopAcM_create(fpcNm_B_DR_e, prm, &pos, fopAcM_GetRoomNo(this), &rot, &size, -1);
 
             field_0x7e0++;
             part_no++;
@@ -1624,7 +1624,7 @@ void daB_DR_c::executeTailHit() {
         mMoveMode++;
     case 15:
         ato = current.pos + mBoot_c_trance;
-        parentActorID = fopAcM_createChild(PROC_B_DRE, fopAcM_GetID(this), 1, &ato, fopAcM_GetRoomNo(this), &shape_angle, NULL, -1, NULL);
+        parentActorID = fopAcM_createChild(fpcNm_B_DRE_e, fopAcM_GetID(this), 1, &ato, fopAcM_GetRoomNo(this), &shape_angle, NULL, -1, NULL);
 
         Z2GetAudioMgr()->subBgmStart(Z2BGM_DRAGON_D02);
         dComIfGs_onZoneSwitch(23, fopAcM_GetRoomNo(this));
@@ -1836,7 +1836,7 @@ void daB_DR_c::executeWeekHit() {
                 sp44.z = 0.0f;
                 sp44.x = 0.0f;
 
-                parentActorID = fopAcM_createChild(PROC_B_DRE, fopAcM_GetID(this), 0, &sp44, fopAcM_GetRoomNo(this), &shape_angle, NULL, -1, NULL);
+                parentActorID = fopAcM_createChild(fpcNm_B_DRE_e, fopAcM_GetID(this), 0, &sp44, fopAcM_GetRoomNo(this), &shape_angle, NULL, -1, NULL);
                 mTimer[0] = BREG_S(3) + 20;
                 mMoveMode = 1000;
                 return;
@@ -2008,7 +2008,7 @@ void daB_DR_c::mBreathSet() {
 
         sp1C.x = NREG_S(8) - 1000;
         mTimer[1] = 3;
-        fopAcM_createChild(PROC_B_DR, fopAcM_GetID(this), 10, &field_0x760, fopAcM_GetRoomNo(this), &sp1C, NULL, -1, NULL);
+        fopAcM_createChild(fpcNm_B_DR_e, fopAcM_GetID(this), 10, &field_0x760, fopAcM_GetRoomNo(this), &sp1C, NULL, -1, NULL);
     }
 }
 
@@ -4248,10 +4248,10 @@ int daB_DR_c::create() {
                     mTimer[0] = 2;
 
                     if (BREG_S(5) == 0) {
-                        parentActorID = fopAcM_createChild(PROC_L7ODR, fopAcM_GetID(this), 0, &current.pos, fopAcM_GetRoomNo(this), &shape_angle, NULL, -1, NULL);
+                        parentActorID = fopAcM_createChild(fpcNm_L7ODR_e, fopAcM_GetID(this), 0, &current.pos, fopAcM_GetRoomNo(this), &shape_angle, NULL, -1, NULL);
                         mStatusONOFF(0);
                     } else if (BREG_S(0) != 0) {
-                        parentActorID = fopAcM_createChild(PROC_B_DRE, fopAcM_GetID(this), 0, &current.pos, fopAcM_GetRoomNo(this), &shape_angle, NULL, -1, NULL);
+                        parentActorID = fopAcM_createChild(fpcNm_B_DRE_e, fopAcM_GetID(this), 0, &current.pos, fopAcM_GetRoomNo(this), &shape_angle, NULL, -1, NULL);
                     }
     
                     dScnKy_env_light_c* kankyo = dKy_getEnvlight();
@@ -4297,13 +4297,13 @@ actor_process_profile_definition g_profile_B_DR = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 4,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_B_DR,
+    /* Proc Name    */ fpcNm_B_DR_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daB_DR_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_B_DR,
+    /* Draw Prio    */ fpcDwPi_B_DR_e,
     /* Actor SubMtd */ &l_daB_DR_Method,
     /* Status       */ fopAcStts_BOSS_e | fopAcStts_UNK_0x40000_e,
     /* Group        */ fopAc_ENEMY_e,

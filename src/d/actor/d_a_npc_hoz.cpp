@@ -446,7 +446,7 @@ int daNpc_Hoz_c::ctrlJointCallBack(J3DJoint* i_joint, int param_1) {
 }
 
 static void* s_sub(void* i_actor, void* i_data) {
-    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_START_AND_GOAL) {
+    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == fpcNm_START_AND_GOAL_e) {
         return i_actor;
     }
 
@@ -454,7 +454,7 @@ static void* s_sub(void* i_actor, void* i_data) {
 }
 
 static void* s_subCanoe(void* i_actor, void* i_data) {
-    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_CANOE) {
+    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == fpcNm_CANOE_e) {
         return i_actor;
     }
 
@@ -524,7 +524,7 @@ void daNpc_Hoz_c::reset() {
 }
 
 static void* s_subBomb(void* i_actor, void* i_data) {
-    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_ARROW && ((daArrow_c*)i_actor)->checkBombArrow()) {
+    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == fpcNm_ARROW_e && ((daArrow_c*)i_actor)->checkBombArrow()) {
         return i_actor;
     }
 
@@ -1698,13 +1698,13 @@ actor_process_profile_definition g_profile_NPC_HOZ = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_NPC_HOZ,
+    /* Proc Name    */ fpcNm_NPC_HOZ_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daNpc_Hoz_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_NPC_HOZ,
+    /* Draw Prio    */ fpcDwPi_NPC_HOZ_e,
     /* Actor SubMtd */ &daNpc_Hoz_MethodTable,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_UNK_0x4000_e | fopAcStts_CULL_e | fopAcStts_UNK_0x8_e,
     /* Group        */ fopAc_NPC_e,

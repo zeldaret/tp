@@ -592,7 +592,7 @@ BOOL daNpc_grA_c::setHomeJump() {
 
 static void* s_sub(void* i_actor, void* i_this) {
     // a bit ugly, but the debug version can't have any local variables
-    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_TAG_GRA) {
+    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == fpcNm_TAG_GRA_e) {
         if (((daNpc_grA_c*)i_this)->checkTagGraSub((fopAc_ac_c*)i_actor)) {
             return i_actor;
         }
@@ -613,7 +613,7 @@ bool daNpc_grA_c::checkTagGraSub(fopAc_ac_c* i_this) {
 
 static void* s_sub2(void* i_actor, void* i_this) {
     // a bit ugly, but the debug version can't have any local variables
-    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_TAG_GRA) {
+    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == fpcNm_TAG_GRA_e) {
         if (((daNpc_grA_c*)i_this)->checkTagGraSub2((fopAc_ac_c*)i_actor)) {
             return i_actor;
         }
@@ -634,7 +634,7 @@ bool daNpc_grA_c::checkTagGraSub2(fopAc_ac_c* i_this) {
 
 static void* s_subShop(void* i_actor, void* i_this) {
     UNUSED(i_this);
-    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_NPC_GRM) {
+    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == fpcNm_NPC_GRM_e) {
         return i_actor;
     }
     return NULL;
@@ -642,7 +642,7 @@ static void* s_subShop(void* i_actor, void* i_this) {
 
 static void* s_subGRD(void* i_actor, void* i_this) {
     UNUSED(i_this);
-    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_NPC_WRESTLER) {
+    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == fpcNm_NPC_WRESTLER_e) {
         return i_actor;
     }
     return NULL;
@@ -650,7 +650,7 @@ static void* s_subGRD(void* i_actor, void* i_this) {
 
 static void *s_subOnsenTaru(void* i_actor, void* i_this) {
     UNUSED(i_this);
-    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_Obj_OnsenTaru &&
+    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == fpcNm_Obj_OnsenTaru_e &&
         !fpcM_IsCreating(fopAcM_GetID((i_actor))))
     {
         return i_actor;
@@ -659,14 +659,14 @@ static void *s_subOnsenTaru(void* i_actor, void* i_this) {
 }
 
 static void *s_subCarry(void* i_actor, void* i_this) {
-    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_Obj_Carry) {
+    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == fpcNm_Obj_Carry_e) {
         ((daNpc_grA_c*)i_this)->addCarryNum();
     }
     return NULL;
 }
 
 static void *s_subCrashed(void* i_actor, void* i_this) {
-    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_TAG_GRA &&
+    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == fpcNm_TAG_GRA_e &&
         ((daNpc_grA_c*)i_this)->checkTagGraSubCrashed((fopAc_ac_c*)i_actor))
     {
         return i_actor;
@@ -4110,13 +4110,13 @@ actor_process_profile_definition g_profile_NPC_GRA = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_NPC_GRA,
+    /* Proc Name    */ fpcNm_NPC_GRA_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daNpc_grA_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_NPC_GRA,
+    /* Draw Prio    */ fpcDwPi_NPC_GRA_e,
     /* Actor SubMtd */ &daNpc_grA_MethodTable,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_UNK_0x4000_e | fopAcStts_CULL_e,
     /* Group        */ fopAc_NPC_e,

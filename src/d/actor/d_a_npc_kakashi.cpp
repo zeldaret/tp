@@ -867,8 +867,8 @@ void daNpc_Kakashi_c::setStaggerParam(fopAc_ac_c* i_hitActor) {
             setPrtcls(0);
             sp14.y = fopAcM_searchPlayerAngleY(this);
 
-            fopAcM_createChild(PROC_OBJ_KBACKET, fopAcM_GetID(this), 0x80000000, &pos, fopAcM_GetRoomNo(this), &sp14, NULL, -1, NULL);
-            fopAcM_createChild(PROC_OBJ_KBACKET, fopAcM_GetID(this), 0x80000001, &pos, fopAcM_GetRoomNo(this), &sp14, NULL, -1, NULL);
+            fopAcM_createChild(fpcNm_OBJ_KBACKET_e, fopAcM_GetID(this), 0x80000000, &pos, fopAcM_GetRoomNo(this), &sp14, NULL, -1, NULL);
+            fopAcM_createChild(fpcNm_OBJ_KBACKET_e, fopAcM_GetID(this), 0x80000001, &pos, fopAcM_GetRoomNo(this), &sp14, NULL, -1, NULL);
 
             if (field_0x1393 == 0) {
                 break;
@@ -1175,13 +1175,13 @@ actor_process_profile_definition g_profile_NPC_KAKASHI = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_NPC_KAKASHI,
+    /* Proc Name    */ fpcNm_NPC_KAKASHI_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daNpc_Kakashi_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_NPC_KAKASHI,
+    /* Draw Prio    */ fpcDwPi_NPC_KAKASHI_e,
     /* Actor SubMtd */ &daNpc_Kakashi_MethodTable,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_UNK_0x4000_e,
     /* Group        */ fopAc_NPC_e,

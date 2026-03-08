@@ -299,7 +299,7 @@ void daObjKshtr_c::initKey() {
                 uVar1 = 0xFFFFFFFF;
             }
 
-            mKeyHoleId = fopAcM_createChildFromOffset(PROC_OBJ_KEYHOLE, fopAcM_GetID(this), uVar1, &sp20, fopAcM_GetRoomNo(this), NULL, &scale, -1, NULL);
+            mKeyHoleId = fopAcM_createChildFromOffset(fpcNm_OBJ_KEYHOLE_e, fopAcM_GetID(this), uVar1, &sp20, fopAcM_GetRoomNo(this), NULL, &scale, -1, NULL);
         }
     }
 }
@@ -975,13 +975,13 @@ actor_process_profile_definition g_profile_Obj_Kshutter = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 3,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_Obj_Kshutter,
+    /* Proc Name    */ fpcNm_Obj_Kshutter_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daObjKshtr_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_Obj_Kshutter,
+    /* Draw Prio    */ fpcDwPi_Obj_Kshutter_e,
     /* Actor SubMtd */ &daObjKshtr_METHODS,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e,
     /* Group        */ fopAc_ACTOR_e,

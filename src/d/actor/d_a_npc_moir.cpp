@@ -521,15 +521,15 @@ int daNpcMoiR_c::ctrlJointCallBack(J3DJoint* i_joint, int param_2) {
 
 void daNpcMoiR_c::searchActors() {
     if (mActorMngr[1].getActorP() == NULL) {
-        mActorMngr[1].entry(fopAcM_SearchByName(PROC_NPC_ASH));
+        mActorMngr[1].entry(fopAcM_SearchByName(fpcNm_NPC_ASH_e));
     }
 
     if (mActorMngr[2].getActorP() == NULL) {
-        mActorMngr[2].entry(fopAcM_SearchByName(PROC_NPC_SHAD));
+        mActorMngr[2].entry(fopAcM_SearchByName(fpcNm_NPC_SHAD_e));
     }
 
     if (mActorMngr[3].getActorP() == NULL) {
-        mActorMngr[3].entry(fopAcM_SearchByName(PROC_NPC_RAFREL));
+        mActorMngr[3].entry(fopAcM_SearchByName(fpcNm_NPC_RAFREL_e));
     }
 }
 
@@ -1567,7 +1567,7 @@ bool daNpcMoiR_c::leave(void* param_1) {
             setMotion(MOT_RUN, -1.0f, 0);
             mTurnMode = 0;
             speedF = 0.0f;
-            fopAcM_SearchByName(PROC_NPC_TK, (fopAc_ac_c**)&actor_p);
+            fopAcM_SearchByName(fpcNm_NPC_TK_e, (fopAc_ac_c**)&actor_p);
 
             if (actor_p != NULL) {
                 actor_p->setAway();
@@ -1721,7 +1721,7 @@ BOOL daNpcMoiR_c::EvCut_Appear2(int i_cutIndex) {
                 setExpression(EXPR_NONE, -1.0f);
                 setMotion(MOT_TAKAJO_NI, -1.0f, 0);
                 mTurnMode = 0;
-                ni_class* actor_p = (ni_class*)fopAcM_SearchByName(PROC_NI);
+                ni_class* actor_p = (ni_class*)fopAcM_SearchByName(fpcNm_NI_e);
 
                 if (actor_p != NULL) {
                     actor_p->changeMode();
@@ -1791,7 +1791,7 @@ BOOL daNpcMoiR_c::EvCut_Appear2(int i_cutIndex) {
 
         case '0005':
             if (talkProc(NULL, TRUE, NULL)) {
-                ni_class* actor_p = (ni_class*)fopAcM_SearchByName(PROC_NI);
+                ni_class* actor_p = (ni_class*)fopAcM_SearchByName(fpcNm_NI_e);
 
                 if (actor_p != NULL) {
                     actor_p->changeMode();
@@ -2023,13 +2023,13 @@ actor_process_profile_definition g_profile_NPC_MOIR = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_NPC_MOIR,
+    /* Proc Name    */ fpcNm_NPC_MOIR_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daNpcMoiR_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_NPC_MOIR,
+    /* Draw Prio    */ fpcDwPi_NPC_MOIR_e,
     /* Actor SubMtd */ &daNpcMoiR_MethodTable,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e,
     /* Group        */ fopAc_NPC_e,

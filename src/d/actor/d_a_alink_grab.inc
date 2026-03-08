@@ -11,7 +11,7 @@
 static bool daAlink_checkLightBallA(fopAc_ac_c* i_actor) {
     daObjCarry_c* carry = (daObjCarry_c*)i_actor;
 
-    if (fopAcM_GetName(carry) == PROC_Obj_Carry &&
+    if (fopAcM_GetName(carry) == fpcNm_Obj_Carry_e &&
         carry->getType() == daObjCarry_c::TYPE_BALL_S)
     {
         return true;
@@ -23,7 +23,7 @@ static bool daAlink_checkLightBallA(fopAc_ac_c* i_actor) {
 static bool daAlink_checkLightBallB(fopAc_ac_c* i_actor) {
     daObjCarry_c* carry = (daObjCarry_c*)i_actor;
 
-    if (fopAcM_GetName(carry) == PROC_Obj_Carry &&
+    if (fopAcM_GetName(carry) == fpcNm_Obj_Carry_e &&
         carry->getType() == daObjCarry_c::TYPE_BALL_S_2)
     {
         return true;
@@ -133,7 +133,7 @@ BOOL daAlink_c::checkGrabSlowMoveActor() {
     daObjCarry_c* carry = (daObjCarry_c*)mGrabItemAcKeep.getActor();
     return carry != NULL &&
           (fopAcM_CheckCarryType(carry, fopAcM_CARRY_HEAVY) ||
-          (fopAcM_GetName(carry) == PROC_Obj_Carry
+          (fopAcM_GetName(carry) == fpcNm_Obj_Carry_e
            && (carry->getType() == daObjCarry_c::TYPE_OOTSUBO || carry->getType() == daObjCarry_c::TYPE_AOTSUBO || carry->getType() == daObjCarry_c::TYPE_TARU)));
 }
 
@@ -177,8 +177,8 @@ void daAlink_c::setGrabUpperAnime(f32 param_0) {
 
 BOOL daAlink_c::checkGrabRooster() {
     if (mGrabItemAcKeep.getActor() != NULL &&
-        (fopAcM_GetName(mGrabItemAcKeep.getActor()) == PROC_NI ||
-         fopAcM_GetName(mGrabItemAcKeep.getActor()) == PROC_NPC_TKJ2))
+        (fopAcM_GetName(mGrabItemAcKeep.getActor()) == fpcNm_NI_e ||
+         fopAcM_GetName(mGrabItemAcKeep.getActor()) == fpcNm_NPC_TKJ2_e))
     {
         return true;
     }
@@ -232,7 +232,7 @@ void daAlink_c::setGrabItemPos() {
                 mDoMtx_stack_c::transM(78.0f, 42.0f, 0.0f);
                 mDoMtx_stack_c::ZrotM(cM_deg2s(138.0f));
             } else {
-                if (fopAcM_GetName(grabActor) == PROC_OBJ_FOOD) {
+                if (fopAcM_GetName(grabActor) == fpcNm_OBJ_FOOD_e) {
                     mDoMtx_stack_c::transM(32.0f, 7.0f, 0.0f);
                 } else {
                     mDoMtx_stack_c::transM(30.0f, 12.0f, 0.0f);
@@ -244,7 +244,7 @@ void daAlink_c::setGrabItemPos() {
             mDoMtx_stack_c::multVecZero(&grabActor->current.pos);
             mDoMtx_MtxToRot(mDoMtx_stack_c::get(), &grabActor->shape_angle);
         } else {
-            BOOL sp14 = fopAcM_GetName(grabActor) == PROC_NPC_TKJ2;
+            BOOL sp14 = fopAcM_GetName(grabActor) == fpcNm_NPC_TKJ2_e;
 
             if (mProcID == PROC_GRAB_UP) {
                 cLib_chaseAngleS(&grabActor->shape_angle.y, spE, 0x1000);
@@ -539,7 +539,7 @@ BOOL daAlink_c::checkNextActionGrab() {
 
     daNbomb_c* var_r28 = (daNbomb_c*)grabActor;
     if (doTrigger()
-        || (fopAcM_GetName(grabActor) == PROC_NBOMB
+        || (fopAcM_GetName(grabActor) == fpcNm_NBOMB_e
             && var_r28->checkPlayerMake()
             && (checkSetItemTrigger(0x50) || (var_r28->checkWaterBomb() && checkSetItemTrigger(0x71)) || (!var_r28->checkWaterBomb() && checkSetItemTrigger(0x70)))
             )
@@ -688,13 +688,13 @@ void daAlink_c::setGrabItemActor(fopAc_ac_c* i_actor) {
     mObjGndChk.ClrLink();
 
     s16 name = fopAcM_GetName(i_actor);
-    if (dBomb_c::checkBombActor(i_actor) || name == PROC_Obj_Stone) {
+    if (dBomb_c::checkBombActor(i_actor) || name == fpcNm_Obj_Stone_e) {
         mObjLinChk.SetBomb();
         mObjGndChk.SetBomb();
-    } else if (name == PROC_CSTATUE) {
+    } else if (name == fpcNm_CSTATUE_e) {
         mObjLinChk.SetStatue();
         mObjGndChk.SetStatue();
-    } else if (name == PROC_Obj_Carry && ((daObjCarry_c*)i_actor)->prm_chk_type_ironball()) {
+    } else if (name == fpcNm_Obj_Carry_e && ((daObjCarry_c*)i_actor)->prm_chk_type_ironball()) {
         mObjLinChk.SetLink();
         mObjGndChk.SetLink();
     } else {
@@ -734,7 +734,7 @@ int daAlink_c::procGrabReadyInit() {
         field_0x347c = 1.0f / (9.0f - mpHIO->mGrab.m.mFailAnm.mStartFrame);
 
         f32 var_f31;
-        if (fopAcM_GetName(mGrabItemAcKeep.getActor()) == PROC_DO) {
+        if (fopAcM_GetName(mGrabItemAcKeep.getActor()) == fpcNm_DO_e) {
             var_f31 = 0.93f;
         } else {
             var_f31 = 1.0f;
@@ -1225,7 +1225,7 @@ int daAlink_c::procPickUpInit() {
     }
 
     s16 temp_r3 = fopAcM_GetName(field_0x27f4);
-    if (temp_r3 == PROC_NPC_KS && !dComIfGp_event_compulsory(this, NULL, 0xFFFF)) {
+    if (temp_r3 == fpcNm_NPC_KS_e && !dComIfGp_event_compulsory(this, NULL, 0xFFFF)) {
         return checkWaitAction();
     }
 
@@ -1248,13 +1248,13 @@ int daAlink_c::procPickUpInit() {
     }
 
     BOOL var_r29;
-    if (temp_r3 == PROC_Obj_Kantera) {
+    if (temp_r3 == fpcNm_Obj_Kantera_e) {
         setSingleAnimeParam(ANM_BOTTLE_SWING, &mpHIO->mItem.mBottle.m.mSwingSideAnm);
         mProcVar3.field_0x300e = 1;
         field_0x3478 = 7.0f;
         mProcVar4.field_0x3010 = 0;
         var_r29 = FALSE;
-    } else if (temp_r3 == PROC_NPC_KS) {
+    } else if (temp_r3 == fpcNm_NPC_KS_e) {
         setSingleAnimeParam(ANM_BOTTLE_SWING_DOWN, &mpHIO->mItem.mBottle.m.mSwingDownAnm);
         mProcVar3.field_0x300e = 1;
         field_0x3478 = 7.0f;
@@ -1391,7 +1391,7 @@ s16 daAlink_c::getChainStickAngleY(s16 param_0) const {
 
 u8 daAlink_c::checkChainEmphasys() {
     fopAc_ac_c* temp_r3 = field_0x2844.getActor();
-    if (temp_r3 != NULL && fopAcM_GetName(temp_r3) == PROC_Obj_SwChain && !((daObjSwChain_c*)temp_r3)->checkDispEmphasis()) {
+    if (temp_r3 != NULL && fopAcM_GetName(temp_r3) == fpcNm_Obj_SwChain_e && !((daObjSwChain_c*)temp_r3)->checkDispEmphasis()) {
         return BUTTON_STATUS_FLAG_NONE;
     }
 
@@ -1435,8 +1435,8 @@ bool daAlink_c::checkChainBlockPushPull() {
         fopAc_ac_c* actor = field_0x2844.getActor();
         if (actor != NULL) {
             s16 name = fopAcM_GetName(actor);
-            if (name == PROC_Obj_ChainBlock || name == PROC_Obj_SwChain ||
-                name == PROC_Obj_ChainWall)
+            if (name == fpcNm_Obj_ChainBlock_e || name == fpcNm_Obj_SwChain_e ||
+                name == fpcNm_Obj_ChainWall_e)
             {
                 return true;
             }
@@ -1574,7 +1574,7 @@ int daAlink_c::setPushPullKeepData(dBgW_Base::PushPullLabel i_label, BOOL param_
 
 BOOL daAlink_c::checkPushPullTurnBlock() {
     s16 name = getMoveBGActorName(mPolyInfo1, 1);
-    return name == PROC_Obj_SwTurn || name == PROC_Obj_Lv6SwTurn || name == PROC_Obj_PushDoor || name == PROC_PushDoor || name == PROC_Obj_Ytaihou;
+    return name == fpcNm_Obj_SwTurn_e || name == fpcNm_Obj_Lv6SwTurn_e || name == fpcNm_Obj_PushDoor_e || name == fpcNm_PushDoor_e || name == fpcNm_Obj_Ytaihou_e;
 }
 
 BOOL daAlink_c::checkPullBehindWall() {
@@ -1619,12 +1619,12 @@ void daAlink_c::offGoatStopGame() {
 
 BOOL daAlink_c::checkGoatCatchActor(fopAc_ac_c* i_actor) {
     s16 name = fopAcM_GetName(i_actor);
-    return name == PROC_E_GOB || (name == PROC_OBJ_GRA && checkSpecialNpc(i_actor)) ||
-           name == PROC_COW;
+    return name == fpcNm_E_GOB_e || (name == fpcNm_OBJ_GRA_e && checkSpecialNpc(i_actor)) ||
+           name == fpcNm_COW_e;
 }
 
 f32 daAlink_c::getGoatCatchDistance2() {
-    if (fopAcM_GetName(field_0x27f4) == PROC_B_MGN) {
+    if (fopAcM_GetName(field_0x27f4) == fpcNm_B_MGN_e) {
         return SQUARE(1000.0f);
     }
 
@@ -1637,8 +1637,8 @@ int daAlink_c::endPushPull() {
 
 f32 daAlink_c::getPushPullAnimeSpeed() {
     f32 speed;
-    if ((getMoveBGActorName(mPolyInfo1, 0) == PROC_Obj_Movebox && ((daObjMovebox::Act_c*)dComIfG_Bgsp().GetActorPointer(mPolyInfo1))->getType() != 0) ||
-        getMoveBGActorName(mPolyInfo1, 0) == PROC_Obj_Bemos)
+    if ((getMoveBGActorName(mPolyInfo1, 0) == fpcNm_Obj_Movebox_e && ((daObjMovebox::Act_c*)dComIfG_Bgsp().GetActorPointer(mPolyInfo1))->getType() != 0) ||
+        getMoveBGActorName(mPolyInfo1, 0) == fpcNm_Obj_Bemos_e)
     {
         if (checkWolf()) {
             speed = mpHIO->mWolf.mWlPush.m.mHeavyPushAnmSpeed;
@@ -1717,7 +1717,7 @@ int daAlink_c::procCoPushPullWait() {
             } else if (checkInputOnR()) {
                 int direction = getDirectionFromShapeAngle();
                 if (direction == DIR_FORWARD) {
-                    procCoPushMoveInit(0, getMoveBGActorName(mPolyInfo1, 1) == PROC_Obj_IceBlock);
+                    procCoPushMoveInit(0, getMoveBGActorName(mPolyInfo1, 1) == fpcNm_Obj_IceBlock_e);
                 } else if (!checkWolf() && direction == DIR_BACKWARD) {
                     procPullMoveInit(0);
                 }
@@ -1968,7 +1968,7 @@ int daAlink_c::procPullMove() {
 
 static fopAc_ac_c* daAlink_searchGoat(fopAc_ac_c* i_actor, void* i_data) {
     UNUSED(i_data);
-    if (fopAcM_GetName(i_actor) == PROC_COW) {
+    if (fopAcM_GetName(i_actor) == fpcNm_COW_e) {
         return i_actor;
     }
 
@@ -1984,9 +1984,9 @@ void daAlink_c::cancelGoronThrowEvent() {
 
 void daAlink_c::setGoatStopGameFail(fopAc_ac_c* i_actor) {
     s16 actor_name = fopAcM_GetName(i_actor);
-    if (actor_name == PROC_OBJ_GRA) {
+    if (actor_name == fpcNm_OBJ_GRA_e) {
         ((daObj_GrA_c*)i_actor)->setCrazyDash();
-    } else if (actor_name == PROC_COW) {
+    } else if (actor_name == fpcNm_COW_e) {
         ((daCow_c*)i_actor)->setCrazyDash();
     } else {
         ((fopEn_enemy_c*)i_actor)->setThrowModeDash();
@@ -2004,9 +2004,9 @@ void daAlink_c::setGoatStopGameFail(fopAc_ac_c* i_actor) {
     if (checkGoatStopGame()) {
         onNoResetFlg0(FLG0_GORON_UP_STOP_CANCEL);
     } else {
-        if (!checkBootsOrArmorHeavy() && actor_name == PROC_OBJ_GRA) {
+        if (!checkBootsOrArmorHeavy() && actor_name == fpcNm_OBJ_GRA_e) {
             setDamagePointNormal(2);
-        } else if (actor_name != PROC_COW) {
+        } else if (actor_name != fpcNm_COW_e) {
             setDamagePointNormal(1);
         }
 
@@ -2215,9 +2215,9 @@ int daAlink_c::procGoatCatchInit(fopAc_ac_c* i_actor, f32 param_1) {
     setSingleAnimeBase(ANM_COW_CATCH_START);
 
     s16 actor_name = fopAcM_GetName(i_actor);
-    if (actor_name == PROC_OBJ_GRA) {
+    if (actor_name == fpcNm_OBJ_GRA_e) {
         ((daObj_GrA_c*)i_actor)->setCrazyCatch();
-    } else if (actor_name == PROC_COW) {
+    } else if (actor_name == fpcNm_COW_e) {
         ((daCow_c*)i_actor)->setCrazyCatch();
     } else {
         ((fopEn_enemy_c*)i_actor)->setThrowModeCatch();
@@ -2299,7 +2299,7 @@ int daAlink_c::procGoatCatch() {
                     field_0x2fe4 = shape_angle.y;
                 }
 
-                if (actor_name == PROC_OBJ_GRA) {
+                if (actor_name == fpcNm_OBJ_GRA_e) {
                     field_0x2f99 = 0x30;
                     setSingleAnimeBaseSpeed(ANM_WAIT_B, mpHIO->mMove.m.mWaitAnmSpeed, 3.0f);
                     offModeFlg(0x8000);
@@ -2360,7 +2360,7 @@ int daAlink_c::procGoatCatch() {
             cLib_chaseF(&mNormalSpeed, 30.0f, 1.0f);
         } else {
             f32 speed_step = 1.0f;
-            if ((actor_name == PROC_OBJ_GRA || actor_name == PROC_E_GOB) && !checkBootsOrArmorHeavy()) {
+            if ((actor_name == fpcNm_OBJ_GRA_e || actor_name == fpcNm_E_GOB_e) && !checkBootsOrArmorHeavy()) {
                 field_0x3198++;
             } else if (checkInputOnR() && direction == DIR_FORWARD) {
                 speed_step += 1.0f;
@@ -2396,7 +2396,7 @@ int daAlink_c::procGoatCatch() {
         field_0x2f99 = 4;
 
         if (checkAnmEnd(framectrl)) {
-            if (actor_name == PROC_E_GOB && !checkBootsOrArmorHeavy()) {
+            if (actor_name == fpcNm_E_GOB_e && !checkBootsOrArmorHeavy()) {
                 setGoatStopGameFail(temp_r3);
                 return 1;
             }
@@ -2406,18 +2406,18 @@ int daAlink_c::procGoatCatch() {
             }
 
             if (mProcVar3.field_0x300e == 2) {
-                if (actor_name == PROC_OBJ_GRA) {
+                if (actor_name == fpcNm_OBJ_GRA_e) {
                     ((daObj_GrA_c*)temp_r3)->setCrazyThrowLeft();
-                } else if (actor_name == PROC_COW) {
+                } else if (actor_name == fpcNm_COW_e) {
                     ((daCow_c*)temp_r3)->setCrazyThrowLeft();
                 } else {
                     ((fopEn_enemy_c*)temp_r3)->setThrowModeThrowLeft();
                 }
                 anm = ANM_COW_THROW_LEFT;
             } else {
-                if (actor_name == PROC_OBJ_GRA) {
+                if (actor_name == fpcNm_OBJ_GRA_e) {
                     ((daObj_GrA_c*)temp_r3)->setCrazyThrowRight();
-                } else if (actor_name == PROC_COW) {
+                } else if (actor_name == fpcNm_COW_e) {
                     ((daCow_c*)temp_r3)->setCrazyThrowRight();
                 } else {
                     ((fopEn_enemy_c*)temp_r3)->setThrowModeThrowRight();

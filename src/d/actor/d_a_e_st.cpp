@@ -863,7 +863,7 @@ static void e_st_shoot(e_st_class* i_this) {
 
             if (frame >= 0x1E && frame <= 0x2A) {
                 for (int i = 0; i < TREG_S(2) + 5; i++) {
-                    fopAcM_createChild(PROC_E_ST_LINE, fopAcM_GetID(a_this), i_this->mParameters,
+                    fopAcM_createChild(fpcNm_E_ST_LINE_e, fopAcM_GetID(a_this), i_this->mParameters,
                                        &i_this->field_0x704, fopAcM_GetRoomNo(a_this), NULL, NULL, -1, NULL);
                     i_this->mParameters++;
                 }
@@ -1249,7 +1249,7 @@ static void e_st_hang_shoot(e_st_class* i_this) {
 
             if (frame >= 0x1E && frame <= 0x2A) {
                 for (int i = 0; i < TREG_S(2) + 5; i++) {
-                    fopAcM_createChild(PROC_E_ST_LINE, fopAcM_GetID(a_this), i_this->mParameters,
+                    fopAcM_createChild(fpcNm_E_ST_LINE_e, fopAcM_GetID(a_this), i_this->mParameters,
                                        &i_this->field_0x704, fopAcM_GetRoomNo(a_this), NULL, NULL, -1, NULL);
                     i_this->mParameters++;
                 }
@@ -1490,7 +1490,7 @@ static void e_st_hang_2_shoot(e_st_class* i_this) {
 
             if (frame >= 0x1E && frame <= 0x2A) {
                 for (int i = 0; i < TREG_S(2) + 5; i++) {
-                    fopAcM_createChild(PROC_E_ST_LINE, fopAcM_GetID(a_this), i_this->mParameters,
+                    fopAcM_createChild(fpcNm_E_ST_LINE_e, fopAcM_GetID(a_this), i_this->mParameters,
                                        &i_this->field_0x704, fopAcM_GetRoomNo(a_this), NULL, NULL, -1, NULL);
                     i_this->mParameters++;
                 }
@@ -1924,7 +1924,7 @@ static s8 e_st_g_fight(e_st_class* i_this) {
     if (i_this->mAtSph.ChkAtHit()) {
         cCcD_Obj* at_hit_obj_p = i_this->mAtSph.GetAtHitObj();
         fopAc_ac_c* actor_p = dCc_GetAc(at_hit_obj_p->GetAc());
-        if (actor_p != NULL && fopAcM_GetName(actor_p) == PROC_ALINK) {
+        if (actor_p != NULL && fopAcM_GetName(actor_p) == fpcNm_ALINK_e) {
             dComIfGp_getVibration().StartShock(VIBMODE_S_POWER4, 31, cXyz(0.0f, 1.0f, 0.0f));
         }
     }
@@ -3210,13 +3210,13 @@ actor_process_profile_definition g_profile_E_ST = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_E_ST,
+    /* Proc Name    */ fpcNm_E_ST_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(e_st_class),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_E_ST,
+    /* Draw Prio    */ fpcDwPi_E_ST_e,
     /* Actor SubMtd */ &l_daE_ST_Method,
     /* Status       */ fopAcStts_UNK_0x10000000_e | fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e,
     /* Group        */ fopAc_ENEMY_e,

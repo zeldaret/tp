@@ -122,7 +122,7 @@ static dCcD_SrcSph l_sphSrc = {
 };
 
 void daCstatue_c::atHitCallback(fopAc_ac_c* actor) {
-    if (fopAcM_GetName(actor) == PROC_B_GM) {
+    if (fopAcM_GetName(actor) == fpcNm_B_GM_e) {
         onStateFlg0(daCstatue_FLG0_100);
     }
 }
@@ -1218,13 +1218,13 @@ actor_process_profile_definition g_profile_CSTATUE = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_CSTATUE,
+    /* Proc Name    */ fpcNm_CSTATUE_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ 0x00000B2C,
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_CSTATUE,
+    /* Draw Prio    */ fpcDwPi_CSTATUE_e,
     /* Actor SubMtd */ &l_daCstatue_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_NOPAUSE_e | fopAcStts_FREEZE_e | fopAcStts_CULL_e | fopAcStts_UNK_0x20_e,
     /* Group        */ fopAc_ENV_e,

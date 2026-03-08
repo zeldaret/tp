@@ -486,7 +486,7 @@ void daNpc_Seira2_c::srchActors() {
         case 2: {
             if (mActorMngr[0].getActorP() == NULL) {
                 // NE means Neko, which means Cat in Japanese:
-                mActorMngr[0].entry(getNearestActorP(PROC_NPC_NE));
+                mActorMngr[0].entry(getNearestActorP(fpcNm_NPC_NE_e));
             }
 
             break;
@@ -1128,13 +1128,13 @@ actor_process_profile_definition g_profile_NPC_SERA2 = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_NPC_SERA2,
+    /* Proc Name    */ fpcNm_NPC_SERA2_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daNpc_Seira2_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_NPC_SERA2,
+    /* Draw Prio    */ fpcDwPi_NPC_SERA2_e,
     /* Actor SubMtd */ &daNpc_Seira2_MethodTable,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_UNK_0x4000_e | fopAcStts_CULL_e | fopAcStts_UNK_0x8_e,
     /* Group        */ fopAc_NPC_e,

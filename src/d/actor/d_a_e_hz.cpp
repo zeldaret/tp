@@ -181,19 +181,19 @@ static void* s_obj_sub(void* i_actor, void* i_data) {
             if (actor_dist < 100.0f && !fopAcM_GetSpeedF((fopAc_ac_c*)i_actor) &&
                 !fopAcM_GetSpeed((fopAc_ac_c*)i_actor).y)
             {
-                if (fopAcM_GetName(i_actor) == PROC_Obj_Carry) {
+                if (fopAcM_GetName(i_actor) == fpcNm_Obj_Carry_e) {
                     m_near_carry = (fopAc_ac_c*)i_actor;
-                } else if (fopAcM_GetName(i_actor) == PROC_NBOMB) {
+                } else if (fopAcM_GetName(i_actor) == fpcNm_NBOMB_e) {
                     m_near_bomb = (fopAc_ac_c*)i_actor;
                 }
             }
 
-            if (actor_dist < 500.0f && (fopAcM_GetName(i_actor) == PROC_BOOMERANG ||
-                                        fopAcM_GetName(i_actor) == PROC_NBOMB))
+            if (actor_dist < 500.0f && (fopAcM_GetName(i_actor) == fpcNm_BOOMERANG_e ||
+                                        fopAcM_GetName(i_actor) == fpcNm_NBOMB_e))
             {
                 m_near_weapon = static_cast<fopAc_ac_c*>(i_actor);
             }
-            if (actor_dist < 700.0f && fopAcM_GetName(i_actor) == PROC_ARROW &&
+            if (actor_dist < 700.0f && fopAcM_GetName(i_actor) == fpcNm_ARROW_e &&
                 fopAcM_GetSpeedF((fopAc_ac_c*)i_actor))
             {
                 m_near_weapon = static_cast<fopAc_ac_c*>(i_actor);
@@ -2108,13 +2108,13 @@ actor_process_profile_definition g_profile_E_HZ = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_E_HZ,
+    /* Proc Name    */ fpcNm_E_HZ_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daE_HZ_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_E_HZ,
+    /* Draw Prio    */ fpcDwPi_E_HZ_e,
     /* Actor SubMtd */ &l_daE_HZ_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e,
     /* Group        */ fopAc_ENEMY_e,

@@ -33,7 +33,7 @@ static int CheckCreateHeap(fopAc_ac_c* i_this) {
 // Returns ID of Owl Statue corresponding to tag
 static void* s_s_sub(void* i_proc, void* param_1) {
     UNUSED(param_1);
-    if (fopAcM_IsActor(i_proc) && fopAcM_GetName(i_proc) == PROC_CSTAF) {
+    if (fopAcM_IsActor(i_proc) && fopAcM_GetName(i_proc) == fpcNm_CSTAF_e) {
         return i_proc;
     }
 
@@ -541,13 +541,13 @@ actor_process_profile_definition g_profile_Tag_Statue = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_Tag_Statue,
+    /* Proc Name    */ fpcNm_Tag_Statue_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daTagStatue_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_Tag_Statue,
+    /* Draw Prio    */ fpcDwPi_Tag_Statue_e,
     /* Actor SubMtd */ &l_daTagStatue_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e,
     /* Group        */ fopAc_ACTOR_e,

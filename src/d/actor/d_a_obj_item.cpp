@@ -88,10 +88,10 @@ static void itemGetCoCallBack(fopAc_ac_c* i_coActorA, dCcD_GObjInf* i_coObjInfA,
     if (a_coActorA != NULL) {
         if (a_coActorA->checkPlayerGet() && i_coActorB != NULL) {
             if (fopAcM_GetName(i_coActorB) == fopAcM_GetName(dComIfGp_getLinkPlayer()) ||
-                fopAcM_GetName(i_coActorB) == PROC_NPC_P2 ||
-                (fopAcM_GetName(i_coActorB) == PROC_CANOE &&
+                fopAcM_GetName(i_coActorB) == fpcNm_NPC_P2_e ||
+                (fopAcM_GetName(i_coActorB) == fpcNm_CANOE_e &&
                  daPy_getPlayerActorClass()->checkCanoeRide()) ||
-                (fopAcM_GetName(i_coActorB) == PROC_HORSE &&
+                (fopAcM_GetName(i_coActorB) == fpcNm_HORSE_e &&
                  daPy_getPlayerActorClass()->checkHorseRide()))
             {
                 a_coActorA->itemGetNextExecute();
@@ -1243,13 +1243,13 @@ actor_process_profile_definition g_profile_ITEM = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_ITEM,
+    /* Proc Name    */ fpcNm_ITEM_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daItem_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_ITEM,
+    /* Draw Prio    */ fpcDwPi_ITEM_e,
     /* Actor SubMtd */ &l_daItem_Method,
     /* Status       */ fopAcStts_UNK_0x80000_e | fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e,
     /* Group        */ fopAc_ACTOR_e,

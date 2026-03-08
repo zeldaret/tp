@@ -5037,7 +5037,7 @@ void dKyr_thunder_move() {
                 effect->mLightInfluence.mFluctuation = 1.0f;
                 dKy_efplight_set(&effect->mLightInfluence);
                 effect->field_0x1c = 0.6f + cM_rndF(0.4f);
-                fopKyM_create(PROC_KY_THUNDER, -1, NULL, NULL, NULL);
+                fopKyM_create(fpcNm_KY_THUNDER_e, -1, NULL, NULL, NULL);
                 effect->mState++;
             }
         } else if (strcmp(dComIfGp_getStartStageName(), "D_MN09B") == 0 && dComIfGp_event_runCheck()) {
@@ -5052,14 +5052,14 @@ void dKyr_thunder_move() {
                 effect->mLightInfluence.mFluctuation = 1.0f;
                 dKy_efplight_set(&effect->mLightInfluence);
                 effect->field_0x1c = 0.6f + cM_rndF(0.4f);
-                fopKyM_create(PROC_KY_THUNDER, -1, NULL, NULL, NULL);
+                fopKyM_create(fpcNm_KY_THUNDER_e, -1, NULL, NULL, NULL);
                 effect->mState++;
             }
         } else if (cM_rndF(1.0f) < 0.007f) {
             effect->field_0x1c = 0.6f + cM_rndF(0.4f);
             effect->mState = 11;
             if (cM_rndF(1.0f) < 0.2f) {
-                fopKyM_create(PROC_KY_THUNDER, -1, NULL, NULL, NULL);
+                fopKyM_create(fpcNm_KY_THUNDER_e, -1, NULL, NULL, NULL);
             }
         } else if (cM_rndF(1.0f) < 0.005f && g_env_light.mThunderEff.mMode < 10 && sp10 != 1) {
             effect->mLightInfluence.mPosition = camera->lookat.eye;
@@ -5070,7 +5070,7 @@ void dKyr_thunder_move() {
             effect->mLightInfluence.mFluctuation = 1.0f;
             dKy_efplight_set(&effect->mLightInfluence);
             effect->field_0x1c = 0.6f + cM_rndF(0.4f);
-            fopKyM_create(PROC_KY_THUNDER, -1, NULL, NULL, NULL);
+            fopKyM_create(fpcNm_KY_THUNDER_e, -1, NULL, NULL, NULL);
             effect->mState++;
         }
         break;
@@ -5099,7 +5099,7 @@ void dKyr_thunder_move() {
         } else if (effect->mFlashTimer <= 0.5f && effect->mFlashTimer > 0.4f && cM_rndF(1.0f) < 0.3f) {
             effect->field_0x1c = 0.6f + cM_rndF(0.4f);
             if (cM_rndF(1.0f) < 0.05f) {
-                fopKyM_create(PROC_KY_THUNDER, -1, NULL, NULL, NULL);
+                fopKyM_create(fpcNm_KY_THUNDER_e, -1, NULL, NULL, NULL);
             }
             effect->mState--;
         }

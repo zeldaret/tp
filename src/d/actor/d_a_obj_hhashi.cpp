@@ -126,7 +126,7 @@ void daObjHHASHI_c::Obj_Damage() {
             e_fm_class* tgActor = (e_fm_class*)dCc_GetAc(mCyl.GetTgHitObj()->GetAc());
             cXyz* tgHitPos = mCyl.GetTgHitPosP();
             cLib_targetAngleY(&current.pos, tgHitPos);
-            if (fopAcM_GetName(tgActor) == PROC_E_FM) {
+            if (fopAcM_GetName(tgActor) == fpcNm_E_FM_e) {
                 field_0x5aa++;
                 e_fm_class* fm = (e_fm_class*)fopAcM_SearchByID(fopAcM_GetID(tgActor));
                 if (fm != NULL) {
@@ -385,13 +385,13 @@ actor_process_profile_definition g_profile_Obj_HHASHI = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 3,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_Obj_HHASHI,
+    /* Proc Name    */ fpcNm_Obj_HHASHI_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daObjHHASHI_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_Obj_HHASHI,
+    /* Draw Prio    */ fpcDwPi_Obj_HHASHI_e,
     /* Actor SubMtd */ &l_daObjHHASHI_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e,
     /* Group        */ fopAc_ACTOR_e,

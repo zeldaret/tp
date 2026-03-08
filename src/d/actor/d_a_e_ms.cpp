@@ -119,7 +119,7 @@ static int target_info_count;
 
 static void* s_d_sub(void* param_1, void* param_2) {
     daObjCarry_c* i_this = (daObjCarry_c*)param_1;
-    if (fopAcM_IsActor(param_1) && fopAcM_GetName(param_1) == PROC_Obj_Carry && i_this->getType() == daObjCarry_c::TYPE_DOKURO &&
+    if (fopAcM_IsActor(param_1) && fopAcM_GetName(param_1) == fpcNm_Obj_Carry_e && i_this->getType() == daObjCarry_c::TYPE_DOKURO &&
         target_info_count < 20)
     {
         target_info[target_info_count] = (fopAc_ac_c*)param_1;
@@ -1066,13 +1066,13 @@ actor_process_profile_definition g_profile_E_MS = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_E_MS,
+    /* Proc Name    */ fpcNm_E_MS_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(e_ms_class),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_E_MS,
+    /* Draw Prio    */ fpcDwPi_E_MS_e,
     /* Actor SubMtd */ &l_daE_MS_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_UNK_0x10000_e | fopAcStts_CULL_e,
     /* Group        */ fopAc_ENEMY_e,

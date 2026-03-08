@@ -164,7 +164,7 @@ int daLv1Cdl01_c::Execute(Mtx** param_0) {
         cCcD_Obj* obj = mCyl.GetTgHitObj();
         if (obj != NULL) {
             bool bvar1 = true;
-            if (fopAcM_GetName(obj->GetAc()) == PROC_ALINK) {
+            if (fopAcM_GetName(obj->GetAc()) == fpcNm_ALINK_e) {
                 if (mCyl.GetTgHitGObj()->ChkAtType(AT_TYPE_NORMAL_SWORD) && mTgHit) {
                     bvar1 = false;
                 }
@@ -233,13 +233,13 @@ actor_process_profile_definition g_profile_Obj_Lv1Cdl01 = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 3,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_Obj_Lv1Cdl01,
+    /* Proc Name    */ fpcNm_Obj_Lv1Cdl01_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daLv1Cdl01_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_Obj_Lv1Cdl01,
+    /* Draw Prio    */ fpcDwPi_Obj_Lv1Cdl01_e,
     /* Actor SubMtd */ &l_daLv1Cdl01_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_NOPAUSE_e,
     /* Group        */ fopAc_ACTOR_e,

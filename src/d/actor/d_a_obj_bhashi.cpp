@@ -158,12 +158,12 @@ void daObjBHASHI_c::Obj_Damage() {
             fopAc_ac_c* tg_hit_obj = dCc_GetAc(mCcCyl.GetTgHitObj()->GetAc());
             cXyz* tg_hit_pos = mCcCyl.GetTgHitPosP();
             s16 rot_y = cLib_targetAngleY(&current.pos, tg_hit_pos);
-            if (fopAcM_GetName(tg_hit_obj) == PROC_B_MGN) {
+            if (fopAcM_GetName(tg_hit_obj) == fpcNm_B_MGN_e) {
                 field_0x5a8++;
 
                 fpc_ProcID tg_hit_id = fopAcM_GetID(tg_hit_obj);
                 fopAc_ac_c* mgn_p;
-                if (fopAcM_SearchByName(PROC_B_MGN, &mgn_p) && mgn_p != NULL) {
+                if (fopAcM_SearchByName(fpcNm_B_MGN_e, &mgn_p) && mgn_p != NULL) {
                     field_0x11dc = cLib_targetAngleY(&fopAcM_GetPosition(mgn_p), &current.pos);
                 }
 
@@ -443,7 +443,7 @@ int daObjBHASHI_c::Execute(Mtx** param_0) {
         }
 
         fopAc_ac_c* mgn_p;
-        if (fopAcM_SearchByName(PROC_B_MGN, &mgn_p) && mgn_p != NULL && ((daB_MGN_c*)mgn_p)->isAppear()) {
+        if (fopAcM_SearchByName(fpcNm_B_MGN_e, &mgn_p) && mgn_p != NULL && ((daB_MGN_c*)mgn_p)->isAppear()) {
             Rolling(&fopAcM_GetPosition(mgn_p), 400.0f, 90.0f + yREG_F(0));
         }
     }
@@ -506,13 +506,13 @@ actor_process_profile_definition g_profile_Obj_BHASHI = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 3,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_Obj_BHASHI,
+    /* Proc Name    */ fpcNm_Obj_BHASHI_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daObjBHASHI_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_Obj_BHASHI,
+    /* Draw Prio    */ fpcDwPi_Obj_BHASHI_e,
     /* Actor SubMtd */ &l_daObjBHASHI_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_UNK_0x4000_e,
     /* Group        */ fopAc_ACTOR_e,

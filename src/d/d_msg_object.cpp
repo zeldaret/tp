@@ -39,7 +39,7 @@ s16 dMsgObject_getGroupID() {
 
 static int dMsgObject_searchSSItem(void* param_1, void* param_2) {
     daPy_py_c* player = daPy_getPlayerActorClass();
-    if (fopAcM_IsActor(param_1) && fopAcM_GetName(param_1) == PROC_OBJ_SSITEM) {
+    if (fopAcM_IsActor(param_1) && fopAcM_GetName(param_1) == fpcNm_OBJ_SSITEM_e) {
         if (static_cast<daObj_SSBase_c*>(param_1)->getProcessID() == player->getGrabActorID()) {
             static_cast<daObj_SSBase_c*>(param_1)->setSoldOut();
             return 0;
@@ -2466,12 +2466,12 @@ msg_process_profile_definition g_profile_MSG_OBJECT = {
     /* Layer ID    */ fpcLy_CURRENT_e,
     /* List ID     */ 12,
     /* List Prio   */ fpcPi_CURRENT_e,
-    /* Proc Name   */ PROC_MSG_OBJECT,
+    /* Proc Name   */ fpcNm_MSG_OBJECT_e,
     /* Proc SubMtd */ &g_fpcLf_Method.base,
     /* Size        */ sizeof(dMsgObject_c),
     /* Size Other  */ 0,
     /* Parameters  */ 0,
     /* Leaf SubMtd */ &g_fopMsg_Method,
-    /* Priority    */ PRIO_MSG_OBJECT,
+    /* Draw Prio   */ fpcDwPi_MSG_OBJECT_e,
     /* Msg SubMtd  */ &l_dMsgObject_Method,
 };

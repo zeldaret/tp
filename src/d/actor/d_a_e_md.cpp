@@ -154,7 +154,7 @@ void daE_MD_c::CheckHit() {
         UNUSED(hit_obj);
         UNUSED(hit_actor);
 
-        if ((hit_obj->ChkAtType(AT_TYPE_IRON_BALL) || fopAcM_GetName(hit_actor) == PROC_E_TH_BALL || fopAcM_GetName(hit_actor) == PROC_B_TN) && (mType == TYPE_DUMMY || mType == TYPE_LV9)) {
+        if ((hit_obj->ChkAtType(AT_TYPE_IRON_BALL) || fopAcM_GetName(hit_actor) == fpcNm_E_TH_BALL_e || fopAcM_GetName(hit_actor) == fpcNm_B_TN_e) && (mType == TYPE_DUMMY || mType == TYPE_LV9)) {
             if (mAction == ACTION_WAIT) {
                 mCyl.OffTgIronBallRebound();
                 mAction = ACTION_HALF_BREAK;
@@ -173,7 +173,7 @@ void daE_MD_c::CheckHit() {
 
                 u32 bu_params = (mSwbit << 0x18) | 0xFF2FFF;
                 if (mCanCreateBu && mType == TYPE_DUMMY) {
-                    fopAcM_create(PROC_E_BU, bu_params, &current.pos, fopAcM_GetRoomNo(this), &shape_angle, NULL, -1);
+                    fopAcM_create(fpcNm_E_BU_e, bu_params, &current.pos, fopAcM_GetRoomNo(this), &shape_angle, NULL, -1);
                 }
             } else if (mAction == ACTION_HALF_BREAK) {
                 mCyl.OffTgSetBit();
@@ -467,13 +467,13 @@ actor_process_profile_definition g_profile_E_MD = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_E_MD,
+    /* Proc Name    */ fpcNm_E_MD_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daE_MD_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_E_MD,
+    /* Draw Prio    */ fpcDwPi_E_MD_e,
     /* Actor SubMtd */ &l_daE_MD_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_UNK_0x4000_e | fopAcStts_CULL_e,
     /* Group        */ fopAc_ENV_e,

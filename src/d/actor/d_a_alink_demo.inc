@@ -31,7 +31,7 @@ void daAlink_c::createNpcTks(cXyz* i_basePos, int i_roomNo, u32 i_parameters) {
     cXyz pos(i_basePos->x + cM_ssin(shape_angle.y) * 200.0f, i_basePos->y,
              i_basePos->z + cM_scos(shape_angle.y) * 200.0f);
     csXyz angle(0, shape_angle.y + 0x8000, 0);
-    fopAcM_create(PROC_NPC_TKS, i_parameters, &pos, i_roomNo, &angle, NULL, -1);
+    fopAcM_create(fpcNm_NPC_TKS_e, i_parameters, &pos, i_roomNo, &angle, NULL, -1);
 }
 
 bool daAlink_c::checkSetNpcTks(cXyz* i_basePos, int i_roomNo, int param_2) {
@@ -214,7 +214,7 @@ int daAlink_c::checkDemoAction() {
                 } else if (mDemo.getParam0() == 3) {
                     if (!checkCanoeRide()) {
                         daCanoe_c* canoe_p = (daCanoe_c*)fopAcIt_Judge((fopAcIt_JudgeFunc)daAlink_searchCanoe, NULL);
-                        canoe_p->onRodID(fopAcM_create(PROC_MG_ROD, 0xD, &mLeftHandPos, -1, NULL, NULL, -1));
+                        canoe_p->onRodID(fopAcM_create(fpcNm_MG_ROD_e, 0xD, &mLeftHandPos, -1, NULL, NULL, -1));
                         return procCanoeJumpRideInit(NULL);
                     }
                     return 1;
@@ -1032,17 +1032,17 @@ void daAlink_c::setGetItemFace(u16 i_itemNo) {
 
 BOOL daAlink_c::checkGrabTalkActor(fopAc_ac_c* i_actor) {
     s16 name = fopAcM_GetName(i_actor);
-    return name == PROC_NPC_KYURY || name == PROC_MYNA || name == PROC_OBJ_SSITEM ||
-           name == PROC_TAG_MSG;
+    return name == fpcNm_NPC_KYURY_e || name == fpcNm_MYNA_e || name == fpcNm_OBJ_SSITEM_e ||
+           name == fpcNm_TAG_MSG_e;
 }
 
 int daAlink_c::setTalkStartBack(cXyz* param_0) {
     fopAc_ac_c* partner_p = fopAcM_getTalkEventPartner(this);
     if (partner_p != NULL) {
         s16 partner_name = fopAcM_GetName(partner_p);
-        if (partner_name == PROC_MIDNA || partner_name == PROC_Tag_Wljump ||
-            partner_name == PROC_Tag_Mhint || partner_name == PROC_Tag_Mstop ||
-            partner_name == PROC_Tag_Mwait)
+        if (partner_name == fpcNm_MIDNA_e || partner_name == fpcNm_Tag_Wljump_e ||
+            partner_name == fpcNm_Tag_Mhint_e || partner_name == fpcNm_Tag_Mstop_e ||
+            partner_name == fpcNm_Tag_Mwait_e)
         {
             return 0;
         }
@@ -1073,14 +1073,14 @@ void daAlink_c::setShapeAngleToTalkActor() {
     if (partner_p != NULL) {
         s16 partner_name = fopAcM_GetName(partner_p);
 
-        if (partner_name != PROC_MYNA &&
-            (partner_name != PROC_Tag_Mwait || !static_cast<daTagMwait_c*>(partner_p)->checkEndMessage()) &&
-            (partner_name != PROC_Tag_Mhint || !static_cast<daTagMhint_c*>(partner_p)->checkNoAttention()) &&
-            (partner_name != PROC_Tag_Mstop || !static_cast<daTagMstop_c*>(partner_p)->checkNoAttention()) &&
-            partner_name != PROC_MIDNA)
+        if (partner_name != fpcNm_MYNA_e &&
+            (partner_name != fpcNm_Tag_Mwait_e || !static_cast<daTagMwait_c*>(partner_p)->checkEndMessage()) &&
+            (partner_name != fpcNm_Tag_Mhint_e || !static_cast<daTagMhint_c*>(partner_p)->checkNoAttention()) &&
+            (partner_name != fpcNm_Tag_Mstop_e || !static_cast<daTagMstop_c*>(partner_p)->checkNoAttention()) &&
+            partner_name != fpcNm_MIDNA_e)
         {
             s16 target;
-            if (partner_name == PROC_Tag_Mhint || partner_name == PROC_Tag_Mstop) {
+            if (partner_name == fpcNm_Tag_Mhint_e || partner_name == fpcNm_Tag_Mstop_e) {
                 target = cLib_targetAngleY(&current.pos, &partner_p->eyePos);
             } else {
                 target = fopAcM_searchActorAngleY(this, partner_p);
@@ -2426,8 +2426,8 @@ int daAlink_c::procCoGetItem() {
 
     daItemBase_c* item_partner_p = (daItemBase_c*)fopAcM_getItemEventPartner(this);
 #if DEBUG
-    if (item_partner_p != NULL && fopAcM_GetName(item_partner_p) != PROC_ITEM &&
-        fopAcM_GetName(item_partner_p) != PROC_Demo_Item)
+    if (item_partner_p != NULL && fopAcM_GetName(item_partner_p) != fpcNm_ITEM_e &&
+        fopAcM_GetName(item_partner_p) != fpcNm_Demo_Item_e)
     {
         // "Get Item is not an item!!! %d\n"
         OSReport("ゲットするアイテムがアイテムじゃない！！！　%d\n",
@@ -3795,8 +3795,8 @@ int daAlink_c::procTradeItemOut() {
                 daItemBase_c* item_partner_p = (daItemBase_c*)fopAcM_getItemEventPartner(this);
                 if (item_partner_p != NULL) {
                     if (!fpcM_IsCreating(fpcM_GetID(item_partner_p))) {
-                        if (fopAcM_GetName(item_partner_p) == PROC_ITEM ||
-                            fopAcM_GetName(item_partner_p) == PROC_Demo_Item)
+                        if (fopAcM_GetName(item_partner_p) == fpcNm_ITEM_e ||
+                            fopAcM_GetName(item_partner_p) == fpcNm_Demo_Item_e)
                         {
                             field_0x280c.setData(item_partner_p);
                             item_partner_p->show();
@@ -3871,8 +3871,8 @@ int daAlink_c::procNotUseItem() {
     if (mProcVar3.field_0x300e != 0) {
         daItemBase_c* item_partner_p = (daItemBase_c*)fopAcM_getItemEventPartner(this);
 #if DEBUG
-        if (item_partner_p != NULL && fopAcM_GetName(item_partner_p) != PROC_ITEM &&
-            fopAcM_GetName(item_partner_p) != PROC_Demo_Item)
+        if (item_partner_p != NULL && fopAcM_GetName(item_partner_p) != fpcNm_ITEM_e &&
+            fopAcM_GetName(item_partner_p) != fpcNm_Demo_Item_e)
         {
             // "Present Item is not this Item!!! %d\n"
             OSReport("差し出すアイテムがアイテムじゃない！！！　%d\n",
@@ -4103,10 +4103,10 @@ int daAlink_c::procDungeonWarpReadyInit() {
 
     fpc_ProcID id;
     if (checkItemSetButton(dItemNo_DUNGEON_EXIT_e) != 2) {
-        id = fopAcM_create(PROC_OBJ_TKS, 0, &current.pos, fopAcM_GetRoomNo(this), &shape_angle,
+        id = fopAcM_create(fpcNm_OBJ_TKS_e, 0, &current.pos, fopAcM_GetRoomNo(this), &shape_angle,
                            NULL, -1);
     } else {
-        id = fopAcM_create(PROC_NPC_TKC, 2, &current.pos, fopAcM_GetRoomNo(this), &shape_angle,
+        id = fopAcM_create(fpcNm_NPC_TKC_e, 2, &current.pos, fopAcM_GetRoomNo(this), &shape_angle,
                            NULL, -1);
     }
 
@@ -4132,7 +4132,7 @@ int daAlink_c::procDungeonWarpReady() {
         if (warpActor != NULL) {
             field_0x280c.setData(warpActor);
 
-            if (fopAcM_GetName(warpActor) == PROC_OBJ_TKS) {
+            if (fopAcM_GetName(warpActor) == fpcNm_OBJ_TKS_e) {
                 ((daObjTks_c*)warpActor)->setStart();
             } else {
                 ((daNpcTkc_c*)warpActor)->setStart();
@@ -4280,7 +4280,7 @@ int daAlink_c::procDungeonWarpSceneStart() {
 static fopAc_ac_c* daAlink_searchPortal(fopAc_ac_c* i_actor, void* i_data) {
     cXyz* pos = (cXyz*)i_data;
 
-    if (fopAcM_GetName(i_actor) == PROC_KYTAG04) {        
+    if (fopAcM_GetName(i_actor) == fpcNm_KYTAG04_e) {        
         if (i_actor->current.pos.abs2XZ(*pos) < 1.0f) {
             return i_actor;
         }

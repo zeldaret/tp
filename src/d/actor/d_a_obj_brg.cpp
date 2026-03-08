@@ -53,11 +53,11 @@ static void ride_call_back(dBgW* i_bgw, fopAc_ac_c* i_bgActor, fopAc_ac_c* i_rid
     i_rideActor->speed.y = -5.0f;
 
     f32 var_f29;
-    if (fopAcM_GetName(i_rideActor) == PROC_ALINK) {
+    if (fopAcM_GetName(i_rideActor) == fpcNm_ALINK_e) {
         var_f29 = 100.0f;
         br_p->field_0x0e4 = -31.0f;
         a_this->field_0xb1ef = 5;
-    } else if (fopAcM_GetName(i_rideActor) == PROC_NPC_KS) {
+    } else if (fopAcM_GetName(i_rideActor) == fpcNm_NPC_KS_e) {
         var_f29 = 70.0f;
         br_p->field_0x0e4 = -20.0f;
         i_rideActor->speed.y = -20.0f;
@@ -1834,13 +1834,13 @@ actor_process_profile_definition g_profile_OBJ_BRG = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 3,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_OBJ_BRG,
+    /* Proc Name    */ fpcNm_OBJ_BRG_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(obj_brg_class),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_OBJ_BRG,
+    /* Draw Prio    */ fpcDwPi_OBJ_BRG_e,
     /* Actor SubMtd */ &l_daObj_Brg_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_UNK_0x4000_e,
     /* Group        */ fopAc_ACTOR_e,

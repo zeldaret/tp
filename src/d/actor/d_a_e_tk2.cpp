@@ -289,7 +289,7 @@ static void e_tk2_attack(e_tk2_class* i_this) {
     case MODE_TK2_APPEAR:
         if ((int)i_this->mpMorf->getFrame() == 0x18) {
             i_this->mBallID =
-                fopAcM_createChild(PROC_E_TK_BALL, fopAcM_GetID(actor), 1, &actor->eyePos,
+                fopAcM_createChild(fpcNm_E_TK_BALL_e, fopAcM_GetID(actor), 1, &actor->eyePos,
                                    fopAcM_GetRoomNo(actor), &actor->shape_angle, 0, -1, 0);
         }
         if ((int)i_this->mpMorf->getFrame() == 0x1c) {
@@ -618,13 +618,13 @@ actor_process_profile_definition g_profile_E_TK2 = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_E_TK2,
+    /* Proc Name    */ fpcNm_E_TK2_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(e_tk2_class),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_E_TK2,
+    /* Draw Prio    */ fpcDwPi_E_TK2_e,
     /* Actor SubMtd */ &l_daE_TK2_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e,
     /* Group        */ fopAc_ENEMY_e,

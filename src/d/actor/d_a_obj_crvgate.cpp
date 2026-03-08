@@ -344,8 +344,8 @@ void daObjCRVGATE_c::CloseAction() {
             fopAc_ac_c* hitObj = dCc_GetAc(mSph[i].GetCoHitObj()->GetAc());
             fopAc_ac_c* boar_ac;
 
-            if (fopAcM_GetName(hitObj) == PROC_E_WB && player->checkBoarRun() != 0 &&
-                fopAcM_SearchByName(PROC_E_WB, &boar_ac) != 0)
+            if (fopAcM_GetName(hitObj) == fpcNm_E_WB_e && player->checkBoarRun() != 0 &&
+                fopAcM_SearchByName(fpcNm_E_WB_e, &boar_ac) != 0)
             {
                 cXyz* boar_speed = &fopAcM_GetSpeed(boar_ac);
                 daPy_py_c* player = daPy_getPlayerActorClass();
@@ -419,7 +419,7 @@ void daObjCRVGATE_c::OpenAction() {
                 if (mSph[i].ChkCoHit() != 0) {
                     local_3c++;
                     fopAc_ac_c* hitObj = dCc_GetAc(mSph[i].GetCoHitObj()->GetAc());
-                    if (fopAcM_GetName(hitObj) == PROC_E_WB) {
+                    if (fopAcM_GetName(hitObj) == fpcNm_E_WB_e) {
                         if (mKeyParam == 0xff) {
                             Z2GetAudioMgr()->seStart(Z2SE_OBJ_CRVN_GATE_BREAK, &current.pos, 0, 0,
                                                      1.0f, 1.0f, -1.0f, -1.0f, 0);
@@ -483,7 +483,7 @@ void daObjCRVGATE_c::OpenAction() {
                 if (mSph[i].ChkCoHit() != 0) {
                     local_3c++;
                     fopAc_ac_c* hitObj = dCc_GetAc(mSph[i].GetCoHitObj()->GetAc());
-                    if (fopAcM_GetName(hitObj) == PROC_E_WB) {
+                    if (fopAcM_GetName(hitObj) == fpcNm_E_WB_e) {
                         daPy_py_c* player = daPy_getPlayerActorClass();
 
                         mDoorSwingTargetAngle = mDoorAngle - fopAcM_GetSpeedF(player) * 288.0f;
@@ -704,7 +704,7 @@ void daObjCRVGATE_c::SetDoor() {
         mKeyParam = 0x01;
 
         // Create the second (identical) part of the door (swinging gate).
-        mDoorPairProcID = fopAcM_createChild(PROC_Obj_CRVGATE, fopAcM_GetID(this), 1, &child_pos,
+        mDoorPairProcID = fopAcM_createChild(fpcNm_Obj_CRVGATE_e, fopAcM_GetID(this), 1, &child_pos,
                                              fopAcM_GetRoomNo(this), &child_angle, NULL, -1, 0);
         mDoorY = shape_angle.y;
     } else {
@@ -837,13 +837,13 @@ actor_process_profile_definition g_profile_Obj_CRVGATE = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 3,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_Obj_CRVGATE,
+    /* Proc Name    */ fpcNm_Obj_CRVGATE_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daObjCRVGATE_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_Obj_CRVGATE,
+    /* Draw Prio    */ fpcDwPi_Obj_CRVGATE_e,
     /* Actor SubMtd */ &l_daObjCRVGATE_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e | fopAcStts_NOEXEC_e,
     /* Group        */ fopAc_ACTOR_e,

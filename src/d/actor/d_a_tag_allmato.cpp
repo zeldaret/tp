@@ -273,7 +273,7 @@ void* daTag_AllMato_c::srchBouMato(void* i_actor, void* i_data) {
     if (l_findCount < 100) {
         fopAc_ac_c* actor = (fopAc_ac_c*)i_actor;
         if (actor != NULL && actor != data) {
-            if (fopAcM_IsExecuting(fopAcM_GetID(actor)) && fopAcM_GetName(i_actor) == PROC_OBJ_BOUMATO) {
+            if (fopAcM_IsExecuting(fopAcM_GetID(actor)) && fopAcM_GetName(i_actor) == fpcNm_OBJ_BOUMATO_e) {
                 l_findActorPtrs[l_findCount] = actor;
                 l_findCount++;
             }
@@ -288,7 +288,7 @@ void* daTag_AllMato_c::srchItaMato(void* i_actor, void* i_data) {
     if (l_findCount < 100) {
         fopAc_ac_c* actor = (fopAc_ac_c*)i_actor;
         if (actor != NULL && actor != data) {
-            if (fopAcM_IsExecuting(fopAcM_GetID(actor)) && fopAcM_GetName(i_actor) == PROC_OBJ_ITAMATO) {
+            if (fopAcM_IsExecuting(fopAcM_GetID(actor)) && fopAcM_GetName(i_actor) == fpcNm_OBJ_ITAMATO_e) {
                 l_findActorPtrs[l_findCount] = actor;
                 l_findCount++;
             }
@@ -303,7 +303,7 @@ void* daTag_AllMato_c::srchTaro(void* i_actor, void* i_data) {
     if (l_findCount < 100) {
         fopAc_ac_c* actor = (fopAc_ac_c*)i_actor;
         if (actor != NULL && actor != data) {
-            if (fopAcM_IsExecuting(fopAcM_GetID(actor)) && fopAcM_GetName(i_actor) == PROC_NPC_TARO) {
+            if (fopAcM_IsExecuting(fopAcM_GetID(actor)) && fopAcM_GetName(i_actor) == fpcNm_NPC_TARO_e) {
                 l_findActorPtrs[l_findCount] = actor;
                 l_findCount++;
             }
@@ -318,7 +318,7 @@ void* daTag_AllMato_c::srchArrow(void* i_actor, void* i_data) {
     if (l_findCount < 100) {
         fopAc_ac_c* actor = (fopAc_ac_c*)i_actor;
         if (actor != NULL && actor != data) {
-            if (fopAcM_IsExecuting(fopAcM_GetID(actor)) && fopAcM_GetName(i_actor) == PROC_ARROW) {
+            if (fopAcM_IsExecuting(fopAcM_GetID(actor)) && fopAcM_GetName(i_actor) == fpcNm_ARROW_e) {
                 l_findActorPtrs[l_findCount] = actor;
                 l_findCount++;
             }
@@ -596,13 +596,13 @@ actor_process_profile_definition g_profile_TAG_ALLMATO = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 10,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_TAG_ALLMATO,
+    /* Proc Name    */ fpcNm_TAG_ALLMATO_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daTag_AllMato_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_TAG_ALLMATO,
+    /* Draw Prio    */ fpcDwPi_TAG_ALLMATO_e,
     /* Actor SubMtd */ &daTag_AllMato_MethodTable,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_UNK_0x4000_e,
     /* Group        */ fopAc_ACTOR_e,

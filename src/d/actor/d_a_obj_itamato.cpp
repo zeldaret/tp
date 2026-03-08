@@ -353,7 +353,7 @@ void daObj_ItaMato_c::tgHitCallBack(fopAc_ac_c* param_1, dCcD_GObjInf* param_2, 
     u8 cutType = 0;
 
     if (param_3 != NULL) {
-        if (fopAcM_GetProfName(param_3) == PROC_ALINK) {
+        if (fopAcM_GetProfName(param_3) == fpcNm_ALINK_e) {
             cutType = ((daPy_py_c*)param_3)->getCutType();
         } else {
             cutType = daPy_py_c::CUT_TYPE_NM_VERTICAL;
@@ -375,7 +375,7 @@ void daObj_ItaMato_c::setSwayParam(fopAc_ac_c* i_actor) {
     field_0x9e8 = 8;
     field_0xa17 = 0;
 
-    if (fopAcM_GetProfName(i_actor) == PROC_ALINK) {
+    if (fopAcM_GetProfName(i_actor) == fpcNm_ALINK_e) {
         switch (mCutType) {
             case 3:
             case 4:
@@ -477,13 +477,13 @@ actor_process_profile_definition g_profile_OBJ_ITAMATO = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_OBJ_ITAMATO,
+    /* Proc Name    */ fpcNm_OBJ_ITAMATO_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daObj_ItaMato_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_OBJ_ITAMATO,
+    /* Draw Prio    */ fpcDwPi_OBJ_ITAMATO_e,
     /* Actor SubMtd */ &daObj_ItaMato_MethodTable,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_UNK_0x4000_e | fopAcStts_CULL_e,
     /* Group        */ fopAc_ACTOR_e,

@@ -1855,7 +1855,7 @@ BOOL daNpcShad_c::EvCut_ToChantSpell2(int i_cutIndex) {
                 mTurnMode = 0;
 
                 actor = NULL;
-                fopAcM_SearchByName(PROC_CSTAF, (fopAc_ac_c**)&actor);
+                fopAcM_SearchByName(fpcNm_CSTAF_e, (fopAc_ac_c**)&actor);
                 if (actor != NULL) {
                     fopAcM_OnStatus(actor, fopAcStts_STAFF_EXTRA_e);
                 }
@@ -1902,7 +1902,7 @@ BOOL daNpcShad_c::EvCut_ToChantSpell2(int i_cutIndex) {
 
             case '0010':
                 statue = NULL;
-                fopAcM_SearchByName(PROC_CSTAF, (fopAc_ac_c**)&statue);
+                fopAcM_SearchByName(fpcNm_CSTAF_e, (fopAc_ac_c**)&statue);
                 if (statue != NULL) {
                     statue->onCoverVanishFlg();
                 }
@@ -2650,13 +2650,13 @@ actor_process_profile_definition g_profile_NPC_SHAD = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_NPC_SHAD,
+    /* Proc Name    */ fpcNm_NPC_SHAD_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daNpcShad_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_NPC_SHAD,
+    /* Draw Prio    */ fpcDwPi_NPC_SHAD_e,
     /* Actor SubMtd */ &daNpcShad_MethodTable,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e,
     /* Group        */ fopAc_NPC_e,

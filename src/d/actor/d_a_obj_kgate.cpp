@@ -32,7 +32,7 @@ enum {
 };
 
 static void* search_coach(void* i_actor, void* i_data) {
-    if (i_actor != NULL && fopAcM_IsActor(i_actor) && fopAcM_GetProfName(i_actor) == PROC_NPC_COACH)
+    if (i_actor != NULL && fopAcM_IsActor(i_actor) && fopAcM_GetProfName(i_actor) == fpcNm_NPC_COACH_e)
     {
         return i_actor;
     }
@@ -991,13 +991,13 @@ actor_process_profile_definition g_profile_Obj_KkrGate = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 3,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_Obj_KkrGate,
+    /* Proc Name    */ fpcNm_Obj_KkrGate_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daObjKGate_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_Obj_KkrGate,
+    /* Draw Prio    */ fpcDwPi_Obj_KkrGate_e,
     /* Actor SubMtd */ &daObjKGate_METHODS,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e,
     /* Group        */ fopAc_ACTOR_e,

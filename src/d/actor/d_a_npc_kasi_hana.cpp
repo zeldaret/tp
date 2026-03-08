@@ -438,7 +438,7 @@ BOOL daNpcKasi_Mng_c::isMiniGamePlaying() {
 void daNpcKasi_Mng_c::schMemberActor() {
     if (mKyuActorMngr.getPId() == fpcM_ERROR_PROCESS_ID_e) {
         fopAc_ac_c* kyu_p = NULL;
-        if (fopAcM_SearchByName(PROC_NPC_KASIKYU, (fopAc_ac_c**)&kyu_p) != 0) {
+        if (fopAcM_SearchByName(fpcNm_NPC_KASIKYU_e, (fopAc_ac_c**)&kyu_p) != 0) {
             setKyuActor(kyu_p);
         }
     }
@@ -446,7 +446,7 @@ void daNpcKasi_Mng_c::schMemberActor() {
     if (mMichActorMngr.getPId() == fpcM_ERROR_PROCESS_ID_e) {
         fopAc_ac_c* mich_p = NULL;
 
-        if (fopAcM_SearchByName(PROC_NPC_KASIMICH, (fopAc_ac_c**)&mich_p) != 0) {
+        if (fopAcM_SearchByName(fpcNm_NPC_KASIMICH_e, (fopAc_ac_c**)&mich_p) != 0) {
             setMichActor(mich_p);
         }
     }
@@ -456,7 +456,7 @@ void daNpcKasi_Mng_c::schDanchoActor() {
     if (mDanchoActorMngr.getPId() == fpcM_ERROR_PROCESS_ID_e) {
         fopAc_ac_c* dancho_p = NULL;
 
-        if (fopAcM_SearchByName(PROC_NPC_CHIN, (fopAc_ac_c**)&dancho_p) != 0) {
+        if (fopAcM_SearchByName(fpcNm_NPC_CHIN_e, (fopAc_ac_c**)&dancho_p) != 0) {
             setDanchoActor(dancho_p);
         }
     }
@@ -1487,7 +1487,7 @@ void* daNpcKasiHana_c::_srch_escape_tag(void* i_actor, void* i_data) {
         return NULL;
     }
 
-    if (fopAcM_GetName(i_actor) != PROC_Tag_Escape) {
+    if (fopAcM_GetName(i_actor) != fpcNm_Tag_Escape_e) {
         return NULL;
     }
 
@@ -2313,13 +2313,13 @@ actor_process_profile_definition g_profile_NPC_KASIHANA = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_NPC_KASIHANA,
+    /* Proc Name    */ fpcNm_NPC_KASIHANA_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daNpcKasiHana_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_NPC_KASIHANA,
+    /* Draw Prio    */ fpcDwPi_NPC_KASIHANA_e,
     /* Actor SubMtd */ &daNpcKasiHana_MethodTable,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e | fopAcStts_UNK_0x8_e,
     /* Group        */ fopAc_NPC_e,

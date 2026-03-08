@@ -124,7 +124,7 @@ void daObj_Balloon_c::action() {
 
     if (mSph.ChkTgHit()) {
         cCcD_Obj* hit_obj = mSph.GetTgHitObj();
-        if (fopAcM_GetName(dCc_GetAc(hit_obj->GetAc())) == PROC_KAGO) {
+        if (fopAcM_GetName(dCc_GetAc(hit_obj->GetAc())) == fpcNm_KAGO_e) {
             cXyz eff_scale(kago_effect_scale[mType], kago_effect_scale[mType],
                            kago_effect_scale[mType]);
             for (int i = 0; i < 2; i++) {
@@ -152,7 +152,7 @@ void daObj_Balloon_c::action() {
                                      1.0f, -1.0f, -1.0f, 0);
             m_balloon_score += add_score;
 
-            daBalloon2D_c* balloon_2d = (daBalloon2D_c*)fopAcM_SearchByName(PROC_BALLOON2D);
+            daBalloon2D_c* balloon_2d = (daBalloon2D_c*)fopAcM_SearchByName(fpcNm_BALLOON2D_e);
             if (balloon_2d != NULL) {
                 u8 balloon_size;
                 if (mType == SIZE_SMALL_e) {
@@ -299,13 +299,13 @@ actor_process_profile_definition g_profile_OBJ_BALLOON = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_OBJ_BALLOON,
+    /* Proc Name    */ fpcNm_OBJ_BALLOON_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daObj_Balloon_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_OBJ_BALLOON,
+    /* Draw Prio    */ fpcDwPi_OBJ_BALLOON_e,
     /* Actor SubMtd */ &l_daObj_Balloon_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e,
     /* Group        */ fopAc_ACTOR_e,

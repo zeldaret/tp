@@ -3062,14 +3062,14 @@ static int dMeter2_Delete(dMeter2_c* i_this) {
 static int dMeter2_Create(msg_class* i_this) {
     dMeter2Info_setMeterClass(static_cast<dMeter2_c*>(i_this));
     dComIfGp_2dShowOn();
-    fopMsgM_Create(PROC_MENUWINDOW, NULL, NULL);
+    fopMsgM_Create(fpcNm_MENUWINDOW_e, NULL, NULL);
 
     g_drawHIO.field_0x4 = -1;
     g_ringHIO.field_0x4 = -1;
     g_fmapHIO.field_0x4 = -1;
     g_cursorHIO.field_0x4 = -1;
 
-    u32 id = fopMsgM_Create(PROC_MSG_OBJECT, NULL, NULL);
+    u32 id = fopMsgM_Create(fpcNm_MSG_OBJECT_e, NULL, NULL);
     fopMsgM_setMessageID(id);
 
     dTimer_createStockTimer();
@@ -3088,12 +3088,12 @@ msg_process_profile_definition g_profile_METER2 = {
     /* Layer ID    */ fpcLy_CURRENT_e,
     /* List ID     */ 12,
     /* List Prio   */ fpcPi_CURRENT_e,
-    /* Proc Name   */ PROC_METER2,
+    /* Proc Name   */ fpcNm_METER2_e,
     /* Proc SubMtd */ &g_fpcLf_Method.base,
     /* Size        */ sizeof(dMeter2_c),
     /* Size Other  */ 0,
     /* Parameters  */ 0,
     /* Leaf SubMtd */ &g_fopMsg_Method,
-    /* Priority    */ PRIO_METER2,
+    /* Draw Prio   */ fpcDwPi_METER2_e,
     /* Msg SubMtd  */ &l_dMeter2_Method,
 };

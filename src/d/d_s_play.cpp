@@ -95,7 +95,7 @@ u8 dScnPly_c::debugPause;
 #endif
 
 static const s16 T_JOINT_dylKeyTbl[1] = {
-    PROC_COW,
+    fpcNm_COW_e,
 };
 
 static const char* T_JOINT_resName[1] = {"Always"};
@@ -461,10 +461,10 @@ static u32 l_usedMemoryBlockSize = 0xFFFFFFFF;
 
 static int checkObjectSize(void* i_process, void* i_data) {
     s16 profname = fpcM_GetProfName(i_process);
-    if (profname == PROC_BG) {
+    if (profname == fpcNm_BG_e) {
         fopAc_ac_c* actor = (fopAc_ac_c*)i_process;
         *((u32*)i_data) += ((l_usedMemoryBlockSize != 0 && actor->heap == NULL) ? 0 : actor->heap->getHeapSize()) + actor->base.base.profile->process_size;
-    } else if (profname == PROC_PLAY_SCENE || profname == PROC_ROOM_SCENE) {
+    } else if (profname == fpcNm_PLAY_SCENE_e || profname == fpcNm_ROOM_SCENE_e) {
         *((u32*)i_data) += ((base_process_class*)i_process)->profile->process_size;
     } else if (fopKyM_IsKy(i_process)) {
         *((u32*)i_data + 1) += ((base_process_class*)i_process)->profile->process_size;
@@ -472,10 +472,10 @@ static int checkObjectSize(void* i_process, void* i_data) {
         fopAc_ac_c* actor = (fopAc_ac_c*)i_process;
         *((u32*)i_data + 1) += (actor->heap == NULL ? 0 : actor->heap->getHeapSize()) + actor->base.base.profile->process_size;
 
-        if (profname == PROC_ALINK) {
+        if (profname == fpcNm_ALINK_e) {
             daAlink_c* alink = (daAlink_c*)actor;
             *((u32*)i_data + 1) += alink->getOtherHeapSize();
-        } else if (profname == PROC_MIDNA) {
+        } else if (profname == fpcNm_MIDNA_e) {
             daMidna_c* midna = (daMidna_c*)actor;
             *((u32*)i_data + 1) += midna->getOtherHeapSize();
         }
@@ -562,7 +562,7 @@ static int dScnPly_Draw(dScnPly_c* i_this) {
             }
             #endif
 
-            int rt = fopScnM_ChangeReq(i_this, PROC_PLAY_SCENE, l_wipeType[wipe], 5);
+            int rt = fopScnM_ChangeReq(i_this, fpcNm_PLAY_SCENE_e, l_wipeType[wipe], 5);
 
             int hour = dKy_getdaytime_hour();
             BOOL isDaytime = (hour >= 6 && hour < 18) ? FALSE : TRUE;
@@ -593,7 +593,7 @@ static int dScnPly_Draw(dScnPly_c* i_this) {
         && !fapGm_HIO_c::isCaptureScreen()
         #endif
     ) {
-        if (fpcM_GetName(i_this) == PROC_PLAY_SCENE) {
+        if (fpcM_GetName(i_this) == fpcNm_PLAY_SCENE_e) {
             dComIfGp_getVibration().Run();
         }
         daSus_c::execute();
@@ -630,10 +630,10 @@ static int dScnPly_Draw(dScnPly_c* i_this) {
                 spA = 7;
             }
 
-            fopScnM_ChangeReq(i_this, PROC_MENU_SCENE, spA, 5);
+            fopScnM_ChangeReq(i_this, fpcNm_MENU_SCENE_e, spA, 5);
             mDoAud_bgmStop(30);
 
-            if (fpcM_GetName(i_this) != PROC_PLAY_SCENE) {
+            if (fpcM_GetName(i_this) != fpcNm_PLAY_SCENE_e) {
                 dComIfG_playerStatusD();
             }
         }
@@ -1010,7 +1010,7 @@ static BOOL heapSizeCheck() {
 #endif
 
 bool dScnPly_c::resetGame() {
-    if (fpcM_GetName(this) == PROC_OPENING_SCENE) {
+    if (fpcM_GetName(this) == fpcNm_OPENING_SCENE_e) {
         if (!dStage_roomControl_c::resetArchiveBank(0)) {
             return false;
         }
@@ -1426,8 +1426,8 @@ static int phase_4(dScnPly_c* i_this) {
     JUT_ASSERT(2709, heap2 != NULL);
     dComIfGp_setMsgExpHeap(heap2);
 
-    if (fpcM_GetName(i_this) == PROC_OPENING_SCENE) {
-        fopAcM_create(PROC_TITLE, 0, NULL, -1, NULL, NULL, -1);
+    if (fpcM_GetName(i_this) == fpcNm_OPENING_SCENE_e) {
+        fopAcM_create(fpcNm_TITLE_e, 0, NULL, -1, NULL, NULL, -1);
         #if DEBUG
         g_playerKind = 0;
         #endif
@@ -1593,7 +1593,7 @@ scene_process_profile_definition g_profile_PLAY_SCENE = {
     /* Layer ID     */ fpcLy_ROOT_e,
     /* List ID      */ 1,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_PLAY_SCENE,
+    /* Proc Name    */ fpcNm_PLAY_SCENE_e,
     /* Proc SubMtd  */ &g_fpcNd_Method.base,
     /* Size         */ sizeof(dScnPly_c),
     /* Size Other   */ 0,
@@ -1606,7 +1606,7 @@ scene_process_profile_definition g_profile_OPENING_SCENE = {
     /* Layer ID     */ fpcLy_ROOT_e,
     /* List ID      */ 1,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_OPENING_SCENE,
+    /* Proc Name    */ fpcNm_OPENING_SCENE_e,
     /* Proc SubMtd  */ &g_fpcNd_Method.base,
     /* Size         */ sizeof(dScnPly_c),
     /* Size Other   */ 0,

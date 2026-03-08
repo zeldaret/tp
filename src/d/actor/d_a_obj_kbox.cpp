@@ -29,7 +29,7 @@ static bool hio_set;
 static daObj_Kbox_HIO_c l_HIO;
 
 static void ride_call_back(dBgW* param_1, fopAc_ac_c* param_2, fopAc_ac_c* param_3) {
-    if (fopAcM_GetName(param_3) == PROC_ALINK) {
+    if (fopAcM_GetName(param_3) == fpcNm_ALINK_e) {
         obj_kbox_class* i_this = (obj_kbox_class*) param_2;
         if (i_this->field_0x5a0 == 0) {
             i_this->field_0x5a8 = -50.0f;
@@ -532,13 +532,13 @@ actor_process_profile_definition g_profile_OBJ_KBOX = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 8,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_OBJ_KBOX,
+    /* Proc Name    */ fpcNm_OBJ_KBOX_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(obj_kbox_class),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_OBJ_KBOX,
+    /* Draw Prio    */ fpcDwPi_OBJ_KBOX_e,
     /* Actor SubMtd */ &l_daObj_Kbox_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e,
     /* Group        */ fopAc_ACTOR_e,

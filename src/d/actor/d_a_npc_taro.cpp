@@ -463,7 +463,7 @@ int daNpc_Taro_c::createHeapCallBack(fopAc_ac_c* i_this) {
 
 void* daNpc_Taro_c::srchArrow(void* param_1, void* param_2) {
     if (mFindCount < 50 && param_1 != NULL && param_1 != param_2) {
-        if (fopAcM_IsExecuting(fopAcM_GetID(param_1)) && fopAcM_GetName(param_1) == PROC_ARROW) {
+        if (fopAcM_IsExecuting(fopAcM_GetID(param_1)) && fopAcM_GetName(param_1) == fpcNm_ARROW_e) {
             mFindActorPtrs[mFindCount] = (fopAc_ac_c*)param_1;
             mFindCount++;
         }
@@ -475,7 +475,7 @@ void* daNpc_Taro_c::srchNpc(void* param_1, void* param_2) {
     if (mFindCount < 50 && param_1 != NULL && param_1 != param_2) {
         if (fopAcM_IsExecuting(fopAcM_GetID(param_1)) &&
         (fopAcM_GetGroup((fopAc_ac_c*)param_1) == 4 ||
-        (fopAcM_GetName(param_1) == PROC_TAG_EVTAREA && ((daTag_EvtArea_c*)param_1)->getType() == 15))) {
+        (fopAcM_GetName(param_1) == fpcNm_TAG_EVTAREA_e && ((daTag_EvtArea_c*)param_1)->getType() == 15))) {
             mFindActorPtrs[mFindCount] = (fopAc_ac_c*)param_1;
             mFindCount++;
         }
@@ -3401,13 +3401,13 @@ actor_process_profile_definition g_profile_NPC_TARO = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_NPC_TARO,
+    /* Proc Name    */ fpcNm_NPC_TARO_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daNpc_Taro_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_NPC_TARO,
+    /* Draw Prio    */ fpcDwPi_NPC_TARO_e,
     /* Actor SubMtd */ &daNpc_Taro_MethodTable,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e | fopAcStts_UNK_0x4_e | fopAcStts_UNK_0x2_e | fopAcStts_UNK_0x1_e,
     /* Group        */ fopAc_NPC_e,

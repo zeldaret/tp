@@ -894,19 +894,19 @@ void daNpc_Kolin_c::srchActors() {
             }
 
             if (mActorMngr[2].getActorP() == NULL) {
-                mActorMngr[2].entry(getNearestActorP(PROC_Obj_Hfuta));
+                mActorMngr[2].entry(getNearestActorP(fpcNm_Obj_Hfuta_e));
             }
             break;
 
         case 3:
             if (mActorMngr[3].getActorP() == NULL) {
-                mActorMngr[3].entry(getNearestActorP(PROC_NPC_YELIA));
+                mActorMngr[3].entry(getNearestActorP(fpcNm_NPC_YELIA_e));
             }
             break;
 
         case 4:
             if (mActorMngr[4].getActorP() == NULL) {
-                mActorMngr[4].entry(getNearestActorP(PROC_NPC_LEN));
+                mActorMngr[4].entry(getNearestActorP(fpcNm_NPC_LEN_e));
             }
             break;
 
@@ -2255,13 +2255,13 @@ actor_process_profile_definition g_profile_NPC_KOLIN = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_NPC_KOLIN,
+    /* Proc Name    */ fpcNm_NPC_KOLIN_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daNpc_Kolin_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_NPC_KOLIN,
+    /* Draw Prio    */ fpcDwPi_NPC_KOLIN_e,
     /* Actor SubMtd */ &daNpc_Kolin_MethodTable,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e | fopAcStts_UNK_0x4_e | fopAcStts_UNK_0x2_e | fopAcStts_UNK_0x1_e,
     /* Group        */ fopAc_NPC_e,

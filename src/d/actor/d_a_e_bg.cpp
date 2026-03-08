@@ -227,7 +227,7 @@ void daE_BG_c::setSparkEffect() {
 }
 
 fopAc_ac_c* daE_BG_c::search_esa() {
-    dmg_rod_class* rod = (dmg_rod_class*)fopAcM_SearchByName(PROC_MG_ROD);
+    dmg_rod_class* rod = (dmg_rod_class*)fopAcM_SearchByName(fpcNm_MG_ROD_e);
     if (rod != NULL && rod->kind == 1 && rod->action != 5 && rod->is_hook_in_water != 0 &&
         rod->actor.current.pos.y < rod->water_surface_y - 20.0f) {
         return &rod->actor;
@@ -286,7 +286,7 @@ void daE_BG_c::executeBorn() {
         }
 
         if (field_0x68f == 0) {
-            mBgId = fopAcM_createChild(PROC_E_BG, fopAcM_GetID(this), 0xffffff02, &current.pos,
+            mBgId = fopAcM_createChild(fpcNm_E_BG_e, fopAcM_GetID(this), 0xffffff02, &current.pos,
                                            fopAcM_GetRoomNo(this), &shape_angle, NULL, -1, NULL);
             mMoveMode = 3;
         }
@@ -480,7 +480,7 @@ void daE_BG_c::executeAttack() {
 
         if (mAtSphere.ChkAtHit()) {
             fopAc_ac_c* hitActor = dCc_GetAc(mAtSphere.GetAtHitObj()->GetAc());
-            if (fopAcM_GetName(hitActor) == PROC_ALINK) {
+            if (fopAcM_GetName(hitActor) == fpcNm_ALINK_e) {
                 mMoveMode = 10;
                 field_0x68f = 30;
                 speedF = cM_rndFX(1.0f) + -5.0f;
@@ -635,7 +635,7 @@ void daE_BG_c::executeAttack() {
 
         if (mAtSphere.ChkAtHit()) {
             fopAc_ac_c* hitActor = dCc_GetAc(mAtSphere.GetAtHitObj()->GetAc());
-            if (fopAcM_GetName(hitActor) == PROC_ALINK) {
+            if (fopAcM_GetName(hitActor) == fpcNm_ALINK_e) {
                 mMoveMode = 5;
                 field_0x68f = 30;
 
@@ -1423,13 +1423,13 @@ actor_process_profile_definition g_profile_E_BG = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_E_BG,
+    /* Proc Name    */ fpcNm_E_BG_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daE_BG_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_E_BG,
+    /* Draw Prio    */ fpcDwPi_E_BG_e,
     /* Actor SubMtd */ &l_daE_BG_Method,
     /* Status       */ fopAcStts_UNK_0x80000_e | fopAcStts_UNK_0x40000_e | fopAcStts_UNK_0x10000_e | fopAcStts_CULL_e,
     /* Group        */ fopAc_ENEMY_e,

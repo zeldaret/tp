@@ -585,7 +585,7 @@ BOOL daAlink_c::checkDamageAction() {
         if (tghit_ac != NULL) {
             tghit_ac_name = fopAcM_GetName(tghit_ac);
         } else {
-            tghit_ac_name = PROC_ALINK;
+            tghit_ac_name = fpcNm_ALINK_e;
         }
 
         dCcD_GObjInf* tghit_gobj = var_r29->GetTgHitGObj();
@@ -621,7 +621,7 @@ BOOL daAlink_c::checkDamageAction() {
                 seStartOnlyReverb(Z2SE_AL_BURN_START);
             }
 
-            if ((mProcID != PROC_GUARD_ATTACK || (tghit_ac_name != PROC_E_TK_BALL && tghit_ac_name != PROC_KN_BULLET)) && !checkModeFlg(0x4000000)) {
+            if ((mProcID != PROC_GUARD_ATTACK || (tghit_ac_name != fpcNm_E_TK_BALL_e && tghit_ac_name != fpcNm_KN_BULLET_e)) && !checkModeFlg(0x4000000)) {
                 if (at_spl == 10 || at_spl == 11 || at_spl == 9) {
                     return procGuardBreakInit();
                 }

@@ -157,7 +157,7 @@ void* daPoFire_c::searchCandle(void* i_actor, void* i_this) {
     daPoFire_c* _this = static_cast<daPoFire_c*>(i_this);
     daPoCandle_c* _actor = static_cast<daPoCandle_c*>(i_actor);
     if (_actor != NULL && fopAcM_IsActor(_actor) &&
-        fopAcM_GetProfName(_actor) == PROC_Obj_poCandle &&
+        fopAcM_GetProfName(_actor) == fpcNm_Obj_poCandle_e &&
         _this->mActorID == ((daPoCandle_c*)_actor)->getIDNum())
     {
         return _actor;
@@ -168,7 +168,7 @@ void* daPoFire_c::searchCandle(void* i_actor, void* i_this) {
 void* daPoFire_c::searchFireTag(void* i_actor, void* i_this) {
     daPoFire_c* _this = static_cast<daPoFire_c*>(i_this);
     daTagPoFire_c* _actor = static_cast<daTagPoFire_c*>(i_actor);
-    if (_actor != NULL && fopAcM_IsActor(_actor) && fopAcM_GetProfName(_actor) == PROC_Tag_poFire) {
+    if (_actor != NULL && fopAcM_IsActor(_actor) && fopAcM_GetProfName(_actor) == fpcNm_Tag_poFire_e) {
         return _actor;
     }
     return NULL;
@@ -441,13 +441,13 @@ actor_process_profile_definition g_profile_Obj_poFire = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_Tag_Lv4Candle,
+    /* Proc Name    */ fpcNm_Tag_Lv4Candle_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daPoFire_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_Tag_Lv4Candle,
+    /* Draw Prio    */ fpcDwPi_Tag_Lv4Candle_e,
     /* Actor SubMtd */ &l_daPoFire_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_UNK_0x4000_e,
     /* Group        */ fopAc_ACTOR_e,

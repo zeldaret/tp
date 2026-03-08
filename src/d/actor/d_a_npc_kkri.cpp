@@ -468,7 +468,7 @@ int daNpc_Kkri_c::ctrlJointCallBack(J3DJoint* i_joint, int param_1) {
 void* daNpc_Kkri_c::srchYm(void* i_actor, void* i_data) {
     if (mFindCount < 50) {
         daE_YM_c* ym_p = (daE_YM_c*)i_actor;
-        if (ym_p != NULL && ym_p != i_data && fopAcM_IsExecuting(fopAcM_GetID(ym_p)) && fopAcM_GetName(ym_p) == PROC_E_YM && !ym_p->isHide()) {
+        if (ym_p != NULL && ym_p != i_data && fopAcM_IsExecuting(fopAcM_GetID(ym_p)) && fopAcM_GetName(ym_p) == fpcNm_E_YM_e && !ym_p->isHide()) {
             mFindActorPtrs[mFindCount] = ym_p;
             mFindCount++;
         }
@@ -626,7 +626,7 @@ void daNpc_Kkri_c::srchActors() {
     switch (mType) {
     case 0:
         if (mActorMng[0].getActorP() == NULL) {
-            mActorMng[0].entry(getNearestActorP(PROC_Tag_KtOnFire));
+            mActorMng[0].entry(getNearestActorP(fpcNm_Tag_KtOnFire_e));
         }
         /* fallthrough */
     case 1:
@@ -1249,13 +1249,13 @@ actor_process_profile_definition g_profile_NPC_KKRI = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_NPC_KKRI,
+    /* Proc Name    */ fpcNm_NPC_KKRI_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daNpc_Kkri_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_NPC_KKRI,
+    /* Draw Prio    */ fpcDwPi_NPC_KKRI_e,
     /* Actor SubMtd */ &daNpc_Kkri_MethodTable,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e | fopAcStts_UNK_0x4_e | fopAcStts_UNK_0x2_e | fopAcStts_UNK_0x1_e,
     /* Group        */ fopAc_NPC_e,

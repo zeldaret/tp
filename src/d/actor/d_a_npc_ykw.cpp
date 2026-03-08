@@ -479,7 +479,7 @@ void* daNpc_ykW_c::srchItemHeart(void* param_0, void* param_1) {
         fopAc_ac_c* item = (fopAc_ac_c*)param_0;
         if (item != NULL && item != npc && fopAcM_IsActor(item))
         {
-            if (fopAcM_IsExecuting(fopAcM_GetID(item)) && fopAcM_GetName(item) == PROC_ITEM &&
+            if (fopAcM_IsExecuting(fopAcM_GetID(item)) && fopAcM_GetName(item) == fpcNm_ITEM_e &&
                 ((daItemBase_c*)item)->getItemNo() == 0)
             {
                 npc->mFindActorPtrs[mFindCount] = item;
@@ -494,7 +494,7 @@ void* daNpc_ykW_c::srchYkw(void* param_0, void* param_1) {
     fopAc_ac_c* actor1 = (fopAc_ac_c*)param_0;
     fopAc_ac_c* actor2 = (fopAc_ac_c*)param_1;
     if (mFindCount < 50 && param_0 != NULL && actor1 != actor2) {
-        if (fopAcM_IsExecuting(fopAcM_GetID(actor1)) && fopAcM_GetName(actor1) == PROC_NPC_YKW) {
+        if (fopAcM_IsExecuting(fopAcM_GetID(actor1)) && fopAcM_GetName(actor1) == fpcNm_NPC_YKW_e) {
             mFindActorPtrs[mFindCount] = actor1;
             mFindCount++;
         }
@@ -523,7 +523,7 @@ void* daNpc_ykW_c::srchYkm(void* param_0, void* param_1) {
     fopAc_ac_c* actor1 = (fopAc_ac_c*)param_0;
     fopAc_ac_c* actor2 = (fopAc_ac_c*)param_1;
     if (mFindCount < 50 && param_0 != NULL && actor1 != actor2) {
-        if (fopAcM_IsExecuting(fopAcM_GetID(actor1)) && fopAcM_GetName(actor1) == PROC_NPC_YKM) {
+        if (fopAcM_IsExecuting(fopAcM_GetID(actor1)) && fopAcM_GetName(actor1) == fpcNm_NPC_YKM_e) {
             mFindActorPtrs[mFindCount] = actor1;
             mFindCount++;
         }
@@ -3031,13 +3031,13 @@ actor_process_profile_definition g_profile_NPC_YKW = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_NPC_YKW,
+    /* Proc Name    */ fpcNm_NPC_YKW_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daNpc_ykW_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_NPC_YKW,
+    /* Draw Prio    */ fpcDwPi_NPC_YKW_e,
     /* Actor SubMtd */ &daNpc_ykW_MethodTable,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e | fopAcStts_UNK_0x8_e,
     /* Group        */ fopAc_NPC_e,

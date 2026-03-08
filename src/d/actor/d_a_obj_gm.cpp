@@ -508,7 +508,7 @@ static void action(obj_gm_class* i_this) {
         }
 
         fopAc_ac_c* actor_p = dCc_GetAc(i_this->mSph.GetTgHitObj()->GetAc());
-        if (actor_p != NULL && fopAcM_GetName(actor_p) == PROC_OBJ_GM) {
+        if (actor_p != NULL && fopAcM_GetName(actor_p) == fpcNm_OBJ_GM_e) {
             i_this->field_0xae4 |= 2;
         }
     }
@@ -518,7 +518,7 @@ static void action(obj_gm_class* i_this) {
 }
 
 static void* s_tbox_sub(void* i_actor, void* i_data) {
-    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_TBOX) {
+    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == fpcNm_TBOX_e) {
         f32 fVar1 = ((fopAc_ac_c*)i_actor)->current.pos.x - ((fopAc_ac_c*)i_data)->current.pos.x;
         f32 fVar2 = ((fopAc_ac_c*)i_actor)->current.pos.z - ((fopAc_ac_c*)i_data)->current.pos.z;
         if (fVar1 * fVar1 + fVar2 * fVar2 < 40000.0f) {
@@ -530,7 +530,7 @@ static void* s_tbox_sub(void* i_actor, void* i_data) {
 }
 
 static void* s_so_sub(void* i_actor, void* i_data) {
-    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_OBJ_SO) {
+    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == fpcNm_OBJ_SO_e) {
         return i_actor;
     }
 
@@ -705,11 +705,11 @@ static cPhs_Step daObj_Gm_Create(fopAc_ac_c* a_this) {
 
         daObj_Gm_Execute(i_this);
 
-        fopAcM_createChild(PROC_OBJ_ITO, fopAcM_GetID(a_this), i_this->mType << 1, &a_this->current.pos,
+        fopAcM_createChild(fpcNm_OBJ_ITO_e, fopAcM_GetID(a_this), i_this->mType << 1, &a_this->current.pos,
                            fopAcM_GetRoomNo(a_this), &a_this->current.angle, NULL, -1, NULL);
 
         if (i_this->field_0x571 == 1) {
-            fopAcM_createChild(PROC_OBJ_ITO, fopAcM_GetID(a_this), (i_this->mType << 1) | 1, &a_this->current.pos,
+            fopAcM_createChild(fpcNm_OBJ_ITO_e, fopAcM_GetID(a_this), (i_this->mType << 1) | 1, &a_this->current.pos,
                             fopAcM_GetRoomNo(a_this), &a_this->current.angle, NULL, -1, NULL);
         } else {
             a_this->current.angle.x = 0;
@@ -731,13 +731,13 @@ actor_process_profile_definition g_profile_OBJ_GM = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 3,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_OBJ_GM,
+    /* Proc Name    */ fpcNm_OBJ_GM_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(obj_gm_class),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_OBJ_GM,
+    /* Draw Prio    */ fpcDwPi_OBJ_GM_e,
     /* Actor SubMtd */ &l_daObj_Gm_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_UNK_0x4000_e | fopAcStts_CULL_e,
     /* Group        */ fopAc_ACTOR_e,

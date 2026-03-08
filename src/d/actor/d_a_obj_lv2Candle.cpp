@@ -150,7 +150,7 @@ int daLv2Candle_c::createHeapCallBack(fopAc_ac_c* i_this) {
 
 void* daLv2Candle_c::searchDemoTagAct(void* i_actor, void* param_1) {
     if (i_actor != NULL && fopAc_IsActor(i_actor) &&
-                           fopAcM_GetProfName(i_actor) == PROC_Tag_Lv4Candle) {
+                           fopAcM_GetProfName(i_actor) == fpcNm_Tag_Lv4Candle_e) {
         return i_actor;
     }
     return NULL;
@@ -316,13 +316,13 @@ int daLv2Candle_c::Execute() {
             fopAc_ac_c* actor = obj->GetAc();
             bool bvar1 = true;
             if (actor != NULL) {
-                if (fopAcM_GetName(actor) == PROC_E_HP && mTgHit) {
+                if (fopAcM_GetName(actor) == fpcNm_E_HP_e && mTgHit) {
                     bvar1 = false;
                 }
-                if (fopAcM_GetName(actor) == PROC_E_DD) {
+                if (fopAcM_GetName(actor) == fpcNm_E_DD_e) {
                     bvar1 = false;
                 }
-                if (fopAcM_GetName(actor) == PROC_ALINK) {
+                if (fopAcM_GetName(actor) == fpcNm_ALINK_e) {
                     if (mCyl.GetTgHitGObj()->ChkAtType(AT_TYPE_NORMAL_SWORD) && mTgHit) {
                         bvar1 = false;
                     }
@@ -398,13 +398,13 @@ actor_process_profile_definition g_profile_Obj_Lv2Candle = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 3,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_Obj_Lv2Candle,
+    /* Proc Name    */ fpcNm_Obj_Lv2Candle_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daLv2Candle_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_Obj_Lv2Candle,
+    /* Draw Prio    */ fpcDwPi_Obj_Lv2Candle_e,
     /* Actor SubMtd */ &l_daLv2Candle_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_NOPAUSE_e,
     /* Group        */ fopAc_ACTOR_e,

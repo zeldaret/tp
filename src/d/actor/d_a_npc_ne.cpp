@@ -313,7 +313,7 @@ static int target_info_count;
 
 static void* s_bl_sub(void* i_proc, void* i_this) {
     if (fopAc_IsActor(i_proc)
-        && (fopAcM_GetName(i_proc) == PROC_OBJ_FOOD || fopAcM_GetName(i_proc) == PROC_BD)
+        && (fopAcM_GetName(i_proc) == fpcNm_OBJ_FOOD_e || fopAcM_GetName(i_proc) == fpcNm_BD_e)
         && target_info_count < 5)
     {
         target_info[target_info_count] = static_cast<fopAc_ac_c*>(i_proc);
@@ -324,7 +324,7 @@ static void* s_bl_sub(void* i_proc, void* i_this) {
 
 static void* s_ss_sub(void* i_proc, void* i_this) {
     if (fopAc_IsActor(i_proc)
-        && (fopAcM_GetName(i_proc) == PROC_NI || fopAcM_GetName(i_proc) == PROC_BD)
+        && (fopAcM_GetName(i_proc) == fpcNm_NI_e || fopAcM_GetName(i_proc) == fpcNm_BD_e)
         && target_info_count < 5)
     {
         target_info[target_info_count] = static_cast<fopAc_ac_c*>(i_proc);
@@ -690,7 +690,7 @@ static cXyz ground_search(npc_ne_class* i_this) {
 
 static void* s_fish_sub(void* i_proc, void* i_this) {
     npc_ne_class* _this = static_cast<npc_ne_class*>(i_this);
-    if (fopAc_IsActor(i_proc) && fopAcM_GetName(i_proc) == PROC_MG_FISH) {
+    if (fopAc_IsActor(i_proc) && fopAcM_GetName(i_proc) == fpcNm_MG_FISH_e) {
         mg_fish_class* fish = (mg_fish_class*)i_proc;
         if (fish->mCurAction == 0x35 && fish->mActionPhase >= 10) {
             _this->mFishID = fopAcM_GetID(fish);
@@ -2309,7 +2309,7 @@ static void action(npc_ne_class* i_this) {
             if (bird_check && !i_this->mWantsFish) {
                 fopAc_ac_c* bird_or_ball = search_bird(i_this);
                 if (bird_or_ball != NULL) {
-                    if (fopAcM_GetName(bird_or_ball) == PROC_OBJ_FOOD) {
+                    if (fopAcM_GetName(bird_or_ball) == fpcNm_OBJ_FOOD_e) {
                         i_this->mAction = npc_ne_class::ACT_BALL;
                         i_this->mMode = 0;
                         carry_check = true;
@@ -2335,7 +2335,7 @@ static void action(npc_ne_class* i_this) {
     cXyz vec1, vec2;
     if (i_this->mWantsFish && i_this->mAction != npc_ne_class::ACT_SANBASI
                             && player->current.pos.z > -2800.0f) {
-        dmg_rod_class* rod = ((dmg_rod_class*)fopAcM_SearchByName(PROC_MG_ROD));
+        dmg_rod_class* rod = ((dmg_rod_class*)fopAcM_SearchByName(fpcNm_MG_ROD_e));
         if (rod != NULL && rod->kind == 1 && rod->action != 5
                         && rod->play_cam_mode != 0 && !i_this->mNoFollow) {
             if (i_this->mDistToTarget > 500.0f) {
@@ -2664,7 +2664,7 @@ static void demo_camera(npc_ne_class* i_this) {
         }
 
         if (i_this->mDemoCounter == 12) {
-            fopAc_ac_c* door = fopAcM_SearchByName(PROC_OBJ_NDOOR);
+            fopAc_ac_c* door = fopAcM_SearchByName(fpcNm_OBJ_NDOOR_e);
             if (door != NULL) {
                 door->field_0x567 = 10;
                 Z2GetAudioMgr()->seStart(Z2SE_OBJ_CAT_DOOR, &door->current.pos,
@@ -2897,7 +2897,7 @@ static int daNpc_Ne_Execute(npc_ne_class* i_this) {
             /* dSv_event_flag_c::F_0470 - Fishing Pond - Reserved for fishing */
         if (dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[470])
                                     && i_this->mDistToTarget < 1500.0f) {
-            if (fopAcM_SearchByName(PROC_MG_ROD) != NULL) {
+            if (fopAcM_SearchByName(fpcNm_MG_ROD_e) != NULL) {
                 i_this->mNoFollow = false;
             } else {
                 i_this->mNoFollow = true;
@@ -3259,13 +3259,13 @@ actor_process_profile_definition g_profile_NPC_NE = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_NPC_NE,
+    /* Proc Name    */ fpcNm_NPC_NE_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(npc_ne_class),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_NPC_NE,
+    /* Draw Prio    */ fpcDwPi_NPC_NE_e,
     /* Actor SubMtd */ &l_daNpc_Ne_Method,
     /* Status       */ fopAcStts_UNK_0x8000000_e | fopAcStts_UNK_0x40000_e | fopAcStts_UNK_0x4000_e,
     /* Group        */ fopAc_NPC_e,

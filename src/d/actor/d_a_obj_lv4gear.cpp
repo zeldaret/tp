@@ -16,7 +16,7 @@ static void* searchSwSpinSub(void* i_actor, void* i_data) {
     daObjSwSpinner_c* sw = (daObjSwSpinner_c*)i_actor;
     daObjLv4Gear_c* gear = (daObjLv4Gear_c*)i_data;
 
-    if (sw != NULL && fopAc_IsActor(sw) && fpcM_GetProfName(sw) == PROC_Obj_SwSpinner) {
+    if (sw != NULL && fopAc_IsActor(sw) && fpcM_GetProfName(sw) == fpcNm_Obj_SwSpinner_e) {
         u8 sw_bit = sw->getSwbit();
         if (sw_bit != 0xFF && sw_bit == gear->getSwBit()) {
             return sw;
@@ -164,13 +164,13 @@ actor_process_profile_definition g_profile_Obj_Lv4Gear = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_Obj_Lv4Gear,
+    /* Proc Name    */ fpcNm_Obj_Lv4Gear_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daObjLv4Gear_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_Obj_Lv4Gear,
+    /* Draw Prio    */ fpcDwPi_Obj_Lv4Gear_e,
     /* Actor SubMtd */ &l_daObjLv4Gear_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e,
     /* Group        */ fopAc_ACTOR_e,

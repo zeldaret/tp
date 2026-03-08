@@ -773,7 +773,7 @@ void daB_DS_c::mCreateTrap(bool param_0) {
                 angle.x = 0;
                 angle.y = 0;
                 angle.z = 0;
-                mTrapID[i] = fopAcM_createChild(PROC_Obj_Lv6TogeTrap, fopAcM_GetID(this), params,
+                mTrapID[i] = fopAcM_createChild(fpcNm_Obj_Lv6TogeTrap_e, fopAcM_GetID(this), params,
                                                 &current.pos, fopAcM_GetRoomNo(this), &angle,
                                                 &trap_scale, -1, NULL);
                 trap_count++;
@@ -810,7 +810,7 @@ void daB_DS_c::mCreateTrap(bool param_0) {
             }
 
             mTrapID[i] =
-                fopAcM_createChild(PROC_Obj_Lv6TogeTrap, fopAcM_GetID(this), 0x27104DFF, &pos,
+                fopAcM_createChild(fpcNm_Obj_Lv6TogeTrap_e, fopAcM_GetID(this), 0x27104DFF, &pos,
                                    fopAcM_GetRoomNo(this), &angle, &trap_scale, -1, NULL);
             if (mBackboneLevel == 2) {
                 angle.y += 0x2AAA;
@@ -833,7 +833,7 @@ void daB_DS_c::mCreateTrap(bool param_0) {
                     angle.y = mBirthAngle02_dt[i] + mBirthAngle01_dt[j * 2];
                     pos.y = mBirthYpos02_dt[i];
                     mTrapID[idx] =
-                        fopAcM_createChild(PROC_Obj_Lv6TogeTrap, fopAcM_GetID(this), params, &pos,
+                        fopAcM_createChild(fpcNm_Obj_Lv6TogeTrap_e, fopAcM_GetID(this), params, &pos,
                                            fopAcM_GetRoomNo(this), &angle, &trap_scale, -1, NULL);
                 }
             }
@@ -2062,7 +2062,7 @@ void daB_DS_c::executeDamage() {
 
                 if (mStaltroopID[i] == 0) {
                     mStaltroopID[i] =
-                        fopAcM_createChild(PROC_E_ZS, fopAcM_GetID(this), 1, &sp1B0,
+                        fopAcM_createChild(fpcNm_E_ZS_e, fopAcM_GetID(this), 1, &sp1B0,
                                            fopAcM_GetRoomNo(this), &angle, NULL, -1, NULL);
                 }
             }
@@ -2071,7 +2071,7 @@ void daB_DS_c::executeDamage() {
                 for (int i = 0; i < 5; i++) {
                     if (mStaltroop2ID[i] == 0) {
                         mStaltroop2ID[i] =
-                            fopAcM_createChild(PROC_E_ZS, fopAcM_GetID(this), 2, &current.pos,
+                            fopAcM_createChild(fpcNm_E_ZS_e, fopAcM_GetID(this), 2, &current.pos,
                                                fopAcM_GetRoomNo(this), NULL, NULL, -1, NULL);
                     }
                 }
@@ -2298,7 +2298,7 @@ void daB_DS_c::executeDamage() {
         p2_angle.y = 0;
         p2_angle.x = 0;
 
-        fopAcM_create(PROC_B_DS, param | TYPE_BATTLE_2, &current.pos, fopAcM_GetRoomNo(this),
+        fopAcM_create(fpcNm_B_DS_e, param | TYPE_BATTLE_2, &current.pos, fopAcM_GetRoomNo(this),
                       &p2_angle, NULL, 0xff);
         mMode = 101;
         // fallthrough
@@ -2413,7 +2413,7 @@ void daB_DS_c::breath_smokeSet() {
 
         cXyz bullet_pos = mBulletPos;
 
-        fopAcM_create(PROC_B_DS, TYPE_BULLET_A, &bullet_pos, fopAcM_GetRoomNo(this), &bullet_angle,
+        fopAcM_create(fpcNm_B_DS_e, TYPE_BULLET_A, &bullet_pos, fopAcM_GetRoomNo(this), &bullet_angle,
                       NULL, 0xff);
     }
 }
@@ -2919,7 +2919,7 @@ void daB_DS_c::mFuwafuwaSet(bool param_0) {
 }
 
 void daB_DS_c::mBattle2BreathFireSet(u32 i_params) {
-    fopAcM_createChild(PROC_B_DS, fopAcM_GetID(this), i_params, &mMouthPos, fopAcM_GetRoomNo(this),
+    fopAcM_createChild(fpcNm_B_DS_e, fopAcM_GetID(this), i_params, &mMouthPos, fopAcM_GetRoomNo(this),
                        &shape_angle, NULL, -1, NULL);
     mCreateFireBreath = false;
 }
@@ -5690,13 +5690,13 @@ actor_process_profile_definition g_profile_B_DS = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 4,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_B_DS,
+    /* Proc Name    */ fpcNm_B_DS_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daB_DS_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_B_DS,
+    /* Draw Prio    */ fpcDwPi_B_DS_e,
     /* Actor SubMtd */ &l_daB_DS_Method,
     /* Status       */ fopAcStts_BOSS_e | fopAcStts_UNK_0x40000_e,
     /* Group        */ fopAc_ENEMY_e,

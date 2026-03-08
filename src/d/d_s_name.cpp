@@ -79,7 +79,7 @@ s32 dScnName_c::create() {
 
         dFs_c->_create();
 
-        if (fpcM_GetName(this) == PROC_NAME_SCENE) {
+        if (fpcM_GetName(this) == fpcNm_NAME_SCENE_e) {
             dFs_c->setUseType(0);
             dComIfGs_setNoFile(0);
         }
@@ -154,7 +154,7 @@ void dScnName_c::setView() {
 
 #if VERSION == VERSION_GCN_PAL
 void dScnName_c::bmg_data_set(){
-    if (fopAcM_GetName(this) == PROC_NAMEEX_SCENE) {
+    if (fopAcM_GetName(this) == fpcNm_NAMEEX_SCENE_e) {
         mBmgStatus = 10;
     }
 }
@@ -217,7 +217,7 @@ void dScnName_c::FileSelectOpen() {
 void dScnName_c::FileSelectMain() {
     dFs_c->_move();
 
-    if (fpcM_GetName(this) == PROC_NAME_SCENE) {
+    if (fpcM_GetName(this) == fpcNm_NAME_SCENE_e) {
         FileSelectMainNormal();
     }
 }
@@ -280,7 +280,7 @@ void dScnName_c::brightCheck() {
 void dScnName_c::changeGameScene() {
     if (!mDoRst::isReset() && !fopOvlpM_IsPeek()) {
         dComIfGs_gameStart();
-        fopScnM_ChangeReq(this, field_0x41f == 0 ? PROC_PLAY_SCENE : PROC_PLAY_SCENE, 0, 5);
+        fopScnM_ChangeReq(this, field_0x41f == 0 ? fpcNm_PLAY_SCENE_e : fpcNm_PLAY_SCENE_e, 0, 5);
         dComIfGp_offEnableNextStage();
 
         if (dFs_c->isDataNew(dFs_c->getSelectNum())) {
@@ -332,7 +332,7 @@ scene_process_profile_definition g_profile_NAME_SCENE = {
     /* Layer ID     */ fpcLy_ROOT_e,
     /* List ID      */ 1,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_NAME_SCENE,
+    /* Proc Name    */ fpcNm_NAME_SCENE_e,
     /* Proc SubMtd  */ &g_fpcNd_Method.base,
     /* Size         */ sizeof(dScnName_c),
     /* Size Other   */ 0,
@@ -346,7 +346,7 @@ scene_process_profile_definition g_profile_NAMEEX_SCENE = {
     /* Layer ID     */ fpcLy_ROOT_e,
     /* List ID      */ 1,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_NAMEEX_SCENE,
+    /* Proc Name    */ fpcNm_NAMEEX_SCENE_e,
     /* Proc SubMtd  */ &g_fpcNd_Method.base,
     /* Size         */ sizeof(dScnName_c),
     /* Size Other   */ 0,

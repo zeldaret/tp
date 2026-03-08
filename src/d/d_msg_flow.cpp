@@ -2200,7 +2200,7 @@ int dMsgFlow_c::event025(mesg_flow_node_event* i_flowNode_p, fopAc_ac_c* i_speak
 
 int dMsgFlow_c::event026(mesg_flow_node_event* i_flowNode_p, fopAc_ac_c* i_speaker_p) {
     fopAc_ac_c* speaker_p;
-    if (fopAcM_GetName(i_speaker_p) == PROC_MYNA) {
+    if (fopAcM_GetName(i_speaker_p) == fpcNm_MYNA_e) {
         daMyna_c* myna = (daMyna_c*)i_speaker_p;
         speaker_p = myna->getSpeakActorPtr();
     } else {
@@ -2208,9 +2208,9 @@ int dMsgFlow_c::event026(mesg_flow_node_event* i_flowNode_p, fopAc_ac_c* i_speak
     }
 
     if (speaker_p != NULL) {
-        if (fopAcM_GetName(speaker_p) == PROC_OBJ_SSITEM ||
-            fopAcM_GetName(speaker_p) == PROC_OBJ_SSDRINK ||
-            fopAcM_GetName(speaker_p) == PROC_TAG_SSDRINK)
+        if (fopAcM_GetName(speaker_p) == fpcNm_OBJ_SSITEM_e ||
+            fopAcM_GetName(speaker_p) == fpcNm_OBJ_SSDRINK_e ||
+            fopAcM_GetName(speaker_p) == fpcNm_TAG_SSDRINK_e)
         {
             daObj_SSBase_c* ss_item = (daObj_SSBase_c*)speaker_p;
             ss_item->setSoldOut();

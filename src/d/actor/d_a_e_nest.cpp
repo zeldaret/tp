@@ -315,7 +315,7 @@ static void e_nest_normal(e_nest_class* i_this) {
                         i_this->mHitActorID = fopAcM_GetID(daPy_getPlayerActorClass());
                         /* dSv_event_flag_c::F_0073 - Ordon Village - Attacked after charging at large beehive */
                         dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[172]);
-                    } else if (fopAcM_GetName(actor) == PROC_NPC_TK) {
+                    } else if (fopAcM_GetName(actor) == fpcNm_NPC_TK_e) {
                         daNPC_TK_c* hawk = static_cast<daNPC_TK_c*>(actor);
                         hawk->setBump();
                         i_this->mHitActorID = fopAcM_GetID(hawk);
@@ -776,7 +776,7 @@ static void bee_nest_action(e_nest_class* i_this) {
 
 static void* shot_b_sub(void* i_actor, void* i_data) {
     daPy_py_c* player = static_cast<daPy_py_c*>(dComIfGp_getPlayer(0));
-    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_BOOMERANG
+    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == fpcNm_BOOMERANG_e
                     && !dComIfGp_checkPlayerStatus0(0, 0x80000) && player->checkBoomerangCharge()
                     && fopAcM_GetParam(i_actor) == 1) {
         return i_actor;
@@ -1047,7 +1047,7 @@ static cPhs_Step daE_Nest_Create(fopAc_ac_c* i_this) {
         _this->mCcCyl.SetStts(&_this->mCcStts);
 
         if (_this->mParamType == e_nest_class::TYPE_BEE) {
-            fopAcM_createChild(PROC_E_BEE, fopAcM_GetID(_this),
+            fopAcM_createChild(fpcNm_E_BEE_e, fopAcM_GetID(_this),
                                _this->mParamScale << 16 | 0x100 | _this->mParam1,
                                &_this->current.pos, fopAcM_GetRoomNo(_this),
                                NULL, NULL, -1, NULL);
@@ -1055,7 +1055,7 @@ static cPhs_Step daE_Nest_Create(fopAc_ac_c* i_this) {
                              &_this->mAcchCir, &_this->speed, NULL, NULL);
             _this->mAcchCir.SetWall(_this->scale.x * 50.0f, _this->scale.x * 50.0f);
         } else if (_this->mParamType == e_nest_class::TYPE_BUG) {
-            fopAcM_createChild(PROC_E_BUG, fopAcM_GetID(_this),
+            fopAcM_createChild(fpcNm_E_BUG_e, fopAcM_GetID(_this),
                                _this->mParam1 | 0xff000000, &_this->current.pos,
                                fopAcM_GetRoomNo(_this), NULL, NULL, -1, NULL);
         }
@@ -1078,13 +1078,13 @@ actor_process_profile_definition g_profile_E_NEST = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_E_NEST,
+    /* Proc Name    */ fpcNm_E_NEST_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(e_nest_class),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_E_NEST,
+    /* Draw Prio    */ fpcDwPi_E_NEST_e,
     /* Actor SubMtd */ &l_daE_Nest_Method,
     /* Status       */ fopAcStts_UNK_0x80000_e | fopAcStts_UNK_0x40000_e | fopAcStts_UNK_0x10000_e | fopAcStts_UNK_0x4000_e | fopAcStts_CULL_e,
     /* Group        */ fopAc_ACTOR_e,

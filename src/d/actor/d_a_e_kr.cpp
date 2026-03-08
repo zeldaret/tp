@@ -393,7 +393,7 @@ static void e_kr_ground_pos_move(e_kr_class* i_this) {
 }
 
 static BOOL coach_path_check(e_kr_class* i_this) {
-    fopAc_ac_c* coach = fopAcM_SearchByName(PROC_NPC_COACH);
+    fopAc_ac_c* coach = fopAcM_SearchByName(fpcNm_NPC_COACH_e);
     if (coach == NULL) {
         return FALSE;
     }
@@ -2394,13 +2394,13 @@ actor_process_profile_definition g_profile_E_KR = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_E_KR,
+    /* Proc Name    */ fpcNm_E_KR_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(e_kr_class),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_E_KR,
+    /* Draw Prio    */ fpcDwPi_E_KR_e,
     /* Actor SubMtd */ &l_daE_Kr_Method,
     /* Status       */ fopAcStts_UNK_0x10000000_e | fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e | fopAcStts_UNK_0x20_e,
     /* Group        */ fopAc_ENEMY_e,

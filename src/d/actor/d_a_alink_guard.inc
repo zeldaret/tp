@@ -10,15 +10,15 @@
 
 BOOL daAlink_c::checkEnemyGroup(fopAc_ac_c* i_actor) {
     return i_actor != NULL
-            && (fopAcM_GetGroup(i_actor) == fopAc_ENEMY_e || fopAcM_GetName(i_actor) == PROC_E_ZH || checkSpecialNpc(i_actor));
+            && (fopAcM_GetGroup(i_actor) == fopAc_ENEMY_e || fopAcM_GetName(i_actor) == fpcNm_E_ZH_e || checkSpecialNpc(i_actor));
 }
 
 BOOL daAlink_c::checkSpecialNpc(fopAc_ac_c* i_actor) {
     s16 name = fopAcM_GetName(i_actor);
 
-    return name == PROC_NPC_KAKASHI ||
-          (name == PROC_NPC_KN && static_cast<daNpc_Kn_c*>(i_actor)->checkBattleMode()) ||
-          (name == PROC_OBJ_GRA && !static_cast<daObj_GrA_c*>(i_actor)->checkNpcObjGra());
+    return name == fpcNm_NPC_KAKASHI_e ||
+          (name == fpcNm_NPC_KN_e && static_cast<daNpc_Kn_c*>(i_actor)->checkBattleMode()) ||
+          (name == fpcNm_OBJ_GRA_e && !static_cast<daObj_GrA_c*>(i_actor)->checkNpcObjGra());
 }
 
 BOOL daAlink_c::checkShieldAttackEmphasys() {
@@ -294,7 +294,7 @@ int daAlink_c::procGuardSlipInit(int i_atSpl, dCcD_GObjInf* i_objinf) {
     mProcVar4.field_0x3010 = 0;
     mProcVar5.field_0x3012 = 0;
 
-    if (i_objinf != NULL && i_objinf->GetTgHitAc() != NULL && fopAcM_GetName(i_objinf->GetTgHitAc()) == PROC_E_MM_MT && i_objinf->GetTgHitAc()->argument == 1) {
+    if (i_objinf != NULL && i_objinf->GetTgHitAc() != NULL && fopAcM_GetName(i_objinf->GetTgHitAc()) == fpcNm_E_MM_MT_e && i_objinf->GetTgHitAc()->argument == 1) {
         if (checkBootsOrArmorHeavy()) {
             mNormalSpeed = mpHIO->mGuard.m.mMagneHvyGuardSpeed;
             mProcVar5.field_0x3012 = 1;

@@ -109,7 +109,7 @@ void daB_ZANTZ_c::calcSnortEffect() {
     }
 
     if (var_r28 != NULL) {
-        if (fopAcM_GetName(dCc_GetAc(var_r28->GetAc())) == PROC_ALINK) {
+        if (fopAcM_GetName(dCc_GetAc(var_r28->GetAc())) == fpcNm_ALINK_e) {
             daPy_py_c* player = daPy_getPlayerActorClass();
             s16 var_r26 = cLib_targetAngleY(&current.pos, &player->current.pos);
             player->setThrowDamage(var_r26, 30.0f, 10.0f, 0, 0, 2);
@@ -512,13 +512,13 @@ actor_process_profile_definition g_profile_B_ZANTZ = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 4,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_B_ZANTZ,
+    /* Proc Name    */ fpcNm_B_ZANTZ_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daB_ZANTZ_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_B_ZANTZ,
+    /* Draw Prio    */ fpcDwPi_B_ZANTZ_e,
     /* Actor SubMtd */ &l_daB_ZANTZ_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e,
     /* Group        */ fopAc_ENEMY_e,

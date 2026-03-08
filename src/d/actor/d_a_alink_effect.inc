@@ -1393,7 +1393,7 @@ void daAlink_c::setWolfBarrierHitEffect(dBgS_LinChk& i_linchk) {
 
     const u16* effNames;
     s16 movebg_name = getMoveBGActorName(i_linchk, TRUE);
-    if (movebg_name == PROC_Obj_GanonWall2 || movebg_name == PROC_OBJ_GB) {
+    if (movebg_name == fpcNm_Obj_GanonWall2_e || movebg_name == fpcNm_OBJ_GB_e) {
         effNames = ganonNameID;
     } else {
         effNames = normalNameID;

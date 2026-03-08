@@ -133,7 +133,7 @@ int daRotBridge_c::create() {
 }
 
 void daRotBridge_c::rideCallBack(dBgW* i_bgw, fopAc_ac_c* i_bgActor, fopAc_ac_c* i_rideActor) {
-    if (fopAcM_GetName(i_rideActor) == PROC_ALINK) {
+    if (fopAcM_GetName(i_rideActor) == fpcNm_ALINK_e) {
         ((daRotBridge_c*)i_bgActor)->mIsPlayerRide = TRUE;
     }
 }
@@ -264,13 +264,13 @@ actor_process_profile_definition g_profile_Obj_RotBridge = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 3,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_Obj_RotBridge,
+    /* Proc Name    */ fpcNm_Obj_RotBridge_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daRotBridge_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_Obj_RotBridge,
+    /* Draw Prio    */ fpcDwPi_Obj_RotBridge_e,
     /* Actor SubMtd */ &l_daRotBridge_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e,
     /* Group        */ fopAc_ACTOR_e,

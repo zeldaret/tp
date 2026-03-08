@@ -129,7 +129,7 @@ void daL8Lift_c::lightSet() {
 }
 
 void daL8Lift_c::rideCallBack(dBgW* i_bgw, fopAc_ac_c* i_this, fopAc_ac_c* i_rideActor) {
-    if (fopAcM_GetName(i_rideActor) == PROC_ALINK) {
+    if (fopAcM_GetName(i_rideActor) == fpcNm_ALINK_e) {
         ((daL8Lift_c*)i_this)->mPlayerRide = true;
     }
 }
@@ -448,13 +448,13 @@ actor_process_profile_definition g_profile_Obj_Lv8Lift = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 3,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_Obj_Lv8Lift,
+    /* Proc Name    */ fpcNm_Obj_Lv8Lift_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daL8Lift_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_Obj_Lv8Lift,
+    /* Draw Prio    */ fpcDwPi_Obj_Lv8Lift_e,
     /* Actor SubMtd */ &l_daL8Lift_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e,
     /* Group        */ fopAc_ACTOR_e,

@@ -775,7 +775,7 @@ int daBdoorL1_c::createKey() {
         int actorParams = getNowLevel();
         int flags = ~0xFF;
         flags |= actorParams;
-        mKeyHoleId = fopAcM_createChildFromOffset(PROC_OBJ_KEYHOLE, fopAcM_GetID(this), flags,
+        mKeyHoleId = fopAcM_createChildFromOffset(fpcNm_OBJ_KEYHOLE_e, fopAcM_GetID(this), flags,
                                                              &cStack_30, fopAcM_GetRoomNo(this), 0,
                                                              &scale, -1, 0);
         current.pos = cStack_24;
@@ -980,13 +980,13 @@ actor_process_profile_definition g_profile_L1BOSS_DOOR = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_L1BOSS_DOOR,
+    /* Proc Name    */ fpcNm_L1BOSS_DOOR_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daBdoorL1_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_L1BOSS_DOOR,
+    /* Draw Prio    */ fpcDwPi_L1BOSS_DOOR_e,
     /* Actor SubMtd */ &l_daBdoorL1_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_UNK_0x4000_e,
     /* Group        */ fopAc_ACTOR_e,

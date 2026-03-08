@@ -407,7 +407,7 @@ int daObj_Kago_c::Execute() {
                 for (int i = 0; i < 2; i++) {
                     if (field_0x808[i].ChkCoHit() != 0) {
                         actor_p = field_0x808[i].GetCoHitAc();
-                        if (actor_p != NULL && fopAcM_GetName(actor_p) == PROC_ALINK) break;
+                        if (actor_p != NULL && fopAcM_GetName(actor_p) == fpcNm_ALINK_e) break;
                         actor_p = NULL;
                     }
                 }
@@ -688,13 +688,13 @@ actor_process_profile_definition g_profile_OBJ_KAGO = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 8,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_OBJ_KAGO,
+    /* Proc Name    */ fpcNm_OBJ_KAGO_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daObj_Kago_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_OBJ_KAGO,
+    /* Draw Prio    */ fpcDwPi_OBJ_KAGO_e,
     /* Actor SubMtd */ &daObj_Kago_MethodTable,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_UNK_0x4000_e | fopAcStts_CULL_e,
     /* Group        */ fopAc_ACTOR_e,

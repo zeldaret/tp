@@ -35,7 +35,7 @@ static int dShopSystem_item_count;
 static u8 data_80451060;
 
 static int dShopSystem_searchItemActor(void* i_actor, void* param_1) {
-    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_TAG_SHOPITM) {
+    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == fpcNm_TAG_SHOPITM_e) {
         if ((fopAcM_GetParam(param_1) & 0xF0000000) == (fopAcM_GetParam(i_actor) & 0xF0000000) &&
             dShopSystem_item_count < dShopSystem_sellItemMax)
         {
@@ -82,7 +82,7 @@ static fopAc_ac_c* dShopSystem_cameraActor[2] = {NULL, NULL};
 static int dShopSystem_camera_count;
 
 static int dShopSystem_searchCameraActor(void* i_actor, void* param_1) {
-    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_TAG_SHOPCAM) {
+    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == fpcNm_TAG_SHOPCAM_e) {
         if ((fopAcM_GetParam(param_1) & 0xf0000000) == (fopAcM_GetParam(i_actor) & 0xf0000000) &&
             dShopSystem_camera_count < 2)
         {
@@ -1313,7 +1313,7 @@ void dShopSystem_c::createShopItem(int itemType) {
             pos.z = shop_item_pos_data_tbl->mItemPos[i].z + current.pos.z;
 
             if (itemTbl[i] != dItemNo_NONE_e) {
-                u32 index = fopAcM_create(PROC_ShopItem, itemTbl[i], &pos, fopAcM_GetRoomNo(this),
+                u32 index = fopAcM_create(fpcNm_ShopItem_e, itemTbl[i], &pos, fopAcM_GetRoomNo(this),
                                           &current.angle, NULL, -1);
                 mItemCtrl.setItemIndex(i, index);
                 offFlag(i);

@@ -60,7 +60,7 @@ int daRfHole_c::create() {
 }
 
 void daRfHole_c::rideCallBack(dBgW* param_1, fopAc_ac_c* param_2, fopAc_ac_c* param_3) {
-    if (fopAcM_GetName(param_3) == PROC_ALINK && static_cast<daRfHole_c*>(param_2)->playerAreaCheck()) {
+    if (fopAcM_GetName(param_3) == fpcNm_ALINK_e && static_cast<daRfHole_c*>(param_2)->playerAreaCheck()) {
         static_cast<daRfHole_c*>(param_2)->field_0x5ae = 1;
     }
 }
@@ -205,13 +205,13 @@ actor_process_profile_definition g_profile_Obj_RfHole = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 3,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_Obj_RfHole,
+    /* Proc Name    */ fpcNm_Obj_RfHole_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daRfHole_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_Obj_RfHole,
+    /* Draw Prio    */ fpcDwPi_Obj_RfHole_e,
     /* Actor SubMtd */ &l_daRfHole_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e,
     /* Group        */ fopAc_ACTOR_e,

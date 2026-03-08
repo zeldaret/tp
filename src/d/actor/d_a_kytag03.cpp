@@ -296,7 +296,7 @@ static int daKytag03_Execute(kytag03_class* i_this) {
         cLib_addCalc(&i_this->field_0x578, 1.0f, 0.1f, 0.025f, 0.000001f);
 
         if (i_this->field_0x585 == 0xB5) {
-            fopAc_ac_c* actor = (fopAc_ac_c*)fpcM_SearchByName(PROC_Obj_Movebox);
+            fopAc_ac_c* actor = (fopAc_ac_c*)fpcM_SearchByName(fpcNm_Obj_Movebox_e);
             if (actor != NULL && actor->current.pos.x < 7425.0f) {
                 i_this->field_0x578 = 0.0f;
                 var_r28 = true;
@@ -460,13 +460,13 @@ actor_process_profile_definition g_profile_KYTAG03 = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_KYTAG03,
+    /* Proc Name    */ fpcNm_KYTAG03_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(kytag03_class),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_KYTAG03,
+    /* Draw Prio    */ fpcDwPi_KYTAG03_e,
     /* Actor SubMtd */ &l_daKytag03_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_UNK_0x4000_e,
     /* Group        */ fopAc_ACTOR_e,

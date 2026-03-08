@@ -342,7 +342,7 @@ fopAc_ac_c* daAlink_c::makeFairy(cXyz* i_pos, u32 i_params) {
         i_pos = &fairy_pos;
     }
 
-    field_0x285c.setData(fopAcM_fastCreate(PROC_Obj_Yousei, i_params, i_pos, fopAcM_GetRoomNo(this),
+    field_0x285c.setData(fopAcM_fastCreate(fpcNm_Obj_Yousei_e, i_params, i_pos, fopAcM_GetRoomNo(this),
                          &shape_angle, NULL, -1, NULL, NULL));
     onResetFlg0(RFLG0_UNK_400);
 
@@ -420,7 +420,7 @@ int daAlink_c::procBottleOpenInit(u16 i_itemNo) {
         field_0x3194 = 2;
 
         if (mEquipItem == dItemNo_WORM_e) {
-            field_0x32cc = fopAcM_create(PROC_NPC_WORM, 2, &current.pos, fopAcM_GetRoomNo(this),
+            field_0x32cc = fopAcM_create(fpcNm_NPC_WORM_e, 2, &current.pos, fopAcM_GetRoomNo(this),
                                          NULL, NULL, -1);
             mProcVar0.field_0x3008 = 0;
             mProcVar1.field_0x300a = 1;
@@ -566,11 +566,11 @@ int daAlink_c::procBottleSwingInit(fopAc_ac_c* i_catchActor, int param_1) {
             temp_r3 = false;
         }
 
-        catchActorName = PROC_ALINK;
+        catchActorName = fpcNm_ALINK_e;
     }
 
-    if (catchActorName == PROC_TAG_SSDRINK || catchActorName == PROC_OBJ_OILTUBO ||
-        catchActorName == PROC_TAG_BTLITM || mEquipItem == dItemNo_KANTERA_e)
+    if (catchActorName == fpcNm_TAG_SSDRINK_e || catchActorName == fpcNm_OBJ_OILTUBO_e ||
+        catchActorName == fpcNm_TAG_BTLITM_e || mEquipItem == dItemNo_KANTERA_e)
     {
         setSingleAnimeParam(ANM_BOTTLE_SCOOP, &mpHIO->mItem.mBottle.m.mScoopAnm);
 
@@ -594,7 +594,7 @@ int daAlink_c::procBottleSwingInit(fopAc_ac_c* i_catchActor, int param_1) {
             current.pos.z = catchActor->current.pos.z - cM_scos(shape_angle.y) * 70.0f;
         }
 
-        if (catchActorName == PROC_OBJ_OILTUBO) {
+        if (catchActorName == fpcNm_OBJ_OILTUBO_e) {
             onModeFlg(0x2000);
         }
     } else if (temp_r3) {
@@ -640,7 +640,7 @@ int daAlink_c::procBottleSwing() {
                     u16 bottle_item = dComIfGp_event_getPreItemNo();
 
                     if (bottle_item == dItemNo_WATER_BOTTLE_e &&
-                        getMoveBGActorName(mLinkAcch.m_wtr, FALSE) == PROC_Obj_Onsen)
+                        getMoveBGActorName(mLinkAcch.m_wtr, FALSE) == fpcNm_Obj_Onsen_e)
                     {
                         bottle_item = dItemNo_HOT_SPRING_e;
                     }

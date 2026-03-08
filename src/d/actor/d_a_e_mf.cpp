@@ -960,8 +960,8 @@ static int way_check(e_mf_class* i_this) {
 static void* shot_s_sub(void* i_actor, void* i_data) {
     e_mf_class* i_this = (e_mf_class*)i_data;
     fopEn_enemy_c* a_this = (fopEn_enemy_c*)&i_this->actor;
-    if ((fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_ARROW && (fopAcM_GetParam(i_actor) == 1 || fopAcM_GetParam(i_actor) == 2)) ||
-        fopAcM_GetName(i_actor) == PROC_BOOMERANG && dComIfGp_checkPlayerStatus0(0, 0x80000) == 0 && daPy_py_c::checkBoomerangCharge() && fopAcM_GetParam(i_actor) == 1) {
+    if ((fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == fpcNm_ARROW_e && (fopAcM_GetParam(i_actor) == 1 || fopAcM_GetParam(i_actor) == 2)) ||
+        fopAcM_GetName(i_actor) == fpcNm_BOOMERANG_e && dComIfGp_checkPlayerStatus0(0, 0x80000) == 0 && daPy_py_c::checkBoomerangCharge() && fopAcM_GetParam(i_actor) == 1) {
         cXyz sp28(a_this->current.pos - ((fopAc_ac_c*)i_actor)->current.pos);
         if (sp28.abs() < 1000.0f) {
             return i_actor;
@@ -1422,7 +1422,7 @@ static void e_mf_attack(e_mf_class* i_this) {
     cLib_addCalc0(&a_this->speedF, 1.0f, 5.0f);
     if (i_this->field_0x6cf != 0) {
         fopAc_ac_c* actor_p = at_hit_check(i_this);
-        if (actor_p != NULL && fopAcM_GetName(actor_p) == PROC_ALINK && daPy_getPlayerActorClass()->checkPlayerGuard()) {
+        if (actor_p != NULL && fopAcM_GetName(actor_p) == fpcNm_ALINK_e && daPy_getPlayerActorClass()->checkPlayerGuard()) {
             i_this->mpModelMorf->setPlaySpeed(0.0f);
             i_this->mAction = 3;
             i_this->field_0x5b4 = 0;
@@ -3276,13 +3276,13 @@ actor_process_profile_definition g_profile_E_MF = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_E_MF,
+    /* Proc Name    */ fpcNm_E_MF_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(e_mf_class),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_E_MF,
+    /* Draw Prio    */ fpcDwPi_E_MF_e,
     /* Actor SubMtd */ &l_daE_MF_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e,
     /* Group        */ fopAc_ENEMY_e,

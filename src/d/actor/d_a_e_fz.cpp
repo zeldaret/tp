@@ -283,7 +283,7 @@ void daE_FZ_c::damage_check() {
           if (mObjAcch.ChkGroundHit() && mTgCoSph.ChkCoHit()) {
             fopAc_ac_c* co_hit_actor = mTgCoSph.GetCoHitAc();
 
-            if (fopAcM_IsActor(co_hit_actor) && fopAcM_GetName(co_hit_actor) == PROC_E_FZ) {
+            if (fopAcM_IsActor(co_hit_actor) && fopAcM_GetName(co_hit_actor) == fpcNm_E_FZ_e) {
               pos = current.pos - mTgCoSph.GetCoHitAc()->current.pos;
               mTgCoSph.ClrCoHit();
               f32 co_hit_actor_speed = co_hit_actor->speedF;
@@ -654,7 +654,7 @@ void daE_FZ_c::executeRollMove() {
 
         if (mAtSph.ChkAtHit()) {
             fopAc_ac_c* at_hit_actor = mAtSph.GetAtHitAc();
-            if ((fopAcM_GetName(at_hit_actor) == PROC_ALINK) || mAtSph.ChkAtShieldHit()) {
+            if ((fopAcM_GetName(at_hit_actor) == fpcNm_ALINK_e) || mAtSph.ChkAtShieldHit()) {
                 setActionMode(ACT_DAMAGE,0);
                 return;
             }
@@ -733,7 +733,7 @@ void daE_FZ_c::action() {
         }
 
         if (1 < health && mAcchCir.ChkWallHit()) {
-            if (fopAcM_GetName(dComIfG_Bgsp().GetActorPointer(mAcchCir)) != PROC_BG) {
+            if (fopAcM_GetName(dComIfG_Bgsp().GetActorPointer(mAcchCir)) != fpcNm_BG_e) {
                 dBgS_LinChk lin_chk;
                 dBgS_LinChk lin_chk2;
 
@@ -1044,13 +1044,13 @@ actor_process_profile_definition g_profile_E_FZ = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_E_FZ,
+    /* Proc Name    */ fpcNm_E_FZ_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daE_FZ_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_E_FZ,
+    /* Draw Prio    */ fpcDwPi_E_FZ_e,
     /* Actor SubMtd */ &l_daE_FZ_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e | fopAcStts_UNK_0x20_e,
     /* Group        */ fopAc_ENEMY_e,

@@ -128,7 +128,7 @@ void daAlink_c::makeArrow() {
 void daAlink_c::deleteArrow() {
     daArrow_c* arrow_p = (daArrow_c*)mItemAcKeep.getActor();
 
-    if (arrow_p != NULL && fopAcM_GetName(arrow_p) == PROC_ARROW) {
+    if (arrow_p != NULL && fopAcM_GetName(arrow_p) == fpcNm_ARROW_e) {
         if (arrow_p->checkBombArrow() &&
             (mDamageTimer == mpHIO->mDamage.m.mInvincibleTime || checkModeFlg(8)))
         {

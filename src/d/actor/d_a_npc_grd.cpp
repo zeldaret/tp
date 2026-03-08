@@ -1106,7 +1106,7 @@ int daNpc_Grd_c::test(void* param_1) {
 }
 
 static void* s_sub1(void* i_actor, void* i_data) {
-    if (fopAc_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_NPC_GRZ) {
+    if (fopAc_IsActor(i_actor) && fopAcM_GetName(i_actor) == fpcNm_NPC_GRZ_e) {
         return i_actor;
     }
 
@@ -1114,7 +1114,7 @@ static void* s_sub1(void* i_actor, void* i_data) {
 }
 
 static void* s_sub2(void* i_actor, void* i_data) {
-    if (fopAc_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_NPC_YELIA) {
+    if (fopAc_IsActor(i_actor) && fopAcM_GetName(i_actor) == fpcNm_NPC_YELIA_e) {
         return i_actor;
     }
 
@@ -1252,13 +1252,13 @@ actor_process_profile_definition g_profile_NPC_GRD = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_NPC_GRD,
+    /* Proc Name    */ fpcNm_NPC_GRD_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daNpc_Grd_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_NPC_GRD,
+    /* Draw Prio    */ fpcDwPi_NPC_GRD_e,
     /* Actor SubMtd */ &daNpc_Grd_MethodTable,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_UNK_0x4000_e | fopAcStts_CULL_e,
     /* Group        */ fopAc_NPC_e,

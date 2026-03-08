@@ -161,7 +161,7 @@ void daE_OT_c::damage_check() {
 
     if (mCcSph.ChkCoHit()) {
         fopAc_ac_c* hit_actor = dCc_GetAc(mCcSph.GetCoHitObj()->GetAc());
-        if (fopAcM_GetName(dCc_GetAc(hit_actor)) == PROC_E_DT
+        if (fopAcM_GetName(dCc_GetAc(hit_actor)) == fpcNm_E_DT_e
             && static_cast<daE_DT_c*>(hit_actor)->isFlyingAttack())
         {
             setActionMode(ACT_DAMAGE, 10);
@@ -574,7 +574,7 @@ void daE_OT_c::executeDamage() {
 }
 
 void daE_OT_c::action() {
-    fopAcM_SearchByName(PROC_E_DT, (fopAc_ac_c**)&mpToadActor);
+    fopAcM_SearchByName(fpcNm_E_DT_e, (fopAc_ac_c**)&mpToadActor);
 
     if (mpToadActor == NULL || fpcM_IsCreating(fopAcM_GetID(mpToadActor))
         || mpToadActor->isDead() == 2)
@@ -777,7 +777,7 @@ cPhs_Step daE_OT_c::create() {
         mAtInfo.mpSound = &mSound;
         mAtInfo.mPowerType = 1;
         gravity = 0.0f;
-        fopAcM_SearchByName(PROC_E_DT, (fopAc_ac_c**)&mpToadActor);
+        fopAcM_SearchByName(fpcNm_E_DT_e, (fopAc_ac_c**)&mpToadActor);
 
         mChildNo = fopAcM_GetParam(this) & 0xffff;
         mDemoMode = (fopAcM_GetParam(this) >> 0x10) & 0xff;
@@ -841,13 +841,13 @@ actor_process_profile_definition g_profile_E_OT = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_E_OT,
+    /* Proc Name    */ fpcNm_E_OT_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daE_OT_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_E_OT,
+    /* Draw Prio    */ fpcDwPi_E_OT_e,
     /* Actor SubMtd */ &l_daE_OT_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_UNK_0x10000_e | fopAcStts_CULL_e,
     /* Group        */ fopAc_ENEMY_e,

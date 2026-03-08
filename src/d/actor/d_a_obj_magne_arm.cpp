@@ -136,7 +136,7 @@ void daObjMarm_c::setBaseMtx() {
 }
 
 void rideCallBack(dBgW* param_0, fopAc_ac_c* i_this, fopAc_ac_c* i_rideActor) {
-    if (fopAcM_GetName(i_rideActor) == PROC_ALINK) {
+    if (fopAcM_GetName(i_rideActor) == fpcNm_ALINK_e) {
         static_cast<daObjMarm_c*>(i_this)->mPlayerRide = TRUE;
     }
 }
@@ -347,7 +347,7 @@ cPhs_Step daObjMarm_c::phase_0() {
 
 cPhs_Step daObjMarm_c::phase_1() {
     cXyz scale(1.0f, 1.0f, 1.0f);
-    mID = fopAcM_create(PROC_Obj_MHole, 0x12FF, &current.pos, fopAcM_GetRoomNo(this),
+    mID = fopAcM_create(fpcNm_Obj_MHole_e, 0x12FF, &current.pos, fopAcM_GetRoomNo(this),
                         &current.angle, &scale, -1);
 
     if (mID == fpcM_ERROR_PROCESS_ID_e) {
@@ -1102,13 +1102,13 @@ actor_process_profile_definition g_profile_Obj_MagneArm = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 3,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_Obj_MagneArm,
+    /* Proc Name    */ fpcNm_Obj_MagneArm_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daObjMarm_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_Obj_MagneArm,
+    /* Draw Prio    */ fpcDwPi_Obj_MagneArm_e,
     /* Actor SubMtd */ &daObjMarm_METHODS,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e,
     /* Group        */ fopAc_ACTOR_e,

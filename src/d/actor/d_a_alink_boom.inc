@@ -173,7 +173,7 @@ void daAlink_c::throwBoomerang() {
     onNoResetFlg1(FLG1_UNK_2);
 
     //! @bug `item` pointer is being accessed without checking if NULL first
-    BOOL boomerang_item = fopAcM_GetName(item) == PROC_BOOMERANG;
+    BOOL boomerang_item = fopAcM_GetName(item) == fpcNm_BOOMERANG_e;
     if (boomerang_item) {
         item->setThrow();
         item->current.angle.y = shape_angle.y + mBodyAngle.y;

@@ -67,7 +67,7 @@ static void* searchParentSub(void* i_magLift, void* i_mhole) {
     fopAc_ac_c* mag_lift = (fopAc_ac_c*)i_magLift;
 
     if (mag_lift != NULL && fopAcM_IsActor(mag_lift) &&
-        fopAcM_GetProfName(mag_lift) == PROC_Obj_MagLift &&
+        fopAcM_GetProfName(mag_lift) == fpcNm_Obj_MagLift_e &&
         mag_lift->home.pos.abs(mhole->home.pos) < 10.0f)
     {
         return mag_lift;
@@ -387,13 +387,13 @@ actor_process_profile_definition g_profile_Obj_MHole = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_Obj_MHole,
+    /* Proc Name    */ fpcNm_Obj_MHole_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daObjMHole_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_Obj_MHole,
+    /* Draw Prio    */ fpcDwPi_Obj_MHole_e,
     /* Actor SubMtd */ &l_daObjMHole_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e,
     /* Group        */ fopAc_ACTOR_e,

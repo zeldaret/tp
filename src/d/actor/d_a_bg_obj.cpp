@@ -317,7 +317,7 @@ void daBgObj_c::initAtt() {
         (ce5_val << 2) |
         (cd3_val);
 
-    fopAc_ac_c* actor = fopAcM_fastCreate(PROC_Tag_Attp, actor_params, &current.pos, fopAcM_GetRoomNo(this),
+    fopAc_ac_c* actor = fopAcM_fastCreate(fpcNm_Tag_Attp_e, actor_params, &current.pos, fopAcM_GetRoomNo(this),
         &current.angle, &scale, -1, NULL, NULL);
 
     if (actor != NULL) {
@@ -1366,13 +1366,13 @@ actor_process_profile_definition g_profile_BG_OBJ = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_BG_OBJ,
+    /* Proc Name    */ fpcNm_BG_OBJ_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daBgObj_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_BG_OBJ,
+    /* Draw Prio    */ fpcDwPi_BG_OBJ_e,
     /* Actor SubMtd */ &daBgObj_METHODS,
     /* Status       */ fopAcStts_UNK_0x10000000_e | fopAcStts_UNK_0x40000_e | fopAcStts_UNK_0x4000_e | fopAcStts_CULL_e,
     /* Group        */ fopAc_ACTOR_e,

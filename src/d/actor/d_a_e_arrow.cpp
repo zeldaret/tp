@@ -161,7 +161,7 @@ static void hit_check(e_arrow_class* i_this) {
         dComIfG_Ccsp()->Set(&i_this->mCcTgSph);
 
         if (i_this->mCcAtSph.ChkAtShieldHit() && i_this->mCcAtSph.GetAtHitAc() != NULL &&
-            fopAcM_GetName(i_this->mCcAtSph.GetAtHitAc()) == PROC_ALINK &&
+            fopAcM_GetName(i_this->mCcAtSph.GetAtHitAc()) == fpcNm_ALINK_e &&
             daAlink_getAlinkActorClass()->checkWoodShieldEquipNotIronBall())
         {
             i_this->mAction = ACTION_ARROW_SHIELD;
@@ -253,7 +253,7 @@ static void e_arrow_shot(e_arrow_class* i_this) {
     }
     case 1:
         if (i_this->mFlags & 0x20) {
-            fopAc_ac_c* coach_p = fopAcM_SearchByName(PROC_NPC_COACH);
+            fopAc_ac_c* coach_p = fopAcM_SearchByName(fpcNm_NPC_COACH_e);
 
             if (coach_p != NULL) {
                 cXyz sp30;
@@ -331,7 +331,7 @@ static void e_arrow_spin(e_arrow_class* i_this) {
 
 static void* s_limit_sub(void* i_actor, void* i_data) {
     if (fopAcM_IsActor(i_actor) != FALSE && i_actor != i_data &&
-        fopAcM_GetName(i_actor) == PROC_E_ARROW &&
+        fopAcM_GetName(i_actor) == fpcNm_E_ARROW_e &&
         static_cast<e_arrow_class*>(i_actor)->mAction == ACTION_ARROW_FIRE &&
         fabsf(static_cast<e_arrow_class*>(i_actor)->field_0xa00.z -
               static_cast<e_arrow_class*>(i_data)->field_0xa00.z) < 300.0f)
@@ -429,7 +429,7 @@ static void e_arrow_demo_fire(e_arrow_class* i_this) {
 
 static void atHit_CB(fopAc_ac_c* i_atActor, dCcD_GObjInf* i_atObjInf, fopAc_ac_c* i_tgActor,
                      dCcD_GObjInf* i_tgObjInf) {
-    if (i_tgActor != NULL && fopAcM_GetName(i_tgActor) == PROC_ALINK) {
+    if (i_tgActor != NULL && fopAcM_GetName(i_tgActor) == fpcNm_ALINK_e) {
         if (daAlink_getAlinkActorClass()->checkWoodShieldEquipNotIronBall()) {
             daAlink_getAlinkActorClass()->getArrowShieldOffset(
                 &i_atActor->current.pos, &i_atActor->shape_angle,
@@ -757,13 +757,13 @@ actor_process_profile_definition g_profile_E_ARROW = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 8,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_E_ARROW,
+    /* Proc Name    */ fpcNm_E_ARROW_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(e_arrow_class),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_E_ARROW,
+    /* Draw Prio    */ fpcDwPi_E_ARROW_e,
     /* Actor SubMtd */ &l_daE_ARROW_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_UNK_0x4000_e | fopAcStts_CULL_e,
     /* Group        */ fopAc_ENEMY_e,

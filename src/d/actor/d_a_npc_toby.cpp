@@ -441,7 +441,7 @@ void* daNpc_Toby_c::srchToby(void* i_actor, void* i_data) {
     if (mFindCount < 50) {
         fopAc_ac_c* actor_p = (fopAc_ac_c*)i_actor;
         if (actor_p != NULL && actor_p != o_actor) {
-            if (fopAcM_IsExecuting(fopAcM_GetID(actor_p)) && fopAcM_GetName(actor_p) == PROC_NPC_TOBY) {
+            if (fopAcM_IsExecuting(fopAcM_GetID(actor_p)) && fopAcM_GetName(actor_p) == fpcNm_NPC_TOBY_e) {
                 mFindActorPtrs[mFindCount] = actor_p;
                 mFindCount++;
             }
@@ -702,16 +702,16 @@ void daNpc_Toby_c::srchActors() {
     switch (mType) {
     case 0:
         if (mActorMngr[0].getActorP() == NULL) {
-            mActorMngr[0].entry(getNearestActorP(PROC_Obj_TobyHouse));
+            mActorMngr[0].entry(getNearestActorP(fpcNm_Obj_TobyHouse_e));
         }
 
         if (mActorMngr[1].getActorP() == NULL) {
             // Fyer's music box that he plays when Link gets shot from the cannon.
-            mActorMngr[1].entry(getNearestActorP(PROC_OBJ_AUTOMATA));
+            mActorMngr[1].entry(getNearestActorP(fpcNm_OBJ_AUTOMATA_e));
         }
 
         if (mActorMngr[2].getActorP() == NULL) {
-            mActorMngr[2].entry(getNearestActorP(PROC_Obj_SCannon));
+            mActorMngr[2].entry(getNearestActorP(fpcNm_Obj_SCannon_e));
         }
 
         break;
@@ -719,7 +719,7 @@ void daNpc_Toby_c::srchActors() {
     case 1:
         if (mActorMngr[3].getActorP() == NULL) {
             // Shadow Bulbin (drained Lake Hylia Kargorok fight):
-            mActorMngr[3].entry(getNearestActorP(PROC_E_RDY));
+            mActorMngr[3].entry(getNearestActorP(fpcNm_E_RDY_e));
         }
 
         break;
@@ -729,7 +729,7 @@ void daNpc_Toby_c::srchActors() {
 
     case 3:
         if (mActorMngr[2].getActorP() == NULL) {
-            mActorMngr[2].entry(getNearestActorP(PROC_Obj_SCannon));
+            mActorMngr[2].entry(getNearestActorP(fpcNm_Obj_SCannon_e));
         }
 
         break;
@@ -2209,13 +2209,13 @@ actor_process_profile_definition g_profile_NPC_TOBY = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_NPC_TOBY,
+    /* Proc Name    */ fpcNm_NPC_TOBY_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daNpc_Toby_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_NPC_TOBY,
+    /* Draw Prio    */ fpcDwPi_NPC_TOBY_e,
     /* Actor SubMtd */ &daNpc_Toby_MethodTable,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e | fopAcStts_UNK_0x4_e | fopAcStts_UNK_0x2_e | fopAcStts_UNK_0x1_e,
     /* Group        */ fopAc_NPC_e,

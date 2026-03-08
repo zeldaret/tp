@@ -32,7 +32,7 @@ static void bornCoCallBack(fopAc_ac_c* i_coActorA, dCcD_GObjInf* i_coObjInfA,
     daObjIBone_c* a_coActorA = (daObjIBone_c*)i_coActorA;
 
     if (i_coActorA != NULL && i_coActorB != NULL &&
-        fopAcM_GetName(i_coActorB) == PROC_HORSE &&
+        fopAcM_GetName(i_coActorB) == fpcNm_HORSE_e &&
         daPy_getPlayerActorClass()->checkHorseRide())
     {
         a_coActorA->field_0x828 = 1;
@@ -76,7 +76,7 @@ static void* s_boar_sub(void* i_actor, void* i_data) {
         fopAc_ac_c* actor = (fopAc_ac_c*)i_actor;
         fopAc_ac_c* data = (fopAc_ac_c*)i_data;
 
-        if (fopAcM_GetName(actor) == PROC_E_WB) {
+        if (fopAcM_GetName(actor) == fpcNm_E_WB_e) {
             f32 xz_dist = fopAcM_searchActorDistanceXZ(data, actor);
             f32 y_dist = fopAcM_searchActorDistanceY(data, actor);
 
@@ -289,13 +289,13 @@ actor_process_profile_definition g_profile_Obj_InoBone = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_Obj_InoBone,
+    /* Proc Name    */ fpcNm_Obj_InoBone_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daObjIBone_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_Obj_InoBone,
+    /* Draw Prio    */ fpcDwPi_Obj_InoBone_e,
     /* Actor SubMtd */ &l_daObjIBone_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e,
     /* Group        */ fopAc_ACTOR_e,

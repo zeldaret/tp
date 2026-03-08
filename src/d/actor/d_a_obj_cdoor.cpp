@@ -42,7 +42,7 @@ int daObjCdoor_c::CreateHeap() {
 
 static void* daObjCdoor_searchChain(fopAc_ac_c* i_actor, void* i_this) {
     daObjCdoor_c* _this = static_cast<daObjCdoor_c*>(i_this);
-    if (fopAcM_GetName(i_actor) == PROC_Obj_Wchain) {
+    if (fopAcM_GetName(i_actor) == fpcNm_Obj_Wchain_e) {
         daObjWchain_c* chain = static_cast<daObjWchain_c*>(i_actor);
         if (chain->getSwitchNum() == _this->getSwitchNum()) {
             _this->setChainID(fopAcM_GetID(chain));
@@ -300,13 +300,13 @@ actor_process_profile_definition g_profile_Obj_Cdoor = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 3,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_Obj_Cdoor,
+    /* Proc Name    */ fpcNm_Obj_Cdoor_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daObjCdoor_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_Obj_Cdoor,
+    /* Draw Prio    */ fpcDwPi_Obj_Cdoor_e,
     /* Actor SubMtd */ &l_daObjCdoor_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e,
     /* Group        */ fopAc_ENV_e,

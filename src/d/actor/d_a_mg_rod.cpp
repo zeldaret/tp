@@ -1036,7 +1036,7 @@ static void sibuki_set(dmg_rod_class* i_this, f32 i_size, cXyz* i_pos, BOOL para
 }
 
 static void* s_boat_sub(void* i_actor, void* i_data) {
-    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_CANOE) {
+    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == fpcNm_CANOE_e) {
         cXyz spC = ((fopAc_ac_c*)i_actor)->current.pos - ((fopAc_ac_c*)i_data)->current.pos;
         return i_actor;
     }
@@ -1491,7 +1491,7 @@ static int simple_bg_check(dmg_rod_class* i_this, f32 param_1) {
 
 static void* s_wd_sub(void* i_actor, void* i_data) {
     UNUSED(i_data);
-    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_OBJ_LP) {
+    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == fpcNm_OBJ_LP_e) {
         return i_actor;
     }
 
@@ -2833,7 +2833,7 @@ static void lure_heart(dmg_rod_class* i_this) {
     sp8.y = 0;
     sp8.z = i_this->field_0x10b0;
 
-    fopAc_ac_c* obj_life = (fopAc_ac_c*)fopAcM_SearchByName(PROC_Obj_LifeContainer);
+    fopAc_ac_c* obj_life = (fopAc_ac_c*)fopAcM_SearchByName(fpcNm_Obj_LifeContainer_e);
     if (obj_life != NULL) {
         fopAc_ac_c* player = (fopAc_ac_c*)dComIfGp_getPlayer(0);
         cXyz sp10;
@@ -4124,7 +4124,7 @@ static void uki_catch(dmg_rod_class* i_this) {
 
 static void* s_sg_sub(void* i_actor, void* i_data) {
     UNUSED(i_data);
-    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_E_SG && ((fopAc_ac_c*)i_actor)->current.pos.y < ((dmg_rod_class*)i_data)->water_surface_y - 50.0f) {
+    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == fpcNm_E_SG_e && ((fopAc_ac_c*)i_actor)->current.pos.y < ((dmg_rod_class*)i_data)->water_surface_y - 50.0f) {
         return i_actor;
     }
 
@@ -4132,7 +4132,7 @@ static void* s_sg_sub(void* i_actor, void* i_data) {
 }
 
 static void* s_bb_sub(void* i_actor, void* i_data) {
-    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_E_BG && ((fopAc_ac_c*)i_actor)->current.pos.y < ((dmg_rod_class*)i_data)->water_surface_y - 50.0f) {
+    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == fpcNm_E_BG_e && ((fopAc_ac_c*)i_actor)->current.pos.y < ((dmg_rod_class*)i_data)->water_surface_y - 50.0f) {
         return i_actor;
     }
 
@@ -4141,7 +4141,7 @@ static void* s_bb_sub(void* i_actor, void* i_data) {
 
 static void* s_lh_sub(void* i_actor, void* i_data) {
     UNUSED(i_data);
-    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_MG_FISH) {
+    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == fpcNm_MG_FISH_e) {
         mg_fish_class* fish = (mg_fish_class*)i_actor;
         if (fish->mGedouKind == 21) {
             if ((fish->actor.current.pos - ((fopAc_ac_c*)i_data)->current.pos).abs() < fish->mJointScale) {
@@ -4155,7 +4155,7 @@ static void* s_lh_sub(void* i_actor, void* i_data) {
 
 static void* s_bt_sub(void* i_actor, void* i_data) {
     UNUSED(i_data);
-    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_MG_FISH) {
+    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == fpcNm_MG_FISH_e) {
         mg_fish_class* fish = (mg_fish_class*)i_actor;
         if (fish->mGedouKind == 20) {
             if ((fish->actor.current.pos - ((fopAc_ac_c*)i_data)->current.pos).abs() < fish->mJointScale) {
@@ -5759,7 +5759,7 @@ static int dmg_rod_Execute(dmg_rod_class* i_this) {
     if (strcmp(dComIfGp_getStartStageName(), "F_SP127") == 0 && i_this->kind == 0) {
     }
 
-    henna = (npc_henna_class*)fopAcM_SearchByName(PROC_NPC_HENNA);
+    henna = (npc_henna_class*)fopAcM_SearchByName(fpcNm_NPC_HENNA_e);
     if (henna != NULL && henna->field_0x734 != 0) {
         henna = NULL;
     }
@@ -5986,7 +5986,7 @@ static int dmg_rod_Execute(dmg_rod_class* i_this) {
     i_this->field_0x1406 = i_this->play_cam_fovy;
 
     if (i_this->kind == MG_ROD_KIND_LURE) {
-        daObjLife_c* obj_life = (daObjLife_c*)fopAcM_SearchByName(PROC_Obj_LifeContainer);
+        daObjLife_c* obj_life = (daObjLife_c*)fopAcM_SearchByName(fpcNm_Obj_LifeContainer_e);
         if (obj_life != NULL) {
             if (i_this->field_0x10a9 != 0) {
                 if (i_this->field_0x10a9 == 2) {
@@ -6415,13 +6415,13 @@ actor_process_profile_definition g_profile_MG_ROD = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 8,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_MG_ROD,
+    /* Proc Name    */ fpcNm_MG_ROD_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(dmg_rod_class),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_MG_ROD,
+    /* Draw Prio    */ fpcDwPi_MG_ROD_e,
     /* Actor SubMtd */ &l_dmg_rod_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_NOPAUSE_e,
     /* Group        */ fopAc_ACTOR_e,

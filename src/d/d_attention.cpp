@@ -635,7 +635,7 @@ int dAttention_c::makeList() {
 void dAttention_c::setOwnerAttentionPos() {
     mOwnerAttnPos = mpPlayer->attention_info.position;
 
-    if (fopAcM_GetName(mpPlayer) == PROC_ALINK) {
+    if (fopAcM_GetName(mpPlayer) == fpcNm_ALINK_e) {
         mOwnerAttnPos.y -= ((daPy_py_c*)mpPlayer)->getAttentionOffsetY();
     }
 }
@@ -829,7 +829,7 @@ bool dAttention_c::chaseAttention() {
 f32 dAttention_c::EnemyDistance(fopAc_ac_c* i_actor) {
     if (i_actor == mpPlayer || mpPlayer == NULL) {
         return -1.0f;
-    } else if (fopAcM_GetProfName(i_actor) == PROC_ALINK) {
+    } else if (fopAcM_GetProfName(i_actor) == fpcNm_ALINK_e) {
         return -1.0f;
     } else if (!(i_actor->attention_info.flags & fopAc_AttnFlag_BATTLE_e) &&
                !(i_actor->attention_info.flags & fopAc_AttnFlag_ENEMY_NOLOCK_e)) {

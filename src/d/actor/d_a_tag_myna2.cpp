@@ -33,7 +33,7 @@ s32 daTagMyna2_c::execute() {
 
         u32 var_r29 = 0xffff0001;
         if (mTimer == 0) {
-            if (fopAcM_create(PROC_MYNA2, var_r29 | mSwitchNo << 8, &actor_pos,
+            if (fopAcM_create(fpcNm_MYNA2_e, var_r29 | mSwitchNo << 8, &actor_pos,
                               fopAcM_GetRoomNo(this), &actor_angle, 0, -1)
                 != fpcM_ERROR_PROCESS_ID_e) {
                 dComIfGs_onSwitch(mSwitchNo,fopAcM_GetRoomNo(this));
@@ -76,13 +76,13 @@ actor_process_profile_definition g_profile_TAG_MYNA2 = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_TAG_MYNA2,
+    /* Proc Name    */ fpcNm_TAG_MYNA2_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daTagMyna2_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_TAG_MYNA2,
+    /* Draw Prio    */ fpcDwPi_TAG_MYNA2_e,
     /* Actor SubMtd */ &l_daTagMyna2_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_UNK_0x4000_e,
     /* Group        */ fopAc_ACTOR_e,

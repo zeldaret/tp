@@ -54,9 +54,9 @@ void daObjCRVLH_UP_c::Hakai() {
             mDoMtx_stack_c::multVec(&field_0x5ac[i], &field_0x5ac[i]);
         }
 
-        field_0x5a4 = fopAcM_create(PROC_Obj_CRVHAHEN, 1, &field_0x5ac[0], fopAcM_GetRoomNo(this),
+        field_0x5a4 = fopAcM_create(fpcNm_Obj_CRVHAHEN_e, 1, &field_0x5ac[0], fopAcM_GetRoomNo(this),
                                     &cStack_30, 0, -1);
-        field_0x5a8 = fopAcM_create(PROC_Obj_CRVHAHEN, 1, &field_0x5ac[1], fopAcM_GetRoomNo(this),
+        field_0x5a8 = fopAcM_create(fpcNm_Obj_CRVHAHEN_e, 1, &field_0x5ac[1], fopAcM_GetRoomNo(this),
                                     &cStack_30, 0, -1);
         dComIfGp_particle_set(dPa_RM(ID_ZF_S_CRVYAGURA05_SMK), &field_0x5ac[1], &tevStr, &cStack_30,
                               0);
@@ -202,13 +202,13 @@ actor_process_profile_definition g_profile_Obj_CRVLH_UP = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 3,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_Obj_CRVLH_UP,
+    /* Proc Name    */ fpcNm_Obj_CRVLH_UP_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daObjCRVLH_UP_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_Obj_CRVLH_UP,
+    /* Draw Prio    */ fpcDwPi_Obj_CRVLH_UP_e,
     /* Actor SubMtd */ &l_daObjCRVLH_UP_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e | fopAcStts_NOEXEC_e,
     /* Group        */ fopAc_ACTOR_e,

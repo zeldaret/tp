@@ -299,7 +299,7 @@ void daE_ZH_c::setActionMode(int i_action, int i_mode) {
 }
 
 static void* s_BallSearch(void* i_actor, void* i_data) {
-    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_Obj_Carry && ((daObjCarry_c*)i_actor)->prm_chk_type_lightball() &&
+    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == fpcNm_Obj_Carry_e && ((daObjCarry_c*)i_actor)->prm_chk_type_lightball() &&
         ((((daE_ZH_c*)i_data)->bitSw == 16 && ((daObjCarry_c*)i_actor)->getType() == 8) || (((daE_ZH_c*)i_data)->bitSw == 17 && ((daObjCarry_c*)i_actor)->getType() == 9))) {
         return i_actor;
     }
@@ -308,7 +308,7 @@ static void* s_BallSearch(void* i_actor, void* i_data) {
 }
 
 static void* s_BallSearch_Tag(void* i_actor, void* i_data) {
-    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_Obj_Carry && ((daObjCarry_c*)i_actor)->prm_chk_type_lightball()) {
+    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == fpcNm_Obj_Carry_e && ((daObjCarry_c*)i_actor)->prm_chk_type_lightball()) {
         return i_actor;
     }
 
@@ -2339,13 +2339,13 @@ actor_process_profile_definition g_profile_E_ZH = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_E_ZH,
+    /* Proc Name    */ fpcNm_E_ZH_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daE_ZH_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_E_ZH,
+    /* Draw Prio    */ fpcDwPi_E_ZH_e,
     /* Actor SubMtd */ &l_daE_ZH_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e,
     /* Group        */ fopAc_ENV_e,

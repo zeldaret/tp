@@ -889,7 +889,7 @@ void* daNpcKasiKyu_c::_srch_escape_tag(void* i_actor, void* i_data) {
         return NULL;
     }
 
-    if (fopAcM_GetName(i_actor) != PROC_Tag_Escape) {
+    if (fopAcM_GetName(i_actor) != fpcNm_Tag_Escape_e) {
         return NULL;
     }
 
@@ -1428,13 +1428,13 @@ actor_process_profile_definition g_profile_NPC_KASIKYU = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_NPC_KASIKYU,
+    /* Proc Name    */ fpcNm_NPC_KASIKYU_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daNpcKasiKyu_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_NPC_KASIKYU,
+    /* Draw Prio    */ fpcDwPi_NPC_KASIKYU_e,
     /* Actor SubMtd */ &daNpcKasiKyu_MethodTable,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e | fopAcStts_UNK_0x8_e,
     /* Group        */ fopAc_NPC_e,

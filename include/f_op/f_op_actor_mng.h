@@ -74,7 +74,7 @@ struct fopAcM_search4ev_prm {
     void clear() {
         name[0] = 0;
         event_id = -1;
-        procname = PROC_PLAY_SCENE;
+        procname = fpcNm_PLAY_SCENE_e;
         argument = 0;
     }
 

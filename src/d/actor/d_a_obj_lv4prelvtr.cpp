@@ -50,7 +50,7 @@ int daObjPRElvtr_c::Create() {
 
 static fopAc_ac_c* searchObjSwTurn(void* i_actor1, void* i_actor2) {
     if (i_actor1 != NULL && fopAcM_IsActor(i_actor1) &&
-        fopAcM_GetProfName(i_actor1) == PROC_Obj_SwTurn)
+        fopAcM_GetProfName(i_actor1) == fpcNm_Obj_SwTurn_e)
     {
         if (((daObjSwTurn_c*)i_actor1)->getSwNo() == ((daObjPRElvtr_c*)i_actor2)->getSwNo()) {
             return (fopAc_ac_c*)i_actor1;
@@ -119,13 +119,13 @@ actor_process_profile_definition g_profile_Obj_PRElvtr = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 3,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_Obj_PRElvtr,
+    /* Proc Name    */ fpcNm_Obj_PRElvtr_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daObjPRElvtr_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_Obj_PRElvtr,
+    /* Draw Prio    */ fpcDwPi_Obj_PRElvtr_e,
     /* Actor SubMtd */ &daObjPRElvtr_METHODS,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e,
     /* Group        */ fopAc_ACTOR_e,

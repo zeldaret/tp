@@ -301,7 +301,7 @@ int daE_YMB_c::JointCallBack(J3DJoint* i_joint, int param_2) {
 }
 
 static void rideCallBack(dBgW* param_1, fopAc_ac_c* aActor_p, fopAc_ac_c* param_3) {
-    if (fopAcM_GetName(param_3) == PROC_ALINK) {
+    if (fopAcM_GetName(param_3) == fpcNm_ALINK_e) {
         ((daE_YMB_c*)aActor_p)->field_0x724 = 20;
     }
 }
@@ -762,7 +762,7 @@ void daE_YMB_c::setDeathEffect() {
 }
 
 static void* search_drop(void* i_actor, void* i_data) {
-    if (fopAc_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_Obj_Drop) {
+    if (fopAc_IsActor(i_actor) && fopAcM_GetName(i_actor) == fpcNm_Obj_Drop_e) {
         if (!fpcM_IsCreating(fopAcM_GetID(i_actor))) {
             u8 switchBit = ((daE_YMB_c*)i_data)->getSwitchBit();
             if (switchBit == 0xFF) {
@@ -1075,7 +1075,7 @@ void daE_YMB_c::executeFlyAttack() {
 
             if (field_0x1324.ChkAtHit()) {
                 actor = dCc_GetAc(field_0x1324.GetAtHitObj()->GetAc());
-                if (fopAcM_GetName(actor) == PROC_ALINK) {
+                if (fopAcM_GetName(actor) == fpcNm_ALINK_e) {
                     field_0x6fc = 30;
                     speed.y = 0.0f;
                     speedF = 0.0f;
@@ -3249,13 +3249,13 @@ actor_process_profile_definition g_profile_E_YMB = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_E_YMB,
+    /* Proc Name    */ fpcNm_E_YMB_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daE_YMB_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_E_YMB,
+    /* Draw Prio    */ fpcDwPi_E_YMB_e,
     /* Actor SubMtd */ &l_daE_YMB_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_UNK_0x4000_e,
     /* Group        */ fopAc_ENEMY_e,

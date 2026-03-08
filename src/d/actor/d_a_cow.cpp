@@ -445,7 +445,7 @@ static s16 m_view_angle_wide;
 
 static s16 m_view_angle;
 
-#define IS_COW(actor) (fopAcM_GetName((actor)) == PROC_COW)
+#define IS_COW(actor) (fopAcM_GetName((actor)) == fpcNm_COW_e)
 #define IS_VALID_COW_INTERACTION(cow_1, actor)                                                     \
     (fopAcM_IsActor((cow_1)) && !fpcM_IsCreating(fopAcM_GetID((cow_1))) && IS_COW((cow_1)) &&      \
      (cow_1) != (actor))
@@ -1458,7 +1458,7 @@ void daCow_c::action_enter() {
                         mEnterTimerDone)
                     {
                         daNpc_Aru_c* aru;
-                        fopAcM_SearchByName(PROC_NPC_ARU, (fopAc_ac_c**)&aru);
+                        fopAcM_SearchByName(fpcNm_NPC_ARU_e, (fopAc_ac_c**)&aru);
                         if (aru) {
                             aru->setLastIn();
                         }
@@ -1660,7 +1660,7 @@ void daCow_c::action_angry() {
         if (!mDealDamageTimer) {
             if (!player->checkHorseRide() && mSph[0].ChkCoHit()) {
                 fopAc_ac_c* a = dCc_GetAc(mSph[0].GetCoHitObj()->GetAc());
-                if (fopAcM_GetName(a) == PROC_ALINK) {
+                if (fopAcM_GetName(a) == fpcNm_ALINK_e) {
                     // if touched link who is not on a horse
                     s16 sangle = shape_angle.y;
                     cXyz pos = daPy_getPlayerActorClass()->current.pos;
@@ -2648,7 +2648,7 @@ bool daCow_c::checkWolfBusters() {
     }
 
     daNpc_Aru_c* aru;
-    fopAcM_SearchByName(PROC_NPC_ARU, (fopAc_ac_c**)&aru);
+    fopAcM_SearchByName(fpcNm_NPC_ARU_e, (fopAc_ac_c**)&aru);
     if (!aru) {
         return false;
     }
@@ -2675,7 +2675,7 @@ void daCow_c::action_wolf() {
     daPy_py_c* player = daPy_getPlayerActorClass();
 
     daNpc_Aru_c* aru;
-    fopAcM_SearchByName(PROC_NPC_ARU, (fopAc_ac_c**)&aru);
+    fopAcM_SearchByName(fpcNm_NPC_ARU_e, (fopAc_ac_c**)&aru);
     if (!aru) {
         return;
     }
@@ -3291,13 +3291,13 @@ actor_process_profile_definition g_profile_COW = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_COW,
+    /* Proc Name    */ fpcNm_COW_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daCow_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_COW,
+    /* Draw Prio    */ fpcDwPi_COW_e,
     /* Actor SubMtd */ &daCow_MethodTable,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e,
     /* Group        */ fopAc_NPC_e,

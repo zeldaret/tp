@@ -9,7 +9,7 @@
 
 static void rideCallBack(dBgW* param_0, fopAc_ac_c* param_1, fopAc_ac_c* param_2) {
     UNUSED(param_0);
-    if (fopAcM_GetName(param_2) == PROC_ALINK) {
+    if (fopAcM_GetName(param_2) == fpcNm_ALINK_e) {
         nObjMHasu::daObjMHasu_c* hasu = (nObjMHasu::daObjMHasu_c*)(param_1);
         hasu->setRideFlag(true);
         hasu->setHasuCount(param_2->speedF);
@@ -188,13 +188,13 @@ actor_process_profile_definition g_profile_Obj_MHasu = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 3,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_Obj_MHasu,
+    /* Proc Name    */ fpcNm_Obj_MHasu_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(nObjMHasu::daObjMHasu_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_Obj_MHasu,
+    /* Draw Prio    */ fpcDwPi_Obj_MHasu_e,
     /* Actor SubMtd */ &daObjMHasu_METHODS,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e,
     /* Group        */ fopAc_ACTOR_e,

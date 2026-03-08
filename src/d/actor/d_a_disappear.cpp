@@ -16,7 +16,7 @@ static int daDisappear_Draw(disappear_class* i_this) {
 static void* s_ks_sub(void* i_actor, void*) {
     fopAc_ac_c* actor_p = (fopAc_ac_c*)i_actor;
 
-    if (fopAcM_IsActor(actor_p) && fopAcM_GetName(actor_p) == PROC_NPC_KS) {
+    if (fopAcM_IsActor(actor_p) && fopAcM_GetName(actor_p) == fpcNm_NPC_KS_e) {
         actor_p->health = 1;
     }
 
@@ -126,13 +126,13 @@ actor_process_profile_definition g_profile_DISAPPEAR = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_DISAPPEAR,
+    /* Proc Name    */ fpcNm_DISAPPEAR_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(disappear_class),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_DISAPPEAR,
+    /* Draw Prio    */ fpcDwPi_DISAPPEAR_e,
     /* Actor SubMtd */ &l_daDisappear_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_UNK_0x4000_e,
     /* Group        */ fopAc_ACTOR_e,

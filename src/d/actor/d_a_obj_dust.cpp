@@ -195,7 +195,7 @@ int daObjDust_c::Execute(Mtx** i_mtx) {
     cXyz& player_pos = fopAcM_GetPosition(player);
     cXyz& player_speed = fopAcM_GetSpeed(player);
 
-    if (fopAcM_SearchByName(PROC_E_YMB, &e_ymb) && e_ymb != NULL) {
+    if (fopAcM_SearchByName(fpcNm_E_YMB_e, &e_ymb) && e_ymb != NULL) {
         e_ymb_Pos = &fopAcM_GetPosition(e_ymb);
     }
    
@@ -256,13 +256,13 @@ actor_process_profile_definition g_profile_Obj_DUST = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 3,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_Obj_DUST,
+    /* Proc Name    */ fpcNm_Obj_DUST_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daObjDust_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_Obj_DUST,
+    /* Draw Prio    */ fpcDwPi_Obj_DUST_e,
     /* Actor SubMtd */ &l_daObjDust_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e | fopAcStts_NOEXEC_e,
     /* Group        */ fopAc_ACTOR_e,

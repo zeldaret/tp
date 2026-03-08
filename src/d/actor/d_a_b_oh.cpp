@@ -263,7 +263,7 @@ static void attack(b_oh_class* i_this) {
                 for (int i = 7; i < 15; i++) {
                     if (i_this->mColliders[i].ChkCoHit()) {
                         cCcD_Obj* obj_p = i_this->mColliders[i].GetCoHitObj();
-                        if (fopAcM_GetName(obj_p->GetAc()) == PROC_ALINK &&
+                        if (fopAcM_GetName(obj_p->GetAc()) == fpcNm_ALINK_e &&
                             !dComIfGp_event_runCheck())
                         {
                             if (!player_p->checkHookshotShootReturnMode() &&
@@ -834,13 +834,13 @@ actor_process_profile_definition g_profile_B_OH = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 3,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_B_OH,
+    /* Proc Name    */ fpcNm_B_OH_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(b_oh_class),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_B_OH,
+    /* Draw Prio    */ fpcDwPi_B_OH_e,
     /* Actor SubMtd */ &l_daB_OH_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_UNK_0x4000_e,
     /* Group        */ fopAc_ENEMY_e,

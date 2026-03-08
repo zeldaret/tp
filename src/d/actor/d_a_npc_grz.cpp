@@ -1791,7 +1791,7 @@ int daNpc_Grz_c::wait(void* param_1) {
 }
 
 static void* s_sub(void* i_actor, void* i_data) {
-    if (fopAc_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_Obj_GrzRock) {
+    if (fopAc_IsActor(i_actor) && fopAcM_GetName(i_actor) == fpcNm_Obj_GrzRock_e) {
         return i_actor;
     }
 
@@ -1799,7 +1799,7 @@ static void* s_sub(void* i_actor, void* i_data) {
 }
 
 static void* s_sub2(void* i_actor, void* i_data) {
-    if (fopAc_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_NPC_YELIA) {
+    if (fopAc_IsActor(i_actor) && fopAcM_GetName(i_actor) == fpcNm_NPC_YELIA_e) {
         return i_actor;
     }
 
@@ -1807,7 +1807,7 @@ static void* s_sub2(void* i_actor, void* i_data) {
 }
 
 static void* s_sub3(void* i_actor, void* i_data) {
-    if (fopAc_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_NPC_GRD) {
+    if (fopAc_IsActor(i_actor) && fopAcM_GetName(i_actor) == fpcNm_NPC_GRD_e) {
         return i_actor;
     }
 
@@ -2540,13 +2540,13 @@ actor_process_profile_definition g_profile_NPC_GRZ = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_NPC_GRZ,
+    /* Proc Name    */ fpcNm_NPC_GRZ_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daNpc_Grz_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_NPC_GRZ,
+    /* Draw Prio    */ fpcDwPi_NPC_GRZ_e,
     /* Actor SubMtd */ &daNpc_Grz_MethodTable,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_UNK_0x4000_e | fopAcStts_CULL_e,
     /* Group        */ fopAc_NPC_e,

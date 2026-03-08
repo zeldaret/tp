@@ -135,12 +135,12 @@ static int bee_fly_action(e_bee_class* i_this, bee_s* i_bee) {
             i_bee->mTarget.z = cM_rndFX(100.0f);
             i_bee->mSpeedF = cM_rndF(5.0f) + 17.0f;
         }
-        if (fopAcM_GetName(hit_actor) != PROC_ALINK) {
+        if (fopAcM_GetName(hit_actor) != fpcNm_ALINK_e) {
             vec = hit_actor->current.pos - i_bee->mPos;
             vec.y += 125.0f;
             vec += i_bee->mTarget;
             if (i_bee->mHomeTimer == 0) {
-                if (fopAcM_GetName(hit_actor) == PROC_NPC_TK) {
+                if (fopAcM_GetName(hit_actor) == fpcNm_NPC_TK_e) {
                     i_bee->mAction = bee_s::ACT_DEAD;
                 } else {
                     i_bee->mAction = bee_s::ACT_FLY_HOME_A;
@@ -616,7 +616,7 @@ static void bee_control(e_bee_class* i_this) {
         if (i_this->mCcSph.ChkAtHit()) {
             cCcD_Obj* hitObj = i_this->mCcSph.GetAtHitObj();
             fopAc_ac_c* hit_actor = dCc_GetAc(hitObj->GetAc());
-            if (hit_actor != NULL && fopAcM_GetName(hit_actor) == PROC_ALINK) {
+            if (hit_actor != NULL && fopAcM_GetName(hit_actor) == fpcNm_ALINK_e) {
                 dComIfGp_getVibration().StartShock(4, 0x1f, cXyz(0.0f, 1.0f, 0.0f));
             }
         }
@@ -819,13 +819,13 @@ actor_process_profile_definition g_profile_E_BEE = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_E_BEE,
+    /* Proc Name    */ fpcNm_E_BEE_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(e_bee_class),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_E_BEE,
+    /* Draw Prio    */ fpcDwPi_E_BEE_e,
     /* Actor SubMtd */ &l_daE_Bee_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_UNK_0x4000_e,
     /* Group        */ fopAc_ACTOR_e,

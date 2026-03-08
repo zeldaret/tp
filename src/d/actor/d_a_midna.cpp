@@ -3170,8 +3170,8 @@ int daMidna_c::execute() {
     if (
         checkStateFlg0(FLG0_NO_DRAW) && (eventInfo.checkCommandTalk() || checkStateFlg0(FLG0_WOLF_NO_POS) ||
         mDemoMode == 2 || (dComIfGp_event_runCheck() && talk_partner != NULL && (checkStateFlg0(FLG0_UNK_2000000) ||
-        fopAcM_GetName(talk_partner) == PROC_Tag_Mhint || fopAcM_GetName(talk_partner) == PROC_Tag_Mstop ||
-        fopAcM_GetName(talk_partner) == PROC_Tag_Mwait)))
+        fopAcM_GetName(talk_partner) == fpcNm_Tag_Mhint_e || fopAcM_GetName(talk_partner) == fpcNm_Tag_Mstop_e ||
+        fopAcM_GetName(talk_partner) == fpcNm_Tag_Mwait_e)))
     ) {
         if (
             mDemoMode == 3 || mDemoMode == 0x10 || mDemoMode == 4 || mDemoMode == 6 ||
@@ -3601,13 +3601,13 @@ actor_process_profile_definition g_profile_MIDNA = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 6,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_MIDNA,
+    /* Proc Name    */ fpcNm_MIDNA_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daMidna_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_MIDNA,
+    /* Draw Prio    */ fpcDwPi_MIDNA_e,
     /* Actor SubMtd */ &l_daMidna_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_NOPAUSE_e,
     /* Group        */ fopAc_ENV_e,

@@ -403,7 +403,7 @@ static void e_bs_attack(e_bs_class* i_this) {
 
     if (i_this->is_wep_attack) {
         fopAc_ac_c* at_hit_actor = at_hit_check(i_this);
-        if (at_hit_actor != NULL && fopAcM_GetName(at_hit_actor) == PROC_ALINK && daPy_getPlayerActorClass()->checkPlayerGuard()) {
+        if (at_hit_actor != NULL && fopAcM_GetName(at_hit_actor) == fpcNm_ALINK_e && daPy_getPlayerActorClass()->checkPlayerGuard()) {
             i_this->modelMorf->setPlaySpeed(0.0f);
             i_this->action = ACTION_FIGHT_RUN;
             i_this->mode = 0;
@@ -932,13 +932,13 @@ actor_process_profile_definition g_profile_E_BS = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_E_BS,
+    /* Proc Name    */ fpcNm_E_BS_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(e_bs_class),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_E_BS,
+    /* Draw Prio    */ fpcDwPi_E_BS_e,
     /* Actor SubMtd */ &l_daE_BS_Method,
     /* Status       */ fopAcStts_UNK_0x10000000_e | fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e,
     /* Group        */ fopAc_ENEMY_e,

@@ -803,7 +803,7 @@ void* daNpc_ykM_c::srchGadget(void* i_actor, void* i_data) {
     if (mFindCount < 50) {
         fopAc_ac_c* actor = (fopAc_ac_c*)i_actor;
         if (actor != NULL && actor != data) {
-            if (fopAcM_IsExecuting(fopAcM_GetID(actor)) && fopAcM_GetName(actor) == PROC_OBJ_GADGET) {
+            if (fopAcM_IsExecuting(fopAcM_GetID(actor)) && fopAcM_GetName(actor) == fpcNm_OBJ_GADGET_e) {
                 mFindActorPtrs[mFindCount] = actor;
                 mFindCount++;
             }
@@ -852,7 +852,7 @@ void* daNpc_ykM_c::srchYkm(void* i_actor, void* i_data) {
     if (mFindCount < 50) {
         fopAc_ac_c* actor = (fopAc_ac_c*)i_actor;
         if (actor != NULL && actor != data) {
-            if (fopAcM_IsExecuting(fopAcM_GetID(actor)) && fopAcM_GetName(actor) == PROC_NPC_YKM) {
+            if (fopAcM_IsExecuting(fopAcM_GetID(actor)) && fopAcM_GetName(actor) == fpcNm_NPC_YKM_e) {
                 mFindActorPtrs[mFindCount] = actor;
                 mFindCount++;
             }
@@ -885,7 +885,7 @@ void* daNpc_ykM_c::srchYkw(void* i_actor, void* i_data) {
     if (mFindCount < 50) {
         fopAc_ac_c* actor = (fopAc_ac_c*)i_actor;
         if (actor != NULL && actor != data) {
-            if (fopAcM_IsExecuting(fopAcM_GetID(actor)) && fopAcM_GetName(actor) == PROC_NPC_YKW) {
+            if (fopAcM_IsExecuting(fopAcM_GetID(actor)) && fopAcM_GetName(actor) == fpcNm_NPC_YKW_e) {
                 mFindActorPtrs[mFindCount] = actor;
                 mFindCount++;
             }
@@ -1219,7 +1219,7 @@ void daNpc_ykM_c::srchActors() {
 
         case TYPE_3:
             if (mActorMngr[5].getActorP() == NULL) {
-                mActorMngr[5].entry(getNearestActorP(PROC_NPC_YKW));
+                mActorMngr[5].entry(getNearestActorP(fpcNm_NPC_YKW_e));
             }
             break;
 
@@ -1802,7 +1802,7 @@ BOOL daNpc_ykM_c::chkTouchPlayer() {
             if (field_0xf94[i].ChkCoHit()) {
                 actor = field_0xf94[i].GetCoHitAc();
 
-                if (actor != NULL && fopAcM_GetName(actor) == PROC_ALINK) {
+                if (actor != NULL && fopAcM_GetName(actor) == fpcNm_ALINK_e) {
                     return TRUE;
                 }
             }
@@ -1811,7 +1811,7 @@ BOOL daNpc_ykM_c::chkTouchPlayer() {
         if (field_0xe58.ChkCoHit()) {
             actor = field_0xe58.GetCoHitAc();
 
-            if (actor != NULL && fopAcM_GetName(actor) == PROC_ALINK) {
+            if (actor != NULL && fopAcM_GetName(actor) == fpcNm_ALINK_e) {
                 return TRUE;
             }
         }
@@ -3739,13 +3739,13 @@ actor_process_profile_definition g_profile_NPC_YKM = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_NPC_YKM,
+    /* Proc Name    */ fpcNm_NPC_YKM_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daNpc_ykM_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_NPC_YKM,
+    /* Draw Prio    */ fpcDwPi_NPC_YKM_e,
     /* Actor SubMtd */ &daNpc_ykM_MethodTable,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e | fopAcStts_UNK_0x4_e | fopAcStts_UNK_0x2_e | fopAcStts_UNK_0x1_e,
     /* Group        */ fopAc_NPC_e,

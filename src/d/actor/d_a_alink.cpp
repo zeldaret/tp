@@ -203,8 +203,8 @@ static f32 const l_wolfFootOnFrame[6][4] = {
 };
 
 static s16 const l_insectNameList[12] = {
-    PROC_Obj_Kabuto, PROC_Obj_Cho, PROC_Obj_Kuw, PROC_Obj_Batta, PROC_Obj_Nan, PROC_Obj_Dan,
-    PROC_Obj_Kam,    PROC_Obj_Ten, PROC_Obj_Kat, PROC_Obj_Tombo, PROC_Obj_Ari, PROC_Obj_Kag,
+    fpcNm_Obj_Kabuto_e, fpcNm_Obj_Cho_e, fpcNm_Obj_Kuw_e, fpcNm_Obj_Batta_e, fpcNm_Obj_Nan_e, fpcNm_Obj_Dan_e,
+    fpcNm_Obj_Kam_e,    fpcNm_Obj_Ten_e, fpcNm_Obj_Kat_e, fpcNm_Obj_Tombo_e, fpcNm_Obj_Ari_e, fpcNm_Obj_Kag_e,
 };
 
 #if DEBUG
@@ -2068,7 +2068,7 @@ void daAlink_c::tgHitCallback(fopAc_ac_c* i_atActor, dCcD_GObjInf* i_tgObjInf, d
 void daAlink_c::coHitCallback(fopAc_ac_c* i_coHitActor, dCcD_GObjInf* i_coHitObj) {
     if (!checkWolf() && !checkNoResetFlg3(FLG3_UNK_20000000)) {
         if (((mProcID != PROC_CUT_HEAD && mProcID != PROC_CUT_DOWN) || i_coHitActor != field_0x280c.getActor())
-            && (!checkModeFlg(0x10040) || fopAcM_GetName(i_coHitActor) == PROC_CSTAF))
+            && (!checkModeFlg(0x10040) || fopAcM_GetName(i_coHitActor) == fpcNm_CSTAF_e))
         {
             field_0x372c += *mCcStts.GetCCMoveP();
         }
@@ -2076,7 +2076,7 @@ void daAlink_c::coHitCallback(fopAc_ac_c* i_coHitActor, dCcD_GObjInf* i_coHitObj
         field_0x30fe++;
     }
 
-    if (fopAcM_GetName(i_coHitActor) == PROC_Obj_WaterFall) {
+    if (fopAcM_GetName(i_coHitActor) == fpcNm_Obj_WaterFall_e) {
         if (checkWolf()) {
             if (i_coHitObj == &mTgCyls[0]) {
                 onEndResetFlg1(ERFLG1_WATERFALL_FRONT_HIT);
@@ -2661,7 +2661,7 @@ void daAlink_c::setHatAngle() {
 
         if (!checkNoResetFlg0(FLG0_SWIM_UP)) {
             sp9C.y -= 2.0f;
-        } else if (checkMagneBootsOn() && getMoveBGActorName(mMagneLineChk, FALSE) == PROC_Obj_MagneArm) {
+        } else if (checkMagneBootsOn() && getMoveBGActorName(mMagneLineChk, FALSE) == fpcNm_Obj_MagneArm_e) {
             sp9C.y += 5.0f;
         } else {
             sp9C.y -= 5.0f;
@@ -2906,7 +2906,7 @@ bool daAlink_c::checkActorPosAngle(fopAc_ac_c* i_actor, cXyz** o_ppos) {
             field_0x311c = 0x50;
         }
 
-        if (actor_name == PROC_Obj_Wchain || (actor_name == PROC_B_MGN && !((daB_MGN_c*)i_actor)->isDown())) {
+        if (actor_name == fpcNm_Obj_Wchain_e || (actor_name == fpcNm_B_MGN_e && !((daB_MGN_c*)i_actor)->isDown())) {
             onNoResetFlg1(FLG1_MIDNA_HAIR_ATN_POS);
             mMidnaHairAtnPos = i_actor->eyePos;
         }
@@ -2939,17 +2939,17 @@ cXyz* daAlink_c::getNeckAimPos(cXyz* param_0, int* param_1, int param_2) {
                 daMidna_c* midna = (daMidna_c*)getMidnaActor();
                 s16 actor_name = fopAcM_GetName(look_actor);
 
-                if (actor_name == PROC_MIDNA
-                    || actor_name == PROC_Tag_Wljump
-                    || (actor_name == PROC_Tag_Mhint && ((daTagMhint_c*)look_actor)->checkNoAttention())
-                    || (actor_name == PROC_Tag_Mstop && ((daTagMstop_c*)look_actor)->checkNoAttention())
-                    || (actor_name == PROC_Tag_Mwait && ((daTagMwait_c*)look_actor)->checkEndMessage()))
+                if (actor_name == fpcNm_MIDNA_e
+                    || actor_name == fpcNm_Tag_Wljump_e
+                    || (actor_name == fpcNm_Tag_Mhint_e && ((daTagMhint_c*)look_actor)->checkNoAttention())
+                    || (actor_name == fpcNm_Tag_Mstop_e && ((daTagMstop_c*)look_actor)->checkNoAttention())
+                    || (actor_name == fpcNm_Tag_Mwait_e && ((daTagMwait_c*)look_actor)->checkEndMessage()))
                 {
                     *param_1 = 1;
                     return &midna->eyePos;
                 }
 
-                if (actor_name == PROC_Tag_Mhint || actor_name == PROC_Tag_Mstop) {
+                if (actor_name == fpcNm_Tag_Mhint_e || actor_name == fpcNm_Tag_Mstop_e) {
                     midna->setForceNeckAimPos(look_actor->eyePos);
                 }
             }
@@ -3021,13 +3021,13 @@ cXyz* daAlink_c::getNeckAimPos(cXyz* param_0, int* param_1, int param_2) {
         }
 
         if (dComIfGp_att_getLookTarget() != NULL) {
-            if (fopAcM_GetName(dComIfGp_att_getLookTarget()) == PROC_E_NZ) {
+            if (fopAcM_GetName(dComIfGp_att_getLookTarget()) == fpcNm_E_NZ_e) {
                 *param_1 = 0;
             }
             return &dComIfGp_att_getLookTarget()->eyePos;
         }
 
-        if ((checkActorPosAngle(field_0x27f0, &sp1C) && (field_0x27f0 == NULL || fopAcM_GetName(field_0x27f0) != PROC_Tag_WaraHowl))
+        if ((checkActorPosAngle(field_0x27f0, &sp1C) && (field_0x27f0 == NULL || fopAcM_GetName(field_0x27f0) != fpcNm_Tag_WaraHowl_e))
             || checkActorPosAngle(spC, &sp1C)
             || checkActorPosAngle(field_0x27f8, &sp1C))
         {
@@ -3131,7 +3131,7 @@ cXyz* daAlink_c::getNeckAimPos(cXyz* param_0, int* param_1, int param_2) {
             || demoMode == daPy_demo_c::DEMO_UNEQUIP_e)
         {
             spC = getDemoLookActor();
-            if (spC != NULL && fopAcM_GetName(spC) == PROC_MIDNA) {
+            if (spC != NULL && fopAcM_GetName(spC) == fpcNm_MIDNA_e) {
                 return &spC->eyePos;
             }
 
@@ -3435,7 +3435,7 @@ bool daAlink_c::commonLineCheck(cXyz* i_startPos, cXyz* i_endPos) {
  *
  * @param i_polyinf The polygon info to check
  * @param i_forceCheck Forces the check to happen regardless of if the poly is safe or not
- * @return The actor name of the actor associated with the polygon info. defaults to PROC_ALINK
+ * @return The actor name of the actor associated with the polygon info. defaults to fpcNm_ALINK_e
  */
 s16 daAlink_c::getMoveBGActorName(cBgS_PolyInfo& i_polyinf, BOOL i_forceCheck) {
     if ((i_forceCheck || dComIfG_Bgsp().ChkPolySafe(i_polyinf)) &&
@@ -3444,11 +3444,11 @@ s16 daAlink_c::getMoveBGActorName(cBgS_PolyInfo& i_polyinf, BOOL i_forceCheck) {
         return fopAcM_GetName(dComIfG_Bgsp().GetActorPointer(i_polyinf));
     }
 
-    return PROC_ALINK;
+    return fpcNm_ALINK_e;
 }
 
 fopAc_ac_c* daAlink_c::checkGoronRide() {
-    if (mLinkAcch.ChkGroundHit() && getMoveBGActorName(mLinkAcch.m_gnd, FALSE) == PROC_OBJ_GRA) {
+    if (mLinkAcch.ChkGroundHit() && getMoveBGActorName(mLinkAcch.m_gnd, FALSE) == fpcNm_OBJ_GRA_e) {
         return dComIfG_Bgsp().GetActorPointer(mLinkAcch.m_gnd);
     }
 
@@ -4954,10 +4954,10 @@ int daAlink_c::create() {
         bgWaitFlg = TRUE;
 
         if (checkCanoeStart()) {
-            mRideActorID = fopAcM_create(PROC_CANOE, 0, &current.pos, fopAcM_GetRoomNo(this),
+            mRideActorID = fopAcM_create(fpcNm_CANOE_e, 0, &current.pos, fopAcM_GetRoomNo(this),
                                          &shape_angle, NULL, -1);
         } else if (sceneMode == 11) {
-            mRideActorID = fopAcM_create(PROC_Obj_IceLeaf, 0x1FFFF, &current.pos,
+            mRideActorID = fopAcM_create(fpcNm_Obj_IceLeaf_e, 0x1FFFF, &current.pos,
                                          fopAcM_GetRoomNo(this), &shape_angle, NULL, -1);
         } else {
             mRideActorID = fpcM_ERROR_PROCESS_ID_e;
@@ -5060,7 +5060,7 @@ int daAlink_c::create() {
     l_jumpTop = 0.0f;
     #endif
 
-    fopAcM_create(PROC_MIDNA, midna_prm, &current.pos, fopAcM_GetRoomNo(this), &shape_angle, NULL, -1);
+    fopAcM_create(fpcNm_MIDNA_e, midna_prm, &current.pos, fopAcM_GetRoomNo(this), &shape_angle, NULL, -1);
     checkSetNpcTks(&current.pos, fopAcM_GetRoomNo(this), 1);
 
     if (startPoint == -4 && dComIfGp_TargetWarpPt_get() != 0xFF && !dComIfGp_TransportWarp_check()) {
@@ -9147,7 +9147,7 @@ void daAlink_c::setSandShapeOffset() {
 }
 
 bool daAlink_c::checkLv2MiddleBossBgRide(s16 i_procName) {
-    return i_procName == PROC_OBJ_MSIMA || i_procName == PROC_B_ZANTS;
+    return i_procName == fpcNm_OBJ_MSIMA_e || i_procName == fpcNm_B_ZANTS_e;
 }
 
 bool daAlink_c::getSlidePolygon(cM3dGPla* o_tripla) {
@@ -9163,7 +9163,7 @@ bool daAlink_c::getSlidePolygon(cM3dGPla* o_tripla) {
 
         s16 movebg_actorName = getMoveBGActorName(mLinkAcch.m_gnd, TRUE);
         if (dComIfG_Bgsp().GetTriPla(mLinkAcch.m_gnd, o_tripla)
-            && (!checkBootsOrArmorHeavy() || (movebg_actorName != PROC_Obj_RotStair && movebg_actorName != PROC_Obj_Lv3R10Saka))
+            && (!checkBootsOrArmorHeavy() || (movebg_actorName != fpcNm_Obj_RotStair_e && movebg_actorName != fpcNm_Obj_Lv3R10Saka_e))
             && ((mGroundCode != 8 && (mGndPolySpecialCode == 1 || (o_tripla->mNormal.y < field_0x3470 && mGndPolySpecialCode != 2)))
                 || (mGndPolySpecialCode == 5 && !checkWolf() && (!checkInputOnR() || mProcID == PROC_SLIDE) && (o_tripla->mNormal.y < cM_scos(field_0x3122)))
                 || (!checkEquipHeavyBoots()
@@ -9627,8 +9627,8 @@ BOOL daAlink_c::checkAtnWaitAnime() {
     if ((mTargetedActor != NULL
         && (checkEnemyGroup(mTargetedActor)
             || checkGoatCatchActor(mTargetedActor)
-            || fopAcM_GetName(mTargetedActor) == PROC_CROD
-            || fopAcM_GetName(mTargetedActor) == PROC_BOOMERANG
+            || fopAcM_GetName(mTargetedActor) == fpcNm_CROD_e
+            || fopAcM_GetName(mTargetedActor) == fpcNm_BOOMERANG_e
             )
         )
         || (checkGrabAnimeUp()
@@ -10222,7 +10222,7 @@ BOOL daAlink_c::setTalkStatus() {
             if (field_0x27f4->attention_info.flags & fopAc_AttnFlag_UNK_0x800000) {
                 setDoStatus(BUTTON_STATUS_LISTEN);
             } else if (field_0x27f4->attention_info.flags & fopAc_AttnFlag_TALKCHECK_e) {
-                if (fopAcM_GetName(field_0x27f4) == PROC_OBJ_SSDRINK) {
+                if (fopAcM_GetName(field_0x27f4) == fpcNm_OBJ_SSDRINK_e) {
                     setDoStatus(BUTTON_STATUS_DRINK);
                 } else {
                     setDoStatus(BUTTON_STATUS_CHECK);
@@ -10276,7 +10276,7 @@ void daAlink_c::decideCommonDoStatus() {
                 setDoStatusEmphasys(BUTTON_STATUS_JUMP);
             } else {
                 if (mTargetedActor != NULL) {
-                    if (fopAcM_GetName(mTargetedActor) == PROC_Tag_Wljump) {
+                    if (fopAcM_GetName(mTargetedActor) == fpcNm_Tag_Wljump_e) {
                         if (static_cast<daTagWljump_c*>(mTargetedActor)->getLockPos() != NULL) {
                             if (!getMidnaActor()->checkNoInput()) {
                                 setDoStatus(BUTTON_STATUS_UNK_147);
@@ -10421,34 +10421,34 @@ void daAlink_c::decideDoStatus() {
                      (!checkWolf() || static_cast<daTbox_c*>(field_0x27f4)->checkSmallTbox())))
                 {
                     setDoStatus(BUTTON_STATUS_OPEN);
-                } else if (mAttList->mType == fopAc_attn_ETC_e && actor_name == PROC_KYTAG05) {
+                } else if (mAttList->mType == fopAc_attn_ETC_e && actor_name == fpcNm_KYTAG05_e) {
                     setDoStatus(BUTTON_STATUS_UNK_137);
                 } else if (checkWolf()) {
                     if (mAttList->mType == fopAc_attn_CARRY_e && !fopAcM_checkCarryNow(field_0x27f4) &&
                         fopAcM_CheckCarryType(field_0x27f4, fopAcM_CARRY_LIGHT))
                     {
-                        if (actor_name == PROC_B_MGN) {
+                        if (actor_name == fpcNm_B_MGN_e) {
                             setDoStatus(BUTTON_STATUS_UNK_145);
-                        } else if (actor_name == PROC_Obj_Yobikusa) {
+                        } else if (actor_name == fpcNm_Obj_Yobikusa_e) {
                             setDoStatusEmphasys(BUTTON_STATUS_HOWL);
-                        } else if (actor_name == PROC_Obj_Stone) {
+                        } else if (actor_name == fpcNm_Obj_Stone_e) {
                             setDoStatus(BUTTON_STATUS_ROLL);
-                        } else if (actor_name == PROC_Obj_Drop || actor_name == PROC_Obj_Sword ||
-                                   actor_name == PROC_Obj_SmallKey)
+                        } else if (actor_name == fpcNm_Obj_Drop_e || actor_name == fpcNm_Obj_Sword_e ||
+                                   actor_name == fpcNm_Obj_SmallKey_e)
                         {
                             setDoStatusEmphasys(BUTTON_STATUS_UNK_57);
                         } else if (!checkGoatCatchActor(field_0x27f4) && !checkGrabLineCheck()) {
                             setDoStatusEmphasys(BUTTON_STATUS_PICK_UP);
                         }
                     } else if (mTargetedActor != NULL &&
-                               fopAcM_GetName(mTargetedActor) == PROC_B_MGN &&
+                               fopAcM_GetName(mTargetedActor) == fpcNm_B_MGN_e &&
                                mAttention->getActionBtnB() != NULL &&
                                mAttention->getActionBtnB()->mType == fopAc_attn_CARRY_e &&
                                mAttention->getActionBtnB()->getActor() == mTargetedActor)
                     {
                         setDoStatus(BUTTON_STATUS_UNK_145);
                     } else if (mTargetedActor != NULL &&
-                               fopAcM_GetName(mTargetedActor) == PROC_E_YM &&
+                               fopAcM_GetName(mTargetedActor) == fpcNm_E_YM_e &&
                                mAttention->getActionBtnB() != NULL &&
                                mAttention->getActionBtnB()->mType == fopAc_attn_ETC_e &&
                                mAttention->getActionBtnB()->getActor() == mTargetedActor)
@@ -10458,25 +10458,25 @@ void daAlink_c::decideDoStatus() {
                             setWolfDigStatus(BUTTON_STATUS_FLAG_EMPHASIS);
                         }
                     } else if (mAttList->mType == fopAc_attn_ETC_e && field_0x27f4 != NULL) {
-                        if (actor_name == PROC_Obj_Digpl || actor_name == PROC_Obj_Digholl ||
-                            actor_name == PROC_Obj_DigSnow || actor_name == PROC_Obj_Lv4DigSand ||
-                            actor_name == PROC_E_YM)
+                        if (actor_name == fpcNm_Obj_Digpl_e || actor_name == fpcNm_Obj_Digholl_e ||
+                            actor_name == fpcNm_Obj_DigSnow_e || actor_name == fpcNm_Obj_Lv4DigSand_e ||
+                            actor_name == fpcNm_E_YM_e)
                         {
                             onEndResetFlg1(ERFLG1_UNK_100000);
                             if (mWolfEyeUp != 0) {
                                 setWolfDigStatus(BUTTON_STATUS_FLAG_EMPHASIS);
                             }
-                        } else if (actor_name == PROC_TAG_HOWL ||
-                                   actor_name == PROC_Obj_WindStone ||
-                                   actor_name == PROC_Obj_SmWStone ||
-                                   actor_name == PROC_Tag_WaraHowl)
+                        } else if (actor_name == fpcNm_TAG_HOWL_e ||
+                                   actor_name == fpcNm_Obj_WindStone_e ||
+                                   actor_name == fpcNm_Obj_SmWStone_e ||
+                                   actor_name == fpcNm_Tag_WaraHowl_e)
                         {
                             setDoStatusEmphasys(BUTTON_STATUS_HOWL);
-                        } else if (actor_name == PROC_KYTAG03) {
+                        } else if (actor_name == fpcNm_KYTAG03_e) {
                             setDoStatusEmphasys(BUTTON_STATUS_SNIFF);
                         }
                     } else if (mTargetedActor != NULL && field_0x27f4 == mTargetedActor &&
-                               actor_name == PROC_Obj_Wchain)
+                               actor_name == fpcNm_Obj_Wchain_e)
                     {
                         setDoStatusEmphasys(BUTTON_STATUS_UNK_123);
                     } else {
@@ -10484,17 +10484,17 @@ void daAlink_c::decideDoStatus() {
                     }
                 } else if (mAttList->mType == fopAc_attn_ETC_e) {
                     if ((!checkMagicArmorHeavy() &&
-                         (actor_name == PROC_HORSE || actor_name == PROC_E_WB) &&
+                         (actor_name == fpcNm_HORSE_e || actor_name == fpcNm_E_WB_e) &&
                          checkReinRideBgCheck()) ||
-                        actor_name == PROC_CANOE || actor_name == PROC_Obj_IceLeaf)
+                        actor_name == fpcNm_CANOE_e || actor_name == fpcNm_Obj_IceLeaf_e)
                     {
                         setDoStatus(BUTTON_STATUS_GET_ON);
-                    } else if (actor_name == PROC_COW) {
+                    } else if (actor_name == fpcNm_COW_e) {
                         setDoStatus(BUTTON_STATUS_PET);
-                    } else if (actor_name == PROC_Obj_YIblltray) {
+                    } else if (actor_name == fpcNm_Obj_YIblltray_e) {
                         setDoStatusEmphasys(BUTTON_STATUS_UNK_153);
-                    } else if (actor_name == PROC_Tag_Lv6Gate ||
-                               (actor_name == PROC_TAG_KMSG &&
+                    } else if (actor_name == fpcNm_Tag_Lv6Gate_e ||
+                               (actor_name == fpcNm_TAG_KMSG_e &&
                                 static_cast<daTag_KMsg_c*>(field_0x27f4)->getType() == 3))
                     {
                         if (!checkEquipAnime() && checkMasterSwordEquip()) {
@@ -10514,15 +10514,15 @@ void daAlink_c::decideDoStatus() {
                         } else if (!checkMagneBootsOn()) {
                             if (checkInsectActorName(field_0x27f4)) {
                                 setDoStatusEmphasys(BUTTON_STATUS_UNK_152);
-                            } else if (actor_name == PROC_Obj_SmallKey) {
+                            } else if (actor_name == fpcNm_Obj_SmallKey_e) {
                                 setDoStatusEmphasys(BUTTON_STATUS_UNK_57);
                             } else if (!checkGrabLineCheck()) {
-                                if (actor_name == PROC_Obj_Yobikusa) {
+                                if (actor_name == fpcNm_Obj_Yobikusa_e) {
                                     setDoStatus(BUTTON_STATUS_PICK);
                                 } else if (fopAcM_CheckCarryType(field_0x27f4, fopAcM_CARRY_TYPE_8))
                                 {
                                     setDoStatusEmphasys(BUTTON_STATUS_UNK_52);
-                                } else if (actor_name != PROC_B_MGN) {
+                                } else if (actor_name != fpcNm_B_MGN_e) {
                                     setDoStatusEmphasys(BUTTON_STATUS_UNK_31);
                                 }
                             }
@@ -11407,7 +11407,7 @@ int daAlink_c::orderTalk(int i_checkZTalk) {
 static void* daAlink_searchBouDoor(fopAc_ac_c* i_actor, void* i_data) {
     UNUSED(i_data);
 
-    if (fopAcM_GetName(i_actor) == PROC_NPC_BOU && ((daNpc_Bou_c*)i_actor)->speakTo()) {
+    if (fopAcM_GetName(i_actor) == fpcNm_NPC_BOU_e && ((daNpc_Bou_c*)i_actor)->speakTo()) {
         return i_actor;
     }
 
@@ -11417,7 +11417,7 @@ static void* daAlink_searchBouDoor(fopAc_ac_c* i_actor, void* i_data) {
 static void* daAlink_searchKolin(fopAc_ac_c* i_actor, void* i_data) {
     UNUSED(i_data);
 
-    if (fopAcM_GetName(i_actor) == PROC_NPC_KOLIN && ((daNpc_Kolin_c*)i_actor)->orderNoRideEvt()) {
+    if (fopAcM_GetName(i_actor) == fpcNm_NPC_KOLIN_e && ((daNpc_Kolin_c*)i_actor)->orderNoRideEvt()) {
         return i_actor;
     }
 
@@ -11454,7 +11454,7 @@ int daAlink_c::orderZTalk() {
            )
         {
             if (zhint != NULL) {
-                if (fopAcM_GetName(zhint) == PROC_Tag_Mhint && ((daTagMhint_c*)zhint)->checkEventID()) {
+                if (fopAcM_GetName(zhint) == fpcNm_Tag_Mhint_e && ((daTagMhint_c*)zhint)->checkEventID()) {
                     fopAcM_orderOtherEventId(zhint, ((daTagMhint_c*)zhint)->getEventID(), ((daTagMhint_c*)zhint)->getToolEventID(), 0xFFFF, 0, 1);
                 } else {
                     fopAcM_orderTalkEvent(this, zhint, 0, 0);
@@ -11523,11 +11523,11 @@ int daAlink_c::checkNormalAction() {
         }
 
         if (dComIfGp_getDoStatus() == BUTTON_STATUS_GET_ON) {
-            if (fopAcM_GetName(field_0x27f4) == PROC_Obj_IceLeaf) {
+            if (fopAcM_GetName(field_0x27f4) == fpcNm_Obj_IceLeaf_e) {
                 return procBoardRideInit();
             }
 
-            if (fopAcM_GetName(field_0x27f4) == PROC_CANOE) {
+            if (fopAcM_GetName(field_0x27f4) == fpcNm_CANOE_e) {
                 if (checkModeFlg(0x40000)) {
                     return procCanoeRideInit();
                 } else {
@@ -11580,7 +11580,7 @@ int daAlink_c::checkNormalAction() {
         }
 
         if (dComIfGp_getDoStatus() == BUTTON_STATUS_STRIKE) {
-            if (fopAcM_GetName(field_0x27f4) == PROC_Tag_Lv6Gate) {
+            if (fopAcM_GetName(field_0x27f4) == fpcNm_Tag_Lv6Gate_e) {
                 static_cast<daTagLv6Gate_c*>(field_0x27f4)->stabMasterSword();
             } else {
                 static_cast<daTag_KMsg_c*>(field_0x27f4)->stabMasterSword();
@@ -11688,7 +11688,7 @@ BOOL daAlink_c::checkItemAction() {
         }
 
         if ((checkEndResetFlg1(ERFLG1_UNK_100000) || mTargetedActor == NULL) && wolfClawTrigger()) {
-            if (checkEndResetFlg1(ERFLG1_UNK_100000) && field_0x27f4 != NULL && fopAcM_GetName(field_0x27f4) == PROC_Obj_Digholl) {
+            if (checkEndResetFlg1(ERFLG1_UNK_100000) && field_0x27f4 != NULL && fopAcM_GetName(field_0x27f4) == fpcNm_Obj_Digholl_e) {
                 return procWolfDigThroughInit(0);
             }
 
@@ -13536,7 +13536,7 @@ void daAlink_c::checkRoofRestart() {
         && (mProcID != PROC_CRAWL_START && mProcID != PROC_CRAWL_END && !checkCoachGuardGame()))
     {
         s16 bg_actorName = getMoveBGActorName(mLinkAcch.m_roof, TRUE);
-        if (bg_actorName == PROC_OBJ_SO || bg_actorName == PROC_Obj_SCannon) {
+        if (bg_actorName == fpcNm_OBJ_SO_e || bg_actorName == fpcNm_Obj_SCannon_e) {
             return;
         }
 
@@ -13802,7 +13802,7 @@ int daAlink_c::checkSceneChange(int i_exitID) {
                                                      (int)fopAcM_GetRoomNo(this), shape_angle.y, -1);
                     if (isScnChange) {
                         onNoResetFlg2(FLG2_SCENE_CHANGE_START);
-                        if (mpScnChg != NULL && fopAcM_GetName(mpScnChg) == PROC_SCENE_EXIT) {
+                        if (mpScnChg != NULL && fopAcM_GetName(mpScnChg) == fpcNm_SCENE_EXIT_e) {
                             mpScnChg->setSceneChangeOK();
                         }
                     }
@@ -14109,7 +14109,7 @@ BOOL daAlink_c::setItemModel() {
 BOOL daAlink_c::setItemActor() {
     fopAc_ac_c* actor;
     if (mEquipItem == dItemNo_BOOMERANG_e) {
-        actor = (fopAc_ac_c*)fopAcM_fastCreate(PROC_BOOMERANG, 0, &current.pos, -1,
+        actor = (fopAc_ac_c*)fopAcM_fastCreate(fpcNm_BOOMERANG_e, 0, &current.pos, -1,
                                                NULL, NULL, -1, NULL, NULL);
         if (actor == NULL) {
             deleteEquipItem(FALSE, FALSE);
@@ -14122,7 +14122,7 @@ BOOL daAlink_c::setItemActor() {
     }
 
     if (mEquipItem == dItemNo_COPY_ROD_e) {
-        actor = (fopAc_ac_c*)fopAcM_fastCreate(PROC_CROD, 0, &current.pos, -1, NULL,
+        actor = (fopAc_ac_c*)fopAcM_fastCreate(fpcNm_CROD_e, 0, &current.pos, -1, NULL,
                                                NULL, -1, NULL, NULL);
         if (actor == NULL) {
             deleteEquipItem(FALSE, FALSE);
@@ -14152,7 +14152,7 @@ BOOL daAlink_c::setItemActor() {
     }
 
     if (checkFisingRodLure()) {
-        mItemAcKeep.setID(fopAcM_create(PROC_MG_ROD, 0x10D, &mLeftHandPos, -1, NULL, NULL, 0xFF));
+        mItemAcKeep.setID(fopAcM_create(fpcNm_MG_ROD_e, 0x10D, &mLeftHandPos, -1, NULL, NULL, 0xFF));
         initFishingRodHand();
         return 1;
     }
@@ -15306,9 +15306,9 @@ void daAlink_c::commonProcInit(daAlink_c::daAlink_PROC i_procID) {
     if (actor != NULL && prev_flg_20000 && !checkModeFlg(MODE_ROPE_WALK)) {
         field_0x280c.clearData();
 
-        if (fopAcM_GetName(actor) == PROC_Obj_Crope) {
+        if (fopAcM_GetName(actor) == fpcNm_Obj_Crope_e) {
             static_cast<daObjCrope_c*>(actor)->offRide();
-        } else if (fopAcM_GetName(actor) == PROC_Obj_Wchain) {
+        } else if (fopAcM_GetName(actor) == fpcNm_Obj_Wchain_e) {
             static_cast<daObjWchain_c*>(actor)->offRide();
         }
     }
@@ -15334,7 +15334,7 @@ BOOL daAlink_c::commonProcInitNotSameProc(daAlink_PROC i_procID) {
         field_0x280c.setData(param_1);
         mProcVar3.field_0x300e = 1;
 
-        if (fopAcM_GetName(param_1) == PROC_Tag_Lv8Gate) {
+        if (fopAcM_GetName(param_1) == fpcNm_Tag_Lv8Gate_e) {
             if (mEquipItem == dItemNo_KANTERA_e) {
                 mProcVar4.field_0x3010 = 1;
             } else if (checkNoResetFlg2(FLG2_UNK_1)) {
@@ -15897,7 +15897,7 @@ int daAlink_c::procSlideInit(s16 param_0) {
     field_0x3090 = 8;
     current.angle.y = param_0;
 
-    if (getMoveBGActorName(mLinkAcch.m_gnd, FALSE) == PROC_Obj_Lv3R10Saka) {
+    if (getMoveBGActorName(mLinkAcch.m_gnd, FALSE) == fpcNm_Obj_Lv3R10Saka_e) {
         mProcVar3.field_0x300e = 1;
     } else {
         mProcVar3.field_0x300e = 0;
@@ -16159,8 +16159,8 @@ int daAlink_c::procFrontRoll() {
 
         if (checkNoResetFlg0(FLG0_UNK_10) ||
             (mLinkAcch.ChkWallHit() && mAcchCir[0].ChkWallHit() &&
-             (getMoveBGActorName(mAcchCir[0], FALSE) == PROC_Obj_Pillar ||
-              getMoveBGActorName(mAcchCir[0], FALSE) == PROC_Obj_TaFence)))
+             (getMoveBGActorName(mAcchCir[0], FALSE) == fpcNm_Obj_Pillar_e ||
+              getMoveBGActorName(mAcchCir[0], FALSE) == fpcNm_Obj_TaFence_e)))
         {
             procFrontRollSuccessInit();
         } else {
@@ -16602,7 +16602,7 @@ int daAlink_c::procAutoJumpInit(int param_0) {
         deleteEquipItem(TRUE, FALSE);
     }
 
-    if (field_0x27f4 != NULL && fopAcM_GetName(field_0x27f4) == PROC_CANOE) {
+    if (field_0x27f4 != NULL && fopAcM_GetName(field_0x27f4) == fpcNm_CANOE_e) {
         return procSmallJumpInit(1);
     }
 
@@ -16636,14 +16636,14 @@ int daAlink_c::procAutoJumpInit(int param_0) {
     if (mGrabItemAcKeep.getActor() != NULL) {
         grab_actor_name = fopAcM_GetName(mGrabItemAcKeep.getActor());
     } else {
-        grab_actor_name = PROC_ALINK;
+        grab_actor_name = fpcNm_ALINK_e;
     }
 
     s16 angle = mpHIO->mAutoJump.m.mJumpAngle;
     BOOL isCuccoJump = false;
     field_0x3478 = -10.0f;
-    if (grab_actor_name == PROC_NI || grab_actor_name == PROC_NPC_TKJ2) {
-        if (grab_actor_name == PROC_NI &&
+    if (grab_actor_name == fpcNm_NI_e || grab_actor_name == fpcNm_NPC_TKJ2_e) {
+        if (grab_actor_name == fpcNm_NI_e &&
             ((ni_class*)mGrabItemAcKeep.getActor())->checkGold() == true)
         {
             mMaxSpeed = 30.0f;
@@ -16702,8 +16702,8 @@ int daAlink_c::procAutoJump() {
 
     #if VERSION == VERSION_SHIELD_DEBUG
     if (!checkStageName("F_SP115") && mGrabItemAcKeep.getActor() != NULL) {
-        if ((fopAcM_GetName(mGrabItemAcKeep.getActor()) == PROC_NI && ((ni_class*)mGrabItemAcKeep.getActor())->checkGold() != TRUE) ||
-            (fopAcM_GetName(mGrabItemAcKeep.getActor()) == PROC_NPC_TKJ2)) 
+        if ((fopAcM_GetName(mGrabItemAcKeep.getActor()) == fpcNm_NI_e && ((ni_class*)mGrabItemAcKeep.getActor())->checkGold() != TRUE) ||
+            (fopAcM_GetName(mGrabItemAcKeep.getActor()) == fpcNm_NPC_TKJ2_e)) 
         {
             mMaxSpeed = mpHIO->mAutoJump.m.mCuccoJumpMaxSpeed;
             field_0x3478 = mpHIO->mAutoJump.m.mCuccoFallMaxSpeed;
@@ -16745,7 +16745,7 @@ int daAlink_c::procAutoJump() {
         for (int i = 0; i < 3; i++, cyl_p++) {
             hit_ac = cyl_p->GetCoHitAc();
             if (cyl_p->ChkCoHit() && hit_ac != NULL) {
-                if (fopAcM_GetName(hit_ac) == PROC_Obj_SwHang) {
+                if (fopAcM_GetName(hit_ac) == fpcNm_Obj_SwHang_e) {
                     return procRoofSwitchHangInit(hit_ac);
                 }
             }
@@ -17741,7 +17741,7 @@ int daAlink_c::execute() {
 
             dComIfG_Bgsp().MoveBgCrrPos(mMagneLineChk, true, &old.pos, NULL, NULL, false, false);
 
-            if (getMoveBGActorName(mMagneLineChk, FALSE) == PROC_Obj_MagneArm) {
+            if (getMoveBGActorName(mMagneLineChk, FALSE) == fpcNm_Obj_MagneArm_e) {
                 field_0x34c8.y += current.pos.y - pos_y;
             } else {
                 field_0x34c8.y += (current.pos.y - pos_y) * 0.1f;
@@ -18002,7 +18002,7 @@ int daAlink_c::execute() {
     fopAc_ac_c* item_actor = mGrabItemAcKeep.getActor();
     if (item_actor != NULL && (!fopAcM_checkCarryNow(item_actor) ||
                                (checkNoResetFlg0(FLG0_WATER_IN_MOVE) &&
-                                (checkGrabRooster() || fopAcM_GetName(item_actor) == PROC_E_NEST ||
+                                (checkGrabRooster() || fopAcM_GetName(item_actor) == fpcNm_E_NEST_e ||
                                  checkGrabCarryActor()))))
     {
         freeGrabItem();
@@ -18504,7 +18504,7 @@ int daAlink_c::execute() {
 
             if (!checkEventRun() && checkNoResetFlg0(FLG0_UNK_80) &&
                 (mWaterY > current.pos.y + 40.0f || checkModeFlg(MODE_SWIMMING)) &&
-                getMoveBGActorName(mLinkAcch.m_wtr, TRUE) == PROC_Obj_Onsen)
+                getMoveBGActorName(mLinkAcch.m_wtr, TRUE) == fpcNm_Obj_Onsen_e)
             {
                 if (mHotspringRecoverTimer != 0) {
                     mHotspringRecoverTimer--;
@@ -18653,7 +18653,7 @@ int daAlink_c::execute() {
                     if (checkWolf() ||
                         (field_0x27f4 != NULL &&
                             (field_0x27f4->speedF > 0.1f ||
-                            (checkGoatCatchActor(field_0x27f4) && fopAcM_GetName(field_0x27f4) != PROC_COW))))
+                            (checkGoatCatchActor(field_0x27f4) && fopAcM_GetName(field_0x27f4) != fpcNm_COW_e))))
                     {
                         setDoStatusEmphasys(BUTTON_STATUS_GRAB);
                     } else {
@@ -18670,8 +18670,8 @@ int daAlink_c::execute() {
                 {
                     setDoStatus(BUTTON_STATUS_JUMP);
                 } else if (dComIfGp_getDoStatus() == BUTTON_STATUS_HOWL && field_0x27f4 != NULL &&
-                            (fopAcM_GetName(field_0x27f4) == PROC_Obj_WindStone ||
-                            fopAcM_GetName(field_0x27f4) == PROC_Obj_SmWStone))
+                            (fopAcM_GetName(field_0x27f4) == fpcNm_Obj_WindStone_e ||
+                            fopAcM_GetName(field_0x27f4) == fpcNm_Obj_SmWStone_e))
                 {
                     setDoStatusEmphasys(BUTTON_STATUS_LISTEN);
                 } else if (dComIfGp_getDoStatus() == BUTTON_STATUS_PLACE) {
@@ -18931,7 +18931,7 @@ int daAlink_c::initShadowScaleLight() {
 
     BOOL var_r28;
     f32 var_f31;
-    if (talkActor != NULL && ((fopAcM_GetName(talkActor) == PROC_Tag_Mhint && !((daTagMhint_c*)talkActor)->checkNoAttention()) || (fopAcM_GetName(talkActor) == PROC_Tag_Mstop && !((daTagMstop_c*)talkActor)->checkNoAttention()))) {
+    if (talkActor != NULL && ((fopAcM_GetName(talkActor) == fpcNm_Tag_Mhint_e && !((daTagMhint_c*)talkActor)->checkNoAttention()) || (fopAcM_GetName(talkActor) == fpcNm_Tag_Mstop_e && !((daTagMstop_c*)talkActor)->checkNoAttention()))) {
         field_0x2ff8 = cLib_targetAngleY(&talkActor->eyePos, &current.pos);
         var_r28 = 1;
     } else {
@@ -19686,13 +19686,13 @@ actor_process_profile_definition g_profile_ALINK = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 5,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_ALINK,
+    /* Proc Name    */ fpcNm_ALINK_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daAlink_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_ALINK,
+    /* Draw Prio    */ fpcDwPi_ALINK_e,
     /* Actor SubMtd */ &l_daAlink_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_NOPAUSE_e | fopAcStts_FREEZE_e,
     /* Group        */ fopAc_PLAYER_e,

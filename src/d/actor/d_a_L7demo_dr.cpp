@@ -192,7 +192,7 @@ void daDr_c::bridge_destroy() {
             camera->mCamera.Set(mDemoCamCenter, mDemoCamEye);
         } else if (156.0f == mpModelMorf->getFrame()) {
             cXyz sp5C;
-            daObjLv7Brg_c* brg = (daObjLv7Brg_c*)fopAcM_SearchByName(PROC_Obj_Lv7Bridge);
+            daObjLv7Brg_c* brg = (daObjLv7Brg_c*)fopAcM_SearchByName(fpcNm_Obj_Lv7Bridge_e);
             if (brg != NULL) {
                 brg->setDestroyAnmA();
             }
@@ -221,7 +221,7 @@ void daDr_c::bridge_destroy2() {
     daPy_getPlayerActorClass();
 
     if (field_0x654 == 0) {
-        daObjLv7Brg_c* brg = (daObjLv7Brg_c*)fopAcM_SearchByName(PROC_Obj_Lv7Bridge);
+        daObjLv7Brg_c* brg = (daObjLv7Brg_c*)fopAcM_SearchByName(fpcNm_Obj_Lv7Bridge_e);
         if (brg != NULL) {
             brg->setDestroyAnmB();
         }
@@ -411,13 +411,13 @@ actor_process_profile_definition g_profile_DR = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_DR,
+    /* Proc Name    */ fpcNm_DR_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daDr_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_DR,
+    /* Draw Prio    */ fpcDwPi_DR_e,
     /* Actor SubMtd */ &l_daDr_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e,
     /* Group        */ fopAc_ENEMY_e,

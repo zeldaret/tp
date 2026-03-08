@@ -60,7 +60,7 @@ static fopAc_ac_c* pushPullcallBack(fopAc_ac_c* param_0, fopAc_ac_c* param_1, s1
 
 static void* searchIronBallCallback(void* i_actor, void* i_data) {
     daObjYtaihou_c* taihou_rhs = (daObjYtaihou_c*)i_data;
-    if (fopAcM_GetProfName(i_actor) == PROC_Obj_Carry) {
+    if (fopAcM_GetProfName(i_actor) == fpcNm_Obj_Carry_e) {
         daObjCarry_c* pCarry = ((daObjCarry_c*)i_actor);
         if ( ((daObjCarry_c*)i_actor)->getType() == daObjCarry_c::TYPE_IRON_BALL) {
             if ( pCarry->isDraw() == 0
@@ -385,13 +385,13 @@ actor_process_profile_definition g_profile_Obj_Ytaihou = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 3,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_Obj_Ytaihou,
+    /* Proc Name    */ fpcNm_Obj_Ytaihou_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daObjYtaihou_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_Obj_Ytaihou,
+    /* Draw Prio    */ fpcDwPi_Obj_Ytaihou_e,
     /* Actor SubMtd */ &daObjYtaihou_METHODS,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_UNK_0x4000_e | fopAcStts_CULL_e,
     /* Group        */ fopAc_ACTOR_e,

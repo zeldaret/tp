@@ -917,7 +917,7 @@ BOOL daNpcTheB_c::doEvent() {
                     EvCut_PersonalCombatAfter();
                     rv = TRUE;
                 } else {
-                    wb_p = (e_wb_class*)fopAcM_SearchByName(PROC_E_WB);
+                    wb_p = (e_wb_class*)fopAcM_SearchByName(fpcNm_E_WB_e);
                     if (wb_p->field_0x169e == 0x60 && wb_p->field_0x16a0 == 1) {
                         mPersonalCombatAfterFlag = 1;
                         EvCut_PersonalCombatAfter();
@@ -1402,7 +1402,7 @@ void daNpcTheB_c::EvCut_PersonalCombatAfter() {
 
 int daNpcTheB_c::EvCut_AnnulationFieldRace(int i_staffId) {
     dEvent_manager_c& eventManager = dComIfGp_getEventManager();
-    daStartAndGoal_c* startAndGoal_p = (daStartAndGoal_c*)fpcM_SearchByName(PROC_START_AND_GOAL);
+    daStartAndGoal_c* startAndGoal_p = (daStartAndGoal_c*)fpcM_SearchByName(fpcNm_START_AND_GOAL_e);
 
     if (startAndGoal_p == NULL) {
         return 0;
@@ -1517,7 +1517,7 @@ int daNpcTheB_c::EvCut_CoachGuardGameOver(int i_staffId) {
             }
             
             case '0003':
-                ((daCoach2D_c*)fpcM_SearchByName(PROC_COACH2D))->hide();
+                ((daCoach2D_c*)fpcM_SearchByName(fpcNm_COACH2D_e))->hide();
                 break;
 
             case '0004':
@@ -1579,13 +1579,13 @@ actor_process_profile_definition g_profile_NPC_THEB = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 3,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_NPC_THEB,
+    /* Proc Name    */ fpcNm_NPC_THEB_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daNpcTheB_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_NPC_THEB,
+    /* Draw Prio    */ fpcDwPi_NPC_THEB_e,
     /* Actor SubMtd */ &daNpcTheB_MethodTable,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e | fopAcStts_UNK_0x8_e,
     /* Group        */ fopAc_NPC_e,

@@ -106,7 +106,7 @@ int daTogeTrap_c::create() {
 }
 
 void daTogeTrap_c::rideCallBack(dBgW* param_1, fopAc_ac_c* param_2, fopAc_ac_c* param_3) {
-    if (fopAcM_GetName(param_3) == PROC_Obj_Movebox) {
+    if (fopAcM_GetName(param_3) == fpcNm_Obj_Movebox_e) {
         ((daTogeTrap_c*)param_2)->field_0xadd = 1;
     }
 }
@@ -305,13 +305,13 @@ actor_process_profile_definition g_profile_Obj_TogeTrap = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 3,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_Obj_TogeTrap,
+    /* Proc Name    */ fpcNm_Obj_TogeTrap_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daTogeTrap_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_Obj_TogeTrap,
+    /* Draw Prio    */ fpcDwPi_Obj_TogeTrap_e,
     /* Actor SubMtd */ &l_daTogeTrap_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_UNK_0x4000_e,
     /* Group        */ fopAc_ACTOR_e,

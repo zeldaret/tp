@@ -1028,15 +1028,15 @@ bool daNpcRafrel_c::step(s16 i_angY, int param_1, f32 param_2) {
 
 void daNpcRafrel_c::searchActors() {
     if (field_0xc7c[1].getActorP() == NULL) {
-        field_0xc7c[1].entry(fopAcM_SearchByName(PROC_NPC_ASH));
+        field_0xc7c[1].entry(fopAcM_SearchByName(fpcNm_NPC_ASH_e));
     }
 
     if (field_0xc7c[2].getActorP() == NULL) {
-        field_0xc7c[2].entry(fopAcM_SearchByName(PROC_NPC_SHAD));
+        field_0xc7c[2].entry(fopAcM_SearchByName(fpcNm_NPC_SHAD_e));
     }
 
     if (field_0xc7c[3].getActorP() == NULL) {
-        field_0xc7c[3].entry(fopAcM_SearchByName(PROC_NPC_MOIR));
+        field_0xc7c[3].entry(fopAcM_SearchByName(fpcNm_NPC_MOIR_e));
     }
 }
 
@@ -1761,13 +1761,13 @@ actor_process_profile_definition g_profile_NPC_RAFREL = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_NPC_RAFREL,
+    /* Proc Name    */ fpcNm_NPC_RAFREL_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daNpcRafrel_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_NPC_RAFREL,
+    /* Draw Prio    */ fpcDwPi_NPC_RAFREL_e,
     /* Actor SubMtd */ &daNpcRafrel_MethodTable,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e,
     /* Group        */ fopAc_NPC_e,

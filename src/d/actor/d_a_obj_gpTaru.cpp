@@ -271,7 +271,7 @@ int daGpTaru_c::Execute() {
             }
         } else {
             fopAc_ac_c* tg_hit_actor = dCc_GetAc(mCcCyl.GetTgHitObj()->GetAc());
-            if (tg_hit_actor != NULL && fopAcM_GetName(tg_hit_actor) == PROC_E_WB) {
+            if (tg_hit_actor != NULL && fopAcM_GetName(tg_hit_actor) == fpcNm_E_WB_e) {
                 mode_init_explosion();
             }
         }
@@ -279,7 +279,7 @@ int daGpTaru_c::Execute() {
 
     if (mCcCyl.ChkCoHit()) {
         fopAc_ac_c* co_hit_actor = dCc_GetAc(mCcCyl.GetCoHitObj()->GetAc());
-        if (co_hit_actor != NULL && fopAcM_GetName(co_hit_actor) == PROC_E_WB) {
+        if (co_hit_actor != NULL && fopAcM_GetName(co_hit_actor) == fpcNm_E_WB_e) {
             if (co_hit_actor->speedF >= 7.0f) {
                 mode_init_explosion();
             }
@@ -593,13 +593,13 @@ actor_process_profile_definition g_profile_Obj_GpTaru = {
     /* Layer ID     */ fpcLy_CURRENT_e,
     /* List ID      */ 7,
     /* List Prio    */ fpcPi_CURRENT_e,
-    /* Proc Name    */ PROC_Obj_GpTaru,
+    /* Proc Name    */ fpcNm_Obj_GpTaru_e,
     /* Proc SubMtd  */ &g_fpcLf_Method.base,
     /* Size         */ sizeof(daGpTaru_c),
     /* Size Other   */ 0,
     /* Parameters   */ 0,
     /* Leaf SubMtd  */ &g_fopAc_Method.base,
-    /* Priority     */ PRIO_Obj_GpTaru,
+    /* Draw Prio    */ fpcDwPi_Obj_GpTaru_e,
     /* Actor SubMtd */ &l_daGpTaru_Method,
     /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_UNK_0x4000_e,
     /* Group        */ fopAc_ACTOR_e,
