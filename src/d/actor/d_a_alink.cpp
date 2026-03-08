@@ -13904,8 +13904,8 @@ void daAlink_c::setBasAnime(daAlink_c::daAlink_UNDER i_underIdx) {
             initBasAnime();
         }
     } else {
-        u8* temp_r3_2 = anmHeap->getBuffer();
-        if (*(u32*)(temp_r3_2 + 0x1C) == 0xFFFFFFFF) {
+        JUTDataFileHeader* temp_r3_2 = (JUTDataFileHeader*)anmHeap->getBuffer();
+        if (temp_r3_2->mSeAnmOffset == 0xFFFFFFFF) {
             resetBasAnime();
             return;
         }
@@ -13917,12 +13917,12 @@ void daAlink_c::setBasAnime(daAlink_c::daAlink_UNDER i_underIdx) {
             }
         }
 
-        u32 dataSize = *(u32*)(temp_r3_2 + 0x8) - *(u32*)(temp_r3_2 + 0x1C);
+        u32 dataSize = temp_r3_2->mFileSize - temp_r3_2->mSeAnmOffset;
 
         const u32 l_basAnmBufferSize = 0x800;
         JUT_ASSERT(20661, dataSize < l_basAnmBufferSize);
 
-        cLib_memCpy(field_0x2d78, anmHeap->getBuffer() + *(u32*)(temp_r3_2 + 0x1C), dataSize);
+        cLib_memCpy(field_0x2d78, anmHeap->getBuffer() + temp_r3_2->mSeAnmOffset, dataSize);
         field_0x2d7c = framectrl;
         field_0x3084 = anmHeap->getIdx();
         field_0x3086 = anmHeap->getArcNo();
@@ -13962,7 +13962,7 @@ void daAlink_c::resetBasAnime() {
 }
 
 BOOL daAlink_c::checkSightLine(f32 i_maxDist, cXyz* o_sightPos) {
-    camera_class* camera = dComIfGp_getCamera(field_0x317c);
+    camera_process_class* camera = dComIfGp_getCamera(field_0x317c);
     cXyz* line_start_pos = fopCamM_GetEye_p(camera);
     cXyz sp3C;
     cXyz sp30(mHeldItemRootPos);

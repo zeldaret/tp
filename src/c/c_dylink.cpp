@@ -99,7 +99,7 @@ static DynamicNameTableEntry const DynamicNameTable[] = {
     {fpcNm_Obj_BkDoor_e, "d_a_obj_bkdoor"},
     {fpcNm_Obj_Cboard_e, "d_a_obj_cboard"},
     {fpcNm_Obj_MGate_e, "d_a_obj_mgate"},
-    #if !PLATFORM_SHIELD
+    #if VERSION != VERSION_SHIELD_DEBUG
     {fpcNm_Obj_Ikada_e, "d_a_obj_ikada"},
     #endif
     {fpcNm_Obj_Ice_l_e, "d_a_obj_ice_l"},
@@ -540,7 +540,7 @@ static DynamicNameTableEntry const DynamicNameTable[] = {
     {fpcNm_Obj_LifeContainer_e, "d_a_obj_life_container"},
     {fpcNm_Obj_Shield_e, "d_a_obj_shield"},
     {fpcNm_Demo_Item_e, "d_a_demo_item"},
-    #if !PLATFORM_SHIELD
+    #if VERSION != VERSION_SHIELD_DEBUG
     {fpcNm_ShopItem_e, "d_a_shop_item"},
     #endif
     {fpcNm_Obj_Drop_e, "d_a_obj_drop"},
@@ -549,7 +549,7 @@ static DynamicNameTableEntry const DynamicNameTable[] = {
     {fpcNm_TAG_CSW_e, "d_a_tag_csw"},
     {fpcNm_TAG_QS_e, "d_a_tag_qs"},
     {fpcNm_HOZELDA_e, "d_a_hozelda"},
-    #if !PLATFORM_SHIELD
+    #if VERSION != VERSION_SHIELD_DEBUG
     {fpcNm_SWC00_e, "d_a_swc00"},
     #endif
     {fpcNm_KNOB20_e, "d_a_door_knob00"},
@@ -563,7 +563,7 @@ static DynamicNameTableEntry const DynamicNameTable[] = {
     {fpcNm_Tag_ChgRestart_e, "d_a_tag_chgrestart"},
     {fpcNm_Tag_Restart_e, "d_a_tag_setrestart"},
     {fpcNm_ANDSW_e, "d_a_andsw"},
-    #if !PLATFORM_SHIELD
+    #if VERSION != VERSION_SHIELD_DEBUG
     {fpcNm_ANDSW2_e, "d_a_andsw2"},
     #endif
     {fpcNm_MYNA_e, "d_a_myna"},
@@ -684,12 +684,12 @@ static DynamicNameTableEntry const DynamicNameTable[] = {
     {fpcNm_NPC_CHIN_e, "d_a_npc_chin"},
     {fpcNm_NPC_INS_e, "d_a_npc_ins"},
     {fpcNm_NPC_SHOP0_e, "d_a_npc_shop0"},
-    #if !PLATFORM_SHIELD
+    #if VERSION != VERSION_SHIELD_DEBUG
     {fpcNm_NPC_MK_e, "d_a_npc_mk"},
     #endif
     {fpcNm_NPC_P2_e, "d_a_npc_p2"},
     {fpcNm_KYTAG00_e, "d_a_kytag00"},
-    #if !PLATFORM_SHIELD
+    #if VERSION != VERSION_SHIELD_DEBUG
     {fpcNm_KYTAG01_e, "d_a_kytag01"},
     #endif
     {fpcNm_KYTAG02_e, "d_a_kytag02"},
@@ -729,13 +729,13 @@ static DynamicNameTableEntry const DynamicNameTable[] = {
     {fpcNm_DEMO00_e, "d_a_demo00"},
     {fpcNm_TAG_CAMERA_e, "d_a_tag_camera"},
     {fpcNm_TAG_CHKPOINT_e, "d_a_tag_chkpoint"},
-    #if !PLATFORM_SHIELD
+    #if VERSION != VERSION_SHIELD_DEBUG
     {fpcNm_TAG_EVENT_e, "d_a_tag_event"},
     #endif
     {fpcNm_TAG_EVT_e, "d_a_tag_evt"},
     {fpcNm_TAG_TELOP_e, "d_a_tag_telop"},
     {fpcNm_TAG_HOWL_e, "d_a_tag_howl"},
-    #if !PLATFORM_SHIELD
+    #if VERSION != VERSION_SHIELD_DEBUG
     {fpcNm_TAG_MSG_e, "d_a_tag_msg"},
     #endif
     {fpcNm_TAG_LANTERN_e, "d_a_tag_lantern"},
@@ -748,7 +748,7 @@ static DynamicNameTableEntry const DynamicNameTable[] = {
     {fpcNm_BG_OBJ_e, "d_a_bg_obj"},
     {fpcNm_MIRROR_e, "d_a_mirror"},
     {fpcNm_MOVIE_PLAYER_e, "d_a_movie_player"},
-    #if !PLATFORM_SHIELD
+    #if VERSION != VERSION_SHIELD_DEBUG
     {fpcNm_TITLE_e, "d_a_title"},
     #endif
     {fpcNm_FR_e, "d_a_fr"},
@@ -793,7 +793,7 @@ static DynamicNameTableEntry const DynamicNameTable[] = {
     {fpcNm_Obj_Timer_e, "d_a_obj_timer"},
     {fpcNm_SCENE_EXIT_e, "d_a_scene_exit"},
     {fpcNm_SUSPEND_e, "d_a_suspend"},
-    #if !PLATFORM_SHIELD
+    #if VERSION != VERSION_SHIELD_DEBUG
     {fpcNm_GRASS_e, "d_a_grass"},
     #endif
     {-1, NULL},
