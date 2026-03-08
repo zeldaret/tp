@@ -8,7 +8,7 @@
 #include "d/actor/d_a_andsw2.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_lib.h"
-#include "d/d_procname.h"
+#include "f_pc/f_pc_name.h"
 
 u8 daAndsw2_c::getEventNo() {
     return home.angle.x & 0xFF;

@@ -2,7 +2,7 @@
 
 #include "d/d_k_wpillar.h"
 #include "d/d_com_inf_game.h"
-#include "d/d_procname.h"
+#include "f_pc/f_pc_name.h"
 #include "f_op/f_op_actor_mng.h"
 
 static const char l_arcName[] = "Always";

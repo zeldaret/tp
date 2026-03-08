@@ -9,7 +9,7 @@
 #include "SSystem/SComponent/c_math.h"
 #include "d/d_bg_w.h"
 #include "d/d_com_inf_game.h"
-#include "d/d_procname.h"
+#include "f_pc/f_pc_name.h"
 
 daObj_Myogan_HIO_c::daObj_Myogan_HIO_c() {
     field_0x4 = -1;

@@ -8,7 +8,7 @@
 #include "d/actor/d_a_obj_lv3saka00.h"
 #include "d/d_bg_w.h"
 #include "d/d_com_inf_game.h"
-#include "d/d_procname.h"
+#include "f_pc/f_pc_name.h"
 #include "m_Do/m_Do_mtx.h"
 
 static char* l_arcName[] = {"Obj_saka", "Obj_saka2"};

@@ -7,7 +7,7 @@
 
 #include "d/actor/d_a_obj_cboard.h"
 #include "d/d_bg_w.h"
-#include "d/d_procname.h"
+#include "f_pc/f_pc_name.h"
 
 void daObjBoard_c::initBaseMtx() {
     setBaseMtx();

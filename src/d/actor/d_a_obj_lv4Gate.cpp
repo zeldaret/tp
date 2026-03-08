@@ -7,7 +7,7 @@
 
 #include "d/actor/d_a_obj_lv4Gate.h"
 #include "d/d_com_inf_game.h"
-#include "d/d_procname.h"
+#include "f_pc/f_pc_name.h"
 
 static daLv4Gate_HIO_c l_HIO;
 

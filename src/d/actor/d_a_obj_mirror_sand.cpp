@@ -6,7 +6,7 @@
 #include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_mirror_sand.h"
-#include "d/d_procname.h"
+#include "f_pc/f_pc_name.h"
 
 static char* l_arcName = "MR-Sand";
 

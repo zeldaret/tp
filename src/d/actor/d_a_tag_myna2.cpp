@@ -7,7 +7,7 @@
 
 #include "d/actor/d_a_player.h"
 #include "d/actor/d_a_tag_myna2.h"
-#include "d/d_procname.h"
+#include "f_pc/f_pc_name.h"
 
 s32 daTagMyna2_c::create() {
     fopAcM_ct(this, daTagMyna2_c);

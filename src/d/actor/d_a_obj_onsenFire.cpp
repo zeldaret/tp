@@ -6,7 +6,7 @@
 #include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_onsenFire.h"
-#include "d/d_procname.h"
+#include "f_pc/f_pc_name.h"
 
 int daObjOnsenFire_c::create() {
     fopAcM_ct(this, daObjOnsenFire_c);

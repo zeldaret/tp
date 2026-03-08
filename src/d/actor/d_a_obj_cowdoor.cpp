@@ -6,7 +6,7 @@
 #include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_cowdoor.h"
-#include "d/d_procname.h"
+#include "f_pc/f_pc_name.h"
 
 void daCowdoor_c::setBaseMtx() {
     mDoMtx_stack_c::transS( current.pos.x, current.pos.y, current.pos.z);

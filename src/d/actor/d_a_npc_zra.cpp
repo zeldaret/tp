@@ -14,7 +14,7 @@
 #include "f_op/f_op_kankyo_mng.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_meter2_info.h"
-#include "d/d_procname.h"
+#include "f_pc/f_pc_name.h"
 #include "d/actor/d_a_canoe.h"
 #include "d/actor/d_a_npc_hoz.h"
 #include "d/actor/d_a_obj_zraMark.h"

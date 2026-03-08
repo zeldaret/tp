@@ -9,7 +9,7 @@
 #include "d/d_com_inf_game.h"
 #include "d/d_item_data.h"
 #include "d/d_a_itembase_static.h"
-#include "d/d_procname.h"
+#include "f_pc/f_pc_name.h"
 
 void daObjZCloth_c::initBaseMtx() {
     mpModel->setBaseScale(scale);

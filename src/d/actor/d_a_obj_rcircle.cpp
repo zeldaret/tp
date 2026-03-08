@@ -6,7 +6,7 @@
 #include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_rcircle.h"
-#include "d/d_procname.h"
+#include "f_pc/f_pc_name.h"
 
 static int daObjRCircle_c_createHeap(fopAc_ac_c* i_this) {
     return static_cast<daObjRCircle_c*>(i_this)->createHeap();

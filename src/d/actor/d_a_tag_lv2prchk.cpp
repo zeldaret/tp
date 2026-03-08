@@ -7,7 +7,7 @@
 
 #include "d/actor/d_a_tag_lv2prchk.h"
 #include "d/d_com_inf_game.h"
-#include "d/d_procname.h"
+#include "f_pc/f_pc_name.h"
 
 int daTagLv2PrChk_c::Create() {
     mSwbit2 = getSwbit2();

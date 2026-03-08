@@ -8,7 +8,7 @@
 #include "d/actor/d_a_obj_zrTurara.h"
 #include "d/d_bg_w.h"
 #include "d/d_com_inf_game.h"
-#include "d/d_procname.h"
+#include "f_pc/f_pc_name.h"
 #include "SSystem/SComponent/c_math.h"
 
 daZrTurara_HIO_c::daZrTurara_HIO_c() {

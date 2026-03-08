@@ -6,7 +6,7 @@
 #include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_vground.h"
-#include "d/d_procname.h"
+#include "f_pc/f_pc_name.h"
 
 static int CheckCreateHeap(fopAc_ac_c* a_this) {
     daObjVGnd_c* i_this = static_cast<daObjVGnd_c*>(a_this);

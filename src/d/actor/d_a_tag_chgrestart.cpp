@@ -8,7 +8,7 @@
 #include "d/actor/d_a_tag_chgrestart.h"
 
 #include "d/d_debug_viewer.h"
-#include "d/d_procname.h"
+#include "f_pc/f_pc_name.h"
 
 class daTagChgRestart_HIO_c : public mDoHIO_entry_c {
 public:

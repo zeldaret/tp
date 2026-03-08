@@ -9,7 +9,7 @@
 #include "d/actor/d_a_tag_setrestart.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_debug_viewer.h"
-#include "d/d_procname.h"
+#include "f_pc/f_pc_name.h"
 
 class daTagRestart_HIO_c : public mDoHIO_entry_c {
 public:

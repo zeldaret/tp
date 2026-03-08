@@ -8,7 +8,7 @@
 #include "d/actor/d_a_obj_chandelier.h"
 #include "SSystem/SComponent/c_math.h"
 #include "d/d_com_inf_game.h"
-#include "d/d_procname.h"
+#include "f_pc/f_pc_name.h"
 
 static char* l_arcName = "L9Chand";
 

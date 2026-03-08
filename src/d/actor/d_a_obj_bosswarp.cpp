@@ -9,7 +9,7 @@
 #include "SSystem/SComponent/c_math.h"
 #include "d/actor/d_a_midna.h"
 #include "d/actor/d_a_player.h"
-#include "d/d_procname.h"
+#include "f_pc/f_pc_name.h"
 #include "d/actor/d_a_obj_life_container.h"
 #include "d/actor/d_a_obj_ystone.h"
 #include <cstring>

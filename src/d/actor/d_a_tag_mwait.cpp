@@ -7,7 +7,7 @@
 
 #include "d/actor/d_a_tag_mwait.h"
 #include "d/actor/d_a_midna.h"
-#include "d/d_procname.h"
+#include "f_pc/f_pc_name.h"
 
 int daTagMwait_c::create() {
     fopAcM_ct(this, daTagMwait_c);

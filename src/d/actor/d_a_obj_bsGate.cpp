@@ -7,7 +7,7 @@
 
 #include "d/actor/d_a_obj_bsGate.h"
 #include "d/d_com_inf_game.h"
-#include "d/d_procname.h"
+#include "f_pc/f_pc_name.h"
 
 class daBsGate_HIO_c : public mDoHIO_entry_c {
 public:

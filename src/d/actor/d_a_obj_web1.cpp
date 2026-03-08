@@ -9,7 +9,7 @@
 #include "SSystem/SComponent/c_math.h"
 #include "d/actor/d_a_player.h"
 #include "d/d_bg_w.h"
-#include "d/d_procname.h"
+#include "f_pc/f_pc_name.h"
 #include "f_op/f_op_actor_mng.h"
 
 daObj_Web1_HIO_c::daObj_Web1_HIO_c() {

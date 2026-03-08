@@ -8,7 +8,7 @@
 #include "d/actor/d_a_obj_snow_soup.h"
 #include "d/d_com_inf_game.h"
 #include "f_op/f_op_actor_mng.h"
-#include "d/d_procname.h"
+#include "f_pc/f_pc_name.h"
 #include <cstring>
 
 static int daObjSnowSoup_c_createHeap(fopAc_ac_c* i_this) {

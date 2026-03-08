@@ -7,7 +7,7 @@
 
 #include "d/actor/d_a_obj_suisya.h"
 #include "d/d_com_inf_game.h"
-#include "d/d_procname.h"
+#include "f_pc/f_pc_name.h"
 
 int daObj_Suisya_c::draw() {
     g_env_light.settingTevStruct(0x10, &current.pos, &tevStr);

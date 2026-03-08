@@ -8,7 +8,7 @@
 #include "d/actor/d_a_tag_Lv7Gate.h"
 #include "d/actor/d_a_player.h"
 #include "d/d_path.h"
-#include "d/d_procname.h"
+#include "f_pc/f_pc_name.h"
 
 static char* l_arcName = "Lv7Gate";
 

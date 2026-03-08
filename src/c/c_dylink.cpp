@@ -799,7 +799,7 @@ static DynamicNameTableEntry const DynamicNameTable[] = {
     {-1, NULL},
 };
 
-static DynamicModuleControlBase* DMC[PROC_MAX_NUM];
+static DynamicModuleControlBase* DMC[fpcNm_MAX_NUM];
 
 static bool DMC_initialized;
 
@@ -813,7 +813,7 @@ int cCc_Init() {
     #else
     JKRHeap* parentHeap = DynamicModuleControlBase::getHeap();
     #endif
-    u32 dmcHeapSize = sizeof(DynamicModuleControl) * PROC_MAX_NUM;
+    u32 dmcHeapSize = sizeof(DynamicModuleControl) * fpcNm_MAX_NUM;
 
     JKRSolidHeap* dmcHeap = JKRCreateSolidHeap(dmcHeapSize, parentHeap, false);
     JKRHeap* prevHeap = JKRSetCurrentHeap(dmcHeap);

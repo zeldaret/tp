@@ -9,7 +9,7 @@
 #include "SSystem/SComponent/c_math.h"
 #include "d/actor/d_a_player.h"
 #include "d/d_com_inf_game.h"
-#include "d/d_procname.h"
+#include "f_pc/f_pc_name.h"
 
 daSnowEffTag_HIO_c::daSnowEffTag_HIO_c() {
     field_0x4 = 20;

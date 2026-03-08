@@ -8,7 +8,7 @@
 #include "d/actor/d_a_tag_Lv6Gate.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "d/actor/d_a_player.h"
-#include "d/d_procname.h"
+#include "f_pc/f_pc_name.h"
 
 static f32 const l_minRelative[] = {-700.0f, -300.0f, -2000.0f};
 

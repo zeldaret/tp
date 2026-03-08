@@ -7,7 +7,7 @@
 
 #include "d/actor/d_a_tag_ajnot.h"
 #include "d/actor/d_a_player.h"
-#include "d/d_procname.h"
+#include "f_pc/f_pc_name.h"
 
 int daTagAJnot_c::create() {
     fopAcM_ct(this, daTagAJnot_c);

@@ -8,7 +8,7 @@
 #include "d/actor/d_a_obj_heavySw.h"
 #include "SSystem/SComponent/c_math.h"
 #include "d/actor/d_a_player.h"
-#include "d/d_procname.h"
+#include "f_pc/f_pc_name.h"
 
 daHeavySw_HIO_c::daHeavySw_HIO_c() {
     field_0x04 = 150.0f;

@@ -6,7 +6,7 @@
 #include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_graWall.h"
-#include "d/d_procname.h"
+#include "f_pc/f_pc_name.h"
 
 int daObjGraWall_c::Create() {
     fopAcM_ct(this, daObjGraWall_c);

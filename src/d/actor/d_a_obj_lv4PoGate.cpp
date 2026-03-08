@@ -7,7 +7,7 @@
 
 #include "d/actor/d_a_obj_lv4PoGate.h"
 #include "d/d_com_inf_game.h"
-#include "d/d_procname.h"
+#include "f_pc/f_pc_name.h"
 
 daLv4PoGate_HIO_c::daLv4PoGate_HIO_c() {
     mOpenSpeed = 10.0f;

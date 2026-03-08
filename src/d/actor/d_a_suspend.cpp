@@ -6,7 +6,7 @@
 #include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_suspend.h"
-#include "d/d_procname.h"
+#include "f_pc/f_pc_name.h"
 
 int daSus_c::create() {
     s8 roomNo = fopAcM_GetRoomNo(this);

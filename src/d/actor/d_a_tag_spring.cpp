@@ -9,7 +9,7 @@
 
 #include "d/actor/d_a_player.h"
 #include "d/d_debug_viewer.h"
-#include "d/d_procname.h"
+#include "f_pc/f_pc_name.h"
 
 class daTagSpring_HIO_c : public mDoHIO_entry_c {
 public:

@@ -7,7 +7,7 @@
 
 #include "d/actor/d_a_disappear.h"
 #include "d/d_com_inf_game.h"
-#include "d/d_procname.h"
+#include "f_pc/f_pc_name.h"
 
 static int daDisappear_Draw(disappear_class* i_this) {
     return 1;

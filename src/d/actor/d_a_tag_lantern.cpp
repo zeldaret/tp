@@ -9,7 +9,7 @@
 
 #include "JSystem/JHostIO/JORFile.h"
 #include "d/d_debug_viewer.h"
-#include "d/d_procname.h"
+#include "f_pc/f_pc_name.h"
 #include <cstring>
 
 static TAG_LANTERN_HIO_CLASS l_HIO;

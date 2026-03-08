@@ -7,7 +7,7 @@
 
 #include "d/actor/d_a_kytag09.h"
 #include "d/d_com_inf_game.h"
-#include "d/d_procname.h"
+#include "f_pc/f_pc_name.h"
 
 static int daKytag09_Draw(kytag09_class* i_this) {
     J3DModelData* modelData = i_this->mpModel->getModelData();

@@ -7,7 +7,7 @@
 
 #include "d/actor/d_a_tag_ss_drink.h"
 #include "d/actor/d_a_player.h"
-#include "d/d_procname.h"
+#include "f_pc/f_pc_name.h"
 #include "d/d_msg_object.h"
 #include "d/actor/d_a_myna.h"
 

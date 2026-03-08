@@ -8,7 +8,7 @@
 #include "d/actor/d_a_player.h"
 #include "d/actor/d_a_tag_bottle_item.h"
 #include "d/d_item.h"
-#include "d/d_procname.h"
+#include "f_pc/f_pc_name.h"
 #include "d/d_s_play.h"
 
 int daTag_BottleItem_c::create() {

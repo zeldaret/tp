@@ -9,7 +9,7 @@
 #include "d/actor/d_a_midna.h"
 #include "d/d_com_inf_game.h"
 #include "d/actor/d_a_player.h"
-#include "d/d_procname.h"
+#include "f_pc/f_pc_name.h"
 #include "d/d_meter2_info.h"
 #include <cstring>
 

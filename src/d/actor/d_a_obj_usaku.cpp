@@ -8,7 +8,7 @@
 #include "d/actor/d_a_obj_usaku.h"
 #include "d/d_bg_w.h"
 #include "d/d_com_inf_game.h"
-#include "d/d_procname.h"
+#include "f_pc/f_pc_name.h"
 
 static int daObj_Usaku_Draw(obj_usaku_class* i_this) {
     fopAc_ac_c* a_this = static_cast<fopAc_ac_c*>(i_this);

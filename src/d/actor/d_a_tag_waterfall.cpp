@@ -8,7 +8,7 @@
 #include "d/actor/d_a_tag_waterfall.h"
 #include "d/d_com_inf_game.h"
 #include "d/d_debug_viewer.h"
-#include "d/d_procname.h"
+#include "f_pc/f_pc_name.h"
 #include "f_op/f_op_camera_mng.h"
 
 daTagWaterFall_HIO_c::daTagWaterFall_HIO_c() {

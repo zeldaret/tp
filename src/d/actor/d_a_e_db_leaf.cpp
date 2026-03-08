@@ -3,7 +3,7 @@
 #include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_e_db_leaf.h"
-#include "d/d_procname.h"
+#include "f_pc/f_pc_name.h"
 
 static int daE_DB_LEAF_Draw(e_db_leaf_class* i_this) {
     g_env_light.settingTevStruct(0,&i_this->current.pos,&i_this->tevStr);

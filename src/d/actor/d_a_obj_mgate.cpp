@@ -9,7 +9,7 @@
 #include "SSystem/SComponent/c_math.h"
 #include "d/actor/d_a_player.h"
 #include "d/d_lib.h"
-#include "d/d_procname.h"
+#include "f_pc/f_pc_name.h"
 
 static Vec const l_key_offset[2] = {
     {205.0f, 180.0f, 0.0f},

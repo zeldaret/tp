@@ -6,7 +6,7 @@
 
 #include "d/actor/d_a_obj_lv1Candle00.h"
 #include "d/d_com_inf_game.h"
-#include "d/d_procname.h"
+#include "f_pc/f_pc_name.h"
 
 static daLv1Cdl00_HIO_c l_HIO;
 

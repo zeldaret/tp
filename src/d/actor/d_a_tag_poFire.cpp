@@ -6,7 +6,7 @@
 #include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_tag_poFire.h"
-#include "d/d_procname.h"
+#include "f_pc/f_pc_name.h"
 
 daTagPoFire_HIO_c::daTagPoFire_HIO_c() {
     unk_0x4 = 0x14;

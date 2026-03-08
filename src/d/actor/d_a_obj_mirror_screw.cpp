@@ -7,7 +7,7 @@
 
 #include "d/actor/d_a_obj_mirror_screw.h"
 #include "d/actor/d_a_player.h"
-#include "d/d_procname.h"
+#include "f_pc/f_pc_name.h"
 
 static char const* l_arcName = "MR-Screw";
 

@@ -6,7 +6,7 @@
 #include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_prop.h"
-#include "d/d_procname.h"
+#include "f_pc/f_pc_name.h"
 
 static bool daObjProp_c_createHeap(fopAc_ac_c* i_this) {
     return static_cast<daObjProp_c*>(i_this)->createHeap();

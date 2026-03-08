@@ -7,7 +7,7 @@
 
 #include "d/actor/d_a_obj_kjgjs.h"
 #include "d/d_bg_w.h"
-#include "d/d_procname.h"
+#include "f_pc/f_pc_name.h"
 
 static const u32 l_dzbidx[2] = {8, 9};
 static const char* l_arcName = "K_jgjs";

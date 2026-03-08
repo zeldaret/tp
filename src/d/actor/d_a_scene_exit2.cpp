@@ -7,7 +7,7 @@
 
 #include "d/actor/d_a_scene_exit2.h"
 #include "d/d_com_inf_game.h"
-#include "d/d_procname.h"
+#include "f_pc/f_pc_name.h"
 
 void daScExit_c::initBaseMtx() {
     setBaseMtx();

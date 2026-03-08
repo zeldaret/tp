@@ -6,7 +6,7 @@
 
 #include "d/actor/d_a_tag_evtarea.h"
 #include "d/actor/d_a_npc.h"
-#include "d/d_procname.h"
+#include "f_pc/f_pc_name.h"
 
 cPhs_Step daTag_EvtArea_c::create() {
     int var_r28 = 0;

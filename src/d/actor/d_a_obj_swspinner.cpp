@@ -6,7 +6,7 @@
 #include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_obj_swspinner.h"
-#include "d/d_procname.h"
+#include "f_pc/f_pc_name.h"
 
 static void* search_spinner_sub(void* i_actor, void* i_data) {
     daSpinner_c* spinner = (daSpinner_c*)i_actor;

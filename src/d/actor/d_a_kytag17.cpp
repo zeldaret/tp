@@ -6,7 +6,7 @@
 #include "d/dolzel_rel.h" // IWYU pragma: keep
 
 #include "d/actor/d_a_kytag17.h"
-#include "d/d_procname.h"
+#include "f_pc/f_pc_name.h"
 
 static int daKytag17_Draw(kytag17_class* i_this) {
     return 1;
