@@ -255,7 +255,7 @@ int daItem_c::_daItem_create() {
     if (m_itemNo == dItemNo_SMALL_KEY_e || m_itemNo == dItemNo_KANTERA_e || m_itemNo == dItemNo_LIGHT_DROP_e ||
         m_itemNo == dItemNo_UTAWA_HEART_e || m_itemNo == dItemNo_KAKERA_HEART_e)
     {
-        // "fpcNm_ITEM_(ITEM) is an unhandled item<%d>\n"
+        // "Item is not handled by fpcNm_(ITEM): <%d>\n"
         OS_REPORT_ERROR("fpcNm_(ITEM)では扱わないアイテムです<%d>\n", m_itemNo);
         JUT_ASSERT(0, FALSE);
         return cPhs_ERROR_e;
