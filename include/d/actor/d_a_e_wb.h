@@ -194,9 +194,9 @@ public:
     /* 0x169E */ s16 demo_mode;
     /* 0x16A0 */ s16 demo_timer;
     /* 0x16A4 */ cXyz demo_cam_eye;
-    /* 0x16B0 */ cXyz demo_cam_eye_work;
+    /* 0x16B0 */ cXyz demo_cam_eye_mae;
     /* 0x16BC */ cXyz demo_cam_ctr;
-    /* 0x16C8 */ cXyz demo_cam_ctr_work;
+    /* 0x16C8 */ cXyz demo_cam_ctr_mae;
     /* 0x16D4 */ cXyz demo_cam_target;
     /* 0x16E0 */ cXyz demo_cam_way;
     /* 0x16EC */ cXyz demo_cam_eye_spd;

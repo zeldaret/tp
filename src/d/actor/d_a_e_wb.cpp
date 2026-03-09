@@ -4133,12 +4133,12 @@ static void demo_camera(e_wb_class* i_this) {
     }
         // fallthrough
     case 33: {
-        i_this->demo_cam_eye_work.set(400.0f + JREG_F(6), 400.0f + JREG_F(7), 500.0f + JREG_F(8));
-        i_this->demo_cam_ctr_work.set(-10.0f + JREG_F(9), 700.0f + JREG_F(10), 180.0f + JREG_F(11));
+        i_this->demo_cam_eye_mae.set(400.0f + JREG_F(6), 400.0f + JREG_F(7), 500.0f + JREG_F(8));
+        i_this->demo_cam_ctr_mae.set(-10.0f + JREG_F(9), 700.0f + JREG_F(10), 180.0f + JREG_F(11));
         cMtx_YrotS(*calc_mtx, enemy->shape_angle.y);
-        MtxPosition(&i_this->demo_cam_eye_work, &ato);
+        MtxPosition(&i_this->demo_cam_eye_mae, &ato);
         i_this->demo_cam_eye = enemy->current.pos + ato;
-        MtxPosition(&i_this->demo_cam_ctr_work, &ato);
+        MtxPosition(&i_this->demo_cam_ctr_mae, &ato);
         i_this->demo_cam_ctr = enemy->current.pos + ato;
         if (i_this->demo_timer > 25) {
             cLib_addCalc2(&i_this->demo_cam_zoom, 55.0f + JREG_F(12) - 30.0f, 0.8f, 6.0f);
@@ -4148,34 +4148,34 @@ static void demo_camera(e_wb_class* i_this) {
             i_this->demo_timer = 0;
             i_this->demo_cam_target.set(700.0f, 100.0f, 0.0f);
             i_this->demo_cam_way.set(-10.0f, 350.0f, 80.0f);
-            i_this->demo_cam_eye_spd.x = fabsf(i_this->demo_cam_target.x - i_this->demo_cam_eye_work.x);
-            i_this->demo_cam_eye_spd.y = fabsf(i_this->demo_cam_target.y - i_this->demo_cam_eye_work.y);
-            i_this->demo_cam_eye_spd.z = fabsf(i_this->demo_cam_target.z - i_this->demo_cam_eye_work.z);
-            i_this->demo_cam_way_spd.x = fabsf(i_this->demo_cam_way.x - i_this->demo_cam_ctr_work.x);
-            i_this->demo_cam_way_spd.y = fabsf(i_this->demo_cam_way.y - i_this->demo_cam_ctr_work.y);
-            i_this->demo_cam_way_spd.z = fabsf(i_this->demo_cam_way.z - i_this->demo_cam_ctr_work.z);
+            i_this->demo_cam_eye_spd.x = fabsf(i_this->demo_cam_target.x - i_this->demo_cam_eye_mae.x);
+            i_this->demo_cam_eye_spd.y = fabsf(i_this->demo_cam_target.y - i_this->demo_cam_eye_mae.y);
+            i_this->demo_cam_eye_spd.z = fabsf(i_this->demo_cam_target.z - i_this->demo_cam_eye_mae.z);
+            i_this->demo_cam_way_spd.x = fabsf(i_this->demo_cam_way.x - i_this->demo_cam_ctr_mae.x);
+            i_this->demo_cam_way_spd.y = fabsf(i_this->demo_cam_way.y - i_this->demo_cam_ctr_mae.y);
+            i_this->demo_cam_way_spd.z = fabsf(i_this->demo_cam_way.z - i_this->demo_cam_ctr_mae.z);
             i_this->demo_cam_morf = 0;
         }
     } break;
     case 34: {
         cLib_addCalc2(&i_this->demo_cam_zoom, 55.0f, 0.05f, 0.3f);
-        cLib_addCalc2(&i_this->demo_cam_ctr_work.x, i_this->demo_cam_way.x, 0.05f,
+        cLib_addCalc2(&i_this->demo_cam_ctr_mae.x, i_this->demo_cam_way.x, 0.05f,
                       i_this->demo_cam_way_spd.x * i_this->demo_cam_morf);
-        cLib_addCalc2(&i_this->demo_cam_ctr_work.y, i_this->demo_cam_way.y, 0.05f,
+        cLib_addCalc2(&i_this->demo_cam_ctr_mae.y, i_this->demo_cam_way.y, 0.05f,
                       i_this->demo_cam_way_spd.y * i_this->demo_cam_morf);
-        cLib_addCalc2(&i_this->demo_cam_ctr_work.z, i_this->demo_cam_way.z, 0.05f,
+        cLib_addCalc2(&i_this->demo_cam_ctr_mae.z, i_this->demo_cam_way.z, 0.05f,
                       i_this->demo_cam_way_spd.z * i_this->demo_cam_morf);
-        cLib_addCalc2(&i_this->demo_cam_eye_work.x, i_this->demo_cam_target.x, 0.05f,
+        cLib_addCalc2(&i_this->demo_cam_eye_mae.x, i_this->demo_cam_target.x, 0.05f,
                       (i_this->demo_cam_eye_spd.x * i_this->demo_cam_morf));
-        cLib_addCalc2(&i_this->demo_cam_eye_work.y, i_this->demo_cam_target.y, 0.05f,
+        cLib_addCalc2(&i_this->demo_cam_eye_mae.y, i_this->demo_cam_target.y, 0.05f,
                       (i_this->demo_cam_eye_spd.y * i_this->demo_cam_morf));
-        cLib_addCalc2(&i_this->demo_cam_eye_work.z, i_this->demo_cam_target.z, 0.05f,
+        cLib_addCalc2(&i_this->demo_cam_eye_mae.z, i_this->demo_cam_target.z, 0.05f,
                       (i_this->demo_cam_eye_spd.z * i_this->demo_cam_morf));
         cLib_addCalc2(&i_this->demo_cam_morf, 0.01f, 1.0f, 0.0005f);
         cMtx_YrotS(*calc_mtx, enemy->shape_angle.y);
-        MtxPosition(&i_this->demo_cam_eye_work, &i_this->demo_cam_eye);
+        MtxPosition(&i_this->demo_cam_eye_mae, &i_this->demo_cam_eye);
         i_this->demo_cam_eye += enemy->current.pos;
-        MtxPosition(&i_this->demo_cam_ctr_work, &i_this->demo_cam_ctr);
+        MtxPosition(&i_this->demo_cam_ctr_mae, &i_this->demo_cam_ctr);
         i_this->demo_cam_ctr += enemy->current.pos;
         if (i_this->demo_timer == 130) {
             rider->mode++;
@@ -4201,12 +4201,12 @@ static void demo_camera(e_wb_class* i_this) {
         }
     } break;
     case 36: {
-        i_this->demo_cam_eye_work.set(700.0f + JREG_F(0), 100.0f + JREG_F(1), 500.0f + JREG_F(2));
-        i_this->demo_cam_ctr_work.set(-10.0f + JREG_F(3), 350.0f + JREG_F(4), 80.0f + JREG_F(5));
+        i_this->demo_cam_eye_mae.set(700.0f + JREG_F(0), 100.0f + JREG_F(1), 500.0f + JREG_F(2));
+        i_this->demo_cam_ctr_mae.set(-10.0f + JREG_F(3), 350.0f + JREG_F(4), 80.0f + JREG_F(5));
         cMtx_YrotS(*calc_mtx, enemy->shape_angle.y);
-        MtxPosition(&i_this->demo_cam_eye_work, &i_this->demo_cam_eye);
+        MtxPosition(&i_this->demo_cam_eye_mae, &i_this->demo_cam_eye);
         i_this->demo_cam_eye += enemy->current.pos;
-        MtxPosition(&i_this->demo_cam_ctr_work, &i_this->demo_cam_ctr);
+        MtxPosition(&i_this->demo_cam_ctr_mae, &i_this->demo_cam_ctr);
         i_this->demo_cam_ctr += enemy->current.pos;
         if (i_this->demo_timer == 20) {
             rider->mode++;
