@@ -47,7 +47,7 @@ void* searchSpiralSub(void* i_actor, void* i_data) {
     fopAc_ac_c* other = (fopAc_ac_c*)i_data;
 
     if (actor != NULL && fopAcM_IsActor(actor)) {
-        if (fopAcM_GetProfName(actor) == PROC_SPIRAL_DOOR && actor != other) {
+        if (fopAcM_GetProfName(actor) == fpcNm_SPIRAL_DOOR_e && actor != other) {
             if (door_param2_c::getBRoomNo(actor) == door_param2_c::getBRoomNo(other)) {
                 return actor;
             }
@@ -637,7 +637,7 @@ void daSpiral_c::setPartner() {
     JUT_ASSERT(1065, actor);
 
     dComIfGp_event_setDoorPartner(actor);
-    fopAcM_OnStatus(actor, 0x8000);
+    fopAcM_OnStatus(actor, fopAcStts_STAFF_PRIMARY_e);
 }
 
 void daSpiral_c::clrPartner() {
@@ -1193,18 +1193,18 @@ static actor_method_class l_daSpiral_Method = {
 #endif
 
 actor_process_profile_definition g_profile_SPIRAL_DOOR = {
-    fpcLy_CURRENT_e,        // mLayerID
-    7,                      // mListID
-    fpcPi_CURRENT_e,        // mListPrio
-    PROC_SPIRAL_DOOR,       // mProcName
-    &g_fpcLf_Method.base,  // sub_method
-    sizeof(daSpiral_c),                  // mSize
-    0,                      // mSizeOther
-    0,                      // mParameters
-    &g_fopAc_Method.base,   // sub_method
-    301,                    // mPriority
-    DASPIRAL_METHODS,     // sub_method
-    0x44000,                // mStatus
-    fopAc_ACTOR_e,          // mActorType
-    fopAc_CULLBOX_6_e,      // cullType
+    /* Layer ID     */ fpcLy_CURRENT_e,
+    /* List ID      */ 7,
+    /* List Prio    */ fpcPi_CURRENT_e,
+    /* Proc Name    */ fpcNm_SPIRAL_DOOR_e,
+    /* Proc SubMtd  */ &g_fpcLf_Method.base,
+    /* Size         */ sizeof(daSpiral_c),
+    /* Size Other   */ 0,
+    /* Parameters   */ 0,
+    /* Leaf SubMtd  */ &g_fopAc_Method.base,
+    /* Draw Prio    */ fpcDwPi_SPIRAL_DOOR_e,
+    /* Actor SubMtd */ DASPIRAL_METHODS,
+    /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_UNK_0x4000_e,
+    /* Group        */ fopAc_ACTOR_e,
+    /* Cull Type    */ fopAc_CULLBOX_6_e,
 };

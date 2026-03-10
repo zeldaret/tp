@@ -246,7 +246,7 @@ static dCcD_SrcSph l_sphSrc = {
 void daHorse_c::coHitCallbackBoarJump(fopAc_ac_c* i_hitActor) {
     if (!dComIfGp_event_runCheck() && 
         !checkEndResetStateFlg0(daHorse_ERFLG0(ERFLG0_UNK_4 | ERFLG0_UNK_2 | ERFLG0_UNK_1)) &&
-        fopAcM_GetName(i_hitActor) == PROC_E_WB &&
+        fopAcM_GetName(i_hitActor) == fpcNm_E_WB_e &&
         ((fopEn_enemy_c*)i_hitActor)->checkDownFlg())
     {
         f32 sin_y = cM_ssin(current.angle.y);
@@ -303,7 +303,7 @@ void daHorse_c::coHitCallbackBoarHit(fopAc_ac_c* i_hitActor, dCcD_GObjInf* i_hit
     if (!dComIfGp_event_runCheck() &&
         ((m_procID == PROC_MOVE_e && speedF > 5.0f) || checkStateFlg0(daHorse_FLG0(FLG0_UNK_200000 | FLG0_UNK_100000))) &&
         checkStateFlg0(FLG0_UNK_1) &&
-        fopAcM_GetName(i_hitActor) == PROC_E_WB &&
+        fopAcM_GetName(i_hitActor) == fpcNm_E_WB_e &&
         !((fopEn_enemy_c*)i_hitActor)->checkDownFlg())
     {
         if (checkStateFlg0(daHorse_FLG0(FLG0_UNK_200000 | FLG0_UNK_100000))) {
@@ -332,7 +332,7 @@ void daHorse_c::coHitCallbackBoarHit(fopAc_ac_c* i_hitActor, dCcD_GObjInf* i_hit
 }
 
 void daHorse_c::coHitCallbackCowHit(fopAc_ac_c* i_hitActor) {
-    if ((fopAcM_GetName(i_hitActor) == PROC_COW) && ((daCow_c*)i_hitActor)->isAngry()) {
+    if ((fopAcM_GetName(i_hitActor) == fpcNm_COW_e) && ((daCow_c*)i_hitActor)->isAngry()) {
         ((daCow_c*)i_hitActor)->setAngryHit();
 
         if (!dComIfGp_event_runCheck() && checkStateFlg0(FLG0_UNK_1)) {
@@ -345,7 +345,7 @@ void daHorse_c::coHitCallbackCowHit(fopAc_ac_c* i_hitActor) {
 
             m_cowHit = 5;
         }
-    } else if (fopAcM_GetName(i_hitActor) == PROC_ALINK) {
+    } else if (fopAcM_GetName(i_hitActor) == fpcNm_ALINK_e) {
         if (daAlink_getAlinkActorClass()->checkSlideMode()) {
             onEndResetStateFlg0(ERFLG0_UNK_800);
         }
@@ -380,7 +380,7 @@ static void* daHorse_searchEnemy(fopAc_ac_c* i_actor, void* i_data) {
     daHorse_c* horse_p = dComIfGp_getHorseActor();
     f32 search_dist = *(f32*)i_data;
 
-    if (fopAcM_GetGroup(i_actor) == fopAc_ENEMY_e && fopAcM_GetName(i_actor) != PROC_E_WS && horse_p->current.pos.abs2XZ(i_actor->current.pos) < search_dist * search_dist) {
+    if (fopAcM_GetGroup(i_actor) == fopAc_ENEMY_e && fopAcM_GetName(i_actor) != fpcNm_E_WS_e && horse_p->current.pos.abs2XZ(i_actor->current.pos) < search_dist * search_dist) {
         return i_actor;
     }
 
@@ -479,7 +479,7 @@ static int daHorse_modelCallBack(J3DJoint* i_joint, int param_1) {
 }
 
 static void* daHorse_searchSingleBoar(fopAc_ac_c* i_actor, void* i_data) {
-    if (fopAcM_GetName(i_actor) == PROC_E_WB) {
+    if (fopAcM_GetName(i_actor) == fpcNm_E_WB_e) {
         fopAc_ac_c** ppActor = (fopAc_ac_c**)i_data;
         *ppActor = i_actor;
     }
@@ -1644,7 +1644,7 @@ int daHorse_c::checkHorseNoMove(int param_0) {
     }
 
     s16 spA;
-    if (daAlink_c::getMoveBGActorName(m_acch.m_gnd, 0) == PROC_OBJ_BRG) {
+    if (daAlink_c::getMoveBGActorName(m_acch.m_gnd, 0) == fpcNm_OBJ_BRG_e) {
         spA = 0;
     } else if (m_procID == PROC_TURN_e && dComIfG_Bgsp().ChkPolySafe(m_acch.m_gnd)) {
         spA = fopAcM_getPolygonAngle(m_acch.m_gnd, shape_angle.y);
@@ -1687,7 +1687,7 @@ int daHorse_c::checkHorseNoMove(int param_0) {
     daAlink_c* player = daAlink_getAlinkActorClass();
     cXyz start(current.pos.x, current.pos.y + m_acchcir[0].GetWallH(), current.pos.z);
 
-    if (daAlink_c::getMoveBGActorName(m_acch.m_gnd, 0) == PROC_OBJ_BRG) {
+    if (daAlink_c::getMoveBGActorName(m_acch.m_gnd, 0) == fpcNm_OBJ_BRG_e) {
         start.y = 200.0f + current.pos.y;
     }
 
@@ -1768,7 +1768,7 @@ int daHorse_c::checkHorseNoMove(int param_0) {
 
             if (fopAcM_gc_c::getHorseNoEntry() ||
                 (!checkStateFlg0(FLG0_UNK_1) && dComIfG_Bgsp().GetExitId(*fopAcM_gc_c::getGroundCheck()) != 0x3F) ||
-                (sp8 > sp14 && daAlink_c::getMoveBGActorName(*fopAcM_gc_c::getGroundCheck(), 1) != PROC_OBJ_BRG && dComIfG_Bgsp().GetSpecialCode(*fopAcM_gc_c::getGroundCheck()) != 2))
+                (sp8 > sp14 && daAlink_c::getMoveBGActorName(*fopAcM_gc_c::getGroundCheck(), 1) != fpcNm_OBJ_BRG_e && dComIfG_Bgsp().GetSpecialCode(*fopAcM_gc_c::getGroundCheck()) != 2))
             {
                 if (var_f30 <= 101.0f) {
                     if (sp8 > sp14 && param_0 != 0) {
@@ -4206,7 +4206,7 @@ int daHorse_c::procToolDemo() {
 }
 
 void daHorse_c::searchSceneChangeArea(fopAc_ac_c* i_scnChg) {
-    if (fopAcM_GetName(i_scnChg) == PROC_SCENE_EXIT) {
+    if (fopAcM_GetName(i_scnChg) == fpcNm_SCENE_EXIT_e) {
         if (m_scnChg_num == 50) {
             // "Exceeded buffer!!!!!\n"
             OS_PANIC(0x1CD6, "バッファ越え！！！！！\n");
@@ -4549,20 +4549,20 @@ static actor_method_class l_daHorse_Method = {
 };
 
 actor_process_profile_definition g_profile_HORSE = {
-  fpcLy_CURRENT_e,        // mLayerID
-  4,                      // mListID
-  fpcPi_CURRENT_e,        // mListPrio
-  PROC_HORSE,             // mProcName
-  &g_fpcLf_Method.base,  // sub_method
-  sizeof(daHorse_c),      // mSize
-  0,                      // mSizeOther
-  0,                      // mParameters
-  &g_fopAc_Method.base,   // sub_method
-  90,                     // mPriority
-  &l_daHorse_Method,      // sub_method
-  0x00060000,             // mStatus
-  fopAc_UNK_GROUP_5_e,    // mActorType
-  fopAc_CULLBOX_CUSTOM_e, // cullType
+    /* Layer ID     */ fpcLy_CURRENT_e,
+    /* List ID      */ 4,
+    /* List Prio    */ fpcPi_CURRENT_e,
+    /* Proc Name    */ fpcNm_HORSE_e,
+    /* Proc SubMtd  */ &g_fpcLf_Method.base,
+    /* Size         */ sizeof(daHorse_c),
+    /* Size Other   */ 0,
+    /* Parameters   */ 0,
+    /* Leaf SubMtd  */ &g_fopAc_Method.base,
+    /* Draw Prio    */ fpcDwPi_HORSE_e,
+    /* Actor SubMtd */ &l_daHorse_Method,
+    /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_NOPAUSE_e,
+    /* Group        */ fopAc_UNK_GROUP_5_e,
+    /* Cull Type    */ fopAc_CULLBOX_CUSTOM_e,
 };
 
 AUDIO_INSTANCES;

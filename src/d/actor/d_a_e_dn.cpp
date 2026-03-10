@@ -1,6 +1,6 @@
 /**
  * @file d_a_e_dn.cpp
- * 
+ *
 */
 
 #include "d/dolzel_rel.h" // IWYU pragma: keep
@@ -305,16 +305,16 @@ static int daE_DN_Draw(e_dn_class* i_this) {
 
     cXyz shadow_pos;
     shadow_pos.set(actor->current.pos.x, actor->current.pos.y + 50.0f + BREG_F(18), actor->current.pos.z);
-    i_this->shadow_key = dComIfGd_setShadow(i_this->shadow_key, 1, model, &shadow_pos, BREG_F(19) + 950.0f, 0.0f, 
-                                            actor->current.pos.y, i_this->objacch.GetGroundH(), 
-                                            i_this->objacch.m_gnd, &i_this->actor.tevStr, 0, 1.0f, 
+    i_this->shadow_key = dComIfGd_setShadow(i_this->shadow_key, 1, model, &shadow_pos, BREG_F(19) + 950.0f, 0.0f,
+                                            actor->current.pos.y, i_this->objacch.GetGroundH(),
+                                            i_this->objacch.m_gnd, &i_this->actor.tevStr, 0, 1.0f,
                                             dDlst_shadowControl_c::getSimpleTex());
     dComIfGd_addRealShadow(i_this->shadow_key, i_this->knife_model);
     if (i_this->skull_model != NULL) {
         dComIfGd_addRealShadow(i_this->shadow_key, i_this->skull_model);
     }
     dComIfGd_addRealShadow(i_this->shadow_key, i_this->tate_model);
-    
+
     return 1;
 }
 
@@ -436,7 +436,7 @@ static dBomb_c* search_bomb(e_dn_class* i_this, int param_2) {
     } else {
         return NULL;
     }
-    
+
     return NULL;
 }
 
@@ -475,7 +475,7 @@ static int pl_check(e_dn_class* i_this, f32 search_area, s16 search_angle) {
             return 1;
         }
     }
-        
+
     for (int i = 0; i <= 2; i++) {
         if (i_this->cc_sph[i].ChkCoHit() != 0) {
             if (player == dCc_GetAc(i_this->cc_sph[i].GetCoHitObj()->GetAc())) {
@@ -483,7 +483,7 @@ static int pl_check(e_dn_class* i_this, f32 search_area, s16 search_angle) {
             }
         }
     }
-    
+
     return 0;
 }
 
@@ -763,7 +763,7 @@ static void e_dn_bomb_action(e_dn_class* i_this) {
                 i_this->mode = 5;
                 anm_init(i_this, ANM_WAIT_01, 5.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
             }
-            
+
             break;
 
         case 5:
@@ -887,7 +887,7 @@ static void e_dn_normal(e_dn_class* i_this) {
 
             cLib_addCalcAngleS2(&i_this->jnt_tail_y_rot_offset, angle, 2, 0x400);
 
-            if (i_this->timer[0] == 0 || 
+            if (i_this->timer[0] == 0 ||
                 (i_this->timer[1] == 0 && (fopAcM_wayBgCheck(actor, 200.0f, 50.0f) || move_gake_check(i_this, 200.0f, 0)))) {
                 i_this->mode = 2;
                 i_this->timer[0] = cM_rndF(100.0f) + 50.0f;
@@ -1034,7 +1034,7 @@ int learn_check;
 static void* shot_s_sub(void* i_actor, void* i_data) {
     e_dn_class* i_this = (e_dn_class*)i_data;
     fopEn_enemy_c* actor = (fopEn_enemy_c*)&i_this->actor;
-    if ((fopAcM_IsActor(i_actor) && (learn_check & 0x80000000) != 0 && fopAcM_GetName(i_actor) == PROC_ARROW && (fopAcM_GetParam(i_actor) == 1 || 
+    if ((fopAcM_IsActor(i_actor) && (learn_check & 0x80000000) != 0 && fopAcM_GetName(i_actor) == fpcNm_ARROW_e && (fopAcM_GetParam(i_actor) == 1 ||
         fopAcM_GetParam(i_actor) == 2))) {
         cXyz sp28(actor->current.pos - ((fopAc_ac_c*)i_actor)->current.pos);
         if (sp28.abs() < 1000.0f) {
@@ -1199,7 +1199,7 @@ static void e_dn_fight_run(e_dn_class* i_this) {
             return;
         }
     } else if (
-        dComIfGp_checkPlayerStatus1(0, 0x2000000) != 0 || 
+        dComIfGp_checkPlayerStatus1(0, 0x2000000) != 0 ||
         (((i_this->search_angle_x < 0x1000 && i_this->search_angle_x > -0x1000) || def != 0) && player_way_check(i_this))
     ) {
         if (
@@ -1282,7 +1282,7 @@ static void e_dn_fight_run(e_dn_class* i_this) {
 
 static void e_dn_jump(e_dn_class* i_this) {
     fopEn_enemy_c* actor = (fopEn_enemy_c*)&i_this->actor;
-    
+
     i_this->field_0x6f4 = 1;
     switch (i_this->mode) {
         case 0:
@@ -1442,11 +1442,11 @@ static void e_dn_gakejump(e_dn_class* i_this) {
 static fopAc_ac_c* at_hit_check(e_dn_class* i_this) {
     fopEn_enemy_c* actor = (fopEn_enemy_c*)&i_this->actor;
     fopAc_ac_c* player = dComIfGp_getPlayer(0);
-    
+
     if (i_this->mode >= 10) {
         return NULL;
     }
-    
+
     if (i_this->at_sph.ChkAtHit() != 0) {
         return dCc_GetAc(i_this->at_sph.GetAtHitObj()->GetAc());
     }
@@ -1482,7 +1482,7 @@ static void e_dn_attack_0(e_dn_class* i_this) {
 
     if (i_this->at_chk_flag != 0) {
         fopAc_ac_c* actor_p = at_hit_check(i_this);
-        if (actor_p != NULL && fopAcM_GetName(actor_p) == PROC_ALINK && daPy_getPlayerActorClass()->checkPlayerGuard()) {
+        if (actor_p != NULL && fopAcM_GetName(actor_p) == fpcNm_ALINK_e && daPy_getPlayerActorClass()->checkPlayerGuard()) {
             dComIfGp_getVibration().StartShock(3, 31, cXyz(0.0f, 1.0f, 0.0f));
         }
     }
@@ -1541,7 +1541,7 @@ static void e_dn_attack(e_dn_class* i_this) {
     cLib_addCalc0(&actor->speedF, 1.0f, 5.0f);
     if (i_this->at_chk_flag != 0) {
         fopAc_ac_c* actor_p = at_hit_check(i_this);
-        if (actor_p != NULL && fopAcM_GetName(actor_p) == PROC_ALINK && daPy_getPlayerActorClass()->checkPlayerGuard()) {
+        if (actor_p != NULL && fopAcM_GetName(actor_p) == fpcNm_ALINK_e && daPy_getPlayerActorClass()->checkPlayerGuard()) {
             i_this->anm_p->setPlaySpeed(0.0f);
             i_this->action = ACTION_FIGHT_RUN;
             i_this->mode = 0;
@@ -1958,7 +1958,7 @@ static void e_dn_damage(e_dn_class* i_this) {
                 MTXCopy(i_this->anm_p->getModel()->getAnmMtx(JNT_BACKBONE02), *calc_mtx);
                 sp34.set(0.0f, 0.0f, 0.0f);
                 MtxPosition(&sp34, &sp40);
-                
+
                 s8 unused = 0;
 
                 dn_disappear(i_this);
@@ -2167,7 +2167,7 @@ static void e_dn_reg(e_dn_class* i_this) {
     cXyz sp34, sp40;
     f32 dash_speed = 0.0f;
     int frame = i_this->anm_p->getFrame();
-    
+
     i_this->field_0x6f2 = 0;
     i_this->invulnerability_timer = 10;
 
@@ -2698,7 +2698,7 @@ static void action(e_dn_class* i_this) {
             work.z = 15000.0f;
         }
         MtxPosition(&work, &sp24c);
-        
+
         i_this->field_0x7a4[0].y = sp24c.x;
         i_this->field_0x7a4[0].x = sp24c.z;
         i_this->field_0x7a4[1].y = sp24c.x;
@@ -2761,7 +2761,7 @@ static void action(e_dn_class* i_this) {
         MtxPosition(&work, &sp24c);
         i_this->field_0x836.y = -sp24c.x;
         i_this->field_0x836.x = -sp24c.z * 1.3f;
-        
+
         if (i_this->field_0x836.x > (s16)(BREG_S(6) + 10000)) {
             i_this->field_0x836.x = BREG_S(6) + 10000;
         }
@@ -2986,7 +2986,7 @@ static int daE_DN_Execute(e_dn_class* i_this) {
         return 1;
     }
 
-    if (c_start == 0 && dComIfGp_event_runCheck() && 
+    if (c_start == 0 && dComIfGp_event_runCheck() &&
         (fopAcM_getTalkEventPartner((fopAc_ac_c*)daPy_getLinkPlayerActorClass()) == daPy_py_c::getMidnaActor() || daPy_getPlayerActorClass()->eventInfo.checkCommandDoor())) {
         return 1;
     }
@@ -3109,7 +3109,7 @@ static int daE_DN_Execute(e_dn_class* i_this) {
     } else {
         i_this->cc_sph[0].SetR(50.0f);
     }
-    
+
     actor->attention_info.position = actor->eyePos;
     actor->attention_info.position.y += 70.0f + BREG_F(7);
 
@@ -3175,7 +3175,7 @@ static int daE_DN_Execute(e_dn_class* i_this) {
 
         i_this->skull_model->setBaseTRMtx(mDoMtx_stack_c::get());
     }
-    
+
     MTXCopy(i_this->anm_p->getModel()->getAnmMtx(JNT_ARML2), *calc_mtx);
     i_this->tate_model->setBaseTRMtx(*calc_mtx);
 
@@ -3402,7 +3402,7 @@ static cPhs_Step daE_DN_Create(fopAc_ac_c* actor) {
             l_HIO.no = mDoHIO_CREATE_CHILD("リザードマン", &l_HIO);
         }
 
-        fopAcM_OnStatus(actor, fopAcM_STATUS_UNK_0x100);
+        fopAcM_OnStatus(actor, fopAcStts_CULL_e);
         actor->attention_info.flags = fopAc_AttnFlag_BATTLE_e;
         fopAcM_SetMtx(actor, i_this->anm_p->getModel()->getBaseTRMtx());
         fopAcM_SetMin(actor, -200.0f, -200.0f, -200.0f);
@@ -3472,7 +3472,7 @@ static cPhs_Step daE_DN_Create(fopAc_ac_c* actor) {
         if ((i_this->arg0 == 13 || i_this->arg0 == 14) || (i_this->arg0 == 15 || i_this->arg0 == 16)) {
             i_this->status = 1;
             i_this->action = ACTION_REG;
-            fopAcM_OnStatus(actor, fopAcM_STATUS_UNK_0x4000);
+            fopAcM_OnStatus(actor, fopAcStts_UNK_0x4000_e);
             i_this->acchcir.SetWall(80.0f, 2.0f);
         }
 
@@ -3501,18 +3501,18 @@ static actor_method_class l_daE_DN_Method = {
 };
 
 actor_process_profile_definition g_profile_E_DN = {
-  fpcLy_CURRENT_e,        // mLayerID
-  7,                      // mListID
-  fpcPi_CURRENT_e,        // mListPrio
-  PROC_E_DN,              // mProcName
-  &g_fpcLf_Method.base,  // sub_method
-  sizeof(e_dn_class),     // mSize
-  0,                      // mSizeOther
-  0,                      // mParameters
-  &g_fopAc_Method.base,   // sub_method
-  118,                    // mPriority
-  &l_daE_DN_Method,       // sub_method
-  0x00040000,             // mStatus
-  fopAc_ENEMY_e,          // mActorType
-  fopAc_CULLBOX_CUSTOM_e, // cullType
+    /* Layer ID     */ fpcLy_CURRENT_e,
+    /* List ID      */ 7,
+    /* List Prio    */ fpcPi_CURRENT_e,
+    /* Proc Name    */ fpcNm_E_DN_e,
+    /* Proc SubMtd  */ &g_fpcLf_Method.base,
+    /* Size         */ sizeof(e_dn_class),
+    /* Size Other   */ 0,
+    /* Parameters   */ 0,
+    /* Leaf SubMtd  */ &g_fopAc_Method.base,
+    /* Draw Prio    */ fpcDwPi_E_DN_e,
+    /* Actor SubMtd */ &l_daE_DN_Method,
+    /* Status       */ fopAcStts_UNK_0x40000_e,
+    /* Group        */ fopAc_ENEMY_e,
+    /* Cull Type    */ fopAc_CULLBOX_CUSTOM_e,
 };

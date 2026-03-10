@@ -834,7 +834,7 @@ int daNpcCdn3_c::ctrlMsgAnm() {
 }
 
 static void* s_sub1(void* param_1, void* param_2) {
-    if (fopAcM_IsActor(param_1) && fopAcM_GetName(param_1) == PROC_Tag_Schedule &&
+    if (fopAcM_IsActor(param_1) && fopAcM_GetName(param_1) == fpcNm_Tag_Schedule_e &&
         static_cast<daNpcCdn3_c*>(param_2)->searchNextScheduleTagSub(
             static_cast<fopAc_ac_c*>(param_1)))
     {
@@ -872,7 +872,7 @@ bool daNpcCdn3_c::searchNextScheduleTagSub(fopAc_ac_c* param_1) {
 }
 
 static void* s_sub2(void* param_1, void* param_2) {
-    if (fopAcM_IsActor(param_1) && fopAcM_GetName(param_1) == PROC_Tag_Schedule &&
+    if (fopAcM_IsActor(param_1) && fopAcM_GetName(param_1) == fpcNm_Tag_Schedule_e &&
         static_cast<daNpcCdn3_c*>(param_2)->searchFirstScheduleTagSub(
             static_cast<fopAc_ac_c*>(param_1)))
     {
@@ -1510,7 +1510,7 @@ void daNpcCdn3_c::create_init() {
     }
 
     if (isInShop()) {
-        fopAcM_OnStatus(this, 0x4000);
+        fopAcM_OnStatus(this, fopAcStts_UNK_0x4000_e);
     }
 
     if (m_path.setPath(getPathID(), fopAcM_GetRoomNo(this), 1, &current.pos, false)) {
@@ -1589,9 +1589,9 @@ int daNpcCdn3_c::execute() {
     mAcchCir.SetWallR(Cd2_HIO_chkWallR(m_type));
     checkTimeSchedule();
     if (field_0xb95 != 0) {
-        fopAcM_OnStatus(this, 0x8000000);
+        fopAcM_OnStatus(this, fopAcStts_UNK_0x8000000_e);
     } else {
-        fopAcM_OffStatus(this, 0x8000000);
+        fopAcM_OffStatus(this, fopAcStts_UNK_0x8000000_e);
     }
     if (field_0xb95 != 0) {
         if (!mIsDarkWorld && daPy_py_c::checkNowWolf()) {
@@ -1741,18 +1741,18 @@ static actor_method_class daNpcCdn3_METHODS = {
 };
 
 actor_process_profile_definition g_profile_NPC_CD3 = {
-  fpcLy_CURRENT_e,        // mLayerID
-  7,                      // mListID
-  fpcPi_CURRENT_e,        // mListPrio
-  PROC_NPC_CD3,           // mProcName
-  &g_fpcLf_Method.base,  // sub_method
-  sizeof(daNpcCdn3_c),    // mSize
-  0,                      // mSizeOther
-  0,                      // mParameters
-  &g_fopAc_Method.base,   // sub_method
-  395,                    // mPriority
-  &daNpcCdn3_METHODS,     // sub_method
-  0x00040107,             // mStatus
-  fopAc_NPC_e,            // mActorType
-  fopAc_CULLBOX_CUSTOM_e, // cullType
+    /* Layer ID     */ fpcLy_CURRENT_e,
+    /* List ID      */ 7,
+    /* List Prio    */ fpcPi_CURRENT_e,
+    /* Proc Name    */ fpcNm_NPC_CD3_e,
+    /* Proc SubMtd  */ &g_fpcLf_Method.base,
+    /* Size         */ sizeof(daNpcCdn3_c),
+    /* Size Other   */ 0,
+    /* Parameters   */ 0,
+    /* Leaf SubMtd  */ &g_fopAc_Method.base,
+    /* Draw Prio    */ fpcDwPi_NPC_CD3_e,
+    /* Actor SubMtd */ &daNpcCdn3_METHODS,
+    /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e | fopAcStts_UNK_0x4_e | fopAcStts_UNK_0x2_e | fopAcStts_UNK_0x1_e,
+    /* Group        */ fopAc_NPC_e,
+    /* Cull Type    */ fopAc_CULLBOX_CUSTOM_e,
 };

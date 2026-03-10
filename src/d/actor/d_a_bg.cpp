@@ -626,19 +626,19 @@ static actor_method_class l_daBg_Method = {
 };
 
 actor_process_profile_definition2 g_profile_BG = {
-    fpcLy_CURRENT_e,       // mLayerID
-    7,                     // mListID
-    fpcPi_CURRENT_e,       // mListPrio
-    PROC_BG,        // mProcName
-    &g_fpcLf_Method.base, // sub_method
-    sizeof(daBg_c),            // mSize
-    0,                     // mSizeOther
-    0,                     // mParameters
-    &g_fopAc_Method.base,  // sub_method
-    753,                   // mPriority
-    &l_daBg_Method, // sub_method
-    0x00060000,            // mStatus
-    fopAc_ACTOR_e,   // mActorType
-    fopAc_CULLBOX_0_e,     // cullType
-    0,
+    /* Layer ID     */ fpcLy_CURRENT_e,
+    /* List ID      */ 7,
+    /* List Prio    */ fpcPi_CURRENT_e,
+    /* Proc Name    */ fpcNm_BG_e,
+    /* Proc SubMtd  */ &g_fpcLf_Method.base,
+    /* Size         */ sizeof(daBg_c),
+    /* Size Other   */ 0,
+    /* Parameters   */ 0,
+    /* Leaf SubMtd  */ &g_fopAc_Method.base,
+    /* Draw Prio    */ fpcDwPi_BG_e,
+    /* Actor SubMtd */ &l_daBg_Method,
+    /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_NOPAUSE_e,
+    /* Group        */ fopAc_ACTOR_e,
+    /* Cull Type    */ fopAc_CULLBOX_0_e,
+    /* Unknown      */ 0,
 };
