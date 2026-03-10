@@ -332,7 +332,7 @@ static int e_wb_lr_wall_check(e_wb_class* i_this) {
     fopAc_ac_c* r30;
     if (dComIfG_Bgsp().LineCross(&linChk)) {
         r30 = dComIfG_Bgsp().GetActorPointer(linChk);
-        if (fopAcM_GetName(r30) == PROC_BG) {
+        if (fopAcM_GetName(r30) == fpcNm_BG_e) {
             return -1;
         }
     }
@@ -343,7 +343,7 @@ static int e_wb_lr_wall_check(e_wb_class* i_this) {
 
     if (dComIfG_Bgsp().LineCross(&linChk)) {
         r30 = dComIfG_Bgsp().GetActorPointer(linChk);
-        if (fopAcM_GetName(r30) == PROC_BG) {
+        if (fopAcM_GetName(r30) == fpcNm_BG_e) {
             return 1;
         }
     }
@@ -520,7 +520,7 @@ static s16 e_wb_wall_check(e_wb_class* i_this) {
     linChk.Set(&cStack_ac, &cStack_b8, a_this);
     if (dComIfG_Bgsp().LineCross(&linChk)) {
         fopAc_ac_c* uVar3 = dComIfG_Bgsp().GetActorPointer(linChk);
-        if (fopAcM_GetName(uVar3) != PROC_BG) {
+        if (fopAcM_GetName(uVar3) != fpcNm_BG_e) {
             return 0;
         }
         cXyz cStack_c4(linChk.GetCross());
@@ -1260,7 +1260,7 @@ static void e_wb_f_run(e_wb_class* i_this) {
 
 static void* s_wbstart_sub(void* i_actor, void* i_data) {
     UNUSED(i_data);
-    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_E_WB) {
+    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == fpcNm_E_WB_e) {
         e_wb_class* wb = static_cast<e_wb_class*>(i_actor);
         if (wb->field_0x79d == 0) {
             wb->field_0x7a6 = 1;
@@ -1766,7 +1766,7 @@ static void arrow_rd_set(e_wb_class* i_this) {
     fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;
     static cXyz arrow_rd_pos[1] = {cXyz(36460.0f, 1040.0f, -17020.0f)};
     for (int i = 0; i < 1; i++) {
-        fopAcM_create(PROC_E_RD, 0xff00a3ff, &arrow_rd_pos[i], fopAcM_GetRoomNo(a_this), 0, 0, -1);
+        fopAcM_create(fpcNm_E_RD_e, 0xff00a3ff, &arrow_rd_pos[i], fopAcM_GetRoomNo(a_this), 0, 0, -1);
     }
 }
 
@@ -2778,7 +2778,7 @@ static void damage_check(e_wb_class* i_this) {
 
             if (!daAlink_getAlinkActorClass()->checkBoarRideOwn(a_this) &&
                 i_this->field_0x6a0 == 0 && a_this->speedF < 1.0f &&
-                fopAcM_GetName(hit_actor) == PROC_ALINK) {
+                fopAcM_GetName(hit_actor) == fpcNm_ALINK_e) {
                 ANGLE_ADD(i_this->field_0x6ba, 2);
                 if (i_this->field_0x6ba >= 150) {
                     i_this->field_0x692 = i_this->mActionID;
@@ -2790,7 +2790,7 @@ static void damage_check(e_wb_class* i_this) {
             }
 
             if ((lbl_244_bss_47 != 0 || lbl_244_bss_45 != 0) &&
-                fopAcM_GetName(hit_actor) == PROC_E_WB)
+                fopAcM_GetName(hit_actor) == fpcNm_E_WB_e)
             {
                 e_wb_class* wb = (e_wb_class*)hit_actor;
                 if (i_this->field_0x6a0 == 0) {
@@ -3079,11 +3079,11 @@ static void wb_rd_reset(e_wb_class* i_this) {
     cXyz pos = a_this->current.pos;
 
     if (i_this->mParam2 == 1 || i_this->mParam2 == 2) {
-        fopAcM_create(PROC_E_RD, 0xff010301, &pos, fopAcM_GetRoomNo(a_this), &player->shape_angle, 0, -1);
-        fopAcM_create(PROC_E_RD, 0xff010302, &pos, fopAcM_GetRoomNo(a_this), &player->shape_angle, 0, -1);
+        fopAcM_create(fpcNm_E_RD_e, 0xff010301, &pos, fopAcM_GetRoomNo(a_this), &player->shape_angle, 0, -1);
+        fopAcM_create(fpcNm_E_RD_e, 0xff010302, &pos, fopAcM_GetRoomNo(a_this), &player->shape_angle, 0, -1);
     } else if (i_this->mParam2 >= 3) {
-        fopAcM_create(PROC_E_RD, 0xff010101, &pos, fopAcM_GetRoomNo(a_this), &player->shape_angle, 0, -1);
-        fopAcM_create(PROC_E_RD, 0xff010102, &pos, fopAcM_GetRoomNo(a_this), &player->shape_angle, 0, -1);
+        fopAcM_create(fpcNm_E_RD_e, 0xff010101, &pos, fopAcM_GetRoomNo(a_this), &player->shape_angle, 0, -1);
+        fopAcM_create(fpcNm_E_RD_e, 0xff010102, &pos, fopAcM_GetRoomNo(a_this), &player->shape_angle, 0, -1);
     }
 }
 
@@ -3095,13 +3095,13 @@ static void wb_c_rd_reset(e_wb_class* i_this) {
         param = 0xff020300;
     }
     cXyz pos = a_this->current.pos;
-    fopAcM_create(PROC_E_RD, param | 1, &pos, fopAcM_GetRoomNo(a_this), 0, 0, -1);
-    fopAcM_create(PROC_E_RD, param | 2, &pos, fopAcM_GetRoomNo(a_this), 0, 0, -1);
+    fopAcM_create(fpcNm_E_RD_e, param | 1, &pos, fopAcM_GetRoomNo(a_this), 0, 0, -1);
+    fopAcM_create(fpcNm_E_RD_e, param | 2, &pos, fopAcM_GetRoomNo(a_this), 0, 0, -1);
 }
 
 static void* s_rddel_sub(void* param_0, void* param_1) {
     UNUSED(param_1);
-    if (fopAcM_IsActor(param_0) && fopAcM_GetName(param_0) == PROC_E_RD) {
+    if (fopAcM_IsActor(param_0) && fopAcM_GetName(param_0) == fpcNm_E_RD_e) {
         e_rd_class* rd = (e_rd_class*)param_0;
         if (rd->actor_set == 0) {
             fopAcM_delete((fopAc_ac_c*)param_0);
@@ -3114,7 +3114,7 @@ static int rd_count;
 
 static void* s_rdcount_sub(void* i_actor, void* i_data) {
     UNUSED(i_data);
-    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_E_RD) {
+    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == fpcNm_E_RD_e) {
         if (((e_rd_class*)i_actor)->actor_set == 0 &&
             (((e_rd_class*)i_actor)->arg1 == 1 || ((e_rd_class*)i_actor)->arg1 == 2))
         {
@@ -3126,7 +3126,7 @@ static void* s_rdcount_sub(void* i_actor, void* i_data) {
 
 static void* s_rddel2_sub(void* i_actor, void* i_data) {
     UNUSED(i_data);
-    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_E_RD) {
+    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == fpcNm_E_RD_e) {
         e_rd_class* rd = ((e_rd_class*)i_actor);
         fopAc_ac_c* r28 = fopAcM_SearchByID(rd->boar_id);
         if (r28 == i_data) {
@@ -3140,7 +3140,7 @@ static void e_wb_crv_wait(e_wb_class* i_this) {
     fopEn_enemy_c* a_this = &i_this->mEnemy;
     cXyz unused, unused2;
     fopAc_ac_c* player = dComIfGp_getPlayer(0);
-    fopAc_ac_c* king_bulblin = fopAcM_SearchByName(PROC_E_RDB);
+    fopAc_ac_c* king_bulblin = fopAcM_SearchByName(fpcNm_E_RDB_e);
     i_this->field_0x6a0 = 0x14;
 
     switch (i_this->mActionMode) {
@@ -3170,7 +3170,7 @@ static void e_wb_crv_wait(e_wb_class* i_this) {
 static s8 e_wb_c_run(e_wb_class* i_this) {
     fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;
     fopAc_ac_c* player = dComIfGp_getPlayer(0);
-    fopAc_ac_c* coach_ = fopAcM_SearchByName(PROC_NPC_COACH);
+    fopAc_ac_c* coach_ = fopAcM_SearchByName(fpcNm_NPC_COACH_e);
     fopAc_ac_c* coach = coach_;
     e_rd_class* rider = (e_rd_class*)fopAcM_SearchByID(i_this->field_0x1434);
 
@@ -3643,7 +3643,7 @@ static void action(e_wb_class* i_this) {
 
 static void* s_wbZrevise_sub(void* i_actor, void* i_data) {
     UNUSED(i_data);
-    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_E_WB) {
+    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == fpcNm_E_WB_e) {
         e_wb_class* a_this = static_cast<e_wb_class*>(i_actor);
         if (a_this->field_0x79d == 0) {
             a_this->mEnemy.current.pos = a_this->mEnemy.home.pos;
@@ -3655,7 +3655,7 @@ static void* s_wbZrevise_sub(void* i_actor, void* i_data) {
 
 static void* s_spd0_sub(void* i_actor, void* i_data) {
     UNUSED(i_data);
-    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_E_WB) {
+    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == fpcNm_E_WB_e) {
         e_wb_class* a_this = static_cast<e_wb_class*>(i_actor);
         if (a_this->field_0x79d == 0) {
             a_this->mEnemy.speedF = 0.0f;
@@ -3667,7 +3667,7 @@ static void* s_spd0_sub(void* i_actor, void* i_data) {
 
 static void* s_wbdel_sub(void* i_actor, void* i_data) {
     UNUSED(i_data);
-    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_E_WB) {
+    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == fpcNm_E_WB_e) {
         e_wb_class* a_this = static_cast<e_wb_class*>(i_actor);
         if (a_this->field_0x79d == 0) {
             fopAcM_delete((fopAc_ac_c*)i_actor);
@@ -3679,7 +3679,7 @@ static void* s_wbdel_sub(void* i_actor, void* i_data) {
 
 static void* s_rdArrowWait_sub(void* i_actor, void* i_data) {
     UNUSED(i_data);
-    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_E_RD) {
+    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == fpcNm_E_RD_e) {
         e_rd_class* a_this = static_cast<e_rd_class*>(i_actor);
         if (a_this->weapon_type == 2 || a_this->weapon_type == 3) {
             a_this->timer[1] = cM_rndF(20.0) + 3.0f;
@@ -3715,7 +3715,7 @@ static void demo_camera(e_wb_class* i_this) {
     if (i_this->field_0x169e != 0) {
         horse = (daHorse_c*)dComIfGp_getHorseActor();
         local_194 = (e_rd_class*)fopAcM_SearchByID(i_this->field_0x1434);
-        rdb = (e_rdb_class*)fopAcM_SearchByName(PROC_E_RDB);
+        rdb = (e_rdb_class*)fopAcM_SearchByName(fpcNm_E_RDB_e);
     }
     cXyz local_3c, cStack_48, cStack_54, cStack_60;
 
@@ -4566,7 +4566,7 @@ static void demo_camera(e_wb_class* i_this) {
         }
     } break;
     case 0x3e: {
-        daObjCRVSTEEL_c* crvSteel = (daObjCRVSTEEL_c*)fopAcM_SearchByName(PROC_Obj_CRVSTEEL);
+        daObjCRVSTEEL_c* crvSteel = (daObjCRVSTEEL_c*)fopAcM_SearchByName(fpcNm_Obj_CRVSTEEL_e);
         if (i_this->field_0x16a0 == (s16)(20 + AREG_S(4))) {
             crvSteel->OpenSet(20.0f + AREG_F(3), 350.0f + AREG_F(4));
             Z2GetAudioMgr()->seStart(Z2SE_OBJ_CRVN_URA_GATE, &crvSteel->current.pos, 0, 0, 1.0f,
@@ -4681,7 +4681,7 @@ static void demo_camera(e_wb_class* i_this) {
         cStack_48.set(1800.0f, player->current.pos.y, -192.0f);
         player->setPlayerPosAndAngle(&cStack_48, 0, 0);
         if (i_this->field_0x16a0 == (s16)(2 + VREG_S(1))) {
-            daObjCRVGATE_c* crvGate = (daObjCRVGATE_c*)fopAcM_SearchByName(PROC_Obj_CRVGATE);
+            daObjCRVGATE_c* crvGate = (daObjCRVGATE_c*)fopAcM_SearchByName(fpcNm_Obj_CRVGATE_e);
             crvGate->SetB_Close();
         }
 
@@ -4913,7 +4913,7 @@ static void demo_camera(e_wb_class* i_this) {
     } break;
     case 0x60: {
         if (i_this->field_0x16a0 >= 100) {
-            fopAc_ac_c* local_1b0 = fopAcM_SearchByName(PROC_NPC_COACH);
+            fopAc_ac_c* local_1b0 = fopAcM_SearchByName(fpcNm_NPC_COACH_e);
             a_this->current.pos = local_1b0->eyePos;
             a_this->current.pos.z = a_this->current.pos.z - VREG_F(17);
         }
@@ -4923,7 +4923,7 @@ static void demo_camera(e_wb_class* i_this) {
         }
     } break;
     case 0x61: {
-        fopAc_ac_c* local_1b4 = fopAcM_SearchByName(PROC_NPC_COACH);
+        fopAc_ac_c* local_1b4 = fopAcM_SearchByName(fpcNm_NPC_COACH_e);
         a_this->current.pos = local_1b4->eyePos;
         a_this->current.pos.z = a_this->current.pos.z - VREG_F(17);
         if (i_this->field_0x16a0 == 120) {
@@ -5371,9 +5371,9 @@ static int daE_WB_Execute(e_wb_class* i_this) {
                     fopAc_ac_c* hit_actor = dCc_GetAc(hit_obj->GetAc());
                     
                     if (hit_actor != NULL) {
-                        if (fopAcM_GetName(hit_actor) == PROC_E_RD) {
+                        if (fopAcM_GetName(hit_actor) == fpcNm_E_RD_e) {
                             i_this->mZ2Ride.startCreatureSound(Z2SE_EN_WB_RUNDOWN, 0, -1);
-                        } else if (fopAcM_GetName(hit_actor) == PROC_ALINK) {
+                        } else if (fopAcM_GetName(hit_actor) == fpcNm_ALINK_e) {
                             if (daPy_getPlayerActorClass()->checkPlayerGuard()) {
                                 dComIfGp_getVibration().StartShock(4, 0x1f, cXyz(0.0f, 1.0f, 0.0f));
                             }
@@ -5640,7 +5640,7 @@ static int daE_WB_Create(fopAc_ac_c* i_this) {
             }
 
             if (a_this->field_0x79d == 1 || a_this->field_0x79d == 2) {
-                fopAcM_createChild(PROC_OBJ_WFLAG, fopAcM_GetID(i_this), 0, &i_this->current.pos,
+                fopAcM_createChild(fpcNm_OBJ_WFLAG_e, fopAcM_GetID(i_this), 0, &i_this->current.pos,
                                    fopAcM_GetRoomNo(i_this), 0, 0, -1, 0);
             }
 
@@ -5799,20 +5799,20 @@ static actor_method_class l_daE_WB_Method = {
 };
 
 actor_process_profile_definition g_profile_E_WB = {
-    fpcLy_CURRENT_e,         // mLayerID
-    4,                       // mListID
-    fpcPi_CURRENT_e,         // mListPrio
-    PROC_E_WB,               // mProcName
-    &g_fpcLf_Method.base,    // sub_method
-    sizeof(e_wb_class),      // mSize
-    0,                       // mSizeOther
-    0,                       // mParameters
-    &g_fopAc_Method.base,    // sub_method
-    152,                     // mPriority
-    &l_daE_WB_Method,        // sub_method
-    0x00044100,              // mStatus
-    fopAc_ENEMY_e,           // mActorType
-    fopAc_CULLBOX_CUSTOM_e,  // cullType
+    /* Layer ID     */ fpcLy_CURRENT_e,
+    /* List ID      */ 4,
+    /* List Prio    */ fpcPi_CURRENT_e,
+    /* Proc Name    */ fpcNm_E_WB_e,
+    /* Proc SubMtd  */ &g_fpcLf_Method.base,
+    /* Size         */ sizeof(e_wb_class),
+    /* Size Other   */ 0,
+    /* Parameters   */ 0,
+    /* Leaf SubMtd  */ &g_fopAc_Method.base,
+    /* Draw Prio    */ fpcDwPi_E_WB_e,
+    /* Actor SubMtd */ &l_daE_WB_Method,
+    /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_UNK_0x4000_e | fopAcStts_CULL_e,
+    /* Group        */ fopAc_ENEMY_e,
+    /* Cull Type    */ fopAc_CULLBOX_CUSTOM_e,
 };
 
 AUDIO_INSTANCES;

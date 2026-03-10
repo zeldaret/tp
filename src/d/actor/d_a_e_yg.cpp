@@ -246,7 +246,7 @@ static int target_info_count;
 static void* s_d_sub(void* i_actor, void* i_data) {
     daObjCarry_c* actor = (daObjCarry_c*)i_actor;
     
-    if (fopAcM_IsActor(actor) && fopAcM_GetName(actor) == PROC_Obj_Carry && actor->getType() == 5 && target_info_count < 20) {
+    if (fopAcM_IsActor(actor) && fopAcM_GetName(actor) == fpcNm_Obj_Carry_e && actor->getType() == 5 && target_info_count < 20) {
         target_info[target_info_count] = actor;
         target_info_count++;
     }
@@ -441,7 +441,7 @@ static s8 e_yg_attack(e_yg_class* i_this) {
 
             if (i_this->mPlayerDist < TREG_F(4) + 300.0f) {
                 /* If Phantom Zant actor exists */
-                if (fopAcM_SearchByName(PROC_E_PZ) != NULL) {
+                if (fopAcM_SearchByName(fpcNm_E_PZ_e) != NULL) {
                     i_this->mTimers[0] = fopAcM_GetID(actor) & 0x1F;
                     i_this->mActionMode = ATTACK_MODE_23;
                     anm_init(i_this, BCK_YG_WAIT, 3.0f, J3DFrameCtrl::EMode_LOOP, 1.0f);
@@ -1425,7 +1425,7 @@ static cPhs_Step daE_YG_Create(fopAc_ac_c* actor) {
         i_this->mDistance = l_HIO.pl_recognition_dist;
 
         /* If Phantom Zant actor exists */
-        if (fopAcM_SearchByName(PROC_E_PZ) != 0) {
+        if (fopAcM_SearchByName(fpcNm_E_PZ_e) != 0) {
             i_this->mDistance = 10000.0f;
             i_this->mUnkFlag2 = 1;
         }
@@ -1447,18 +1447,18 @@ static actor_method_class l_daE_YG_Method = {
 };
 
 actor_process_profile_definition g_profile_E_YG = {
-  fpcLy_CURRENT_e,       // mLayerID
-  7,                     // mListID
-  fpcPi_CURRENT_e,       // mListPrio
-  PROC_E_YG,             // mProcName
-  &g_fpcLf_Method.base, // sub_method
-  sizeof(e_yg_class),    // mSize
-  0,                     // mSizeOther
-  0,                     // mParameters
-  &g_fopAc_Method.base,  // sub_method
-  190,                   // mPriority
-  &l_daE_YG_Method,      // sub_method
-  0x00050120,            // mStatus
-  fopAc_ENEMY_e,         // mActorType
-  fopAc_CULLBOX_0_e,     // cullType
+    /* Layer ID     */ fpcLy_CURRENT_e,
+    /* List ID      */ 7,
+    /* List Prio    */ fpcPi_CURRENT_e,
+    /* Proc Name    */ fpcNm_E_YG_e,
+    /* Proc SubMtd  */ &g_fpcLf_Method.base,
+    /* Size         */ sizeof(e_yg_class),
+    /* Size Other   */ 0,
+    /* Parameters   */ 0,
+    /* Leaf SubMtd  */ &g_fopAc_Method.base,
+    /* Draw Prio    */ fpcDwPi_E_YG_e,
+    /* Actor SubMtd */ &l_daE_YG_Method,
+    /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_UNK_0x10000_e | fopAcStts_CULL_e | fopAcStts_UNK_0x20_e,
+    /* Group        */ fopAc_ENEMY_e,
+    /* Cull Type    */ fopAc_CULLBOX_0_e,
 };

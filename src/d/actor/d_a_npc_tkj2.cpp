@@ -1,6 +1,6 @@
 /**
  * @file d_a_npc_tkj2.cpp
- * 
+ *
 */
 
 #include "d/dolzel_rel.h" // IWYU pragma: keep
@@ -207,7 +207,7 @@ static void CheckRoof(npc_tkj2_class* i_this) {
     for (int i = 0; i < 4; i++) {
         cLib_offsetPos(&end, &a_this->current.pos, a_this->shape_angle.y + i * 0x4000, &spc8);
         lin_chk.Set(&a_this->current.pos, &end, NULL);
-        
+
         if (dComIfG_Bgsp().LineCross(&lin_chk)) {
             cM3dGPla plane;
             dComIfG_Bgsp().GetTriPla(lin_chk, &plane);
@@ -361,7 +361,7 @@ static void npc_tkj2_normal(npc_tkj2_class* i_this) {
         case 10:
             fVar1 = 5.0f;
             sp50.set(0.0f, 100.0f, 100.0f);
-            
+
             if (GndCheck(i_this, sp50)) {
                 i_this->field_0x60a = 1;
                 i_this->field_0x610[0] = 0;
@@ -488,7 +488,7 @@ static s8 npc_tkj2_carry(npc_tkj2_class* i_this) {
         a_this->home.pos = return_pos_get(i_this);
     }
 
-    
+
     if (fopAcM_checkCarryNow(a_this)) {
         if (daPy_getLinkPlayerActorClass()->checkAutoJump()) {
             if (strcmp(dComIfGp_getStartStageName(), "D_MN07") == 0 && fopAcM_GetRoomNo(a_this) == 1) {
@@ -496,7 +496,7 @@ static s8 npc_tkj2_carry(npc_tkj2_class* i_this) {
             }
         }
     }
-    
+
     return rv;
 }
 
@@ -513,7 +513,7 @@ static void npc_tkj2_fly(npc_tkj2_class* i_this) {
             fVar1 = 1.0f;
             i_this->field_0x5b8 = a_this->home.pos;
             break;
-        
+
         case 1:
             fVar1 = 0.3f;
             break;
@@ -567,7 +567,7 @@ static void npc_tkj2_drop(npc_tkj2_class* i_this) {
         i_this->field_0x60a = 0;
         a_this->home.pos = a_this->current.pos;
     }
-    
+
     cLib_addCalc2(&a_this->speedF, 20.0f, 0.5f, 10.0f);
 }
 static void npc_tkj2_return(npc_tkj2_class* i_this) {
@@ -644,7 +644,7 @@ static void npc_tkj2_return(npc_tkj2_class* i_this) {
 
 static void ObjHit(npc_tkj2_class* i_this) {
     fopAc_ac_c* a_this = &i_this->actor;
-    
+
     i_this->field_0x620--;
     if (i_this->field_0x620 <= 0) {
         i_this->field_0x620 = 0;
@@ -777,7 +777,7 @@ static void action(npc_tkj2_class* i_this) {
         i_this->field_0xa8c = 1;
     }
 
-    if (fopAcM_CheckStatus(a_this, fopAcM_STATUS_HOOK_CARRY_NOW)) {
+    if (fopAcM_CheckStatus(a_this, fopAcStts_HOOK_CARRY_NOW_e)) {
         i_this->field_0x5ea = 1;
     } else if (i_this->field_0x5ea != 0) {
         i_this->field_0x5ea = 0;
@@ -840,7 +840,7 @@ static void action(npc_tkj2_class* i_this) {
 
     if (!fopAcM_checkCarryNow(a_this)) {
         cXyz* ccMoveP = i_this->mStts.GetCCMoveP();
-        
+
         if (ccMoveP != NULL) {
             a_this->current.pos.x += ccMoveP->x;
             a_this->current.pos.y += ccMoveP->y;
@@ -881,7 +881,7 @@ static void action(npc_tkj2_class* i_this) {
         if (sVar7 < 0x4000 && sVar7 > -0x4000) {
             sVar3 = cM_atan2s(sp38.x, sp38.z) - a_this->shape_angle.y;
             sVar4 = (s16)cM_atan2s(sp38.y, JMAFastSqrt(sp38.x * sp38.x + sp38.z * sp38.z));
-            
+
             if (sVar3 > sVar6) {
                 sVar3 = sVar6;
             } else if (sVar3 < -sVar6) {
@@ -986,7 +986,7 @@ static int daNpc_Tkj2_Execute(npc_tkj2_class* i_this) {
 
     mDoMtx_stack_c::ZXYrotM(a_this->shape_angle);
     mDoMtx_stack_c::scaleM(l_HIO.basic_size, l_HIO.basic_size, l_HIO.basic_size);
-    
+
     J3DModel* model = i_this->mpModelMorf->getModel();
     model->setBaseTRMtx(mDoMtx_stack_c::get());
     i_this->mpModelMorf->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(a_this)));
@@ -1158,18 +1158,18 @@ static actor_method_class l_daNpc_Tkj2_Method = {
 };
 
 actor_process_profile_definition g_profile_NPC_TKJ2 = {
-  fpcLy_CURRENT_e,        // mLayerID
-  7,                      // mListID
-  fpcPi_CURRENT_e,        // mListPrio
-  PROC_NPC_TKJ2,          // mProcName
-  &g_fpcLf_Method.base,  // sub_method
-  sizeof(npc_tkj2_class), // mSize
-  0,                      // mSizeOther
-  0,                      // mParameters
-  &g_fopAc_Method.base,   // sub_method
-  696,                    // mPriority
-  &l_daNpc_Tkj2_Method,   // sub_method
-  0x000C4000,             // mStatus
-  fopAc_ACTOR_e,          // mActorType
-  fopAc_CULLBOX_0_e,      // cullType
+    /* Layer ID     */ fpcLy_CURRENT_e,
+    /* List ID      */ 7,
+    /* List Prio    */ fpcPi_CURRENT_e,
+    /* Proc Name    */ fpcNm_NPC_TKJ2_e,
+    /* Proc SubMtd  */ &g_fpcLf_Method.base,
+    /* Size         */ sizeof(npc_tkj2_class),
+    /* Size Other   */ 0,
+    /* Parameters   */ 0,
+    /* Leaf SubMtd  */ &g_fopAc_Method.base,
+    /* Draw Prio    */ fpcDwPi_NPC_TKJ2_e,
+    /* Actor SubMtd */ &l_daNpc_Tkj2_Method,
+    /* Status       */ fopAcStts_UNK_0x80000_e | fopAcStts_UNK_0x40000_e | fopAcStts_UNK_0x4000_e,
+    /* Group        */ fopAc_ACTOR_e,
+    /* Cull Type    */ fopAc_CULLBOX_0_e,
 };

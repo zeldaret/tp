@@ -162,7 +162,7 @@ void daObjMovebox::Bgc_c::gnd_pos(const daObjMovebox::Act_c* i_actor,
 #endif
         if (field_0x0[i] > var_f31) {
             fopAc_ac_c* bg_actor = dComIfG_Bgsp().GetActorPointer(M_gnd_work[i]);
-            if (bg_actor == NULL || fopAcM_GetName(bg_actor) != PROC_Obj_Movebox ||
+            if (bg_actor == NULL || fopAcM_GetName(bg_actor) != fpcNm_Obj_Movebox_e ||
                 ((daObjMovebox::Act_c*)bg_actor)->field_0x5ac != 2)
             {
                 var_f31 = field_0x0[i];
@@ -660,7 +660,7 @@ void daObjMovebox::Act_c::RideCallBack(dBgW* i_bgw, fopAc_ac_c* i_actor, fopAc_a
         var_f29 = i_rideActor->current.pos.x - a_this->current.pos.x;
         var_f28 = i_rideActor->current.pos.z - a_this->current.pos.z;
 
-        if (fopAcM_GetProfName(i_rideActor) == PROC_ALINK) {
+        if (fopAcM_GetProfName(i_rideActor) == fpcNm_ALINK_e) {
             var_f30 = a_this->attr().mPlayerGravity;
             var_f27 = a_this->attr().field_0x74 * a_this->attr().mPlayerTiltPower;
         } else {
@@ -684,7 +684,7 @@ void daObjMovebox::Act_c::RideCallBack(dBgW* i_bgw, fopAc_ac_c* i_actor, fopAc_a
 
         a_this->field_0x8c0 += var_f27 * var_f29;
         a_this->field_0x8c4 += var_f27 * var_f28;
-    } else if (fopAcM_GetProfName(i_rideActor) == PROC_Obj_Movebox) {
+    } else if (fopAcM_GetProfName(i_rideActor) == fpcNm_Obj_Movebox_e) {
         cLib_onBit<daObjMovebox::Bgc_c::State_e>(a_this->mBgc.mState,
                                                  daObjMovebox::Bgc_c::STATE_40_e);
     }
@@ -1203,12 +1203,12 @@ int daObjMovebox::Act_c::Execute(Mtx** param_0) {
                 u32 params;
                 daObjBurnBox_c::make_prm_burnBox(&params, 1);
 
-                fopAcM_createChild(PROC_Obj_BurnBox, fopAcM_GetID(this), params, &current.pos,
+                fopAcM_createChild(fpcNm_Obj_BurnBox_e, fopAcM_GetID(this), params, &current.pos,
                                    fopAcM_GetRoomNo(this), &shape_angle, &scale, -1, NULL);
                 field_0x908 = 5;
             } else if (hit_obj->ChkAtType(AT_TYPE_BOMB) || hit_obj->ChkAtType(AT_TYPE_IRON_BALL)) {
                 fopAc_ac_c* hit_ac = mCcCyl.GetTgHitAc();
-                if (hit_ac != NULL && fopAcM_GetProfName(hit_ac) != PROC_Obj_Carry) {
+                if (hit_ac != NULL && fopAcM_GetProfName(hit_ac) != fpcNm_Obj_Carry_e) {
                     cXyz sp48(current.pos);
                     J3DModelData* kibako_bmd =
                         (J3DModelData*)dComIfG_getObjectRes("Always", "BreakWoodBox.bmd");
@@ -1413,18 +1413,18 @@ static actor_method_class Mthd_Table = {
 };  // namespace daObjMovebox
 
 actor_process_profile_definition g_profile_Obj_Movebox = {
-    fpcLy_CURRENT_e,              // mLayerID
-    3,                            // mListID
-    fpcPi_CURRENT_e,              // mListPrio
-    PROC_Obj_Movebox,             // mProcName
-    &g_fpcLf_Method.base,        // sub_method
-    sizeof(daObjMovebox::Act_c),  // mSize
-    0,                            // mSizeOther
-    0,                            // mParameters
-    &g_fopAc_Method.base,         // sub_method
-    17,                           // mPriority
-    &daObjMovebox::Mthd_Table,    // sub_method
-    0x00040504,                   // mStatus
-    fopAc_ACTOR_e,                // mActorType
-    fopAc_CULLBOX_CUSTOM_e,       // cullType
+    /* Layer ID     */ fpcLy_CURRENT_e,
+    /* List ID      */ 3,
+    /* List Prio    */ fpcPi_CURRENT_e,
+    /* Proc Name    */ fpcNm_Obj_Movebox_e,
+    /* Proc SubMtd  */ &g_fpcLf_Method.base,
+    /* Size         */ sizeof(daObjMovebox::Act_c),
+    /* Size Other   */ 0,
+    /* Parameters   */ 0,
+    /* Leaf SubMtd  */ &g_fopAc_Method.base,
+    /* Draw Prio    */ fpcDwPi_Obj_Movebox_e,
+    /* Actor SubMtd */ &daObjMovebox::Mthd_Table,
+    /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_FREEZE_e | fopAcStts_CULL_e | fopAcStts_UNK_0x4_e,
+    /* Group        */ fopAc_ACTOR_e,
+    /* Cull Type    */ fopAc_CULLBOX_CUSTOM_e,
 };

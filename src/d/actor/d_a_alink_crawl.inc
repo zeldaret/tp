@@ -476,7 +476,7 @@ void daAlink_c::setCrawlAutoMoveAimPos() {
 }
 
 int daAlink_c::procCrawlStartInit() {
-    if (mEquipItem != fpcNm_ITEM_NONE) {
+    if (mEquipItem != dItemNo_NONE_e) {
         return procPreActionUnequipInit(PROC_CRAWL_START, NULL);
     }
 

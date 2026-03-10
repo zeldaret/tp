@@ -756,7 +756,7 @@ void daE_HP_c::executeDead() {
             fopAcM_delete(this);
         } else {
             if (field_0x784 == -1) {
-                field_0x784 = fopAcM_createItemForPresentDemo(&current.pos, fpcNm_ITEM_POU_SPIRIT, 0, -1,
+                field_0x784 = fopAcM_createItemForPresentDemo(&current.pos, dItemNo_POU_SPIRIT_e, 0, -1,
                                                               -1, 0, 0);
             }
 
@@ -1318,18 +1318,18 @@ static actor_method_class l_daE_HP_Method = {
 };
 
 actor_process_profile_definition g_profile_E_HP = {
-    fpcLy_CURRENT_e,         // mLayerID
-    7,                       // mListID
-    fpcPi_CURRENT_e,         // mListPrio
-    PROC_E_HP,               // mProcName
-    &g_fpcLf_Method.base,    // sub_method
-    sizeof(daE_HP_c),        // mSize
-    0,                       // mSizeOther
-    0,                       // mParameters
-    &g_fopAc_Method.base,    // sub_method
-    172,                     // mPriority
-    &l_daE_HP_Method,        // sub_method
-    0x00040100,              // mStatus
-    fopAc_ENEMY_e,           // mActorType
-    fopAc_CULLBOX_CUSTOM_e,  // cullType
+    /* Layer ID     */ fpcLy_CURRENT_e,
+    /* List ID      */ 7,
+    /* List Prio    */ fpcPi_CURRENT_e,
+    /* Proc Name    */ fpcNm_E_HP_e,
+    /* Proc SubMtd  */ &g_fpcLf_Method.base,
+    /* Size         */ sizeof(daE_HP_c),
+    /* Size Other   */ 0,
+    /* Parameters   */ 0,
+    /* Leaf SubMtd  */ &g_fopAc_Method.base,
+    /* Draw Prio    */ fpcDwPi_E_HP_e,
+    /* Actor SubMtd */ &l_daE_HP_Method,
+    /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_CULL_e,
+    /* Group        */ fopAc_ENEMY_e,
+    /* Cull Type    */ fopAc_CULLBOX_CUSTOM_e,
 };

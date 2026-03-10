@@ -417,7 +417,7 @@ f32 daKago_c::checkRoofHeight(cXyz i_pos) {
 
         if (std::abs(current.pos.y - roof_height) < 310.0f) {
             fopAc_ac_c* actor = dComIfG_Bgsp().GetActorPointer(roofChk);
-            if (actor != NULL && fopAcM_GetName(actor) == PROC_Obj_RIVERROCK) {
+            if (actor != NULL && fopAcM_GetName(actor) == fpcNm_Obj_RIVERROCK_e) {
                 if (((daObjRIVERROCK_c*)actor)->mBreakSubAction == daObjRIVERROCK_c::BREAK_MOVE) {
                     field_0x6e5 = 1;
                 }
@@ -697,7 +697,7 @@ int daKago_c::setSceneChange(int i_mode) {
 
 void daKago_c::createBalloonScore() {
     if (mType != TYPE_TWILIGHT && mBalloon2DId == fpcM_ERROR_PROCESS_ID_e) {
-        mBalloon2DId = fopAcM_create(PROC_BALLOON2D, 0, NULL, -1, NULL, NULL, -1);
+        mBalloon2DId = fopAcM_create(fpcNm_BALLOON2D_e, 0, NULL, -1, NULL, NULL, -1);
         field_0x6e9 = 1;
     }
 }
@@ -724,7 +724,7 @@ void daKago_c::endBalloonScore() {
             ((daBalloon2D_c*)balloon2D)->hide();
         }
 
-        fopAcM_SearchByName(PROC_OBJ_BALLOON, &balloonObj);
+        fopAcM_SearchByName(fpcNm_OBJ_BALLOON_e, &balloonObj);
         if (balloonObj != NULL) {
             ((daObj_Balloon_c*)balloonObj)->saveBestScore();
         }
@@ -1575,7 +1575,7 @@ void daKago_c::executeAttack() {
         mpLockActor = NULL;
         if (dComIfGp_getAttention()->LockonTruth()) {
             fopAc_ac_c* ym = dComIfGp_getAttention()->LockonTarget(0);
-            if (fopAcM_GetName(ym) != PROC_E_YM) {
+            if (fopAcM_GetName(ym) != fpcNm_E_YM_e) {
                 break;
             }
 
@@ -3445,7 +3445,7 @@ void daKago_c::setWaterFallEffect() {
 }
 
 static void* s_waterfall(void* i_actor, void* i_data) {
-    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == PROC_Tag_WaterFall) {
+    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == fpcNm_Tag_WaterFall_e) {
         if (!fpcM_IsCreating(fopAcM_GetID(i_actor))) {
             if (((daTagWaterFall_c*)i_actor)->checkHitWaterFall(((fopAc_ac_c*)i_data)->current.pos))
             {
@@ -3888,18 +3888,18 @@ static actor_method_class l_daKago_Method = {
 };
 
 actor_process_profile_definition g_profile_KAGO = {
-    fpcLy_CURRENT_e,        // mLayerID
-    4,                      // mListID
-    fpcPi_CURRENT_e,        // mListPrio
-    PROC_KAGO,              // mProcName
-    &g_fpcLf_Method.base,  // sub_method
-    sizeof(daKago_c),       // mSize
-    0,                      // mSizeOther
-    0,                      // mParameters
-    &g_fopAc_Method.base,   // sub_method
-    693,                    // mPriority
-    &l_daKago_Method,       // sub_method
-    0x00044000,             // mStatus
-    fopAc_NPC_e,            // mActorType
-    fopAc_CULLBOX_CUSTOM_e, // cullType
+    /* Layer ID     */ fpcLy_CURRENT_e,
+    /* List ID      */ 4,
+    /* List Prio    */ fpcPi_CURRENT_e,
+    /* Proc Name    */ fpcNm_KAGO_e,
+    /* Proc SubMtd  */ &g_fpcLf_Method.base,
+    /* Size         */ sizeof(daKago_c),
+    /* Size Other   */ 0,
+    /* Parameters   */ 0,
+    /* Leaf SubMtd  */ &g_fopAc_Method.base,
+    /* Draw Prio    */ fpcDwPi_KAGO_e,
+    /* Actor SubMtd */ &l_daKago_Method,
+    /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_UNK_0x4000_e,
+    /* Group        */ fopAc_NPC_e,
+    /* Cull Type    */ fopAc_CULLBOX_CUSTOM_e,
 };

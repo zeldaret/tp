@@ -280,20 +280,20 @@ static actor_method_class daYkgrMethodTable = {
 };
 
 actor_process_profile_definition g_profile_Ykgr = {
-    fpcLy_CURRENT_e,
-    7,
-    fpcPi_CURRENT_e,
-    PROC_Ykgr,
-    &g_fpcLf_Method.base,
-    sizeof(daYkgr_c),
-    0,
-    0,
-    &g_fopAc_Method.base,
-    0x01AE,
-    &daYkgrMethodTable,
-    0x00044000,
-    0,
-    0,
+    /* Layer ID     */ fpcLy_CURRENT_e,
+    /* List ID      */ 7,
+    /* List Prio    */ fpcPi_CURRENT_e,
+    /* Proc Name    */ fpcNm_Ykgr_e,
+    /* Proc SubMtd  */ &g_fpcLf_Method.base,
+    /* Size         */ sizeof(daYkgr_c),
+    /* Size Other   */ 0,
+    /* Parameters   */ 0,
+    /* Leaf SubMtd  */ &g_fopAc_Method.base,
+    /* Draw Prio    */ fpcDwPi_Ykgr_e,
+    /* Actor SubMtd */ &daYkgrMethodTable,
+    /* Status       */ fopAcStts_UNK_0x40000_e | fopAcStts_UNK_0x4000_e,
+    /* Group        */ fopAc_ACTOR_e,
+    /* Cull Type    */ 0,
 };
 
 AUDIO_INSTANCES;

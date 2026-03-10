@@ -1,6 +1,6 @@
 /**
  * @file d_a_e_bg.cpp
- * 
+ *
 */
 
 #include "d/dolzel_rel.h" // IWYU pragma: keep
@@ -227,7 +227,7 @@ void daE_BG_c::setSparkEffect() {
 }
 
 fopAc_ac_c* daE_BG_c::search_esa() {
-    dmg_rod_class* rod = (dmg_rod_class*)fopAcM_SearchByName(PROC_MG_ROD);
+    dmg_rod_class* rod = (dmg_rod_class*)fopAcM_SearchByName(fpcNm_MG_ROD_e);
     if (rod != NULL && rod->kind == 1 && rod->action != 5 && rod->is_hook_in_water != 0 &&
         rod->actor.current.pos.y < rod->water_surface_y - 20.0f) {
         return &rod->actor;
@@ -286,7 +286,7 @@ void daE_BG_c::executeBorn() {
         }
 
         if (field_0x68f == 0) {
-            mBgId = fopAcM_createChild(PROC_E_BG, fopAcM_GetID(this), 0xffffff02, &current.pos,
+            mBgId = fopAcM_createChild(fpcNm_E_BG_e, fopAcM_GetID(this), 0xffffff02, &current.pos,
                                            fopAcM_GetRoomNo(this), &shape_angle, NULL, -1, NULL);
             mMoveMode = 3;
         }
@@ -328,7 +328,7 @@ void daE_BG_c::executeSwim() {
                         setActionMode(2, 0);
                         return;
                     }
-                } else if (dComIfGp_checkPlayerStatus0(0, fopAcM_STATUS_HOOK_CARRY_NOW)) {
+                } else if (dComIfGp_checkPlayerStatus0(0, fopAcStts_HOOK_CARRY_NOW_e)) {
                     setActionMode(2, 0);
                     return;
                 }
@@ -446,7 +446,7 @@ void daE_BG_c::executeAttack() {
                 return;
             }
         } else {
-            if (!dComIfGp_checkPlayerStatus0(0, fopAcM_STATUS_HOOK_CARRY_NOW)) {
+            if (!dComIfGp_checkPlayerStatus0(0, fopAcStts_HOOK_CARRY_NOW_e)) {
                 setActionMode(1, 0);
                 return;
             }
@@ -471,7 +471,7 @@ void daE_BG_c::executeAttack() {
         cLib_chaseF(&speedF, l_HIO.mTrackingSpeed * cM_scos(shape_angle.x), 1.0f);
         cLib_chaseF(&speed.y, l_HIO.mTrackingSpeed * cM_ssin(shape_angle.x), 1.0f);
 
-        if (!dComIfGp_checkPlayerStatus0(0, fopAcM_STATUS_HOOK_CARRY_NOW)) {
+        if (!dComIfGp_checkPlayerStatus0(0, fopAcStts_HOOK_CARRY_NOW_e)) {
             if (daPy_getPlayerActorClass()->checkEquipHeavyBoots()) {
                 mMoveMode = 1;
                 field_0x69a = cM_rndFX(8192.0f);
@@ -480,7 +480,7 @@ void daE_BG_c::executeAttack() {
 
         if (mAtSphere.ChkAtHit()) {
             fopAc_ac_c* hitActor = dCc_GetAc(mAtSphere.GetAtHitObj()->GetAc());
-            if (fopAcM_GetName(hitActor) == PROC_ALINK) {
+            if (fopAcM_GetName(hitActor) == fpcNm_ALINK_e) {
                 mMoveMode = 10;
                 field_0x68f = 30;
                 speedF = cM_rndFX(1.0f) + -5.0f;
@@ -542,7 +542,7 @@ void daE_BG_c::executeAttack() {
             field_0x6ae = 0;
         }
 
-        if (dComIfGp_checkPlayerStatus0(0, fopAcM_STATUS_HOOK_CARRY_NOW)) {
+        if (dComIfGp_checkPlayerStatus0(0, fopAcStts_HOOK_CARRY_NOW_e)) {
             mMoveMode = 0;
             break;
         }
@@ -583,7 +583,7 @@ void daE_BG_c::executeAttack() {
         cLib_chaseF(&speedF, 0.0f, 1.0f);
         cLib_chaseF(&speed.y, 0.0f, 1.0f);
 
-        if (dComIfGp_checkPlayerStatus0(0, fopAcM_STATUS_HOOK_CARRY_NOW)) {
+        if (dComIfGp_checkPlayerStatus0(0, fopAcStts_HOOK_CARRY_NOW_e)) {
             mMoveMode = 0;
         } else {
             if (field_0x68f == 0) {
@@ -635,7 +635,7 @@ void daE_BG_c::executeAttack() {
 
         if (mAtSphere.ChkAtHit()) {
             fopAc_ac_c* hitActor = dCc_GetAc(mAtSphere.GetAtHitObj()->GetAc());
-            if (fopAcM_GetName(hitActor) == PROC_ALINK) {
+            if (fopAcM_GetName(hitActor) == fpcNm_ALINK_e) {
                 mMoveMode = 5;
                 field_0x68f = 30;
 
@@ -1420,18 +1420,18 @@ static actor_method_class l_daE_BG_Method = {
 };
 
 actor_process_profile_definition g_profile_E_BG = {
-    fpcLy_CURRENT_e,        // mLayerID
-    7,                      // mListID
-    fpcPi_CURRENT_e,        // mListPrio
-    PROC_E_BG,              // mProcName
-    &g_fpcLf_Method.base,  // sub_method
-    sizeof(daE_BG_c),       // mSize
-    0,                      // mSizeOther
-    0,                      // mParameters
-    &g_fopAc_Method.base,   // sub_method
-    204,                    // mPriority
-    &l_daE_BG_Method,       // sub_method
-    0x000D0100,             // mStatus
-    fopAc_ENEMY_e,          // mActorType
-    fopAc_CULLBOX_CUSTOM_e, // cullType
-  };
+    /* Layer ID     */ fpcLy_CURRENT_e,
+    /* List ID      */ 7,
+    /* List Prio    */ fpcPi_CURRENT_e,
+    /* Proc Name    */ fpcNm_E_BG_e,
+    /* Proc SubMtd  */ &g_fpcLf_Method.base,
+    /* Size         */ sizeof(daE_BG_c),
+    /* Size Other   */ 0,
+    /* Parameters   */ 0,
+    /* Leaf SubMtd  */ &g_fopAc_Method.base,
+    /* Draw Prio    */ fpcDwPi_E_BG_e,
+    /* Actor SubMtd */ &l_daE_BG_Method,
+    /* Status       */ fopAcStts_UNK_0x80000_e | fopAcStts_UNK_0x40000_e | fopAcStts_UNK_0x10000_e | fopAcStts_CULL_e,
+    /* Group        */ fopAc_ENEMY_e,
+    /* Cull Type    */ fopAc_CULLBOX_CUSTOM_e,
+};
