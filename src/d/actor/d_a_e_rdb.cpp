@@ -531,7 +531,7 @@ static void e_rdb_end(e_rdb_class* i_this) {
         anm_init(i_this, e_rdb_class::BCK_RB_ED_DEMO_DOWN, 2.0f, 0, 1.0f);
         i_this->mMode = 1;
         if (actor != NULL) {
-            actor->field_0x169e = 60;
+            actor->demo_mode = 60;
         }
         break;
 
@@ -580,12 +580,12 @@ static void e_rdb_end(e_rdb_class* i_this) {
         break;
 
     case 10:
-        if ((((actor->mActionID == 102 && actor->mEnemy.speedF > 40.0f) &&
+        if ((((actor->action == 102 && actor->enemy.speedF > 40.0f) &&
               player->current.pos.x > 1470.0f && player->current.pos.x < 2130.0f)) &&
             ((player->current.pos.z < 200.0f) &&
              (player->shape_angle.y > 0x7000 || player->shape_angle.y < -0x7000)))
         {
-            actor->field_0x169e = 80;
+            actor->demo_mode = 80;
             i_this->mMode = 11;
         }
         // [[fallthrough]]

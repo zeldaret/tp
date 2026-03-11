@@ -918,7 +918,7 @@ BOOL daNpcTheB_c::doEvent() {
                     rv = TRUE;
                 } else {
                     wb_p = (e_wb_class*)fopAcM_SearchByName(fpcNm_E_WB_e);
-                    if (wb_p->field_0x169e == 0x60 && wb_p->field_0x16a0 == 1) {
+                    if (wb_p->demo_mode == 0x60 && wb_p->demo_timer == 1) {
                         mPersonalCombatAfterFlag = 1;
                         EvCut_PersonalCombatAfter();
                         rv = TRUE;

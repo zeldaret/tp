@@ -97,7 +97,7 @@ void daObjCRVLH_DW_c::Obj_Hit() {
         if (mCyl.ChkCoHit() != 0) {
             fopAc_ac_c* actor = mCyl.GetCoHitObj()->GetAc();
             if (fopAcM_GetName(dCc_GetAc(actor)) == fpcNm_E_WB_e &&
-                ((e_wb_class*)actor)->mActionID == ACT_PL_RIDE2)
+                ((e_wb_class*)actor)->action == ACT_PL_RIDE2)
             {
                 Break();
             }

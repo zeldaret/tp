@@ -172,10 +172,10 @@ static void* s_obj_sub(void* i_actor, void* i_data) {
 void daObjCRVFENCE_c::NormalAction() {
     if (!field_0x5f4) {
         e_wb_class* wb_p = (e_wb_class*)fpcM_Search(s_obj_sub, this);
-        if (wb_p != NULL && wb_p->mActionID == ACT_PL_RIDE2) {
+        if (wb_p != NULL && wb_p->action == ACT_PL_RIDE2) {
             fopAcM_OffStatus(this, fopAcStts_CULL_e);
             fopAcM_seStartCurrent(this, Z2SE_OBJ_SAKU_BREAK, 0);
-            cXyz sp5c(fopAcM_GetPosition(&wb_p->mEnemy));
+            cXyz sp5c(fopAcM_GetPosition(&wb_p->enemy));
             Mtx mtx;
             mDoMtx_inverse(field_0x65c->getBaseTRMtx(), mtx);
             mDoMtx_stack_c::copy(mtx);
