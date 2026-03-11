@@ -37,6 +37,11 @@ static dCcD_SrcCyl l_cyl_src = {
 };
 
 #if DEBUG
+daTagAtkItem_HIO_c::daTagAtkItem_HIO_c() {
+    field_0x8 = 0.0f;
+    show_range = 0;
+}
+
 void daTagAtkItem_HIO_c::genMessage(JORMContext* ctx) {
     // "Attack reaction item"
     ctx->genLabel("攻撃反応アイテム", 0);
@@ -59,11 +64,6 @@ int daTagAtkItem_c::Create() {
 
     current.pos.y = home.pos.y - scale.y * 100.0f;
     return 1;
-}
-
-daTagAtkItem_HIO_c::daTagAtkItem_HIO_c() {
-    field_0x8 = 0.0f;
-    show_range = 0;
 }
 
 int daTagAtkItem_c::create() {

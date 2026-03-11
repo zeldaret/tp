@@ -150,6 +150,9 @@ daNpcChin_HIO_c::daNpcChin_HIO_c() {
     m = daNpcChin_Param_c::m;
 }
 
+daNpcChin_HIO_c::~daNpcChin_HIO_c() {
+}
+
 void daNpcChin_HIO_c::genMessage(JORMContext* ctx) {
     daNpcF_commonGenMessage(ctx, &m.common);
 }
@@ -1216,9 +1219,9 @@ bool daNpcChin_c::wait(void* param_0) {
 
             u16 eventMask = 0xffff;
             if (mOrderEvtNo == EVT_CHIN_APPEAR) {
-                // maybe fakematch? this still doesn't quite match for debug but it's closer
+                //TODO: maybe fakematch?
 #if PLATFORM_SHIELD
-                eventMask = eventMask & 0xff7f;
+                eventMask &= (u16)~0x80;
 #else
                 eventMask &= ~0x80;
 #endif
@@ -1360,6 +1363,8 @@ bool daNpcChin_c::demo(void* param_0) {
             Event_DT();
         }
 
+        (void)0;
+
         break;
     }
     default: {
@@ -1433,6 +1438,8 @@ bool daNpcChin_c::watch_game(void* param_0) {
                 orderEvent(getForcibleTalk2(), l_evtNames[mOrderEvtNo], 0xffff, 4, 0xff, 2);
             }
         }
+
+        (void)0;
 
         break;
     }

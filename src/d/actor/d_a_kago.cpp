@@ -234,10 +234,10 @@ int daKago_c::executeBalloonMenu() {
             fopAcM_orderPotentialEvent(this, 1, 0xffff, 0);
             eventInfo.onCondition(dEvtCnd_CANDEMO_e);
 
-            #if VERSION == VERSION_SHIELD_DEBUG
-            return 0;
-            #else
+            #if PLATFORM_GCN
             break;
+            #else
+            return 0;
             #endif
         }
 
@@ -368,7 +368,7 @@ f32 daKago_c::checkGroundHeight(cXyz i_pos, f32* o_step) {
             gnd_height = gndCrossMag;
             field_0x6e0 = 1;
 
-            if (current.pos.y < gndCrossMag) {
+            if (current.pos.y < gnd_height) {
                 mGroundHeight = current.pos.y;
             } else {
                 mGroundHeight = mGroundFlyHeight;
@@ -636,24 +636,26 @@ s8 daKago_c::searchNearPassPoint() {
     cXyz pointPos;
 
     cXyz playerPos(daPy_getPlayerActorClass()->current.pos);
-    f32 prev_nearest_distXZ, nearest_distXZ;
-    nearest_distXZ = prev_nearest_distXZ = 100000.0f;
-    int nearest_point_no;
+    f32 nearest_DistXZ[2];
+    nearest_DistXZ[0] = nearest_DistXZ[1] = 100000.0f;
+    int nearest_point_no[2];
 
     for (int i = 0; i < mpPath1->m_num; i++) {
         pointPos = dPath_GetPnt(mpPath1, i)->m_position;
 
         f32 player_pnt_distXZ = playerPos.absXZ(pointPos);
-        if (player_pnt_distXZ < nearest_distXZ) {
-            prev_nearest_distXZ = nearest_distXZ;
-            nearest_distXZ = player_pnt_distXZ;
-            nearest_point_no = i;
-        } else if (player_pnt_distXZ < prev_nearest_distXZ) {
-            prev_nearest_distXZ = player_pnt_distXZ;
+        if (player_pnt_distXZ < nearest_DistXZ[0]) {
+            nearest_DistXZ[1] = nearest_DistXZ[0];
+            nearest_point_no[1] = nearest_point_no[0];
+            nearest_DistXZ[0] = player_pnt_distXZ;
+            nearest_point_no[0] = i;
+        } else if (player_pnt_distXZ < nearest_DistXZ[1]) {
+            nearest_DistXZ[1] = player_pnt_distXZ;
+            nearest_point_no[1] = i;
         }
     }
 
-    int next_point_no = nearest_point_no + mPathStep;
+    int next_point_no = nearest_point_no[0] + mPathStep;
     if (next_point_no < 0) {
         next_point_no = 1;
     } else if (next_point_no >= mpPath1->m_num) {
@@ -1479,13 +1481,16 @@ void daKago_c::executeWait() {
                 setActionMode(ACTION_LANDING_e, 0);
                 executeLanding();
             }
+
+            return;
         }
-        return;
+
+#if DEBUG
+        mPathDir = 1;
+#endif
     }
 
 #if DEBUG
-    mPathDir = 1;
-
     if (mDoCPd_c::getHoldL(PAD_1) && mDoCPd_c::getHoldR(PAD_1) &&
         mDoCPd_c::getTrigB(PAD_1))
     {
@@ -1498,9 +1503,10 @@ void daKago_c::executeWait() {
 
             if (mSceneType == SCENE_TYPE_RIVER) {
                 createBalloonScore();
-                return;
             }
         }
+
+        return;
     }
 #endif
 }
@@ -2334,6 +2340,7 @@ void daKago_c::initFirstDemo() {
     cXyz cStack_34;
 
     daPy_py_c* player = daPy_getPlayerActorClass();
+    s16 targetYaw;
     s16 playerYaw = player->shape_angle.y;
     cXyz playerPos = player->current.pos;
 
@@ -2343,7 +2350,6 @@ void daKago_c::initFirstDemo() {
         midnaPos = midna->current.pos;
     }
 
-   s16 targetYaw;
     switch (mDemoMode) {
     case 0: {
         Z2GetAudioMgr()->setDemoName(mDemoName);
@@ -2356,9 +2362,9 @@ void daKago_c::initFirstDemo() {
         shape_angle.y = current.angle.y = cLib_targetAngleY(&playerPos, &field_0x6a4);
         cStack_34.set(-300.0f, 400.0f, -1000.0f);
         cLib_offsetPos(&current.pos, &playerPos, shape_angle.y, &cStack_34);
-        targetYaw = cLib_targetAngleY(&playerPos, &current.pos);
+        playerYaw = cLib_targetAngleY(&playerPos, &current.pos);
 
-        player->setPlayerPosAndAngle(&playerPos, targetYaw, 0);
+        player->setPlayerPosAndAngle(&playerPos, playerYaw, 0);
         if (midna != NULL) {
             midna->current.pos = playerPos;
             midnaPos = midna->current.pos;
@@ -2497,8 +2503,7 @@ bool daKago_c::executeFirstDemo() {
     cXyz playerPos = player->current.pos;
 
     int unkFlag1;
-    int mode = mDemoMode;  // fakematch
-    switch (mode) {
+    switch (mDemoMode) {
     case 0:
         dComIfGp_getEvent()->setSkipProc(this, DemoSkipCallBack, 2);
 
@@ -2599,7 +2604,7 @@ bool daKago_c::executeFirstDemo() {
         }
 
         break;
-    case 3: {
+    case 3:
         dComIfGp_getEvent()->setSkipProc(this, DemoSkipCallBack, 3);
 
         setMidnaTagPos();
@@ -2619,7 +2624,6 @@ bool daKago_c::executeFirstDemo() {
         }
 
         break;
-    }
     case 4:
         dComIfGp_getEvent()->setSkipProc(this, DemoSkipCallBack, 2);
 
@@ -2739,11 +2743,11 @@ bool daKago_c::executeFirstDemo() {
     case 8:
         unkFlag1 = 0;
 
-        if (mode == 7 || field_0x6e8 == 0) {
+        if (mDemoMode == 7 || field_0x6e8 == 0) {
             if (field_0x728 == 110) {
                 unkFlag1 = 1;
             }
-        } else if (mode == 8 && field_0x728 == 140) {
+        } else if (mDemoMode == 8 && field_0x728 == 140) {
             unkFlag1 = 1;
         }
 
@@ -3445,6 +3449,8 @@ void daKago_c::setWaterFallEffect() {
 }
 
 static void* s_waterfall(void* i_actor, void* i_data) {
+    UNUSED(i_data);
+
     if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == fpcNm_Tag_WaterFall_e) {
         if (!fpcM_IsCreating(fopAcM_GetID(i_actor))) {
             if (((daTagWaterFall_c*)i_actor)->checkHitWaterFall(((fopAc_ac_c*)i_data)->current.pos))

@@ -16,6 +16,23 @@
 #include "d/d_s_play.h"
 #include "f_op/f_op_camera_mng.h"
 
+class daE_BG_HIO_c : public JORReflexible {
+public:
+    daE_BG_HIO_c();
+    virtual ~daE_BG_HIO_c() {}
+
+    void genMessage(JORMContext*);
+
+    /* 0x04 */ s8 field_0x4;
+    /* 0x08 */ f32 mTrackingSpeed;
+    /* 0x0C */ f32 mRushSpeed;
+    /* 0x10 */ f32 mWaitDistanceBeforeCharging;
+    /* 0x14 */ f32 mPlayerSearchDistance;
+    /* 0x18 */ f32 mAttackRange;
+    /* 0x1C */ f32 mSwimRange;
+    /* 0x20 */ f32 mJumpTime;
+};
+
 daE_BG_HIO_c::daE_BG_HIO_c() {
     field_0x4 = -1;
     mTrackingSpeed = 8.0f;
@@ -335,7 +352,8 @@ void daE_BG_c::executeSwim() {
             }
         }
 
-        if (search_esa() != NULL) {
+        fopAc_ac_c* search_actor = search_esa();
+        if (search_actor != NULL) {
             setActionMode(7, 0);
             return;
         }
@@ -380,8 +398,8 @@ void daE_BG_c::executeSwim() {
         field_0x6ac = field_0x69a - shape_angle.y;
 
         cLib_addCalcAngleS(&shape_angle.y, field_0x69a, 0x10, 0x400, 0x100);
-        s32 targetAngleX = cLib_targetAngleX(&current.pos, &field_0x660);
-        cLib_addCalcAngleS(&shape_angle.x, targetAngleX, 0x10, 0x400, 0x100);
+        cLib_addCalcAngleS(&shape_angle.x, (s16)cLib_targetAngleX(&current.pos, &field_0x660),
+                           0x10, 0x400, 0x100);
 
         cLib_chaseF(&speedF, cM_scos(shape_angle.x) * 4.0f, 0.2f);
         cLib_chaseF(&speed.y, cM_ssin(shape_angle.x) * 4.0f, 0.2f);
@@ -743,8 +761,8 @@ bool daE_BG_c::setBombCarry(int param_0) {
                                                      fopAcM_GetRoomNo(this));
     }
 
+    fopAc_ac_c* unkActor1;
     if (bomb != NULL) {
-        fopAc_ac_c* unkActor1;
         fopAcM_SearchByID(fopAcM_GetLinkId(this), &unkActor1);
         if (unkActor1 != NULL) {
             ((daE_BG_c*)unkActor1)->setBgId(fopAcM_GetID(bomb));
@@ -935,6 +953,8 @@ void daE_BG_c::executeEat() {
     field_0x6a2 = nREG_S(0) + 0xc00;
     field_0x69c += field_0x6a0;
 
+    f32 targetSpeedX;
+    f32 targetSpeedY;
     switch (this->mMoveMode) {
     case 0:
         field_0x660.y = rodPos.y + cM_rndFX(100.0f);
@@ -1038,10 +1058,8 @@ void daE_BG_c::executeEat() {
         cLib_addCalcAngleS(&shape_angle.x, 0, 0x10, 0x400, 0x100);
 
         if (rodPos.abs(current.pos) > 70.0f) {
-            cM_scos(shape_angle.x);
-            cLib_chaseF(&speedF, 0.0f, 0.1f);
-            cM_ssin(shape_angle.x);
-            cLib_chaseF(&speed.y, 0.0f, 0.1f);
+            cLib_chaseF(&speedF, cM_scos(shape_angle.x) * 0.0f, 0.1f);
+            cLib_chaseF(&speed.y, cM_ssin(shape_angle.x) * 0.0f, 0.1f);
         } else {
             cLib_chaseF(&speedF, cM_scos(shape_angle.x) * -1.0f, 0.3f);
             cLib_chaseF(&speed.y, cM_ssin(shape_angle.x) * -1.0f, 0.3f);
@@ -1286,7 +1304,7 @@ static int daE_BG_Delete(daE_BG_c* i_this) {
 
 int daE_BG_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("E_BG", 10);
-    JUT_ASSERT(0, modelData != NULL);
+    JUT_ASSERT(1890, modelData != NULL);
 
     mpMorfSO = new mDoExt_McaMorfSO(modelData, NULL, NULL,
                                     (J3DAnmTransform*)dComIfG_getObjectRes("E_BG", 7), 0, 1.0f, 0,

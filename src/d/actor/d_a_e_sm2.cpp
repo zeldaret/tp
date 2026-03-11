@@ -53,7 +53,8 @@ void daE_SM2_HIO_c::genMessage(JORMContext* ctx) {
 
 static int nodeCallBack(J3DJoint* i_joint, int param_1) {
     if (param_1 == 0) {
-        int jnt_no = i_joint->getJntNo();
+        J3DJoint* joint = i_joint;
+        int jnt_no = joint->getJntNo();
         J3DModel* model = j3dSys.getModel();
         e_sm2_class* a_this = (e_sm2_class*)model->getUserArea();
 
@@ -79,8 +80,9 @@ static int daE_SM2_Draw(e_sm2_class* i_this) {
     fopAc_ac_c* actor = (fopAc_ac_c*)&i_this->enemy;
     g_env_light.settingTevStruct(0, &actor->current.pos, &actor->tevStr);
 
+    J3DModel* model;
     if (!i_this->isPiece) {
-        J3DModel* model = i_this->modelMorf->getModel();
+        model = i_this->modelMorf->getModel();
         g_env_light.setLightTevColorType_MAJI(model, &actor->tevStr);
 
         J3DMaterial* material = model->getModelData()->getMaterialNodePointer(0);
@@ -96,15 +98,19 @@ static int daE_SM2_Draw(e_sm2_class* i_this) {
             cXyz pos;
             pos.set(actor->current.pos.x, 50.0f + actor->current.pos.y + BREG_F(18), actor->current.pos.z);
 
-            f32 var_f31 = i_this->size * (2500.0f + BREG_F(19)) * i_this->field_0x830;
+            f32 var_f31 = (2500.0f + BREG_F(19)) * i_this->size * i_this->field_0x830;
             if (var_f31 < 700.0f) {
                 var_f31 = 700.0f;
             }
 
-            i_this->shadowId = dComIfGd_setShadow(i_this->shadowId, 1, model, &pos, var_f31, 0.0f, actor->current.pos.y, i_this->acch.GetGroundH(), i_this->acch.m_gnd, &actor->tevStr, 0, 1.0f, dDlst_shadowControl_c::getSimpleTex());
+            i_this->shadowId =
+                dComIfGd_setShadow(i_this->shadowId, 1, model, &pos, var_f31, 0.0f,
+                                   actor->current.pos.y, i_this->acch.GetGroundH(),
+                                   i_this->acch.m_gnd, &i_this->enemy.tevStr, 0, 1.0f,
+                                   dDlst_shadowControl_c::getSimpleTex());
         }
     } else {
-        J3DModel* model = i_this->pieceModelMorf->getModel();
+        model = i_this->pieceModelMorf->getModel();
 
         J3DMaterial* material = model->getModelData()->getMaterialNodePointer(0);
         material->getTevKColor(1)->r = i_this->color_R;
@@ -1187,8 +1193,9 @@ static void action(e_sm2_class* i_this) {
         }
     }
 
+    J3DModel* model;
     if (!i_this->isPiece) {
-        J3DModel* model = i_this->modelMorf->getModel();
+        model = i_this->modelMorf->getModel();
 
         mDoMtx_stack_c::transS(i_this->field_0x840.x, i_this->field_0x840.y, i_this->field_0x840.z);
         mDoMtx_stack_c::YrotM(i_this->field_0x84c.y);
@@ -1214,13 +1221,14 @@ static void action(e_sm2_class* i_this) {
         i_this->modelMorf->play(0, dComIfGp_getReverb(fopAcM_GetRoomNo(actor)));
         i_this->modelMorf->modelCalc();
     } else {
-        J3DModel* model = i_this->pieceModelMorf->getModel();
+        model = i_this->pieceModelMorf->getModel();
 
         mDoMtx_stack_c::transS(actor->current.pos.x, actor->current.pos.y, actor->current.pos.z);
         mDoMtx_stack_c::YrotM(actor->shape_angle.y + (i_this->counter * -400));
 
-        f32 temp_f27 = (0.5f / i_this->field_0x6b0) * (1.0f + ((0.007f + NREG_F(16)) * (i_this->timers[1] * cM_ssin(i_this->counter * (ZREG_S(1) + 8000)))));
-        mDoMtx_stack_c::scaleM((1.08f + KREG_F(7)) * temp_f27, i_this->field_0x6b0, temp_f27);
+        f32 var_f25 = 1.0f + ((0.007f + NREG_F(16)) * (i_this->timers[1] * cM_ssin(i_this->counter * (ZREG_S(1) + 8000))));
+        f32 var_f27 = (0.5f / i_this->field_0x6b0) * var_f25;
+        mDoMtx_stack_c::scaleM((1.08f + KREG_F(7)) * var_f27, i_this->field_0x6b0, var_f27);
         mDoMtx_stack_c::YrotM(i_this->counter * 400);
         model->setBaseTRMtx(mDoMtx_stack_c::get());
 
@@ -1293,7 +1301,8 @@ static void action(e_sm2_class* i_this) {
     cLib_addCalc0(&i_this->field_0x82c, 0.1f, 0.2f);
 
     if (i_this->field_0xfd4 != 0) {
-        eff_set(i_this, &i_this->field_0x708[3], (2.0f + TREG_F(12)) * i_this->size);
+        f32 size = (2.0f + TREG_F(12)) * i_this->size;
+        eff_set(i_this, &i_this->field_0x708[3], size);
         i_this->field_0xfd4 = 0;
     }
 }

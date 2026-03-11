@@ -334,20 +334,20 @@ static int daE_ST_Draw(e_st_class* i_this) {
     pos.set(a_this->current.pos.x, a_this->current.pos.y + 400.0f + BREG_F(18), a_this->current.pos.z);
     if (fopAcM_gc_c::gndCheck(&pos)) {
         pos.y = TREG_F(7) + fopAcM_gc_c::getGroundY();
-        i_this->mShadowKey = dComIfGd_setShadow(i_this->mShadowKey, 1, model, &pos, l_HIO.basic_size * 700.0f, 0.0f,
-                                                a_this->current.pos.y, fopAcM_gc_c::getGroundY(), *fopAcM_gc_c::getGroundCheck(),
-                                                &a_this->tevStr, 0, 1.0f, dDlst_shadowControl_c::getSimpleTex());
+        i_this->mShadowKey =
+            dComIfGd_setShadow(i_this->mShadowKey, 1, model, &pos, l_HIO.basic_size * 700.0f, 0.0f,
+                               a_this->current.pos.y, fopAcM_gc_c::getGroundY(),
+                               *fopAcM_gc_c::getGroundCheck(), &i_this->actor.tevStr, 0, 1.0f,
+                               dDlst_shadowControl_c::getSimpleTex());
     }
 
     if (i_this->field_0x720 != 0) {
-        u8 uVar1 = JREG_S(5) + 180;
-        GXColor color = {uVar1, uVar1, uVar1, 0xFF};
-        i_this->mLineMat1.update(20, color, &a_this->tevStr);
+        u8 brightness = JREG_S(5) + 180;
+        i_this->mLineMat1.update(20, (GXColor){brightness, brightness, brightness, 0xFF}, &a_this->tevStr);
         dComIfGd_set3DlineMat(&i_this->mLineMat1);
 
         if (i_this->field_0x760 != 0) {
-            GXColor color2 = {uVar1, uVar1, uVar1, 0xFF};
-            i_this->mLineMat2.update(20, color2, &a_this->tevStr);
+            i_this->mLineMat2.update(20, (GXColor){brightness, brightness, brightness, 0xFF}, &a_this->tevStr);
             dComIfGd_set3DlineMat(&i_this->mLineMat2);
         }
     }

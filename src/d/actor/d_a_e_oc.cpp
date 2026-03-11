@@ -2370,18 +2370,19 @@ void daE_OC_c::executeMoveOut() {
 
 bool daE_OC_c::checkWaterSurface() {
     dBgS_ObjGndChk_Spl gnd_chk_spl;
-    cXyz my_vec_0 = current.pos;
+    Vec my_vec_0;
+    my_vec_0 = current.pos;
     my_vec_0.y += 500.0f;
-    gnd_chk_spl.SetPos((Vec*)&my_vec_0);
+    gnd_chk_spl.SetPos(&my_vec_0);
     mWaterLvl = dComIfG_Bgsp().GroundCross(&gnd_chk_spl);
     if (mAcch.ChkGroundHit()) {
         mWaterLvl = -G_CM3D_F_INF;
     }
 
     if (mWaterLvl > (current.pos.y - 140.0f)) {
-        return 1;
+        return true;
     } else {
-        return 0;
+        return false;
     }
 }
 
