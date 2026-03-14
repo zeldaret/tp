@@ -38,33 +38,40 @@ int daPasserMng_c::execute() {
     return 1;
 }
 
-static daPasserMng_c::Group const groupA = {
+// this is based off of daPasserMng_c::Group, any changes here should also be changed there
+template <int N>
+struct SizedGroup {
+    u8 field_0x00;
+    int field_0x04[N];
+};
+
+static SizedGroup<7> const groupA = {
     7,
     {0x11000004, 0x50000006, 0x01000007, 0x01000005, 0x0100001B, 0x0100001C, 0x0000001D},
 };
 
-static daPasserMng_c::Group const groupB = {
+static SizedGroup<8> const groupB = {
     8,
     {0x01000010, 0x10000011, 0x11000012, 0x10000013, 0x40000009, 0x40000008, 0x5000000A,
      0x0100000B},
 };
 
-static daPasserMng_c::Group const groupC = {
+static SizedGroup<8> const groupC = {
     8,
     {0x11000000, 0x11000001, 0x50000002, 0x01000003, 0x21000017, 0x10000018, 0x01000019,
      0x1000001A},
 };
 
-static daPasserMng_c::Group const groupD = {
+static SizedGroup<7> const groupD = {
     7,
     {0x01000014, 0x21000015, 0x00000016, 0x1100000C, 0x5000000E, 0x4000000F, 0x0100000D},
 };
 
 const daPasserMng_c::Group* daPasserMng_c::mGroupTbl[4] = {
-    &groupA,
-    &groupB,
-    &groupC,
-    &groupD,
+    (const Group*)&groupA,
+    (const Group*)&groupB,
+    (const Group*)&groupC,
+    (const Group*)&groupD,
 };
 
 int daPasserMng_c::getPasserParam() {

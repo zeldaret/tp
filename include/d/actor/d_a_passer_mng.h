@@ -251,6 +251,7 @@ public:
         return paramLow << 8;
     }
 
+    // SizedGroup in d_a_passer_mng.cpp relies on this layout, any changes here should also be changed there
     struct Group {
         u8 field_0x00;
         int field_0x04[0];
