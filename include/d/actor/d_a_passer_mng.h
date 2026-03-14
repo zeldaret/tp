@@ -256,7 +256,7 @@ public:
         int field_0x04[0];
     };
 
-    static Group* mGroupTbl[4];
+    static const Group* mGroupTbl[4];
 
 private:
     /* 0x568 */ fpc_ProcID* childProcIds;

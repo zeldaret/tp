@@ -60,11 +60,11 @@ static daPasserMng_c::Group const groupD = {
     {0x01000014, 0x21000015, 0x00000016, 0x1100000C, 0x5000000E, 0x4000000F, 0x0100000D},
 };
 
-daPasserMng_c::Group* daPasserMng_c::mGroupTbl[4] = {
-    (Group*)&groupA,
-    (Group*)&groupB,
-    (Group*)&groupC,
-    (Group*)&groupD,
+const daPasserMng_c::Group* daPasserMng_c::mGroupTbl[4] = {
+    &groupA,
+    &groupB,
+    &groupC,
+    &groupD,
 };
 
 int daPasserMng_c::getPasserParam() {
@@ -84,7 +84,7 @@ int daPasserMng_c::getPasserParam() {
     } else {
         groupInd = 0;
     }
-    Group* pGroup = mGroupTbl[groupInd];
+    const Group* pGroup = mGroupTbl[groupInd];
     int iVar5;
     do {
         iVar5 = cLib_getRndValue(0, (int)pGroup->field_0x00);
