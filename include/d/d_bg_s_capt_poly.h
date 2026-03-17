@@ -4,7 +4,7 @@
 #include "d/d_bg_s_chk.h"
 #include "SSystem/SComponent/c_m3d_g_aab.h"
 
-class dBgS_CaptPoly;
+struct dBgS_CaptPoly;
 
 typedef int (*CaptPolyCallback)(dBgS_CaptPoly*, cBgD_Vtx_t*, int, int, int, cM3dGPla*);
 
