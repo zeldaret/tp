@@ -382,7 +382,7 @@ int Act_c::Draw() {
     dComIfGd_setList();
 
     #if DEBUG
-    dComIfG_Bgsp().DebugDrawPoly(mpBgW);
+    dComIfG_Bgsp().DebugDrawPoly(*mpBgW);
     #endif
     return 1;
 }
