@@ -442,7 +442,7 @@ void daE_WS_c::executeDown() {
     case 2:
         if (abs(shape_angle.y) < 0x4000) {
             cLib_chaseAngleS(&shape_angle.y, 0, 0x200);
-            cLib_chaseAngleS(&shape_angle.x, (s16)-0x8000, 0x400);
+            cLib_chaseAngleS(&shape_angle.x, 0x4000, 0x400);
         } else {
             cLib_chaseAngleS(&shape_angle.y, -0x8000, 0x200);
             cLib_chaseAngleS(&shape_angle.x, -0x4000, 0x400);
@@ -567,7 +567,7 @@ void daE_WS_c::executeWindDown() {
 
         if (mAcch.ChkGroundHit()) {
             mSound.startCreatureSound(Z2SE_CM_BODYFALL_S, 0, -1);
-            shape_angle.x = (s16)0x8000;
+            shape_angle.x = -0x8000;
             speedF = 0.0f;
             speed.y = 0.0f;
             mMode = 4;
@@ -891,7 +891,7 @@ int daE_WS_c::_delete() {
     dComIfG_resDelete(&mPhase, "E_WS");
 
     if (mHioSet) {
-        hio_set = false;
+        hio_set = FALSE;
         mDoHIO_DELETE_CHILD(l_HIO.id);
     }
 
@@ -903,6 +903,7 @@ int daE_WS_c::_delete() {
 }
 
 static int daE_WS_Delete(daE_WS_c* i_this) {
+    fopAcM_RegisterDeleteID(i_this, "E_WS");
     return i_this->_delete();
 }
 
