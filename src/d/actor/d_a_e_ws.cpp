@@ -67,7 +67,7 @@ daE_WS_HIO_c::daE_WS_HIO_c() {
     search_y_range = 200.0f;
     dist_to_ground = 270.0f;
     debug_ON = false;
-    search_angle = 0x4000;
+    search_angle = 18200;
     attack_speed = 10.0f;
 }
 
