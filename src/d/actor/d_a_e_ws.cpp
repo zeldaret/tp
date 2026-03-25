@@ -891,7 +891,7 @@ int daE_WS_c::_delete() {
     dComIfG_resDelete(&mPhase, "E_WS");
 
     if (mHioSet) {
-        hio_set = FALSE;
+        hio_set = false;
         mDoHIO_DELETE_CHILD(l_HIO.id);
     }
 
@@ -903,7 +903,6 @@ int daE_WS_c::_delete() {
 }
 
 static int daE_WS_Delete(daE_WS_c* i_this) {
-    fopAcM_RegisterDeleteID(i_this, "E_WS");
     return i_this->_delete();
 }
 
