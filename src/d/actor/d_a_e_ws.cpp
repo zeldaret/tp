@@ -32,19 +32,6 @@ public:
     /* 0x24 */ u8 debug_ON;
 };
 
-#if DEBUG
-void daE_WS_HIO_c::genMessage(JORMContext* ctx) {
-    ctx->genLabel("スタルウォーーーーーーーール", 0x80000001);
-    ctx->genSlider("基本サイズ", &base_size, 0.0f, 5.0f);
-    ctx->genSlider("サーチ角度", &search_angle, 0.0f, 30000.0f);
-    ctx->genSlider("攻撃速度", &attack_speed, 0.0f, 100.0f);
-    ctx->genSlider("移動範囲", &move_range, 0.0f, 1000.0f);
-    ctx->genSlider("サーチ範囲", &search_range, 0.0f, 1000.0f);
-    ctx->genSlider("サーチY上下範囲", &search_y_range, 0.0f, 1000.0f);
-    ctx->genSlider("地面までの距離", &dist_to_ground, 0.0f, 1000.0f);
-    ctx->genCheckBox("デバック表示", &debug_ON, 0x1);
-}
-#endif
 
 namespace {
 static dCcD_SrcSph cc_ws_src = {
@@ -83,6 +70,20 @@ daE_WS_HIO_c::daE_WS_HIO_c() {
     search_angle = 18200;
     attack_speed = 10.0f;
 }
+
+#if DEBUG
+void daE_WS_HIO_c::genMessage(JORMContext* ctx) {
+    ctx->genLabel("スタルウォーーーーーーーール", 0x80000001);
+    ctx->genSlider("基本サイズ", &base_size, 0.0f, 5.0f);
+    ctx->genSlider("サーチ角度", &search_angle, 0.0f, 30000.0f);
+    ctx->genSlider("攻撃速度", &attack_speed, 0.0f, 100.0f);
+    ctx->genSlider("移動範囲", &move_range, 0.0f, 1000.0f);
+    ctx->genSlider("サーチ範囲", &search_range, 0.0f, 1000.0f);
+    ctx->genSlider("サーチY上下範囲", &search_y_range, 0.0f, 1000.0f);
+    ctx->genSlider("地面までの距離", &dist_to_ground, 0.0f, 1000.0f);
+    ctx->genCheckBox("デバック表示", &debug_ON, 0x1);
+}
+#endif
 
 int daE_WS_c::draw() {
     J3DModel* model = mAnm_p->getModel();
