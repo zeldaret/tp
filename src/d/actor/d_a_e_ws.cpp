@@ -10,6 +10,10 @@
 #include <cmath>
 #include "f_op/f_op_actor_enemy.h"
 
+#define PLAYER_NOT_FOUND  0
+#define PLAYER_TARGET   1
+#define PLAYER_NEAR     2
+
 class daE_WS_HIO_c : public JORReflexible {
 public:
     daE_WS_HIO_c();
@@ -171,7 +175,7 @@ int daE_WS_c::checkPlayerPos() {
         dComIfGp_checkPlayerStatus1(0, 0x2000000) ||
         dComIfGp_checkPlayerStatus1(0, 0x10000) ||
         calcTargetDist(current.pos, player_pos) < 150.0f) &&
-        checkInSearchRange(player_pos, mTargetPos) && checkInSearchRange(current.pos, mTargetPos))
+        checkInSearchRange(player_pos, mHomePos) && checkInSearchRange(current.pos, mHomePos))
     {
         dBgS_GndChk gndchk;
         cXyz gndpos;
@@ -187,17 +191,17 @@ int daE_WS_c::checkPlayerPos() {
         if (current.pos.y - gndpos.y > l_HIO.dist_to_ground) {
             // Return 1 if walltula is looking towards player
             if (cLib_distanceAngleS(shape_angle.y, calcTargetAngle(current.pos, player_pos)) < l_HIO.search_angle) {
-                return 1;
+                return PLAYER_TARGET;
             }
 
             // otherwise return 2 if player is near the walltula
             if (calcTargetDist(current.pos, player_pos) < 150.0f) {
-                return 2;
+                return PLAYER_NEAR;
             }
         }
     }
 
-    return 0;
+    return PLAYER_NOT_FOUND;
 }
 
 bool daE_WS_c::checkAttackEnd() {
@@ -205,17 +209,17 @@ bool daE_WS_c::checkAttackEnd() {
     mDoMtx_stack_c::copy(daPy_getLinkPlayerActorClass()->getModelJointMtx(0));
     mDoMtx_stack_c::multVecZero(&player_pos);
 
-    BOOL r30 = false;
+    BOOL checkPlayerNear = FALSE;
     if (
         daPy_getPlayerActorClass()->checkClimbMove() ||
         dComIfGp_checkPlayerStatus1(0, 0x02000000) ||
         dComIfGp_checkPlayerStatus1(0, 0x10000) ||
         calcTargetDist(current.pos, player_pos) < 200.0f
     ) {
-        r30 = true;
+        checkPlayerNear = TRUE;
     }
-    if (!r30 ||
-        !checkInSearchRange(current.pos, mTargetPos) ||
+    if (!checkPlayerNear ||
+        !checkInSearchRange(current.pos, mHomePos) ||
         checkBeforeBg(shape_angle.y)
     )
     {
@@ -228,13 +232,13 @@ bool daE_WS_c::checkAttackEnd() {
 }
 
 void daE_WS_c::executeWait() {
-    int temp_r3 = checkPlayerPos();
-    if (temp_r3 == 1) {
+    int playerCheck = checkPlayerPos();
+    if (playerCheck == PLAYER_TARGET) {
         setActionMode(ACTION_ATTACK_e);
         return;
     }
 
-    if (temp_r3 == 2 && mMode != 3 && mMode != 4) {
+    if (playerCheck == PLAYER_NEAR && mMode != 3 && mMode != 4) {
         mMode = 2;
     }
 
@@ -251,18 +255,18 @@ void daE_WS_c::executeWait() {
         break;
     case 2:
         speedF = 0.0f;
-        field_0x690 = 0;
+        mReturnHome = 0;
         mTargetAngle = shape_angle.y + cM_rndFX(32768.0f);
 
-        if (temp_r3 == 2) {
-            mTargetStep = 0x200;
+        if (playerCheck == PLAYER_NEAR) {
+            mStepAngle = 0x200;
             setBck(8, 2, 3.0f, 2.4f);
         } else {
-            if (calcTargetDist(current.pos, mTargetPos) >= l_HIO.move_range) {
-                mTargetAngle = calcTargetAngle(current.pos, mTargetPos);
-                field_0x690 = 1;
+            if (calcTargetDist(current.pos, mHomePos) >= l_HIO.move_range) {
+                mTargetAngle = calcTargetAngle(current.pos, mHomePos);
+                mReturnHome = 1;
             }
-            mTargetStep = 0x100;
+            mStepAngle = 0x100;
             setBck(8, 2, 3.0f, 1.2f);
         }
 
@@ -271,7 +275,7 @@ void daE_WS_c::executeWait() {
     case 3:
         setFootSound();
 
-        if (cLib_chaseAngleS(&shape_angle.y, mTargetAngle, mTargetStep)) {
+        if (cLib_chaseAngleS(&shape_angle.y, mTargetAngle, mStepAngle)) {
             mMode = 4;
             mWaitTimer = 10;
             setBck(9, 2, 3.0f, 1.0f);
@@ -291,8 +295,8 @@ void daE_WS_c::executeWait() {
     case 6:
         setFootSound();
 
-        if (field_0x690 == 0) {
-            if (calcTargetDist(current.pos, mTargetPos) >= l_HIO.move_range) {
+        if (mReturnHome == 0) {
+            if (calcTargetDist(current.pos, mHomePos) >= l_HIO.move_range) {
                 mWaitTimer = 0;
             }
         }
@@ -352,20 +356,20 @@ void daE_WS_c::executeAttack() {
         setFootSound();
         cLib_chaseAngleS(&shape_angle.y, calcTargetAngle(current.pos, player_pos), 0x400);
 
-        BOOL r28 = false;
+        BOOL checkAttackStart = FALSE;
         if (checkBeforeBg(shape_angle.y)) {
-            r28 = true;
+            checkAttackStart = TRUE;
         }
         if (mCcSph.ChkAtHit()) {
             cCcD_Obj* hitObj = mCcSph.GetAtHitObj();
             if (fopAcM_GetName(dCc_GetAc(hitObj->GetAc())) == fpcNm_ALINK_e) {
-                r28 = true;
+                checkAttackStart = TRUE;
             }
         }
-        if (!checkInSearchRange(current.pos, mTargetPos)) {
-            r28 = true;
+        if (!checkInSearchRange(current.pos, mHomePos)) {
+            checkAttackStart = TRUE;
         }
-        if (r28) {
+        if (checkAttackStart) {
             mMode = 4;
             speedF = 0.0f;
             setBck(4, 0, 3.0f, 1.0f);
@@ -508,10 +512,10 @@ void daE_WS_c::executeWindDown() {
         speed.y = 0.0f;
         speedF = 5.0f;
         current.angle.y = mTargetWallAngle.y;
-        mTargetStep = -0x800;
+        mStepAngle = -0x800;
         break;
     case 1:
-        shape_angle.y += mTargetStep;
+        shape_angle.y += mStepAngle;
         cLib_chaseAngleS(&mWallAngle.y, 0, 0x400);
         cLib_chaseAngleS(&mWallAngle.x, 0, 0x400);
         shape_angle.x += 0x800;
@@ -524,7 +528,7 @@ void daE_WS_c::executeWindDown() {
         }
         break;
     case 2:
-        shape_angle.y += mTargetStep;
+        shape_angle.y += mStepAngle;
         cLib_chaseAngleS(&mWallAngle.y, 0, 0x400);
         cLib_chaseAngleS(&mWallAngle.x, 0, 0x400);
         cLib_chaseAngleS(&shape_angle.x, -0x8000, 0x400);
@@ -541,8 +545,8 @@ void daE_WS_c::executeWindDown() {
         }
         break;
     case 3:
-        shape_angle.y += mTargetStep;
-        cLib_chaseAngleS(&mTargetStep, 0, 0x80);
+        shape_angle.y += mStepAngle;
+        cLib_chaseAngleS(&mStepAngle, 0, 0x80);
         cLib_chaseAngleS(&shape_angle.x, -0x8000, 0x400);
         cLib_chaseAngleS(&shape_angle.z, 0, 0x400);
 
@@ -556,9 +560,9 @@ void daE_WS_c::executeWindDown() {
         break;
     case 4:
         cLib_addCalc2(&mDownColor, -20.0f, 1.0f, 0.4f);
-        shape_angle.y += mTargetStep;
-        cLib_chaseAngleS(&mTargetStep, 0, 0x80);
-        shape_angle.y += mTargetStep;
+        shape_angle.y += mStepAngle;
+        cLib_chaseAngleS(&mStepAngle, 0, 0x80);
+        shape_angle.y += mStepAngle;
 
         if (mAnm_p->isStop()) {
             mWaitTimer = 15;
@@ -963,7 +967,7 @@ int daE_WS_c::create() {
         setActionMode(ACTION_WAIT_e);
         checkInitialWall();
 
-        mTargetPos = current.pos;
+        mHomePos = current.pos;
         speed.y = 0.0f;
         gravity = 0.0f;
         mtx_set();

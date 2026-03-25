@@ -52,7 +52,7 @@ public:
     /* 0x5AC */ request_of_phase_process_class mPhase;
     /* 0x5B4 */ mDoExt_McaMorfSO* mAnm_p;
     /* 0x5B8 */ Z2CreatureEnemy mSound;
-    /* 0x65C */ cXyz mTargetPos;
+    /* 0x65C */ cXyz mHomePos;
     /* 0x668 */ csXyz mTargetWallAngle;
     /* 0x66E */ csXyz mWallAngle;
     /* 0x674 */ f32 mDownColor;
@@ -61,10 +61,10 @@ public:
     /* 0x680 */ int mMode;
     /* 0x684 */ u32 mShadowId;
     /* 0x688 */ s16 mTargetAngle;
-    /* 0x68A */ s16 mTargetStep;
+    /* 0x68A */ s16 mStepAngle;
     /* 0x68C */ u8 mWaitTimer;
     /* 0x68E */ s16 mInvulnerabilityTimer;
-    /* 0x690 */ u8 field_0x690;
+    /* 0x690 */ u8 mReturnHome;
     /* 0x691 */ u8 arg0;
     /* 0x692 */ u8 bitSw;
     /* 0x694 */ dBgS_AcchCir mBgc;
