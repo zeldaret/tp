@@ -3,7 +3,6 @@
 
 #include "JSystem/JKernel/JKRCompression.h"
 #include "JSystem/JKernel/JKRFileLoader.h"
-#include "global.h"
 
 class JKRHeap;
 

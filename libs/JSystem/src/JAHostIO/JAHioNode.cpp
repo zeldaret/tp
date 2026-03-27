@@ -1,10 +1,12 @@
-#include "JSystem/JSystem.h" // IWYU pragma: keep
+#include "JSystem/JSystem.h"  // IWYU pragma: keep
 
-#include "JSystem/JAHostIO/JAHioNode.h"
+#include <cstring>
 #include "JSystem/JAHostIO/JAHioMessage.h"
 #include "JSystem/JAHostIO/JAHioMgr.h"
+#include "JSystem/JAHostIO/JAHioNode.h"
 #include "JSystem/JHostIO/JORServer.h"
-#include <cstring>
+
+JAHioNode* JAHioNode::smCurrentNode;
 
 JAHioNode::JAHioNode(const char* name) : mTree(this) {
     mLastChild = NULL;
@@ -86,7 +88,9 @@ void JAHioNode::generateTempChildren(JORMContext* mctx) {
     }
 }
 
-u32 JAHioNode::getNodeKind() const { return 0; }
+u32 JAHioNode::getNodeKind() const {
+    return 0;
+}
 
 JAHioNode* JAHioNode::getParent() {
     if (mTree.getParent()) {

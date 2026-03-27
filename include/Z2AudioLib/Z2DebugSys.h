@@ -12,7 +12,6 @@ class Z2ParamNode : public JAHFrameNode {
 public:
     Z2ParamNode() : JAHFrameNode("サウンド各種パラメータ") {}
 
-    /* vt[07] */ virtual ~Z2ParamNode() {}
     /* vt[08] */ virtual void message(JAHControl& control);
     /* vt[0F] */ virtual void propertyEvent(JAH_P_Event, u32);
     /* vt[12] */ virtual void onFrame();
