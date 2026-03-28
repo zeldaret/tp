@@ -64,7 +64,7 @@ public:
     /* 0x68A */ s16 mStepAngle;
     /* 0x68C */ u8 mWaitTimer;
     /* 0x68E */ s16 mInvulnerabilityTimer;
-    /* 0x690 */ u8 mReturnHome;
+    /* 0x690 */ u8 mIsReturnHome;
     /* 0x691 */ u8 arg0;
     /* 0x692 */ u8 bitSw;
     /* 0x694 */ dBgS_AcchCir mBgc;

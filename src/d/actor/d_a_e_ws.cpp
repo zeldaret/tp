@@ -270,7 +270,7 @@ void daE_WS_c::executeWait() {
         break;
     case 2:
         speedF = 0.0f;
-        mReturnHome = 0;
+        mIsReturnHome = 0;
         mTargetAngle = shape_angle.y + cM_rndFX(32768.0f); // random turn up to ±180°
 
         if (playerCheck == PLAYER_NEAR) {
@@ -279,7 +279,7 @@ void daE_WS_c::executeWait() {
         } else {
             if (calcTargetDist(current.pos, mHomePos) >= l_HIO.move_range) {
                 mTargetAngle = calcTargetAngle(current.pos, mHomePos);
-                mReturnHome = 1;
+                mIsReturnHome = 1;
             }
             mStepAngle = 0x100;
             setBck(8, 2, 3.0f, 1.2f);
@@ -310,7 +310,7 @@ void daE_WS_c::executeWait() {
     case 6:
         setFootSound();
 
-        if (mReturnHome == 0) {
+        if (mIsReturnHome == 0) {
             if (calcTargetDist(current.pos, mHomePos) >= l_HIO.move_range) {
                 mWaitTimer = 0;
             }
