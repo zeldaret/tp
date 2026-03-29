@@ -33,9 +33,10 @@ public:
 
     struct Header {
         /* 0x00 */ u32 tag;
-        /* 0x04 */ u8 field_0x4[5];
+        /* 0x04 */ u32 soundBlockSize;
+        /* 0x08 */ u8 field_0x08;
         /* 0x09 */ u8 format;
-        /* 0x0A */ u8 bits;
+        /* 0x0A */ u16 bits;
         /* 0x0C */ u16 channels;
         /* 0x0E */ u16 loop;
         /* 0x10 */ int field_0x10;
