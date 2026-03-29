@@ -3,7 +3,7 @@
 
 #include <types.h>
 
-class JASWaveArc;
+struct JASWaveArc;
 
 /**
  * @ingroup jsystem-jaudio
