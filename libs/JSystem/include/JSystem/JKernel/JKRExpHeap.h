@@ -35,7 +35,7 @@ public:
         CMemBlock* getNextBlock() const { return mNext; }
         u32 getSize() const { return size; }
         u8 getGroupId() const { return mGroupId; }
-        static CMemBlock* getBlock(void* data) { return (CMemBlock*)((uintptr_t)data + -0x10); }
+        static CMemBlock* getBlock(void* data) { return (CMemBlock*)((uintptr_t)data + -sizeof(CMemBlock)); }
 
     private:
         /* 0x0 */ u16 mMagic;
