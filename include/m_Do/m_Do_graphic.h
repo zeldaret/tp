@@ -5,12 +5,14 @@
 #include "m_Do/m_Do_mtx.h"
 #include "global.h"
 
+#define FB_WIDTH_BASE (608)
+#define FB_HEIGHT_BASE (448)
 #if WIDESCREEN_SUPPORT
 #define FB_WIDTH  (640)
 #define FB_HEIGHT (456)
 #else
-#define FB_WIDTH  (608)
-#define FB_HEIGHT (448)
+#define FB_WIDTH  FB_WIDTH_BASE
+#define FB_HEIGHT FB_HEIGHT_BASE
 #endif
 
 int mDoGph_Create();

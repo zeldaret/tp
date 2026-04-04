@@ -3995,9 +3995,9 @@ void dMeter_fmapHIO_c::genMessage(JORMContext* mctx) {
     mctx->genSlider("リージョン拡大表示範囲", &mRegionZoomRange, 1000.0, 1000000.0);
     mctx->genCheckBox("表示基準領域枠表示", (u8*)&mDisplayReferenceArea, 0x1);
     mctx->genCheckBox("スクロール範囲を表示基準", (u8*)&field_0x308, 0x1);
-    mctx->genSlider("左上座標Ｘ", &mMapTopLeftPosX, 0.0, 608.0);
-    mctx->genSlider("左上座標Ｙ", &mMapTopLeftPosY, 0.0, 448.0);
-    mctx->genSlider("領域幅", &mMapScale, 0.0, 608.0);
+    mctx->genSlider("左上座標Ｘ", &mMapTopLeftPosX, 0.0, FB_WIDTH_BASE);
+    mctx->genSlider("左上座標Ｙ", &mMapTopLeftPosY, 0.0, FB_HEIGHT_BASE);
+    mctx->genSlider("領域幅", &mMapScale, 0.0, FB_WIDTH_BASE);
     mctx->genLabel("\n***　スクロール速度境界　***", 0);
     mctx->genSlider("０～遅", &mScrollSpeedSlowBound, 0.0, 1.0);
     mctx->genSlider("遅～速", &mScrollSpeedFastBound, 0.0, 1.0);

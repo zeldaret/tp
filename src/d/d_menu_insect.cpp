@@ -169,6 +169,9 @@ void dMenu_Insect_c::_draw() {
         mpBlackTex->draw(0.0f, 0.0f, FB_WIDTH, FB_HEIGHT, 0, 0, 0);
         mpExpScreen->draw(0.0f, 0.0f, grafPort);
         mpSelect_c->setOffsetX(g_drawHIO.mInsectListScreen.mConfirmOptionPosX_4x3);
+        // the magic numbers here are correlated with the framebuffer size, but
+        // were likely either chosen by hand or had multiple arithmetic
+        // operations applied which cannot easily be reverse engineered
         mpSelect_c->translate(g_drawHIO.mInsectListScreen.mConfirmOptionPosX_4x3 + 486.0f,
                               g_drawHIO.mInsectListScreen.mConfirmOptionPosY_4x3 + 209.0f);
         mpSelect_c->draw(0.0f, 0.0f);
