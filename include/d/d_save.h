@@ -478,11 +478,15 @@ public:
             mDeathCount++;
         }
     }
+     // PuzzleInfo inline names are from TWW
     char* getPlayerName() const { return const_cast<char*>(mPlayerName); }
     void setPlayerName(const char* i_name) { strcpy(mPlayerName, i_name); }
     char* getHorseName() const { return const_cast<char*>(mHorseName); }
     void setHorseName(const char* i_name) { strcpy(mHorseName, i_name); }
     u8 getClearCount() const { return mClearCount; }
+    u8 getPuzzleInfo() { return mPuzzleData[5]; }
+    void setPuzzleInfo(u8 clearCount) { mPuzzleData[5] = clearCount; }
+    void setPuzzleData(int idx, u8 puzzlePiecePos) { mPuzzleData[idx] = puzzlePiecePos; }
 
 private:
     /* 0x00 */ u64 unk0;
@@ -494,7 +498,7 @@ private:
     /* 0x25 */ char mHorseName[16];
     /* 0x35 */ u8 unk53;
     /* 0x36 */ u8 mClearCount;
-    /* 0x37 */ u8 unk55[5];
+    /* 0x37 */ u8 mPuzzleData[5];
 };  // Size: 0x40
 
 class dSv_player_config_c {

@@ -969,7 +969,7 @@ void dSv_player_info_c::init() {
     mClearCount = 0;
 
     for (int i = 0; i < 5; i++) {
-        unk55[i] = 0;
+        mPuzzleData[i] = 0;
     }
 }
 
