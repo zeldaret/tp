@@ -1781,7 +1781,18 @@ inline void dComIfGs_setHorseName(const char* i_name) {
 inline u8 dComIfGs_getClearCount() {
     return g_dComIfG_gameInfo.info.getPlayer().getPlayerInfo().getClearCount();
 }
+// PuzzleInfo inline  are from TWW 
+inline void dComIfGs_setPuzzleData(int i_idx, u8 i_puzzlePieceData) {
+    g_dComIfG_gameInfo.info.getPlayer().getPlayerInfo().setPuzzleData(i_idx, i_puzzlePieceData);
+}
 
+inline u8 dComIfGs_getPuzzleInfo() {
+    return g_dComIfG_gameInfo.info.getPlayer().getPlayerInfo().getPuzzleInfo();
+}
+
+inline void dComIfGs_setPuzzleInfo(int i_idx) {
+    return g_dComIfG_gameInfo.info.getPlayer().getPlayerInfo().setPuzzleInfo(i_idx);
+}
 // Ruby inline names are from TWW debug.
 inline u8 dComIfGs_getOptRuby() {
     return g_dComIfG_gameInfo.info.getPlayer().getConfig().getRuby();

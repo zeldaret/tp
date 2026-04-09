@@ -484,8 +484,8 @@ public:
     char* getHorseName() const { return const_cast<char*>(mHorseName); }
     void setHorseName(const char* i_name) { strcpy(mHorseName, i_name); }
     u8 getClearCount() const { return mClearCount; }
-    u8 getPuzzleInfo() { return mPuzzleData[5]; }
-    void setPuzzleInfo(u8 clearCount) { mPuzzleData[5] = clearCount; }
+    u8 getPuzzleInfo() { return mPuzzleData[4]; }
+    void setPuzzleInfo(u8 clearCount) { mPuzzleData[4] = clearCount; }
     void setPuzzleData(int idx, u8 puzzlePiecePos) { mPuzzleData[idx] = puzzlePiecePos; }
 
 private:
