@@ -543,8 +543,7 @@ public:
     /* 0x1C */ f32 mVesselTalkPosY;
     /* 0x20 */ f32 mVesselPosX_4x3;
     /* 0x24 */ f32 mVesselPosY_4x3;
-    /* 0x28 */ f32 mVesselAlpha[3];
-    /* 0x34 */ f32 mDropAlpha;
+    /* 0x28 */ f32 mVesselAlpha[4];
     /* 0x38 */ JUtility::TColor mDropOnColorWhite;
     /* 0x3C */ JUtility::TColor mDropOnColorBlack;
     /* 0x40 */ JUtility::TColor mDropOffColorWhite;

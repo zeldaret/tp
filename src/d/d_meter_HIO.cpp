@@ -1493,7 +1493,7 @@ dMeter_drawLightDropHIO_c::dMeter_drawLightDropHIO_c() {
     mPikariInterval = 1;
     field_0x54 = 0xFFF1;
     mVesselAlpha[2] = 0.5f;
-    mDropAlpha = 1.0f;
+    mVesselAlpha[3] = 1.0f;
 
     mDropOnColorBlack.set(30, 255, 255, 0);
     mDropOnColorWhite.set(255, 255, 255, 255);
@@ -1554,7 +1554,7 @@ void dMeter_drawLightDropHIO_c::genMessage(JORMContext* mctx) {
     mctx->genSlider("位置調整Ｙ（会話）", &mVesselTalkPosY, -300.0f, 300.0f);
     mctx->genSlider("アルファ（会話）", &mVesselAlpha[1], 0.0f, 1.0f);
     mctx->genSlider("アルファ（器）", &mVesselAlpha[2], 0.0f, 1.0f);
-    mctx->genSlider("アルファ（雫）", &mDropAlpha, 0.0f, 1.0f);
+    mctx->genSlider("アルファ（雫）", &mVesselAlpha[3], 0.0f, 1.0f);
     mctx->genLabel("***光の器ゲット後***", 0);
     mctx->genSlider("拡大縮小", &mDropGetScale, 0.0f, 3.0f);
     mctx->genSlider("拡縮アニメフレーム数", &mDropGetScaleAnimFrameNum, 0, 30);
