@@ -263,7 +263,7 @@ struct dStage_MemoryConfig_c {
 // PATH / RPAT
 struct dPath;
 struct dStage_dPath_c {
-    /* 0x0 */ int m_num;
+    /* 0x0 */ int num;
     /* 0x4 */ dPath* m_path;
 };
 
