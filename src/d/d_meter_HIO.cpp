@@ -197,11 +197,11 @@ void dMeter_drawOptionHIO_c::genMessage(JORMContext* mctx) {
     mctx->genSlider("位置Ｘ", &mOptionTypeBGPosX[3], -300.0f, 300.0f);
     mctx->genSlider("位置Ｙ", &mOptionTypeBGPosY[3], -300.0f, 300.0f);
     mctx->genLabel("*****テレビ画面の設定*****", 0);
-    mctx->genSlider("位置Ｘ", &mTVsettingPosX, -300.0f, 300.0f);
-    mctx->genSlider("位置Ｙ", &mTVsettingPosY, -300.0f, 300.0f);
+    mctx->genSlider("位置Ｘ", &mOptionTypeBGPosX[4], -300.0f, 300.0f);
+    mctx->genSlider("位置Ｙ", &mOptionTypeBGPosY[4], -300.0f, 300.0f);
     mctx->genLabel("*****キャリブレーション*****", 0);
-    mctx->genSlider("位置Ｘ", &mPointerCalibrationPosX, -300.0f, 300.0f);
-    mctx->genSlider("位置Ｙ", &mPointerCalibrationPosY, -300.0f, 300.0f);
+    mctx->genSlider("位置Ｘ", &mOptionTypeBGPosX[5], -300.0f, 300.0f);
+    mctx->genSlider("位置Ｙ", &mOptionTypeBGPosY[5], -300.0f, 300.0f);
     mctx->genLabel("*****設定確認*****", 0);
     mctx->genSlider("背景アルファ", &mBackgroundAlpha, 0, 255);
     mctx->genSlider("位置Ｙ", &mBackgroundPosY, -300.0f, 300.0f);
