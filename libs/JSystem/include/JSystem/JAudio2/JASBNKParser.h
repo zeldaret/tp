@@ -10,7 +10,7 @@ class JKRHeap;
 
 namespace JASBNKParser {
     struct TFileHeader {
-        /* 0x0 */ int mMagic;
+        /* 0x0 */ int id;
         /* 0x4 */ u32 mSize;
         /* 0x8 */ u32 mGlobalId;
         /* 0xC */ u32 mVersion;

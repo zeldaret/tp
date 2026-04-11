@@ -634,11 +634,12 @@ void JASDsp::TChannel::setMixerInitVolume(u8 outputChannel, s16 volume) {
 }
 
 void JASDsp::TChannel::setMixerVolume(u8 outputChannel, s16 volume) {
+    OutputChannelConfig* cfg;
     JUT_ASSERT(841, dspMutex);
     if (mForcedStop == 0) {
-        OutputChannelConfig& cfg = mOutputChannels[outputChannel];
-        cfg.mTargetVolume = volume;
-        cfg.mVolumeProgress &= 0xff;
+        cfg = &mOutputChannels[outputChannel];
+        cfg->mTargetVolume = volume;
+        cfg->mVolumeProgress &= 0xff;
     }
 }
 

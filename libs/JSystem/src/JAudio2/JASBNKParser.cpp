@@ -23,7 +23,7 @@ JASBasicBank* JASBNKParser::createBasicBank(void const* stream, JKRHeap* heap) {
     u32 free_size = heap->getFreeSize();
     
     TFileHeader* filep = (TFileHeader*)stream;
-    JUT_ASSERT(59, filep->mMagic == 'IBNK');
+    JUT_ASSERT(59, filep->id == 'IBNK');
     JASBasicBank* bank = NULL;
     switch (filep->mVersion) {
     case 0:
