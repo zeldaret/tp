@@ -381,7 +381,7 @@ void dScnLogo_c::progOutDraw() {
     dComIfGd_set2DOpa(mProgressiveNo);
 
     if (mTimer == 0) {
-        #if VERSION == VERSION_GCN_PAL
+        #if REGION_PAL
         if (field_0x218 == 1 && field_0x209 == 0)
         #else
         if (field_0x218 != 0 && field_0x209 == 0)
@@ -497,7 +497,7 @@ void dScnLogo_c::warningDispDraw() {
         field_0x210--;
     }
 
-    #if PLATFORM_WII
+    #if PLATFORM_WII && VERSION != VERSION_WII_PAL
     if (mTimer == 0 || cAPICPad_A_TRIGGER(PAD_1) || cAPICPad_B_TRIGGER(PAD_1) || cAPICPad_START_TRIGGER(PAD_1))
     #else
     if (mTimer == 0 || mDoCPd_c::getTrig(PAD_1) &
@@ -796,15 +796,32 @@ dScnLogo_c::~dScnLogo_c() {
 
     #if PLATFORM_WII || PLATFORM_SHIELD
     switch (getPalLanguage()) {
+#if REGION_PAL
+    case 1:
+        dComIfG_deleteObjectResMain("LogoGmWii");
+        break;
+#endif
     case 2:
         dComIfG_deleteObjectResMain("LogoFrWii");
         break;
     case 3:
         dComIfG_deleteObjectResMain("LogoSpWii");
         break;
+#if REGION_PAL
+    case 4:
+        dComIfG_deleteObjectResMain("LogoItWii");
+        break;
+    case 5:
+        dComIfG_deleteObjectResMain("LogoDuWii");
+        break;
+#endif
     case 0:
     default:
+#if REGION_PAL
+        dComIfG_deleteObjectResMain("LogoUkWii");
+#else
         dComIfG_deleteObjectResMain("LogoUsWii");
+#endif
         break;
     }
     #else
@@ -994,14 +1011,31 @@ static int phase_1(dScnLogo_c* i_this) {
     switch (i_this->getPalLanguage()) {
     case 0:
     default:
+#if REGION_PAL
+        rt = dComIfG_setObjectRes("LogoUkWii", (u8)0, i_this->mLogoHeap);
+#else
         rt = dComIfG_setObjectRes("LogoUsWii", (u8)0, i_this->mLogoHeap);
+#endif
         break;
+#if REGION_PAL
+    case 1:
+        rt = dComIfG_setObjectRes("LogoGmWii", (u8)0, i_this->mLogoHeap);
+        break;
+#endif
     case 2:
         rt = dComIfG_setObjectRes("LogoFrWii", (u8)0, i_this->mLogoHeap);
         break;
     case 3:
         rt = dComIfG_setObjectRes("LogoSpWii", (u8)0, i_this->mLogoHeap);
         break;
+#if REGION_PAL
+    case 4:
+        rt = dComIfG_setObjectRes("LogoItWii", (u8)0, i_this->mLogoHeap);
+        break;
+    case 5:
+        rt = dComIfG_setObjectRes("LogoDuWii", (u8)0, i_this->mLogoHeap);
+        break;
+#endif
     }
     #else
     rt = dComIfG_setObjectRes(LOGO_ARC, (u8)0, i_this->mLogoHeap);
@@ -1111,6 +1145,10 @@ int dScnLogo_c::create() {
 }
 
 #if PLATFORM_WII || PLATFORM_SHIELD
+
+static const u8 logoIndexes[6] = {4, 4, 4, 4, 4, 4};
+static const u8 widescreenLogoIndexes[6] = {3, 3, 3, 3, 3, 3};
+
 void dScnLogo_c::logoInitWii() {
     u8 language = getPalLanguage();
     if (language > 5) {
@@ -1120,39 +1158,46 @@ void dScnLogo_c::logoInitWii() {
     ResTIMG* timg;
     s16 width;
     s16 height;
+    int index;
     if (mDoGph_gInf_c::isWide()) {
-        switch (language) {
-        case 0:
-        default:
-            timg = (ResTIMG*)dComIfG_getObjectRes("LogoUsWii", dRes_ID_LOGOUSWII_BTI_STRAP_16_9_832X456_US_e);
-            break;
-        case 2:
-            timg = (ResTIMG*)dComIfG_getObjectRes("LogoFrWii", 3);
-            break;
-        case 3:
-            timg = (ResTIMG*)dComIfG_getObjectRes("LogoSpWii", 3);
-            break;
-        }
-
         width = 832;
-        height = 456;
-    } else {
-        switch (language) {
-        case 0:
-        default:
-            timg = (ResTIMG*)dComIfG_getObjectRes("LogoUsWii", dRes_ID_LOGOUSWII_BTI_STRAP_608X456_US_e);
-            break;
-        case 2:
-            timg = (ResTIMG*)dComIfG_getObjectRes("LogoFrWii", 4);
-            break;
-        case 3:
-            timg = (ResTIMG*)dComIfG_getObjectRes("LogoSpWii", 4);
-            break;
-        }
-
-        // this uses the standard width but the widescreen height?
-        width = FB_WIDTH_BASE;
+        index = widescreenLogoIndexes[language];
         height = FB_HEIGHT;
+    } else {
+        width = FB_WIDTH_BASE;
+        index = logoIndexes[language];
+        height = FB_HEIGHT;
+    }
+
+    switch (language) {
+#if REGION_PAL
+    case 1:
+        timg = (ResTIMG*)dComIfG_getObjectRes("LogoGmWii", index);
+        break;
+#endif
+    case 2:
+        timg = (ResTIMG*)dComIfG_getObjectRes("LogoFrWii", index);
+        break;
+    case 3:
+        timg = (ResTIMG*)dComIfG_getObjectRes("LogoSpWii", index);
+        break;
+    case 4:
+        timg = (ResTIMG*)dComIfG_getObjectRes("LogoItWii", index);
+        break;
+
+    case 0:
+#if REGION_PAL
+        timg = (ResTIMG*)dComIfG_getObjectRes("LogoUkWii", index);
+#else
+        timg = (ResTIMG*)dComIfG_getObjectRes("LogoUsWii", index);
+#endif
+        break;
+
+#if REGION_PAL
+    case 5:
+        timg = (ResTIMG*)dComIfG_getObjectRes("LogoDuWii", index);
+        break;
+#endif
     }
 
     JUT_ASSERT(2309, timg != NULL);
@@ -1313,11 +1358,20 @@ void dScnLogo_c::dvdDataLoad() {
 
     static const homeBtnData l_homeBtnData[] = {
         {SC_LANG_ENGLISH, "/res/HomeBtn/homeBtn_ENG.arc"},
+#if REGION_PAL
+        {SC_LANG_GERMAN, "/res/HomeBtn/homeBtn_GER.arc"},
+#else
         {SC_LANG_ENGLISH, "/res/HomeBtn/homeBtn_ENG.arc"},
+#endif
         {SC_LANG_FRENCH, "/res/HomeBtn/homeBtn_FRA.arc"},
         {SC_LANG_SPANISH, "/res/HomeBtn/homeBtn_SPA.arc"},
+#if REGION_PAL
+        {SC_LANG_ITALIAN, "/res/HomeBtn/homeBtn_ITA.arc"},
+        {SC_LANG_DUTCH, "/res/HomeBtn/homeBtn_NED.arc"},
+#else
         {SC_LANG_ENGLISH, "/res/HomeBtn/homeBtn_ENG.arc"},
         {SC_LANG_ENGLISH, "/res/HomeBtn/homeBtn_ENG.arc"},
+#endif
         {SC_LANG_ENGLISH, "/res/HomeBtn/homeBtn_ENG.arc"},
     };
 
@@ -1355,7 +1409,7 @@ void dScnLogo_c::dvdDataLoad() {
     mpButtonCommand = aramMount(BUTTON_RES_PATH, mDoExt_getJ2dHeap());
     mpCardIconCommand = aramMount(ICON_RES_PATH, mDoExt_getJ2dHeap());
 
-    #if VERSION == VERSION_GCN_PAL
+    #if REGION_PAL
     switch (getPalLanguage()) {
     case 1:
         mpBmgResCommand = onMemMount("/res/Msgde/bmgres.arc");
@@ -1408,7 +1462,7 @@ void dScnLogo_c::dvdDataLoad() {
 #if VERSION == VERSION_GCN_JPN
     mpFontResCommand = mDoDvdThd_mountXArchive_c::create("/res/Fontjp/fontres.arc", 1, JKRArchive::MOUNT_MEM, NULL);
     mpRubyResCommand = onMemMount("/res/Fontjp/rubyres.arc");
-#elif VERSION == VERSION_GCN_PAL
+#elif REGION_PAL
     mpFontResCommand = onMemMount("/res/Fonteu/fontres.arc");
     mpRubyResCommand = onMemMount("/res/Fonteu/rubyres.arc");
 #elif VERSION == VERSION_SHIELD_DEBUG
@@ -1564,7 +1618,9 @@ void dScnLogo_c::setProgressiveMode(u8 mode) {
     return;
     #endif
 
-    #if PLATFORM_WII
+    #if VERSION == VERSION_WII_PAL
+    SCSetEuRgb60Mode(mode);
+    #elif PLATFORM_WII
     SCSetProgressiveMode(mode);
     #elif VERSION == VERSION_GCN_PAL
     OSSetEuRgb60Mode(mode);
@@ -1574,7 +1630,9 @@ void dScnLogo_c::setProgressiveMode(u8 mode) {
 }
 
 u8 dScnLogo_c::getProgressiveMode() {
-    #if PLATFORM_WII || PLATFORM_SHIELD
+    #if VERSION == VERSION_WII_PAL
+    return SCGetEuRgb60Mode();
+    #elif PLATFORM_WII || PLATFORM_SHIELD
     return SCGetProgressiveMode();
     #endif
 
@@ -1594,6 +1652,14 @@ bool dScnLogo_c::isProgressiveMode() {
 }
 
 void dScnLogo_c::setRenderMode() {
+#if VERSION == VERSION_WII_PAL
+    if (VIGetDTVStatus() != 0) {
+        if (SCGetProgressiveMode() == 1) {
+            mDoMch_render_c::setRenderModeObj(&g_palZeldaProg60);
+            return;
+        }
+    }
+#endif
     mDoMch_render_c::setProgressiveMode();
 }
 

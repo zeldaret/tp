@@ -255,7 +255,9 @@ public:
 
     static void onWide();
     static void offWide();
-    static u8 isWide();
+    inline static u8 isWide() {
+        return mWide == TRUE;
+    }
 
     static void onWideZoom();
     static void offWideZoom();
