@@ -1009,14 +1009,6 @@ static int phase_1(dScnLogo_c* i_this) {
     int rt;
     #if PLATFORM_WII || PLATFORM_SHIELD
     switch (i_this->getPalLanguage()) {
-    case 0:
-    default:
-#if REGION_PAL
-        rt = dComIfG_setObjectRes("LogoUkWii", (u8)0, i_this->mLogoHeap);
-#else
-        rt = dComIfG_setObjectRes("LogoUsWii", (u8)0, i_this->mLogoHeap);
-#endif
-        break;
 #if REGION_PAL
     case 1:
         rt = dComIfG_setObjectRes("LogoGmWii", (u8)0, i_this->mLogoHeap);
@@ -1028,14 +1020,20 @@ static int phase_1(dScnLogo_c* i_this) {
     case 3:
         rt = dComIfG_setObjectRes("LogoSpWii", (u8)0, i_this->mLogoHeap);
         break;
-#if REGION_PAL
     case 4:
         rt = dComIfG_setObjectRes("LogoItWii", (u8)0, i_this->mLogoHeap);
         break;
     case 5:
         rt = dComIfG_setObjectRes("LogoDuWii", (u8)0, i_this->mLogoHeap);
         break;
+    case 0:
+    default:
+#if REGION_PAL
+        rt = dComIfG_setObjectRes("LogoUkWii", (u8)0, i_this->mLogoHeap);
+#else
+        rt = dComIfG_setObjectRes("LogoUsWii", (u8)0, i_this->mLogoHeap);
 #endif
+        break;
     }
     #else
     rt = dComIfG_setObjectRes(LOGO_ARC, (u8)0, i_this->mLogoHeap);
