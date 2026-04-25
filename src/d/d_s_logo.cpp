@@ -1013,7 +1013,6 @@ static int phase_1(dScnLogo_c* i_this) {
     case 1:
         rt = dComIfG_setObjectRes("LogoGmWii", (u8)0, i_this->mLogoHeap);
         break;
-#endif
     case 2:
         rt = dComIfG_setObjectRes("LogoFrWii", (u8)0, i_this->mLogoHeap);
         break;
@@ -1028,12 +1027,20 @@ static int phase_1(dScnLogo_c* i_this) {
         break;
     case 0:
     default:
-#if REGION_PAL
         rt = dComIfG_setObjectRes("LogoUkWii", (u8)0, i_this->mLogoHeap);
-#else
-        rt = dComIfG_setObjectRes("LogoUsWii", (u8)0, i_this->mLogoHeap);
-#endif
         break;
+#else
+    case 0:
+    default:
+        rt = dComIfG_setObjectRes("LogoUsWii", (u8)0, i_this->mLogoHeap);
+        break;
+    case 2:
+        rt = dComIfG_setObjectRes("LogoFrWii", (u8)0, i_this->mLogoHeap);
+        break;
+    case 3:
+        rt = dComIfG_setObjectRes("LogoSpWii", (u8)0, i_this->mLogoHeap);
+        break;
+#endif
     }
     #else
     rt = dComIfG_setObjectRes(LOGO_ARC, (u8)0, i_this->mLogoHeap);
@@ -1144,8 +1151,10 @@ int dScnLogo_c::create() {
 
 #if PLATFORM_WII || PLATFORM_SHIELD
 
+#if REGION_PAL
 static const u8 logoIndexes[6] = {4, 4, 4, 4, 4, 4};
 static const u8 widescreenLogoIndexes[6] = {3, 3, 3, 3, 3, 3};
+#endif
 
 void dScnLogo_c::logoInitWii() {
     u8 language = getPalLanguage();
@@ -1156,6 +1165,7 @@ void dScnLogo_c::logoInitWii() {
     ResTIMG* timg;
     s16 width;
     s16 height;
+#if REGION_PAL
     int index;
     if (mDoGph_gInf_c::isWide()) {
         width = 832;
@@ -1168,11 +1178,9 @@ void dScnLogo_c::logoInitWii() {
     }
 
     switch (language) {
-#if REGION_PAL
     case 1:
         timg = (ResTIMG*)dComIfG_getObjectRes("LogoGmWii", index);
         break;
-#endif
     case 2:
         timg = (ResTIMG*)dComIfG_getObjectRes("LogoFrWii", index);
         break;
@@ -1182,21 +1190,57 @@ void dScnLogo_c::logoInitWii() {
     case 4:
         timg = (ResTIMG*)dComIfG_getObjectRes("LogoItWii", index);
         break;
-
     case 0:
-#if REGION_PAL
         timg = (ResTIMG*)dComIfG_getObjectRes("LogoUkWii", index);
-#else
-        timg = (ResTIMG*)dComIfG_getObjectRes("LogoUsWii", index);
-#endif
         break;
-
-#if REGION_PAL
     case 5:
         timg = (ResTIMG*)dComIfG_getObjectRes("LogoDuWii", index);
         break;
-#endif
     }
+#else
+    if (mDoGph_gInf_c::isWide()) {
+        switch (language) {
+        case 0:
+        default:
+#if PLATFORM_SHIELD
+            timg = (ResTIMG*)dComIfG_getObjectRes("LogoUsWii", 3);
+#else
+            timg = (ResTIMG*)dComIfG_getObjectRes("LogoUsWii", dRes_ID_LOGOUSWII_BTI_STRAP_16_9_832X456_US_e);
+#endif
+            break;
+        case 2:
+            timg = (ResTIMG*)dComIfG_getObjectRes("LogoFrWii", 3);
+            break;
+        case 3:
+            timg = (ResTIMG*)dComIfG_getObjectRes("LogoSpWii", 3);
+            break;
+        }
+
+        width = 832;
+        height = 456;
+    } else {
+        switch (language) {
+        case 0:
+        default:
+#if PLATFORM_SHIELD
+            timg = (ResTIMG*)dComIfG_getObjectRes("LogoUsWii", 4);
+#else
+            timg = (ResTIMG*)dComIfG_getObjectRes("LogoUsWii", dRes_ID_LOGOUSWII_BTI_STRAP_608X456_US_e);
+#endif
+            break;
+        case 2:
+            timg = (ResTIMG*)dComIfG_getObjectRes("LogoFrWii", 4);
+            break;
+        case 3:
+            timg = (ResTIMG*)dComIfG_getObjectRes("LogoSpWii", 4);
+            break;
+        }
+
+        // this uses the standard width but the widescreen height?
+        width = FB_WIDTH_BASE;
+        height = FB_HEIGHT;
+    }
+#endif
 
     JUT_ASSERT(2309, timg != NULL);
     mStrapImg = new dDlst_2D_c(timg, (FB_WIDTH_BASE / 2) - (width / 2), (FB_HEIGHT_BASE / 2) - (height / 2), width, height, 255);
