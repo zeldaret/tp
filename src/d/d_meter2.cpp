@@ -1664,18 +1664,18 @@ void dMeter2_c::moveButtonZ() {
         draw_buttonZ = true;
     }
 
-    if (field_0x3e4 != g_drawHIO.mButtonZItemBaseScale) {
-        field_0x3e4 = g_drawHIO.mButtonZItemBaseScale;
+    if (field_0x3e4 != g_drawHIO.mButtonZGCNItemBaseScale) {
+        field_0x3e4 = g_drawHIO.mButtonZGCNItemBaseScale;
         draw_buttonZ = true;
     }
 
-    if (field_0x3e8 != g_drawHIO.mButtonZItemBasePosX) {
-        field_0x3e8 = g_drawHIO.mButtonZItemBasePosX;
+    if (field_0x3e8 != g_drawHIO.mButtonZGCNItemBasePosX) {
+        field_0x3e8 = g_drawHIO.mButtonZGCNItemBasePosX;
         draw_buttonZ = true;
     }
 
-    if (field_0x3ec != g_drawHIO.mButtonZItemBasePosY) {
-        field_0x3ec = g_drawHIO.mButtonZItemBasePosY;
+    if (field_0x3ec != g_drawHIO.mButtonZGCNItemBasePosY) {
+        field_0x3ec = g_drawHIO.mButtonZGCNItemBasePosY;
         draw_buttonZ = true;
     }
 

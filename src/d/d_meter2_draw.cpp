@@ -486,10 +486,10 @@ void dMeter2Draw_c::init() {
         mItemBBaseAlpha[i] = g_drawHIO.mItemBBaseAlpha[i];
         mButtonXItemBaseAlpha[i] = g_drawHIO.mButtonXItemBaseAlpha[i];
         mButtonYItemBaseAlpha[i] = g_drawHIO.mButtonYItemBaseAlpha[i];
-        field_0x82c[i] = g_drawHIO.field_0x298[i];
+        field_0x82c[i] = g_drawHIO.mButtonZWiiItemBaseAlpha[i];
     }
 
-    mButtonZItemBaseAlpha = g_drawHIO.mButtonZItemBaseAlpha;
+    mButtonZItemBaseAlpha = g_drawHIO.mButtonZGCNItemBaseAlpha;
     mButtonBaseAlpha = g_drawHIO.mButtonBaseAlpha;
     mButtonATextSpacing = g_drawHIO.mButtonATextSpacing;
     mButtonCrossAlpha = g_drawHIO.mButtonCrossAlpha;
@@ -2384,8 +2384,8 @@ void dMeter2Draw_c::drawButtonZ(u8 i_action) {
     mpItemR->paneTrans(g_drawHIO.mButtonZItemPosX + field_0x6ac[2],
                        g_drawHIO.mButtonZItemPosY + field_0x6b8[2]);
 
-    mpLightXY[2]->scale(g_drawHIO.mButtonZItemBaseScale, g_drawHIO.mButtonZItemBaseScale);
-    mpLightXY[2]->paneTrans(g_drawHIO.mButtonZItemBasePosX, g_drawHIO.mButtonZItemBasePosY);
+    mpLightXY[2]->scale(g_drawHIO.mButtonZGCNItemBaseScale, g_drawHIO.mButtonZGCNItemBaseScale);
+    mpLightXY[2]->paneTrans(g_drawHIO.mButtonZGCNItemBasePosX, g_drawHIO.mButtonZGCNItemBasePosY);
 
     mpTextXY[2]->scale(g_drawHIO.mButtonZFontScale, g_drawHIO.mButtonZFontScale);
     mpTextXY[2]->paneTrans(g_drawHIO.mButtonZFontPosX, g_drawHIO.mButtonZFontPosY);
@@ -2746,8 +2746,8 @@ void dMeter2Draw_c::setAlphaButtonChange(bool param_0) {
         set_buttonYItem = true;
     }
 
-    if (mButtonZItemBaseAlpha != g_drawHIO.mButtonZItemBaseAlpha || param_0) {
-        mButtonZItemBaseAlpha = g_drawHIO.mButtonZItemBaseAlpha;
+    if (mButtonZItemBaseAlpha != g_drawHIO.mButtonZGCNItemBaseAlpha || param_0) {
+        mButtonZItemBaseAlpha = g_drawHIO.mButtonZGCNItemBaseAlpha;
         set_buttonZItem = true;
     }
 

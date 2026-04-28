@@ -381,6 +381,9 @@ dMeter_drawFishingHIO_c::dMeter_drawFishingHIO_c() {
 
     static f32 const fishnPosY[6] = {-72.1f, 129.6f, 0.0f, 6.6f, 32.8f, 11.7f};
 
+    UNUSED(bboxPosX);
+    UNUSED(bboxPosY);
+
     mOpenFrames = 10;
     mCloseFrames = 10;
     mDebug = false;
@@ -426,6 +429,7 @@ dMeter_drawFishingHIO_c::dMeter_drawFishingHIO_c() {
 
 #if DEBUG
 void dMeter_drawFishingHIO_c::genMessage(JORMContext* mctx) {
+    static u8 fish_type[6] = {3, 4, 2, 5, 1, 0};
     static const char* fish_name[6] = {
         "********トアルナマズ********",
         "********ニオイマス********",
@@ -434,7 +438,6 @@ void dMeter_drawFishingHIO_c::genMessage(JORMContext* mctx) {
         "********ハイラルドジョウ********",
         "********ハイラルバス********",
     };
-    static u8 fish_type[6] = {3, 4, 2, 5, 1, 0};
     mctx->genCheckBox("デバッグＯＮ", (u8*)&mDebug, 0x1);
     mctx->genSlider("open frame", &mOpenFrames, 1, 20);
     mctx->genSlider("close frame", &mCloseFrames, 1, 20);
@@ -497,6 +500,13 @@ dMeter_drawInsectHIO_c::dMeter_drawInsectHIO_c() {
     mDescWindowPosX = 0.0f;
     mDescWindowPosY = 77.0f;
 
+#if VERSION == VERSION_WII_USA_R0
+    mGiveOptionPosX = 0.0f;
+    mGiveOptionPosY = 0.0f;
+
+    mConfirmOptionPosX = 0.0f;
+    mConfirmOptionPosY = 0.0f;
+#else
     mGiveOptionPosX_4x3 = 0.0f;
     mGiveOptionPosY_4x3 = 43.0f;
 
@@ -508,6 +518,7 @@ dMeter_drawInsectHIO_c::dMeter_drawInsectHIO_c() {
 
     mConfirmOptionPosX = -34.0f;
     mConfirmOptionPosY = 119.0f;
+#endif
 }
 
 #if DEBUG
@@ -669,20 +680,34 @@ dMeter_drawEmpButtonHIO_c::dMeter_drawEmpButtonHIO_c() {
     mPikariFrontInner.b = 255;
     mPikariFrontInner.a = 185;
 
+#if PLATFORM_WII
+    mPikariFrontOuter.r = 255;
+    mPikariFrontOuter.g = 255;
+    mPikariFrontOuter.b = 255;
+    mPikariFrontOuter.a = 0;
+#else
     mPikariFrontOuter.r = 0;
     mPikariFrontOuter.g = 155;
     mPikariFrontOuter.b = 0;
     mPikariFrontOuter.a = 0;
+#endif
 
     mPikariBackInner.r = 255;
     mPikariBackInner.g = 255;
     mPikariBackInner.b = 255;
     mPikariBackInner.a = 87;
 
+#if PLATFORM_WII
+    mPikariBackOuter.r = 255;
+    mPikariBackOuter.g = 255;
+    mPikariBackOuter.b = 255;
+    mPikariBackOuter.a = 0;
+#else
     mPikariBackOuter.r = 0;
     mPikariBackOuter.g = 115;
     mPikariBackOuter.b = 0;
     mPikariBackOuter.a = 0;
+#endif
 
     mPikariAnimSpeed = 0.772705f;
     mPikariFastScale = 3.0f;
@@ -729,10 +754,10 @@ dMeter_drawEmpButtonHIO_c::dMeter_drawEmpButtonHIO_c() {
         mDebugDisplayButton[0] = 0;
     }
 
-    #if PLATFORM_SHIELD
-    mDisplaySpace = 70.0f;
-    #else
+    #if PLATFORM_GCN
     mDisplaySpace = 35.0f;
+    #else
+    mDisplaySpace = 70.0f;
     #endif
 
     mEmpButtonPosX = 0.0f;
@@ -764,8 +789,13 @@ dMeter_drawEmpButtonHIO_c::dMeter_drawEmpButtonHIO_c() {
     mCButtonScale = 1.0f;
 
     mSButtonPosX = 0.0f;
+#if PLATFORM_WII
+    mSButtonPosY = -393.0f;
+    mSButtonScale = 1.0f;
+#else
     mSButtonPosY = -392.0f;
     mSButtonScale = 0.9f;
+#endif
 
     mButtonXPosX = 0.0f;
     mButtonXPosY = 0.0f;
@@ -831,8 +861,13 @@ dMeter_drawEmpButtonHIO_c::dMeter_drawEmpButtonHIO_c() {
     mViewChangePosY = 67.0f;
     mViewChangeScale = 1.0f;
 
+#if PLATFORM_WII
+    mText1PosX = mText2PosX = 10.0f;
+    mText1PosY = mText2PosY = 4.0f;
+#else
     mText1PosX = mText2PosX = 2.0f;
     mText1PosY = mText2PosY = 3.0f;
+#endif
     mText1Scale = mText2Scale = 1.0f;
 
     mItemPosX = 12.0f;
@@ -1158,15 +1193,24 @@ dMeter_drawMiniGameHIO_c::dMeter_drawMiniGameHIO_c() {
     field_0x20[0] = 0.0f;
     field_0x2c[0] = 1.0f;
 
+#if PLATFORM_WII
+    mTimerSizeX[0] = 1.4f;
+    mTimerSizeY[0] = 1.0f;
+    mTimerPosX[0] = 198.0f;
+    mTimerPosY[0] = -30.0f;
+#else
     mTimerSizeX[0] = 1.2f;
     mTimerSizeY[0] = 0.9f;
     mTimerPosX[0] = 207.0f;
     mTimerPosY[0] = -43.0f;
+#endif
     mTimerAlpha[0] = 0.5f;
+#if VERSION != VERSION_WII_USA_R0
     mTimerSizeX_4x3 = 1.2f;
     mTimerSizeY_4x3 = 0.9f;
     mTimerPosX_4x3 = 207.0f;
     mTimerPosY_4x3 = -43.0f;
+#endif
 
     mCounterSizeX[0] = 1.1f;
     mCounterSizeY[0] = 0.9f;
@@ -1176,7 +1220,11 @@ dMeter_drawMiniGameHIO_c::dMeter_drawMiniGameHIO_c() {
 
     mIconSizeX[0] = 0.75f;
     mIconSizeY[0] = 0.75f;
+#if PLATFORM_WII
+    mIconPosX[0] = -258.0f;
+#else
     mIconPosX[0] = -275.0f;
+#endif
     mIconPosX_4x3 = -275.0f;
     mIconPosY[0] = 76.0f;
     mIconAlpha[0] = 0.9f;
@@ -1217,15 +1265,26 @@ dMeter_drawMiniGameHIO_c::dMeter_drawMiniGameHIO_c() {
 
     mCounterSizeX[2] = 1.1f;
     mCounterSizeY[2] = 0.95f;
+#if PLATFORM_WII
+    mCounterPosX[2] = 270.0f;
+    mCounterPosY[2] = 302.0f;
+#else
     mCounterPosX[2] = 267.0f;
     mCounterPosY[2] = 288.0f;
+#endif
     mCounterAlpha[2] = 0.7f;
 
     mIconSizeX[2] = 0.75f;
     mIconSizeY[2] = 0.75f;
+#if PLATFORM_WII
+    mIconPosX[2] = -3.0f;
+    mRiderGameIconPosX_4x3 = -26.0f;
+    mIconPosY[2] = 63.0f;
+#else
     mIconPosX[2] = -29.0f;
     mRiderGameIconPosX_4x3 = -26.0f;
     mIconPosY[2] = 50.0f;
+#endif
     mIconAlpha[2] = 0.9f;
 
     mReadyGo = 60;
@@ -1476,8 +1535,13 @@ void dMeter_drawMiniGameHIO_c::genMessage(JORMContext* mctx) {
 
 dMeter_drawLightDropHIO_c::dMeter_drawLightDropHIO_c() {
     mVesselScale = 0.76f;
+#if PLATFORM_WII
+    mVesselPosX = -20.0f;
+    mVesselPosY = 9.2f;
+#else
     mVesselPosX = -18.0f;
     mVesselPosY = 11.0f;
+#endif
     mVesselPosX_4x3 = -20.0f;
     mVesselPosY_4x3 = 6.6f;
     mVesselAlpha[0] = 1.0f;
@@ -1645,6 +1709,10 @@ dMeter_drawHIO_c::dMeter_drawHIO_c() {
     #if DEBUG
     field_0x8_debug = 0;
     #endif
+
+#if PLATFORM_WII
+    updateOnWide();
+#else
     mLifeTopPosX = 40.0f;
     mLifeTopPosY = -5.6f;
 
@@ -1767,9 +1835,9 @@ dMeter_drawHIO_c::dMeter_drawHIO_c() {
     field_0x318 = 0.0f;
     field_0x31c = 0.0f;
 
-    field_0x320 = 1.0f;
-    field_0x324 = 0.0f;
-    field_0x328 = 0.0f;
+    mButtonZTextScale = 1.0f;
+    mButtonZTextPosX = 0.0f;
+    mButtonZTextPosY = 0.0f;
 
     mButtonZScale = 1.0f;
     mButtonZAlpha = 0.9f;
@@ -1856,20 +1924,20 @@ dMeter_drawHIO_c::dMeter_drawHIO_c() {
     mButtonYItemBasePosY[1] = 0.0f;
     mButtonYItemBaseAlpha[1] = 0.5f;
 
-    field_0x280 = 1.5f;
-    field_0x288 = 0.0f;
-    field_0x290 = 6.0f;
-    field_0x298[0] = 0.5f;
+    mButtonZWiiItemBaseScale[0] = 1.5f;
+    mButtonZWiiItemBasePosX[0] = 0.0f;
+    mButtonZWiiItemBasePosY[0] = 6.0f;
+    mButtonZWiiItemBaseAlpha[0] = 0.5f;
 
-    field_0x284 = 1.0f;
-    field_0x28c = 0.0f;
-    field_0x294 = 4.0f;
-    field_0x298[1] = 1.0f;
+    mButtonZWiiItemBaseScale[1] = 1.0f;
+    mButtonZWiiItemBasePosX[1] = 0.0f;
+    mButtonZWiiItemBasePosY[1] = 4.0f;
+    mButtonZWiiItemBaseAlpha[1] = 1.0f;
 
-    mButtonZItemBaseScale = 1.0f;
-    mButtonZItemBasePosX = 0.0f;
-    mButtonZItemBasePosY = 0.0f;
-    mButtonZItemBaseAlpha = 0.5f;
+    mButtonZGCNItemBaseScale = 1.0f;
+    mButtonZGCNItemBasePosX = 0.0f;
+    mButtonZGCNItemBasePosY = 0.0f;
+    mButtonZGCNItemBaseAlpha = 0.5f;
 
     mButtonBaseAlpha = 0.55f;
 
@@ -2253,6 +2321,8 @@ dMeter_drawHIO_c::dMeter_drawHIO_c() {
 
     mFloatingMessagePosX = 0.0f;
     mFloatingMessagePosY = -100.0f;
+    // needed to match debug .sdata2
+    UNUSED(-60.0f);
     mMessageID = 395;
     mFlowID = 3003;
     mMessageDuration = 150;
@@ -2284,13 +2354,1351 @@ dMeter_drawHIO_c::dMeter_drawHIO_c() {
     mLanternIconMeterPosX = 0.0f;
     mLanternIconMeterPosY = 0.0f;
     mLanternIconMeterSize = 1.0f;
+#endif
 }
 
 #if WIDESCREEN_SUPPORT
-void dMeter_drawHIO_c::updateOnWide() {}
+void dMeter_drawHIO_c::updateOnWide() {
+#if PLATFORM_WII
+    mLifeTopPosX = 27.5f;
+    mLifeTopPosY = -5.6f;
 
-void dMeter_drawHIO_c::updateOffWide() {}
+    mNoMagicPosY = -15.0f;
+
+    mParentScale = 1.0f;
+    mParentAlpha = 1.0f;
+
+    mLifeParentScale = 1.0f;
+    mLifeParentHeartAlpha = 1.0f;
+    mHeartBaseAlpha = 0.4f;
+    mLifeGaugePosX = -5.0f;
+    mLifeGaugePosY = 18.0f;
+    mHeartMarkScale = 1.0f;
+    mHeartAlpha = 0.7f;
+    mBigHeartScale = 1.0f;
+    mBigHeartAlpha = 1.0f;
+
+    mMagicMeterScale = 0.7f;
+    mMagicMeterAlpha = 1.0f;
+    mMagicMeterFrameAlpha = 0.55f;
+    mMagicMeterPosX = -26.0f;
+    mMagicMeterPosY = 0.0f;
+
+    mLanternMeterScale = 0.7f;
+    mLanternMeterAlpha = 1.0f;
+    mLanternMeterFrameAlpha = 0.55f;
+    mLanternMeterPosX = 20.0f;
+    mLanternMeterPosY = 20.0f;
+
+    mOxygenMeterScale = 0.7f;
+    mOxygenMeterAlpha = 1.0f;
+    mOxygenMeterFrameAlpha = 0.55f;
+    mOxygenMeterPosX = 20.0f;
+    mOxygenMeterPosY = 20.0f;
+
+    mMainHUDButtonsScale = 0.92f;
+    mMainHUDButtonsAlpha = 1.0f;
+    mMainHUDButtonsPosX = -2.8f;
+    mMainHUDButtonsPosY = 54.0f;
+
+    mRingHUDButtonsScale = 0.98f;
+    mRingHUDButtonsAlpha = 1.0f;
+    mRingHUDButtonsPosX = -15.0f;
+    mRingHUDButtonsPosY = 56.0f;
+
+    mButtonDisplayBackScale = 1.0f;
+    mButtonDisplayBackAlpha = 1.0f;
+    mButtonAScale = 0.95f;
+    mButtonAAlpha = 1.0f;
+    mButtonAPosX = -1.0f;
+    mButtonAPosY = 130.0f;
+
+    mButtonATalkScale[0] = 1.1f;
+    mButtonATalkPosX[0] = -1.0f;
+    mButtonATalkPosY[0] = -106.0f;
+    mButtonATalkScale[1] = 1.1f;
+    mButtonATalkPosX[1] = 4.5f;
+    mButtonATalkPosY[1] = 5.5f;
+    mButtonATalkAScale = 1.1f;
+    mButtonATalkAPosX[0] = 12.0f;
+    mButtonATalkAPosY[0] = -161.0f;
+    mButtonATextTalkAScale = 1.1f;
+    mButtonATalkAPosX[1] = 0.5f;
+    mButtonATalkAPosY[1] = -9.0f;
+
+    mButtonAVesselPosX = -1.0f;
+    mButtonAVesselPosY = 130.0f;
+
+    mButtonBScale = 1.1f;
+    mButtonBAlpha = 1.0f;
+    mButtonBPosX = -20.0f;
+    mButtonBPosY = -14.0f;
+
+    mButtonBTalkScale[0] = 1.0f;
+    mButtonBTalkPosX[0] = 20.0f;
+    mButtonBTalkPosY[0] = -203.0f;
+    mButtonBTalkScale[1] = 1.2f;
+    mButtonBTalkPosX[1] = -50.0f;
+    mButtonBTalkPosY[1] = -30.0f;
+
+    mButtonBWolfPosX = 19.0f;
+    mButtonBWolfPosY = 0.0f;
+
+    mButtonBVesselPosX = 19.0f;
+    mButtonBVesselPosY = 0.0f;
+
+    mMidnaIconScale = 2.0f;
+    mMidnaIconAlpha = 1.0f;
+    mMidnaIconPosX = 0.0f;
+    mMidnaIconPosY = -40.0f;
+
+    field_0x134 = 1.1f;
+    field_0x138 = 1.0f;
+    field_0x13c = 0.0f;
+    field_0x140 = 0.0f;
+
+    mButtonXScale = 1.0f;
+    mButtonXAlpha = 0.9f;
+    mButtonXPosX = 0.0f;
+    mButtonXPosY = 0.0f;
+    mButtonYScale = 1.0f;
+    mButtonYAlpha = 0.9f;
+    mButtonYPosX = 0.0f;
+    mButtonYPosY = 0.0f;
+
+    field_0x164 = 1.5f;
+    field_0x168 = 1.0f;
+    field_0x16c = 0.0f;
+    field_0x170 = 0.0f;
+    field_0x304 = 0.75f;
+    field_0x308 = 0.0f;
+    field_0x30c = 0.0f;
+    field_0x314 = 1.0f;
+    field_0x318 = 0.0f;
+    field_0x31c = 0.0f;
+
+    mButtonZTextScale = 1.0f;
+    mButtonZTextPosX = 0.0f;
+    mButtonZTextPosY = 0.0f;
+    mButtonZScale = 1.0f;
+    mButtonZAlpha = 0.9f;
+    mButtonZPosX = 0.0f;
+    mButtonZPosY = 0.0f;
+
+    mButtonBItemPosX[0] = 26.3f;
+    mButtonBItemPosY[0] = -44.8f;
+    mButtonBItemRotation[0] = 0.0f;
+    mButtonBItemScale[0] = 1.7f;
+    mButtonBItemPosX[1] = -4.7f;
+    mButtonBItemPosY[1] = 10.0f;
+    mButtonBItemRotation[1] = 39.0f;
+    mButtonBItemScale[1] = 1.1f;
+    mButtonBItemPosX[2] = -17.0f;
+    mButtonBItemPosY[2] = 40.0f;
+    mButtonBItemRotation[2] = 14.0f;
+    mButtonBItemScale[2] = 2.3f;
+
+    mButtonXItemPosX = 19.0f;
+    mButtonXItemPosY = -11.0f;
+    mButtonXItemScale = 1.7f;
+
+    mXItemNumPosX = -14.0f;
+    mXItemNumPosY = -9.0f;
+    mXItemNumScale = 0.8f;
+
+    mButtonYItemPosX = -4.0f;
+    mButtonYItemPosY = -16.0f;
+    mButtonYItemScale = 1.7f;
+
+    mYItemNumPosX = -14.0f;
+    mYItemNumPosY = -9.0f;
+    mYItemNumScale = 0.8f;
+
+    field_0x1cc = 1.3f;
+    field_0x1d0 = 9.2f;
+    field_0x1d4 = 1.7f;
+    field_0x1f8 = 14.0f;
+    field_0x208 = -30.0f;
+    field_0x218 = 0.8f;
+
+    mItemBNumPosX = 14.0f;
+    mItemBNumPosY = -30.0f;
+    mItemBNumScale = 0.8f;
+
+    mButtonItemRotation[0] = 0.0f;
+    mButtonItemRotation[1] = 0.0f;
+    mButtonItemRotation[2] = 0.0f;
+
+    mButtonZItemPosX = 0.0f;
+    mButtonZItemPosY = 0.0f;
+    mButtonZItemScale = 1.0f;
+
+    for (int i = 0; i < 2; i++) {
+        mItemBBaseScale[i] = 1.0f;
+        mItemBBasePosX[i] = 22.0f;
+        mItemBBasePosY[i] = -49.0f;
+    }
+    mItemBBaseAlpha[0] = 1.0f;
+    mItemBBaseAlpha[1] = 1.0f;
+
+    mButtonXItemBaseScale[0] = 1.5f;
+    mButtonXItemBasePosX[0] = 14.0f;
+    mButtonXItemBasePosY[0] = -12.0f;
+    mButtonXItemBaseAlpha[0] = 1.0f;
+    mButtonXItemBaseScale[1] = 1.5f;
+    mButtonXItemBasePosX[1] = 0.0f;
+    mButtonXItemBasePosY[1] = 0.0f;
+    mButtonXItemBaseAlpha[1] = 1.0f;
+
+    mButtonYItemBaseScale[0] = 1.5f;
+    mButtonYItemBasePosX[0] = -10.0f;
+    mButtonYItemBasePosY[0] = -12.0f;
+    mButtonYItemBaseAlpha[0] = 1.0f;
+    mButtonYItemBaseScale[1] = 1.5f;
+    mButtonYItemBasePosX[1] = 0.0f;
+    mButtonYItemBasePosY[1] = 0.0f;
+    mButtonYItemBaseAlpha[1] = 1.0f;
+
+    mButtonZWiiItemBaseScale[0] = 1.5f;
+    mButtonZWiiItemBasePosX[0] = 0.0f;
+    mButtonZWiiItemBasePosY[0] = 6.0f;
+    mButtonZWiiItemBaseAlpha[0] = 1.0f;
+    mButtonZWiiItemBaseScale[1] = 1.5f;
+    mButtonZWiiItemBasePosX[1] = 0.0f;
+    mButtonZWiiItemBasePosY[1] = 4.0f;
+    mButtonZWiiItemBaseAlpha[1] = 1.0f;
+
+    mButtonZGCNItemBaseScale = 1.0f;
+    mButtonZGCNItemBasePosX = 0.0f;
+    mButtonZGCNItemBasePosY = 0.0f;
+    mButtonZGCNItemBaseAlpha = 0.5f;
+
+    mButtonBaseAlpha = 0.0f;
+
+    mButtonATextActionID = 1001;
+    field_0x2cc = 1001;
+    mButtonATextDebug = 0;
+#if REGION_JPN
+    mButtonATextSpacing = -0.5f;
+#else
+    mButtonATextSpacing = 1.0f;
 #endif
+    mButtonATextScale = 1.1f;
+    mButtonATextPosX = 0.0f;
+    mButtonATextPosY = -6.0f;
+
+    mButtonATextColor.r = 255;
+    mButtonATextColor.g = 255;
+    mButtonATextColor.b = 255;
+    mButtonATextColor.a = 255;
+
+    mButtonBFontScale = 0.95f;
+    mButtonBFontPosX = 0.0f;
+    mButtonBFontPosY = -1.3f;
+
+    mButtonBFontColor.r = 255;
+    mButtonBFontColor.g = 255;
+    mButtonBFontColor.b = 255;
+    mButtonBFontColor.a = 255;
+
+    field_0x2e4 = 1.0f;
+    field_0x2e8 = 0.0f;
+    field_0x2ec = 0.0f;
+    field_0x2f0.r = 0xFF;
+    field_0x2f0.g = 0xFF;
+    field_0x2f0.b = 0xFF;
+    field_0x2f0.a = 0xFF;
+
+    mButtonXYTextScale = 1.0f;
+    mButtonXYTextPosX = 0.0f;
+    mButtonXYTextPosY = 0.0f;
+    mButtonXYTextColor.r = 255;
+    mButtonXYTextColor.g = 255;
+    mButtonXYTextColor.b = 255;
+    mButtonXYTextColor.a = 255;
+
+    mButtonZFontScale = 1.0f;
+    mButtonZFontPosX = 0.0f;
+    mButtonZFontPosY = 0.0f;
+    mButtonZFontColor.r = 255;
+    mButtonZFontColor.g = 255;
+    mButtonZFontColor.b = 255;
+    mButtonZFontColor.a = 255;
+
+    mRupeeKeyScale = 1.0f;
+    mRupeeKeyPosX = -33.0f;
+    mRupeeKeyPosY = 32.0f;
+    mRupeeKeyAlpha = 0.6f;
+    mRupeeScale = 0.8f;
+    mRupeePosX = 49.0f;
+    mRupeePosY = -28.0f;
+    mRupeeAlpha = 1.0f;
+
+    mKeyScale = 0.7f;
+    mKeyPosX = 33.0f;
+    mKeyPosY = -30.0f;
+    mKeyAlpha = 1.0f;
+
+    mRupeeFrameScale = 0.0f;
+    mRupeeFramePosX = 0.0f;
+    mRupeeFramePosY = 1.0f;
+    mRupeeFrameAlpha = 1.0f;
+
+    mRupeeCountScale = 1.0f;
+    mRupeeCountPosX = 0.0f;
+    mRupeeCountPosY = 0.0f;
+    mRupeeCountAlpha = 1.0f;
+
+    mKeyNumScale = 1.0f;
+    mKeyNumPosX = 0.0f;
+    mKeyNumPosY = 0.0f;
+    mKeyNumAlpha = 1.0f;
+
+    mSpurDebug = 0;
+    mSpurIconScale = 1.0f;
+    mSpurIconAlpha = 1.0f;
+    mUsedSpurIconScale = 1.0f;
+    mUsedSpurIconAlpha = 1.0f;
+    mSpurBarScale = 0.6f;
+    mSpurBarPosX = 5.0f;
+    mSpurBarPosY = -1.3f;
+
+    mButtonAHorsePosX = 130.0f;
+    mButtonAHorsePosY = 0.0f;
+    mButtonAHorseScale = 0.85f;
+
+    mButtonAPikariScale = 1.5f;
+    mButtonBPikariScale = 0.7f;
+    field_0x3cc = 1.0f;
+    mButtonZPikariScale = 1.2f;
+    mButtonXYPikariScale = 1.2f;
+    mMidnaIconPikariScale = 1.0f;
+    mSpurIconPikariScale = 2.5f;
+    mSpurIconRevivePikariScale = 1.3f;
+
+    field_0x3f0 = 0.0f;
+    field_0x3f4 = 0.0f;
+    field_0x3f8 = 1.0f;
+
+    mButtonCrossScale = 0.9f;
+    mButtonCrossOFFPosX = -12.0f;
+    mButtonCrossOFFPosY = 0.0f;
+    mButtonCrossONPosX = -12.0f;
+    mButtonCrossONPosY = 0.0f;
+    mButtonCrossTextScale = 0.9f;
+    mButtonCrossAlpha = 1.0f;
+    mButtonCrossITEMAlpha = 1.0f;
+    mButtonCrossMAPAlpha = 1.0f;
+    mButtonCrossMoveFrame = 5;
+
+    field_0x422 = 10;
+    field_0x424 = 20;
+
+    mButtonXYItemDimAlpha = 128;
+    mButtonXYBaseDimAlpha = 128;
+
+    field_0x42c = 128;
+
+    mMaxSpurAmount = 6;
+    mSpurIconPikariFrontInner.r = 255;
+    mSpurIconPikariFrontInner.g = 255;
+    mSpurIconPikariFrontInner.b = 255;
+    mSpurIconPikariFrontInner.a = 255;
+
+    mSpurIconPikariFrontOuter.r = 140;
+    mSpurIconPikariFrontOuter.g = 232;
+    mSpurIconPikariFrontOuter.b = 228;
+    mSpurIconPikariFrontOuter.a = 0;
+
+    mSpurIconPikariBackInner.r = 255;
+    mSpurIconPikariBackInner.g = 255;
+    mSpurIconPikariBackInner.b = 190;
+    mSpurIconPikariBackInner.a = 255;
+
+    mSpurIconPikariBackOuter.r = 55;
+    mSpurIconPikariBackOuter.g = 215;
+    mSpurIconPikariBackOuter.b = 90;
+    mSpurIconPikariBackOuter.a = 0;
+
+    mSpurIconPikariAnimSpeed = 1.5f;
+
+    mSpurIconRevivePikariFrontInner.r = 255;
+    mSpurIconRevivePikariFrontInner.g = 255;
+    mSpurIconRevivePikariFrontInner.b = 255;
+    mSpurIconRevivePikariFrontInner.a = 255;
+
+    mSpurIconRevivePikariFrontOuter.r = 220;
+    mSpurIconRevivePikariFrontOuter.g = 110;
+    mSpurIconRevivePikariFrontOuter.b = 30;
+    mSpurIconRevivePikariFrontOuter.a = 0;
+
+    mSpurIconRevivePikariBackInner.r = 255;
+    mSpurIconRevivePikariBackInner.g = 255;
+    mSpurIconRevivePikariBackInner.b = 190;
+    mSpurIconRevivePikariBackInner.a = 255;
+
+    mSpurIconRevivePikariBackOuter.r = 170;
+    mSpurIconRevivePikariBackOuter.g = 110;
+    mSpurIconRevivePikariBackOuter.b = 0;
+    mSpurIconRevivePikariBackOuter.a = 0;
+
+    mSpurIconRevivePikariAnimSpeed = 0.5f;
+
+    mButtonZPikariFrontInner.r = 255;
+    mButtonZPikariFrontInner.g = 255;
+    mButtonZPikariFrontInner.b = 255;
+    mButtonZPikariFrontInner.a = 255;
+
+    mButtonZPikariFrontOuter.r = 0;
+    mButtonZPikariFrontOuter.g = 0;
+    mButtonZPikariFrontOuter.b = 0;
+    mButtonZPikariFrontOuter.a = 0;
+
+    mButtonZPikariBackInner.r = 255;
+    mButtonZPikariBackInner.g = 255;
+    mButtonZPikariBackInner.b = 255;
+    mButtonZPikariBackInner.a = 255;
+
+    mButtonZPikariBackOuter.r = 160;
+    mButtonZPikariBackOuter.g = 160;
+    mButtonZPikariBackOuter.b = 110;
+    mButtonZPikariBackOuter.a = 0;
+
+    mButtonZPikariAnimSpeed = 0.4f;
+
+    mButtonXYPikariFrontInner.r = 255;
+    mButtonXYPikariFrontInner.g = 255;
+    mButtonXYPikariFrontInner.b = 255;
+    mButtonXYPikariFrontInner.a = 255;
+
+    mButtonXYPikariFrontOuter.r = 0;
+    mButtonXYPikariFrontOuter.g = 0;
+    mButtonXYPikariFrontOuter.b = 0;
+    mButtonXYPikariFrontOuter.a = 0;
+
+    mButtonXYPikariBackInner.r = 255;
+    mButtonXYPikariBackInner.g = 255;
+    mButtonXYPikariBackInner.b = 255;
+    mButtonXYPikariBackInner.a = 255;
+
+    mButtonXYPikariBackOuter.r = 160;
+    mButtonXYPikariBackOuter.g = 160;
+    mButtonXYPikariBackOuter.b = 110;
+    mButtonXYPikariBackOuter.a = 0;
+
+    mButtonXYPikariAnimSpeed = 0.4f;
+
+    mButtonAPikariFrontInner.r = 255;
+    mButtonAPikariFrontInner.g = 255;
+    mButtonAPikariFrontInner.b = 255;
+    mButtonAPikariFrontInner.a = 160;
+
+    mButtonAPikariFrontOuter.r = 0;
+    mButtonAPikariFrontOuter.g = 0;
+    mButtonAPikariFrontOuter.b = 0;
+    mButtonAPikariFrontOuter.a = 0;
+
+    mButtonAPikariBackInner.r = 255;
+    mButtonAPikariBackInner.g = 255;
+    mButtonAPikariBackInner.b = 255;
+    mButtonAPikariBackInner.a = 128;
+
+    mButtonAPikariBackOuter.r = 255;
+    mButtonAPikariBackOuter.g = 255;
+    mButtonAPikariBackOuter.b = 255;
+    mButtonAPikariBackOuter.a = 0;
+
+    mButtonAPikariAnimSpeed = 0.4f;
+
+    mButtonBPikariFrontInner.r = 255;
+    mButtonBPikariFrontInner.g = 180;
+    mButtonBPikariFrontInner.b = 180;
+    mButtonBPikariFrontInner.a = 160;
+
+    mButtonBPikariFrontOuter.r = 0;
+    mButtonBPikariFrontOuter.g = 0;
+    mButtonBPikariFrontOuter.b = 0;
+    mButtonBPikariFrontOuter.a = 0;
+
+    mButtonBPikariBackInner.r = 255;
+    mButtonBPikariBackInner.g = 255;
+    mButtonBPikariBackInner.b = 255;
+    mButtonBPikariBackInner.a = 128;
+
+    mButtonBPikariBackOuter.r = 255;
+    mButtonBPikariBackOuter.g = 255;
+    mButtonBPikariBackOuter.b = 255;
+    mButtonBPikariBackOuter.a = 0;
+
+    mButtonBPikariAnimSpeed = 0.4f;
+
+    field_0x4a8.r = 255;
+    field_0x4a8.g = 180;
+    field_0x4a8.b = 180;
+    field_0x4a8.a = 160;
+
+    field_0x4ac.r = 0;
+    field_0x4ac.g = 0;
+    field_0x4ac.b = 0;
+    field_0x4ac.a = 0;
+
+    field_0x4b0.r = 255;
+    field_0x4b0.g = 255;
+    field_0x4b0.b = 255;
+    field_0x4b0.a = 128;
+
+    field_0x4b4.r = 255;
+    field_0x4b4.g = 0;
+    field_0x4b4.b = 0;
+    field_0x4b4.a = 0;
+
+    field_0x4b8 = 0.4f;
+
+    field_0x4bc.r = 255;
+    field_0x4bc.g = 180;
+    field_0x4bc.b = 180;
+    field_0x4bc.a = 160;
+
+    field_0x4c0.r = 0;
+    field_0x4c0.g = 0;
+    field_0x4c0.b = 0;
+    field_0x4c0.a = 0;
+
+    field_0x4c4.r = 255;
+    field_0x4c4.g = 255;
+    field_0x4c4.b = 255;
+    field_0x4c4.a = 128;
+
+    field_0x4c8.r = 255;
+    field_0x4c8.g = 255;
+    field_0x4c8.b = 255;
+    field_0x4c8.a = 0;
+
+    field_0x4cc = 0.4f;
+    field_0x3d0 = 0.7f;
+
+    field_0x4d0.r = 255;
+    field_0x4d0.g = 180;
+    field_0x4d0.b = 180;
+    field_0x4d0.a = 160;
+
+    field_0x4d4.r = 0;
+    field_0x4d4.g = 0;
+    field_0x4d4.b = 0;
+    field_0x4d4.a = 0;
+
+    field_0x4d8.r = 255;
+    field_0x4d8.g = 255;
+    field_0x4d8.b = 255;
+    field_0x4d8.a = 128;
+
+    field_0x4dc.r = 255;
+    field_0x4dc.g = 255;
+    field_0x4dc.b = 255;
+    field_0x4dc.a = 0;
+
+    field_0x4e0 = 0.4f;
+    field_0x3d4 = 0.7f;
+
+    mMidnaIconPikariFrontInner.r = 200;
+    mMidnaIconPikariFrontInner.g = 235;
+    mMidnaIconPikariFrontInner.b = 255;
+    mMidnaIconPikariFrontInner.a = 255;
+
+    mMidnaIconPikariFrontOuter.r = 0;
+    mMidnaIconPikariFrontOuter.g = 0;
+    mMidnaIconPikariFrontOuter.b = 0;
+    mMidnaIconPikariFrontOuter.a = 0;
+
+    mMidnaIconPikariBackInner.r = 255;
+    mMidnaIconPikariBackInner.g = 255;
+    mMidnaIconPikariBackInner.b = 255;
+    mMidnaIconPikariBackInner.a = 255;
+
+    mMidnaIconPikariBackOuter.r = 140;
+    mMidnaIconPikariBackOuter.g = 200;
+    mMidnaIconPikariBackOuter.b = 125;
+    mMidnaIconPikariBackOuter.a = 0;
+
+    mMidnaIconPikariAnimSpeed = 0.5f;
+    mMidnaIconFlashRate = 50;
+
+    mScrollArrowScaleX = 1.0f;
+    mScrollArrowScaleY = 1.0f;
+
+    mScrollArrowBCKAnimSpeed = 1.0f;
+    mScrollArrowBPKAnimSpeed = 1.0f;
+    mScrollArrowBTKAnimSpeed = 1.0f;
+
+    mScrollArrowPosX[0] = 0.0f;
+    mScrollArrowPosY[0] = 200.0f;
+    mScrollArrowPosX[1] = 200.0f;
+    mScrollArrowPosY[1] = 0.0f;
+
+    mScrollArrowCenterPosX = 0.0f;
+    mScrollArrowCenterPosY = 0.0f;
+
+    mScrollArrowDisplayAll = false;
+
+    mWiiLockArrowScaleX = 0.5f;
+    mWiiLockArrowScaleY = 0.5f;
+    mWiiLockArrowBCKAnimSpeed = 1.0f;
+    mWiiLockArrowBPKAnimSpeed = 1.0f;
+    mWiiLockArrowBTKAnimSpeed = 1.0f;
+    mWiiLockArrowPosX[0] = 0.0f;
+    mWiiLockArrowPosY[0] = 150.0f;
+    mWiiLockArrowPosX[1] = 208.0f;
+    mWiiLockArrowPosY[1] = 0.0f;
+    mWiiLockArrowDisplayAll = false;
+
+    field_0x54c = 1.35f;
+
+    mItemScaleAdjustON = false;
+    mItemScalePercent = 100;
+
+    mFloatingMessagePosX = 0.0f;
+    mFloatingMessagePosY = -100.0f;
+
+    mMessageID = 395;
+    mFlowID = 3003;
+    mMessageDuration = 150;
+    mMessageDebug = false;
+    mFlowDebug = false;
+
+    mTouchAreaSelectBlack[0].set(255, 145, 100, 0);
+    mTouchAreaSelectWhite[0].set(255, 145, 100, 255);
+    mTouchAreaSelectBlack[1].set(0, 0, 0, 0);
+    mTouchAreaSelectWhite[1].set(255, 255, 0, 255);
+    mTouchAreaSelectBlack[2].set(200, 200, 200, 0);
+    mTouchAreaSelectWhite[2].set(200, 200, 200, 255);
+
+    mTouchAreaSelectFrameNum = 10;
+
+    mTouchAreaSelectScale[0] = 1.1f;
+    mTouchAreaSelectScale[1] = 1.1f;
+    mTouchAreaSelectScale[2] = 0.9f;
+    mTouchAreaSelectScale[3] = 1.2f;
+    mTouchAreaUnselectScale[0] = 0.9f;
+    mTouchAreaUnselectScale[1] = 0.9f;
+    mTouchAreaUnselectScale[2] = 0.7f;
+    mTouchAreaUnselectScale[3] = 1.0f;
+    mTouchAreaSelectScale[4] = 1.0f;
+
+    for (int i = 0; i < 5; i++) {
+        mTouchAreaScale[i] = 1.0f;
+        mTouchAreaAlpha[i] = 1.0f;
+    }
+
+    mTouchAreaPosX[0] = -30.0f;
+    mTouchAreaPosY[0] = -9.0f;
+    mTouchAreaPosX[1] = -6.0f;
+    mTouchAreaPosY[1] = 0.0f;
+    mTouchAreaPosX[2] = 0.0f;
+    mTouchAreaPosY[2] = 0.0f;
+    mTouchAreaPosX[3] = 0.0f;
+    mTouchAreaPosY[3] = 0.0f;
+
+#if VERSION == VERSION_WII_USA_R0
+    mDpadMAPScale = 1.2f;
+#else
+    mDpadMAPScale = 1.0f;
+#endif
+    mDpadMAPPosX = 0.0f;
+    mDpadMAPPosY = 0.0f;
+
+    field_0x60a = false;
+
+    mLanternIconMeterPosX = 0.0f;
+    mLanternIconMeterPosY = 0.0f;
+    mLanternIconMeterSize = 1.0f;
+#else
+    // MWCC generates a weird function body in ShieldD which is effectively a no-op -
+    // this is probably a complete fakematch but it doesn't really matter
+    if (false) {
+        UNUSED(this);
+        UNUSED(this);
+        int unused1;
+        int unused2;
+        UNUSED(unused1);
+        UNUSED(unused2);
+        updateOnWide();
+    }
+#endif
+}
+
+#if VERSION != VERSION_WII_USA_KIOSK
+void dMeter_drawHIO_c::updateOffWide() {
+#if PLATFORM_WII
+    mLifeTopPosX = 27.5f;
+    mLifeTopPosY = -5.6f;
+
+    mNoMagicPosY = -15.0f;
+
+    mParentScale = 1.0f;
+    mParentAlpha = 1.0f;
+
+    mLifeParentScale = 1.0f;
+    mLifeParentHeartAlpha = 1.0f;
+    mHeartBaseAlpha = 0.4f;
+    mLifeGaugePosX = 5.0f;
+    mLifeGaugePosY = 18.0f;
+    mHeartMarkScale = 1.0f;
+    mHeartAlpha = 0.7f;
+    mBigHeartScale = 1.0f;
+    mBigHeartAlpha = 1.0f;
+
+    mMagicMeterScale = 0.7f;
+    mMagicMeterAlpha = 1.0f;
+    mMagicMeterFrameAlpha = 0.55f;
+    mMagicMeterPosX = -26.0f;
+    mMagicMeterPosY = 0.0f;
+
+    mLanternMeterScale = 0.7f;
+    mLanternMeterAlpha = 1.0f;
+    mLanternMeterFrameAlpha = 0.55f;
+    mLanternMeterPosX = 8.0f;
+    mLanternMeterPosY = 20.0f;
+
+    mOxygenMeterScale = 0.7f;
+    mOxygenMeterAlpha = 1.0f;
+    mOxygenMeterFrameAlpha = 0.55f;
+    mOxygenMeterPosX = 8.0f;
+    mOxygenMeterPosY = 20.0f;
+
+    mMainHUDButtonsScale = 0.92f;
+    mMainHUDButtonsAlpha = 1.0f;
+    mMainHUDButtonsPosX = -11.0f;
+    mMainHUDButtonsPosY = 54.0f;
+
+    mRingHUDButtonsScale = 0.98f;
+    mRingHUDButtonsAlpha = 1.0f;
+    mRingHUDButtonsPosX = -11.0f;
+    mRingHUDButtonsPosY = 56.0f;
+
+    mButtonDisplayBackScale = 1.0f;
+    mButtonDisplayBackAlpha = 1.0f;
+    mButtonAScale = 0.95f;
+    mButtonAAlpha = 1.0f;
+    mButtonAPosX = -1.0f;
+    mButtonAPosY = 130.0f;
+
+    mButtonATalkScale[0] = 1.1f;
+    mButtonATalkPosX[0] = -1.0f;
+    mButtonATalkPosY[0] = -106.0f;
+    mButtonATalkScale[1] = 1.1f;
+    mButtonATalkPosX[1] = 4.5f;
+    mButtonATalkPosY[1] = 5.5f;
+    mButtonATalkAScale = 1.1f;
+    mButtonATalkAPosX[0] = 48.0f;
+    mButtonATalkAPosY[0] = -161.0f;
+    mButtonATextTalkAScale = 1.1f;
+    mButtonATalkAPosX[1] = 0.0f;
+    mButtonATalkAPosY[1] = -6.0f;
+
+    mButtonAVesselPosX = -1.0f;
+    mButtonAVesselPosY = 130.0f;
+
+    mButtonBScale = 1.1f;
+    mButtonBAlpha = 1.0f;
+    mButtonBPosX = -20.0f;
+    mButtonBPosY = -14.0f;
+
+    mButtonBTalkScale[0] = 1.0f;
+    mButtonBTalkPosX[0] = 20.0f;
+    mButtonBTalkPosY[0] = -203.0f;
+    mButtonBTalkScale[1] = 1.2f;
+    mButtonBTalkPosX[1] = -50.0f;
+    mButtonBTalkPosY[1] = -30.0f;
+
+    mButtonBWolfPosX = 19.0f;
+    mButtonBWolfPosY = 0.0f;
+
+    mButtonBVesselPosX = 19.0f;
+    mButtonBVesselPosY = 0.0f;
+
+    mMidnaIconScale = 2.0f;
+    mMidnaIconAlpha = 1.0f;
+    mMidnaIconPosX = 0.0f;
+    mMidnaIconPosY = -40.0f;
+
+    field_0x134 = 1.1f;
+    field_0x138 = 1.0f;
+    field_0x13c = 0.0f;
+    field_0x140 = 0.0f;
+
+    mButtonXScale = 1.0f;
+    mButtonXAlpha = 0.9f;
+    mButtonXPosX = 0.0f;
+    mButtonXPosY = 0.0f;
+    mButtonYScale = 1.0f;
+    mButtonYAlpha = 0.9f;
+    mButtonYPosX = 0.0f;
+    mButtonYPosY = 0.0f;
+
+    field_0x164 = 1.5f;
+    field_0x168 = 1.0f;
+    field_0x16c = 0.0f;
+    field_0x170 = 0.0f;
+    field_0x304 = 0.75f;
+    field_0x308 = 0.0f;
+    field_0x30c = 0.0f;
+    field_0x314 = 1.0f;
+    field_0x318 = 0.0f;
+    field_0x31c = 0.0f;
+
+    mButtonZTextScale = 1.0f;
+    mButtonZTextPosX = 0.0f;
+    mButtonZTextPosY = 0.0f;
+    mButtonZScale = 1.0f;
+    mButtonZAlpha = 0.9f;
+    mButtonZPosX = 0.0f;
+    mButtonZPosY = 0.0f;
+
+    mButtonBItemPosX[0] = 26.3f;
+    mButtonBItemPosY[0] = -44.8f;
+    mButtonBItemRotation[0] = 0.0f;
+    mButtonBItemScale[0] = 1.7f;
+    mButtonBItemPosX[1] = -4.7f;
+    mButtonBItemPosY[1] = 10.0f;
+    mButtonBItemRotation[1] = 39.0f;
+    mButtonBItemScale[1] = 1.1f;
+    mButtonBItemPosX[2] = -17.0f;
+    mButtonBItemPosY[2] = 40.0f;
+    mButtonBItemRotation[2] = 14.0f;
+    mButtonBItemScale[2] = 2.3f;
+
+    mButtonXItemPosX = 19.0f;
+    mButtonXItemPosY = -11.0f;
+    mButtonXItemScale = 1.7f;
+
+    mXItemNumPosX = -14.0f;
+    mXItemNumPosY = -9.0f;
+    mXItemNumScale = 0.8f;
+
+    mButtonYItemPosX = -4.0f;
+    mButtonYItemPosY = -16.0f;
+    mButtonYItemScale = 1.7f;
+
+    mYItemNumPosX = -14.0f;
+    mYItemNumPosY = -9.0f;
+    mYItemNumScale = 0.8f;
+
+    field_0x1cc = 1.3f;
+    field_0x1d0 = 9.2f;
+    field_0x1d4 = 1.7f;
+    field_0x1f8 = 14.0f;
+    field_0x208 = -30.0f;
+    field_0x218 = 0.8f;
+
+    mItemBNumPosX = 14.0f;
+    mItemBNumPosY = -30.0f;
+    mItemBNumScale = 0.8f;
+
+    mButtonItemRotation[0] = 0.0f;
+    mButtonItemRotation[1] = 0.0f;
+    mButtonItemRotation[2] = 0.0f;
+
+    mButtonZItemPosX = 0.0f;
+    mButtonZItemPosY = 0.0f;
+    mButtonZItemScale = 1.0f;
+
+    for (int i = 0; i < 2; i++) {
+        mItemBBaseScale[i] = 1.0f;
+        mItemBBasePosX[i] = 22.0f;
+        mItemBBasePosY[i] = -49.0f;
+    }
+    mItemBBaseAlpha[0] = 1.0f;
+    mItemBBaseAlpha[1] = 1.0f;
+
+    mButtonXItemBaseScale[0] = 1.5f;
+    mButtonXItemBasePosX[0] = 14.0f;
+    mButtonXItemBasePosY[0] = -12.0f;
+    mButtonXItemBaseAlpha[0] = 1.0f;
+    mButtonXItemBaseScale[1] = 1.5f;
+    mButtonXItemBasePosX[1] = 0.0f;
+    mButtonXItemBasePosY[1] = 0.0f;
+    mButtonXItemBaseAlpha[1] = 1.0f;
+
+    mButtonYItemBaseScale[0] = 1.5f;
+    mButtonYItemBasePosX[0] = -10.0f;
+    mButtonYItemBasePosY[0] = -12.0f;
+    mButtonYItemBaseAlpha[0] = 1.0f;
+    mButtonYItemBaseScale[1] = 1.5f;
+    mButtonYItemBasePosX[1] = 0.0f;
+    mButtonYItemBasePosY[1] = 0.0f;
+    mButtonYItemBaseAlpha[1] = 1.0f;
+
+    mButtonZWiiItemBaseScale[0] = 1.5f;
+    mButtonZWiiItemBasePosX[0] = 0.0f;
+    mButtonZWiiItemBasePosY[0] = 6.0f;
+    mButtonZWiiItemBaseAlpha[0] = 1.0f;
+    mButtonZWiiItemBaseScale[1] = 1.5f;
+    mButtonZWiiItemBasePosX[1] = 0.0f;
+    mButtonZWiiItemBasePosY[1] = 4.0f;
+    mButtonZWiiItemBaseAlpha[1] = 1.0f;
+
+    mButtonZGCNItemBaseScale = 1.0f;
+    mButtonZGCNItemBasePosX = 0.0f;
+    mButtonZGCNItemBasePosY = 0.0f;
+    mButtonZGCNItemBaseAlpha = 0.5f;
+
+    mButtonBaseAlpha = 0.0f;
+
+    mButtonATextActionID = 1001;
+    field_0x2cc = 1001;
+    mButtonATextDebug = 0;
+#if REGION_JPN
+    mButtonATextSpacing = -0.5f;
+#else
+    mButtonATextSpacing = 1.0f;
+#endif
+    mButtonATextScale = 1.1f;
+    mButtonATextPosX = 0.0f;
+    mButtonATextPosY = -6.0f;
+
+    mButtonATextColor.r = 255;
+    mButtonATextColor.g = 255;
+    mButtonATextColor.b = 255;
+    mButtonATextColor.a = 255;
+
+    mButtonBFontScale = 0.95f;
+    mButtonBFontPosX = 0.0f;
+    mButtonBFontPosY = -1.3f;
+
+    mButtonBFontColor.r = 255;
+    mButtonBFontColor.g = 255;
+    mButtonBFontColor.b = 255;
+    mButtonBFontColor.a = 255;
+
+    field_0x2e4 = 1.0f;
+    field_0x2e8 = 0.0f;
+    field_0x2ec = 0.0f;
+    field_0x2f0.r = 0xFF;
+    field_0x2f0.g = 0xFF;
+    field_0x2f0.b = 0xFF;
+    field_0x2f0.a = 0xFF;
+
+    mButtonXYTextScale = 1.0f;
+    mButtonXYTextPosX = 0.0f;
+    mButtonXYTextPosY = 0.0f;
+    mButtonXYTextColor.r = 255;
+    mButtonXYTextColor.g = 255;
+    mButtonXYTextColor.b = 255;
+    mButtonXYTextColor.a = 255;
+
+    mButtonZFontScale = 1.0f;
+    mButtonZFontPosX = 0.0f;
+    mButtonZFontPosY = 0.0f;
+    mButtonZFontColor.r = 255;
+    mButtonZFontColor.g = 255;
+    mButtonZFontColor.b = 255;
+    mButtonZFontColor.a = 255;
+
+    mRupeeKeyScale = 1.0f;
+    mRupeeKeyPosX = -60.0f;
+    mRupeeKeyPosY = 32.0f;
+    mRupeeKeyAlpha = 0.6f;
+    mRupeeScale = 0.8f;
+    mRupeePosX = 49.0f;
+    mRupeePosY = -28.0f;
+    mRupeeAlpha = 1.0f;
+
+    mKeyScale = 0.7f;
+    mKeyPosX = 33.0f;
+    mKeyPosY = -30.0f;
+    mKeyAlpha = 1.0f;
+
+    mRupeeFrameScale = 0.0f;
+    mRupeeFramePosX = 0.0f;
+    mRupeeFramePosY = 1.0f;
+    mRupeeFrameAlpha = 1.0f;
+
+    mRupeeCountScale = 1.0f;
+    mRupeeCountPosX = 0.0f;
+    mRupeeCountPosY = 0.0f;
+    mRupeeCountAlpha = 1.0f;
+
+    mKeyNumScale = 1.0f;
+    mKeyNumPosX = 0.0f;
+    mKeyNumPosY = 0.0f;
+    mKeyNumAlpha = 1.0f;
+
+    mSpurDebug = 0;
+    mSpurIconScale = 1.0f;
+    mSpurIconAlpha = 1.0f;
+    mUsedSpurIconScale = 1.0f;
+    mUsedSpurIconAlpha = 1.0f;
+    mSpurBarScale = 0.95f;
+    mSpurBarPosX = 6.6f;
+    mSpurBarPosY = -1.3f;
+
+    mButtonAHorsePosX = 5.0f;
+    mButtonAHorsePosY = 0.0f;
+    mButtonAHorseScale = 0.85f;
+
+    mButtonAPikariScale = 1.5f;
+    mButtonBPikariScale = 0.7f;
+    field_0x3cc = 1.0f;
+    mButtonZPikariScale = 1.2f;
+    mButtonXYPikariScale = 1.2f;
+    mMidnaIconPikariScale = 1.0f;
+    mSpurIconPikariScale = 2.5f;
+    mSpurIconRevivePikariScale = 1.3f;
+
+    field_0x3f0 = 0.0f;
+    field_0x3f4 = 0.0f;
+    field_0x3f8 = 1.0f;
+
+    mButtonCrossScale = 0.9f;
+    mButtonCrossOFFPosX = -12.0f;
+    mButtonCrossOFFPosY = 0.0f;
+    mButtonCrossONPosX = -12.0f;
+    mButtonCrossONPosY = 0.0f;
+    mButtonCrossTextScale = 0.9f;
+    mButtonCrossAlpha = 1.0f;
+    mButtonCrossITEMAlpha = 1.0f;
+    mButtonCrossMAPAlpha = 1.0f;
+    mButtonCrossMoveFrame = 5;
+
+    field_0x422 = 10;
+    field_0x424 = 20;
+
+    mButtonXYItemDimAlpha = 128;
+    mButtonXYBaseDimAlpha = 128;
+
+    field_0x42c = 128;
+
+    mMaxSpurAmount = 6;
+    mSpurIconPikariFrontInner.r = 255;
+    mSpurIconPikariFrontInner.g = 255;
+    mSpurIconPikariFrontInner.b = 255;
+    mSpurIconPikariFrontInner.a = 255;
+
+    mSpurIconPikariFrontOuter.r = 140;
+    mSpurIconPikariFrontOuter.g = 232;
+    mSpurIconPikariFrontOuter.b = 228;
+    mSpurIconPikariFrontOuter.a = 0;
+
+    mSpurIconPikariBackInner.r = 255;
+    mSpurIconPikariBackInner.g = 255;
+    mSpurIconPikariBackInner.b = 190;
+    mSpurIconPikariBackInner.a = 255;
+
+    mSpurIconPikariBackOuter.r = 55;
+    mSpurIconPikariBackOuter.g = 215;
+    mSpurIconPikariBackOuter.b = 90;
+    mSpurIconPikariBackOuter.a = 0;
+
+    mSpurIconPikariAnimSpeed = 1.5f;
+
+    mSpurIconRevivePikariFrontInner.r = 255;
+    mSpurIconRevivePikariFrontInner.g = 255;
+    mSpurIconRevivePikariFrontInner.b = 255;
+    mSpurIconRevivePikariFrontInner.a = 255;
+
+    mSpurIconRevivePikariFrontOuter.r = 220;
+    mSpurIconRevivePikariFrontOuter.g = 110;
+    mSpurIconRevivePikariFrontOuter.b = 30;
+    mSpurIconRevivePikariFrontOuter.a = 0;
+
+    mSpurIconRevivePikariBackInner.r = 255;
+    mSpurIconRevivePikariBackInner.g = 255;
+    mSpurIconRevivePikariBackInner.b = 190;
+    mSpurIconRevivePikariBackInner.a = 255;
+
+    mSpurIconRevivePikariBackOuter.r = 170;
+    mSpurIconRevivePikariBackOuter.g = 110;
+    mSpurIconRevivePikariBackOuter.b = 0;
+    mSpurIconRevivePikariBackOuter.a = 0;
+
+    mSpurIconRevivePikariAnimSpeed = 0.5f;
+
+    mButtonZPikariFrontInner.r = 255;
+    mButtonZPikariFrontInner.g = 255;
+    mButtonZPikariFrontInner.b = 255;
+    mButtonZPikariFrontInner.a = 255;
+
+    mButtonZPikariFrontOuter.r = 0;
+    mButtonZPikariFrontOuter.g = 0;
+    mButtonZPikariFrontOuter.b = 0;
+    mButtonZPikariFrontOuter.a = 0;
+
+    mButtonZPikariBackInner.r = 255;
+    mButtonZPikariBackInner.g = 255;
+    mButtonZPikariBackInner.b = 255;
+    mButtonZPikariBackInner.a = 255;
+
+    mButtonZPikariBackOuter.r = 160;
+    mButtonZPikariBackOuter.g = 160;
+    mButtonZPikariBackOuter.b = 110;
+    mButtonZPikariBackOuter.a = 0;
+
+    mButtonZPikariAnimSpeed = 0.4f;
+
+    mButtonXYPikariFrontInner.r = 255;
+    mButtonXYPikariFrontInner.g = 255;
+    mButtonXYPikariFrontInner.b = 255;
+    mButtonXYPikariFrontInner.a = 255;
+
+    mButtonXYPikariFrontOuter.r = 0;
+    mButtonXYPikariFrontOuter.g = 0;
+    mButtonXYPikariFrontOuter.b = 0;
+    mButtonXYPikariFrontOuter.a = 0;
+
+    mButtonXYPikariBackInner.r = 255;
+    mButtonXYPikariBackInner.g = 255;
+    mButtonXYPikariBackInner.b = 255;
+    mButtonXYPikariBackInner.a = 255;
+
+    mButtonXYPikariBackOuter.r = 160;
+    mButtonXYPikariBackOuter.g = 160;
+    mButtonXYPikariBackOuter.b = 110;
+    mButtonXYPikariBackOuter.a = 0;
+
+    mButtonXYPikariAnimSpeed = 0.4f;
+
+    mButtonAPikariFrontInner.r = 255;
+    mButtonAPikariFrontInner.g = 255;
+    mButtonAPikariFrontInner.b = 255;
+    mButtonAPikariFrontInner.a = 160;
+
+    mButtonAPikariFrontOuter.r = 0;
+    mButtonAPikariFrontOuter.g = 0;
+    mButtonAPikariFrontOuter.b = 0;
+    mButtonAPikariFrontOuter.a = 0;
+
+    mButtonAPikariBackInner.r = 255;
+    mButtonAPikariBackInner.g = 255;
+    mButtonAPikariBackInner.b = 255;
+    mButtonAPikariBackInner.a = 128;
+
+    mButtonAPikariBackOuter.r = 255;
+    mButtonAPikariBackOuter.g = 255;
+    mButtonAPikariBackOuter.b = 255;
+    mButtonAPikariBackOuter.a = 0;
+
+    mButtonAPikariAnimSpeed = 0.4f;
+
+    mButtonBPikariFrontInner.r = 255;
+    mButtonBPikariFrontInner.g = 180;
+    mButtonBPikariFrontInner.b = 180;
+    mButtonBPikariFrontInner.a = 160;
+
+    mButtonBPikariFrontOuter.r = 0;
+    mButtonBPikariFrontOuter.g = 0;
+    mButtonBPikariFrontOuter.b = 0;
+    mButtonBPikariFrontOuter.a = 0;
+
+    mButtonBPikariBackInner.r = 255;
+    mButtonBPikariBackInner.g = 255;
+    mButtonBPikariBackInner.b = 255;
+    mButtonBPikariBackInner.a = 128;
+
+    mButtonBPikariBackOuter.r = 255;
+    mButtonBPikariBackOuter.g = 255;
+    mButtonBPikariBackOuter.b = 255;
+    mButtonBPikariBackOuter.a = 0;
+
+    mButtonBPikariAnimSpeed = 0.4f;
+
+    field_0x4a8.r = 255;
+    field_0x4a8.g = 180;
+    field_0x4a8.b = 180;
+    field_0x4a8.a = 160;
+
+    field_0x4ac.r = 0;
+    field_0x4ac.g = 0;
+    field_0x4ac.b = 0;
+    field_0x4ac.a = 0;
+
+    field_0x4b0.r = 255;
+    field_0x4b0.g = 255;
+    field_0x4b0.b = 255;
+    field_0x4b0.a = 128;
+
+    field_0x4b4.r = 255;
+    field_0x4b4.g = 0;
+    field_0x4b4.b = 0;
+    field_0x4b4.a = 0;
+
+    field_0x4b8 = 0.4f;
+
+    field_0x4bc.r = 255;
+    field_0x4bc.g = 180;
+    field_0x4bc.b = 180;
+    field_0x4bc.a = 160;
+
+    field_0x4c0.r = 0;
+    field_0x4c0.g = 0;
+    field_0x4c0.b = 0;
+    field_0x4c0.a = 0;
+
+    field_0x4c4.r = 255;
+    field_0x4c4.g = 255;
+    field_0x4c4.b = 255;
+    field_0x4c4.a = 128;
+
+    field_0x4c8.r = 255;
+    field_0x4c8.g = 255;
+    field_0x4c8.b = 255;
+    field_0x4c8.a = 0;
+
+    field_0x4cc = 0.4f;
+    field_0x3d0 = 0.7f;
+
+    field_0x4d0.r = 255;
+    field_0x4d0.g = 180;
+    field_0x4d0.b = 180;
+    field_0x4d0.a = 160;
+
+    field_0x4d4.r = 0;
+    field_0x4d4.g = 0;
+    field_0x4d4.b = 0;
+    field_0x4d4.a = 0;
+
+    field_0x4d8.r = 255;
+    field_0x4d8.g = 255;
+    field_0x4d8.b = 255;
+    field_0x4d8.a = 128;
+
+    field_0x4dc.r = 255;
+    field_0x4dc.g = 255;
+    field_0x4dc.b = 255;
+    field_0x4dc.a = 0;
+
+    field_0x4e0 = 0.4f;
+    field_0x3d4 = 0.7f;
+
+    mMidnaIconPikariFrontInner.r = 200;
+    mMidnaIconPikariFrontInner.g = 235;
+    mMidnaIconPikariFrontInner.b = 255;
+    mMidnaIconPikariFrontInner.a = 255;
+
+    mMidnaIconPikariFrontOuter.r = 0;
+    mMidnaIconPikariFrontOuter.g = 0;
+    mMidnaIconPikariFrontOuter.b = 0;
+    mMidnaIconPikariFrontOuter.a = 0;
+
+    mMidnaIconPikariBackInner.r = 255;
+    mMidnaIconPikariBackInner.g = 255;
+    mMidnaIconPikariBackInner.b = 255;
+    mMidnaIconPikariBackInner.a = 255;
+
+    mMidnaIconPikariBackOuter.r = 140;
+    mMidnaIconPikariBackOuter.g = 200;
+    mMidnaIconPikariBackOuter.b = 125;
+    mMidnaIconPikariBackOuter.a = 0;
+
+    mMidnaIconPikariAnimSpeed = 0.5f;
+    mMidnaIconFlashRate = 50;
+
+    mScrollArrowScaleX = 1.0f;
+    mScrollArrowScaleY = 1.0f;
+
+    mScrollArrowBCKAnimSpeed = 1.0f;
+    mScrollArrowBPKAnimSpeed = 1.0f;
+    mScrollArrowBTKAnimSpeed = 1.0f;
+
+    mScrollArrowPosX[0] = 0.0f;
+    mScrollArrowPosY[0] = 200.0f;
+    mScrollArrowPosX[1] = 200.0f;
+    mScrollArrowPosY[1] = 0.0f;
+
+    mScrollArrowCenterPosX = 0.0f;
+    mScrollArrowCenterPosY = 0.0f;
+
+    mScrollArrowDisplayAll = false;
+
+    mWiiLockArrowScaleX = 0.5f;
+    mWiiLockArrowScaleY = 0.5f;
+    mWiiLockArrowBCKAnimSpeed = 1.0f;
+    mWiiLockArrowBPKAnimSpeed = 1.0f;
+    mWiiLockArrowBTKAnimSpeed = 1.0f;
+    mWiiLockArrowPosX[0] = 0.0f;
+    mWiiLockArrowPosY[0] = 150.0f;
+    mWiiLockArrowPosX[1] = 208.0f;
+    mWiiLockArrowPosY[1] = 0.0f;
+    mWiiLockArrowDisplayAll = false;
+
+    field_0x54c = 1.35f;
+
+    mItemScaleAdjustON = false;
+    mItemScalePercent = 100;
+
+    mFloatingMessagePosX = 0.0f;
+    mFloatingMessagePosY = -100.0f;
+
+    mMessageID = 395;
+    mFlowID = 3003;
+    mMessageDuration = 150;
+    mMessageDebug = false;
+    mFlowDebug = false;
+
+    mTouchAreaSelectBlack[0].set(255, 145, 100, 0);
+    mTouchAreaSelectWhite[0].set(255, 145, 100, 255);
+    mTouchAreaSelectBlack[1].set(0, 0, 0, 0);
+    mTouchAreaSelectWhite[1].set(255, 255, 0, 255);
+    mTouchAreaSelectBlack[2].set(200, 200, 200, 0);
+    mTouchAreaSelectWhite[2].set(200, 200, 200, 255);
+
+    mTouchAreaSelectFrameNum = 10;
+
+    mTouchAreaSelectScale[0] = 0.95f;
+    mTouchAreaSelectScale[1] = 1.1f;
+    mTouchAreaSelectScale[2] = 0.8f;
+    mTouchAreaSelectScale[3] = 1.2f;
+    mTouchAreaSelectScale[4] = 1.2f;
+    mTouchAreaUnselectScale[0] = 0.8f;
+    mTouchAreaUnselectScale[1] = 0.9f;
+    mTouchAreaUnselectScale[2] = 0.7f;
+    mTouchAreaUnselectScale[3] = 1.0f;
+    mTouchAreaUnselectScale[4] = 1.0f;
+
+    for (int i = 0; i < 5; i++) {
+        mTouchAreaScale[i] = 1.0f;
+        mTouchAreaAlpha[i] = 1.0f;
+    }
+
+    mTouchAreaPosX[0] = -20.0f;
+    mTouchAreaPosY[0] = -9.0f;
+    mTouchAreaPosX[1] = -6.0f;
+    mTouchAreaPosY[1] = 0.0f;
+    mTouchAreaPosX[2] = 0.0f;
+    mTouchAreaPosY[2] = 0.0f;
+    mTouchAreaPosX[3] = 0.0f;
+    mTouchAreaPosY[3] = 0.0f;
+    mTouchAreaPosX[4] = 0.0f;
+    mTouchAreaPosY[4] = 0.0f;
+
+#if VERSION == VERSION_WII_USA_R0
+    mDpadMAPScale = 1.2f;
+#else
+    mDpadMAPScale = 1.0f;
+#endif
+    mDpadMAPPosX = 0.0f;
+    mDpadMAPPosY = 0.0f;
+
+    field_0x60a = false;
+
+    mLanternIconMeterPosX = 0.0f;
+    mLanternIconMeterPosY = 0.0f;
+    mLanternIconMeterSize = 1.0f;
+#else
+    // MWCC generates a weird function body in ShieldD which is effectively a no-op -
+    // this is probably a complete fakematch but it doesn't really matter
+    if (false) {
+        UNUSED(this);
+        UNUSED(this);
+        int unused1;
+        int unused2;
+        UNUSED(unused1);
+        UNUSED(unused2);
+        updateOnWide();
+    }
+#endif // PLATFORM_WII
+}
+#endif // VERSION != VERSION_WII_USA_KIOSK
+#endif // WIDESCREEN_SUPPORT
 
 #if DEBUG
 void dMeter_drawHIO_c::genMessage(JORMContext* mctx) {
@@ -2599,10 +4007,10 @@ void dMeter_drawHIO_c::genMessage(JORMContext* mctx) {
     mctx->genLabel("************************************", 0);
     mctx->genLabel("*　　　Ｚアイテムベースの調整　　　*", 0);
     mctx->genLabel("************************************", 0);
-    mctx->genSlider("拡大縮小", &mButtonZItemBaseScale, 0.0f, 3.0f);
-    mctx->genSlider("位置調整Ｘ", &mButtonZItemBasePosX, -300.0f, 300.0f);
-    mctx->genSlider("位置調整Ｙ", &mButtonZItemBasePosY, -300.0f, 300.0f);
-    mctx->genSlider("アルファ", &mButtonZItemBaseAlpha, 0.0f, 1.0f);
+    mctx->genSlider("拡大縮小", &mButtonZGCNItemBaseScale, 0.0f, 3.0f);
+    mctx->genSlider("位置調整Ｘ", &mButtonZGCNItemBasePosX, -300.0f, 300.0f);
+    mctx->genSlider("位置調整Ｙ", &mButtonZGCNItemBasePosY, -300.0f, 300.0f);
+    mctx->genSlider("アルファ", &mButtonZGCNItemBaseAlpha, 0.0f, 1.0f);
     mctx->genLabel("", 0);
     mctx->genLabel("************************************", 0);
     mctx->genLabel("* 　　　　Ｚフォントの調整　　　　 *", 0);
@@ -3005,6 +4413,9 @@ void dMeter_drawHIO_c::updateFMsgDebug() {
 dMeter_ringHIO_c::dMeter_ringHIO_c() {
 #if WIDESCREEN_SUPPORT
     updateOnWide();
+
+    // needed to match DZDE01 .sdata2
+    UNUSED(-60.0f);
 #else
     mRingRadiusH = 175.0f;
     mRingRadiusV = 160.0f;
@@ -3042,25 +4453,25 @@ dMeter_ringHIO_c::dMeter_ringHIO_c() {
     mCenterScale = 1.0f;
     mOverlayAlpha = 0.35f;
 
-    mGuidePosX[SET_ITEM] = -59.0f;
-    mGuidePosY[SET_ITEM] = -64.0f;
-    mGuideScale[SET_ITEM] = 0.8f;
+    mGuidePosX[GUIDE_SET_ITEM] = -59.0f;
+    mGuidePosY[GUIDE_SET_ITEM] = -64.0f;
+    mGuideScale[GUIDE_SET_ITEM] = 0.8f;
 
-    mGuidePosX[DIRECT_SELECT] = 90.0f;
-    mGuidePosY[DIRECT_SELECT] = -124.0f;
-    mGuideScale[DIRECT_SELECT] = 0.8f;
+    mGuidePosX[GUIDE_DIRECT_SELECT] = 90.0f;
+    mGuidePosY[GUIDE_DIRECT_SELECT] = -124.0f;
+    mGuideScale[GUIDE_DIRECT_SELECT] = 0.8f;
 
     mGuidePosX[2] = 0.0f;
     mGuidePosY[2] = 0.0f;
     mGuideScale[2] = 1.0f;
 
-    mGuidePosX[ROTATE] = 118.0f;
-    mGuidePosY[ROTATE] = -127.0f;
-    mGuideScale[ROTATE] = 0.8f;
+    mGuidePosX[GUIDE_ROTATE] = 118.0f;
+    mGuidePosY[GUIDE_ROTATE] = -127.0f;
+    mGuideScale[GUIDE_ROTATE] = 0.8f;
 
-    mGuidePosX[COMBO_ITEM] = -1.3f;
-    mGuidePosY[COMBO_ITEM] = -14.0f;
-    mGuideScale[COMBO_ITEM] = 0.85f;
+    mGuidePosX[GUIDE_COMBO_ITEM] = -1.3f;
+    mGuidePosY[GUIDE_COMBO_ITEM] = -14.0f;
+    mGuideScale[GUIDE_COMBO_ITEM] = 0.85f;
 
     for (int i = 5; i < 10; i++) {
         mGuidePosX[i] = 0.0f;
@@ -3161,6 +4572,36 @@ void dMeter_ringHIO_c::updateOnWide() {
     mCenterScale = 1.0f;
     mOverlayAlpha = 0.3f;
 
+#if PLATFORM_WII
+    mGuidePosX[GUIDE_UNK_8] = 0.0f;
+    mGuidePosY[GUIDE_UNK_8] = -60.0f;
+    mGuideScale[GUIDE_UNK_8] = 0.7f;
+
+    mGuidePosX[GUIDE_UNK_9] = 0.0f;
+    mGuidePosY[GUIDE_UNK_9] = -50.0f;
+    mGuideScale[GUIDE_UNK_9] = 1.0f;
+
+    mGuidePosX[GUIDE_SET_ITEM] = 0.0f;
+    mGuidePosY[GUIDE_SET_ITEM] = 0.0f;
+    mGuideScale[GUIDE_SET_ITEM] = 1.0f;
+
+    mGuidePosX[GUIDE_UNK_5] = 11.0f;
+    mGuidePosY[GUIDE_UNK_5] = -1.3f;
+    mGuideScale[GUIDE_UNK_5] = 1.4f;
+
+    mGuidePosX[GUIDE_UNK_6] = 0.0f;
+    mGuidePosY[GUIDE_UNK_6] = -11.0f;
+    mGuideScale[GUIDE_UNK_6] = 1.0f;
+
+    mGuidePosX[GUIDE_UNK_7] = 0.0f;
+    mGuidePosY[GUIDE_UNK_7] = -11.0f;
+    mGuideScale[GUIDE_UNK_7] = 1.0f;
+
+    mGuidePosX[GUIDE_COMBO_ITEM] = -23.0f;
+    mGuidePosY[GUIDE_COMBO_ITEM] = 0.0f;
+    mGuideScale[GUIDE_COMBO_ITEM] = 1.0f;
+#endif
+
     mSelectPosX = 2.2f;
     mSelectPosY = 3.0f;
     mSelectScaleX = 0.8f;
@@ -3219,33 +4660,54 @@ void dMeter_ringHIO_c::updateOnWide() {
     field_0x4c = 1.0f;
     field_0x154 = 255;
 
-    mGuidePosX[SET_ITEM] = -59.0f;
-    mGuidePosY[SET_ITEM] = -64.0f;
-    mGuideScale[SET_ITEM] = 0.8f;
+#if PLATFORM_WII
+    mGuidePosX[GUIDE_DIRECT_SELECT] = 0.0f;
+    mGuidePosY[GUIDE_DIRECT_SELECT] = 0.0f;
+    mGuideScale[GUIDE_DIRECT_SELECT] = 1.0f;
 
-    mGuidePosX[DIRECT_SELECT] = 90.0f;
-    mGuidePosY[DIRECT_SELECT] = -124.0f;
-    mGuideScale[DIRECT_SELECT] = 0.8f;
+    mGuidePosX[GUIDE_UNK_2] = 0.0f;
+    mGuidePosY[GUIDE_UNK_2] = 0.0f;
+    mGuideScale[GUIDE_UNK_2] = 1.0f;
 
-    mGuidePosX[2] = 0.0f;
-    mGuidePosY[2] = 0.0f;
-    mGuideScale[2] = 1.0f;
+    mGuidePosX[GUIDE_ROTATE] = 0.0f;
+    mGuidePosY[GUIDE_ROTATE] = 0.0f;
+    mGuideScale[GUIDE_ROTATE] = 1.0f;
+#else
+    mGuidePosX[GUIDE_SET_ITEM] = -59.0f;
+    mGuidePosY[GUIDE_SET_ITEM] = -64.0f;
+    mGuideScale[GUIDE_SET_ITEM] = 0.8f;
 
-    mGuidePosX[ROTATE] = 118.0f;
-    mGuidePosY[ROTATE] = -127.0f;
-    mGuideScale[ROTATE] = 0.8f;
+    mGuidePosX[GUIDE_DIRECT_SELECT] = 90.0f;
+    mGuidePosY[GUIDE_DIRECT_SELECT] = -124.0f;
+    mGuideScale[GUIDE_DIRECT_SELECT] = 0.8f;
 
-    mGuidePosX[COMBO_ITEM] = -1.3f;
-    mGuidePosY[COMBO_ITEM] = -14.0f;
-    mGuideScale[COMBO_ITEM] = 0.85f;
+    mGuidePosX[GUIDE_UNK_2] = 0.0f;
+    mGuidePosY[GUIDE_UNK_2] = 0.0f;
+    mGuideScale[GUIDE_UNK_2] = 1.0f;
+
+    mGuidePosX[GUIDE_ROTATE] = 118.0f;
+    mGuidePosY[GUIDE_ROTATE] = -127.0f;
+    mGuideScale[GUIDE_ROTATE] = 0.8f;
+
+    mGuidePosX[GUIDE_COMBO_ITEM] = -1.3f;
+    mGuidePosY[GUIDE_COMBO_ITEM] = -14.0f;
+    mGuideScale[GUIDE_COMBO_ITEM] = 0.85f;
+
+#if PLATFORM_WII
+    mGuidePosX[GUIDE_UNK_2] = 0.0f;
+    mGuidePosY[GUIDE_UNK_2] = 0.0f;
+    mGuideScale[GUIDE_UNK_2] = 1.0f;
+#endif
 
     for (int i = 5; i < 10; i++) {
         mGuidePosX[i] = 0.0f;
         mGuidePosY[i] = 18.0f;
         mGuideScale[i] = 0.85f;
     }
+#endif // PLATFORM_WII
 }
 
+#if VERSION != VERSION_WII_USA_KIOSK
 void dMeter_ringHIO_c::updateOffWide() {
     mRingRadiusH = 170.0f;
     mRingRadiusV = 160.0f;
@@ -3291,15 +4753,15 @@ void dMeter_ringHIO_c::updateOffWide() {
 
     mGuidePosX[8] = 0.0f;
     mGuidePosY[8] = -60.0f;
-    mGuideScale[8] = 0.7;
+    mGuideScale[8] = 0.7f;
 
     mGuidePosX[9] = 0.0f;
     mGuidePosY[9] = -50.0f;
     mGuideScale[9] = 1.0f;
 
-    mGuidePosX[SET_ITEM] = 0.0f;
-    mGuidePosY[SET_ITEM] = 0.0f;
-    mGuideScale[SET_ITEM] = 1.0f;
+    mGuidePosX[GUIDE_SET_ITEM] = 0.0f;
+    mGuidePosY[GUIDE_SET_ITEM] = 0.0f;
+    mGuideScale[GUIDE_SET_ITEM] = 1.0f;
 
     mGuidePosX[5] = 11.0f;
     mGuidePosY[5] = -1.3f;
@@ -3313,9 +4775,9 @@ void dMeter_ringHIO_c::updateOffWide() {
     mGuidePosY[7] = -11.0f;
     mGuideScale[7] = 1.0f;
 
-    mGuidePosX[COMBO_ITEM] = -23.0f;
-    mGuidePosY[COMBO_ITEM] = 0.0f;
-    mGuideScale[COMBO_ITEM] = 1.0f;
+    mGuidePosX[GUIDE_COMBO_ITEM] = -23.0f;
+    mGuidePosY[GUIDE_COMBO_ITEM] = 0.0f;
+    mGuideScale[GUIDE_COMBO_ITEM] = 1.0f;
 
     mSelectPosX = 2.2f;
     mSelectPosY = 3.0f;
@@ -3375,19 +4837,20 @@ void dMeter_ringHIO_c::updateOffWide() {
     field_0x4c = 1.0f;
     field_0x154 = 255;
 
-    mGuidePosX[DIRECT_SELECT] = 0.0f;
-    mGuidePosY[DIRECT_SELECT] = 0.0f;
-    mGuideScale[DIRECT_SELECT] = 1.0f;
+    mGuidePosX[GUIDE_DIRECT_SELECT] = 0.0f;
+    mGuidePosY[GUIDE_DIRECT_SELECT] = 0.0f;
+    mGuideScale[GUIDE_DIRECT_SELECT] = 1.0f;
 
     mGuidePosX[2] = 0.0f;
     mGuidePosY[2] = 0.0f;
     mGuideScale[2] = 1.0f;
 
-    mGuidePosX[ROTATE] = 0.0f;
-    mGuidePosY[ROTATE] = 0.0f;
-    mGuideScale[ROTATE] = 1.0f;
+    mGuidePosX[GUIDE_ROTATE] = 0.0f;
+    mGuidePosY[GUIDE_ROTATE] = 0.0f;
+    mGuideScale[GUIDE_ROTATE] = 1.0f;
 }
-#endif
+#endif // VERSION != VERSION_WII_USA_KIOSK
+#endif // WIDESCREEN_SUPPORT
 
 #if DEBUG
 void dMeter_ringHIO_c::genMessage(JORMContext* mctx) {
@@ -3484,7 +4947,7 @@ void dMeter_ringHIO_c::genMessage(JORMContext* mctx) {
 BOOL subJOREventCallbackListNode::JORAct(u32 param_1, const char* param_2) {
     UNUSED(param_1);
     JORFile file;
-    if (file.open(param_2, 1, "", NULL, NULL, NULL)) {
+    if (file.open(param_2, 1, "\0", NULL, NULL, NULL)) {
         if (!g_fmapHIO.mpArcFile) {
             g_fmapHIO.mpArcFile = mDoExt_getArchiveHeap()->alloc(0x46000, 0x20);
             JUT_ASSERT(6390, g_fmapHIO.mpArcFile != NULL);
@@ -3517,6 +4980,8 @@ BOOL subJOREventCallbackListNode::JORAct(u32 param_1, const char* param_2) {
 #endif
 
 dMeter_mapIconHIO_c::dMeter_mapIconHIO_c() {
+    // needed to match DZDE01 .sdata2
+    UNUSED(1.6f);
     mPortalCursorScale = 0.5f;
     mPortalIconScale = 0.65f;
     mDestinationScale[0] = 0.5f;
@@ -3846,6 +5311,44 @@ dMeter_fmapHIO_c::dMeter_fmapHIO_c() {
     mSubTitlePosY = 4.5f;
     mSubTitleScale = 0.9f;
 
+#if PLATFORM_WII
+    mAreaMovementPosX = -4.0f;
+    mAreaMovementPosY = 12.0f;
+    mAreaMovementScale = 1.0f;
+
+    mClosingPosX = -14.0f;
+    mClosingPosY = 12.0f;
+    mClosingScale = 0.9f;
+
+    mDoIconPosX = 0.0f;
+    mDoIconPosY = 0.0f;
+    mDoIconScale = 1.0f;
+    mButtonDebugON = false;
+
+    mButtonZPosX = -18.0f;
+    mButtonZPosY = 54.0f;
+    mButtonZScale = 0.92f;
+
+    mButtonAPosX = -18.0f;
+    mButtonAPosY = 130.0f;
+    mButtonAScale = 0.92f;
+
+    mButtonBPosX = -18.0f;
+    mButtonBPosY = -1.3f;
+    mButtonBScale = 1.05f;
+
+    mButtonZTextPosX = -18.0f;
+    mButtonZTextPosY = 57.0f;
+    mButtonZTextScale = 0.95f;
+
+    mButtonATextPosX = -18.0f;
+    mButtonATextPosY = 128.0f;
+    mButtonATextScale = 0.95f;
+
+    mButtonBTextPosX = -18.0f;
+    mButtonBTextPosY = -1.3f;
+    mButtonBTextScale = 0.95f;
+#else
     mAreaMovementPosX = 6.0f;
     mAreaMovementPosY = -20.0f;
     mAreaMovementScale = 1.0f;
@@ -3882,6 +5385,7 @@ dMeter_fmapHIO_c::dMeter_fmapHIO_c() {
     mButtonBTextPosX = -7.0f;
     mButtonBTextPosY = 5.0f;
     mButtonBTextScale = 0.95f;
+#endif
 
     mMapBlink[WORLD_VIEW].mSelectedRegion.mBlack.set(29, 24, 0, 0);
     mMapBlink[WORLD_VIEW].mSelectedRegion.mWhite.set(255, 255, 255, 255);

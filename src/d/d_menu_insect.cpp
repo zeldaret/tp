@@ -168,12 +168,22 @@ void dMenu_Insect_c::_draw() {
         mpBlackTex->setAlpha(field_0xfc);
         mpBlackTex->draw(0.0f, 0.0f, FB_WIDTH, FB_HEIGHT, 0, 0, 0);
         mpExpScreen->draw(0.0f, 0.0f, grafPort);
+
+        // the magic numbers here are correlated with the framebuffer size, but
+        // were likely either chosen by hand or had multiple arithmetic
+        // operations applied which cannot easily be reverse engineered
+#if VERSION == VERSION_WII_USA_R0
+        mpSelect_c->translate(g_drawHIO.mInsectListScreen.mConfirmOptionPosX + 486.0f,
+                              g_drawHIO.mInsectListScreen.mConfirmOptionPosY + 209.0f);
+#else
         mpSelect_c->setOffsetX(g_drawHIO.mInsectListScreen.mConfirmOptionPosX_4x3);
         // the magic numbers here are correlated with the framebuffer size, but
         // were likely either chosen by hand or had multiple arithmetic
         // operations applied which cannot easily be reverse engineered
         mpSelect_c->translate(g_drawHIO.mInsectListScreen.mConfirmOptionPosX_4x3 + 486.0f,
                               g_drawHIO.mInsectListScreen.mConfirmOptionPosY_4x3 + 209.0f);
+#endif
+
         mpSelect_c->draw(0.0f, 0.0f);
         mpIconScreen->draw(0.0f, 0.0f, grafPort);
     }
@@ -741,8 +751,13 @@ void dMenu_Insect_c::setHIO(bool i_useHIO) {
     if (i_useHIO || g_drawHIO.mInsectListScreen.mDebugON) {
         mpExpSubWin[0]->paneTrans(g_drawHIO.mInsectListScreen.mDescWindowPosX,
                                   g_drawHIO.mInsectListScreen.mDescWindowPosY);
+#if VERSION == VERSION_WII_USA_R0
+        mpExpSubWin[1]->paneTrans(g_drawHIO.mInsectListScreen.mGiveOptionPosX,
+                                  g_drawHIO.mInsectListScreen.mGiveOptionPosY);
+#else
         mpExpSubWin[1]->paneTrans(g_drawHIO.mInsectListScreen.mGiveOptionPosX_4x3,
                                   g_drawHIO.mInsectListScreen.mGiveOptionPosY_4x3);
+#endif
     }
     if (g_drawHIO.mCollectScreen.mButtonDebugON != false || i_useHIO) {
         if (mpButtonAB[0]) {
