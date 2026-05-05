@@ -626,11 +626,11 @@ void daAlink_c::setEffect() {
         }
 
         if (checkResetFlg1(RFLG1_UNK_10)) {
-            setFootMark(&mLeftFootPos, field_0x30bc, var_r26);
+            setFootMark(&mLeftFootPos, mLeftFootJnt, var_r26);
         }
 
         if (checkResetFlg1(RFLG1_UNK_20)) {
-            setFootMark(&mRightFootPos, field_0x30be, var_r26);
+            setFootMark(&mRightFootPos, mRightFootJnt, var_r26);
         }
 
         if (checkResetFlg1(RFLG1_UNK_4)) {

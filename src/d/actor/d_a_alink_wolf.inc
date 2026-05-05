@@ -73,7 +73,7 @@ void daAlink_c::changeCommon() {
     fopAcM_SetMtx(this, mpLinkModel->getBaseTRMtx());
     model = mpLinkModel;
 
-    field_0x2060->offOldFrameFlg();
+    m_oldFrame->offOldFrameFlg();
     field_0x2f8c = 0;
     resetUpperAnime(UPPER_2, -1.0f);
 
@@ -120,7 +120,7 @@ void daAlink_c::changeCommon() {
     mItemTrigger = 0;
     mItemButton = 0;
     field_0x2ba4 = 0.0f;
-    field_0x33a0 = 0.0f;
+    mFootSpeed = 0.0f;
     field_0x2fcc = 0;
 
     field_0x32a0[0].r = 0;
@@ -244,8 +244,8 @@ void daAlink_c::changeWolf() {
     mRightItemJntNo = 24;
     field_0x30c4 = 3;
     field_0x30b4 = 4;
-    field_0x30bc = 31;
-    field_0x30be = 36;
+    mLeftFootJnt = 31;
+    mRightFootJnt = 36;
     field_0x32c4[0] = 1;
     field_0x32c4[1] = 2;
     field_0x30b6 = 2;
@@ -452,7 +452,7 @@ void daAlink_c::changeLink(int param_0) {
     if (param_0) {
         fopAcM_SetMtx(this, mpLinkModel->getBaseTRMtx());
         model = mpLinkModel;
-        field_0x2060->offOldFrameFlg();
+        m_oldFrame->offOldFrameFlg();
     } else {
         changeCommon();
         offNoResetFlg1(FLG1_IS_WOLF);
@@ -503,8 +503,8 @@ void daAlink_c::changeLink(int param_0) {
         mRightItemJntNo = 15;
         field_0x30c4 = 3;
         field_0x30b4 = 4;
-        field_0x30bc = 21;
-        field_0x30be = 26;
+        mLeftFootJnt = 21;
+        mRightFootJnt = 26;
         field_0x30b6 = 5;
         field_0x32c4[0] = 2;
         field_0x32c4[1] = 16;
@@ -1227,7 +1227,7 @@ int daAlink_c::setDoubleAnimeWolf(f32 param_0, f32 param_1, f32 param_2,
     commonDoubleAnime(var_r29, NULL, var_r28, NULL, param_0, param_1, param_2, param_5);
 
     if (param_6 >= 0.0f) {
-        field_0x2060->initOldFrameMorf(param_6, 0, 40);
+        m_oldFrame->initOldFrameMorf(param_6, 0, 40);
     }
 
     setFaceBasicTexture(FTANM_WL_MABA01);
@@ -1281,7 +1281,7 @@ int daAlink_c::setSingleAnimeWolf(daAlink_c::daAlink_WANM i_anmID, f32 i_speed, 
     commonSingleAnime(var_r30, NULL, i_speed, i_start, i_endFrame);
 
     if (i_morf >= 0.0f) {
-        field_0x2060->initOldFrameMorf(i_morf, 0, 40);
+        m_oldFrame->initOldFrameMorf(i_morf, 0, 40);
     }
 
     setFaceBasicTexture(FTANM_WL_MABA01);
@@ -1839,7 +1839,7 @@ void daAlink_c::setWolfFootMatrix() {
         }
     }
 
-    if (!field_0x2060->getOldFrameFlg()) {
+    if (!m_oldFrame->getOldFrameFlg()) {
         return;
     }
 
@@ -1905,7 +1905,7 @@ void daAlink_c::setWolfFootMatrix() {
 void daAlink_c::wolfFootBgCheck() {
     int i;
     int j;
-    if (field_0x2060->getOldFrameFlg()) {
+    if (m_oldFrame->getOldFrameFlg()) {
         cXyz spBC;
         cXyz spB0;
 
@@ -3415,7 +3415,7 @@ int daAlink_c::procWolfStepMoveInit() {
     current.pos.x -= cM_ssin(shape_angle.y) * 10.0f;
     current.pos.z -= cM_scos(shape_angle.y) * 10.0f;
 
-    field_0x2060->getOldFrameTransInfo(0)->mTranslate.z += 10.0f;
+    m_oldFrame->getOldFrameTransInfo(0)->mTranslate.z += 10.0f;
     return 1;
 }
 
@@ -3487,7 +3487,7 @@ int daAlink_c::procWolfSlip() {
             current.pos.x += cM_scos(shape_angle.y) * 30.0f;
             current.pos.z -= cM_ssin(shape_angle.y) * 30.0f;
 
-            field_0x2060->getOldFrameTransInfo(0)->mTranslate.x -= 30.0f;
+            m_oldFrame->getOldFrameTransInfo(0)->mTranslate.x -= 30.0f;
             checkNextActionWolf(0);
         }
     } else {
@@ -4058,7 +4058,7 @@ int daAlink_c::procWolfHowlDemo() {
         } else {
             if (mZ2WolfHowlMgr.getReleaseTimer() == 30) {
                 frameCtrl_p->setFrame(56.0f);
-                field_0x2060->initOldFrameMorf(3.0f, 0, 40);
+                m_oldFrame->initOldFrameMorf(3.0f, 0, 40);
             }
 
             mProcVar1.field_0x300a = 0;
@@ -4596,7 +4596,7 @@ int daAlink_c::procWolfRopeHang() {
 
     if (checkAnmEnd(framectrl)) {
         if (mProcVar3.field_0x300e != 0) {
-            field_0x2060->getOldFrameTransInfo(0)->mTranslate.z -= 15.0f;
+            m_oldFrame->getOldFrameTransInfo(0)->mTranslate.z -= 15.0f;
 
             if (field_0x3198 == 2) {
                 ANGLE_ADD_2(shape_angle.y, 0x4000);
@@ -4633,7 +4633,7 @@ int daAlink_c::procWolfRopeHang() {
             current.pos.x -= 80.0f * cM_ssin(shape_angle.y);
             current.pos.z -= 80.0f * cM_scos(shape_angle.y);
 
-            field_0x2060->getOldFrameTransInfo(0)->mTranslate.z += 80.0f;
+            m_oldFrame->getOldFrameTransInfo(0)->mTranslate.z += 80.0f;
             return procWolfFallInit(2, mpHIO->mWolf.mWlAutoJump.m.mNormalFallInterp);
         }
     }
@@ -5564,7 +5564,7 @@ int daAlink_c::procWolfHangFallStartInit(cM3dGPla* i_tripla) {
 int daAlink_c::procWolfHangFallStart() {
     daPy_frameCtrl_c* frameCtrl_p = mUnderFrameCtrl;
 
-    if (field_0x2060->getOldFrameRate() < 0.1f && changeWolfHangEndProc()) {
+    if (m_oldFrame->getOldFrameRate() < 0.1f && changeWolfHangEndProc()) {
         return 1;
     }
 
@@ -6052,7 +6052,7 @@ BOOL daAlink_c::checkWolfLieContinue(int param_0) {
 int daAlink_c::checkNextActionWolfFromLie() {
     if (checkNextActionWolf(0)) {
         if (field_0x2f8c == 1 || field_0x2f8c == 2 || field_0x2f8c == 3) {
-            field_0x2060->initOldFrameMorf(mpHIO->mWolf.mWlLie.m.mStandUpInterp, 0, 40);
+            m_oldFrame->initOldFrameMorf(mpHIO->mWolf.mWlLie.m.mStandUpInterp, 0, 40);
         }
         return true;
     }
@@ -7058,7 +7058,7 @@ int daAlink_c::procWolfRollAttackCharge() {
         checkWolfAttackAction();
     } else
     #endif
-    if (field_0x2060->getOldFrameRate() < 0.1f) {
+    if (m_oldFrame->getOldFrameRate() < 0.1f) {
         procWolfRollAttackMoveInit();
     } else {
         cLib_chaseF(&mNormalSpeed, 0.0f, mpHIO->mWolf.mWlMoveNoP.m.mDeceleration);

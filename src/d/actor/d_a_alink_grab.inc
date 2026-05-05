@@ -1116,7 +1116,7 @@ int daAlink_c::procGrabRebound() {
     }
 
     if (field_0x3198 != 0) {
-        if (field_0x2060->getOldFrameRate() < 0.1f) {
+        if (m_oldFrame->getOldFrameRate() < 0.1f) {
             setWaterInAnmRate(framectrl, mpHIO->mGrab.m.mCarryAnm.mSpeed);
             field_0x3198 = 0;
         }

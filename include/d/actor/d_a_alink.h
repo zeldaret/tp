@@ -4041,7 +4041,7 @@ public:
     /* 0x01F94 */ daPy_anmHeap_c mUpperAnmHeap[3];
     /* 0x01FD0 */ daPy_frameCtrl_c mUnderFrameCtrl[3];
     /* 0x02018 */ daPy_frameCtrl_c mUpperFrameCtrl[3];
-    /* 0x02060 */ mDoExt_MtxCalcOldFrame* field_0x2060;
+    /* 0x02060 */ mDoExt_MtxCalcOldFrame* m_oldFrame;
     /* 0x02064 */ daAlink_sight_c mSight;
 #if PLATFORM_WII
     u8 unk_0x20f0[4];
@@ -4109,7 +4109,7 @@ public:
     /* 0x02C78 */ Mtx mMagneBootInvMtx;
     /* 0x02CA8 */ Z2CreatureLink mZ2Link;
     /* 0x02D78 */ u8* field_0x2d78;
-    /* 0x02D7C */ daPy_frameCtrl_c* field_0x2d7c;
+    /* 0x02D7C */ daPy_frameCtrl_c* m_frameCtrl;
     /* 0x02D80 */ void* field_0x2d80;
     /* 0x02D84 */ Z2WolfHowlMgr mZ2WolfHowlMgr;
     /* 0x02E44 */ dJntCol_c field_0x2e44;
@@ -4310,8 +4310,8 @@ public:
     /* 0x030B6 */ u16 field_0x30b6;
     /* 0x030B8 */ u16 mLeftHandJntNo;
     /* 0x030BA */ u16 mRightHandJntNo;
-    /* 0x030BC */ u16 field_0x30bc;
-    /* 0x030BE */ u16 field_0x30be;
+    /* 0x030BC */ u16 mLeftFootJnt;
+    /* 0x030BE */ u16 mRightFootJnt;
     /* 0x030C0 */ u16 mLeftItemJntNo;
     /* 0x030C2 */ u16 mRightItemJntNo;
     /* 0x030C4 */ u16 field_0x30c4;
@@ -4418,8 +4418,8 @@ public:
     /* 0x032D8 */ firePointEff_c field_0x32d8[4];
     /* 0x03398 */ f32 mNormalSpeed;
     /* 0x0339C */ f32 mSpeedModifier;
-    /* 0x033A0 */ f32 field_0x33a0;
-    /* 0x033A4 */ f32 field_0x33a4;
+    /* 0x033A0 */ f32 mFootSpeed;
+    /* 0x033A4 */ f32 mOldStickValue;
     /* 0x033A8 */ f32 mStickValue;
     /* 0x033AC */ f32 mMoveValue;
     /* 0x033B0 */ f32 field_0x33b0;
@@ -4428,7 +4428,7 @@ public:
     /* 0x033BC */ f32 field_0x33bc;
     /* 0x033C0 */ f32 field_0x33c0;
     /* 0x033C4 */ f32 mFallHeight;
-    /* 0x033C8 */ f32 field_0x33c8;
+    /* 0x033C8 */ f32 mJumpStartHeight;
     /* 0x033CC */ f32 field_0x33cc;
     /* 0x033D0 */ f32 field_0x33d0;
     /* 0x033D4 */ f32 field_0x33d4;
@@ -4531,7 +4531,7 @@ public:
     /* 0x0378C */ cXyz field_0x378c;
     /* 0x03798 */ cXyz field_0x3798;
     /* 0x037A4 */ cXyz field_0x37a4;
-    /* 0x037B0 */ cXyz field_0x37b0[2];
+    /* 0x037B0 */ cXyz mLastFoot[2];
     /* 0x037C8 */ cXyz field_0x37c8;
     /* 0x037D4 */ cXyz field_0x37d4;
     /* 0x037E0 */ cXyz mHeldItemRootPos;

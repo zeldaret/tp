@@ -1188,7 +1188,7 @@ int daAlink_c::procCoLargeDamage() {
             }
         }
     } else if (checkBoarSingleBattle()) {
-        if (!checkUnderMove0BckNoArc(ANM_FALL) && field_0x2060->getOldFrameRate() < 0.1f) {
+        if (!checkUnderMove0BckNoArc(ANM_FALL) && m_oldFrame->getOldFrameRate() < 0.1f) {
             if (mProcVar5.field_0x3012 != 0) {
                 mProcVar5.field_0x3012--;
             } else {
@@ -1962,7 +1962,7 @@ int daAlink_c::procCoLavaReturnInit(BOOL i_isSandReturn) {
         mGndPolyAtt1 = 0xFF;
         offModeFlg(0x40000);
 
-        field_0x2060->getOldFrameTransInfo(0)->mTranslate.y += field_0x3458;
+        m_oldFrame->getOldFrameTransInfo(0)->mTranslate.y += field_0x3458;
         mSinkShapeOffset -= field_0x3458;
         field_0x2f99 = 0;
         field_0x32cc = 5;
@@ -2009,7 +2009,7 @@ int daAlink_c::procCoSwimFreezeReturnInit() {
     }
 
     onNoResetFlg0(FLG0_SWIM_UP);
-    J3DTransformInfo* transInfo = field_0x2060->getOldFrameTransInfo(0);
+    J3DTransformInfo* transInfo = m_oldFrame->getOldFrameTransInfo(0);
 
     f32 var_f31;
     if (checkWolf()) {
