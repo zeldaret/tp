@@ -1556,7 +1556,11 @@ void dMeter2Info_c::setMiniGameItem(u8 i_minigameFlag) {
 
     if (!item_set) {
         dComIfGs_setBombNum(mRentalBombBagIdx, 30);
+        #if VERSION == VERSION_WII_USA_R0
+        dComIfGs_setArrowNum(30);
+        #else
         dComIfGs_setArrowNum(dComIfGs_getArrowMax());
+        #endif
     }
 }
 
