@@ -15,6 +15,12 @@
 
 #include <cstring>
 
+#if PLATFORM_WII || PLATFORM_SHIELD
+#define INDEX_RANGE 4
+#else
+#define INDEX_RANGE 2
+#endif
+
 enum ITEMICON_RES_FILE_ID {
     ITEMICON_BTI_ARI_MESU_00=0x3,
     ITEMICON_BTI_ARI_OSU_00=0x4,
@@ -1504,7 +1510,7 @@ void dMeter2Info_c::setMiniGameItem(u8 i_minigameFlag) {
 
     mMiniGameItemSetFlag = i_minigameFlag;
 
-    for (int i = 0; i < 2; i++) {
+    for (int i = 0; i < INDEX_RANGE; i++) {
         mSaveMixItemIdx[i] = dComIfGs_getMixItemIndex(i);
         mSaveSelItemIdx[i] = dComIfGs_getSelectItemIndex(i);
     }
@@ -1515,7 +1521,7 @@ void dMeter2Info_c::setMiniGameItem(u8 i_minigameFlag) {
     mSaveBombItem = dComIfGs_getItem((u8)(mRentalBombBagIdx + SLOT_15), false);
 
     if (item_set) {
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < INDEX_RANGE; i++) {
             dComIfGs_setMixItemIndex(i, mSaveMixItemIdxMG[i]);
             dComIfGs_setSelectItemIndex(i, mSaveSelItemIdxMG[i]);
         }
@@ -1533,10 +1539,19 @@ void dMeter2Info_c::setMiniGameItem(u8 i_minigameFlag) {
     if (mMiniGameItemSetFlag != 3) {
         dComIfGs_setItem(SLOT_4, dItemNo_BOW_e);
         dComIfGp_setItem(SLOT_4, dItemNo_BOW_e);
+        #if PLATFORM_WII || PLATFORM_SHIELD
+        for (int i = 0; i < 3; i++) {
+            dComIfGs_setMixItemIndex((u8)i, 0xFF);
+            dComIfGs_setSelectItemIndex((u8)i, 0xFF);
+        }
+        dComIfGs_setMixItemIndex(SELECT_ITEM_B, SLOT_4);
+        dComIfGs_setSelectItemIndex(SELECT_ITEM_B, (u8)(mRentalBombBagIdx + SLOT_15));
+        #else
         dComIfGs_setMixItemIndex(SELECT_ITEM_Y, 0xFF);
         dComIfGs_setSelectItemIndex(SELECT_ITEM_Y, 0xFF);
         dComIfGs_setMixItemIndex(SELECT_ITEM_X, SLOT_4);
         dComIfGs_setSelectItemIndex(SELECT_ITEM_X, (u8)(mRentalBombBagIdx + SLOT_15));
+        #endif
     }
 
     if (!item_set) {
@@ -1548,7 +1563,7 @@ void dMeter2Info_c::setMiniGameItem(u8 i_minigameFlag) {
 void dMeter2Info_c::resetMiniGameItem(bool i_saveItem) {
     if (mMiniGameItemSetFlag != 0) {
         if (i_saveItem) {
-            for (int i = 0; i < 2; i++) {
+            for (int i = 0; i < INDEX_RANGE; i++) {
                 mSaveMixItemIdxMG[i] = dComIfGs_getMixItemIndex(i);
                 mSaveSelItemIdxMG[i] = dComIfGs_getSelectItemIndex(i);
             }
@@ -1559,7 +1574,7 @@ void dMeter2Info_c::resetMiniGameItem(bool i_saveItem) {
             mSaveBombItemMG = dComIfGs_getItem((u8)(mRentalBombBagIdx + SLOT_15), false);
         }
 
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < INDEX_RANGE; i++) {
             dComIfGs_setMixItemIndex(i, mSaveMixItemIdx[i]);
             dComIfGs_setSelectItemIndex(i, mSaveSelItemIdx[i]);
         }
