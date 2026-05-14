@@ -15,7 +15,7 @@
 
 #include <cstring>
 
-#if PLATFORM_WII || PLATFORM_SHIELD
+#if PLATFORM_WII
 #define INDEX_RANGE 4
 #else
 #define INDEX_RANGE 2
@@ -1539,7 +1539,7 @@ void dMeter2Info_c::setMiniGameItem(u8 i_minigameFlag) {
     if (mMiniGameItemSetFlag != 3) {
         dComIfGs_setItem(SLOT_4, dItemNo_BOW_e);
         dComIfGp_setItem(SLOT_4, dItemNo_BOW_e);
-        #if PLATFORM_WII || PLATFORM_SHIELD
+        #if PLATFORM_WII
         for (int i = 0; i < 3; i++) {
             dComIfGs_setMixItemIndex((u8)i, 0xFF);
             dComIfGs_setSelectItemIndex((u8)i, 0xFF);
