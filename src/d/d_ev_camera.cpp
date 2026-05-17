@@ -860,7 +860,7 @@ bool dCamera_c::fixedPositionEvCamera() {
         getEvFloatData(&fpos_p->field_0x38, "Radius", 100000.0f);
         getEvFloatData(&fpos_p->field_0x34, "StartRadius", fpos_p->field_0x38);
         fpos_p->field_0x1 = getEvFloatData(&fpos_p->field_0x2c, "Bank", 0.0f);
-        getEvStringData(&fpos_p->field_0x48, "RelUseMask", "o");
+        getEvStringData(fpos_p->field_0x48, "RelUseMask", "o");
         fpos_p->field_0x0 = getEvIntData(&fpos_p->field_0x4c, "Timer", -1);
 
         if ((fpos_p->field_0x40 = getEvActor("Target", "@PLAYER")) == NULL) {
@@ -871,7 +871,7 @@ bool dCamera_c::fixedPositionEvCamera() {
         fpos_p->field_0x44 = fopAcM_GetID(fpos_p->field_0x40);
         fpos_p->field_0x3c = getEvActor("RelActor");
 
-        if (fpos_p->field_0x3c && isRelChar(fpos_p->field_0x48)) {
+        if (fpos_p->field_0x3c && isRelChar(fpos_p->field_0x48[0])) {
             fpos_p->field_0x4 = relationalPos(fpos_p->field_0x3c, &sp24);
         } else {
             fpos_p->field_0x4 = sp24;        

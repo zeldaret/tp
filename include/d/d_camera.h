@@ -511,7 +511,7 @@ public:
         /* 0x3C */ fopAc_ac_c* field_0x3c;
         /* 0x40 */ fopAc_ac_c* field_0x40;
         /* 0x44 */ fpc_ProcID field_0x44;
-        /* 0x48 */ char field_0x48;
+        /* 0x48 */ char field_0x48[4];
         /* 0x4C */ int field_0x4c;
     };
 
