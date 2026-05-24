@@ -17,6 +17,7 @@
 #include "SSystem/SComponent/c_math.h"
 #include "d/actor/d_a_player.h"
 #include "d/d_com_inf_game.h"
+#include "d/d_rvl_fb_copy.h"
 #include "d/d_menu_collect.h"
 #include "d/d_jcam_editor.h"
 #include "d/d_jpreviewer.h"
@@ -1985,7 +1986,7 @@ int mDoGph_Painter() {
     #endif
 
     #if PLATFORM_WII
-    if (data_8053a730) {
+    if (g_rvlEnableExtraFramebufferCopy) {
         GXSetTexCopySrc(0, 0, FB_WIDTH, FB_HEIGHT);
         GXSetTexCopyDst(FB_WIDTH, FB_HEIGHT, (GXTexFmt)mDoGph_gInf_c::m_fullFrameBufferTimg->format, 0);
         GXCopyTex(mDoGph_gInf_c::m_fullFrameBufferTex, 0);

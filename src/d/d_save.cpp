@@ -1009,9 +1009,12 @@ void dSv_player_config_c::init() {
     mPointer = 1;
 }
 
-u32 dSv_player_config_c::checkVibration() const {
+u8 dSv_player_config_c::checkVibration() const {
 #if PLATFORM_GCN
-    return JUTGamePad::sRumbleSupported & 0x80000000 ? dComIfGp_getNowVibration() : 0;
+    if (JUTGamePad::sRumbleSupported & 0x80000000)
+        return dComIfGp_getNowVibration();
+    else
+        return 0;
 #else
     return dComIfGp_getNowVibration();
 #endif

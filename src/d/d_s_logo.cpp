@@ -13,6 +13,7 @@
 #include "d/d_com_inf_game.h"
 #include "d/d_item.h"
 #include "d/d_map_path_dmap.h"
+#include "d/d_rvl_fb_copy.h"
 #include "m_Do/m_Do_Reset.h"
 #include "m_Do/m_Do_controller_pad.h"
 #include "m_Do/m_Do_graphic.h"
@@ -936,7 +937,7 @@ dScnLogo_c::~dScnLogo_c() {
     OS_REPORT("\x1b[31m%d gameHeap->getFreeSize %08x(%d)\n\x1b[m", 1479, mDoExt_getGameHeap()->getFreeSize(), mDoExt_getGameHeap()->getFreeSize());
 
     #if PLATFORM_WII
-    data_8053a730 = 0;
+    g_rvlEnableExtraFramebufferCopy = false;
     #endif
 }
 
@@ -1077,7 +1078,7 @@ int dScnLogo_c::create() {
     }
 
     #if PLATFORM_WII
-    data_8053a730 = 1;
+    g_rvlEnableExtraFramebufferCopy = true;
     #endif
 
     mpHeap = mDoExt_setCurrentHeap(mLogo01Heap);

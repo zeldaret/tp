@@ -134,7 +134,7 @@ void dComIfG_play_c::setNowVibration(u8 i_vibration) {
     mItemInfo.mNowVibration = i_vibration;
 }
 
-u32 dComIfG_play_c::getNowVibration() {
+u8 dComIfG_play_c::getNowVibration() {
     return mItemInfo.mNowVibration;
 }
 

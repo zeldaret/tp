@@ -21,8 +21,11 @@ d/d_cursor_mng.cpp:
 	.text       start:0x80006D90 end:0x80007BC8
 	.data       start:0x803BD040 end:0x803BD168
 	.sdata      start:0x804F77C0 end:0x804F77F8
-	.sbss       start:0x804FA8C8 end:0x804FA8D8
+	.sbss       start:0x804FA8C8 end:0x804FA8D0
 	.sdata2     start:0x804FBB18 end:0x804FBB30
+
+d/d_rvl_fb_copy.cpp:
+	.sbss       start:0x804FA8D0 end:0x804FA8D8
 
 d/d_E3Stage_select06.cpp:
 	.text       start:0x80007BC8 end:0x800097C4
@@ -50,10 +53,10 @@ m_Do/m_Do_printf.cpp:
 m_Do/m_Do_audio.cpp:
 	.text       start:0x8000ACF4 end:0x8000B698
 	.ctors      start:0x80396108 end:0x8039610C
-	.data       start:0x803BD770 end:0x803BD9E8
+	.data       start:0x803BD770 end:0x803BD9D0
 	.bss        start:0x8040C0E0 end:0x8040D498
 	.sdata      start:0x804F78B8 end:0x804F7924
-	.sbss       start:0x804FA92C end:0x804FA978
+	.sbss       start:0x804FA928 end:0x804FA978
 
 m_Do/m_Do_controller_pad.cpp:
 	.text       start:0x8000B698 end:0x8000BAA8
@@ -63,7 +66,7 @@ m_Do/m_Do_controller_pad.cpp:
 m_Re/m_Re_controller_pad.cpp:
 	.text       start:0x8000BAA8 end:0x8000F56C
 	.rodata     start:0x803962C0 end:0x80396310
-	.data       start:0x803BD9E8 end:0x803BDA00
+	.data       start:0x803BD9D0 end:0x803BDA00
 	.bss        start:0x8040D5A8 end:0x80414E58
 	.sbss       start:0x804FA978 end:0x804FA988
 	.sdata2     start:0x804FBBA8 end:0x804FBC50

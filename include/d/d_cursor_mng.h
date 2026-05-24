@@ -5,13 +5,13 @@
 #include "m_Do/m_Do_graphic.h"
 #include "m_Re/m_Re_controller_pad.h"
 
-// TODO: putting this here until a more appropriate place is found
-extern u8 data_8053a730;
-
 class dCsr_mng_c {
+public:
     struct csr_c;
 
-    struct node_c : mDoGph_gInf_c::csr_c {
+    struct node_c {
+        virtual ~node_c() {}
+
         BOOL set(u8 i_priority, u8, u16 i_mask);
 
         /* 0x04 */ u8 m_priority;
@@ -19,12 +19,6 @@ class dCsr_mng_c {
         /* 0x06 */ u16 m_mask;
         /* 0x08 */ node_c* m_prev;
         /* 0x0C */ node_c* m_next;
-        /* 0x10 */ int m_actor_id;
-        /* 0x14 */ csr_c* m_csr;
-        /* 0x18 */ node_c* m_pointed_obj;
-    };
-
-    struct obj_c : node_c {
     };
 
     struct list_c {
@@ -40,7 +34,10 @@ class dCsr_mng_c {
         /* 0x04 */ node_c* m_root;
     };
 
-    struct bloObj_c {
+    struct obj_c : node_c {
+    };
+
+    struct bloObj_c : obj_c {
         struct paneObj_c {
             paneObj_c(void) {
                 m_handle = NULL;
@@ -59,13 +56,16 @@ class dCsr_mng_c {
         };
 
         bloObj_c() {
-            m_panes = new paneObj_c[1];
             m_screen = 0;
+            m_panes = NULL;
+            m_pane_num = 0;
+            m_is_calc = FALSE;
+            m_pane_handle = NULL;
         }
 
         virtual ~bloObj_c(void);
         virtual u32 signature(void) const {
-            return 0x626c6f20;
+            return 'blo ';
         }
         virtual BOOL isInside(s16 i_x, s16 i_y);
         BOOL create(J2DScreen* i_screen, u16 i_mask, u8 i_priority, u8);
@@ -73,7 +73,6 @@ class dCsr_mng_c {
         void calcPaneObjNum(J2DPane* i_pane);
         void createPaneObj(paneObj_c** i_panes, J2DPane* i_pane);
 
-        /* 0x04 */ u8 field_0x04[0x10 - 0x4];
         /* 0x10 */ J2DScreen* m_screen;
         /* 0x14 */ paneObj_c* m_panes;
         /* 0x18 */ u16 m_pane_num;
@@ -81,18 +80,35 @@ class dCsr_mng_c {
         /* 0x1C */ J2DPane* m_pane_handle;
     };
 
-    struct ccObj_c : node_c {
+    struct ccObj_c : obj_c {
         virtual ~ccObj_c(void);
         virtual int signature(void) const {
             return 'cc  ';
         }
         virtual BOOL isInside(s16, s16);
         void set(u16, u8, u8);
+
+        /* 0x10 */ int m_actor_id;
+        /* 0x14 */ csr_c* m_csr;
+        /* 0x18 */ node_c* m_pointed_obj;
     };
 
     struct csr_c : node_c {
+        csr_c() {
+            field_0x10 = 0xFF;
+            field_0x11 = 0;
+            field_0x12 = 0;
+            m_csr = NULL;
+            m_pointed_obj = NULL;
+        }
         virtual ~csr_c(void);
         BOOL set(mDoGph_gInf_c::csr_c* i_csr, u16, u8, u8);
+
+        /* 0x10 */ u8 field_0x10;
+        /* 0x11 */ u8 field_0x11;
+        /* 0x12 */ u16 field_0x12;
+        /* 0x14 */ mDoGph_gInf_c::csr_c* m_csr;
+        /* 0x18 */ node_c* m_pointed_obj;
     };
 
 private:

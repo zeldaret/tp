@@ -6,9 +6,6 @@
 
 dCsr_mng_c* dCsr_mng_c::m_myObj;
 
-// TODO: putting this here until a more appropriate place is found
-u8 data_8053a730;
-
 void dCsr_mng_c::update_(void) {
     BOOL is_valid = FALSE;
 
@@ -21,10 +18,10 @@ void dCsr_mng_c::update_(void) {
 
     if (is_csr_on == 0) {
         mDoGph_gInf_c::entryCsr(NULL);
-        node_c* cur_node = m_csr_list.m_root;
+        csr_c* cur_node = static_cast<csr_c*>(m_csr_list.m_root);
         while (cur_node != NULL) {
-            cur_node->m_pointed_obj = 0;
-            cur_node = cur_node->m_next;
+            cur_node->m_pointed_obj = NULL;
+            cur_node = static_cast<csr_c*>(cur_node->m_next);
         }
 
         return;
@@ -35,36 +32,36 @@ void dCsr_mng_c::update_(void) {
     int x = pos->x;
     int y = pos->y;
 
-    node_c* cur_node = m_csr_list.m_root;
+    csr_c* csr_node = static_cast<csr_c*>(m_csr_list.m_root);
     mDoGph_gInf_c::csr_c* csr = NULL;
-    u16 last_mask = 1;
-    while (cur_node != NULL) {
-        cur_node->m_pointed_obj = NULL;
+    u16 last_mask = 0x1;
+    while (csr_node != NULL) {
+        csr_node->m_pointed_obj = NULL;
 
-        u16 cur_mask = cur_node->m_mask;
-        if (!g_dComIfG_gameInfo.play.mItemInfo.mPauseFlag || (cur_node->m_mask & 0x200) == 0) {
+        u16 cur_mask = csr_node->m_mask;
+        if (!g_dComIfG_gameInfo.play.mItemInfo.mPauseFlag || (cur_mask & 0x200) == 0) {
             if (csr == NULL) {
-                csr = cur_node->m_csr;
+                csr = csr_node->m_csr;
             }
 
             if (is_valid && last_mask != 0) {
                 last_mask = cur_mask;
-                if (last_mask != 0) {
-                    node_c* cur_node_2 = m_obj_list.m_root;
-                    while (cur_node_2 != NULL) {
-                        if ((cur_mask & cur_node_2->m_mask) != 0 &&
-                            ((bloObj_c*)cur_node_2)->isInside(x, y))
-                        {
-                            cur_node->m_pointed_obj = cur_node_2;
+                if (cur_mask != 0) {
+                    node_c* obj_node = m_obj_list.m_root;
+                    u32 mask_temp = (s16)cur_mask;
+                    while (obj_node != NULL) {
+                        if (((u16)mask_temp & obj_node->m_mask) != 0 &&
+                            static_cast<bloObj_c*>(obj_node)->isInside(x, y)) {
+                            csr_node->m_pointed_obj = obj_node;
                         }
 
-                        cur_node_2 = cur_node_2->m_next;
+                        obj_node = obj_node->m_next;
                     }
                 }
             }
         }
 
-        cur_node = cur_node->m_next;
+        csr_node = static_cast<csr_c*>(csr_node->m_next);
     }
 
     if (!dComIfGs_getOptPointer()) {
@@ -82,7 +79,7 @@ void dCsr_mng_c::update_(void) {
 
 void dCsr_mng_c::releaseCsr_(csr_c* i_csr) {
     mDoGph_gInf_c::csr_c* temp_r5 = i_csr->m_csr;
-    i_csr->m_pointed_obj = 0;
+    i_csr->m_pointed_obj = NULL;
     if (temp_r5 != NULL && temp_r5 == mDoGph_gInf_c::m_csr) {
         mDoGph_gInf_c::entryCsr(NULL);
     }
@@ -90,12 +87,12 @@ void dCsr_mng_c::releaseCsr_(csr_c* i_csr) {
 }
 
 void dCsr_mng_c::insideObjReleaseCheck_(void) {
-    node_c* cur_node = m_csr_list.m_root;
+    csr_c* cur_node = (csr_c*)m_csr_list.m_root;
     while (cur_node != NULL) {
         if (!m_obj_list.isEntry(cur_node->m_pointed_obj)) {
             cur_node->m_pointed_obj = NULL;
         }
-        cur_node = cur_node->m_next;
+        cur_node = (csr_c*)cur_node->m_next;
     }
 }
 
@@ -219,14 +216,17 @@ dCsr_mng_c::node_c* dCsr_mng_c::list_c::release(node_c* i_node) {
 }
 
 dCsr_mng_c::node_c* dCsr_mng_c::list_c::release(u16 i_mask) {
+    node_c* new_root;
     node_c* cur_node = m_root;
     while (cur_node != NULL) {
         if (cur_node->m_mask & i_mask) {
-            cur_node = release(cur_node);
+            new_root = release(cur_node);
         } else {
-            cur_node = cur_node->m_next;
+            new_root = cur_node->m_next;
         }
+        cur_node = new_root;
     }
+    return new_root;
 }
 
 BOOL dCsr_mng_c::list_c::isEntry(const node_c* i_node) const {
@@ -268,7 +268,7 @@ BOOL dCsr_mng_c::bloObj_c::isInside(s16 i_x, s16 i_y) {
 }
 
 BOOL dCsr_mng_c::bloObj_c::create(J2DScreen* i_screen, u16 i_mask, u8 i_priority, u8 param_3) {
-    if (!((node_c*)this)->set(i_priority, param_3, i_mask)) {
+    if (!set(i_priority, param_3, i_mask)) {
         return FALSE;
     }
     m_screen = i_screen;
@@ -325,9 +325,8 @@ void dCsr_mng_c::bloObj_c::createPaneObj(paneObj_c** i_panes, J2DPane* i_pane) {
     u64 info_tag = i_pane->mInfoTag;
     char* info_start = nullSkip((char*)&info_tag);
     if (info_start[0] == 0x4E && info_start[1] == 0x5F) {
-        paneObj_c* pane = *i_panes;
         *i_panes -= 1;
-        pane->m_handle = i_pane;
+        (*i_panes)->m_handle = i_pane;
     }
 
     JSUTreeIterator<J2DPane> iter = i_pane->getPaneTree()->getFirstChild();
@@ -341,6 +340,8 @@ BOOL dCsr_mng_c::ccObj_c::isInside(s16 param_0, s16 param_1) {
     if (dComIfGd_getView() == NULL) {
         return 0;
     }
+
+    f64 temp = 4503601774854144.0f;
 
     f32 x = (param_0 - mDoGph_gInf_c::getMinXF()) / mDoGph_gInf_c::getWidthF() * 2.0f - 1.0f;
     f32 y = (param_1 - mDoGph_gInf_c::getMinYF()) / mDoGph_gInf_c::getHeightF() * 2.0f - 1.0f;
