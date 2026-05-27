@@ -823,13 +823,13 @@ int daAlink_c::procHangReady() {
 
 int daAlink_c::procHangLeverDownInit() {
     if (mEquipItem != dItemNo_NONE_e) {
-        return procPreActionUnequipInit(PROC_HANG_LEVER_DOWN, field_0x27f4);
+        return procPreActionUnequipInit(PROC_HANG_LEVER_DOWN, mPriActorOwn);
     }
 
     commonProcInit(PROC_HANG_LEVER_DOWN);
-    field_0x280c.setData(field_0x27f4);
+    field_0x280c.setData(mPriActorOwn);
     setSingleAnimeParam(ANM_CLIMB_JUMP, &mpHIO->mWallHang.mWallCatch.m.mJumpAnm);
-    mProcVar2.field_0x300c = field_0x27f4->shape_angle.y + 0x8000;
+    mProcVar2.field_0x300c = mPriActorOwn->shape_angle.y + 0x8000;
     field_0x3198 = ANM_CLIMB_JUMP;
 
     speed.y = 0.0f;
@@ -1363,8 +1363,8 @@ int daAlink_c::procLadderUpEndInit(BOOL param_0) {
     mNormalSpeed = 0.0f;
     speedF = 0.0f;
 
-    field_0x30a0 = -0x0800;
-    field_0x33f4 = -1.0f;
+    mProcNeckX = -0x0800;
+    mEyeMoveRateY = -1.0f;
     mProcVar2.field_0x300c = 1;
     mProcVar4.field_0x3010 = 1;
     dComIfGp_setPlayerStatus0(0, 0x2000000);
@@ -1387,8 +1387,8 @@ int daAlink_c::procLadderUpEnd() {
             mProcVar2.field_0x300c = 0;
             mProcVar4.field_0x3010 = 0;
         } else if (frame_ctrl->getFrame() >= 11.0f) {
-            field_0x30a0 = 0;
-            field_0x33f4 = 0.0f;
+            mProcNeckX = 0;
+            mEyeMoveRateY = 0.0f;
         }
 
         field_0x2f99 = 6;
@@ -1474,8 +1474,8 @@ int daAlink_c::procLadderDownEndInit(BOOL param_0) {
     field_0x2f99 = 14;
     setSpecialGravity(0.0f, maxFallSpeed, 0);
 
-    field_0x30a0 = 0x2800;
-    field_0x33f4 = 1.0f;
+    mProcNeckX = 0x2800;
+    mEyeMoveRateY = 1.0f;
     mProcVar2.field_0x300c = 0;
     mProcVar4.field_0x3010 = 0;
     dComIfGp_setPlayerStatus0(0, 0x2000000);
@@ -1495,8 +1495,8 @@ int daAlink_c::procLadderDownEnd() {
                !checkNextAction(1))
     {
         if (frame_ctrl->getFrame() >= 11.0f) {
-            field_0x30a0 = 0;
-            field_0x33f4 = 0.0f;
+            mProcNeckX = 0;
+            mEyeMoveRateY = 0.0f;
         }
 
         field_0x2f99 = 6;
@@ -1558,11 +1558,11 @@ int daAlink_c::procLadderMoveInit(BOOL param_0, BOOL param_1, cXyz* param_2) {
     field_0x2f98 = param_1;
 
     if (!param_1) {
-        field_0x30a0 = -0x800;
-        field_0x33f4 = -1.0f;
+        mProcNeckX = -0x800;
+        mEyeMoveRateY = -1.0f;
     } else {
-        field_0x30a0 = 0x2800;
-        field_0x33f4 = 1.0f;
+        mProcNeckX = 0x2800;
+        mEyeMoveRateY = 1.0f;
     }
 
     field_0x2f99 = 14;
@@ -2208,11 +2208,11 @@ int daAlink_c::procClimbMoveUpDownInit(int param_0) {
     }
 
     if (field_0x2f98 == 0) {
-        field_0x30a0 = -0x1800;
-        field_0x33f4 = -1.0f;
+        mProcNeckX = -0x1800;
+        mEyeMoveRateY = -1.0f;
     } else {
-        field_0x30a0 = 0x2800;
-        field_0x33f4 = 1.0f;
+        mProcNeckX = 0x2800;
+        mEyeMoveRateY = 1.0f;
     }
 
     field_0x2f99 = 10;
@@ -2379,11 +2379,11 @@ int daAlink_c::procClimbWaitInit(int param_0, int param_1) {
 
     if (param_0) {
         if (field_0x2f98 == 0) {
-            field_0x30a0 = -0x1800;
-            field_0x33f4 = -1.0f;
+            mProcNeckX = -0x1800;
+            mEyeMoveRateY = -1.0f;
         } else if (field_0x2f98 == 1) {
-            field_0x30a0 = 0x2800;
-            field_0x33f4 = 1.0f;
+            mProcNeckX = 0x2800;
+            mEyeMoveRateY = 1.0f;
         } else if (field_0x2f98 == 3) {
             field_0x30a2 = -0x1800;
             field_0x33f0 = -1.0f;
@@ -2414,10 +2414,10 @@ int daAlink_c::procClimbWait() {
                 if (mProcVar0.field_0x3008 != 0) {
                     mProcVar0.field_0x3008--;
                 } else {
-                    daPy_addCalcShort(&field_0x30a0, 0, 3, 0x800, 0x100);
+                    daPy_addCalcShort(&mProcNeckX, 0, 3, 0x800, 0x100);
                     daPy_addCalcShort(&field_0x30a2, 0, 3, 0x800, 0x100);
                     field_0x33f0 = field_0x30a2 * 0.00016276042f;
-                    field_0x33f4 = -field_0x30a0 * -0.00016276042f;
+                    mEyeMoveRateY = -mProcNeckX * -0.00016276042f;
                 }
             }
         } else if (fabsf(frameCtrl->getRate()) > 0.01f) {

@@ -100,8 +100,8 @@ s16 daAlink_c::checkBodyAngleX(s16 i_angle) {
 
 BOOL daAlink_c::setBodyAngleToCamera() {
     if (dComIfGp_checkCameraAttentionStatus(field_0x317c, 0x10)) {
-        field_0x310e = field_0x310a;
-        field_0x3110 = field_0x310c;
+        field_0x310e = mCameraAngleX;
+        field_0x3110 = mCameraAngleY;
         onEndResetFlg2(ERFLG2_UNK_20);
 
         s16 sp8;
@@ -138,8 +138,8 @@ BOOL daAlink_c::setBodyAngleToCamera() {
 
         mBodyAngle.x = cLib_minMaxLimit<s16>((s16)sp8, var_r29, mpHIO->mItem.m.mItemFPMaxUnk);
         checkBodyAngleX(mBodyAngle.x);
-        field_0x310a = mBodyAngle.x;
-        field_0x310c = shape_angle.y;
+        mCameraAngleX = mBodyAngle.x;
+        mCameraAngleY = shape_angle.y;
         return 1;
     }
 
@@ -225,7 +225,7 @@ int daAlink_c::procCoSubjectivity() {
         checkWaitAction();
     } else if (!checkWolf() && (checkItemAction() || checkItemChangeFromButton())) {
         if (checkUpperReadyThrowAnime()) {
-            field_0x310a = mBodyAngle.x;
+            mCameraAngleX = mBodyAngle.x;
         }
 
         return 1;

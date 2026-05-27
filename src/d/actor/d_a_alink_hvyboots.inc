@@ -187,7 +187,7 @@ void daAlink_c::setMagneBootsMtx(cBgS_PolyInfo* i_polyinfo, int param_1) {
             shape_angle.y += angle;
             current.angle.y += angle;
             mPrevAngleY += angle;
-            field_0x310c += angle;
+            mCameraAngleY += angle;
         }
     }
 

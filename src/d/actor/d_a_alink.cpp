@@ -3232,7 +3232,7 @@ s16 daAlink_c::getNeckAimAngle(cXyz* param_0, s16* param_1, s16* param_2, s16* p
                 *param_2 = 0.9f * sp8;
                 *param_3 = temp_r23 - *param_1;
                 *param_4 = sp8 - *param_2;
-            } else if (field_0x2fc8 != 0) {
+            } else if (mfishGetFace != 0) {
                 *param_1 = 0.25f * temp_r23;
                 *param_2 = 0.5f * sp8;
                 *param_3 = temp_r23 - *param_1;
@@ -3258,9 +3258,9 @@ s16 daAlink_c::getNeckAimAngle(cXyz* param_0, s16* param_1, s16* param_2, s16* p
     } else if (checkMagneBootsOn()) {
         *param_1 = 0;
         *param_2 = 0;
-        field_0x30d4 = 0;
+        mMidnaProcNeckY = 0;
     } else {
-        *param_1 = field_0x30a0;
+        *param_1 = mProcNeckX;
         *param_2 = field_0x30a2;
 
         if (checkWolf() && *param_2 == 0) {
@@ -3268,7 +3268,7 @@ s16 daAlink_c::getNeckAimAngle(cXyz* param_0, s16* param_1, s16* param_2, s16* p
         }
 
 
-        field_0x30d4 = *param_2;
+        mMidnaProcNeckY = *param_2;
     }
 
     return sp18;
@@ -3282,21 +3282,21 @@ void daAlink_c::setEyeMove(cXyz* param_0, s16 param_1, s16 param_2) {
     field_0x2fa7 = 75.0f + cM_rndF(30.0f);
     field_0x3418 = 0.0f;
     field_0x341c = 0.0f;
-    field_0x33f8 = 0.0f;
+    MidnaEyeMoveRateX = 0.0f;
 
     f32 var_f31;
     f32 var_f30;
     if (param_0 != NULL) {
         var_f30 = 0.00012207031f * param_1;
         var_f31 = 0.00012207031f * param_2;
-    } else if (0.0f != field_0x33f0 || 0.0f != field_0x33f4) {
-        var_f30 = field_0x33f4;
+    } else if (0.0f != field_0x33f0 || 0.0f != mEyeMoveRateY) {
+        var_f30 = mEyeMoveRateY;
         var_f31 = field_0x33f0;
-        field_0x33f8 = field_0x33f0;
+        MidnaEyeMoveRateX = field_0x33f0;
     } else if ((mProcID == PROC_MOVE || mProcID == PROC_WOLF_MOVE) && !checkNoResetFlg1(FLG1_UNK_1000000) && field_0x2fee != 0) {
         var_f30 = 0.0f;
         var_f31 = 0.00024414062f * -field_0x2fee;
-        field_0x33f8 = var_f31;
+        MidnaEyeMoveRateX = var_f31;
     } else if (checkSwimNeckUpDown()) {
         if (field_0x3124.x > 0) {
             var_f30 = 0.5f;
@@ -5525,7 +5525,7 @@ void daAlink_c::setBodyPartPos() {
 
     if (checkWolf()) {
         cMtx_multVec(mpLinkModel->getAnmMtx(4), &wlLocalEye, &eyePos);
-        field_0x3768 = eyePos;
+        mSubjectEyePos = eyePos;
         cMtx_multVec(mpLinkModel->getAnmMtx(4), &wlLocalHeadCenter, &field_0x34e0);
         cMtx_multVec(mpLinkModel->getAnmMtx(4), &wlLocalHeadTop, &mHeadTopPos);
         mDoMtx_multVecZero(mpLinkModel->getAnmMtx(0x13), &mLeftHandPos);
@@ -5538,19 +5538,19 @@ void daAlink_c::setBodyPartPos() {
         if (dComIfGp_checkPlayerStatus0(0, 0x2000) && !dComIfGp_checkPlayerStatus1(0, 0x02010000) && (!checkModeFlg(0x40000) || !checkNoResetFlg0(FLG0_SWIM_UP)) && !dComIfGp_checkPlayerStatus0(0, 0x08000000)) {
             mDoMtx_stack_c::transS(current.pos.x, field_0x3834.y, current.pos.z);
             concatMagneBootMtx();
-            mDoMtx_stack_c::ZXYrotM(field_0x310a, field_0x310c, 0);
+            mDoMtx_stack_c::ZXYrotM(mCameraAngleX, mCameraAngleY, 0);
 
             if (checkCanoeRide()) {
-                mDoMtx_stack_c::multVec(&canoeLocalEyeFromRoot, &field_0x3768);
+                mDoMtx_stack_c::multVec(&canoeLocalEyeFromRoot, &mSubjectEyePos);
             } else if (checkBoardRide()) {
-                mDoMtx_stack_c::multVec(&boardLocalEyeFromRoot, &field_0x3768);
+                mDoMtx_stack_c::multVec(&boardLocalEyeFromRoot, &mSubjectEyePos);
             } else if (checkReinRide()) {
-                mDoMtx_stack_c::multVec(&horseLocalEyeFromRoot, &field_0x3768);
+                mDoMtx_stack_c::multVec(&horseLocalEyeFromRoot, &mSubjectEyePos);
             } else {
-                mDoMtx_stack_c::multVec(&localEyeFromRoot, &field_0x3768);
+                mDoMtx_stack_c::multVec(&localEyeFromRoot, &mSubjectEyePos);
             }
         } else {
-            field_0x3768 = eyePos;
+            mSubjectEyePos = eyePos;
         }
 
         cMtx_multVec(mpLinkModel->getAnmMtx(field_0x30b4), &localHeadCenter, &field_0x34e0);
@@ -9209,7 +9209,7 @@ void daAlink_c::setPlayerPosAndAngle(const cXyz* i_pos, s16 i_angle, BOOL param_
         }
 
         if (checkMagneBootsOn() && cBgW_CheckBGround(mMagneBootsTopVec.y)) {
-            field_0x3118 = shape_angle.y;
+            mMagneBootsModelShapeAngle = shape_angle.y;
         }
 
         if (checkHorseRide()) {
@@ -9511,7 +9511,7 @@ void daAlink_c::setAtnList() {
     mAttList2 = NULL;
     mTargetedActor = NULL;
     field_0x27f0 = NULL;
-    field_0x27f4 = NULL;
+    mPriActorOwn = NULL;
     field_0x27f8 = NULL;
 
     if (checkEventRun() || checkAttentionLock() || checkInputOnR()) {
@@ -9530,25 +9530,25 @@ void daAlink_c::setAtnList() {
 
     if (checkFmChainGrabAnime()) {
         mTargetedActor = field_0x2844.getActor();
-        field_0x27f4 = mTargetedActor;
+        mPriActorOwn = mTargetedActor;
         field_0x27fc = field_0x2844.getActor();
     } else if (mProcID == PROC_GORON_MOVE) {
         mTargetedActor = mCargoCarryAcKeep.getActor();
-        field_0x27f4 = mTargetedActor;
+        mPriActorOwn = mTargetedActor;
     } else if (mProcID == PROC_CUT_FINISH && field_0x280c.getActor() != NULL) {
         mTargetedActor = field_0x280c.getActor();
-        field_0x27f4 = mTargetedActor;
+        mPriActorOwn = mTargetedActor;
     } else if (dComIfGp_checkPlayerStatus0(0, 0x400000)) {
         mTargetedActor = mThrowBoomerangAcKeep.getActor();
-        field_0x27f4 = mTargetedActor;
+        mPriActorOwn = mTargetedActor;
     } else if (checkNoResetFlg3(FLG3_COPY_ROD_THROW_AFTER)) {
         mTargetedActor = mCopyRodAcKeep.getActor();
-        field_0x27f4 = mTargetedActor;
+        mPriActorOwn = mTargetedActor;
     } else if (checkAttentionLock()) {
         mAttList = mAttention->GetLockonList(0);
         if (mAttList != NULL && mAttention->LockonTruth()) {
             mTargetedActor = mAttList->getActor();
-            field_0x27f4 = mTargetedActor;
+            mPriActorOwn = mTargetedActor;
             onResetFlg0(RFLG0_ATTENTION_LOCK);
 
             if (checkEnemyGroup(mTargetedActor)) {
@@ -9569,7 +9569,7 @@ void daAlink_c::setAtnList() {
         mAttList = mAttention->getActionBtnB();
         if (mAttList != NULL) {
             field_0x27f0 = mAttList->getActor();
-            field_0x27f4 = field_0x27f0;
+            mPriActorOwn = field_0x27f0;
         }
     }
 
@@ -10207,29 +10207,29 @@ BOOL daAlink_c::notTalk() {
 }
 
 BOOL daAlink_c::setTalkStatus() {
-    if (checkEndResetFlg0(ERFLG0_BEE_FOLLOW) || field_0x27f4 == NULL) {
+    if (checkEndResetFlg0(ERFLG0_BEE_FOLLOW) || mPriActorOwn == NULL) {
         return 0;
     }
 
-    if (checkRequestTalkActor(mAttList, field_0x27f4)) {
+    if (checkRequestTalkActor(mAttList, mPriActorOwn)) {
         if (notTalk()) {
             setDoStatus(BUTTON_STATUS_UNK_144);
         } else {
-            if (field_0x27f4->attention_info.flags & fopAc_AttnFlag_NOTALK_e) {
+            if (mPriActorOwn->attention_info.flags & fopAc_AttnFlag_NOTALK_e) {
                 return 0;
             }
 
-            if (field_0x27f4->attention_info.flags & fopAc_AttnFlag_UNK_0x800000) {
+            if (mPriActorOwn->attention_info.flags & fopAc_AttnFlag_UNK_0x800000) {
                 setDoStatus(BUTTON_STATUS_LISTEN);
-            } else if (field_0x27f4->attention_info.flags & fopAc_AttnFlag_TALKCHECK_e) {
-                if (fopAcM_GetName(field_0x27f4) == fpcNm_OBJ_SSDRINK_e) {
+            } else if (mPriActorOwn->attention_info.flags & fopAc_AttnFlag_TALKCHECK_e) {
+                if (fopAcM_GetName(mPriActorOwn) == fpcNm_OBJ_SSDRINK_e) {
                     setDoStatus(BUTTON_STATUS_DRINK);
                 } else {
                     setDoStatus(BUTTON_STATUS_CHECK);
                 }
-            } else if (field_0x27f4->attention_info.flags & fopAc_AttnFlag_TALKREAD_e) {
+            } else if (mPriActorOwn->attention_info.flags & fopAc_AttnFlag_TALKREAD_e) {
                 setDoStatus(BUTTON_STATUS_UNK_128);
-            } else if (field_0x27f4->attention_info.flags & fopAc_AttnFlag_UNK_0x8000000) {
+            } else if (mPriActorOwn->attention_info.flags & fopAc_AttnFlag_UNK_0x8000000) {
                 setDoStatus(BUTTON_STATUS_LOOK);
             } else {
                 setDoStatus(BUTTON_STATUS_SPEAK);
@@ -10414,18 +10414,18 @@ void daAlink_c::decideDoStatus() {
             if (searchFmChainPos()) {
                 setChainGrabStatus(BUTTON_STATUS_UNK_150);
             } else if (mAttList != NULL) {
-                s16 actor_name = fopAcM_GetName(field_0x27f4);
+                s16 actor_name = fopAcM_GetName(mPriActorOwn);
 
                 if (mAttList->mType == fopAc_attn_DOOR_e ||
                     (mAttList->mType == fopAc_attn_JUEL_e &&
-                     (!checkWolf() || static_cast<daTbox_c*>(field_0x27f4)->checkSmallTbox())))
+                     (!checkWolf() || static_cast<daTbox_c*>(mPriActorOwn)->checkSmallTbox())))
                 {
                     setDoStatus(BUTTON_STATUS_OPEN);
                 } else if (mAttList->mType == fopAc_attn_ETC_e && actor_name == fpcNm_KYTAG05_e) {
                     setDoStatus(BUTTON_STATUS_UNK_137);
                 } else if (checkWolf()) {
-                    if (mAttList->mType == fopAc_attn_CARRY_e && !fopAcM_checkCarryNow(field_0x27f4) &&
-                        fopAcM_CheckCarryType(field_0x27f4, fopAcM_CARRY_LIGHT))
+                    if (mAttList->mType == fopAc_attn_CARRY_e && !fopAcM_checkCarryNow(mPriActorOwn) &&
+                        fopAcM_CheckCarryType(mPriActorOwn, fopAcM_CARRY_LIGHT))
                     {
                         if (actor_name == fpcNm_B_MGN_e) {
                             setDoStatus(BUTTON_STATUS_UNK_145);
@@ -10437,7 +10437,7 @@ void daAlink_c::decideDoStatus() {
                                    actor_name == fpcNm_Obj_SmallKey_e)
                         {
                             setDoStatusEmphasys(BUTTON_STATUS_UNK_57);
-                        } else if (!checkGoatCatchActor(field_0x27f4) && !checkGrabLineCheck()) {
+                        } else if (!checkGoatCatchActor(mPriActorOwn) && !checkGrabLineCheck()) {
                             setDoStatusEmphasys(BUTTON_STATUS_PICK_UP);
                         }
                     } else if (mTargetedActor != NULL &&
@@ -10457,7 +10457,7 @@ void daAlink_c::decideDoStatus() {
                         if (mWolfEyeUp != 0) {
                             setWolfDigStatus(BUTTON_STATUS_FLAG_EMPHASIS);
                         }
-                    } else if (mAttList->mType == fopAc_attn_ETC_e && field_0x27f4 != NULL) {
+                    } else if (mAttList->mType == fopAc_attn_ETC_e && mPriActorOwn != NULL) {
                         if (actor_name == fpcNm_Obj_Digpl_e || actor_name == fpcNm_Obj_Digholl_e ||
                             actor_name == fpcNm_Obj_DigSnow_e || actor_name == fpcNm_Obj_Lv4DigSand_e ||
                             actor_name == fpcNm_E_YM_e)
@@ -10475,7 +10475,7 @@ void daAlink_c::decideDoStatus() {
                         } else if (actor_name == fpcNm_KYTAG03_e) {
                             setDoStatusEmphasys(BUTTON_STATUS_SNIFF);
                         }
-                    } else if (mTargetedActor != NULL && field_0x27f4 == mTargetedActor &&
+                    } else if (mTargetedActor != NULL && mPriActorOwn == mTargetedActor &&
                                actor_name == fpcNm_Obj_Wchain_e)
                     {
                         setDoStatusEmphasys(BUTTON_STATUS_UNK_123);
@@ -10495,7 +10495,7 @@ void daAlink_c::decideDoStatus() {
                         setDoStatusEmphasys(BUTTON_STATUS_UNK_153);
                     } else if (actor_name == fpcNm_Tag_Lv6Gate_e ||
                                (actor_name == fpcNm_TAG_KMSG_e &&
-                                static_cast<daTag_KMsg_c*>(field_0x27f4)->getType() == 3))
+                                static_cast<daTag_KMsg_c*>(mPriActorOwn)->getType() == 3))
                     {
                         if (!checkEquipAnime() && checkMasterSwordEquip()) {
                             setDoStatus(BUTTON_STATUS_STRIKE);
@@ -10508,18 +10508,18 @@ void daAlink_c::decideDoStatus() {
                 {
                     setDoStatus(BUTTON_STATUS_UNK_145);
                 } else if (mAttList->mType == fopAc_attn_CARRY_e) {
-                    if (!fopAcM_checkCarryNow(field_0x27f4)) {
-                        if (checkGoatCatchActor(field_0x27f4)) {
+                    if (!fopAcM_checkCarryNow(mPriActorOwn)) {
+                        if (checkGoatCatchActor(mPriActorOwn)) {
                             setDoStatus(BUTTON_STATUS_UNK_145);
                         } else if (!checkMagneBootsOn()) {
-                            if (checkInsectActorName(field_0x27f4)) {
+                            if (checkInsectActorName(mPriActorOwn)) {
                                 setDoStatusEmphasys(BUTTON_STATUS_UNK_152);
                             } else if (actor_name == fpcNm_Obj_SmallKey_e) {
                                 setDoStatusEmphasys(BUTTON_STATUS_UNK_57);
                             } else if (!checkGrabLineCheck()) {
                                 if (actor_name == fpcNm_Obj_Yobikusa_e) {
                                     setDoStatus(BUTTON_STATUS_PICK);
-                                } else if (fopAcM_CheckCarryType(field_0x27f4, fopAcM_CARRY_TYPE_8))
+                                } else if (fopAcM_CheckCarryType(mPriActorOwn, fopAcM_CARRY_TYPE_8))
                                 {
                                     setDoStatusEmphasys(BUTTON_STATUS_UNK_52);
                                 } else if (actor_name != fpcNm_B_MGN_e) {
@@ -11355,10 +11355,10 @@ BOOL daAlink_c::checkUpperItemAction() {
 }
 
 void daAlink_c::orderPeep() {
-    mPeepExitID = ((kytag05_class*)field_0x27f4)->getSceneListID();
+    mPeepExitID = ((kytag05_class*)mPriActorOwn)->getSceneListID();
     field_0x2ff2 = AREG_S(4) + 20;
 
-    fopAcM_orderOtherEvent(this, field_0x27f4, l_peepEventName, 0xFFFF, 1, 0);
+    fopAcM_orderOtherEvent(this, mPriActorOwn, l_peepEventName, 0xFFFF, 1, 0);
 
     if (checkWolf()) {
         procWolfWaitInit();
@@ -11383,7 +11383,7 @@ int daAlink_c::orderTalk(int i_checkZTalk) {
         )
         && talkTrigger())
     {
-        fopAcM_orderTalkEvent(this, field_0x27f4, 0, 0);
+        fopAcM_orderTalkEvent(this, mPriActorOwn, 0, 0);
         return 1;
     }
 
@@ -11523,11 +11523,11 @@ int daAlink_c::checkNormalAction() {
         }
 
         if (dComIfGp_getDoStatus() == BUTTON_STATUS_GET_ON) {
-            if (fopAcM_GetName(field_0x27f4) == fpcNm_Obj_IceLeaf_e) {
+            if (fopAcM_GetName(mPriActorOwn) == fpcNm_Obj_IceLeaf_e) {
                 return procBoardRideInit();
             }
 
-            if (fopAcM_GetName(field_0x27f4) == fpcNm_CANOE_e) {
+            if (fopAcM_GetName(mPriActorOwn) == fpcNm_CANOE_e) {
                 if (checkModeFlg(0x40000)) {
                     return procCanoeRideInit();
                 } else {
@@ -11561,11 +11561,11 @@ int daAlink_c::checkNormalAction() {
                 if (!checkStageName("F_SP103") ||
                     !fopAcIt_Judge((fopAcIt_JudgeFunc)daAlink_searchBouDoor, NULL))
                 {
-                    fopAcM_orderDoorEvent(this, field_0x27f4, 0, 0);
+                    fopAcM_orderDoorEvent(this, mPriActorOwn, 0, 0);
                 }
                 checkWaitAction();
             } else {
-                fopAcM_orderTreasureEvent(this, field_0x27f4, 0, 0);
+                fopAcM_orderTreasureEvent(this, mPriActorOwn, 0, 0);
             }
 
             return 1;
@@ -11580,10 +11580,10 @@ int daAlink_c::checkNormalAction() {
         }
 
         if (dComIfGp_getDoStatus() == BUTTON_STATUS_STRIKE) {
-            if (fopAcM_GetName(field_0x27f4) == fpcNm_Tag_Lv6Gate_e) {
-                static_cast<daTagLv6Gate_c*>(field_0x27f4)->stabMasterSword();
+            if (fopAcM_GetName(mPriActorOwn) == fpcNm_Tag_Lv6Gate_e) {
+                static_cast<daTagLv6Gate_c*>(mPriActorOwn)->stabMasterSword();
             } else {
-                static_cast<daTag_KMsg_c*>(field_0x27f4)->stabMasterSword();
+                static_cast<daTag_KMsg_c*>(mPriActorOwn)->stabMasterSword();
             }
 
             procWaitInit();
@@ -11593,11 +11593,11 @@ int daAlink_c::checkNormalAction() {
         if (dComIfGp_getDoStatus() == BUTTON_STATUS_UNK_145) {
             onNoResetFlg0(FLG0_UNK_10000000);
 
-            if (field_0x27f4->current.pos.abs2XZ(current.pos) < getGoatCatchDistance2()) {
+            if (mPriActorOwn->current.pos.abs2XZ(current.pos) < getGoatCatchDistance2()) {
                 if (checkWolf()) {
                     return procWolfGanonCatchInit();
                 } else {
-                    return procGoatCatchInit(field_0x27f4, 0.0f);
+                    return procGoatCatchInit(mPriActorOwn, 0.0f);
                 }
             }
         } else if (dComIfGp_getDoStatus() == BUTTON_STATUS_UNK_152) {
@@ -11608,7 +11608,7 @@ int daAlink_c::checkNormalAction() {
             if (checkWolf()) {
                 return procWolfGrabUpInit();
             } else {
-                if (fopAcM_CheckCarryType(field_0x27f4, fopAcM_CARRY_ITEM)) {
+                if (fopAcM_CheckCarryType(mPriActorOwn, fopAcM_CARRY_ITEM)) {
                     return procPickUpInit();
                 } else {
                     return procGrabReadyInit();
@@ -11640,14 +11640,14 @@ int daAlink_c::checkNormalAction() {
         } else if (dComIfGp_getDoStatus() == BUTTON_STATUS_SNIFF) {
             return procWolfGetSmellInit();
         } else if (dComIfGp_getDoStatus() == BUTTON_STATUS_UNK_147) {
-            return procWolfTagJumpInit(field_0x27f4);
+            return procWolfTagJumpInit(mPriActorOwn);
         }
     } else if (checkNoResetFlg0(FLG0_UNK_10000000) && dComIfGp_getDoStatus() == BUTTON_STATUS_UNK_145) {
-        if (field_0x27f4->current.pos.abs2XZ(current.pos) < getGoatCatchDistance2()) {
+        if (mPriActorOwn->current.pos.abs2XZ(current.pos) < getGoatCatchDistance2()) {
             if (checkWolf()) {
                 return procWolfGanonCatchInit();
             } else {
-                return procGoatCatchInit(field_0x27f4, 0.0f);
+                return procGoatCatchInit(mPriActorOwn, 0.0f);
             }
         }
     }
@@ -11688,7 +11688,7 @@ BOOL daAlink_c::checkItemAction() {
         }
 
         if ((checkEndResetFlg1(ERFLG1_UNK_100000) || mTargetedActor == NULL) && wolfClawTrigger()) {
-            if (checkEndResetFlg1(ERFLG1_UNK_100000) && field_0x27f4 != NULL && fopAcM_GetName(field_0x27f4) == fpcNm_Obj_Digholl_e) {
+            if (checkEndResetFlg1(ERFLG1_UNK_100000) && mPriActorOwn != NULL && fopAcM_GetName(mPriActorOwn) == fpcNm_Obj_Digholl_e) {
                 return procWolfDigThroughInit(0);
             }
 
@@ -12625,7 +12625,7 @@ void daAlink_c::setBodyAngleXReadyAnime(int param_0) {
     }
 
     cLib_addCalcAngleS(&mBodyAngle.x, angle_x, 4, 0x0C00, 0x0180);
-    field_0x310a = mBodyAngle.x;
+    mCameraAngleX = mBodyAngle.x;
 }
 
 void daAlink_c::setMagicArmorBrk(int i_status) {
@@ -15123,13 +15123,13 @@ void daAlink_c::commonProcInit(daAlink_c::daAlink_PROC i_procID) {
 
     field_0x308c = 0;
     field_0x33f0 = 0.0f;
-    field_0x33f4 = 0.0f;
-    field_0x30a0 = 0;
+    mEyeMoveRateY = 0.0f;
+    mProcNeckX = 0;
     field_0x30a2 = 0;
     field_0x30f0 = 0;
     m_nSwordBtk->setFrame(0.0f);
-    field_0x310a = 0;
-    field_0x310c = shape_angle.y;
+    mCameraAngleX = 0;
+    mCameraAngleY = shape_angle.y;
 
     if (field_0x3190 != 0) {
         field_0x3190 = 0;
@@ -15139,8 +15139,8 @@ void daAlink_c::commonProcInit(daAlink_c::daAlink_PROC i_procID) {
     mFishingArm1Angle = csXyz::Zero;
     field_0x3160 = csXyz::Zero;
 
-    if (field_0x2fc8 != 0) {
-        field_0x2fc8 = 0;
+    if (mfishGetFace != 0) {
+        mfishGetFace = 0;
         resetFacePriAnime();
     }
 
@@ -15351,7 +15351,7 @@ BOOL daAlink_c::commonProcInitNotSameProc(daAlink_PROC i_procID) {
 
 int daAlink_c::procPreActionUnequip() {
     if (checkNoUpperAnime()) {
-        if (mProcVar3.field_0x300e != 0 && (field_0x27f4 == NULL || field_0x27f4 != field_0x280c.getActor()))
+        if (mProcVar3.field_0x300e != 0 && (mPriActorOwn == NULL || mPriActorOwn != field_0x280c.getActor()))
         {
             checkWaitAction();
         } else if (field_0x3198 == PROC_PUSH_PULL_WAIT) {
@@ -15573,7 +15573,7 @@ int daAlink_c::procMove() {
 
         setBlendMoveAnime(-1.0f);
         if (mGroundCode != 8) {
-            field_0x30a0 =
+            mProcNeckX =
                 cLib_minMaxLimit<s16>((s16)(field_0x2ff0 >> 1), mpHIO->mBasic.m.mHeadMaxTurnUp,
                                  mpHIO->mBasic.m.mHeadMaxTurnDown);
         }
@@ -16602,7 +16602,7 @@ int daAlink_c::procAutoJumpInit(int param_0) {
         deleteEquipItem(TRUE, FALSE);
     }
 
-    if (field_0x27f4 != NULL && fopAcM_GetName(field_0x27f4) == fpcNm_CANOE_e) {
+    if (mPriActorOwn != NULL && fopAcM_GetName(mPriActorOwn) == fpcNm_CANOE_e) {
         return procSmallJumpInit(1);
     }
 
@@ -16773,10 +16773,10 @@ int daAlink_c::procAutoJump() {
                               mpHIO->mAutoJump.m.mMaxFallSpeed, TRUE);
             mProcVar2.field_0x300c = 0;
             resetUpperAnime(UPPER_1, 3.0f);
-            field_0x30a0 = 0;
+            mProcNeckX = 0;
             onModeFlg(4);
         } else {
-            field_0x30a0 = 0x1800;
+            mProcNeckX = 0x1800;
 
             if (!checkBootsOrArmorHeavy()) {
                 mFallHeight = current.pos.y;
@@ -17127,12 +17127,12 @@ int daAlink_c::procSmallJumpInit(int param_0) {
         setSingleAnimeParam(ANM_VJUMP_START, &mpHIO->mWallHang.mSmallJump.m.mSmallJumpAnm);
 
         if (param_0 == 1) {
-            field_0x3478 = field_0x27f4->current.pos.y + 20.0f;
+            field_0x3478 = mPriActorOwn->current.pos.y + 20.0f;
             if (field_0x3478 < current.pos.y + 30.0f) {
                 field_0x3478 = current.pos.y + 30.0f;
             }
 
-            daCanoe_c* canoe_p = (daCanoe_c*)field_0x27f4;
+            daCanoe_c* canoe_p = (daCanoe_c*)mPriActorOwn;
             cXyz sp8(canoe_p->current.pos);
             if (canoe_p->checkTandem()) {
                 sp8.x += cM_ssin(canoe_p->shape_angle.y) * 175.0f;
@@ -17674,7 +17674,7 @@ int daAlink_c::execute() {
         shape_angle.y = dComIfGp_getHorseActor()->shape_angle.y;
         current.angle.y = shape_angle.y;
     } else if (checkMagneBootsOn()) {
-        shape_angle.y = field_0x3118;
+        shape_angle.y = mMagneBootsModelShapeAngle;
     } else if (checkModeFlg(MODE_VINE_CLIMB) || checkCargoCarry()) {
         shape_angle.y = field_0x3108;
     }
@@ -18651,9 +18651,9 @@ int daAlink_c::execute() {
                     setDoStatusEmphasys(BUTTON_STATUS_GRAB);
                 } else if (dComIfGp_getDoStatus() == BUTTON_STATUS_UNK_145) {
                     if (checkWolf() ||
-                        (field_0x27f4 != NULL &&
-                            (field_0x27f4->speedF > 0.1f ||
-                            (checkGoatCatchActor(field_0x27f4) && fopAcM_GetName(field_0x27f4) != fpcNm_COW_e))))
+                        (mPriActorOwn != NULL &&
+                            (mPriActorOwn->speedF > 0.1f ||
+                            (checkGoatCatchActor(mPriActorOwn) && fopAcM_GetName(mPriActorOwn) != fpcNm_COW_e))))
                     {
                         setDoStatusEmphasys(BUTTON_STATUS_GRAB);
                     } else {
@@ -18669,9 +18669,9 @@ int daAlink_c::execute() {
                             dComIfGp_getHorseActor()->getZeldaActor() != NULL)
                 {
                     setDoStatus(BUTTON_STATUS_JUMP);
-                } else if (dComIfGp_getDoStatus() == BUTTON_STATUS_HOWL && field_0x27f4 != NULL &&
-                            (fopAcM_GetName(field_0x27f4) == fpcNm_Obj_WindStone_e ||
-                            fopAcM_GetName(field_0x27f4) == fpcNm_Obj_SmWStone_e))
+                } else if (dComIfGp_getDoStatus() == BUTTON_STATUS_HOWL && mPriActorOwn != NULL &&
+                            (fopAcM_GetName(mPriActorOwn) == fpcNm_Obj_WindStone_e ||
+                            fopAcM_GetName(mPriActorOwn) == fpcNm_Obj_SmWStone_e))
                 {
                     setDoStatusEmphasys(BUTTON_STATUS_LISTEN);
                 } else if (dComIfGp_getDoStatus() == BUTTON_STATUS_PLACE) {
@@ -18711,7 +18711,7 @@ int daAlink_c::execute() {
     }
 
     if (checkEndResetFlg2(ERFLG2_UNK_20) && dComIfGp_checkPlayerStatus0(0, 0x200000) &&
-        (field_0x310e != field_0x310a || field_0x3110 != field_0x310c))
+        (field_0x310e != mCameraAngleX || field_0x3110 != mCameraAngleY))
     {
         mDoAud_seStartLevel(Z2SE_AL_HAWK_EYE_PAN, NULL, 0, 0);
     }
@@ -18738,7 +18738,7 @@ int daAlink_c::execute() {
             shape_angle.y = -0x8000;
         }
     } else if (checkMagneBootsOn()) {
-        field_0x3118 = shape_angle.y;
+        mMagneBootsModelShapeAngle = shape_angle.y;
         shape_angle.y = getMagneBootsLocalAngleY(shape_angle.y, 0);
     } else if (checkModeFlg(MODE_VINE_CLIMB)) {
         field_0x3108 = shape_angle.y;
@@ -18957,19 +18957,19 @@ int daAlink_c::initShadowScaleLight() {
     field_0x2ff4 = cM_atan2s(sp20.y, sp20.absXZ());
     offNoResetFlg2(FLG2_UNK_800);
     field_0x2ffc = 0;
-    field_0x375c.y = current.pos.y + var_f30;
+    mShadowTalkAtnPos.y = current.pos.y + var_f30;
 
     f32 temp_f29 = cM_ssin(field_0x2ff8);
     f32 temp_f28 = cM_scos(field_0x2ff8);
 
     if (var_r28 == 0) {
-        field_0x375c.x = current.pos.x - (var_f31 * temp_f29);
-        field_0x375c.z = current.pos.z - (var_f31 * temp_f28);
+        mShadowTalkAtnPos.x = current.pos.x - (var_f31 * temp_f29);
+        mShadowTalkAtnPos.z = current.pos.z - (var_f31 * temp_f28);
     } else {
-        field_0x375c.x = current.pos.x - (temp_f29 * -30.0f) - (temp_f28 * 65.0f);
+        mShadowTalkAtnPos.x = current.pos.x - (temp_f29 * -30.0f) - (temp_f28 * 65.0f);
         // likely fakematch - debug indicates there probably isn't a temp
         f32 temp = current.pos.z - (temp_f28 * -30.0f);
-        field_0x375c.z = temp + (temp_f29 * 65.0f);
+        mShadowTalkAtnPos.z = temp + (temp_f29 * 65.0f);
     }
 
     if (checkReinRide()) {

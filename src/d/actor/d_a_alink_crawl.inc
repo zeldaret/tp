@@ -778,7 +778,7 @@ int daAlink_c::procCrawlAutoMove() {
         }
     }
 
-    field_0x310c = shape_angle.y;
+    mCameraAngleY = shape_angle.y;
     return 1;
 }
 

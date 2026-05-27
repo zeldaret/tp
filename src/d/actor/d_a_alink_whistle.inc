@@ -63,7 +63,7 @@ void daAlink_c::setHorseWhistleModel() {
 
 int daAlink_c::procGrassWhistleGetInit() {
     if (mEquipItem != dItemNo_NONE_e) {
-        return procPreActionUnequipInit(PROC_GRASS_WHISTLE_GET, field_0x27f4);
+        return procPreActionUnequipInit(PROC_GRASS_WHISTLE_GET, mPriActorOwn);
     }
 
     commonProcInit(PROC_GRASS_WHISTLE_GET);
@@ -73,9 +73,9 @@ int daAlink_c::procGrassWhistleGetInit() {
 
     setSingleAnimeParam(ANM_BOTTLE_SWING_DOWN, &mpHIO->mItem.mBottle.m.mSwingDownAnm);
     mLeftHandIndex = 0xFE;
-    field_0x280c.setData(field_0x27f4);
+    field_0x280c.setData(mPriActorOwn);
 
-    daObjYobikusa_c* yobikusa_p = (daObjYobikusa_c*)field_0x27f4;
+    daObjYobikusa_c* yobikusa_p = (daObjYobikusa_c*)mPriActorOwn;
     mProcVar2.field_0x300c = yobikusa_p->getType();
     mProcVar3.field_0x300e = yobikusa_p->getPathID();
     mProcVar4.field_0x3010 = yobikusa_p->isPlayerCorrect();

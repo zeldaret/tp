@@ -218,7 +218,7 @@ void daAlink_c::throwBoomerang() {
     } else if (mLinkAcch.ChkGroundHit() && boomerang_item) {
         if (mTargetedActor == NULL && item != NULL) {
             mTargetedActor = item;
-            field_0x27f4 = item;
+            mPriActorOwn = item;
         }
 
         if (checkZeroSpeedF()) {

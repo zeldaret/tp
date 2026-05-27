@@ -62,9 +62,9 @@ BOOL daAlink_c::checkCowGame() {
 }
 
 int daAlink_c::getReinRideDirection() {
-    s16 angle = fopAcM_searchActorAngleY(field_0x27f4, this) - field_0x27f4->shape_angle.y;
+    s16 angle = fopAcM_searchActorAngleY(mPriActorOwn, this) - mPriActorOwn->shape_angle.y;
 
-    if (fopAcM_GetName(field_0x27f4) == fpcNm_HORSE_e && abs(angle) > 0x6800) {
+    if (fopAcM_GetName(mPriActorOwn) == fpcNm_HORSE_e && abs(angle) > 0x6800) {
         return DIR_BACKWARD;
     } else if (angle > 0) {
         return DIR_LEFT;
@@ -99,7 +99,7 @@ int daAlink_c::checkReinRideBgCheck() {
     int direction = getReinRideDirection();
 
     const Vec* offset_p;
-    if (fopAcM_GetName(field_0x27f4) == fpcNm_HORSE_e) {
+    if (fopAcM_GetName(mPriActorOwn) == fpcNm_HORSE_e) {
         if (direction == DIR_BACKWARD) {
             offset_p = &horseLocalBack;
         } else if (direction == DIR_LEFT) {
@@ -114,10 +114,10 @@ int daAlink_c::checkReinRideBgCheck() {
     }
 
     cXyz line_start_pos;
-    cXyz line_end_pos(field_0x27f4->current.pos.x, field_0x27f4->current.pos.y, field_0x27f4->current.pos.z);
+    cXyz line_end_pos(mPriActorOwn->current.pos.x, mPriActorOwn->current.pos.y, mPriActorOwn->current.pos.z);
 
-    mDoMtx_stack_c::transS(field_0x27f4->current.pos);
-    mDoMtx_stack_c::YrotM(field_0x27f4->shape_angle.y);
+    mDoMtx_stack_c::transS(mPriActorOwn->current.pos);
+    mDoMtx_stack_c::YrotM(mPriActorOwn->shape_angle.y);
     mDoMtx_stack_c::multVec(offset_p, &line_start_pos);
 
     dBgS_AcchCir* acchcir_p = mAcchCir;
@@ -1046,8 +1046,8 @@ int daAlink_c::setRideSubjectAngle(s16 param_0) {
     current.angle.y = param_0;
 
     if (!checkNoResetFlg2(FLG2_UNK_100)) {
-        field_0x310a = mBodyAngle.x;
-        field_0x310c = param_0 + field_0x3190;
+        mCameraAngleX = mBodyAngle.x;
+        mCameraAngleY = param_0 + field_0x3190;
     }
 
     return temp_r27;
@@ -1266,14 +1266,14 @@ int daAlink_c::procHorseRideInit() {
         deleteEquipItem(TRUE, TRUE);
     }
 
-    mRideAcKeep.setData(field_0x27f4);
+    mRideAcKeep.setData(mPriActorOwn);
 
     daAlink_ANM anm;
     MtxP rideMtx;
     Vec* localRidePos_p;
     u32 mode;
-    if (fopAcM_GetName(field_0x27f4) == fpcNm_HORSE_e) {
-        daHorse_c* horse = (daHorse_c*)field_0x27f4;
+    if (fopAcM_GetName(mPriActorOwn) == fpcNm_HORSE_e) {
+        daHorse_c* horse = (daHorse_c*)mPriActorOwn;
         horse->onRideStartFlg();
         rideMtx = horse->getRootMtx();
         mRideStatus = RIDETYPE_HORSE;
@@ -1282,7 +1282,7 @@ int daAlink_c::procHorseRideInit() {
         mode = horse->checkRodeoMode();
         mZ2Link.setRiding(true);
     } else {
-        e_wb_class* boar = (e_wb_class*)field_0x27f4;
+        e_wb_class* boar = (e_wb_class*)mPriActorOwn;
         boar->setPlayerRideNow();
         rideMtx = boar->getRideMtx();
         mRideStatus = RIDETYPE_BOAR;
@@ -1306,7 +1306,7 @@ int daAlink_c::procHorseRideInit() {
         field_0x2fc0 = 2;
         mProcVar2.field_0x300c = 1;
     } else {
-        if (checkHorseRide() && ((daHorse_c*)field_0x27f4)->checkEnemySearch()) {
+        if (checkHorseRide() && ((daHorse_c*)mPriActorOwn)->checkEnemySearch()) {
             anm_speed *= 1.2f;
             mProcVar2.field_0x300c = 1;
             anm_endF = 0x30;
@@ -1329,7 +1329,7 @@ int daAlink_c::procHorseRideInit() {
         }
 
         if (mDemo.getDemoMode() != daPy_demo_c::DEMO_UNK_7_e) {
-            setOldRootQuaternion(0, (s16)(shape_angle.y - field_0x27f4->shape_angle.y), 0);
+            setOldRootQuaternion(0, (s16)(shape_angle.y - mPriActorOwn->shape_angle.y), 0);
         }
     }
 
@@ -1339,18 +1339,18 @@ int daAlink_c::procHorseRideInit() {
     cXyz sp20;
 
     mDoMtx_multVec(rideMtx, localRidePos_p, &sp2C);
-    mDoMtx_stack_c::transS(field_0x27f4->current.pos);
-    mDoMtx_stack_c::YrotM(field_0x27f4->shape_angle.y);
-    mDoMtx_stack_c::XrotM(-field_0x27f4->shape_angle.x);
-    mDoMtx_stack_c::YrotM(-field_0x27f4->shape_angle.y);
-    mDoMtx_stack_c::transM(-field_0x27f4->current.pos.x, -field_0x27f4->current.pos.y, -field_0x27f4->current.pos.z);
+    mDoMtx_stack_c::transS(mPriActorOwn->current.pos);
+    mDoMtx_stack_c::YrotM(mPriActorOwn->shape_angle.y);
+    mDoMtx_stack_c::XrotM(-mPriActorOwn->shape_angle.x);
+    mDoMtx_stack_c::YrotM(-mPriActorOwn->shape_angle.y);
+    mDoMtx_stack_c::transM(-mPriActorOwn->current.pos.x, -mPriActorOwn->current.pos.y, -mPriActorOwn->current.pos.z);
     mDoMtx_stack_c::concat(rideMtx);
     mDoMtx_stack_c::multVec(localRidePos_p, &sp20);
 
     var_f31 = current.pos.y;
-    current.pos = field_0x27f4->current.pos + (sp2C - sp20);
+    current.pos = mPriActorOwn->current.pos + (sp2C - sp20);
 
-    mDoMtx_stack_c::ZXYrotS(field_0x27f4->shape_angle.x, field_0x27f4->shape_angle.y, 0);
+    mDoMtx_stack_c::ZXYrotS(mPriActorOwn->shape_angle.x, mPriActorOwn->shape_angle.y, 0);
 
     if (checkBoarRide()) {
         static Vec const boarRideOffset = {-0.87f, 3.3299999f, -23.77f};
@@ -1364,7 +1364,7 @@ int daAlink_c::procHorseRideInit() {
 
     field_0x3478 = var_f31 - current.pos.y;
     current.pos.y = var_f31;
-    shape_angle.y = field_0x27f4->shape_angle.y;
+    shape_angle.y = mPriActorOwn->shape_angle.y;
     current.angle.y = shape_angle.y;
     speed.y = 0.0f;
 
@@ -1376,7 +1376,7 @@ int daAlink_c::procHorseRideInit() {
     field_0x3002 = 0;
     field_0x30a6 = 0;
     attention_info.field_0xa = 0x46;
-    field_0x37c8 = field_0x27f4->current.pos;
+    field_0x37c8 = mPriActorOwn->current.pos;
     return 1;
 }
 
@@ -1903,8 +1903,8 @@ int daAlink_c::procHorseSubjectivity() {
         if (checkUpperReadyThrowAnime()) {
             field_0x3190 = prev_3190;
             mBodyAngle.y = field_0x3190;
-            field_0x310a = mBodyAngle.x;
-            field_0x310c = shape_angle.y + field_0x3190;
+            mCameraAngleX = mBodyAngle.x;
+            mCameraAngleY = shape_angle.y + field_0x3190;
         }
         return 1;
     } else {
