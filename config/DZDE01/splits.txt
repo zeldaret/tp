@@ -20,15 +20,15 @@ d/d_home_button.cpp:
 d/d_cursor_mng.cpp:
 	.text       start:0x80006D90 end:0x80007BC8
 	.data       start:0x803BD040 end:0x803BD168
-	.sdata      start:0x804F77C0 end:0x804F780C
+	.sdata      start:0x804F77C0 end:0x804F77F8
 	.sbss       start:0x804FA8C8 end:0x804FA8D8
 	.sdata2     start:0x804FBB18 end:0x804FBB30
 
 d/d_E3Stage_select06.cpp:
 	.text       start:0x80007BC8 end:0x800097C4
 	.data       start:0x803BD168 end:0x803BD3A0
-	.sdata      start:0x804F780C end:0x804F783C
-	.sbss       start:0x804FA8D8 end:0x804FA8E8
+	.sdata      start:0x804F77F8 end:0x804F7838
+	.sbss       start:0x804FA8D8 end:0x804FA8E0
 	.sdata2     start:0x804FBB30 end:0x804FBB78
 
 m_Do/m_Do_main.cpp:
@@ -36,15 +36,16 @@ m_Do/m_Do_main.cpp:
 	.ctors      start:0x80396104 end:0x80396108
 	.data       start:0x803BD3A0 end:0x803BD6B8
 	.bss        start:0x8040B480 end:0x8040B8E0
-	.sdata      start:0x804F783C end:0x804F78B8
-	.sbss       start:0x804FA8E8 end:0x804FA910
+	.sdata      start:0x804F7838 end:0x804F78B0
+	.sbss       start:0x804FA8E0 end:0x804FA908
 	.sdata2     start:0x804FBB78 end:0x804FBB90
 
 m_Do/m_Do_printf.cpp:
 	.text       start:0x8000A5DC end:0x8000ACF4
 	.data       start:0x803BD6B8 end:0x803BD770
 	.bss        start:0x8040B8E0 end:0x8040C0E0
-	.sbss       start:0x804FA910 end:0x804FA92C
+	.sdata      start:0x804F78B0 end:0x804F78B8
+	.sbss       start:0x804FA908 end:0x804FA928
 
 m_Do/m_Do_audio.cpp:
 	.text       start:0x8000ACF4 end:0x8000B698
