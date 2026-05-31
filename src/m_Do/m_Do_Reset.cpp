@@ -3,6 +3,8 @@
  * Game Reset Management
  */
 
+#include "m_Do/machine.h" // IWYU pragma: keep
+
 #include "m_Do/m_Do_Reset.h"
 #include "JSystem/JAudio2/JASDvdThread.h"
 #include "JSystem/JUtility/JUTGamePad.h"

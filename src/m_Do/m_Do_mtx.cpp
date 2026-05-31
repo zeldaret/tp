@@ -3,6 +3,8 @@
  * Matrix Helper Functions
  */
 
+#include "m_Do/machine.h" // IWYU pragma: keep
+
 #include "m_Do/m_Do_mtx.h"
 #include "JSystem/JGeometry.h"
 #include "JSystem/JMath/JMath.h"

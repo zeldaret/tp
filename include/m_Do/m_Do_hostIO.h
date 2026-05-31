@@ -23,22 +23,6 @@ public:
     /* 0x1C */ JORReflexible* mPt;
 };
 
-class mDoHIO_entry_c : public JORReflexible {
-public:
-#if DEBUG
-    mDoHIO_entry_c();
-    void entryHIO(const char* i_name);
-    void removeHIO();
-
-    virtual ~mDoHIO_entry_c();
-
-    /* 0x4 */ s8 mNo;
-    /* 0x5 */ u8 mCount;
-#else
-    virtual ~mDoHIO_entry_c() {}
-#endif
-};
-
 class mDoHIO_subRoot_c : public JORReflexible {
 public:
     mDoHIO_subRoot_c() {}
@@ -66,6 +50,22 @@ public:
     virtual ~mDoHIO_root_c();
 
     /* 0x4 */ mDoHIO_subRoot_c mSub;
+};
+
+class mDoHIO_entry_c : public JORReflexible {
+public:
+#if DEBUG
+    mDoHIO_entry_c();
+    void entryHIO(const char* i_name);
+    void removeHIO();
+
+    virtual ~mDoHIO_entry_c();
+
+    /* 0x4 */ s8 mNo;
+    /* 0x5 */ u8 mCount;
+#else
+    virtual ~mDoHIO_entry_c() {}
+#endif
 };
 
 extern mDoHIO_root_c mDoHIO_root;

@@ -1,0 +1,15 @@
+#ifndef DOLZEL_MINIMAL_PCH
+#define DOLZEL_MINIMAL_PCH
+
+#include "JSystem/JKernel/JKRDisposer.h" // IWYU pragma: keep
+#include "JSystem/JKernel/JKRHeap.h" // IWYU pragma: keep
+#include "JSystem/J2DGraph/J2DOrthograph.h" // IWYU pragma: keep
+#include "JSystem/J3DGraphBase/J3DPacket.h" // IWYU pragma: keep
+#include "JSystem/J3DGraphAnimator/J3DJoint.h" // IWYU pragma: keep
+#include "JSystem/JUtility/JUTFont.h" // IWYU pragma: keep
+#include "SSystem/SComponent/c_xyz.h" // IWYU pragma: keep
+#include "m_Do/m_Do_graphic.h" // IWYU pragma: keep
+#include "m_Do/m_Do_ext.h" // IWYU pragma: keep
+#include <limits> // IWYU pragma: keep
+
+#endif // DOLZEL_MINIMAL_PCH

@@ -1,7 +1,0 @@
-#ifndef DOLZEL_MINIMAL_PCH
-#define DOLZEL_MINIMAL_PCH
-
-#include "JSystem/JKernel/JKRHeap.h" // IWYU pragma: keep
-#include <limits> // IWYU pragma: keep
-
-#endif // DOLZEL_MINIMAL_PCH
