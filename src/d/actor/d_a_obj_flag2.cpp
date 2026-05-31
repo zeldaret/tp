@@ -433,7 +433,7 @@ int daObjFlag2_c::draw() {
     g_env_light.setLightTevColorType_MAJI(mModel, &tevStr);
     mDoExt_modelUpdateDL(mModel);
     if (mFlagValid) {
-        j3dSys.getDrawBuffer(0)->entryImm(&mFlagCloth, 0);
+        j3dSys.getDrawBuffer(J3DSysDrawBuf_Opa)->entryImm(&mFlagCloth, 0);
     }
     dComIfGd_setList();
     return 1;

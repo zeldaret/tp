@@ -48,7 +48,7 @@ J3DSys::J3DSys() {
     mModel = NULL;
     mShape = NULL;
 
-    for (int i = 0; i < 2; i++)
+    for (int i = 0; i < ARRAY_SIZE(mDrawBuffer); i++)
         mDrawBuffer[i] = NULL;
 
     mTexture = NULL;

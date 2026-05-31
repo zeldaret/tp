@@ -352,7 +352,7 @@ int daObjMirrorChain_c::draw() {
 
         cXyz* quad = mScissorBegin.getQuad();
         PSMTXMultVecArray(mpModel->getBaseTRMtx(), l_offsetScissor, quad, 4);
-        j3dSys.setDrawBuffer(dComIfGd_getXluListBG(), 0);
+        j3dSys.setDrawBuffer(dComIfGd_getXluListBG(), J3DSysDrawBuf_Opa);
         mScissorEnd.entryPacket();
         mDoExt_modelUpdateDL(mpPortalModel);
         mScissorBegin.entryPacket();

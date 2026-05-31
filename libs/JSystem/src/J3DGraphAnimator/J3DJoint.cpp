@@ -159,8 +159,8 @@ J3DJoint::J3DJoint() {
 
 void J3DJoint::entryIn() {
     MtxP anmMtx = j3dSys.getModel()->getAnmMtx(mJntNo);
-    j3dSys.getDrawBuffer(0)->setZMtx(anmMtx);
-    j3dSys.getDrawBuffer(1)->setZMtx(anmMtx);
+    j3dSys.getDrawBuffer(J3DSysDrawBuf_Opa)->setZMtx(anmMtx);
+    j3dSys.getDrawBuffer(J3DSysDrawBuf_Xlu)->setZMtx(anmMtx);
     for (J3DMaterial* mesh = mMesh; mesh != NULL;) {
         if (mesh->getShape()->checkFlag(J3DShpFlag_Visible)) {
             mesh = mesh->getNext();

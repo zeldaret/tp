@@ -12,7 +12,7 @@ public:
     ~dScissorBegin_packet_c() {}
 
     cXyz* getQuad() { return mQuad; }
-    void entryPacket() { j3dSys.getDrawBuffer(1)->entryImm(this, 0); }
+    void entryPacket() { j3dSys.getDrawBuffer(J3DSysDrawBuf_Xlu)->entryImm(this, 0); }
 
     /* 0x10 */ cXyz mQuad[4];
 };
@@ -22,7 +22,7 @@ public:
     void draw();
     ~dScissorEnd_packet_c() {}
 
-    void entryPacket() { j3dSys.getDrawBuffer(1)->entryImm(this, 0); }
+    void entryPacket() { j3dSys.getDrawBuffer(J3DSysDrawBuf_Xlu)->entryImm(this, 0); }
 };
 
 /**

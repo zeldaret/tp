@@ -343,7 +343,7 @@ static int daMant_Draw(mant_class* i_this) {
 
     i_this->field_0x0570.setTevStr(&i_this->tevStr);
 
-    j3dSys.getDrawBuffer(0)->entryImm(&i_this->field_0x0570, 0);
+    j3dSys.getDrawBuffer(J3DSysDrawBuf_Opa)->entryImm(&i_this->field_0x0570, 0);
 
     return 1;
 }
