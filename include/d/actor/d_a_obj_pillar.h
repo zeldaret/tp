@@ -60,7 +60,7 @@ public:
 
 
     u8 getMdlType() { return field_0x73e & 0xF; }
-    bool checkRollAttack() { return mIsRollAttack == true; }
+    bool checkRollAttack() { return mIsRollAttack == TRUE; }
     void setShake(int i_shake) { mShake = i_shake; }
     void setAction(u8 i_action) { mAction = i_action; }
 

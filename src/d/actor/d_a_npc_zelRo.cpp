@@ -223,7 +223,7 @@ cPhs_Step daNpc_ZelRo_c::create() {
 }
 
 int daNpc_ZelRo_c::CreateHeap() {
-    int bmdIdx = mTwilight == true ? NONE : NONE;
+    int bmdIdx = mTwilight == TRUE ? NONE : NONE;
     J3DModelData* mdlData_p = (J3DModelData*)dComIfG_getObjectRes(l_resNameList[l_bmdData[bmdIdx][1]], l_bmdData[bmdIdx][0]);
 
     JUT_ASSERT(432, NULL != mdlData_p);
@@ -521,7 +521,7 @@ void daNpc_ZelRo_c::setCollision() {
     cXyz pos;
 
     if (!mHide) {
-        if (mTwilight == true && !dComIfGp_event_runCheck()) {
+        if (mTwilight == TRUE && !dComIfGp_event_runCheck()) {
             mCyl.SetCoSPrm(0x69);
         } else {
             mCyl.SetCoSPrm(0x79);

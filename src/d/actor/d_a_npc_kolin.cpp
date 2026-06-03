@@ -489,7 +489,7 @@ cPhs_Step daNpc_Kolin_c::create() {
 int daNpc_Kolin_c::CreateHeap() {
     int bmdIdx;
 
-    if (mTwilight == true) {
+    if (mTwilight == TRUE) {
         bmdIdx = 1;
     } else {
         bmdIdx = 0;

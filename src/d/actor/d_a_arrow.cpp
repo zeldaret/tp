@@ -21,14 +21,14 @@
 int daArrow_c::createHeap() {
     J3DModelData* model_data;
 
-    if (mArrowType == 2) {
+    if (mArrowType == ARROW_TYPE_LIGHT) {
         model_data = (J3DModelData*)dComIfG_getObjectRes("HoZelda", 0x1f);
     } else {
         u16 index;
         
-        if (mArrowType == 4) {
+        if (mArrowType == ARROW_TYPE_SLING) {
             index = 0x20;
-        } else if (mArrowType == 1) {
+        } else if (mArrowType == ARROW_TYPE_BOMB) {
             index = 0x1d;
         } else {
             index = 0x1c;
@@ -92,8 +92,7 @@ void daArrow_c::atHitCallBack(dCcD_GObjInf* i_atObjInf, fopAc_ac_c* i_tgActor, d
         if (dist_to_hitpos < field_0x998) {
             field_0x998 = dist_to_hitpos;
             mHitAcID = fopAcM_GetID(i_tgActor);
-
-            if (mArrowType == 1) {
+            if (mArrowType == ARROW_TYPE_BOMB) {
                 field_0x9a8 = *hit_pos_p;
             } else if (i_tgObjInf->ChkTgShield()) {
                 field_0x93e = 1;
@@ -207,7 +206,7 @@ void daArrow_c::setArrowAt(f32 param_0) {
     daAlink_c* player = daAlink_getAlinkActorClass();
 
     f32 radius;
-    if (mArrowType == 4) {
+    if (mArrowType == ARROW_TYPE_SLING) {
         radius = 8.0f;
     } else {
         radius = 5.0f;
@@ -261,7 +260,7 @@ void daArrow_c::arrowShooting() {
 
     field_0x950 = link->getBombArrowFlyExplodeTime();
 
-    if (mArrowType == 4) {
+    if (mArrowType == ARROW_TYPE_SLING) {
         current.angle.x = -link->getBodyAngleX();
         current.angle.y = link->shape_angle.y + link->getBodyAngleY();
     } else if (dComIfGp_checkPlayerStatus0(0, 0x200000) || fopAcM_GetParam(this) == 2)  {
@@ -305,11 +304,11 @@ void daArrow_c::arrowShooting() {
         speed += dst;
     }
 
-    if (mArrowType == 2) {
+    if (mArrowType == ARROW_TYPE_LIGHT) {
         field_0x688.SetAtMtrl(dCcD_MTRL_LIGHT);
         field_0x688.OnAtNoHitMark();
     } else {
-        if (mArrowType == 4) {
+        if (mArrowType == ARROW_TYPE_SLING) {
             field_0x688.SetAtType(0x80);
             field_0x688.SetAtSe(22);
             field_0x688.SetAtAtp(0);
@@ -392,7 +391,7 @@ void daArrow_c::setSmokePos() {
 }
 
 void daArrow_c::setKeepMatrix() {
-    if (mArrowType == 2) {
+    if (mArrowType == ARROW_TYPE_LIGHT) {
         daHoZelda_c* actor = (daHoZelda_c*)field_0xa08.getActor();
         if (actor != NULL) {
             mDoMtx_stack_c::copy(actor->getRightHandMtx());
@@ -436,7 +435,7 @@ fopAc_ac_c* daArrow_c::setStopActorMatrix() {
 }
 
 void daArrow_c::setBombMoveEffect() {
-    if (mArrowType == 1 && field_0x945 == 0 && field_0x943 == 0) {
+    if (mArrowType == ARROW_TYPE_BOMB && field_0x945 == 0 && field_0x943 == 0) {
         setSmokePos();
         field_0x964 = dComIfGp_particle_set(field_0x964, 0x1e0, &field_0x9cc, &tevStr, &field_0x958,
                                             NULL, 0xff, &field_0xa10, -1, NULL, NULL, NULL);
@@ -478,7 +477,7 @@ int daArrow_c::procWait() {
         tevStr.TevColor.b = 0;
 
         daAlink_c* link = daAlink_getAlinkActorClass();
-        if (mArrowType == 1) {
+        if (mArrowType == ARROW_TYPE_BOMB) {
             field_0x688.SetAtAtp(0);
             if (!link->checkCanoeSlider()) {
                 field_0x688.OnAtSPrmBit(0x20);
@@ -496,7 +495,7 @@ int daArrow_c::procWait() {
         mProcFunc = &daArrow_c::procMove;
         arrowShooting();
         setBombMoveEffect();
-    } else if (mArrowType == 1) {
+    } else if (mArrowType == ARROW_TYPE_BOMB) {
         setSmokePos();
         
         field_0x964 = dComIfGp_particle_set(field_0x964, 0x1df, &field_0x9cc, &tevStr, &field_0x958,
@@ -581,7 +580,7 @@ int daArrow_c::procMove() {
             current.pos = v2 - (speed * 95.0f); 
             speed *= 80.0f;
 
-            if (mArrowType != 4) {
+            if (mArrowType != ARROW_TYPE_SLING) {
                 mOutLengthRate = 1.1875f;
             }
 
@@ -619,7 +618,7 @@ int daArrow_c::procMove() {
 
     int iVar3;
     if (field_0x688.ChkAtHit() != 0) {
-        if (mArrowType == 1 && field_0x943 == 0) {
+        if (mArrowType == ARROW_TYPE_BOMB && field_0x943 == 0) {
             if (field_0x945 != 0) {
                 field_0x93f = 1;
                 return TRUE;
@@ -631,7 +630,7 @@ int daArrow_c::procMove() {
             }
         }
 
-        if (mArrowType == 4) {
+        if (mArrowType == ARROW_TYPE_SLING) {
             if (field_0x688.GetAtHitAc() != NULL && fopAcM_GetName(field_0x688.GetAtHitAc()) == fpcNm_E_PZ_e) {
                 iVar3 = 0;
             } else {
@@ -676,10 +675,10 @@ int daArrow_c::procMove() {
     }
 
     if (iVar3 != 0 && iVar3 != 3) {
-        if (mArrowType == 2) {
+        if (mArrowType == ARROW_TYPE_LIGHT) {
             setLightArrowHitMark(field_0x688.GetAtHitPosP());
             setBlur();
-        } else if (mArrowType == 4) {
+        } else if (mArrowType == ARROW_TYPE_SLING) {
             procSlingHitInit(field_0x56c.GetCrossP(), NULL);
         } else if (iVar3 == 2) {
             if (field_0x945) {
@@ -708,19 +707,19 @@ int daArrow_c::procMove() {
     if (line_cross) {
         current.pos = field_0x56c.GetCross();
 
-        if (field_0x945 != 0 && (mArrowType == 1 || current.pos.y - field_0x9fc.y < -300.0f)) {
+        if (field_0x945 != 0 && (mArrowType == ARROW_TYPE_BOMB || current.pos.y - field_0x9fc.y < -300.0f)) {
             field_0x93f = 1;
             return TRUE;
         }
 
         dKy_Sound_set(current.pos, 3, fopAcM_GetID(this), 10);
 
-        if (mArrowType == 1) {
+        if (mArrowType == ARROW_TYPE_BOMB) {
             setBombArrowExplode(&current.pos);
             return TRUE;
         }
 
-        if (mArrowType == 2) {
+        if (mArrowType == ARROW_TYPE_LIGHT) {
             setLightArrowHitMark(&current.pos);
         }
 
@@ -728,7 +727,7 @@ int daArrow_c::procMove() {
         u32 se_id;
         dComIfG_Bgsp().GetTriPla(field_0x56c, &local_4c);
         int local_d8 = dComIfG_Bgsp().GetPolyAtt0(field_0x56c);
-        if (local_d8 == 2 || mArrowType == 4 || local_d8 == 0xe || local_d8 == 10 || local_d8 == 8) {
+        if (local_d8 == 2 || mArrowType == ARROW_TYPE_SLING || local_d8 == 0xe || local_d8 == 10 || local_d8 == 8) {
             if (field_0x945 != 0) {
                 field_0x93f = 1;
                 return TRUE;
@@ -739,7 +738,7 @@ int daArrow_c::procMove() {
                 cM_atan2s(-local_4c.GetNP()->x, -local_4c.GetNP()->z), 
                 0.0f
             );
-            if (mArrowType == 4) {
+            if (mArrowType == ARROW_TYPE_SLING) {
                 se_id = Z2SE_HIT_PACHINKO;
                 current.angle = angle;
                 procSlingHitInit(&current.pos, NULL);
@@ -789,7 +788,7 @@ int daArrow_c::procMove() {
         } else {
             f32 distance = current.pos.abs(mStartPos);
             if (distance > mFlyMax || fopAcM_GetGravity(this) < 0.0f) {
-                if (mArrowType == 4) {
+                if (mArrowType == ARROW_TYPE_SLING) {
                     fopAcM_SetGravity(this, -5.0f);
                 } else {
                     fopAcM_SetGravity(this, -2.0f);
@@ -806,29 +805,29 @@ int daArrow_c::procMove() {
                 shape_angle.x = speed.atan2sY_XZ();
                 current.angle.x = -shape_angle.x;
 
-                if (mArrowType != 4) {
+                if (mArrowType != ARROW_TYPE_SLING) {
                     mOutLengthRate = 95.0f / speed.abs();
                 }
             }
 
             u32 sound_id;
-            if (mArrowType == 2) {
+            if (mArrowType == ARROW_TYPE_LIGHT) {
                 sound_id = Z2SE_ZELDA_ARROW_FLY;
             } else {
                 if (fopAcM_GetParam(this) == 2) {
-                    if (mArrowType == 1) {
+                    if (mArrowType == ARROW_TYPE_BOMB) {
                         sound_id = Z2SE_OBJ_ARROWBOMB_FLYGAIN;
                     } else {
                         sound_id = Z2SE_OBJ_ARROW_FLY_GAIN;
                     }
-                } else if (mArrowType == 1) {
+                } else if (mArrowType == ARROW_TYPE_BOMB) {
                     sound_id = Z2SE_OBJ_ARROWBOMB_FLY;
                 } else {
                     sound_id = Z2SE_OBJ_ARROW_FLY_NORMAL;
                 }
             }
 
-            if (mArrowType != 4) {
+            if (mArrowType != ARROW_TYPE_SLING) {
                 mSoundObjArrow.startLevelSound(sound_id, 0, mReverb);
             }
 
@@ -883,7 +882,7 @@ int daArrow_c::procReturn() {
     decAlphaBlur();
 
     if(dComIfG_Bgsp().LineCross(&field_0x56c)) {
-        if (mArrowType == 1 && field_0x943 == 0) {
+        if (mArrowType == ARROW_TYPE_BOMB && field_0x943 == 0) {
             setBombArrowExplode(field_0x56c.GetCrossP());
             return TRUE;
         }
@@ -1028,7 +1027,7 @@ int daArrow_c::execute() {
 
         (this->*mProcFunc)();
 
-        if (mArrowType == 1 && field_0x93f == 0) {
+        if (mArrowType == ARROW_TYPE_BOMB && field_0x93f == 0) {
             if (field_0x950 != 0) {
                 field_0x950--;
             } else {
@@ -1043,7 +1042,7 @@ int daArrow_c::execute() {
             }
         }
 
-        if (mArrowType == 2) {
+        if (mArrowType == ARROW_TYPE_LIGHT) {
             setLightChargeEffect(0);
         }
 
@@ -1078,7 +1077,7 @@ int daArrow_c::draw() {
         field_0x940 = 0;
     }
 
-    if (mArrowType == 1) {
+    if (mArrowType == ARROW_TYPE_BOMB) {
         if (field_0x943 != 0) {
             color.r = link->getFreezeR();
             color.g = link->getFreezeG();
@@ -1110,7 +1109,7 @@ int daArrow_c::draw() {
     g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
     mDoExt_modelUpdateDL(mpModel);
 
-    if (mArrowType == 1) {
+    if (mArrowType == ARROW_TYPE_BOMB) {
         color.r = 0;
         color.g = 0;
         color.b = 0;
@@ -1138,18 +1137,18 @@ cPhs_Step daArrow_c::create() {
     mArrowType = fopAcM_GetParamBit(this, 8, 8);
     fopAcM_SetParam(this, (u8)fopAcM_GetParam(this));
     
-    if (!fopAcM_entrySolidHeap(this, daArrow_createHeap, mArrowType == 1 ? 0xea0 : 0x810)) {
+    if (!fopAcM_entrySolidHeap(this, daArrow_createHeap, mArrowType == ARROW_TYPE_BOMB ? 0xea0 : 0x810)) {
         return cPhs_ERROR_e;
     }
     
-    if (mArrowType == 2) {
+    if (mArrowType == ARROW_TYPE_LIGHT) {
         field_0xa08.setData(fopAcM_Search((fopAcIt_JudgeFunc)daAlink_searchHorseZelda, NULL));
         field_0x946 = 6;
         field_0x94c = 0x896e;
-    } else if (mArrowType == 0) {
+    } else if (mArrowType == ARROW_TYPE_NORMAL) {
         field_0x946 = 1;
         field_0x94c = 0x3b8;
-    } else if (mArrowType == 4) {
+    } else if (mArrowType == ARROW_TYPE_SLING) {
         field_0x946 = 1;
         field_0x94c = 0xa55;
     } else {
@@ -1166,7 +1165,7 @@ cPhs_Step daArrow_c::create() {
     field_0x7cc.SetStts(&field_0x64c);
 
     daAlink_c* player = daAlink_getAlinkActorClass();
-    if (mArrowType == 4) {
+    if (mArrowType == ARROW_TYPE_SLING) {
         setNormalMatrix();
         player->getArrowFlyData(&mFlyMax, &field_0x99c, 0);
         mOutLengthRate = 0.0f;

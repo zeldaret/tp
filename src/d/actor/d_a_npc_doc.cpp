@@ -225,7 +225,7 @@ int daNpc_Doc_c::CreateHeap() {
     int bmdIdx;
 
     enum { IDX0 };
-    int idx = mTwilight == true ? IDX0 : IDX0;
+    int idx = mTwilight == TRUE ? IDX0 : IDX0;
     resIdx = l_bmdData[idx][1];
     bmdIdx = l_bmdData[idx][0];
 

@@ -617,7 +617,7 @@ int daNpc_Pachi_Maro_c::CreateHeap() {
     J3DModelData* modelData = NULL;
     J3DModel* model = NULL;
     
-    int bmdIdx = mTwilight == true ? MARO : NONE;
+    int bmdIdx = mTwilight == TRUE ? MARO : NONE;
     int arcIdx = l_bmdData[bmdIdx][1];
     int idx = l_bmdData[bmdIdx][0];
     modelData = static_cast<J3DModelData*>(dComIfG_getObjectRes(l_resNameList[arcIdx], idx));

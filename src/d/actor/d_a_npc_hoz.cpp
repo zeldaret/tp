@@ -371,7 +371,7 @@ int daNpc_Hoz_c::CreateHeap() {
     int resIdx;
 
     int idx = 0;
-    idx = mTwilight == true ? TRUE : FALSE;
+    idx = mTwilight == TRUE ? TRUE : FALSE;
     resIdx = l_bmdData[idx][1];
     bmdIdx = l_bmdData[idx][0];
 

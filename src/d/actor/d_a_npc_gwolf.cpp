@@ -424,7 +424,7 @@ int daNpc_GWolf_c::draw(int param_1, int param_2, f32 param_3, _GXColorS10* i_co
             fVar1 = 0.0f;
         }
 
-        if (!(cM3d_IsZero(fVar1) > 0)) {
+        if (!(cM3d_IsZero(fVar1) != false)) {
             tevStr.TevColor.r = fVar1 * 20.0f;
             tevStr.TevColor.g = 0;
         } else if (param_1 != 0) {

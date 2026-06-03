@@ -227,7 +227,7 @@ cPhs_Step daNpc_grM_c::create() {
 }
 
 int daNpc_grM_c::CreateHeap() {
-    int bmdIdx = mTwilight == true ? NONE : NONE;
+    int bmdIdx = mTwilight == TRUE ? NONE : NONE;
 
     J3DModelData* mdlData_p = static_cast<J3DModelData*>(
         dComIfG_getObjectRes(l_resNameList[l_bmdData[bmdIdx][1]], l_bmdData[bmdIdx][0]));
@@ -574,7 +574,7 @@ void daNpc_grM_c::setAttnPos() {
 void daNpc_grM_c::setCollision() {
     cXyz pos;
     if (!mHide) {
-        if (mTwilight == true && !dComIfGp_event_runCheck()) {
+        if (mTwilight == TRUE && !dComIfGp_event_runCheck()) {
             mCyl.SetCoSPrm(105);
         } else {
             mCyl.SetCoSPrm(121);

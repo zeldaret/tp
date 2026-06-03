@@ -567,7 +567,7 @@ void daE_YM_c::setAppear() {
 }
 
 void daE_YM_c::setMoveSound(int param_0) {
-    if (mFlyType == 1) {
+    if (mFlyType == true) {
         if (checkBck("E_TM", 10) == 0) {
             return;
         }
@@ -1016,7 +1016,7 @@ void daE_YM_c::executeDown() {
     field_0x6cf = 0;
     switch (mMode) {
         case 0:
-            if (mFlyType == 1) {
+            if (mFlyType == true) {
                 bckSet(6, 0, 5.0f, 0.0f);
             } else {
                 bckSet(0x10, 2, 5.0f, 1.0f);
@@ -1065,7 +1065,7 @@ void daE_YM_c::executeDown() {
                 cLib_addCalcAngleS(&shape_angle.x, -0x8000, 8, 0x1000, 0x10);
             }
             if (mAcch.ChkGroundHit()) {
-                if (mFlyType != 1) {
+                if (mFlyType != true) {
                     bckSet(6, 0, 0.0f, 1.0f);
                 }
                 if (mMode == 1) {
@@ -3319,7 +3319,7 @@ static int daE_YM_Delete(daE_YM_c* i_this) {
 }
 
 int daE_YM_c::CreateHeap() {
-    if (mFlyType == 1) {
+    if (mFlyType == true) {
         J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("E_TM", 0x11);
         JUT_ASSERT(0x1094, modelData != NULL);
         mpMorf = new mDoExt_McaMorfSO(modelData, NULL, NULL, (J3DAnmTransform*)dComIfG_getObjectRes("E_TM", 10),

@@ -359,7 +359,7 @@ void daNpc_solA_c::setAttnPos() {
 void daNpc_solA_c::setCollision() {
     cXyz pos;
     if (!mHide) {
-        int prm = mTwilight == true ? 0x69 : 0x79;
+        int prm = mTwilight == TRUE ? 0x69 : 0x79;
         mCyl.SetCoSPrm(prm);
 
         pos = current.pos;

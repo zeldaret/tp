@@ -350,7 +350,7 @@ int daNpc_Toby_c::CreateHeap() {
 
     J3DModelData* modelData = NULL;
     J3DModel* model = NULL;
-    int bmdIdx = mTwilight == true ? TRUE : FALSE;
+    int bmdIdx = mTwilight == TRUE ? TRUE : FALSE;
     int res_name_idx = l_bmdData[bmdIdx][1];
     int my_bmd = l_bmdData[bmdIdx][0];
     modelData = static_cast<J3DModelData*>(dComIfG_getObjectRes(l_resNameList[res_name_idx], my_bmd));
@@ -1878,7 +1878,7 @@ int daNpc_Toby_c::wait(void*) {
             }
         }
 
-        if (mTwilight == false && mHide == 0 && daPy_py_c::checkNowWolf()) {
+        if (mTwilight == FALSE && mHide == 0 && daPy_py_c::checkNowWolf()) {
             cXyz att_pos = getAttnPos(daPy_getPlayerActorClass());
             if (field_0x1000) {
                 if (chkPointInArea(att_pos, attention_info.position,
@@ -1918,7 +1918,7 @@ int daNpc_Toby_c::wait(void*) {
                 mPlayerActorMngr.remove();
             }
 
-            if (mPlayerActorMngr.getActorP() != NULL && mTwilight == false) {
+            if (mPlayerActorMngr.getActorP() != NULL && mTwilight == FALSE) {
                 int reg_r28 = 1;
                 mJntAnm.lookPlayer(0);
                 if (chkActorInSight(mPlayerActorMngr.getActorP(), mAttnFovY, mCurAngle.y) == FALSE) {

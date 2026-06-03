@@ -4251,7 +4251,7 @@ int daAlink_c::procDungeonWarpSceneStart() {
     }
     #endif
 
-    if (fopOvlpM_IsPeek() == true) {
+    if (fopOvlpM_IsPeek() == TRUE) {
         return 1;
     }
 

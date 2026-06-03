@@ -57,7 +57,7 @@ public:
     ~daArrow_c();
 
     void setBombArrowExplode() { field_0x950 = 0; }
-    bool checkBombArrow() const { return mArrowType == true; }
+    bool checkBombArrow() const { return mArrowType == ARROW_TYPE_BOMB; }
     u32 getHitAcID() { return mHitAcID; }
 
     BOOL checkWait() { return fopAcM_GetParam(this) == 0; }

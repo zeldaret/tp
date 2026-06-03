@@ -111,9 +111,9 @@ public:
     void informBlast();
 
     u8 getMarkNo() { return fopAcM_GetParam(this) & 0xff; }
-    void initBlastFlag() { mBlastFlag = false; }
-    void onBlastFlag() { mBlastFlag = true; } 
-    bool is_blasted() { return mBlastFlag == true; }
+    void initBlastFlag() { mBlastFlag = FALSE; }
+    void onBlastFlag() { mBlastFlag = TRUE; }
+    bool is_blasted() { return mBlastFlag == TRUE; }
     bool is_branch_pat() { return mType == 0 || mType == 2; }
 
     int get_MarkType() {

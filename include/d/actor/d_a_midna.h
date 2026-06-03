@@ -387,7 +387,7 @@ public:
     BOOL checkDemoPortalWarpWait() const { return mDemoMode == 11; }
 
     static BOOL checkMidnaRealBody() {
-        return dKy_darkworld_check() == true || dComIfGs_isTransformLV(3);
+        return dKy_darkworld_check() == TRUE || dComIfGs_isTransformLV(3);
     }
 
     static bool checkMidnaTired() {

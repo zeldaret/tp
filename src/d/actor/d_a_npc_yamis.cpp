@@ -196,7 +196,7 @@ cPhs_Step daNpc_yamiS_c::create() {
 int daNpc_yamiS_c::CreateHeap() {
     J3DModelData* mdlData_p = NULL;
     J3DModel* model = NULL;
-    int bmdIdx = mTwilight == true ? NONE : NONE;
+    int bmdIdx = mTwilight == TRUE ? NONE : NONE;
 
     int res_name_idx = l_bmdData[bmdIdx][1];
     int index = l_bmdData[bmdIdx][0];

@@ -1165,11 +1165,11 @@ static int phase_1(dScnPly_c* i_this) {
     }
 
     if ((u8)dKy_darkworld_stage_check(dComIfGp_getStartStageName(),
-                                      dComIfGp_getStartStageRoomNo()) == true)
+                                      dComIfGp_getStartStageRoomNo()) == TRUE)
     {
         dComIfGp_world_dark_set(1);
     } else if ((u8)dKy_darkworld_spot_check(dComIfGp_getStartStageName(),
-                                            dComIfGp_getStartStageRoomNo()) == true)
+                                            dComIfGp_getStartStageRoomNo()) == TRUE)
     {
         dComIfGp_world_dark_set(2);
     } else {

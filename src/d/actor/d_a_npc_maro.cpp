@@ -340,7 +340,7 @@ int daNpc_Maro_c::create() {
 int daNpc_Maro_c::CreateHeap() {
     J3DModelData* modelData = NULL;
     J3DModel* model = NULL;
-    int bmdIdx = mTwilight == true ? TRUE : FALSE;
+    int bmdIdx = mTwilight == TRUE ? TRUE : FALSE;
     int res_name_idx = l_bmdData[bmdIdx][1];
     int my_bmd = l_bmdData[bmdIdx][0];
     modelData = static_cast<J3DModelData*>(dComIfG_getObjectRes(l_resNameList[res_name_idx], my_bmd));
