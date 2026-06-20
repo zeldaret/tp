@@ -547,7 +547,7 @@ int daAlink_c::procBoardTurn() {
     }
 
     if (mProcVar5.field_0x3012 == 0) {
-        if (m_oldFrame->getOldFrameRate() < 0.01f) {
+        if (m_CalcOldFrame->getOldFrameRate() < 0.01f) {
             mProcVar5.field_0x3012 = 1;
             setSingleAnime(ANM_RIDE_JUMP, 1.5f, 1.5f + mUnderFrameCtrl[0].getStart(), mpHIO->mItem.mBoard.m.mAirborneAnm.mEndFrame, -1.0f);
         }
@@ -600,7 +600,7 @@ int daAlink_c::procBoardJump() {
         if (!checkModeFlg(2)) {
             setBoardLandAnime();
             procBoardWaitInit(NULL);
-        } else if (mProcVar5.field_0x3012 != 0 && mProcVar4.field_0x3010 == 0 && m_oldFrame->getOldFrameRate() < 0.0099999998f) {
+        } else if (mProcVar5.field_0x3012 != 0 && mProcVar4.field_0x3010 == 0 && m_CalcOldFrame->getOldFrameRate() < 0.0099999998f) {
             setSingleAnime(ANM_RIDE_JUMP, mpHIO->mItem.mBoard.m.mAirborneAnm.mSpeed,
                            mpHIO->mItem.mBoard.m.mAirborneAnm.mStartFrame,
                            mpHIO->mItem.mBoard.m.mAirborneAnm.mEndFrame,

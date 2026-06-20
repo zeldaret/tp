@@ -1152,7 +1152,7 @@ void daAlink_c::horseGetOffEnd() {
         mDoMtx_stack_c::YrotS(0x4000);
     }
 
-    J3DTransformInfo* transinfo_p = m_oldFrame->getOldFrameTransInfo(0);
+    J3DTransformInfo* transinfo_p = m_CalcOldFrame->getOldFrameTransInfo(0);
     transinfo_p->mTranslate.x = l_waitBaseAnime.x;
     transinfo_p->mTranslate.z = l_waitBaseAnime.z;
     current.angle.y = shape_angle.y;
@@ -1461,7 +1461,7 @@ int daAlink_c::procHorseRide() {
     }
 
     if (checkAnmEnd(framectrl)) {
-        J3DTransformInfo* temp_r28 = m_oldFrame->getOldFrameTransInfo(0);
+        J3DTransformInfo* temp_r28 = m_CalcOldFrame->getOldFrameTransInfo(0);
 
         if (checkHorseRide()) {
             horse->onRideFlg();
@@ -2055,7 +2055,7 @@ int daAlink_c::procHorseCut() {
         } else {
             resetUpperAnime(UPPER_2, 4.0f);
             procHorseWaitInit();
-            m_oldFrame->initOldFrameMorf(field_0x3480, 0, 0x23);
+            m_CalcOldFrame->initOldFrameMorf(field_0x3480, 0, 0x23);
         }
     } else if (framectrl->getFrame() > field_0x3484 && (checkNoResetFlg2(FLG2_COMBO_RESERB) || checkResetFlg0(RFLG0_UNK_40) || spActionButton())) {
         if (checkResetFlg0(RFLG0_UNK_40)) {
@@ -2178,19 +2178,19 @@ int daAlink_c::procHorseCutTurn() {
 
     if (checkAnmEnd(framectrl)) {
         procHorseWaitInit();
-        m_oldFrame->initOldFrameMorf(4.0f, 0, 0x23);
+        m_CalcOldFrame->initOldFrameMorf(4.0f, 0, 0x23);
     } else {
         if (framectrl->getFrame() > mpHIO->mCut.mHorseCutCharge.m.mSpinAnm.mCancelFrame) {
             if (orderTalk(1)) {
                 return 1;
             }
             if (checkNextActionHorse()) {
-                m_oldFrame->initOldFrameMorf(4.0f, 0, 0x23);
+                m_CalcOldFrame->initOldFrameMorf(4.0f, 0, 0x23);
                 return 1;
             }
             if (checkInputOnR()) {
                 procHorseWaitInit();
-                m_oldFrame->initOldFrameMorf(4.0f, 0, 0x23);
+                m_CalcOldFrame->initOldFrameMorf(4.0f, 0, 0x23);
                 return 1;
             }
         }

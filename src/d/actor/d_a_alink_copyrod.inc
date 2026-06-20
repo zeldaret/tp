@@ -170,7 +170,7 @@ void daAlink_c::throwCopyRod() {
         } else {
             procAtnActorMoveInit();
         }
-        m_oldFrame->initOldFrameMorf(0.0f, 0, 35);
+        m_CalcOldFrame->initOldFrameMorf(0.0f, 0, 35);
     }
 }
 

@@ -2118,12 +2118,12 @@ int daAlink_c::jointControll(int i_jointNo) {
     int var_r27 = 0;
 
     J3DTransformInfo jointTrans;
-    J3DTransformInfo rootTrans = *m_oldFrame->getOldFrameTransInfo(i_jointNo);
+    J3DTransformInfo rootTrans = *m_CalcOldFrame->getOldFrameTransInfo(i_jointNo);
 
     Quaternion sp50;
     Quaternion sp40;
     Quaternion sp30;
-    Quaternion sp20 = *m_oldFrame->getOldFrameQuaternion(i_jointNo);
+    Quaternion sp20 = *m_CalcOldFrame->getOldFrameQuaternion(i_jointNo);
 
     csXyz sp10(0, 1, 2);
 
@@ -2131,11 +2131,11 @@ int daAlink_c::jointControll(int i_jointNo) {
     if (checkWolf()) {
         if (i_jointNo == 0) {
             if (mProcID == PROC_TOOL_DEMO) {
-                oldTransInfo = m_oldFrame->getOldFrameTransInfo(0);
+                oldTransInfo = m_CalcOldFrame->getOldFrameTransInfo(0);
                 oldTransInfo->mTranslate.x = 0.0f;
                 oldTransInfo->mTranslate.z = 0.0f;
             } else if (checkRootTransClearMode()) {
-                oldTransInfo = m_oldFrame->getOldFrameTransInfo(0);
+                oldTransInfo = m_CalcOldFrame->getOldFrameTransInfo(0);
 
                 if (checkRootTransZClearMode()) {
                     oldTransInfo->mTranslate.z = field_0x3588.z;
@@ -2152,7 +2152,7 @@ int daAlink_c::jointControll(int i_jointNo) {
 
             sp18.set(field_0x3080, 0, field_0x3082);
             sp10.set(2, 1, 0);
-            jointTrans = *m_oldFrame->getOldFrameTransInfo(0);
+            jointTrans = *m_CalcOldFrame->getOldFrameTransInfo(0);
             var_r27 |= 2;
         } else if (i_jointNo == 3) {
             sp18.set((field_0x30d6 + field_0x30b2), 0, field_0x30b0);
@@ -2193,11 +2193,11 @@ int daAlink_c::jointControll(int i_jointNo) {
         }
     } else if (i_jointNo == 0) {
         if (mProcID == PROC_TOOL_DEMO || mProcID == PROC_GANON_FINISH) {
-            oldTransInfo = m_oldFrame->getOldFrameTransInfo(0);
+            oldTransInfo = m_CalcOldFrame->getOldFrameTransInfo(0);
             oldTransInfo->mTranslate.x = 0.0f;
             oldTransInfo->mTranslate.z = 0.0f;
         } else if (checkRootTransClearMode()) {
-            oldTransInfo = m_oldFrame->getOldFrameTransInfo(0);
+            oldTransInfo = m_CalcOldFrame->getOldFrameTransInfo(0);
             if (checkRootTransZClearMode()) {
                 oldTransInfo->mTranslate.z = field_0x3588.z;
             }
@@ -2212,7 +2212,7 @@ int daAlink_c::jointControll(int i_jointNo) {
         sp18.set(field_0x3080, 0, field_0x3082);
         sp10.set(2, 0, 1);
 
-        jointTrans = *m_oldFrame->getOldFrameTransInfo(0);
+        jointTrans = *m_CalcOldFrame->getOldFrameTransInfo(0);
         var_r27 |= 2;
         if (field_0x2f99 == 0x60) {
             jointTrans.mTranslate.x -= field_0x384c->x;
@@ -2226,7 +2226,7 @@ int daAlink_c::jointControll(int i_jointNo) {
     } else if (i_jointNo == 5) {
         if (checkReinRide() && checkBowAnime()) {
             var_r27 = 1;
-            sp50 = *m_oldFrame->getOldFrameQuaternion(i_jointNo);
+            sp50 = *m_CalcOldFrame->getOldFrameQuaternion(i_jointNo);
             JMAEulerToQuat(0, 0, 5000, &sp40);
             mDoMtx_QuatConcat(&sp50, &sp40, &sp30);
         }
@@ -2241,7 +2241,7 @@ int daAlink_c::jointControll(int i_jointNo) {
     if (sp18.x != 0 || sp18.y != 0 || sp18.z != 0) {
         var_r27 |= 1;
         if (sp18.y != 0) {
-            sp50 = *m_oldFrame->getOldFrameQuaternion(i_jointNo);
+            sp50 = *m_CalcOldFrame->getOldFrameQuaternion(i_jointNo);
 
             if (sp10.y == 0) {
                 JMAEulerToQuat(sp18.y, 0, 0, &sp40);
@@ -2253,7 +2253,7 @@ int daAlink_c::jointControll(int i_jointNo) {
 
             mDoMtx_QuatConcat(&sp50, &sp40, &sp30);
         } else {
-            sp30 = *m_oldFrame->getOldFrameQuaternion(i_jointNo);
+            sp30 = *m_CalcOldFrame->getOldFrameQuaternion(i_jointNo);
         }
 
         if (sp18.x != 0) {
@@ -2292,14 +2292,14 @@ int daAlink_c::jointControll(int i_jointNo) {
         if ((var_r27 & 2)) {
             var_r25 = &jointTrans;
         } else {
-            var_r25 = m_oldFrame->getOldFrameTransInfo(i_jointNo);
+            var_r25 = m_CalcOldFrame->getOldFrameTransInfo(i_jointNo);
         }
 
         Quaternion* spC;
         if ((var_r27 & 1)) {
             spC = &sp30;
         } else {
-            spC = m_oldFrame->getOldFrameQuaternion(i_jointNo);
+            spC = m_CalcOldFrame->getOldFrameQuaternion(i_jointNo);
         }
 
         mDoMtx_stack_c::transS(rootTrans.mTranslate.x, rootTrans.mTranslate.y, rootTrans.mTranslate.z);
@@ -2340,7 +2340,7 @@ void daAlink_c::setUpperFront() {
             J3DSys::mCurrentMtx[1][3] = mRootMtx[1][3];
             J3DSys::mCurrentMtx[2][3] = mRootMtx[2][3];
         } else {
-            mDoMtx_stack_c::quatS(m_oldFrame->getOldFrameQuaternion(0));
+            mDoMtx_stack_c::quatS(m_CalcOldFrame->getOldFrameQuaternion(0));
             mDoMtx_stack_c::inverse();
             cMtx_concat(J3DSys::mCurrentMtx, mDoMtx_stack_c::get(), J3DSys::mCurrentMtx);
         }
@@ -2533,7 +2533,7 @@ static int daAlink_wolfModelCallBack(J3DJoint* i_joint, int param_1) {
 }
 
 void daAlink_c::setHatAngle() {
-    if (m_oldFrame->getOldFrameFlg()) {
+    if (m_CalcOldFrame->getOldFrameFlg()) {
         if (checkEndResetFlg0(ERFLG0_UNK_800000)) {
             for (int i = 0; i < 3; i++) {
                 field_0x3054[i] = 0;
@@ -3232,7 +3232,7 @@ s16 daAlink_c::getNeckAimAngle(cXyz* param_0, s16* param_1, s16* param_2, s16* p
                 *param_2 = 0.9f * sp8;
                 *param_3 = temp_r23 - *param_1;
                 *param_4 = sp8 - *param_2;
-            } else if (mfishGetFace != 0) {
+            } else if (mFishGetFace != 0) {
                 *param_1 = 0.25f * temp_r23;
                 *param_2 = 0.5f * sp8;
                 *param_3 = temp_r23 - *param_1;
@@ -3282,7 +3282,7 @@ void daAlink_c::setEyeMove(cXyz* param_0, s16 param_1, s16 param_2) {
     field_0x2fa7 = 75.0f + cM_rndF(30.0f);
     field_0x3418 = 0.0f;
     field_0x341c = 0.0f;
-    MidnaEyeMoveRateX = 0.0f;
+    mMidnaEyeMoveRateX = 0.0f;
 
     f32 var_f31;
     f32 var_f30;
@@ -3292,11 +3292,11 @@ void daAlink_c::setEyeMove(cXyz* param_0, s16 param_1, s16 param_2) {
     } else if (0.0f != field_0x33f0 || 0.0f != mEyeMoveRateY) {
         var_f30 = mEyeMoveRateY;
         var_f31 = field_0x33f0;
-        MidnaEyeMoveRateX = field_0x33f0;
+        mMidnaEyeMoveRateX = field_0x33f0;
     } else if ((mProcID == PROC_MOVE || mProcID == PROC_WOLF_MOVE) && !checkNoResetFlg1(FLG1_UNK_1000000) && field_0x2fee != 0) {
         var_f30 = 0.0f;
         var_f31 = 0.00024414062f * -field_0x2fee;
-        MidnaEyeMoveRateX = var_f31;
+        mMidnaEyeMoveRateX = var_f31;
     } else if (checkSwimNeckUpDown()) {
         if (field_0x3124.x > 0) {
             var_f30 = 0.5f;
@@ -3565,7 +3565,7 @@ int daAlink_c::setArmMatrix() {
 
     }
 
-    if (!m_oldFrame->getOldFrameFlg()) {
+    if (!m_CalcOldFrame->getOldFrameFlg()) {
         return 0;
     }
 
@@ -3606,7 +3606,7 @@ int daAlink_c::setArmMatrix() {
         setMatrixWorldAxisRot(mpLinkModel->getAnmMtx(temp_r28), spA, sp8, var_r29->field_0x2, 0, &sp2C);
         temp_r28++;
 
-        J3DTransformInfo* temp_r3_3 = m_oldFrame->getOldFrameTransInfo(temp_r28);
+        J3DTransformInfo* temp_r3_3 = m_CalcOldFrame->getOldFrameTransInfo(temp_r28);
         cXyz sp20(temp_r3_3->mTranslate.x, temp_r3_3->mTranslate.y, temp_r3_3->mTranslate.z);
         mDoMtx_stack_c::multVec(&sp20, &sp2C);
 
@@ -3633,7 +3633,7 @@ int daAlink_c::setFootMatrix() {
 
     }
 
-    if (!m_oldFrame->getOldFrameFlg()) {
+    if (!m_CalcOldFrame->getOldFrameFlg()) {
         return 0;
     }
 
@@ -3842,7 +3842,7 @@ void daAlink_c::footBgCheck() {
     static Vec const localLeftToeOffset = {10.0f, 5.0f, 0.0f};
     static Vec const localRightToeOffset = {10.0f, -5.0f, 0.0f};
 
-    if (m_oldFrame->getOldFrameFlg()) {
+    if (m_CalcOldFrame->getOldFrameFlg()) {
         f32 var_f31 = 0.0f;
         cM3dGPla sp98;
         f32 sp30[2];
@@ -3976,7 +3976,7 @@ void daAlink_c::handBgCheck() {
         {-21.900146f, 5.5253749f, 0.0f},
     };
 
-    if (!m_oldFrame->getOldFrameFlg() || !checkModeFlg(0x40)) {
+    if (!m_CalcOldFrame->getOldFrameFlg() || !checkModeFlg(0x40)) {
         return;
     }
 
@@ -4252,17 +4252,17 @@ int daAlink_c::createHeap() {
         return 0;
     }
 
-    m_oldFrame = new mDoExt_MtxCalcOldFrame(sp1C, sp30);
-    if (m_oldFrame == NULL) {
+    m_CalcOldFrame = new mDoExt_MtxCalcOldFrame(sp1C, sp30);
+    if (m_CalcOldFrame == NULL) {
         return 0;
     }
 
-    field_0x1f20 = new mDoExt_MtxCalcAnmBlendTblOld(m_oldFrame, 3, mNowAnmPackUnder);
+    field_0x1f20 = new mDoExt_MtxCalcAnmBlendTblOld(m_CalcOldFrame, 3, mNowAnmPackUnder);
     if (field_0x1f20 == NULL) {
         return 0;
     }
 
-    field_0x1f24 = new mDoExt_MtxCalcAnmBlendTblOld(m_oldFrame, 3, mNowAnmPackUpper);
+    field_0x1f24 = new mDoExt_MtxCalcAnmBlendTblOld(m_CalcOldFrame, 3, mNowAnmPackUpper);
     if (field_0x1f24 == NULL) {
         return 0;
     }
@@ -7053,7 +7053,7 @@ int daAlink_c::setDoubleAnime(f32 i_blendRate, f32 i_anmSpeedA, f32 i_anmSpeedB,
     commonDoubleAnime(under_bck1, upper_bck1, under_bck2, upper_bck2, i_blendRate, i_anmSpeedA,
                       i_anmSpeedB, param_5);
     if (i_morf >= 0.0f) {
-        m_oldFrame->initOldFrameMorf(i_morf, 0, 35);
+        m_CalcOldFrame->initOldFrameMorf(i_morf, 0, 35);
     }
 
     setHandIndex(i_anmA);
@@ -7174,7 +7174,7 @@ int daAlink_c::setSingleAnime(daAlink_c::daAlink_ANM i_anmID, f32 i_speed, f32 i
     commonSingleAnime(under_bck, upper_bck, i_speed, i_start, i_end);
 
     if (i_morf >= 0.0f) {
-        m_oldFrame->initOldFrameMorf(i_morf, 0, 35);
+        m_CalcOldFrame->initOldFrameMorf(i_morf, 0, 35);
     }
 
     setHandIndex(i_anmID);
@@ -7256,7 +7256,7 @@ void daAlink_c::setUpperAnimeMorf(f32 i_morf) {
         u16 temp_r29;
         u16 temp_r28;
 
-        if (m_oldFrame->getOldFrameRate() > 0.1f && m_oldFrame->getOldFrameStartJoint() == 0) {
+        if (m_CalcOldFrame->getOldFrameRate() > 0.1f && m_CalcOldFrame->getOldFrameStartJoint() == 0) {
             temp_r29 = 0;
             temp_r28 = field_0x30c6;
         } else {
@@ -7264,7 +7264,7 @@ void daAlink_c::setUpperAnimeMorf(f32 i_morf) {
             temp_r28 = field_0x30aa;
         }
 
-        m_oldFrame->initOldFrameMorf(i_morf, temp_r29, temp_r28);
+        m_CalcOldFrame->initOldFrameMorf(i_morf, temp_r29, temp_r28);
     }
 }
 
@@ -7395,13 +7395,13 @@ int daAlink_c::resetUpperAnime(daAlink_c::daAlink_UPPER i_upperIdx, f32 i_morf) 
 
 void daAlink_c::setUnderAnimeMorf(f32 i_morf) {
     if (i_morf >= 0.0f) {
-        if (m_oldFrame->getOldFrameRate() > 0.1f &&
-            (m_oldFrame->getOldFrameStartJoint() == 0 ||
-             m_oldFrame->getOldFrameStartJoint() == 1))
+        if (m_CalcOldFrame->getOldFrameRate() > 0.1f &&
+            (m_CalcOldFrame->getOldFrameStartJoint() == 0 ||
+             m_CalcOldFrame->getOldFrameStartJoint() == 1))
         {
-            m_oldFrame->initOldFrameMorf(i_morf, 0, 35);
+            m_CalcOldFrame->initOldFrameMorf(i_morf, 0, 35);
         } else {
-            m_oldFrame->initOldFrameMorf(i_morf, 16, 35);
+            m_CalcOldFrame->initOldFrameMorf(i_morf, 16, 35);
         }
     }
 }
@@ -7452,7 +7452,7 @@ int daAlink_c::resetUnderAnime(daAlink_c::daAlink_UNDER i_underIdx, f32 i_morf) 
 void daAlink_c::setOldRootQuaternion(s16 param_0, s16 param_1, s16 param_2) {
     Quaternion quat;
     Quaternion quat2;
-    Quaternion* old_frame_quat = m_oldFrame->getOldFrameQuaternion(0);
+    Quaternion* old_frame_quat = m_CalcOldFrame->getOldFrameQuaternion(0);
 
     if (param_0 != 0 || param_1 != 0) {
         JMAEulerToQuat(param_0, param_1, 0, &quat);
@@ -10985,7 +10985,7 @@ BOOL daAlink_c::checkFrontWallTypeAction() {
                     mUnderFrameCtrl[0].setRate(0.0f);
                 }
 
-                m_oldFrame->initOldFrameMorf(5.0f, 0, 0x23);
+                m_CalcOldFrame->initOldFrameMorf(5.0f, 0, 0x23);
                 return 1;
             }
         }
@@ -12039,7 +12039,7 @@ void daAlink_c::allUnequip(BOOL param_0) {
         swordUnequip();
     } else if (mEquipItem == 0x102) {
         deleteEquipItem(FALSE, FALSE);
-        m_oldFrame->initOldFrameMorf(5.0f, 0, 35);
+        m_CalcOldFrame->initOldFrameMorf(5.0f, 0, 35);
     } else {
         itemUnequip(mEquipItem, 1.0f);
     }
@@ -12386,7 +12386,7 @@ void daAlink_c::commonChangeItem() {
     field_0x2fde = dItemNo_NONE_e;
 
     if (checkReinRide()) {
-        m_oldFrame->initOldFrameMorf(3.0f, 0, 0x23);
+        m_CalcOldFrame->initOldFrameMorf(3.0f, 0, 0x23);
     }
 
     onNoResetFlg1(FLG1_UNK_40000);
@@ -12551,7 +12551,7 @@ void daAlink_c::setItemAction() {
 BOOL daAlink_c::checkNextActionFromCrouch(int param_0) {
     if (checkNextAction(param_0)) {
         if (field_0x2f8c == 1 || field_0x2f8c == 2 || field_0x2f8c == 3) {
-            m_oldFrame->initOldFrameMorf(mpHIO->mCrouch.m.mStandInterpolation, 0, 0x23);
+            m_CalcOldFrame->initOldFrameMorf(mpHIO->mCrouch.m.mStandInterpolation, 0, 0x23);
         }
 
         return true;
@@ -12757,7 +12757,7 @@ void daAlink_c::transAnimeProc(cXyz* param_0, f32 param_1, f32 param_2) {
         }
     }
 
-    J3DTransformInfo* temp_r29 = m_oldFrame->getOldFrameTransInfo(0);
+    J3DTransformInfo* temp_r29 = m_CalcOldFrame->getOldFrameTransInfo(0);
     cXyz sp30;
 
     if (field_0x2f99 == 0x50) {
@@ -12869,7 +12869,7 @@ void daAlink_c::setFootSpeed() {
     cXyz foot[2];
 
     f32 speed;
-    if (m_oldFrame->getOldFrameFlg()) {
+    if (m_CalcOldFrame->getOldFrameFlg()) {
         mDoMtx_concat(mInvMtx, mpLinkModel->getAnmMtx(mLeftFootJnt), mDoMtx_stack_c::get());
         mDoMtx_stack_c::multVecZero(&foot[0]);
 
@@ -12883,7 +12883,7 @@ void daAlink_c::setFootSpeed() {
             footNo = 1;
         }
 
-        cXyz sp8 = foot[footNo] - mLastFoot[footNo];
+        cXyz sp8 = foot[footNo] - mLastFootPos[footNo];
         s16 ya = current.angle.y - shape_angle.y;
         speed = fabsf(sp8.z * cM_scos(ya)) + fabsf(sp8.x * cM_ssin(ya));
 
@@ -12899,7 +12899,7 @@ void daAlink_c::setFootSpeed() {
     }
 
     for (i = 0; i < 2; i++) {
-        mLastFoot[i] = foot[i];
+        mLastFootPos[i] = foot[i];
     }
 
     mFootSpeed = speed;
@@ -12935,7 +12935,7 @@ void daAlink_c::posMove() {
 
     speedF = mNormalSpeed * (1.0f - fabsf(mSpeedModifier));
 
-    f32 mod = mFootSpeed * (1.0f - m_oldFrame->getOldFrameRate()) * mSpeedModifier;
+    f32 mod = mFootSpeed * (1.0f - m_CalcOldFrame->getOldFrameRate()) * mSpeedModifier;
     if (speedF < 0.0f) {
         speedF -= mod;
     } else {
@@ -13891,13 +13891,13 @@ void daAlink_c::setBasAnime(daAlink_c::daAlink_UNDER i_underIdx) {
         } else {
             if (field_0x3084 == anmHeap->getIdx() && field_0x3086 == anmHeap->getArcNo()) {
                 if (field_0x33d4 * framectrl->getRate() >= 0.0f) {
-                    m_frameCtrl = framectrl;
+                    m_basFrameCtrl = framectrl;
                     return;
                 }
             }
 
             field_0x2d80 = bas;
-            m_frameCtrl = framectrl;
+            m_basFrameCtrl = framectrl;
             field_0x3084 = anmHeap->getIdx();
             field_0x3086 = anmHeap->getArcNo();
             field_0x33d4 = framectrl->getRate();
@@ -13912,7 +13912,7 @@ void daAlink_c::setBasAnime(daAlink_c::daAlink_UNDER i_underIdx) {
 
         if (field_0x3084 == anmHeap->getIdx() && field_0x3086 == anmHeap->getArcNo()) {
             if (field_0x33d4 * framectrl->getRate() >= 0.0f) {
-                m_frameCtrl = framectrl;
+                m_basFrameCtrl = framectrl;
                 return;
             }
         }
@@ -13923,7 +13923,7 @@ void daAlink_c::setBasAnime(daAlink_c::daAlink_UNDER i_underIdx) {
         JUT_ASSERT(20661, dataSize < l_basAnmBufferSize);
 
         cLib_memCpy(field_0x2d78, anmHeap->getBuffer() + temp_r3_2->mSeAnmOffset, dataSize);
-        m_frameCtrl = framectrl;
+        m_basFrameCtrl = framectrl;
         field_0x3084 = anmHeap->getIdx();
         field_0x3086 = anmHeap->getArcNo();
         field_0x33d4 = framectrl->getRate();
@@ -13933,23 +13933,23 @@ void daAlink_c::setBasAnime(daAlink_c::daAlink_UNDER i_underIdx) {
 }
 
 void daAlink_c::initBasAnime() {
-    if (m_frameCtrl != NULL) {
+    if (m_basFrameCtrl != NULL) {
         f32 var_f31;
-        if (m_frameCtrl->getAttribute() == J3DFrameCtrl::EMode_LOOP) {
-            var_f31 = m_frameCtrl->getFrame() - m_frameCtrl->getRate();
-            if (var_f31 <= m_frameCtrl->getStart()) {
-                var_f31 = m_frameCtrl->getEnd() - var_f31;
-            } else if (var_f31 >= m_frameCtrl->getEnd()) {
-                var_f31 -= m_frameCtrl->getEnd();
+        if (m_basFrameCtrl->getAttribute() == J3DFrameCtrl::EMode_LOOP) {
+            var_f31 = m_basFrameCtrl->getFrame() - m_basFrameCtrl->getRate();
+            if (var_f31 <= m_basFrameCtrl->getStart()) {
+                var_f31 = m_basFrameCtrl->getEnd() - var_f31;
+            } else if (var_f31 >= m_basFrameCtrl->getEnd()) {
+                var_f31 -= m_basFrameCtrl->getEnd();
             }
         } else {
             var_f31 = 0.0f;
         }
 
         if (field_0x2d80 != NULL) {
-            mZ2Link.initAnime(field_0x2d80, m_frameCtrl->getRate() >= 0.0f, m_frameCtrl->getLoop(), var_f31);
+            mZ2Link.initAnime(field_0x2d80, m_basFrameCtrl->getRate() >= 0.0f, m_basFrameCtrl->getLoop(), var_f31);
         } else {
-            mZ2Link.initAnime(field_0x2d78, m_frameCtrl->getRate() >= 0.0f, m_frameCtrl->getLoop(), var_f31);
+            mZ2Link.initAnime(field_0x2d78, m_basFrameCtrl->getRate() >= 0.0f, m_basFrameCtrl->getLoop(), var_f31);
         }
     }
 }
@@ -13957,7 +13957,7 @@ void daAlink_c::initBasAnime() {
 void daAlink_c::resetBasAnime() {
     field_0x3084 = 0xFFFF;
     field_0x3086 = 0xFFFF;
-    m_frameCtrl = NULL;
+    m_basFrameCtrl = NULL;
     field_0x2d80 = NULL;
 }
 
@@ -15139,8 +15139,8 @@ void daAlink_c::commonProcInit(daAlink_c::daAlink_PROC i_procID) {
     mFishingArm1Angle = csXyz::Zero;
     field_0x3160 = csXyz::Zero;
 
-    if (mfishGetFace != 0) {
-        mfishGetFace = 0;
+    if (mFishGetFace != 0) {
+        mFishGetFace = 0;
         resetFacePriAnime();
     }
 
@@ -16446,7 +16446,7 @@ int daAlink_c::procBackJumpInit(int param_0) {
     if (is_prev_ganonFinish) {
         ANGLE_ADD_2(shape_angle.y, 0x8000);
         setOldRootQuaternion(0, -0x8000, 0);
-        m_oldFrame->getOldFrameTransInfo(0)->mTranslate.z += 55.0f;
+        m_CalcOldFrame->getOldFrameTransInfo(0)->mTranslate.z += 55.0f;
         onNoResetFlg3(FLG3_UNK_4000000);
     }
 
@@ -16625,7 +16625,7 @@ int daAlink_c::procAutoJumpInit(int param_0) {
     } else {
         setSingleAnimeParam(ANM_JUMP_START, &mpHIO->mAutoJump.m.mJumpAnm);
         if (!not_front_roll) {
-            m_oldFrame->initOldFrameMorf(0.0f, 0, 35);
+            m_CalcOldFrame->initOldFrameMorf(0.0f, 0, 35);
         }
 
         field_0x3198 = 0x31;
@@ -18350,8 +18350,8 @@ int daAlink_c::execute() {
                 mZ2Link.framework(mPolySound, mVoiceReverbIntensity);
             }
 
-            if (m_frameCtrl != NULL) {
-                mZ2Link.updateAnime(m_frameCtrl->getFrame(), m_frameCtrl->getRate());
+            if (m_basFrameCtrl != NULL) {
+                mZ2Link.updateAnime(m_basFrameCtrl->getFrame(), m_basFrameCtrl->getRate());
             }
 
             if (mProcID != PROC_DAMAGE && mProcID != PROC_SWIM_DAMAGE && mProcID != PROC_HORSE_DAMAGE) {

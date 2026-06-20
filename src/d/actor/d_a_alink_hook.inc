@@ -709,7 +709,7 @@ void daAlink_c::setHookshotReturnEnd() {
 
     if (checkHookshotReadyAnime()) {
         mNowAnmPackUpper[2].setRatio(1.0f);
-        m_oldFrame->initOldFrameMorf(3.0f, field_0x30a8, field_0x30aa);
+        m_CalcOldFrame->initOldFrameMorf(3.0f, field_0x30a8, field_0x30aa);
     } else if (checkHookshotShootAnime()) {
         int _;
         f32 anmSpeed;

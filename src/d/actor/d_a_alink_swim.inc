@@ -670,7 +670,7 @@ void daAlink_c::setSwimMoveAnime() {
 
             if (!checkSwimMoveHandAnime() && !checkZoraSwimDamageAnime()) {
                 f32 var_f28;
-                if (m_oldFrame->getOldFrameMorfCounter() > 5.0f) {
+                if (m_CalcOldFrame->getOldFrameMorfCounter() > 5.0f) {
                     var_f28 = -1.0f;
                 } else {
                     var_f28 = 3.0f;

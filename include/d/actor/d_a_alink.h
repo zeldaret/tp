@@ -3608,7 +3608,7 @@ public:
     s16 getProcNeckX() { return mProcNeckX; }
     s16 getMidnaProcNeckY() { return mMidnaProcNeckY; }
     f32 getEyeMoveRateY() { return mEyeMoveRateY; }
-    f32 getMidnaEyeMoveRateX() { return MidnaEyeMoveRateX; }
+    f32 getMidnaEyeMoveRateX() { return mMidnaEyeMoveRateX; }
 
     J3DModel* getMidnaModel() {
         if (mClothesChangeWaitTimer != 0) {
@@ -3672,7 +3672,7 @@ public:
 
     f32 getFishingReelFrame() const { return mUpperFrameCtrl[2].getFrame(); }
 
-    void changeFishGetFace(u8 param_0) { mfishGetFace = param_0; }
+    void changeFishGetFace(u8 param_0) { mFishGetFace = param_0; }
 
     BOOL checkSlideMode() {
         return mProcID == PROC_SLIDE || mProcID == PROC_SLIDE_LAND ||
@@ -4041,7 +4041,7 @@ public:
     /* 0x01F94 */ daPy_anmHeap_c mUpperAnmHeap[3];
     /* 0x01FD0 */ daPy_frameCtrl_c mUnderFrameCtrl[3];
     /* 0x02018 */ daPy_frameCtrl_c mUpperFrameCtrl[3];
-    /* 0x02060 */ mDoExt_MtxCalcOldFrame* m_oldFrame;
+    /* 0x02060 */ mDoExt_MtxCalcOldFrame* m_oldFrameCalc;
     /* 0x02064 */ daAlink_sight_c mSight;
 #if PLATFORM_WII
     u8 unk_0x20f0[4];
@@ -4109,7 +4109,7 @@ public:
     /* 0x02C78 */ Mtx mMagneBootInvMtx;
     /* 0x02CA8 */ Z2CreatureLink mZ2Link;
     /* 0x02D78 */ u8* field_0x2d78;
-    /* 0x02D7C */ daPy_frameCtrl_c* m_frameCtrl;
+    /* 0x02D7C */ daPy_frameCtrl_c* m_basFrameCtrl;
     /* 0x02D80 */ void* field_0x2d80;
     /* 0x02D84 */ Z2WolfHowlMgr mZ2WolfHowlMgr;
     /* 0x02E44 */ dJntCol_c field_0x2e44;
@@ -4182,7 +4182,7 @@ public:
     /* 0x02FC5 */ u8 field_0x2fc5;
     /* 0x02FC6 */ u8 field_0x2fc6;
     /* 0x02FC7 */ u8 field_0x2fc7;
-    /* 0x02FC8 */ u8 mfishGetFace;
+    /* 0x02FC8 */ u8 mFishGetFace;
     /* 0x02FC9 */ u8 field_0x2fc9;
     /* 0x02FCA */ u8 field_0x2fca;
     /* 0x02FCB */ u8 field_0x2fcb;
@@ -4440,7 +4440,7 @@ public:
     /* 0x033EC */ f32 field_0x33ec;
     /* 0x033F0 */ f32 field_0x33f0;
     /* 0x033F4 */ f32 mEyeMoveRateY;
-    /* 0x033F8 */ f32 MidnaEyeMoveRateX;
+    /* 0x033F8 */ f32 mMidnaEyeMoveRateX;
     /* 0x033FC */ f32 field_0x33fc;
     /* 0x03400 */ f32 field_0x3400;
     /* 0x03404 */ f32 field_0x3404;
@@ -4531,7 +4531,7 @@ public:
     /* 0x0378C */ cXyz field_0x378c;
     /* 0x03798 */ cXyz field_0x3798;
     /* 0x037A4 */ cXyz field_0x37a4;
-    /* 0x037B0 */ cXyz mLastFoot[2];
+    /* 0x037B0 */ cXyz mLastFootPos[2];
     /* 0x037C8 */ cXyz field_0x37c8;
     /* 0x037D4 */ cXyz field_0x37d4;
     /* 0x037E0 */ cXyz mHeldItemRootPos;
