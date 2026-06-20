@@ -3167,7 +3167,7 @@ int daAlink_c::procWolfAutoJumpInit(int param_0) {
                        mpHIO->mWolf.mWlAutoJump.m.mJumpAnm.mStartFrame,
                        mpHIO->mWolf.mWlAutoJump.m.mJumpAnm.mEndFrame,
                        mpHIO->mWolf.mWlAutoJump.m.mJumpAnm.mInterpolation);
-    if (speedF > mMaxSpeed || param_0 || mpHIO->mWolf.mWlAutoJump.m.mAlwaysMaxSpeedJump == true) {
+    if (speedF > mMaxSpeed || param_0 || mpHIO->mWolf.mWlAutoJump.m.mAlwaysMaxSpeedJump == TRUE) {
         speedF = mMaxSpeed;
     } else if (speedF < minSpeed) {
         speedF = minSpeed;

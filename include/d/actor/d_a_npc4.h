@@ -107,9 +107,9 @@ public:
     u8 getArg0(int i_idx) { return mPathInfo->m_points[i_idx].mArg0; }
     Vec getPntPos(int i_idx) { return mPathInfo->m_points[i_idx].m_position; }
     BOOL chkClose() { return dPath_ChkClose(mPathInfo); }
-    BOOL chkReverse() { return mIsReversed == true; }
-    void onReverse() { mIsReversed = true; }
-    void offReverse() { mIsReversed = false; }
+    BOOL chkReverse() { return mIsReversed == TRUE; }
+    void onReverse() { mIsReversed = TRUE; }
+    void offReverse() { mIsReversed = FALSE; }
     dPath* getPathInfo() { return mPathInfo; }
     void setRange(f32 i_range) { mRange = i_range; }
     int getNumPnts() { return mPathInfo->m_num; }

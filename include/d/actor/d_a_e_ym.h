@@ -159,7 +159,7 @@ private:
     /* 0x6C4 */ cXyz* mTagPosP;
     /* 0x6C8 */ u8 mTagNo;
     /* 0x6C9 */ u8 field_0x6c9;
-    /* 0x6CA */ u8 mFlyType;
+    /* 0x6CA */ bool mFlyType;
     /* 0x6CB */ u8 field_0x6cb;
     /* 0x6CC */ u8 field_0x6cc;
     /* 0x6CD */ u8 field_0x6cd;

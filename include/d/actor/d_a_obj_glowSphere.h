@@ -123,10 +123,10 @@ public:
     u8 getArg0() { return fopAcM_GetParamBit(this, 8, 8); }
     u8 getColor() { return fopAcM_GetParamBit(this, 0x10, 8); }
 
-    void onGetFlag() { mGetFlag = true; }
-    void offGetFlag() { mGetFlag = false; }
+    void onGetFlag() { mGetFlag = TRUE; }
+    void offGetFlag() { mGetFlag = FALSE; }
     void saveGetFlag() { field_0x951 = mGetFlag; }
-    bool is_getted() { return mGetFlag == true; }
+    bool is_getted() { return mGetFlag == TRUE; }
 
     void reset() {
         current.pos = home.pos;

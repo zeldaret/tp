@@ -442,7 +442,7 @@ cPhs_Step daNpc_Bans_c::create() {
 int daNpc_Bans_c::CreateHeap() {
     J3DModelData* modelData = NULL;
     J3DModel* model = NULL;
-    u32 idx = mTwilight == true ? TRUE : FALSE;
+    u32 idx = mTwilight == TRUE ? TRUE : FALSE;
     int resIdx = l_bmdData[idx][1];
     int bmdIdx = l_bmdData[idx][0];
     modelData = (J3DModelData*)dComIfG_getObjectRes(l_resNameList[resIdx], bmdIdx);

@@ -704,11 +704,11 @@ void daNpc_Kn_c::setFootPrtcl(cXyz* param_0, f32 param_1) {
     }
 
     field_0x9F4.setEffectTwo(&tevStr, &current.pos, 0, 0, NULL,
-                             !mFootLOnGround && cross_l == true ? &foot_l_pos : NULL,
-                             !mFootROnGround && cross_r == true ? &foot_r_pos : NULL,
+                             !mFootLOnGround && cross_l == TRUE ? &foot_l_pos : NULL,
+                             !mFootROnGround && cross_r == TRUE ? &foot_r_pos : NULL,
                              &mCurAngle, param_0, fopAcM_GetRoomNo(this), 0.0f, speedF);
 
-    if (!mFootLOnGround && cross_l == true) {
+    if (!mFootLOnGround && cross_l == TRUE) {
         switch (foot_l_att) {
         case 3:
             break;
@@ -718,7 +718,7 @@ void daNpc_Kn_c::setFootPrtcl(cXyz* param_0, f32 param_1) {
         }
     }
 
-    if (!mFootROnGround && cross_r == true) {
+    if (!mFootROnGround && cross_r == TRUE) {
         switch (foot_r_att) {
         case 3:
             break;

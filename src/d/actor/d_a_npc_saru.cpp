@@ -367,7 +367,7 @@ int daNpc_Saru_c::CreateHeap() {
         2, 3,
     };
 
-    int bmdIdx = mTwilight == true ? TRUE : FALSE;
+    int bmdIdx = mTwilight == TRUE ? TRUE : FALSE;
     J3DModelData* modelData = static_cast<J3DModelData*>(dComIfG_getObjectRes(l_resNameList[l_bmdData[bmdIdx][1]], l_bmdData[bmdIdx][0]));
     if (modelData == NULL) {
         return 0;
@@ -620,7 +620,7 @@ BOOL daNpc_Saru_c::evtCutProc() {
 
 void daNpc_Saru_c::action() {
     fopAc_ac_c* actor_p = NULL;
-    if (mTwilight == false) {
+    if (mTwilight == FALSE) {
         actor_p = hitChk(&field_0xe4c, -1);
     }
 
@@ -743,7 +743,7 @@ void daNpc_Saru_c::drawOtherMdl() {
     Mtx mtx;
     J3DModel* model = mpMorf[0]->getModel();
     for (int i = 0; i < 2; i++) {
-        if (mpRoseModels[i] != NULL && ((i == 0 && mTwilight == false) || (i == 1 && mTwilight != false))) {
+        if (mpRoseModels[i] != NULL && ((i == 0 && mTwilight == FALSE) || (i == 1 && mTwilight != false))) {
             g_env_light.setLightTevColorType_MAJI(mpRoseModels[i], &tevStr);
             mDoMtx_stack_c::copy(model->getAnmMtx(jointNo[i]));
             cMtx_copy(mDoMtx_stack_c::get(), mtx);
@@ -780,7 +780,7 @@ int daNpc_Saru_c::setAction(int (daNpc_Saru_c::*action)(void*)) {
 }
 
 void daNpc_Saru_c::setSe() {
-    if (cM3d_IsZero(mpMorf[0]->getPlaySpeed()) <= 0) {
+    if (cM3d_IsZero(mpMorf[0]->getPlaySpeed()) == false) {
         if ((J3DAnmTransform*)dComIfG_getObjectRes(l_resNameList[l_motionAnmData[25].mBckArcIdx], l_motionAnmData[25].mBckFileIdx) == mpMorf[0]->getAnm()) {
             if (mpMorf[0]->checkFrame(0.0f)) {
                 mSound.startCreatureVoice(Z2SE_KOSARU_V_WALK, -1);
@@ -1088,7 +1088,7 @@ int daNpc_Saru_c::wait(void* param_1) {
                     }
                 }
 
-                if (mPlayerActorMngr.getActorP() != NULL && mTwilight == false) {
+                if (mPlayerActorMngr.getActorP() != NULL && mTwilight == FALSE) {
                     mJntAnm.lookPlayer(0);
                     if (!chkActorInSight(mPlayerActorMngr.getActorP(), mAttnFovY, mCurAngle.y)) {
                         mJntAnm.lookNone(0);

@@ -873,20 +873,20 @@ void daB_ZANT_c::setZantMessage(int i_msgNo) {
     mMsgID = fopMsgM_messageSet(i_msgNo, 1000);
 }
 
-int daB_ZANT_c::doZantMessage() {
+BOOL daB_ZANT_c::doZantMessage() {
     if (mpMsg != NULL) {
         if (mpMsg->mode == 14) {
             mpMsg->mode = 16;
         } else if (mpMsg->mode == 18) {
             mpMsg->mode = 19;
             mMsgID = fpcM_ERROR_PROCESS_ID_e;
-            return 1;
+            return TRUE;
         }
     } else {
         mpMsg = fopMsgM_SearchByID(mMsgID);
     }
 
-    return 0;
+    return FALSE;
 }
 
 void daB_ZANT_c::setIceLandingEffect(BOOL i_landFootR) {
@@ -1395,7 +1395,7 @@ void daB_ZANT_c::executeOpening() {
         }
         break;
     case MODE_MSG_1_WAIT:
-        if (doZantMessage() == true) {
+        if (doZantMessage() == TRUE) {
             mModeTimer = 20;
             mMode = MODE_WARP_OUT_SE;
         }
@@ -1463,7 +1463,7 @@ void daB_ZANT_c::executeOpening() {
         }
         break;
     case MODE_MSG_2:
-        if (doZantMessage() == true) {
+        if (doZantMessage() == TRUE) {
             setBck(BCK_ZAN_OP_RISE, J3DFrameCtrl::EMode_LOOP, 10.0f, 1.0f);
             mMode = MODE_FLY_UP;
             mModeTimer = 90;

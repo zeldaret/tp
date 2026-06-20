@@ -42,13 +42,13 @@ public:
 
     BOOL chkClimbDownLadderStatus() {
         f32 var_f31 = fopAcM_searchPlayerDistanceY(this);
-        BOOL rt = false;
+        BOOL rt = FALSE;
 
         if (fopAcM_searchPlayerDistanceXZ(this) < scale.x && 0.0f <= var_f31 && var_f31 < scale.y) {
             rt = dComIfGp_checkItemGet(dItemNo_KANTERA_e, 1) && dComIfGs_getOil() != 0;
-            field_0x5f8 = rt == true ? 0 : 1;
+            field_0x5f8 = rt == TRUE ? 0 : 1;
         } else {
-            rt = true;
+            rt = TRUE;
         }
 
         return rt;

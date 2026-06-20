@@ -289,7 +289,7 @@ cPhs_Step daNpc_Raca_c::create() {
 }
 
 int daNpc_Raca_c::CreateHeap() {
-    int bmdIdx = mTwilight == true ? NONE : NONE;
+    int bmdIdx = mTwilight == TRUE ? NONE : NONE;
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_resNameList[l_bmdData[bmdIdx][1]], l_bmdData[bmdIdx][0]);
     if (modelData == NULL) {
         return 0;

@@ -195,7 +195,7 @@ int daNpc_ZelR_c::create() {
 }
 
 int daNpc_ZelR_c::CreateHeap() {
-    int bmdIdx = mTwilight == true ? NONE : NONE;
+    int bmdIdx = mTwilight == TRUE ? NONE : NONE;
     J3DModelData* mdlData_p = (J3DModelData*)(dComIfG_getObjectRes(
         l_resNameList[l_bmdData[bmdIdx].arcIdx], l_bmdData[bmdIdx].fileIdx
     ));
