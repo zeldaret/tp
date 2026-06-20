@@ -1143,7 +1143,7 @@ int daAlink_c::setLadderInit() {
 
         procLadderMoveInit(1, 0, &current.pos);
         field_0x33b0 = l_ladderAnmBaseTransY;
-        m_CalcOldFrame->initOldFrameMorf(5.0f, 0, 35);
+        m_oldFrameCalc->initOldFrameMorf(5.0f, 0, 35);
         return 1;
     }
 
@@ -2059,15 +2059,15 @@ int daAlink_c::procClimbUpStartInit(int param_0) {
     mProcVar5.field_0x3012 = 1;
 
     field_0x37c8.set(l_waitBaseAnime.x, l_ladderAnmBaseTransY, l_waitBaseAnime.z);
-    J3DTransformInfo* trans_info = m_CalcOldFrame->getOldFrameTransInfo(0);
+    J3DTransformInfo* trans_info = m_oldFrameCalc->getOldFrameTransInfo(0);
     trans_info->mTranslate.z -= ((field_0x34ec.z - field_0x3798.z) * cM_scos(shape_angle.y)) +
                                 ((field_0x34ec.x - field_0x3798.x) * cM_ssin(shape_angle.y));
 
     field_0x3588.set(trans_info->mTranslate.x,
                      trans_info->mTranslate.y - (current.pos.y - field_0x3798.y),
                      l_waitBaseAnime.z);
-    field_0x3588 = (field_0x3588 * m_CalcOldFrame->getOldFrameRate()) +
-                   (field_0x37c8 * (1.0f - m_CalcOldFrame->getOldFrameRate()));
+    field_0x3588 = (field_0x3588 * m_oldFrameCalc->getOldFrameRate()) +
+                   (field_0x37c8 * (1.0f - m_oldFrameCalc->getOldFrameRate()));
     field_0x33b0 = field_0x3588.y;
 
     current.pos.x = field_0x34ec.x;
@@ -2091,8 +2091,8 @@ int daAlink_c::procClimbUpStart() {
     field_0x2f99 = 2;
     mProcVar5.field_0x3012 = 0;
 
-    field_0x3588 = (field_0x3588 * m_CalcOldFrame->getOldFrameRate()) +
-                   (field_0x37c8 * (1.0f - m_CalcOldFrame->getOldFrameRate()));
+    field_0x3588 = (field_0x3588 * m_oldFrameCalc->getOldFrameRate()) +
+                   (field_0x37c8 * (1.0f - m_oldFrameCalc->getOldFrameRate()));
     field_0x33b0 = field_0x3588.y;
 
     setClimbShapeOffset();
@@ -2463,7 +2463,7 @@ int daAlink_c::procClimbToRoof() {
         current.angle.y = shape_angle.y;
         mPrevAngleY = shape_angle.y;
         setOldRootQuaternion(0, 0x8000, 0);
-        m_CalcOldFrame->getOldFrameTransInfo(0)->mTranslate.z *= -1.0f;
+        m_oldFrameCalc->getOldFrameTransInfo(0)->mTranslate.z *= -1.0f;
 
         cXyz sp38(current.pos.x + cM_ssin(shape_angle.y) * 95.0f, current.pos.y,
                   current.pos.z + cM_scos(shape_angle.y) * 95.0f);
@@ -2645,12 +2645,12 @@ int daAlink_c::procRoofHangWaitInit(int param_0) {
             current.pos.x += 25.0f * cM_ssin(this->shape_angle.y);
             current.pos.z += 25.0f * cM_scos(this->shape_angle.y);
 
-            m_CalcOldFrame->getOldFrameTransInfo(0)->mTranslate.z -= 25.0f;
+            m_oldFrameCalc->getOldFrameTransInfo(0)->mTranslate.z -= 25.0f;
         } else {
             current.pos.x -= 25.0f * cM_ssin(this->shape_angle.y);
             current.pos.z -= 25.0f * cM_scos(this->shape_angle.y);
 
-            m_CalcOldFrame->getOldFrameTransInfo(0)->mTranslate.z += 25.0f;
+            m_oldFrameCalc->getOldFrameTransInfo(0)->mTranslate.z += 25.0f;
         }
     }
 
@@ -2706,7 +2706,7 @@ int daAlink_c::procRoofHangFrontMoveInit() {
     if (frame >= 0) {
         mUnderFrameCtrl[0].setFrame(frame);
         getNowAnmPackUnder(UNDER_0)->setFrame(frame);
-        m_CalcOldFrame->initOldFrameMorf(0.0f, 0, 0x23);
+        m_oldFrameCalc->initOldFrameMorf(0.0f, 0, 0x23);
     }
 
     setSpecialGravity(0.0f, maxFallSpeed, 0);
@@ -2846,7 +2846,7 @@ int daAlink_c::procRoofHangTurnInit() {
         mProcVar0.field_0x3008 = 1;
         ANGLE_ADD_2(shape_angle.y, 0x8000);
         setOldRootQuaternion(0, -0x8000, 0);
-        m_CalcOldFrame->getOldFrameTransInfo(0)->mTranslate.z = -8.899365425109863f;
+        m_oldFrameCalc->getOldFrameTransInfo(0)->mTranslate.z = -8.899365425109863f;
         mProcVar2.field_0x300c = mMoveAngle;
         field_0x3478 = 0.0f;
         field_0x347c = 10.0f;
@@ -2886,7 +2886,7 @@ int daAlink_c::procRoofHangTurn() {
             ANGLE_ADD_2(shape_angle.y, 0x8000);
             current.angle.y = shape_angle.y;
             setOldRootQuaternion(0, -0x8000, 0);
-            m_CalcOldFrame->getOldFrameTransInfo(0)->mTranslate.z += 17.798730850219727f;
+            m_oldFrameCalc->getOldFrameTransInfo(0)->mTranslate.z += 17.798730850219727f;
         }
 
         checkNextActionRoofHang();

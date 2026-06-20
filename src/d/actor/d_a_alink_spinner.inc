@@ -238,7 +238,7 @@ int daAlink_c::procSpinnerWait() {
             mProcVar5.field_0x3012 = 1;
             setSpinnerStatus(BUTTON_STATUS_SPIN, BUTTON_STATUS_FLAG_CONTINUATION);
 
-            if (field_0x3198 != ANM_RIDE_KICK && m_CalcOldFrame->getOldFrameRate() < 0.01f) {
+            if (field_0x3198 != ANM_RIDE_KICK && m_oldFrameCalc->getOldFrameRate() < 0.01f) {
                 setSingleAnimeBaseSpeed(ANM_RIDE_CROUCH, mpHIO->mItem.mBoard.m.mSitAnmSpeed,
                                         mpHIO->mItem.mBoard.m.mFastPushInterpolation);
                 field_0x3198 = ANM_RIDE_KICK;
@@ -251,7 +251,7 @@ int daAlink_c::procSpinnerWait() {
                 setSpinnerStatus(BUTTON_STATUS_SPIN, BUTTON_STATUS_FLAG_NONE);
             }
 
-            if ((field_0x3198 == ANM_RIDE_KICK && m_CalcOldFrame->getOldFrameRate() < 0.01f) ||
+            if ((field_0x3198 == ANM_RIDE_KICK && m_oldFrameCalc->getOldFrameRate() < 0.01f) ||
                 (field_0x3198 != ANM_RIDE_KICK && field_0x3198 != ANM_RIDE_WAIT)) {
                 setSingleAnimeBaseSpeed(ANM_RIDE_WAIT, mpHIO->mItem.mBoard.m.mStandAnmSpeed,
                                         mpHIO->mItem.mBoard.m.mStandInterpolation);
@@ -269,7 +269,7 @@ int daAlink_c::procSpinnerWait() {
                                mpHIO->mItem.mBoard.m.mLandAnm.mStartFrame, 16,
                                mpHIO->mItem.mBoard.m.mLandAnm.mInterpolation);
                 field_0x3198 = ANM_RIDE_JUMP_LAND;
-            } else if (mProcVar4.field_0x3010 == 0 && m_CalcOldFrame->getOldFrameRate() < 0.01f) {
+            } else if (mProcVar4.field_0x3010 == 0 && m_oldFrameCalc->getOldFrameRate() < 0.01f) {
                 setSingleAnime(ANM_RIDE_JUMP, mpHIO->mItem.mBoard.m.mAirborneAnm.mSpeed,
                                mpHIO->mItem.mBoard.m.mAirborneAnm.mStartFrame,
                                mpHIO->mItem.mBoard.m.mAirborneAnm.mEndFrame, -1.0f);

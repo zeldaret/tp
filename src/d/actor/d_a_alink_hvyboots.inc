@@ -67,7 +67,7 @@ int daAlink_c::setHeavyBoots(int param_0) {
 
             if (mProcID != PROC_BOOTS_EQUIP) {
                 procWaitInit();
-                m_CalcOldFrame->initOldFrameMorf(3.0f, 0, 35);
+                m_oldFrameCalc->initOldFrameMorf(3.0f, 0, 35);
                 return 1;
             }
         }
