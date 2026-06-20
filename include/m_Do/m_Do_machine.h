@@ -17,6 +17,9 @@ void mDoMch_HeapFreeFillAll();
 int mDoMch_Create();
 
 extern GXRenderModeObj g_ntscZeldaProg;
+#if VERSION == VERSION_WII_PAL
+extern GXRenderModeObj g_palZeldaProg60;
+#endif
 
 class mDoMch_render_c {
 public:

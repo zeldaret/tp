@@ -250,7 +250,9 @@ GXRenderModeObj g_ntscZeldaProg = {
 
 #if DEBUG
 static void myGXVerifyCallback(GXWarningLevel, u32, const char*);
+#endif
 
+#if DEBUG || VERSION == VERSION_WII_PAL
 GXRenderModeObj g_palZeldaProg60 = {
     VI_TVMODE_EURGB60_PROG,
     640, 456, 456, 25, 12, 670, 456,

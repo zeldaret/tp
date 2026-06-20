@@ -578,10 +578,6 @@ BOOL mDoGph_gInf_c::isWideZoom() {
     return isWide() && mWideZoom;
 }
 
-u8 mDoGph_gInf_c::isWide() {
-    return mWide == TRUE;
-}
-
 void mDoGph_gInf_c::setWideZoomProjection(Mtx44& m) {
     if (!isWideZoom()) {
         return;

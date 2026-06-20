@@ -149,7 +149,7 @@ public:
     /* 0x200 */ dDlst_2D_c* mNvLogo;
     /* 0x204 */ dDlst_2D_c* mMocImg;
 #endif
-#if VERSION == VERSION_GCN_PAL
+#if REGION_PAL
     /* 0x1FC */ mDoDvdThd_mountArchive_c* mpPalLogoResCommand;
 #endif
     /* 0x1FC */ request_of_phase_process_class* m_preLoad_dylPhase;
