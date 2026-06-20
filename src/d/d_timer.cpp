@@ -126,11 +126,14 @@ int dTimer_c::_create() {
 
     mp_tm_scrn->setHIOType(field_0x16D);
 
+#if VERSION != VERSION_WII_USA_R0
     if (mp_tm_scrn->getHIOType() != 0 && field_0x16D == 0) {
         f32 var_f0 = 0.0f;
         setCounterPos(g_drawHIO.mMiniGame.mTimerPosX_4x3 + var_f0,
                       g_drawHIO.mMiniGame.mTimerPosY_4x3);
-    } else {
+    } else
+#endif
+    {
         f32 var_f0 = 0.0f;
         setCounterPos(g_drawHIO.mMiniGame.mTimerPosX[field_0x16D] + var_f0,
                       g_drawHIO.mMiniGame.mTimerPosY[field_0x16D]);
@@ -514,17 +517,23 @@ void dDlst_TimerScrnDraw_c::setHIO() {
     }
 
     if (mpTimeParent != NULL) {
+#if VERSION != VERSION_WII_USA_R0
         if (field_0x3e2 != 0 && mHIOType == 0) {
             setTimerPos(g_drawHIO.mMiniGame.mTimerPosX_4x3, g_drawHIO.mMiniGame.mTimerPosY_4x3);
-        } else {
+        } else
+#endif
+        {
             setTimerPos(g_drawHIO.mMiniGame.mTimerPosX[mHIOType],
                         g_drawHIO.mMiniGame.mTimerPosY[mHIOType]);
         }
 
+#if VERSION != VERSION_WII_USA_R0
         if (field_0x3e2 != 0 && mHIOType == 0) {
             mpTimeParent->scale(g_drawHIO.mMiniGame.mTimerSizeX_4x3,
                                 g_drawHIO.mMiniGame.mTimerSizeY_4x3);
-        } else {
+        } else
+#endif
+        {
             mpTimeParent->scale(g_drawHIO.mMiniGame.mTimerSizeX[mHIOType],
                                 g_drawHIO.mMiniGame.mTimerSizeY[mHIOType]);
         }
@@ -1120,10 +1129,13 @@ void dDlst_TimerScrnDraw_c::anime() {
             f32 temp_f1 = (1.0f - temp_f31) * -50.0f;
 
             if (mpTimeParent != NULL) {
+#if VERSION != VERSION_WII_USA_R0
                 if (field_0x3e2 != 0 && mHIOType == 0) {
                     setTimerPos(g_drawHIO.mMiniGame.mTimerPosX_4x3 + temp_f1,
                                 g_drawHIO.mMiniGame.mTimerPosY_4x3);
-                } else {
+                } else
+#endif
+                {
                     setTimerPos(g_drawHIO.mMiniGame.mTimerPosX[mHIOType] + temp_f1,
                                 g_drawHIO.mMiniGame.mTimerPosY[mHIOType]);
                 }
@@ -1131,10 +1143,13 @@ void dDlst_TimerScrnDraw_c::anime() {
                 mpTimeParent->setAlphaRate(mParentAlpha *
                                            (temp_f31 * g_drawHIO.mMiniGame.mTimerAlpha[mHIOType]));
 
+#if VERSION != VERSION_WII_USA_R0
                 if (field_0x3e2 != 0 && mHIOType == 0) {
                     mpTimeParent->scale(g_drawHIO.mMiniGame.mTimerSizeX_4x3,
                                         g_drawHIO.mMiniGame.mTimerSizeY_4x3);
-                } else {
+                } else
+#endif
+                {
                     mpTimeParent->scale(g_drawHIO.mMiniGame.mTimerSizeX[mHIOType],
                                         g_drawHIO.mMiniGame.mTimerSizeY[mHIOType]);
                 }
@@ -1184,10 +1199,13 @@ BOOL dDlst_TimerScrnDraw_c::closeAnime() {
         f32 temp_f1 = temp_f31 * -50.0f;
 
         if (mpTimeParent != NULL) {
+#if VERSION != VERSION_WII_USA_R0
             if (field_0x3e2 != 0 && mHIOType == 0) {
                 setTimerPos(g_drawHIO.mMiniGame.mTimerPosX_4x3 + temp_f1,
                             g_drawHIO.mMiniGame.mTimerPosY_4x3);
-            } else {
+            } else
+#endif
+            {
                 setTimerPos(g_drawHIO.mMiniGame.mTimerPosX[mHIOType] + temp_f1,
                             g_drawHIO.mMiniGame.mTimerPosY[mHIOType]);
             }

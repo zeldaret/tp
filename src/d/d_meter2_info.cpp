@@ -1872,10 +1872,12 @@ void dMeter2Info_onWide2D() {
     g_drawHIO.updateOnWide();
 }
 
+#if VERSION != VERSION_WII_USA_KIOSK
 void dMeter2Info_offWide2D() {
     g_ringHIO.updateOffWide();
     g_drawHIO.updateOffWide();
 }
+#endif
 #endif
 
 void dMeter2Info_set2DVibrationT() {}

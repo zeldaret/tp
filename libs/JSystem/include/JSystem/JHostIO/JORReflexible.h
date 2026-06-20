@@ -20,7 +20,11 @@ public:
 #endif
 };
 
-class JORReflexible : public JOREventListener {
+class JORReflexible
+#if !PLATFORM_WII
+    : public JOREventListener
+#endif
+{
 public:
 #if DEBUG
     JORReflexible() {}

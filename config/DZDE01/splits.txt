@@ -1116,17 +1116,17 @@ d/d_meter_HIO.cpp:
 	.text       start:0x801DE3F0 end:0x801E1790
 	.ctors      start:0x80396184 end:0x80396188
 	.rodata     start:0x803B4BF0 end:0x803B4DE8
-	.data       start:0x803DDF10 end:0x803DE28C
+	.data       start:0x803DDF10 end:0x803DE208
 	.bss        start:0x8047D018 end:0x8047E5C0
-	.sdata      start:0x804F95B8 end:0x804F9640
+	.sdata      start:0x804F95B8 end:0x804F9638
 	.sbss       start:0x804FAF38 end:0x804FAF40
 	.sdata2     start:0x804FE448 end:0x804FE6E0
 
 d/d_meter_button.cpp:
 	.text       start:0x801E1790 end:0x801EBD60
 	.rodata     start:0x803B4DE8 end:0x803B4F48
-	.data       start:0x803DE28C end:0x803DE368
-	.sdata      start:0x804F9640 end:0x804F9648
+	.data       start:0x803DE208 end:0x803DE368
+	.sdata      start:0x804F9638 end:0x804F9648
 	.sdata2     start:0x804FE6E0 end:0x804FE760
 
 d/d_meter_haihai.cpp:

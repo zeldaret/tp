@@ -8,13 +8,6 @@
 #include "SSystem/SComponent/c_xyz.h"
 #include "global.h"
 
-struct subJOREventCallbackListNode : public JOREventCallbackListNode {
-    subJOREventCallbackListNode() : JOREventCallbackListNode(0x81000000, 0x81000000, true) {}
-
-    virtual BOOL JORAct(u32, const char*);
-    virtual ~subJOREventCallbackListNode() {}
-};
-
 class JKRAramArchive;
 
 class dMeter_menuHIO_c : public JORReflexible {
@@ -22,7 +15,9 @@ public:
     dMeter_menuHIO_c();
     virtual ~dMeter_menuHIO_c() {}
 
-    void genMessage(JORMContext*);
+#if DEBUG
+    virtual void genMessage(JORMContext*);
+#endif
 
     /* 0x0 */  // vtable
     /* 0x4 */ u8 field_0x4[2];
@@ -36,7 +31,9 @@ public:
     dMeter_drawCollectHIO_c();
     virtual ~dMeter_drawCollectHIO_c() {}
 
-    void genMessage(JORMContext*);
+#if DEBUG
+    virtual void genMessage(JORMContext*);
+#endif
 
     enum {
         /* 0x0 */ VESSEL_HEART,
@@ -87,7 +84,9 @@ public:
     dMeter_drawOptionHIO_c();
     virtual ~dMeter_drawOptionHIO_c() {}
 
-    void genMessage(JORMContext*);
+#if DEBUG
+    virtual void genMessage(JORMContext*);
+#endif
 
     enum OptionType {
         /* 0x0 */ ATTENTION,
@@ -121,7 +120,9 @@ public:
     dMeter_drawLetterHIO_c();
     virtual ~dMeter_drawLetterHIO_c() {}
 
-    void genMessage(JORMContext*);
+#if DEBUG
+    virtual void genMessage(JORMContext*);
+#endif
 
     enum {
         /* 0x0 */ WINDOW_FRAME,
@@ -163,7 +164,9 @@ public:
     dMeter_drawFishingHIO_c();
     virtual ~dMeter_drawFishingHIO_c() {}
 
-    void genMessage(JORMContext*);
+#if DEBUG
+    virtual void genMessage(JORMContext*);
+#endif
 
     enum {
         /* 0x0 */ HYLIAN_BASS,
@@ -215,7 +218,9 @@ public:
     dMeter_drawInsectHIO_c();
     virtual ~dMeter_drawInsectHIO_c() {}
 
-    void genMessage(JORMContext*);
+#if DEBUG
+    virtual void genMessage(JORMContext*);
+#endif
 
     enum Type {
         /* 0x0 */ DEFAULT,
@@ -229,13 +234,21 @@ public:
     /* 0x0C */ f32 mSelectInsectScale;
     /* 0x10 */ f32 mDescWindowPosX;
     /* 0x14 */ f32 mDescWindowPosY;
+#if VERSION != VERSION_WII_USA_R0
     /* 0x18 */ f32 mGiveOptionPosX_4x3;
+#endif
     /* 0x1C */ f32 mGiveOptionPosX;
+#if VERSION != VERSION_WII_USA_R0
     /* 0x20 */ f32 mGiveOptionPosY_4x3;
+#endif
     /* 0x24 */ f32 mGiveOptionPosY;
+#if VERSION != VERSION_WII_USA_R0
     /* 0x28 */ f32 mConfirmOptionPosX_4x3;
+#endif
     /* 0x2C */ f32 mConfirmOptionPosX;
+#if VERSION != VERSION_WII_USA_R0
     /* 0x30 */ f32 mConfirmOptionPosY_4x3;
+#endif
     /* 0x34 */ f32 mConfirmOptionPosY;
     /* 0x38 */ s16 mOpenFrame;
     /* 0x3A */ s16 mCloseFrame;
@@ -248,7 +261,9 @@ public:
     dMeter_drawCalibrationHIO_c();
     virtual ~dMeter_drawCalibrationHIO_c() {}
 
-    void genMessage(JORMContext*);
+#if DEBUG
+    virtual void genMessage(JORMContext*);
+#endif
 
     /* 0x00 */  // vtable
     /* 0x04 */ u8 field_0x4[4];
@@ -265,7 +280,9 @@ public:
     dMeter_drawSkillHIO_c();
     virtual ~dMeter_drawSkillHIO_c() {}
 
-    void genMessage(JORMContext*);
+#if DEBUG
+    virtual void genMessage(JORMContext*);
+#endif
 
     enum {
         /* 0x0 */ WINDOW,
@@ -305,7 +322,9 @@ public:
     dMeter_drawEmpButtonHIO_c();
     virtual ~dMeter_drawEmpButtonHIO_c() {}
 
-    void genMessage(JORMContext*);
+#if DEBUG
+    virtual void genMessage(JORMContext*);
+#endif
 
     /* 0x000 */  // vtable
     /* 0x004 */ u8 field_0x4[4];
@@ -455,7 +474,9 @@ public:
     dMeter_drawMiniGameHIO_c();
     virtual ~dMeter_drawMiniGameHIO_c() {}
 
-    void genMessage(JORMContext*);
+#if DEBUG
+    virtual void genMessage(JORMContext*);
+#endif
 
     /* 0x000 */  // vtable
     /* 0x004 */ u8 field_0x4[4];
@@ -478,10 +499,12 @@ public:
     /* 0x0C8 */ f32 mIconPosX[3];
     /* 0x0D4 */ f32 mIconPosY[3];
     /* 0x0E0 */ f32 mIconAlpha[3];
+#if VERSION != VERSION_WII_USA_R0
     /* 0x0EC */ f32 mTimerSizeX_4x3;
     /* 0x0F0 */ f32 mTimerSizeY_4x3;
     /* 0x0F4 */ f32 mTimerPosX_4x3;
     /* 0x0F8 */ f32 mTimerPosY_4x3;
+#endif
     /* 0x0FC */ f32 mIconPosX_4x3;
     /* 0x100 */ f32 mRiverRideIconPosX_4x3;
     /* 0x104 */ f32 mRiderGameIconPosX_4x3;
@@ -531,7 +554,9 @@ public:
     dMeter_drawLightDropHIO_c();
     virtual ~dMeter_drawLightDropHIO_c() {}
 
-    void genMessage(JORMContext*);
+#if DEBUG
+    virtual void genMessage(JORMContext*);
+#endif
 
     /* 0x00 */  // vtable
     /* 0x04 */ u8 field_0x4[4];
@@ -585,7 +610,6 @@ public:
     }
 
     #if DEBUG
-    virtual void listenPropertyEvent(const JORPropertyEvent*);
     virtual void genMessage(JORMContext*);
 
     void updateFMsgDebug();
@@ -593,7 +617,9 @@ public:
 
     #if WIDESCREEN_SUPPORT
     void updateOnWide();
+    #if VERSION != VERSION_WII_USA_KIOSK
     void updateOffWide();
+    #endif
     #endif
 
     /* 0x000 */  // vtable
@@ -729,17 +755,14 @@ public:
     /* 0x268 */ f32 mButtonYItemBasePosX[2];
     /* 0x270 */ f32 mButtonYItemBasePosY[2];
     /* 0x278 */ f32 mButtonYItemBaseAlpha[2];
-    /* 0x280 */ f32 field_0x280;
-    /* 0x284 */ f32 field_0x284;
-    /* 0x288 */ f32 field_0x288;
-    /* 0x28C */ f32 field_0x28c;
-    /* 0x290 */ f32 field_0x290;
-    /* 0x294 */ f32 field_0x294;
-    /* 0x298 */ f32 field_0x298[2];
-    /* 0x2A0 */ f32 mButtonZItemBaseScale;
-    /* 0x2A4 */ f32 mButtonZItemBasePosX;
-    /* 0x2A8 */ f32 mButtonZItemBasePosY;
-    /* 0x2AC */ f32 mButtonZItemBaseAlpha;
+    /* 0x280 */ f32 mButtonZWiiItemBaseScale[2];
+    /* 0x288 */ f32 mButtonZWiiItemBasePosX[2];
+    /* 0x290 */ f32 mButtonZWiiItemBasePosY[2];
+    /* 0x298 */ f32 mButtonZWiiItemBaseAlpha[2];
+    /* 0x2A0 */ f32 mButtonZGCNItemBaseScale;
+    /* 0x2A4 */ f32 mButtonZGCNItemBasePosX;
+    /* 0x2A8 */ f32 mButtonZGCNItemBasePosY;
+    /* 0x2AC */ f32 mButtonZGCNItemBaseAlpha;
     /* 0x2B0 */ f32 mButtonBaseAlpha;
     /* 0x2B4 */ f32 mButtonATextScale;
     /* 0x2B8 */ f32 mButtonATextPosX;
@@ -768,9 +791,9 @@ public:
     /* 0x314 */ f32 field_0x314;
     /* 0x318 */ f32 field_0x318;
     /* 0x31C */ f32 field_0x31c;
-    /* 0x320 */ f32 field_0x320;
-    /* 0x324 */ f32 field_0x324;
-    /* 0x328 */ f32 field_0x328;
+    /* 0x320 */ f32 mButtonZTextScale;
+    /* 0x324 */ f32 mButtonZTextPosX;
+    /* 0x328 */ f32 mButtonZTextPosY;
     /* 0x32C */ f32 mButtonZFontScale;
     /* 0x330 */ f32 mButtonZFontPosX;
     /* 0x334 */ f32 mButtonZFontPosY;
@@ -955,18 +978,28 @@ public:
     dMeter_ringHIO_c();
     virtual ~dMeter_ringHIO_c() {}
 
-    void genMessage(JORMContext*);
+#if DEBUG
+    virtual void genMessage(JORMContext*);
+#endif
 
     #if WIDESCREEN_SUPPORT
     void updateOnWide();
+    #if VERSION != VERSION_WII_USA_KIOSK
     void updateOffWide();
+    #endif
     #endif
 
     enum {
-        /* 0x0 */ SET_ITEM,
-        /* 0x1 */ DIRECT_SELECT,
-        /* 0x3 */ ROTATE = 3,
-        /* 0x4 */ COMBO_ITEM
+        /* 0x0 */ GUIDE_SET_ITEM,
+        /* 0x1 */ GUIDE_DIRECT_SELECT,
+        /* 0x2 */ GUIDE_UNK_2,
+        /* 0x3 */ GUIDE_ROTATE,
+        /* 0x4 */ GUIDE_COMBO_ITEM,
+        /* 0x5 */ GUIDE_UNK_5,
+        /* 0x6 */ GUIDE_UNK_6,
+        /* 0x7 */ GUIDE_UNK_7,
+        /* 0x8 */ GUIDE_UNK_8,
+        /* 0x9 */ GUIDE_UNK_9,
     };
 
     enum {
@@ -1048,12 +1081,21 @@ public:
 
 STATIC_ASSERT(sizeof(dMeter_ringHIO_c) == 344);
 
+struct subJOREventCallbackListNode : public JOREventCallbackListNode {
+    subJOREventCallbackListNode() : JOREventCallbackListNode(0x81000000, 0x81000000, true) {}
+
+    virtual BOOL JORAct(u32, const char*);
+    virtual ~subJOREventCallbackListNode() {}
+};
+
 class dMeter_mapIconHIO_c : public JORReflexible {
 public:
     dMeter_mapIconHIO_c();
     virtual ~dMeter_mapIconHIO_c() {}
 
-    void genMessage(JORMContext*);
+#if DEBUG
+    virtual void genMessage(JORMContext*);
+#endif
 
     enum {
         /* 0x00 */ ICON_PORTAL,
@@ -1315,7 +1357,9 @@ public:
     dMeter_cursorHIO_c();
     virtual ~dMeter_cursorHIO_c() {}
 
-    void genMessage(JORMContext*);
+#if DEBUG
+    virtual void genMessage(JORMContext*);
+#endif
 
     /* 0x04 */ s8 field_0x4;
     /* 0x08 */ cXyz mSeraShopObjZoom;
