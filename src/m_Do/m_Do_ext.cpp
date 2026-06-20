@@ -541,13 +541,13 @@ void mDoExt_invisibleModel::entryJoint(cXyz* param_0) {
 }
 
 void mDoExt_invisibleModel::entryDL(cXyz* param_0) {
-    J3DDrawBuffer* buffer0 = j3dSys.getDrawBuffer(0);
-    J3DDrawBuffer* buffer1 = j3dSys.getDrawBuffer(1);
+    J3DDrawBuffer* buffer0 = j3dSys.getDrawBuffer(J3DSysDrawBuf_Opa);
+    J3DDrawBuffer* buffer1 = j3dSys.getDrawBuffer(J3DSysDrawBuf_Xlu);
     dComIfGd_setListZxlu();
     mDoExt_modelEntryDL(mModel);
     entryJoint(param_0);
-    j3dSys.setDrawBuffer(buffer0, 0);
-    j3dSys.setDrawBuffer(buffer1, 1);
+    j3dSys.setDrawBuffer(buffer0, J3DSysDrawBuf_Opa);
+    j3dSys.setDrawBuffer(buffer1, J3DSysDrawBuf_Xlu);
 }
 
 void mDoExt_setupShareTexture(J3DModelData* i_modelData, J3DModelData* i_shareModelData) {
