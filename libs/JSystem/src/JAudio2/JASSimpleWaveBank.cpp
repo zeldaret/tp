@@ -44,7 +44,7 @@ int JASSimpleWaveBank::TWaveHandle::getWavePtr() const {
     if (base == NULL) {
         return 0;
     }
-    return (intptr_t)base + mWaveInfo.field_0x08;
+    return (intptr_t)base + mWaveInfo.mOffsetStart;
 }
 
 JASSimpleWaveBank::TWaveHandle::TWaveHandle() {

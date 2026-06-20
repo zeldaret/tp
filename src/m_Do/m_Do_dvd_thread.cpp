@@ -158,7 +158,7 @@ void mDoDvdThd_param_c::mainLoop() {
         while ((command = this->getFirstCommand())) {
             this->cut(command);
             if (mDoDvdThd::SyncWidthSound) {
-                JASDvd::getThreadPointer()->sendCmdMsg(cb, &command, 4);
+                JASDvd::getThreadPointer()->sendCmdMsg(cb, &command, sizeof(void*));
             } else {
                 cb(&command);
             }

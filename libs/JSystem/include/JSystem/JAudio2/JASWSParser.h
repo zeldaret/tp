@@ -31,26 +31,28 @@ public:
 
     struct TWave {
         /* 0x00 */ u8 _00;
-        /* 0x01 */ u8 _01;
-        /* 0x02 */ u8 _02;
-        /* 0x04 */ f32 _04;
-        /* 0x08 */ u32 mOffset;
-        /* 0x0C */ u32 _0C;
-        /* 0x10 */ u32 _10;
-        /* 0x14 */ u32 _14;
-        /* 0x18 */ u32 _18;
-        /* 0x1C */ u32 _1C;
-        /* 0x20 */ s16 _20;
-        /* 0x22 */ s16 _22;
+        /* 0x01 */ u8 mWaveFormat;
+        /* 0x02 */ u8 mBaseKey;
+        /* 0x04 */ f32 mSampleRate;
+        /* 0x08 */ u32 mAWOffsetStart;
+        /* 0x0C */ u32 mAWOffsetEnd;
+        /* 0x10 */ u32 mLoopFlags;
+        /* 0x14 */ u32 mLoopStartSample;
+        /* 0x18 */ u32 mLoopEndSample;
+        /* 0x1C */ u32 mSampleCount;
+        /* 0x20 */ s16 mpLast;
+        /* 0x22 */ s16 mpPenult;
     };
 
     struct TWaveArchive {
-        /* 0x00 */ char mFileName[0x74];  // unknown length
+        /* 0x00 */ char mFileName[0x70];
+        /* 0x70 */ u32 mWaveCount;
         /* 0x74 */ TOffset<TWave> mWaveOffsets[0];
     };
 
     struct TWaveArchiveBank {
-        /* 0x0 */ u8 _00[8];
+        /* 0x0 */ u32 mMagic; // 'WINF'
+        /* 0x0 */ u32 mArchiveCounts;
         /* 0x8 */ TOffset<TWaveArchive> mArchiveOffsets[0];
     };
 
@@ -66,14 +68,17 @@ public:
     };
 
     struct TCtrlGroup {
-        /* 0x0 */ u8 _00[8];
+        /* 0x0 */ u32 mMagic; // 'WBCT'
+        /* 0x4 */ u32 mUnknown;
         /* 0x8 */ u32 mGroupCount;
         /* 0xC */ TOffset<TCtrlScene> mCtrlSceneOffsets[0];
     };
 
     /** @fabricated */
     struct THeader {
-        /* 0x00 */ u8 _00[0xC];
+        /* 0x00 */ u32 mMagic; // 'WSYS'
+        /* 0x04 */ u32 mSize;
+        /* 0x08 */ u32 mId;
         /* 0x0C */ u32 mWaveTableSize;
         /* 0x10 */ TOffset<TWaveArchiveBank> mArchiveBankOffset;
         /* 0x14 */ TOffset<TCtrlGroup> mCtrlGroupOffset;
