@@ -76,7 +76,7 @@ cXyz* daAlink_c::checkBowCameraArrowPosP(s16* o_angleX, s16* o_angleY) {
     if (checkHorseRide() && checkBoarSingleBattle() && dComIfGp_getHorseActor() != NULL) {
         angle_y = dComIfGp_getHorseActor()->shape_angle.y;
     } else if (checkMagneBootsOn()) {
-        angle_y = field_0x3118;
+        angle_y = mMagneBootsModelShapeAngle;
     } else {
         angle_y = shape_angle.y;
     }

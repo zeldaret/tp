@@ -331,7 +331,7 @@ int daAlink_c::procBoardRideInit() {
     voiceStart(Z2SE_AL_V_JUMP_S);
     field_0x2f99 = 0xF;
 
-    cXyz sp8 = field_0x27f4->current.pos - current.pos;
+    cXyz sp8 = mPriActorOwn->current.pos - current.pos;
     speed.y = 24.0;
     shape_angle.y = sp8.atan2sX_Z();
 
@@ -342,7 +342,7 @@ int daAlink_c::procBoardRideInit() {
     field_0x33b0 = field_0x3588.y;
     field_0x34d4 = l_waitBaseAnime;
 
-    field_0x280c.setData(field_0x27f4);
+    field_0x280c.setData(mPriActorOwn);
     return 1;
 }
 
@@ -547,7 +547,7 @@ int daAlink_c::procBoardTurn() {
     }
 
     if (mProcVar5.field_0x3012 == 0) {
-        if (field_0x2060->getOldFrameRate() < 0.01f) {
+        if (m_oldFrameCalc->getOldFrameRate() < 0.01f) {
             mProcVar5.field_0x3012 = 1;
             setSingleAnime(ANM_RIDE_JUMP, 1.5f, 1.5f + mUnderFrameCtrl[0].getStart(), mpHIO->mItem.mBoard.m.mAirborneAnm.mEndFrame, -1.0f);
         }
@@ -600,7 +600,7 @@ int daAlink_c::procBoardJump() {
         if (!checkModeFlg(2)) {
             setBoardLandAnime();
             procBoardWaitInit(NULL);
-        } else if (mProcVar5.field_0x3012 != 0 && mProcVar4.field_0x3010 == 0 && field_0x2060->getOldFrameRate() < 0.0099999998f) {
+        } else if (mProcVar5.field_0x3012 != 0 && mProcVar4.field_0x3010 == 0 && m_oldFrameCalc->getOldFrameRate() < 0.0099999998f) {
             setSingleAnime(ANM_RIDE_JUMP, mpHIO->mItem.mBoard.m.mAirborneAnm.mSpeed,
                            mpHIO->mItem.mBoard.m.mAirborneAnm.mStartFrame,
                            mpHIO->mItem.mBoard.m.mAirborneAnm.mEndFrame,

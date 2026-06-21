@@ -67,7 +67,7 @@ int daAlink_c::setHeavyBoots(int param_0) {
 
             if (mProcID != PROC_BOOTS_EQUIP) {
                 procWaitInit();
-                field_0x2060->initOldFrameMorf(3.0f, 0, 35);
+                m_oldFrameCalc->initOldFrameMorf(3.0f, 0, 35);
                 return 1;
             }
         }
@@ -187,7 +187,7 @@ void daAlink_c::setMagneBootsMtx(cBgS_PolyInfo* i_polyinfo, int param_1) {
             shape_angle.y += angle;
             current.angle.y += angle;
             mPrevAngleY += angle;
-            field_0x310c += angle;
+            mCameraAngleY += angle;
         }
     }
 

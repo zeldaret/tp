@@ -3174,7 +3174,7 @@ public:
     }
     virtual MtxP getModelMtx() { return mpLinkModel->getBaseTRMtx(); }
     virtual MtxP getInvMtx() { return mInvMtx; }
-    virtual cXyz* getShadowTalkAtnPos() { return &field_0x375c; }
+    virtual cXyz* getShadowTalkAtnPos() { return &mShadowTalkAtnPos; }
     virtual MtxP getLeftItemMatrix();
     virtual MtxP getRightItemMatrix();
     virtual MtxP getLeftHandMatrix();
@@ -3373,7 +3373,7 @@ public:
     virtual void setDkCaught(fopAc_ac_c* i_dkActor);
     virtual void onPressedDamage(cXyz const&, s16);
     virtual bool checkPriActorOwn(fopAc_ac_c const* i_actor) const {
-        return field_0x27f4 == i_actor;
+        return mPriActorOwn == i_actor;
     }
     virtual bool onWolfEnemyBiteAll(fopAc_ac_c* i_enemy, daPy_py_c::daPy_FLG2 i_flag);
     virtual bool checkWolfEnemyBiteAllOwn(fopAc_ac_c const* i_actor) const {
@@ -3605,10 +3605,10 @@ public:
 
     void setEndGanonThrow() { mProcVar3.field_0x300e = 1; }
 
-    s16 getProcNeckX() { return field_0x30a0; }
-    s16 getMidnaProcNeckY() { return field_0x30d4; }
-    f32 getEyeMoveRateY() { return field_0x33f4; }
-    f32 getMidnaEyeMoveRateX() { return field_0x33f8; }
+    s16 getProcNeckX() { return mProcNeckX; }
+    s16 getMidnaProcNeckY() { return mMidnaProcNeckY; }
+    f32 getEyeMoveRateY() { return mEyeMoveRateY; }
+    f32 getMidnaEyeMoveRateX() { return mMidnaEyeMoveRateX; }
 
     J3DModel* getMidnaModel() {
         if (mClothesChangeWaitTimer != 0) {
@@ -3629,16 +3629,16 @@ public:
         return &m_faceTexDataTable[i_anmID];
     }
 
-    s16 getCameraAngleX() const { return field_0x310a; }
-    s16 getCameraAngleY() const { return field_0x310c; }
-    cXyz* getSubjectEyePos() { return &field_0x3768; }
+    s16 getCameraAngleX() const { return mCameraAngleX; }
+    s16 getCameraAngleY() const { return mCameraAngleY; }
+    cXyz* getSubjectEyePos() { return &mSubjectEyePos; }
 
     u32 checkReinRide() const { return mRideStatus == RIDETYPE_HORSE || mRideStatus == RIDETYPE_BOAR; }
     int getGrassHowlEventActor() const { return field_0x3198; }
     MtxP getShieldMtx() const { return mShieldModel->getBaseTRMtx(); }
     MtxP getMagneBootsMtx() { return mMagneBootMtx; }
     MtxP getMagneBootsInvMtx() { return mMagneBootInvMtx; }
-    s16 getMagneBootsModelShapeAngle() const { return field_0x3118; }
+    s16 getMagneBootsModelShapeAngle() const { return mMagneBootsModelShapeAngle; }
 
     BOOL checkFishingCastMode() const {
         return (mProcID == PROC_FISHING_CAST && !(mItemAcKeep.getActor() != NULL && mItemAcKeep.getActor()->eventInfo.checkCommandDemoAccrpt())) ||
@@ -3672,7 +3672,7 @@ public:
 
     f32 getFishingReelFrame() const { return mUpperFrameCtrl[2].getFrame(); }
 
-    void changeFishGetFace(u8 param_0) { field_0x2fc8 = param_0; }
+    void changeFishGetFace(u8 param_0) { mFishGetFace = param_0; }
 
     BOOL checkSlideMode() {
         return mProcID == PROC_SLIDE || mProcID == PROC_SLIDE_LAND ||
@@ -4041,7 +4041,7 @@ public:
     /* 0x01F94 */ daPy_anmHeap_c mUpperAnmHeap[3];
     /* 0x01FD0 */ daPy_frameCtrl_c mUnderFrameCtrl[3];
     /* 0x02018 */ daPy_frameCtrl_c mUpperFrameCtrl[3];
-    /* 0x02060 */ mDoExt_MtxCalcOldFrame* field_0x2060;
+    /* 0x02060 */ mDoExt_MtxCalcOldFrame* m_oldFrameCalc;
     /* 0x02064 */ daAlink_sight_c mSight;
 #if PLATFORM_WII
     u8 unk_0x20f0[4];
@@ -4069,7 +4069,7 @@ public:
     /* 0x027E8 */ dAttList_c* mAttList2;
     /* 0x027EC */ fopAc_ac_c* mTargetedActor;
     /* 0x027F0 */ fopAc_ac_c* field_0x27f0;
-    /* 0x027F4 */ fopAc_ac_c* field_0x27f4;
+    /* 0x027F4 */ fopAc_ac_c* mPriActorOwn;
     /* 0x027F8 */ fopAc_ac_c* field_0x27f8;
     /* 0x027FC */ fopAc_ac_c* field_0x27fc;
     /* 0x02800 */ daTagMmsg_c* mMidnaMsg;
@@ -4109,7 +4109,7 @@ public:
     /* 0x02C78 */ Mtx mMagneBootInvMtx;
     /* 0x02CA8 */ Z2CreatureLink mZ2Link;
     /* 0x02D78 */ u8* field_0x2d78;
-    /* 0x02D7C */ daPy_frameCtrl_c* field_0x2d7c;
+    /* 0x02D7C */ daPy_frameCtrl_c* m_basFrameCtrl;
     /* 0x02D80 */ void* field_0x2d80;
     /* 0x02D84 */ Z2WolfHowlMgr mZ2WolfHowlMgr;
     /* 0x02E44 */ dJntCol_c field_0x2e44;
@@ -4182,7 +4182,7 @@ public:
     /* 0x02FC5 */ u8 field_0x2fc5;
     /* 0x02FC6 */ u8 field_0x2fc6;
     /* 0x02FC7 */ u8 field_0x2fc7;
-    /* 0x02FC8 */ u8 field_0x2fc8;
+    /* 0x02FC8 */ u8 mFishGetFace;
     /* 0x02FC9 */ u8 field_0x2fc9;
     /* 0x02FCA */ u8 field_0x2fca;
     /* 0x02FCB */ u8 field_0x2fcb;
@@ -4296,7 +4296,7 @@ public:
     /* 0x03092 */ s16 field_0x3092;
     /* 0x03094 */ s16 field_0x3094[3];
     /* 0x0309A */ s16 field_0x309a[3];
-    /* 0x030A0 */ s16 field_0x30a0;
+    /* 0x030A0 */ s16 mProcNeckX;
     /* 0x030A2 */ s16 field_0x30a2;
     /* 0x030A4 */ s16 field_0x30a4;
     /* 0x030A6 */ s16 field_0x30a6;
@@ -4310,8 +4310,8 @@ public:
     /* 0x030B6 */ u16 field_0x30b6;
     /* 0x030B8 */ u16 mLeftHandJntNo;
     /* 0x030BA */ u16 mRightHandJntNo;
-    /* 0x030BC */ u16 field_0x30bc;
-    /* 0x030BE */ u16 field_0x30be;
+    /* 0x030BC */ u16 mLeftFootJnt;
+    /* 0x030BE */ u16 mRightFootJnt;
     /* 0x030C0 */ u16 mLeftItemJntNo;
     /* 0x030C2 */ u16 mRightItemJntNo;
     /* 0x030C4 */ u16 field_0x30c4;
@@ -4322,7 +4322,7 @@ public:
     /* 0x030CE */ u16 mKeepItem;
     /* 0x030D0 */ s16 field_0x30d0;
     /* 0x030D2 */ s16 field_0x30d2;
-    /* 0x030D4 */ s16 field_0x30d4;
+    /* 0x030D4 */ s16 mMidnaProcNeckY;
     /* 0x030D6 */ s16 field_0x30d6;
     /* 0x030D8 */ u8 field_0x30d8[0x14];
     /* 0x030EC */ s16 field_0x30ec;
@@ -4340,14 +4340,14 @@ public:
     /* 0x03104 */ s16 field_0x3104;
     /* 0x03106 */ u16 field_0x3106;
     /* 0x03108 */ s16 field_0x3108;
-    /* 0x0310A */ s16 field_0x310a;
-    /* 0x0310C */ s16 field_0x310c;
+    /* 0x0310A */ s16 mCameraAngleX;
+    /* 0x0310C */ s16 mCameraAngleY;
     /* 0x0310E */ s16 field_0x310e;
     /* 0x03110 */ s16 field_0x3110;
     /* 0x03112 */ u16 mExitID;
     /* 0x03114 */ s16 field_0x3114;
     /* 0x03116 */ s16 field_0x3116;
-    /* 0x03118 */ s16 field_0x3118;
+    /* 0x03118 */ s16 mMagneBootsModelShapeAngle;
     /* 0x0311A */ s16 field_0x311a;
     /* 0x0311C */ s16 field_0x311c;
     /* 0x0311E */ s16 field_0x311e;
@@ -4418,8 +4418,8 @@ public:
     /* 0x032D8 */ firePointEff_c field_0x32d8[4];
     /* 0x03398 */ f32 mNormalSpeed;
     /* 0x0339C */ f32 mSpeedModifier;
-    /* 0x033A0 */ f32 field_0x33a0;
-    /* 0x033A4 */ f32 field_0x33a4;
+    /* 0x033A0 */ f32 mFootSpeed;
+    /* 0x033A4 */ f32 mOldStickValue;
     /* 0x033A8 */ f32 mStickValue;
     /* 0x033AC */ f32 mMoveValue;
     /* 0x033B0 */ f32 field_0x33b0;
@@ -4428,7 +4428,7 @@ public:
     /* 0x033BC */ f32 field_0x33bc;
     /* 0x033C0 */ f32 field_0x33c0;
     /* 0x033C4 */ f32 mFallHeight;
-    /* 0x033C8 */ f32 field_0x33c8;
+    /* 0x033C8 */ f32 mJumpStartHeight;
     /* 0x033CC */ f32 field_0x33cc;
     /* 0x033D0 */ f32 field_0x33d0;
     /* 0x033D4 */ f32 field_0x33d4;
@@ -4439,8 +4439,8 @@ public:
     /* 0x033E8 */ f32 field_0x33e8;
     /* 0x033EC */ f32 field_0x33ec;
     /* 0x033F0 */ f32 field_0x33f0;
-    /* 0x033F4 */ f32 field_0x33f4;
-    /* 0x033F8 */ f32 field_0x33f8;
+    /* 0x033F4 */ f32 mEyeMoveRateY;
+    /* 0x033F8 */ f32 mMidnaEyeMoveRateX;
     /* 0x033FC */ f32 field_0x33fc;
     /* 0x03400 */ f32 field_0x3400;
     /* 0x03404 */ f32 field_0x3404;
@@ -4524,14 +4524,14 @@ public:
     /* 0x03738 */ cXyz field_0x3738;
     /* 0x03744 */ cXyz field_0x3744;
     /* 0x03750 */ cXyz field_0x3750;
-    /* 0x0375C */ cXyz field_0x375c;
-    /* 0x03768 */ cXyz field_0x3768;
+    /* 0x0375C */ cXyz mShadowTalkAtnPos;
+    /* 0x03768 */ cXyz mSubjectEyePos;
     /* 0x03774 */ cXyz mForcePutPos;
     /* 0x03780 */ cXyz field_0x3780;
     /* 0x0378C */ cXyz field_0x378c;
     /* 0x03798 */ cXyz field_0x3798;
     /* 0x037A4 */ cXyz field_0x37a4;
-    /* 0x037B0 */ cXyz field_0x37b0[2];
+    /* 0x037B0 */ cXyz mLastFootPos[2];
     /* 0x037C8 */ cXyz field_0x37c8;
     /* 0x037D4 */ cXyz field_0x37d4;
     /* 0x037E0 */ cXyz mHeldItemRootPos;

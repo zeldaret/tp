@@ -1617,7 +1617,7 @@ int daAlink_c::procCutJumpLandInit(int param_0) {
     setSingleAnimeParam(ANM_CUT_JUMP_LAND, &mpHIO->mCut.mCutJump.m.mLandAnm);
 
     if (checkNoResetFlg0(FLG0_WATER_IN_MOVE)) {
-        field_0x2060->initOldFrameMorf(5.0f * mpHIO->mCut.mCutJump.m.mLandAnm.mInterpolation,
+        m_oldFrameCalc->initOldFrameMorf(5.0f * mpHIO->mCut.mCutJump.m.mLandAnm.mInterpolation,
                                        0, 0x23);
     }
 

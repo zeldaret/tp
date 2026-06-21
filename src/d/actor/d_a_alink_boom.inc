@@ -218,7 +218,7 @@ void daAlink_c::throwBoomerang() {
     } else if (mLinkAcch.ChkGroundHit() && boomerang_item) {
         if (mTargetedActor == NULL && item != NULL) {
             mTargetedActor = item;
-            field_0x27f4 = item;
+            mPriActorOwn = item;
         }
 
         if (checkZeroSpeedF()) {
@@ -228,7 +228,7 @@ void daAlink_c::throwBoomerang() {
             procAtnActorMoveInit();
         }
 
-        field_0x2060->initOldFrameMorf(0.0f, 0, 35);
+        m_oldFrameCalc->initOldFrameMorf(0.0f, 0, 35);
     }
 }
 

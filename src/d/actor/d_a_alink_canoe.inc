@@ -205,15 +205,15 @@ void daAlink_c::setFishingWaitAction() {
 }
 
 void daAlink_c::setFishGetFace() {
-    if (field_0x2fc8 == 1) {
+    if (mFishGetFace == 1) {
         setFacePriBck(dRes_ID_ALANM_BCK_FH_e);
-    } else if (field_0x2fc8 == 2) {
+    } else if (mFishGetFace == 2) {
         setFacePriTexture(FTANM_I_A);
         setFacePriBck(dRes_ID_ALANM_BCK_FI_e);
-    } else if (field_0x2fc8 == 3) {
+    } else if (mFishGetFace == 3) {
         setFacePriTexture(FTANM_J_A);
         setFacePriBck(dRes_ID_ALANM_BCK_FJ_e);
-    } else if (field_0x2fc8 == 4) {
+    } else if (mFishGetFace == 4) {
         setFacePriTexture(FTANM_K_A);
         setFacePriBck(dRes_ID_ALANM_BCK_FK_e);
     } else {
@@ -338,9 +338,9 @@ int daAlink_c::checkNextActionCanoe() {
 int daAlink_c::procCanoeRideInit() {
     commonProcInit(PROC_CANOE_RIDE);
     setHeavyBoots(0);
-    mRideAcKeep.setData(field_0x27f4);
+    mRideAcKeep.setData(mPriActorOwn);
     deleteEquipItem(FALSE, FALSE);
-    daCanoe_c* canoe = (daCanoe_c*)field_0x27f4;
+    daCanoe_c* canoe = (daCanoe_c*)mPriActorOwn;
 
     setSingleAnime(ANM_HANG_CLIMB_TOP, mpHIO->mWallHang.mWallCatch.m.mClimbAnm.mSpeed,
                    mpHIO->mWallHang.mWallCatch.m.mClimbStartFrame,
@@ -457,7 +457,7 @@ int daAlink_c::procCanoeGetOffInit() {
     mNormalSpeed = 0.0f;
     speed.y = 0.0f;
 
-    J3DTransformInfo* var_r28 = field_0x2060->getOldFrameTransInfo(0);
+    J3DTransformInfo* var_r28 = m_oldFrameCalc->getOldFrameTransInfo(0);
 
     cXyz sp4C(canoe->current.pos.x - cM_scos(shape_angle.y) * 150.0f, canoe->current.pos.y + 100.0f, canoe->current.pos.z + cM_ssin(shape_angle.y) * 150.0f);
     cXyz sp58(canoe->current.pos.x, sp4C.y, canoe->current.pos.z);
@@ -523,7 +523,7 @@ int daAlink_c::procCanoeGetOff() {
         }
     } else {
         if (mProcVar3.field_0x300e == 0) {
-            if (field_0x2060->getOldFrameRate() < 0.01f) {
+            if (m_oldFrameCalc->getOldFrameRate() < 0.01f) {
                 mProcVar3.field_0x300e = 1;
                 setSingleAnimeParam(ANM_VJUMP_START, &mpHIO->mWallHang.mSmallJump.m.mSmallJumpAnm);
                 field_0x33b0 = l_waitBaseAnime.y;
@@ -563,7 +563,7 @@ int daAlink_c::procCanoeWaitInit(int param_0) {
         s16 var_r25 = shape_angle.y - canoe->shape_angle.y;
 
         setOldRootQuaternion(0, var_r25, 0);
-        J3DTransformInfo* transinfo = field_0x2060->getOldFrameTransInfo(0);
+        J3DTransformInfo* transinfo = m_oldFrameCalc->getOldFrameTransInfo(0);
 
         mDoMtx_stack_c::YrotS(-canoe->shape_angle.y);
         mDoMtx_stack_c::transM(-canoe->current.pos.x, -canoe->current.pos.y, -canoe->current.pos.z);
@@ -1218,7 +1218,7 @@ int daAlink_c::procCanoeFishingReel() {
     } else if (checkUpperAnime(dRes_ID_ALANM_BCK_HIT_e)) {
         if (checkAnmEnd(&mUpperFrameCtrl[2])) {
             setArmReelAnime();
-            field_0x2060->initOldFrameMorf(3.0f, field_0x30a8, field_0x30aa);
+            m_oldFrameCalc->initOldFrameMorf(3.0f, field_0x30a8, field_0x30aa);
         }
     } else {
         dmg_rod_class* mg_rod = (dmg_rod_class*)mItemAcKeep.getActor();
@@ -1282,10 +1282,10 @@ int daAlink_c::procCanoeFishingGet() {
     } else if (checkAnmEnd(framectrl)) {
         if (checkEndResetFlg0(ERFLG0_FISHING_RELEASE)) {
             setSingleAnimeBaseMorf(ANM_CANOE_RELEASE, 3.0f);
-            field_0x2fc8 = 0;
+            mFishGetFace = 0;
             offModeFlg(0x100);
         } else if (checkEndResetFlg2(ERFLG2_FISHING_KEEP)) {
-            field_0x2fc8 = 0;
+            mFishGetFace = 0;
             procCanoeFishingWaitInit();
         }
     } else if (framectrl->checkPass(field_0x3478)) {
@@ -1323,8 +1323,8 @@ int daAlink_c::procCanoeSubjectivity() {
         if (checkUpperReadyThrowAnime()) {
             field_0x3190 = temp_r28;
             mBodyAngle.y = field_0x3190;
-            field_0x310a = mBodyAngle.x;
-            field_0x310c = shape_angle.y + field_0x3190;
+            mCameraAngleX = mBodyAngle.x;
+            mCameraAngleY = shape_angle.y + field_0x3190;
         }
         return 1;
     } else {
@@ -1660,7 +1660,7 @@ int daAlink_c::procFishingCast() {
 
     if (checkEndResetFlg0(ERFLG0_FISHING_RELEASE)) {
         setFaceBasicAnime(ANM_WAIT);
-        field_0x2fc8 = 0;
+        mFishGetFace = 0;
     }
 
     if (checkEndResetFlg0(ERFLG0_FISHING_HIT) && mItemMode != 0xFF) {

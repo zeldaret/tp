@@ -240,7 +240,7 @@ int daAlink_c::checkDemoAction() {
         }
 
         if (var_r28 != 0) {
-            field_0x2060->initOldFrameMorf(0.0f, 0, field_0x30c6);
+            m_oldFrameCalc->initOldFrameMorf(0.0f, 0, field_0x30c6);
         }
         return var_r28;
     } else if (demoMode == daPy_demo_c::DEMO_UNK_9_e) {
@@ -1221,7 +1221,7 @@ void daAlink_c::setDemoBodyBck(dDemo_actor_c* i_demoActor, u16 i_resID) {
 
         dDemo_actor_c* demo_actor_p = dDemo_c::getActor(demoActorID);
         if (demo_actor_p->checkEnable(dDemo_actor_c::ENABLE_ANM_TRANSITION_e)) {
-            field_0x2060->initOldFrameMorf(demo_actor_p->getPrm_Morf(), 0, field_0x30c6);
+            m_oldFrameCalc->initOldFrameMorf(demo_actor_p->getPrm_Morf(), 0, field_0x30c6);
         }
 
         field_0x2f8c = 0;
@@ -1287,7 +1287,7 @@ BOOL daAlink_c::checkDeadAction(int param_0) {
                     poly_exitId = 0x3F;
                 }
 
-                if (((poly_exitId != 0x3F || mExitID != 0x3F) && mGroundCode == 5 && field_0x33c8 - current.pos.y > 500.0f) || ((mExitID & 0x8000) && checkModeFlg(2))) {
+                if (((poly_exitId != 0x3F || mExitID != 0x3F) && mGroundCode == 5 && mJumpStartHeight - current.pos.y > 500.0f) || ((mExitID & 0x8000) && checkModeFlg(2))) {
                     onNoResetFlg2(FLG2_FORCE_GAMEOVER);
                     return procCoDeadInit(0);
                 }
@@ -1735,7 +1735,7 @@ int daAlink_c::procCoTalkInit() {
 
                 frameCtrl_p->setRate(0.0f);
                 getNowAnmPackUnder(UNDER_0)->setFrame(frameCtrl_p->getFrame());
-                field_0x2060->initOldFrameMorf(3.0f, 0, 40);
+                m_oldFrameCalc->initOldFrameMorf(3.0f, 0, 40);
             }
 
             dComIfGp_setPlayerStatus0(0, 0x8000000);

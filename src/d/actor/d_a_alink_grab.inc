@@ -45,8 +45,8 @@ static fopAc_ac_c* daAlink_searchLightBall(fopAc_ac_c* i_actor, void* i_data) {
 }
 
 BOOL daAlink_c::checkGrabLineCheck() {
-    cXyz sp18(field_0x27f4->attention_info.position.x, field_0x27f4->attention_info.position.y + 10.0f, field_0x27f4->attention_info.position.z);
-    if (fopAcM_lc_c::lineCheck(&attention_info.position, &sp18, field_0x27f4) && fopAcM_lc_c::checkWallHit()) {
+    cXyz sp18(mPriActorOwn->attention_info.position.x, mPriActorOwn->attention_info.position.y + 10.0f, mPriActorOwn->attention_info.position.z);
+    if (fopAcM_lc_c::lineCheck(&attention_info.position, &sp18, mPriActorOwn) && fopAcM_lc_c::checkWallHit()) {
         return true;
     }
 
@@ -518,7 +518,7 @@ BOOL daAlink_c::checkNextActionGrab() {
 
     if (mTargetedActor == NULL && mAttList != NULL && mAttList->mType == fopAc_attn_DOOR_e && fopAcM_CheckStatus(grabActor, fopAcStts_UNK_0x2000000_e)) {
         setDoStatus(BUTTON_STATUS_OPEN);
-    } else if ((field_0x27f4 == NULL) || !checkGrabTalkActor(field_0x27f4) || !setTalkStatus()) {
+    } else if ((mPriActorOwn == NULL) || !checkGrabTalkActor(mPriActorOwn) || !setTalkStatus()) {
         if (checkModeFlg(0x400)) {
             setDoStatus(BUTTON_STATUS_THROW);
         } else if ((!checkAttentionState() && mStickValue <= getGrabThrowRate()) || checkGrabNotThrow()) {
@@ -529,7 +529,7 @@ BOOL daAlink_c::checkNextActionGrab() {
     }
 
     if (doTrigger() && dComIfGp_getDoStatus() == BUTTON_STATUS_OPEN) {
-        fopAcM_orderDoorEvent(this, field_0x27f4, 0, 0);
+        fopAcM_orderDoorEvent(this, mPriActorOwn, 0, 0);
         return 1;
     }
 
@@ -704,24 +704,24 @@ void daAlink_c::setGrabItemActor(fopAc_ac_c* i_actor) {
 }
 
 int daAlink_c::procGrabReadyInit() {
-    if (fopAcM_checkCarryNow(field_0x27f4)) {
+    if (fopAcM_checkCarryNow(mPriActorOwn)) {
         return checkWaitAction();
     }
 
     if (mEquipItem != dItemNo_NONE_e) {
-        return procPreActionUnequipInit(PROC_GRAB_READY, field_0x27f4);
+        return procPreActionUnequipInit(PROC_GRAB_READY, mPriActorOwn);
     }
 
     commonProcInit(PROC_GRAB_READY);
-    setGrabItemActor(field_0x27f4);
+    setGrabItemActor(mPriActorOwn);
 
-    if (fopAcM_searchActorDistanceXZ2(this, field_0x27f4) > 1.0f) {
-        shape_angle.y = fopAcM_searchActorAngleY(this, field_0x27f4);
+    if (fopAcM_searchActorDistanceXZ2(this, mPriActorOwn) > 1.0f) {
+        shape_angle.y = fopAcM_searchActorAngleY(this, mPriActorOwn);
     }
 
     current.angle.y = shape_angle.y;
     mProcVar2.field_0x300c = shape_angle.y;
-    field_0x37c8 = field_0x27f4->current.pos - field_0x3510;
+    field_0x37c8 = mPriActorOwn->current.pos - field_0x3510;
     mNormalSpeed = 0.0f;
 
     if (checkEquipAnime()) {
@@ -748,7 +748,7 @@ int daAlink_c::procGrabReadyInit() {
         mProcVar3.field_0x300e = 0;
     }
 
-    if (fopAcM_CheckCarryType(field_0x27f4, fopAcM_CARRY(fopAcM_CARRY_UNK_40 | fopAcM_CARRY_HEAVY | fopAcM_CARRY_TYPE_1))) {
+    if (fopAcM_CheckCarryType(mPriActorOwn, fopAcM_CARRY(fopAcM_CARRY_UNK_40 | fopAcM_CARRY_HEAVY | fopAcM_CARRY_TYPE_1))) {
         field_0x3198 = 1;
     } else {
         field_0x3198 = 0;
@@ -1116,7 +1116,7 @@ int daAlink_c::procGrabRebound() {
     }
 
     if (field_0x3198 != 0) {
-        if (field_0x2060->getOldFrameRate() < 0.1f) {
+        if (m_oldFrameCalc->getOldFrameRate() < 0.1f) {
             setWaterInAnmRate(framectrl, mpHIO->mGrab.m.mCarryAnm.mSpeed);
             field_0x3198 = 0;
         }
@@ -1178,18 +1178,18 @@ BOOL daAlink_c::checkInsectActorName(fopAc_ac_c* i_insectActor) {
 }
 
 int daAlink_c::procInsectCatchInit() {
-    if (fopAcM_checkCarryNow(field_0x27f4)) {
+    if (fopAcM_checkCarryNow(mPriActorOwn)) {
         return checkWaitAction();
     }
 
     if (mEquipItem != dItemNo_NONE_e) {
-        return procPreActionUnequipInit(PROC_INSECT_CATCH, field_0x27f4);
+        return procPreActionUnequipInit(PROC_INSECT_CATCH, mPriActorOwn);
     }
 
     commonProcInit(PROC_INSECT_CATCH);
     mNormalSpeed = 0.0f;
 
-    if (field_0x27f4->attention_info.position.y > field_0x3834.y - 30.0f) {
+    if (mPriActorOwn->attention_info.position.y > field_0x3834.y - 30.0f) {
         setSingleAnimeParam(ANM_BOTTLE_SWING, &mpHIO->mItem.mBottle.m.mSwingSideAnm);
         field_0x3478 = 4.0f;
     } else {
@@ -1197,7 +1197,7 @@ int daAlink_c::procInsectCatchInit() {
         field_0x3478 = 8.0f;
     }
 
-    field_0x280c.setData(field_0x27f4);
+    field_0x280c.setData(mPriActorOwn);
     return 1;
 }
 
@@ -1216,29 +1216,29 @@ int daAlink_c::procInsectCatch() {
 }
 
 int daAlink_c::procPickUpInit() {
-    if (fopAcM_checkCarryNow(field_0x27f4)) {
+    if (fopAcM_checkCarryNow(mPriActorOwn)) {
         return checkWaitAction();
     }
 
     if (mEquipItem != dItemNo_NONE_e) {
-        return procPreActionUnequipInit(PROC_PICK_UP, field_0x27f4);
+        return procPreActionUnequipInit(PROC_PICK_UP, mPriActorOwn);
     }
 
-    s16 temp_r3 = fopAcM_GetName(field_0x27f4);
+    s16 temp_r3 = fopAcM_GetName(mPriActorOwn);
     if (temp_r3 == fpcNm_NPC_KS_e && !dComIfGp_event_compulsory(this, NULL, 0xFFFF)) {
         return checkWaitAction();
     }
 
     commonProcInit(PROC_PICK_UP);
-    mGrabItemAcKeep.setData(field_0x27f4);
+    mGrabItemAcKeep.setData(mPriActorOwn);
 
-    if (fopAcM_searchActorDistanceXZ2(this, field_0x27f4) > 1.0f) {
-        shape_angle.y = fopAcM_searchActorAngleY(this, field_0x27f4);
+    if (fopAcM_searchActorDistanceXZ2(this, mPriActorOwn) > 1.0f) {
+        shape_angle.y = fopAcM_searchActorAngleY(this, mPriActorOwn);
     }
 
     current.angle.y = shape_angle.y;
     mProcVar2.field_0x300c = shape_angle.y;
-    field_0x37c8 = field_0x27f4->current.pos - field_0x3510;
+    field_0x37c8 = mPriActorOwn->current.pos - field_0x3510;
 
     fopAc_ac_c* grabActor = mGrabItemAcKeep.getActor();
     mNormalSpeed = 0.0f;
@@ -1259,7 +1259,7 @@ int daAlink_c::procPickUpInit() {
         mProcVar3.field_0x300e = 1;
         field_0x3478 = 7.0f;
         mProcVar4.field_0x3010 = 1;
-        fopAcM_onSwitch(field_0x27f4, 63);
+        fopAcM_onSwitch(mPriActorOwn, 63);
         var_r29 = FALSE;
     } else {
         setSingleAnimeParam(ANM_PICK_UP, &mpHIO->mItem.mPickUp.m.mGrabAnm);
@@ -1268,7 +1268,7 @@ int daAlink_c::procPickUpInit() {
         var_r29 = TRUE;
     }
 
-    fopAcM_setCarryNow(field_0x27f4, var_r29);
+    fopAcM_setCarryNow(mPriActorOwn, var_r29);
     return 1;
 }
 
@@ -1624,7 +1624,7 @@ BOOL daAlink_c::checkGoatCatchActor(fopAc_ac_c* i_actor) {
 }
 
 f32 daAlink_c::getGoatCatchDistance2() {
-    if (fopAcM_GetName(field_0x27f4) == fpcNm_B_MGN_e) {
+    if (fopAcM_GetName(mPriActorOwn) == fpcNm_B_MGN_e) {
         return SQUARE(1000.0f);
     }
 
@@ -2437,25 +2437,25 @@ int daAlink_c::procGoatCatch() {
 
 int daAlink_c::procGoatStrokeInit() {
     if (mEquipItem != dItemNo_NONE_e) {
-        return procPreActionUnequipInit(PROC_GOAT_STROKE, field_0x27f4);
+        return procPreActionUnequipInit(PROC_GOAT_STROKE, mPriActorOwn);
     }
 
     commonProcInit(PROC_GOAT_STROKE);
-    field_0x280c.setData(field_0x27f4);
+    field_0x280c.setData(mPriActorOwn);
     setSingleAnimeBase(ANM_COW_STROKE);
 
     static_cast<daCow_c*>(field_0x280c.getActor())->setNaderu();
     mNormalSpeed = 0.0f;
 
-    s16 var_r30 = fopAcM_searchActorAngleY(field_0x27f4, this) - field_0x27f4->shape_angle.y;
+    s16 var_r30 = fopAcM_searchActorAngleY(mPriActorOwn, this) - mPriActorOwn->shape_angle.y;
     if (var_r30 > 0) {
-        shape_angle.y = field_0x27f4->shape_angle.y - 0x4000;
+        shape_angle.y = mPriActorOwn->shape_angle.y - 0x4000;
     } else {
-        shape_angle.y = field_0x27f4->shape_angle.y + 0x4000;
+        shape_angle.y = mPriActorOwn->shape_angle.y + 0x4000;
     }
 
-    current.pos.x = field_0x27f4->current.pos.x - cM_ssin(shape_angle.y) * 100.0f;
-    current.pos.z = field_0x27f4->current.pos.z - cM_scos(shape_angle.y) * 100.0f;
+    current.pos.x = mPriActorOwn->current.pos.x - cM_ssin(shape_angle.y) * 100.0f;
+    current.pos.z = mPriActorOwn->current.pos.z - cM_scos(shape_angle.y) * 100.0f;
     return 1;
 }
 
@@ -2525,9 +2525,9 @@ int daAlink_c::procGoronMove() {
             mProcVar3.field_0x300e = 0;
         }
         if (mProcVar3.field_0x300e != 0) {
-            if (field_0x27f4->current.pos.abs2XZ(current.pos) < getGoatCatchDistance2()) {
+            if (mPriActorOwn->current.pos.abs2XZ(current.pos) < getGoatCatchDistance2()) {
                 offGoronSideMove();
-                return procGoatCatchInit(field_0x27f4, 0.0f);
+                return procGoatCatchInit(mPriActorOwn, 0.0f);
             }
         }
     } else {

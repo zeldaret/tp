@@ -709,7 +709,7 @@ void daAlink_c::setHookshotReturnEnd() {
 
     if (checkHookshotReadyAnime()) {
         mNowAnmPackUpper[2].setRatio(1.0f);
-        field_0x2060->initOldFrameMorf(3.0f, field_0x30a8, field_0x30aa);
+        m_oldFrameCalc->initOldFrameMorf(3.0f, field_0x30a8, field_0x30aa);
     } else if (checkHookshotShootAnime()) {
         int _;
         f32 anmSpeed;
@@ -1717,8 +1717,8 @@ int daAlink_c::procHookshotRoofWait() {
         onResetFlg0(RFLG0_UNK_4000000);
 
         if (dComIfGp_checkCameraAttentionStatus(field_0x317c, 0x1000)) {
-            field_0x310c = shape_angle.y;
-            field_0x310a = 0;
+            mCameraAngleY = shape_angle.y;
+            mCameraAngleX = 0;
             setSubjectMode();
             onModeFlg(0x60000000);
         }
@@ -1967,23 +1967,23 @@ int daAlink_c::procHookshotWallWait() {
             offModeFlg(0x60000000);
         } else if (dComIfGp_checkPlayerStatus0(0, 0x2000)) {
             s16 old_angle = shape_angle.y;
-            shape_angle.y = field_0x310c;
+            shape_angle.y = mCameraAngleY;
             setBodyAngleToCamera();
             shape_angle.y = old_angle;
 
-            old_angle = field_0x310c - shape_angle.y;
+            old_angle = mCameraAngleY - shape_angle.y;
             if (old_angle > 0x4000) {
-                field_0x310c = shape_angle.y + 0x4000;
+                mCameraAngleY = shape_angle.y + 0x4000;
             } else if (old_angle < -0x4000) {
-                field_0x310c = shape_angle.y - 0x4000;
+                mCameraAngleY = shape_angle.y - 0x4000;
             }
         }
     } else if (dCam_getBody()->ChangeModeOK(4)) {
         onResetFlg0(RFLG0_UNK_4000000);
 
         if (dComIfGp_checkCameraAttentionStatus(field_0x317c, 0x1000)) {
-            field_0x310c = shape_angle.y;
-            field_0x310a = 0;
+            mCameraAngleY = shape_angle.y;
+            mCameraAngleX = 0;
             setSubjectMode();
             onModeFlg(0x60000000);
         }
@@ -2044,7 +2044,7 @@ int daAlink_c::procHookshotWallShootInit() {
     mProcVar2.field_0x300c = 0;
     mProcVar3.field_0x300e = mBodyAngle.x;
     mProcVar4.field_0x3010 = shape_angle.y;
-    field_0x310c = mProcVar4.field_0x3010;
+    mCameraAngleY = mProcVar4.field_0x3010;
     setHookshotReadyMaterial();
     return 1;
 }
@@ -2119,7 +2119,7 @@ int daAlink_c::procHookshotWallShoot() {
 
         mProcVar3.field_0x300e = mBodyAngle.x;
         mBodyAngle.x = 0;
-        field_0x310c = shape_angle.y;
+        mCameraAngleY = shape_angle.y;
         mProcVar4.field_0x3010 = shape_angle.y;
         shape_angle.y = old_angle;
     }

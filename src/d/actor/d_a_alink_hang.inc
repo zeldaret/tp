@@ -472,7 +472,7 @@ int daAlink_c::procHangWaitInit() {
     }
 
     setBowHangAnime();
-    field_0x2d7c = NULL;
+    m_basFrameCtrl = NULL;
     mNormalSpeed = 0.0f;
     speed.y = 0.0f;
     dComIfGp_setPlayerStatus0(0, 0x100);
@@ -823,13 +823,13 @@ int daAlink_c::procHangReady() {
 
 int daAlink_c::procHangLeverDownInit() {
     if (mEquipItem != dItemNo_NONE_e) {
-        return procPreActionUnequipInit(PROC_HANG_LEVER_DOWN, field_0x27f4);
+        return procPreActionUnequipInit(PROC_HANG_LEVER_DOWN, mPriActorOwn);
     }
 
     commonProcInit(PROC_HANG_LEVER_DOWN);
-    field_0x280c.setData(field_0x27f4);
+    field_0x280c.setData(mPriActorOwn);
     setSingleAnimeParam(ANM_CLIMB_JUMP, &mpHIO->mWallHang.mWallCatch.m.mJumpAnm);
-    mProcVar2.field_0x300c = field_0x27f4->shape_angle.y + 0x8000;
+    mProcVar2.field_0x300c = mPriActorOwn->shape_angle.y + 0x8000;
     field_0x3198 = ANM_CLIMB_JUMP;
 
     speed.y = 0.0f;
@@ -1143,7 +1143,7 @@ int daAlink_c::setLadderInit() {
 
         procLadderMoveInit(1, 0, &current.pos);
         field_0x33b0 = l_ladderAnmBaseTransY;
-        field_0x2060->initOldFrameMorf(5.0f, 0, 35);
+        m_oldFrameCalc->initOldFrameMorf(5.0f, 0, 35);
         return 1;
     }
 
@@ -1363,8 +1363,8 @@ int daAlink_c::procLadderUpEndInit(BOOL param_0) {
     mNormalSpeed = 0.0f;
     speedF = 0.0f;
 
-    field_0x30a0 = -0x0800;
-    field_0x33f4 = -1.0f;
+    mProcNeckX = -0x0800;
+    mEyeMoveRateY = -1.0f;
     mProcVar2.field_0x300c = 1;
     mProcVar4.field_0x3010 = 1;
     dComIfGp_setPlayerStatus0(0, 0x2000000);
@@ -1387,8 +1387,8 @@ int daAlink_c::procLadderUpEnd() {
             mProcVar2.field_0x300c = 0;
             mProcVar4.field_0x3010 = 0;
         } else if (frame_ctrl->getFrame() >= 11.0f) {
-            field_0x30a0 = 0;
-            field_0x33f4 = 0.0f;
+            mProcNeckX = 0;
+            mEyeMoveRateY = 0.0f;
         }
 
         field_0x2f99 = 6;
@@ -1474,8 +1474,8 @@ int daAlink_c::procLadderDownEndInit(BOOL param_0) {
     field_0x2f99 = 14;
     setSpecialGravity(0.0f, maxFallSpeed, 0);
 
-    field_0x30a0 = 0x2800;
-    field_0x33f4 = 1.0f;
+    mProcNeckX = 0x2800;
+    mEyeMoveRateY = 1.0f;
     mProcVar2.field_0x300c = 0;
     mProcVar4.field_0x3010 = 0;
     dComIfGp_setPlayerStatus0(0, 0x2000000);
@@ -1495,8 +1495,8 @@ int daAlink_c::procLadderDownEnd() {
                !checkNextAction(1))
     {
         if (frame_ctrl->getFrame() >= 11.0f) {
-            field_0x30a0 = 0;
-            field_0x33f4 = 0.0f;
+            mProcNeckX = 0;
+            mEyeMoveRateY = 0.0f;
         }
 
         field_0x2f99 = 6;
@@ -1558,11 +1558,11 @@ int daAlink_c::procLadderMoveInit(BOOL param_0, BOOL param_1, cXyz* param_2) {
     field_0x2f98 = param_1;
 
     if (!param_1) {
-        field_0x30a0 = -0x800;
-        field_0x33f4 = -1.0f;
+        mProcNeckX = -0x800;
+        mEyeMoveRateY = -1.0f;
     } else {
-        field_0x30a0 = 0x2800;
-        field_0x33f4 = 1.0f;
+        mProcNeckX = 0x2800;
+        mEyeMoveRateY = 1.0f;
     }
 
     field_0x2f99 = 14;
@@ -2059,15 +2059,15 @@ int daAlink_c::procClimbUpStartInit(int param_0) {
     mProcVar5.field_0x3012 = 1;
 
     field_0x37c8.set(l_waitBaseAnime.x, l_ladderAnmBaseTransY, l_waitBaseAnime.z);
-    J3DTransformInfo* trans_info = field_0x2060->getOldFrameTransInfo(0);
+    J3DTransformInfo* trans_info = m_oldFrameCalc->getOldFrameTransInfo(0);
     trans_info->mTranslate.z -= ((field_0x34ec.z - field_0x3798.z) * cM_scos(shape_angle.y)) +
                                 ((field_0x34ec.x - field_0x3798.x) * cM_ssin(shape_angle.y));
 
     field_0x3588.set(trans_info->mTranslate.x,
                      trans_info->mTranslate.y - (current.pos.y - field_0x3798.y),
                      l_waitBaseAnime.z);
-    field_0x3588 = (field_0x3588 * field_0x2060->getOldFrameRate()) +
-                   (field_0x37c8 * (1.0f - field_0x2060->getOldFrameRate()));
+    field_0x3588 = (field_0x3588 * m_oldFrameCalc->getOldFrameRate()) +
+                   (field_0x37c8 * (1.0f - m_oldFrameCalc->getOldFrameRate()));
     field_0x33b0 = field_0x3588.y;
 
     current.pos.x = field_0x34ec.x;
@@ -2091,8 +2091,8 @@ int daAlink_c::procClimbUpStart() {
     field_0x2f99 = 2;
     mProcVar5.field_0x3012 = 0;
 
-    field_0x3588 = (field_0x3588 * field_0x2060->getOldFrameRate()) +
-                   (field_0x37c8 * (1.0f - field_0x2060->getOldFrameRate()));
+    field_0x3588 = (field_0x3588 * m_oldFrameCalc->getOldFrameRate()) +
+                   (field_0x37c8 * (1.0f - m_oldFrameCalc->getOldFrameRate()));
     field_0x33b0 = field_0x3588.y;
 
     setClimbShapeOffset();
@@ -2208,11 +2208,11 @@ int daAlink_c::procClimbMoveUpDownInit(int param_0) {
     }
 
     if (field_0x2f98 == 0) {
-        field_0x30a0 = -0x1800;
-        field_0x33f4 = -1.0f;
+        mProcNeckX = -0x1800;
+        mEyeMoveRateY = -1.0f;
     } else {
-        field_0x30a0 = 0x2800;
-        field_0x33f4 = 1.0f;
+        mProcNeckX = 0x2800;
+        mEyeMoveRateY = 1.0f;
     }
 
     field_0x2f99 = 10;
@@ -2379,11 +2379,11 @@ int daAlink_c::procClimbWaitInit(int param_0, int param_1) {
 
     if (param_0) {
         if (field_0x2f98 == 0) {
-            field_0x30a0 = -0x1800;
-            field_0x33f4 = -1.0f;
+            mProcNeckX = -0x1800;
+            mEyeMoveRateY = -1.0f;
         } else if (field_0x2f98 == 1) {
-            field_0x30a0 = 0x2800;
-            field_0x33f4 = 1.0f;
+            mProcNeckX = 0x2800;
+            mEyeMoveRateY = 1.0f;
         } else if (field_0x2f98 == 3) {
             field_0x30a2 = -0x1800;
             field_0x33f0 = -1.0f;
@@ -2414,10 +2414,10 @@ int daAlink_c::procClimbWait() {
                 if (mProcVar0.field_0x3008 != 0) {
                     mProcVar0.field_0x3008--;
                 } else {
-                    daPy_addCalcShort(&field_0x30a0, 0, 3, 0x800, 0x100);
+                    daPy_addCalcShort(&mProcNeckX, 0, 3, 0x800, 0x100);
                     daPy_addCalcShort(&field_0x30a2, 0, 3, 0x800, 0x100);
                     field_0x33f0 = field_0x30a2 * 0.00016276042f;
-                    field_0x33f4 = -field_0x30a0 * -0.00016276042f;
+                    mEyeMoveRateY = -mProcNeckX * -0.00016276042f;
                 }
             }
         } else if (fabsf(frameCtrl->getRate()) > 0.01f) {
@@ -2463,7 +2463,7 @@ int daAlink_c::procClimbToRoof() {
         current.angle.y = shape_angle.y;
         mPrevAngleY = shape_angle.y;
         setOldRootQuaternion(0, 0x8000, 0);
-        field_0x2060->getOldFrameTransInfo(0)->mTranslate.z *= -1.0f;
+        m_oldFrameCalc->getOldFrameTransInfo(0)->mTranslate.z *= -1.0f;
 
         cXyz sp38(current.pos.x + cM_ssin(shape_angle.y) * 95.0f, current.pos.y,
                   current.pos.z + cM_scos(shape_angle.y) * 95.0f);
@@ -2645,12 +2645,12 @@ int daAlink_c::procRoofHangWaitInit(int param_0) {
             current.pos.x += 25.0f * cM_ssin(this->shape_angle.y);
             current.pos.z += 25.0f * cM_scos(this->shape_angle.y);
 
-            field_0x2060->getOldFrameTransInfo(0)->mTranslate.z -= 25.0f;
+            m_oldFrameCalc->getOldFrameTransInfo(0)->mTranslate.z -= 25.0f;
         } else {
             current.pos.x -= 25.0f * cM_ssin(this->shape_angle.y);
             current.pos.z -= 25.0f * cM_scos(this->shape_angle.y);
 
-            field_0x2060->getOldFrameTransInfo(0)->mTranslate.z += 25.0f;
+            m_oldFrameCalc->getOldFrameTransInfo(0)->mTranslate.z += 25.0f;
         }
     }
 
@@ -2706,7 +2706,7 @@ int daAlink_c::procRoofHangFrontMoveInit() {
     if (frame >= 0) {
         mUnderFrameCtrl[0].setFrame(frame);
         getNowAnmPackUnder(UNDER_0)->setFrame(frame);
-        field_0x2060->initOldFrameMorf(0.0f, 0, 0x23);
+        m_oldFrameCalc->initOldFrameMorf(0.0f, 0, 0x23);
     }
 
     setSpecialGravity(0.0f, maxFallSpeed, 0);
@@ -2846,7 +2846,7 @@ int daAlink_c::procRoofHangTurnInit() {
         mProcVar0.field_0x3008 = 1;
         ANGLE_ADD_2(shape_angle.y, 0x8000);
         setOldRootQuaternion(0, -0x8000, 0);
-        field_0x2060->getOldFrameTransInfo(0)->mTranslate.z = -8.899365425109863f;
+        m_oldFrameCalc->getOldFrameTransInfo(0)->mTranslate.z = -8.899365425109863f;
         mProcVar2.field_0x300c = mMoveAngle;
         field_0x3478 = 0.0f;
         field_0x347c = 10.0f;
@@ -2886,7 +2886,7 @@ int daAlink_c::procRoofHangTurn() {
             ANGLE_ADD_2(shape_angle.y, 0x8000);
             current.angle.y = shape_angle.y;
             setOldRootQuaternion(0, -0x8000, 0);
-            field_0x2060->getOldFrameTransInfo(0)->mTranslate.z += 17.798730850219727f;
+            m_oldFrameCalc->getOldFrameTransInfo(0)->mTranslate.z += 17.798730850219727f;
         }
 
         checkNextActionRoofHang();
