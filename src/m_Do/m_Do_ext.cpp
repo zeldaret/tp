@@ -3,7 +3,7 @@
  * Model, Animation, and Heap Functions
  */
 
-#include "d/dolzel.h" // IWYU pragma: keep
+#include "m_Do/machine.h" // IWYU pragma: keep
 
 #include <gf/GFPixel.h>
 #include <gx.h>

@@ -604,6 +604,12 @@ config.precompiled_headers = [
         "cflags": ["-lang=c++", *cflags_dolzel_rel],
     },
     {
+        "source": "include/m_Do/machine.pch",
+        "output": "m_Do/machine.mch",
+        "mw_version": MWVersion(config.version),
+        "cflags": ["-lang=c++", *cflags_dolzel_framework],
+    },
+    {
         "source": "libs/JSystem/include/JSystem/JSystem.pch",
         "output": "JSystem/JSystem.mch",
         "mw_version": MWVersion(config.version),

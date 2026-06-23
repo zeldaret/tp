@@ -3,6 +3,8 @@
  * OSReport and printf Helper Functions
  */
 
+#include "m_Do/machine.h" // IWYU pragma: keep
+
 #include "m_Do/m_Do_printf.h"
 #include <cstdio>
 #include <base/PPCArch.h>

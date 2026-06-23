@@ -79,7 +79,7 @@ public:
     /* vt[03] */ virtual void callAllDisposer();
     /* vt[04] */ virtual u32 getHeapType() = 0;
     /* vt[05] */ virtual bool check() = 0;
-    /* vt[06] */ virtual bool dump_sort();
+    /* vt[06] */ virtual bool dump_sort() { return true; }
     /* vt[07] */ virtual bool dump() = 0;
     /* vt[08] */ virtual void do_destroy() = 0;
     /* vt[09] */ virtual void* do_alloc(u32 size, int alignment) = 0;

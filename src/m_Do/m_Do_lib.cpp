@@ -3,6 +3,8 @@
  * View and Projection Matrix Helper Functions
  */
 
+#include "m_Do/machine.h" // IWYU pragma: keep
+
 #include "m_Do/m_Do_lib.h"
 #include "m_Do/m_Do_graphic.h"
 #include "JSystem/J3DGraphBase/J3DMatBlock.h"

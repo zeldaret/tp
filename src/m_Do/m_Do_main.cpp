@@ -3,6 +3,8 @@
  * Main Initialization
  */
 
+#include "m_Do/machine.h" // IWYU pragma: keep
+
 #include "m_Do/m_Do_main.h"
 #include "DynamicLink.h"
 #include "JSystem/JAudio2/JASAudioThread.h"
@@ -35,8 +37,28 @@
 #include "SSystem/SComponent/c_counter.h"
 #include <cstring>
 
+#if PLATFORM_WII
+#include "d/d_cursor_mng.h"
+#endif
+
 #if PLATFORM_WII || PLATFORM_SHIELD
 #include <revolution/sc.h>
+#endif
+
+#if PLATFORM_WII
+#define GET_BUTTON(pad) cAPICPad_BUTTON(2)
+#define GET_TRIGGER(pad) cAPICPad_TRIGGER(2)
+#define GET_ANALOG_L(pad) cAPICPad_L_ANALOG(2)
+#define GET_ANALOG_R(pad) cAPICPad_R_ANALOG(2)
+#define GET_STICK_X(pad) cAPICPad_X_STICK(2)
+#define GET_STICK_Y(pad) cAPICPad_Y_STICK(2)
+#else
+#define GET_BUTTON(pad) mDoCPd_c::getHold(pad)
+#define GET_TRIGGER(pad) mDoCPd_c::getTrig(pad)
+#define GET_ANALOG_L(pad) mDoCPd_c::getAnalogL(pad)
+#define GET_ANALOG_R(pad) mDoCPd_c::getAnalogR(pad)
+#define GET_STICK_X(pad) mDoCPd_c::getStickX(pad)
+#define GET_STICK_Y(pad) mDoCPd_c::getStickY(pad)
 #endif
 
 class mDoMain_HIO_c : public mDoHIO_entry_c {
@@ -45,12 +67,18 @@ public:
     void genMessage(JORMContext*);
 };
 
-void version_check() {
-#if !PLATFORM_SHIELD
+static void version_check() {
+#if PLATFORM_GCN
     if (!strcmp("20Apr2004", "20Apr2004") && !strcmp("Patch2", "Patch2")) {
         return;
     }
+#elif PLATFORM_WII
+    if (!strcmp("07Sep2006", "07Sep2006") && !strcmp("Patch9", "Patch9")) {
+        return;
+    }
+#endif
 
+#if PLATFORM_GCN || PLATFORM_WII
     // "SDK version doesn't match. Stopping\n"
     OSReport_Error("SDKのバージョンが一致しません。停止します\n");
     do {
@@ -60,111 +88,47 @@ void version_check() {
 
 char mDoMain::COPYDATE_STRING[18] = "??/??/?? ??:??:??";
 
-// static HeapCheck RootHeapCheck;
-static HeapCheck RootHeapCheck = HeapCheck(0,"Root","ルート");
-
-// static HeapCheck SystemHeapCheck;
-static HeapCheck SystemHeapCheck = HeapCheck(0,"System","システム");
-
-// static HeapCheck ZeldaHeapCheck;
-static HeapCheck ZeldaHeapCheck = HeapCheck(0,"Zelda","ゼルダ");
-
-// static HeapCheck GameHeapCheck;
-static HeapCheck GameHeapCheck = HeapCheck(0,"Game","ゲーム");
-
-// static HeapCheck ArchiveHeapCheck;
-static HeapCheck ArchiveHeapCheck = HeapCheck(0,"Archive","アーカイブ");
-
-// static HeapCheck J2dHeapCheck;
-static HeapCheck J2dHeapCheck = HeapCheck(0,"J2d","J2D");
-
-// static HeapCheck HostioHeapCheck;
-static HeapCheck HostioHeapCheck = HeapCheck(0,"Hostio","ホストIO");
-
-// static HeapCheck CommandHeapCheck;
-static HeapCheck CommandHeapCheck = HeapCheck(0,"Command","コマンド");
-
-static HeapCheck* HeapCheckTable[8] = {
-    &RootHeapCheck,    &SystemHeapCheck, &ZeldaHeapCheck,  &GameHeapCheck,
-    &ArchiveHeapCheck, &J2dHeapCheck,    &HostioHeapCheck, &CommandHeapCheck,
+#if VERSION == VERSION_WII_USA_R0
+static HeapCheck RootHeapCheck = {
+    "Root", NULL, 0, 0x7FFFFFFF, 0x1400000, 0x140, 0x10000, 0, 0,
 };
+static HeapCheck SystemHeapCheck = {
+    "System", NULL, 0, 0x7FFFFFFF, 0x870000, 0x87, 0x10000, 0, 0,
+};
+static HeapCheck ZeldaHeapCheck = {
+    "Zelda", NULL, 0, 0x7FFFFFFF, 0x7C0000, 0x7C, 0x10000, 0, 0,
+};
+static HeapCheck GameHeapCheck = {
+    "Game", NULL, 0, 0x7FFFFFFF, 0x300000, 0x30, 0x10000, 0, 0,
+};
+static HeapCheck ArchiveHeapCheck = {
+    "Archive", NULL, 0, 0x7FFFFFFF, 0x880000, 0x88, 0x10000, 0, 0,
+};
+static HeapCheck J2dHeapCheck = {
+    "J2d", NULL, 0, 0x7FFFFFFF, 0x1000, 0x10, 0x100, 0, 0,
+};
+static HeapCheck CommandHeapCheck = {
+    "Command", NULL, 0, 0x7FFFFFFF, 0x1000, 0x10, 0x100, 0, 0,
+};
+#else
+static HeapCheck RootHeapCheck = HeapCheck(0, "Root", "ルート");
+static HeapCheck SystemHeapCheck = HeapCheck(0, "System", "システム");
+static HeapCheck ZeldaHeapCheck = HeapCheck(0, "Zelda", "ゼルダ");
+static HeapCheck GameHeapCheck = HeapCheck(0, "Game", "ゲーム");
+static HeapCheck ArchiveHeapCheck = HeapCheck(0, "Archive", "アーカイブ");
+static HeapCheck J2dHeapCheck = HeapCheck(0, "J2d", "J2D");
+static HeapCheck HostioHeapCheck = HeapCheck(0, "Hostio", "ホストIO");
+static HeapCheck CommandHeapCheck = HeapCheck(0, "Command", "コマンド");
+#endif
 
-void printFrameLine() {
-    OSCalendarTime calendar;
-    OSTime time = OSGetTime();
-    u32 retrace = VIGetRetraceCount();
-    OSTicksToCalendarTime(time, &calendar);
-
-    OS_REPORT("\x1b[44m-- %5d - %5d - %3d %d %04d/%02d/%02d %02d:%02d:%02d\'%03d\'\'%03d\n\x1b[m",
-              g_Counter.mCounter0, retrace,
-              calendar.yday, calendar.wday, calendar.year, calendar.mon, calendar.mday,
-              calendar.hour, calendar.min, calendar.sec, calendar.msec, calendar.usec);
-}
-
-void HeapCheck::CheckHeap1() {
-    s32 totalUsedSize = mHeap->getTotalUsedSize();
-    s32 freeSize = mHeap->getFreeSize();
-
-    if (mMaxTotalUsedSize < totalUsedSize)
-        mMaxTotalUsedSize = totalUsedSize;
-
-    if (mMaxTotalFreeSize > freeSize)
-        mMaxTotalFreeSize = freeSize;
-}
-
-void CheckHeap(u32 i_padNo) {
-    mDoMch_HeapCheckAll();
-    OSCheckActiveThreads();
-
-    int saveRel = (mDoCPd_c::getHold(i_padNo) & ~PAD_TRIGGER_Z) == (PAD_TRIGGER_L + PAD_TRIGGER_R) && mDoCPd_c::getTrig(i_padNo) & PAD_TRIGGER_Z;
-
-    for (int i = 0; i < 8; i++) {
-        HeapCheckTable[i]->CheckHeap1();
-        if (saveRel) {
-            HeapCheckTable[i]->saveRelBase();
-        }
-    }
-}
-
-static int countUsed(JKRExpHeap* heap) {
-    OSDisableScheduler();
-
-    int counter = 0;
-    JKRExpHeap::CMemBlock* used_blocks_head = heap->getUsedFirst();
-    while (used_blocks_head) {
-        counter++;
-        used_blocks_head = used_blocks_head->getNextBlock();
-    }
-
-    OSEnableScheduler();
-    return counter;
-}
-
-s32 HeapCheck::getUsedCount() const {
-    return countUsed(mHeap);
-}
-
-void HeapCheck::heapDisplay() const {
-    s32 heap_size = mHeap->getHeapSize();
-    s32 used_count = heap_size - getTargetHeapSize();
-
-    s32 total_used_size = mHeap->getTotalUsedSize();
-    s32 total_free_size = mHeap->getTotalFreeSize();
-    s32 heap_free_size = mHeap->getFreeSize();
-
-    JUTReport(100, 212, "[%sName]", mName);
-    JUTReport(100, 227, "HeapSize         %8ld", heap_size);
-    JUTReport(100, 240, "TargetHeapSize   %8ld", getTargetHeapSize());
-    JUTReport(100, 253, "TotalFree        %8ld", total_free_size - used_count);
-    JUTReport(100, 266, "FreeSize         %8ld", heap_free_size - used_count);
-    JUTReport(100, 279, "TotalUsedSize    %8ld", total_used_size);
-    JUTReport(100, 292, "TotalUsedRate        %3ld%%", (int)(total_used_size * 100) / (int)getTargetHeapSize());
-    JUTReport(100, 305, "MaxTotalUsedSize %8ld", mMaxTotalUsedSize);
-    JUTReport(100, 318, "MaxTotalUsedRate     %3ld%%", (mMaxTotalUsedSize * 100) / (int)getTargetHeapSize());
-    JUTReport(100, 331, "MinFreeSize      %8ld", mMaxTotalFreeSize - used_count);
-    JUTReport(100, 344, "MinFreeRate          %3ld%%", ((mMaxTotalFreeSize - used_count) * 100) / (int)getTargetHeapSize());
-    JUTReport(100, 357, "UsedCount             %3ld%", countUsed(mHeap));
-}
+static HeapCheck* HeapCheckTable[] = {
+    &RootHeapCheck,    &SystemHeapCheck, &ZeldaHeapCheck,  &GameHeapCheck,
+    &ArchiveHeapCheck, &J2dHeapCheck,
+#if VERSION != VERSION_WII_USA_R0
+    &HostioHeapCheck,
+#endif
+    &CommandHeapCheck,
+};
 
 #if DEBUG
 int mDoMain::argument = -1;
@@ -214,7 +178,105 @@ static u8 mCheckHeap;
 mDoMain_HIO_c mDoMain_HIO;
 #endif
 
-void debugDisplay() {
+static void printFrameLine() {
+    OSCalendarTime calendar;
+    OSTime time = OSGetTime();
+    u32 retrace = VIGetRetraceCount();
+    OSTicksToCalendarTime(time, &calendar);
+
+    OS_REPORT("\x1b[44m-- %5d - %5d - %3d %d %04d/%02d/%02d %02d:%02d:%02d\'%03d\'\'%03d\n\x1b[m",
+              g_Counter.mCounter0, retrace,
+              calendar.yday, calendar.wday, calendar.year, calendar.mon, calendar.mday,
+              calendar.hour, calendar.min, calendar.sec, calendar.msec, calendar.usec);
+}
+
+#if VERSION != VERSION_WII_USA_R0
+inline HeapCheck::HeapCheck(JKRExpHeap* heap, const char* name, const char* jName) {
+    mName = name;
+    mJName = jName;
+    setHeap(heap);
+}
+#endif
+
+void HeapCheck::CheckHeap1() {
+    s32 totalUsedSize = mHeap->getTotalUsedSize();
+    s32 freeSize = mHeap->getFreeSize();
+
+    if (mMaxTotalUsedSize < totalUsedSize)
+        mMaxTotalUsedSize = totalUsedSize;
+
+    if (mMaxTotalFreeSize > freeSize)
+        mMaxTotalFreeSize = freeSize;
+}
+
+static void CheckHeap(u32 i_padNo) {
+    mDoMch_HeapCheckAll();
+    OSCheckActiveThreads();
+
+    int saveRel =
+        (GET_BUTTON(i_padNo) & ~PAD_TRIGGER_Z) == (PAD_TRIGGER_L + PAD_TRIGGER_R) &&
+            GET_TRIGGER(i_padNo) & PAD_TRIGGER_Z;
+
+    for (int i = 0; i < ARRAY_SIZE(HeapCheckTable); i++) {
+        HeapCheckTable[i]->CheckHeap1();
+        if (saveRel) {
+            HeapCheckTable[i]->saveRelBase();
+        }
+    }
+}
+
+static int countUsed(JKRExpHeap* heap) {
+    OSDisableScheduler();
+
+    int counter = 0;
+    JKRExpHeap::CMemBlock* used_blocks_head = heap->getUsedFirst();
+    while (used_blocks_head) {
+        counter++;
+        used_blocks_head = used_blocks_head->getNextBlock();
+    }
+
+    OSEnableScheduler();
+    return counter;
+}
+
+s32 HeapCheck::getUsedCount() const {
+    return countUsed(mHeap);
+}
+
+#if VERSION == VERSION_WII_USA_R0
+void HeapCheck::heapDisplay() {
+#else
+void HeapCheck::heapDisplay() const {
+#endif
+    s32 heap_size = mHeap->getHeapSize();
+    s32 used_count = heap_size - getTargetHeapSize();
+
+    s32 total_used_size = mHeap->getTotalUsedSize();
+    s32 total_free_size = mHeap->getTotalFreeSize();
+    s32 heap_free_size = mHeap->getFreeSize();
+
+    JUTReport(100, 212, "[%sName]", mName);
+    JUTReport(100, 227, "HeapSize         %8ld", heap_size);
+    JUTReport(100, 240, "TargetHeapSize   %8ld", getTargetHeapSize());
+    JUTReport(100, 253, "TotalFree        %8ld", total_free_size - used_count);
+    JUTReport(100, 266, "FreeSize         %8ld", heap_free_size - used_count);
+    JUTReport(100, 279, "TotalUsedSize    %8ld", total_used_size);
+    JUTReport(100, 292, "TotalUsedRate        %3ld%%", (int)(total_used_size * 100) / (int)getTargetHeapSize());
+    JUTReport(100, 305, "MaxTotalUsedSize %8ld", mMaxTotalUsedSize);
+    JUTReport(100, 318, "MaxTotalUsedRate     %3ld%%", (mMaxTotalUsedSize * 100) / (int)getTargetHeapSize());
+    JUTReport(100, 331, "MinFreeSize      %8ld", mMaxTotalFreeSize - used_count);
+    JUTReport(100, 344, "MinFreeRate          %3ld%%", ((mMaxTotalFreeSize - used_count) * 100) / (int)getTargetHeapSize());
+    JUTReport(100, 357, "UsedCount             %3ld%", countUsed(mHeap));
+}
+
+#if VERSION == VERSION_WII_USA_R0
+u32 HeapCheck::getTargetHeapSize() {
+    field_0x14 = field_0x18 * mTargetHeapSize;
+    return field_0x14;
+}
+#endif
+
+static void debugDisplay() {
     static const char* desc1[5] = {
         "", "TotalFree", "MaxUsed  ", "Used     ", "RelUsed  ",
     };
@@ -237,15 +299,19 @@ void debugDisplay() {
         }
         return;
     }
-    
+
     if (mHeapBriefType != 0) {
         JUT_ASSERT(596, mHeapBriefType < HeapCheckTableNum);
         JUTReport(475, 100, "%s", desc1[mHeapBriefType]);
         JUTReport(475, 114, "%s", desc2[mHeapBriefType]);
 
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < ARRAY_SIZE(HeapCheckTable); i++) {
             HeapCheck* heap_check = HeapCheckTable[i];
+#if VERSION == VERSION_WII_USA_R0
+#define expHeap heap_check->getHeap()
+#else
             JKRExpHeap* expHeap = heap_check->getHeap();
+#endif
 
             s32 check1;
             s32 check2;
@@ -268,6 +334,10 @@ void debugDisplay() {
                 break;
             }
 
+#if defined(expHeap)
+#undef expHeap
+#endif
+
             JUTReport(475, (i * 44) + 150, " [%s]", heap_check->getName());
             JUTReport(475, (i * 44) + 164, "%10d", check1);
             JUTReport(475, (i * 44) + 178, "%10d", check2);
@@ -275,7 +345,7 @@ void debugDisplay() {
     }
 }
 
-void my_genCheckBox(JORMContext* mctx, const char* label, u8* pSrc, u8 mask) {
+static void my_genCheckBox(JORMContext* mctx, const char* label, u8* pSrc, u8 mask) {
     mctx->genCheckBox(label, pSrc, mask);
 }
 
@@ -316,7 +386,7 @@ void mDoMain_HIO_c::genMessage(JORMContext* mctx) {
 
     mctx->startComboBox("ヒープバーの種類", &mSelectHeapBar);
     mctx->genComboBoxItem("カレント", 0);
-    for (int i = 0; i < 8; i++) {
+    for (int i = 0; i < ARRAY_SIZE(HeapCheckTable); i++) {
         mctx->genComboBoxItem(HeapCheckTable[i]->getJName(), i + 1);
     }
     mctx->endComboBox();
@@ -437,7 +507,7 @@ void mDoMain_HIO_c::listenPropertyEvent(const JORPropertyEvent* property) {
             if ((u8*)property->id == &mSelectHeapBar) {
                 JKRHeap* heap = NULL;
                 u32 select_heap = mSelectHeapBar - 1;
-                if (select_heap < 8) {
+                if (select_heap < ARRAY_SIZE(HeapCheckTable)) {
                     heap = HeapCheckTable[select_heap]->getHeap();
                 }
 
@@ -471,32 +541,33 @@ void mDoMain_HIO_c::listenPropertyEvent(const JORPropertyEvent* property) {
 }
 #endif
 
-bool Debug_console(u32 i_padNo) {
+static bool Debug_console(u32 i_padNo) {
     JUTConsole* console = JFWSystem::getSystemConsole();
     if (console != NULL) {
         static f32 console_position_x = 20.0f;
         static f32 console_position_y = 30.0f;
         static f32 console_scroll = 0.0f;
 
-        if (mDoCPd_c::getTrig(i_padNo) & PAD_TRIGGER_Z && !(mDoCPd_c::getHold(i_padNo) & ~PAD_TRIGGER_Z)) {
+        if (GET_TRIGGER(i_padNo) & PAD_TRIGGER_Z && !(GET_BUTTON(i_padNo) & ~PAD_TRIGGER_Z))
+        {
             console->setVisible(console->isVisible() == false);
             JUTAssertion::setMessageCount(0);
         }
 
         if (console->isVisible()) {
-            if ((mDoCPd_c::getHold(i_padNo) & PAD_TRIGGER_L && mDoCPd_c::getHold(i_padNo) & PAD_TRIGGER_R) ||
-                ((mDoCPd_c::getAnalogL(i_padNo) > 0.0f && mDoCPd_c::getAnalogR(i_padNo) > 0.0f)))
+            if ((GET_BUTTON(i_padNo) & PAD_TRIGGER_L && GET_BUTTON(i_padNo) & PAD_TRIGGER_R) ||
+                (GET_ANALOG_L(i_padNo) > 0.0f && GET_ANALOG_R(i_padNo) > 0.0f))
             {
-                f32 stick_x = mDoCPd_c::getStickX(i_padNo);
-                f32 stick_y = mDoCPd_c::getStickY(i_padNo);
+                f32 stick_x = GET_STICK_X(i_padNo);
+                f32 stick_y = GET_STICK_Y(i_padNo);
 
-                if (mDoCPd_c::getHold(i_padNo) & (PAD_BUTTON_Y | PAD_BUTTON_X) &&
-                    mDoCPd_c::getTrig(i_padNo) & PAD_BUTTON_START)
+                if (GET_BUTTON(i_padNo) & (PAD_BUTTON_Y | PAD_BUTTON_X) &&
+                    GET_TRIGGER(i_padNo) & PAD_BUTTON_START)
                 {
                     console->clear();
                 }
 
-                if (!(mDoCPd_c::getHold(i_padNo) & (PAD_BUTTON_Y | PAD_BUTTON_X))) {
+                if (!(GET_BUTTON(i_padNo) & (PAD_BUTTON_Y | PAD_BUTTON_X))) {
                     console_scroll -= stick_y;
 
                     int scrollAmount;
@@ -513,16 +584,16 @@ bool Debug_console(u32 i_padNo) {
                         console->scroll(scrollAmount);
                     }
                 } else {
-                    if (mDoCPd_c::getHold(i_padNo) & PAD_BUTTON_X) {
+                    if (GET_BUTTON(i_padNo) & PAD_BUTTON_X) {
                         console_position_x += stick_x;
                     }
 
-                    if (mDoCPd_c::getHold(i_padNo) & PAD_BUTTON_Y) {
+                    if (GET_BUTTON(i_padNo) & PAD_BUTTON_Y) {
                         console_position_y -= stick_y;
                     }
                 }
 
-                if (mDoCPd_c::getTrig(i_padNo) & PAD_BUTTON_A) {
+                if (GET_TRIGGER(i_padNo) & PAD_BUTTON_A) {
                     console->dumpToTerminal(0xFFFFFFFF);
                     console->setOutput(JUTConsole::OUTPUT_OSREPORT | JUTConsole::OUTPUT_CONSOLE);
                 }
@@ -533,11 +604,11 @@ bool Debug_console(u32 i_padNo) {
                 JUTReport(30, 420, 1, "SCROLL：%3d %3d %3d Output=%1x", console->getLineOffset(),
                           console->getPositionX(), console->getPositionY(), console->getOutput());
             } else {
-                if (mDoCPd_c::getTrig(i_padNo) & PAD_BUTTON_DOWN) {
+                if (GET_TRIGGER(i_padNo) & PAD_BUTTON_DOWN) {
                     g_HIO.mDisplayMeter ^= (u8)1;
                 }
 
-                if (mDoCPd_c::getTrig(i_padNo) & PAD_BUTTON_LEFT) {
+                if (GET_TRIGGER(i_padNo) & PAD_BUTTON_LEFT) {
                     JKRAramHeap* aram = JKRAram::getAramHeap();
                     if (aram != NULL) {
                         aram->dump();
@@ -547,11 +618,16 @@ bool Debug_console(u32 i_padNo) {
                     g_dComIfG_gameInfo.mResControl.dump();
                 }
 
-                if (mDoCPd_c::getTrig(i_padNo) & PAD_BUTTON_RIGHT) {
+                if (GET_TRIGGER(i_padNo) & PAD_BUTTON_RIGHT) {
+#if PLATFORM_GCN
+                    // hack to fix JKRHeap::dump_sort placement in .text
+                    ((JKRExpHeap*)JKRGetSystemHeap())->dump_sort();
+#else
                     JKRGetSystemHeap()->dump_sort();
+#endif
                 }
 
-                if (mDoCPd_c::getTrig(i_padNo) & PAD_BUTTON_UP) {
+                if (GET_TRIGGER(i_padNo) & PAD_BUTTON_UP) {
                     zeldaHeap->dump_sort();
                     gameHeap->dump_sort();
                     archiveHeap->dump_sort();
@@ -569,10 +645,12 @@ bool Debug_console(u32 i_padNo) {
     return 0;
 }
 
-#if PLATFORM_GCN
-#define COPYDATE_PATH "/str/Final/Release/COPYDATE"
-#else
+#if VERSION == VERSION_SHIELD_DEBUG
 #define COPYDATE_PATH "/str/RVL/Debug/COPYDATE"
+#elif PLATFORM_WII
+#define COPYDATE_PATH "/str/Rfinal/Release/COPYDATE"
+#else
+#define COPYDATE_PATH "/str/Final/Release/COPYDATE"
 #endif
 
 s32 LOAD_COPYDATE(void*) {
@@ -629,7 +707,7 @@ static void debug() {
         #else
         Debug_console(PAD_3);
         #endif
-        
+
         #if DEBUG
         fapGm_HIO_c::startCpuTimer();
 
@@ -658,14 +736,23 @@ extern u8 _e_dtors[];
 extern u8 _f_rodata[];
 extern u8 _e_rodata[];
 
-#if VERSION == VERSION_SHIELD_DEBUG
+#if PLATFORM_WII || PLATFORM_SHIELD
 const int audioHeapSize = 0x169000;
 #else
 const int audioHeapSize = 0x14D800;
 #endif
 
+inline void HeapCheck::setHeap(JKRExpHeap* i_heap) {
+    mHeap = i_heap;
+#if VERSION != VERSION_WII_USA_R0
+    if (i_heap != NULL) {
+        mTargetHeapSize = i_heap->getHeapSize();
+    }
+#endif
+}
+
 void main01(void) {
-    OS_REPORT("\x1b[m");
+    OS_REPORT("\x1B[m");
 
     // Setup heaps, setup exception manager, set RNG seed, setup DVDError Thread, setup Memory card Thread
     mDoMch_Create();
@@ -680,6 +767,10 @@ void main01(void) {
     // setup FrameBuffer and ZBuffer, init display lists
     mDoGph_Create();
 
+#if PLATFORM_WII
+    mReCPd::create();
+#endif
+
     // Setup control pad
     mDoCPd_c::create();
 
@@ -689,7 +780,9 @@ void main01(void) {
     GameHeapCheck.setHeap(mDoExt_getGameHeap());
     ArchiveHeapCheck.setHeap(mDoExt_getArchiveHeap());
     J2dHeapCheck.setHeap(mDoExt_getJ2dHeap());
+#if VERSION != VERSION_WII_USA_R0
     HostioHeapCheck.setHeap(mDoExt_getHostIOHeap());
+#endif
     CommandHeapCheck.setHeap(mDoExt_getCommandHeap());
 
     #if DEBUG
@@ -711,6 +804,10 @@ void main01(void) {
 
     mDoDvdThd_callback_c::create((mDoDvdThd_callback_func)LOAD_COPYDATE, NULL);
     fapGm_Create(); // init framework
+
+#if PLATFORM_WII
+    dCsr_mng_c::create();
+#endif
 
     #if DEBUG
     mDoMain_HIO.entryHIO("メイン");
@@ -738,11 +835,17 @@ void main01(void) {
             mDoMch_HeapCheckAll();
         }
 
+#if PLATFORM_GCN || PLATFORM_SHIELD
         if (mDoDvdThd::SyncWidthSound) {
             mDoMemCd_UpDate();
         }
+#endif
 
-        mDoCPd_c::read();   // read controller input
+#if PLATFORM_WII
+        mReCPd::read(); // read Wii controller input
+#endif
+
+        mDoCPd_c::read();   // read GCN controller input
 
         #if DEBUG
         if (mDoMch::GXWarningExecuteFrame) {
@@ -798,12 +901,12 @@ void parse_args(int argc, const char* argv[]) {
         } else if (strncmp(argv[i], "--menu=", sizeof("--menu=") - 1) == 0) {
             char* var_r27 = strchr(argv[i] + 7, ',');
             if (var_r27 != NULL) {
-                *var_r27 = 0;
+                *var_r27 = '\0';
                 var_r27++;
 
                 char* var_r26 = std::strchr(var_r27, ',');
                 if (var_r26 != NULL) {
-                    *var_r26 = 0;
+                    *var_r26 = '\0';
                     var_r26++;
 
                     char* spC = std::strchr(var_r26, ',');
@@ -861,13 +964,26 @@ void parse_args(int argc, const char* argv[]) {
 }
 #endif
 
-static u8 mainThreadStack[32768];
+#if PLATFORM_GCN
+#define MAIN_THREAD_STACK_SIZE 0x8000
+#else
+#define MAIN_THREAD_STACK_SIZE 0xF000
+#endif
+
+#if PLATFORM_GCN
+static u8 mainThreadStack[MAIN_THREAD_STACK_SIZE];
+#endif
 
 OSThread mainThread;
 
 void main(int argc, const char* argv[]) {
     OSThread* current_thread = OSGetCurrentThread();
+#if PLATFORM_GCN
     u8* stack = mainThreadStack;
+#else
+    u8 stack[MAIN_THREAD_STACK_SIZE] ATTRIBUTE_ALIGN(32);
+    u8* stack_ptr = stack;
+#endif
     mDoMain::sPowerOnTime = OSGetTime();
     OSReportInit();
     version_check();
@@ -892,8 +1008,10 @@ void main(int argc, const char* argv[]) {
         mDoRst::setProgSeqFlag(0);
         mDoRst::setProgChgFlag(0);
         mDoRst::setWarningDispFlag(0);
+#if VERSION != VERSION_WII_USA_R0
         mDoRst::offShutdown();
         mDoRst::offReturnToMenu();
+#endif
     }
 
     #if PLATFORM_WII || PLATFORM_SHIELD
@@ -927,17 +1045,23 @@ void main(int argc, const char* argv[]) {
     }
 
     OS_REPORT("メインスレッドを作成します\n");
-    OSCreateThread(&mainThread, (void*(*)(void*))main01, 0, stack + sizeof(mainThreadStack), sizeof(mainThreadStack), OSGetThreadPriority(current_thread), 0);
+    OSCreateThread(&mainThread, (void*(*)(void*))main01, NULL, stack + MAIN_THREAD_STACK_SIZE,
+                   MAIN_THREAD_STACK_SIZE, OSGetThreadPriority(current_thread), 0);
     OSResumeThread(&mainThread);
     OS_REPORT("メインスレッドを起動しました <%x>\n", &mainThread);
     OSSetThreadPriority(current_thread, 0x1F);
     OSSuspendThread(current_thread);
 }
 
-bool JKRHeap::dump_sort() {
-    return true;
+// hack to fix JKRHeap::dump_sort placement in .text
+#if PLATFORM_GCN
+static void dummy() {
+    // probably fake, needed to pull in JKRHeap::dump_sort
+    ((JKRHeap*)NULL)->dump_sort();
 }
+#endif
 
+#if PLATFORM_GCN
 template<>
 Z2WolfHowlMgr* JASGlobalInstance<Z2WolfHowlMgr>::sInstance JAS_GLOBAL_INSTANCE_INIT;
 
@@ -1010,4 +1134,5 @@ JASDefaultBankTable* JASGlobalInstance<JASDefaultBankTable>::sInstance JAS_GLOBA
 #ifndef __MWERKS__
 template<>
 JAUSectionHeap* JASGlobalInstance<JAUSectionHeap>::sInstance JAS_GLOBAL_INSTANCE_INIT;
+#endif
 #endif

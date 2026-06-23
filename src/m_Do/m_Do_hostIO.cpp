@@ -1,3 +1,5 @@
+#include "m_Do/machine.h" // IWYU pragma: keep
+
 #include "m_Do/m_Do_hostIO.h"
 #include "JSystem/JHostIO/JORServer.h"
 #ifdef __REVOLUTION_SDK__
