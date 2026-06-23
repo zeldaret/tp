@@ -59,7 +59,7 @@ public:
     public:
         virtual ~csr_c() {}
         virtual void draw(f32, f32) = 0;
-        virtual bool isPointer();
+        virtual bool isPointer() { return true; }
 
         static void particleExecute();
         static u32 getBlurID() { return m_blurID; }

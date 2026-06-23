@@ -3,6 +3,20 @@
 
 #include <types.h>
 
+#if PLATFORM_WII
+#define SELECT_ITEMS_COUNT 4
+#define SELECT_ITEMS_MAX 4
+#elif PLATFORM_SHIELD
+// Shield has some weird code where the Wii item limit of 4 is used e.g. as a loop bound
+// despite that version only allowing 2 bound items. We use a separate macro to differentiate
+// these usages as being disconnected from the actual item slot count.
+#define SELECT_ITEMS_COUNT 2
+#define SELECT_ITEMS_MAX 4
+#else
+#define SELECT_ITEMS_COUNT 2
+#define SELECT_ITEMS_MAX 2
+#endif
+
 class dEnemyItem_c {
 public:
     static void setItemData(u8* data) { mData = data; }

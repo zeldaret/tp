@@ -18,6 +18,7 @@
 #include "d/d_map_path_dmap.h"
 #include "d/d_meter2_info.h"
 #include "d/d_msg_object.h"
+#include "d/d_rvl_fb_copy.h"
 #include "d/d_save_HIO.h"
 #include "f_op/f_op_draw_iter.h"
 #include "f_op/f_op_msg_mng.h"
@@ -895,7 +896,7 @@ static int dScnPly_Delete(dScnPly_c* i_this) {
     dComIfGp_init();
 
     #if PLATFORM_WII
-    data_8053a730 = 0;
+    g_rvlEnableExtraFramebufferCopy = false;
     #endif
 
     JUTAssertion::setMessageCount(0);
@@ -1060,7 +1061,7 @@ static int phase_00(dScnPly_c* i_this) {
     }
 
     #if PLATFORM_WII
-    data_8053a730 = 1;
+    g_rvlEnableExtraFramebufferCopy = true;
     #endif
 
     #if DEBUG

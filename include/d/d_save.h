@@ -500,7 +500,7 @@ private:
 class dSv_player_config_c {
 public:
     void init();
-    u32 checkVibration() const;
+    u8 checkVibration() const;
     u8 getSound();
     void setSound(u8 i_mode);
     u8 getVibration();
@@ -639,7 +639,7 @@ public:
     void onDungeonItemBossKey() { onDungeonItem(BOSS_KEY); }
     void offDungeonItemBossKey() { offDungeonItem(BOSS_KEY); }
     s32 isDungeonItemBossKey() const { return isDungeonItem(BOSS_KEY); }
-        void onStageBossEnemy() {
+    void onStageBossEnemy() {
         onDungeonItem(STAGE_BOSS_ENEMY);
         onDungeonItem(OOCCOO_NOTE);
     }

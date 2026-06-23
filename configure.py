@@ -728,7 +728,8 @@ config.libs = [
         "progress_category": "game",
         "objects": [
             Object(NonMatching, "d/d_home_button.cpp"),
-            Object(NonMatching, "d/d_cursor_mng.cpp"),
+            Object(MatchingFor(ALL_WII, "DZDE01"), "d/d_cursor_mng.cpp"),
+            Object(MatchingFor(ALL_WII, "DZDE01"), "d/d_rvl_fb_copy.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_stage.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_map.cpp"),
             Object(MatchingFor(ALL_GCN), "d/d_com_inf_game.cpp"),
