@@ -1380,7 +1380,8 @@ void dMap_c::calcMapCmPerTexel(int i_roomNo, f32* ip_cmPerTexel) {
                 var_f3 = temp_f0;
             }
 
-            cmPerTexel = var_f3 / ((f32)mTexSizeY - (f32)(field_0x74 + 4));
+            f32 temp = field_0x74 + 4;
+            cmPerTexel = var_f3 / ((f32)mTexSizeY - (f32)temp);
         } else {
             f32 var_f31 = 0.0f;
 
@@ -1580,16 +1581,23 @@ void dMap_c::_move(f32 i_centerX, f32 i_centerZ, int i_roomNo, f32 param_3) {
         calcMapCmPerTexel(field_0x80, &field_0x58);
         getPack(field_0x80, &mPackX, &mPackZ);
 
-        mCenterX += mPackX;
-        mCenterZ -= mPackZ;
-        mCenterX += field_0x64;
-        mCenterZ += mPackPlusZ;
+        #if PLATFORM_WII
+            mCenterX -= mPackX;
+            mCenterZ -= mPackZ;
+            mCenterX -= field_0x64;
+            mCenterZ += mPackPlusZ;
+        #else
+            mCenterX += mPackX;
+            mCenterZ -= mPackZ;
+            mCenterX += field_0x64;
+            mCenterZ += mPackPlusZ;
+        #endif
     }
 
     if (getStayType() == 0 && dComIfGs_isSaveDunSwitch(0x32) &&
         strcmp(dComIfGp_getStartStageName(), "F_SP121") == 0)
     {
-#if DEBUG
+#if DEBUG || PLATFORM_WII
         field_0x64 = 33830.0f;
 #else
         field_0x64 = 0.0f;
@@ -1599,9 +1607,12 @@ void dMap_c::_move(f32 i_centerX, f32 i_centerZ, int i_roomNo, f32 param_3) {
         f32 temp = (field_0x58 * (f32)(field_0x74 + 4)) * 0.5f;
 #if DEBUG
         mRightEdgePlus = -(((dMpath_c::getMinZ() - (-127103.67f)) - temp) / field_0x58);
+#elif PLATFORM_WII
+        mRightEdgePlus = -(((dMpath_c::getMinX() - (-127103.67f)) - temp) / field_0x58);
 #else
         mRightEdgePlus = 0.0f;
 #endif
+
         mTopEdgePlus = ((-22397.0f - dMpath_c::getMinZ()) - temp) / field_0x58;
     } else {
         mRightEdgePlus = 0.0f;
@@ -1642,7 +1653,11 @@ void dMap_c::_move(f32 i_centerX, f32 i_centerZ, int i_roomNo, f32 param_3) {
             calcMapCmPerTexel(field_0x80, &field_0x58);
             getPack(field_0x80, &mPackX, &mPackZ);
 
-            mCenterX += mPackX;
+            #if PLATFORM_WII
+                mCenterX -= mPackX;
+            #else
+                mCenterX += mPackX;
+            #endif
             mCenterZ -= mPackZ;
         }
         break;
@@ -1722,7 +1737,11 @@ void dMap_c::_move(f32 i_centerX, f32 i_centerZ, int i_roomNo, f32 param_3) {
                 calcMapCmPerTexel(field_0x80, &field_0x58);
                 getPack(field_0x80, &mPackX, &mPackZ);
 
-                mCenterX += mPackX;
+                #if PLATFORM_WII
+                    mCenterX -= mPackX;
+                #else
+                    mCenterX += mPackX;
+                #endif
                 mCenterZ -= mPackZ;
                 field_0x8f = 4;
 #if DEBUG
@@ -1814,7 +1833,11 @@ void dMap_c::_move(f32 i_centerX, f32 i_centerZ, int i_roomNo, f32 param_3) {
 
             sp14 += temp_f31_2 * (spC - sp14);
             sp10 += temp_f31_2 * (sp8 - sp10);
-            mCenterX += sp14;
+            #if PLATFORM_WII
+                mCenterX -= sp14;
+            #else
+                mCenterX += sp14;
+            #endif
             mCenterZ -= sp10;
             break;
         }

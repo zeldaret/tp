@@ -358,7 +358,11 @@ void dMenu_StageMapCtrl_c::initGetTreasureList(u8 param_0, s8 param_1) {
 }
 
 inline static s16 rightModeCnvRot(s16 param_0) {
+#if PLATFORM_WII
+    return -param_0;
+#else
     return param_0;
+#endif
 }
 
 bool dMenu_StageMapCtrl_c::getTreasureList(f32* o_posX, f32* o_posY, s8* param_2, u8* o_swbit,
@@ -395,7 +399,11 @@ bool dMenu_StageMapCtrl_c::getTreasureList(f32* o_posX, f32* o_posY, s8* param_2
 }
 
 inline static f32 rightModeCnvPos(f32 param_0) {
+#if PLATFORM_WII
+    return -param_0;
+#else
     return param_0;
+#endif
 }
 
 void dMenu_StageMapCtrl_c::cnvPosTo2Dpos(f32 param_0, f32 param_1, f32* param_2,

@@ -25,6 +25,14 @@
 #include "m_Do/m_Do_graphic.h"
 #include <cstring>
 
+#if PLATFORM_WII
+#include "d/d_cursor_mng.h"
+
+dComIfG_inf_c::baseCsr_c* l_anmCsr;
+dCsr_mng_c::csr_c* l_bloCsr;
+dCsr_mng_c::bloObj_c* l_bloObj;
+#endif
+
 #if (PLATFORM_WII || PLATFORM_SHIELD)
 #define POINTER_OPT dComIfGs_getOptPointer()
 #else
@@ -143,7 +151,9 @@ void dMenu_DmapBg_c::mapScreenInit() {
         bool fg = mMapScreen[i]->setPriority("zelda_dungeon_map_map.blo", 0x20000, dComIfGp_getDmapResArchive());
         JUT_ASSERT(693, fg != false);
 
+        #if !PLATFORM_WII
         dPaneClass_showNullPane(mMapScreen[i]);
+        #endif
     }
     
     #if (PLATFORM_WII || PLATFORM_SHIELD)
@@ -158,7 +168,9 @@ void dMenu_DmapBg_c::mapScreenInit() {
     mMapScreen[0]->search(MULTI_CHAR('map_aria'))->hide();
     mMapScreen[0]->search(MULTI_CHAR('n_all'))->hide();
     mMapScreen[1]->search(MULTI_CHAR('n_all'))->hide();
+    #if !PLATFORM_WII
     mMapScreen[0]->search(MULTI_CHAR('m_black'))->hide();
+    #endif
     mMapScreen[1]->search(MULTI_CHAR('bs_00_0'))->hide();
     mMapScreen[1]->search(MULTI_CHAR('bs_00_1'))->hide();
     mMapScreen[1]->search(MULTI_CHAR('gold00_0'))->hide();
@@ -411,37 +423,77 @@ static f32 player_py;
 dMenu_Dmap_c* dMenu_Dmap_c::myclass;
 
 void dMenu_DmapBg_c::setCButtonString(u32 i_msgNo) {
-    static u64 const c_tag[2] = {
+    static u64 const c_tag[] = {
         #if VERSION == VERSION_GCN_JPN
         MULTI_CHAR('c_text_s'), MULTI_CHAR('c_text')
+        #elif PLATFORM_WII
+        MULTI_CHAR('c_text1'), MULTI_CHAR('c_text18'), MULTI_CHAR('c_text17'), MULTI_CHAR('c_text16'), MULTI_CHAR('c_text15'),
+        MULTI_CHAR('c_text14'), MULTI_CHAR('c_text13'), MULTI_CHAR('c_text12'), MULTI_CHAR('c_text11'), MULTI_CHAR('c_text10')
         #else
         MULTI_CHAR('f_text_s'), MULTI_CHAR('f_text')
         #endif
     };
     int i;
 
-    u32 msgNo;
-    if (!dMenu_Dmap_c::myclass->isMapMoveState()) {
-        msgNo = 0;
-    } else {
-        msgNo = dMenu_Dmap_c::myclass->getCMessasgeNum();
-    }
-
-    if (msgNo == 0) {
-        for (i = 0; i < 2; i++) {
-            strcpy(((J2DTextBox*)mButtonScreen->search(c_tag[i]))->getStringPtr(), "");
-        }
-        mpCButton->setAlphaRate(0.5f);
-    } else {
-        for (i = 0; i < 2; i++) {
-            dMeter2Info_getStringKanji(msgNo, ((J2DTextBox*)mButtonScreen->search(c_tag[i]))->getStringPtr(), NULL);
+    #if PLATFORM_WII
+        for (i = 0; i < 0xA; i++) {
+            dMeter2Info_getStringKanji(0x56a, ((J2DTextBox*)mButtonScreen->search(c_tag[i]))->getStringPtr(), NULL);
         }
         mpCButton->setAlphaRate(1.0f);
-    }
+    #else
+        u32 msgNo;
+        if (!dMenu_Dmap_c::myclass->isMapMoveState()) {
+            msgNo = 0;
+        } else {
+            msgNo = dMenu_Dmap_c::myclass->getCMessasgeNum();
+        }
+
+        if (msgNo == 0) {
+            for (i = 0; i < 2; i++) {
+                strcpy(((J2DTextBox*)mButtonScreen->search(c_tag[i]))->getStringPtr(), "");
+            }
+            mpCButton->setAlphaRate(0.5f);
+        } else {
+          for (i = 0; i < 0x2; i++) {
+              dMeter2Info_getStringKanji(msgNo, ((J2DTextBox*)mButtonScreen->search(c_tag[i]))->getStringPtr(), NULL);
+          }
+          mpCButton->setAlphaRate(1.0f);
+        }
+    #endif
 }
 
 void dMenu_DmapBg_c::setJButtonString(u32 i_msgNo) {
+#if PLATFORM_WII
+    static u64 j_tag[] = {
+        MULTI_CHAR('c_text2'), MULTI_CHAR('c_text09'), MULTI_CHAR('c_text08'), MULTI_CHAR('c_text07'), MULTI_CHAR('c_text06'),
+        MULTI_CHAR('c_text05'), MULTI_CHAR('c_text04'), MULTI_CHAR('c_text03'), MULTI_CHAR('c_text02'), MULTI_CHAR('c_text01')
+    };
+
+    u16 id;
+    if(dMenu_Dmap_c::myclass->isMapMoveState() == 0) {
+        id = 0;
+    }
+    else {
+        id = dMenu_Dmap_c::myclass->getJMessageNum();
+    }
+
+    if(id == 0) {
+        for(int i = 0; i < 0xA; i++) {
+            strcpy(((J2DTextBox*)mButtonScreen->search(j_tag[i]))->getStringPtr(), "");
+        }
+
+        mpJButton->setAlphaRate(0.5f);
+    }
+    else {
+        for(int i = 0; i < 0xA; i++) {
+            dMeter2Info_getStringKanji(id, ((J2DTextBox*)mButtonScreen->search(j_tag[i]))->getStringPtr(), NULL);
+        }
+
+        mpJButton->setAlphaRate(1.0f);
+    }
+#else
     dMenu_Dmap_c::myclass->isMapMoveState();
+#endif
 }
 
 void dMenu_DmapBg_c::createExplain() {
@@ -478,6 +530,28 @@ void dMenu_DmapBg_c::baseScreenInit() {
                                    dComIfGp_getDmapResArchive());
     JUT_ASSERT(1362, fg != false);
     dPaneClass_showNullPane(mFloorScreen);
+
+    #if PLATFORM_WII
+        int temp = 1;
+        l_anmCsr = new dComIfG_inf_c::baseCsr_c(0);
+        l_anmCsr->create();
+
+        // There's something incorrect about the way these pointers are stored
+        l_bloCsr = new dCsr_mng_c::csr_c();
+        l_bloCsr->set(l_anmCsr, 2, 0, 0);
+        dCsr_mng_c::entryCsr(l_bloCsr);
+
+        l_bloObj = new dCsr_mng_c::bloObj_c();
+
+        if(l_bloCsr == 0) {
+            l_bloObj->create(mBaseScreen, 2, 0, 0);
+        }
+        else {
+            l_bloObj->create(mFloorScreen, 2, 0, 0);
+        }
+
+        dCsr_mng_c::entryObj(l_bloObj);
+    #endif
 
     mBaseScreen->search(MULTI_CHAR('w_btn_n'))->hide();
 
@@ -636,8 +710,58 @@ void dMenu_DmapBg_c::setFloorMessage() {
 }
 
 bool dMenu_DmapBg_c::dpdMove(s8 param_0, s8 param_1, s8 param_2, u8* param_3, u8 param_4) {
-    bool var_r31 = false;
-    return var_r31;
+    bool ret = false;
+#if PLATFORM_WII
+    field_0xdd3 = 0xFF;
+    field_0xdd4 = -0x63;
+    field_0xdd5 = 0xFF;
+
+    if(!dComIfGs_getOptPointer()) {
+        return false;
+    }
+    if(!dComIfGs_getOptPointer() || mpItemExplain) {
+        return false;
+    }
+
+    Vec2& pos = mReCPd::getDpd2DPos(0);
+
+    J2DPane* pPane = mMapScreen[0]->search(MULTI_CHAR('center_n'));
+    CPaneMgr mgr;
+
+    Mtx local_38;
+    Vec local_2c = mgr.getGlobalVtx(pPane, &local_38, 0, false, 0);
+    Vec local_20 = mgr.getGlobalVtx(pPane, &local_38, 3, false, 0);
+
+    if(pos.x >= local_2c.x && pos.x <= local_20.x && pos.y >= local_2c.y && pos.y <= local_20.y) {
+        field_0xdb4 = -(pos.x - (local_20.x + local_2c.x) * 0.5f);
+        field_0xdb8 = pos.y - (local_20.y + local_2c.y) * 0.5f;
+        l_anmCsr->offNavi();
+        field_0xdd3 = 1;
+
+        return true;
+    }
+    else {
+        if(param_4 != 2) {
+            l_anmCsr->onNavi();
+        }
+        else {
+            l_anmCsr->offNavi();
+            field_0xdd3 = 1;
+
+            return true;
+        }
+    }
+
+    l_bloObj->calc();
+
+    if(l_bloCsr->m_pointed_obj && (field_0xdd5 != 0xFF || field_0xdd4 != -0x63)) {
+        ret = true;
+    }
+
+    return ret;
+#else
+    return ret;
+#endif
 }
 
 dMenu_DmapBg_c::~dMenu_DmapBg_c() {
@@ -648,6 +772,19 @@ dMenu_DmapBg_c::~dMenu_DmapBg_c() {
         delete mpMeterHaihai;
         mpMeterHaihai = NULL;
     }
+
+    #if PLATFORM_WII
+        dCsr_mng_c::releaseObj(l_bloObj);
+        delete l_bloObj;
+        l_bloObj = NULL;
+
+        dCsr_mng_c::releaseCsr(l_bloCsr);
+        delete l_bloCsr;
+        l_bloCsr = NULL;
+
+        delete l_anmCsr;
+        l_anmCsr = NULL;
+    #endif
 
     delete mBaseScreen;
     mBaseScreen = NULL;
@@ -892,9 +1029,31 @@ void dMenu_DmapBg_c::draw() {
         mpBackTexture->setAlpha(dVar17 * (field_0xdbc * field_0xd9c));
 
         f32 local_28c = mpBackTexture->getBounds().i.x;
+
+        bool r4 = false;
+        #if PLATFORM_WII
+        {
+            r4 = true;
+
+            mMapScreen[0]->search(MULTI_CHAR('center_n'));
+            mMapScreen[0]->search(MULTI_CHAR('center_n'));
+
+            // should be local_e8 but no idea what would be there on stack
+            // matches the rest of the instructions though, so probably some typo originally?
+            BOOL b = (BOOL)&local_200;
+
+            CPaneMgr mgr;
+            Vec local_94 = mgr.getGlobalVtxCenter(mMapPane, b, 0);
+            local_28c = (local_94.x * 2.0f) - (local_28c + 0.5f * mpBackTexture->getWidth()) - 0.5f * mpBackTexture->getWidth();
+        #endif
+
         mpBackTexture->setBlackWhite(color_black, color_white);
         mpBackTexture->draw(local_28c, field_0xd94 + mpBackTexture->getBounds().i.y, mpBackTexture->getWidth(),
-                            mpBackTexture->getHeight(), false, false, false);
+                            mpBackTexture->getHeight(), r4, false, false);
+
+        #if PLATFORM_WII
+        }
+        #endif
 
         grafContext->scissor(field_0xd94 + mDoGph_gInf_c::getMinXF(),
                              scissor_top, mDoGph_gInf_c::getWidthF(),
@@ -1063,6 +1222,10 @@ dMenu_Dmap_c::dMenu_Dmap_c(JKRExpHeap* param_1, STControl* param_2, CSTControl* 
 void dMenu_Dmap_c::screenInit() {
     static u64 const floor_tag[8] = {MULTI_CHAR('floor7_n'), MULTI_CHAR('floor0_n'), MULTI_CHAR('floor1_n'), MULTI_CHAR('floor2_n'),
                                      MULTI_CHAR('floor3_n'), MULTI_CHAR('floor4_n'), MULTI_CHAR('floor5_n'), MULTI_CHAR('floor6_n')};
+    #if PLATFORM_WII
+    static u64 const Nfloor_tag[] = {MULTI_CHAR('N_floor7'), MULTI_CHAR('N_floor0'), MULTI_CHAR('N_floor1'), MULTI_CHAR('N_floor2'),
+                                     MULTI_CHAR('N_floor3'), MULTI_CHAR('N_floor4'), MULTI_CHAR('N_floor5'), MULTI_CHAR('N_floor6')};
+    #endif
     static u64 const icon_tag[8] = {MULTI_CHAR('ico_set7'), MULTI_CHAR('ico_set0'), MULTI_CHAR('ico_set1'), MULTI_CHAR('ico_set2'),
                                     MULTI_CHAR('ico_set3'), MULTI_CHAR('ico_set4'), MULTI_CHAR('ico_set5'), MULTI_CHAR('ico_set6')};
     static u64 const boss_tag[8] = {MULTI_CHAR('ic_st_b7'), MULTI_CHAR('ic_st_b0'), MULTI_CHAR('ic_st_b1'), MULTI_CHAR('ic_st_b2'),
@@ -1100,6 +1263,10 @@ void dMenu_Dmap_c::screenInit() {
             } else {
                 mpDrawBg->mFloorScreen->search('wolf')->hide();
                 mpDrawBg->mFloorScreen->search('rink')->show();
+
+                #if PLATFORM_WII
+                    ((J2DPicture*)mpDrawBg->mFloorScreen->search('rink'))->setMirror(J2DMirror_X);
+                #endif
             }
         }
     }
@@ -1107,6 +1274,9 @@ void dMenu_Dmap_c::screenInit() {
     for (int i = 0; i < 8; i++) {
         if (i >= (mFloorAll - mBottomFloor) + 1) {
             mSelFloor[i]->hide();
+            #if PLATFORM_WII
+                mpDrawBg->mFloorScreen->search(Nfloor_tag[i])->hide();
+            #endif
         } else  if (i == getCurFloorPos()) {
             mSelFloor[i]->getPanePtr()->scale(1.0f, 1.0f);
             mSelFloor[i]->setAlpha(0xFF);
@@ -1143,8 +1313,11 @@ void dMenu_Dmap_c::screenInit() {
     field_0x7c[1] = new CPaneMgr(mpDrawBg->mBaseScreen, MULTI_CHAR('con_n'), 3, NULL);
     field_0x7c[2] = new CPaneMgr(mpDrawBg->mBaseScreen, MULTI_CHAR('key_n'), 3, NULL);
     field_0x88[0] = new CPaneMgr(mpDrawBg->mBaseScreen, MULTI_CHAR('map000'), 3, NULL);
+    #if PLATFORM_WII
+        ((J2DPicture*)field_0x88[0]->getPanePtr())->setMirror(J2DMirror_X);
+    #endif
     field_0x88[1] = new CPaneMgr(mpDrawBg->mBaseScreen, MULTI_CHAR('con000'), 3, NULL);
-    
+
     if (dStage_stagInfo_GetSaveTbl(dComIfGp_getStageStagInfo()) == dStage_SaveTbl_LV2) {
         field_0x88[2] = new CPaneMgr(mpDrawBg->mBaseScreen, MULTI_CHAR('i_key_n'), 3, NULL);
     } else if (dStage_stagInfo_GetSaveTbl(dComIfGp_getStageStagInfo()) == dStage_SaveTbl_LV5) {
@@ -1591,6 +1764,12 @@ bool dMenu_Dmap_c::isMapMoveState() {
         field_0x184 = false;
     }
 
+    #if PLATFORM_WII
+    if(m_process == 0) {
+        field_0x184 = false;
+    }
+    #endif
+
     return field_0x184;
 }
 
@@ -1612,6 +1791,10 @@ void dMenu_Dmap_c::floorChangeMode() {
     }
 
     field_0x185 = 0;
+
+    #if PLATFORM_WII
+        if(dComIfGs_getOptPointer()) return;
+    #endif
 
     if (mZoomState != 0) {
         mpDrawBg->setAButtonString(0);
@@ -1756,6 +1939,63 @@ void dMenu_Dmap_c::_move() {
     if (field_0x17e == 0) {
         mpDrawBg->dpdMove(mFloorAll, mBottomFloor, field_0x172, field_0x174, field_0x181);
 
+        #if PLATFORM_WII
+        if(dComIfGs_getOptPointer() && m_process != 4 && mpDrawBg->mpItemExplain == NULL) {
+            if(m_process == 0) {
+                if(field_0x174[field_0x177]) {
+                    mpDrawBg->setAButtonString(0x5D);
+                    mpDrawBg->setBButtonString(0x3F9);
+                }
+                else {
+                    mpDrawBg->setAButtonString(0);
+                    mpDrawBg->setBButtonString(0x3F9);
+                }
+            }
+            else if(m_process == 1) {
+                if(field_0x181) {
+                    if(mZoomState) {
+                        if(mpDrawBg->field_0xdd3 != 0xFF) {
+                            mpDrawBg->setAButtonString(0x536);
+                        }
+                        else {
+                            mpDrawBg->setAButtonString(0);
+                        }
+
+                        mpDrawBg->setBButtonString(0x522);
+                    }
+                    else {
+                        if(mpDrawBg->field_0xdd3 != 0xFF) {
+                            mpDrawBg->setAButtonString(0x527);
+                        }
+                        else {
+                            mpDrawBg->setAButtonString(0);
+                        }
+
+                        mpDrawBg->setBButtonString(0x3F9);
+                    }
+                }
+                else if(mpDrawBg->field_0xdd3 != 0xFF) {
+                    if(mZoomState) {
+                        mpDrawBg->setAButtonString(0x536);
+                        mpDrawBg->setBButtonString(0x522);
+                    }
+                    else {
+                        mpDrawBg->setAButtonString(0x527);
+                        mpDrawBg->setBButtonString(0x3F9);
+                    }
+                }
+                else {
+                    mpDrawBg->setAButtonString(0);
+                    mpDrawBg->setBButtonString(0x3F9);
+                }
+            }
+            else {
+                mpDrawBg->setAButtonString(0);
+                mpDrawBg->setBButtonString(0x3F9);
+            }
+        }
+        #endif
+
         if (mpDrawBg->mpBlack != NULL) {
             f32 var_f31;
             if (mpDrawBg->field_0xdd3 != 0xFF) {
@@ -1839,7 +2079,11 @@ void dMenu_Dmap_c::mapControl() {
         f32 sp18 = temp_f28 * cM_ssin(stick_angle);
         f32 sp14 = temp_f28 * cM_scos(stick_angle);
         mMapCtrl->setPlusZoomCenterX(sp18);
+        #if PLATFORM_WII
+        mMapCtrl->setPlusZoomCenterZ(-sp14);
+        #else
         mMapCtrl->setPlusZoomCenterZ(sp14);
+        #endif
     }
 
     mMapCtrl->move();
@@ -2520,8 +2764,15 @@ void dMenu_Dmap_c::zoomIn_proc() {
 
     if (temp_r30 == true && temp_r29 == true && temp_r28 == true) {
         mZoomState = 1;
+        #if PLATFORM_WII
+        if(!dComIfGs_getOptPointer()) {
+            mpDrawBg->setAButtonString(0);
+            mpDrawBg->setBButtonString(0x522);
+        }
+        #else
         mpDrawBg->setAButtonString(0);
         mpDrawBg->setBButtonString(0x522);
+        #endif
         mCMessageNum = 0x37B;
         mJMessageNum = 0x569;
         field_0x17e = 0;
@@ -2549,8 +2800,15 @@ void dMenu_Dmap_c::zoomOut_proc() {
 
     if (temp_r30 == true && temp_r29 == true && temp_r28 == true) {
         mZoomState = 0;
+        #if PLATFORM_WII
+        if(!dComIfGs_getOptPointer()) {
+            mpDrawBg->setAButtonString(0x527);
+            mpDrawBg->setBButtonString(0x3F9);
+        }
+        #else
         mpDrawBg->setAButtonString(0x527);
         mpDrawBg->setBButtonString(0x3F9);
+        #endif
         mCMessageNum = 0;
         mJMessageNum = 0;
         field_0x17e = 0;

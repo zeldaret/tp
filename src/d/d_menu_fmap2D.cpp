@@ -19,6 +19,13 @@
 #include "d/actor/d_a_midna.h"
 #include <cstring>
 
+#if PLATFORM_WII
+#include "d/d_cursor_mng.h"
+
+dCsr_mng_c::csr_c* l_csr;
+dComIfG_inf_c::baseCsr_c* l_anmCsr;
+#endif
+
 dMenu_Fmap2DBack_c::dMenu_Fmap2DBack_c() {
     dMeter2Info_setMapDrugFlag(0);
 
@@ -151,6 +158,15 @@ dMenu_Fmap2DBack_c::dMenu_Fmap2DBack_c() {
 
     initiate(dComIfGp_getFmapResArchive());
 
+#if PLATFORM_WII
+    l_anmCsr = new dComIfG_inf_c::baseCsr_c(0);
+    l_anmCsr->create();
+    l_csr = new dCsr_mng_c::csr_c();
+
+    l_csr->set(l_anmCsr, 2, 0, 0);
+    dCsr_mng_c::entryCsr(l_csr);
+#endif
+
     mpBackScreen = new J2DScreen();
     JUT_ASSERT(238, mpBackScreen != NULL);
 
@@ -224,6 +240,16 @@ dMenu_Fmap2DBack_c::dMenu_Fmap2DBack_c() {
 }
 
 dMenu_Fmap2DBack_c::~dMenu_Fmap2DBack_c() {
+#if PLATFORM_WII
+    dCsr_mng_c::releaseCsr(l_csr);
+
+    delete l_csr;
+    l_csr = NULL;
+
+    delete l_anmCsr;
+    l_anmCsr = NULL;
+#endif
+
     delete mpBackScreen;
     mpBackScreen = NULL;
 
@@ -353,7 +379,11 @@ void dMenu_Fmap2DBack_c::draw() {
     grafPort->scissor(scissorLeft, scissorTop, scissorWidth, scissorHeight);
     grafPort->setScissor();
 
+    #if PLATFORM_WII
+    if (!dComIfGs_getOptPointer() && isArrowDrawFlag()) {
+    #else
     if (isArrowDrawFlag()) {
+    #endif
         f32 fVar2 = 0.0f;
         f32 fVar3 = 0.0f;
         f32 fVar4, fVar5;
@@ -377,6 +407,10 @@ void dMenu_Fmap2DBack_c::draw() {
                         (mArrowPos3DZ + control_ypos + fVar3) - fVar5, &mArrowPos2DX,
                         &mArrowPos2DY);
 
+#if PLATFORM_WII
+        f32 arrowPosX = getMirrorPosX(mArrowPos2DX, 0.0f);
+#endif
+
         field_0x11e0 -= g_fmapHIO.mCursorSpeed;
 
         if (field_0x11e0 < 0.0f) {
@@ -399,7 +433,15 @@ void dMenu_Fmap2DBack_c::draw() {
         }
 
         mpPointParent->setAlphaRate(mArrowAlpha * mSpotTextureFadeAlpha);
+#if PLATFORM_WII
+        arrowPosX += mTransX;
+        J2DOrthoGraph ortho(0.0f, 0.0f, 640.0f, 456.0f, -1.0f, 1.0f);
+        ortho.setOrtho(JGeometry::TBox2<f32>(mDoGph_gInf_c::getMinXF(), mDoGph_gInf_c::getMinYF(), mDoGph_gInf_c::getMinXF() + mDoGph_gInf_c::getWidthF(), mDoGph_gInf_c::getMinYF() + mDoGph_gInf_c::getHeightF()), -1.0f, 1.0f);
+        // There's still a register issue somewhere, but I've got no idea how to fix it
+        mpPointParent->translate((arrowPosX - 304.0f) * (608.0f / (ortho.getOrtho()->f.x - ortho.getOrtho()->i.x)) + 304.0f + mTransX, mArrowPos2DY + mTransZ);
+#else
         mpPointParent->translate(mArrowPos2DX + mTransX, mArrowPos2DY + mTransZ);
+#endif
         mpPointScreen->draw(0.0f, 0.0f, grafPort);
     }
 
@@ -955,12 +997,70 @@ void dMenu_Fmap2DBack_c::setSpotCursor(u8 param_0) {
 
 void dMenu_Fmap2DBack_c::allmap_move2(STControl* param_0) {
     f32 sp48, sp44;
-    calcAllMapPosWorld(getMapScissorAreaLX(), getMapScissorAreaLY(), &sp48, &sp44);
-
     f32 sp40, sp3C;
-    calcAllMapPosWorld(getMapScissorAreaLX() + getMapScissorAreaSizeRealX(),
+
+#if PLATFORM_WII
+    if(dComIfGs_getOptPointer()) {
+        calcAllMapPosWorld(getMapScissorAreaLX(), getMapScissorAreaLY(), &sp48, &sp44);
+        calcAllMapPosWorld(getMapScissorAreaLX() + getMapScissorAreaSizeRealX(),
                        getMapScissorAreaLY() + getMapScissorAreaSizeRealY(), &sp40, &sp3C);
+    }
+    else {
+        Mtx local_50;
+        Vec local_2c = mpMapArea->getGlobalVtx(mpMapArea->getPanePtr(), &local_50, 0, false, 0);
+        Vec local_20 = mpMapArea->getGlobalVtx(mpMapArea->getPanePtr(), &local_50, 3, false, 0);
+
+        f32 temp1 = mDoGph_gInf_c::getHeightF() / 456.0f;
+        f32 temp2 = mDoGph_gInf_c::getWidthF() / 640.0f;
+        f32 p0 = (local_20.x - mDoGph_gInf_c::getMinXF()) / temp1;
+        f32 p1 = (local_2c.y) / temp2;
+        f32 a0 = (local_2c.x - local_20.x) / temp1;
+        f32 a1 = (local_20.y - local_2c.y) / temp2;
+        calcAllMapPosWorld(p0, p1, &sp48, &sp44);
+        calcAllMapPosWorld(p0 + a0,
+                       p1 + a1, &sp40, &sp3C);
+    }
+#else
+    calcAllMapPosWorld(getMapScissorAreaLX(), getMapScissorAreaLY(), &sp48, &sp44);
+    calcAllMapPosWorld(getMapScissorAreaLX() + getMapScissorAreaSizeRealX(),
+                   getMapScissorAreaLY() + getMapScissorAreaSizeRealY(), &sp40, &sp3C);
+#endif
+
     int r26 = 0;
+
+#if PLATFORM_WII
+    if(dComIfGs_getOptPointer()) {
+        Vec2& pos = mReCPd::getDpd2DPos(0);
+        f32 temp1 = field_0x11bc;
+        f32 temp2 = field_0x11c0;
+        calcAllMapPosWorld(pos.x, pos.y, &field_0x11bc, &field_0x11c0);
+        if(field_0x11bc >= sp48 && field_0x11bc <= sp40 && field_0x11c0 >= sp44 && field_0x11c0 <= sp3C) {
+            r26 = 1;
+            control_xpos = field_0x11bc - mArrowPos3DX;
+            control_ypos = field_0x11c0 - mArrowPos3DZ;
+        }
+        else if(temp1 >= sp48 && temp1 <= sp40 && temp2 >= sp44 && temp2 <= sp3C) {
+            temp1 = field_0x11bc;
+            temp2 = field_0x11c0;
+            if(field_0x11bc < sp48) {
+                temp1 = sp48;
+            }
+            if(field_0x11bc > sp40) {
+                temp1 = sp40;
+            }
+            if(field_0x11c0 < sp44) {
+                temp2 = sp44;
+            }
+            if(field_0x11c0 > sp3C) {
+                temp2 = sp3C;
+            }
+            r26 = 1;
+            control_xpos = temp1 - mArrowPos3DX;
+            control_ypos = temp2 - mArrowPos3DZ;
+        }
+    }
+#endif
+
     if (r26 == 0) {
         f32 spC = g_fmapHIO.mScrollSpeedSlowBound < g_fmapHIO.mScrollSpeedFastBound ?
                                g_fmapHIO.mScrollSpeedSlowBound :
@@ -970,6 +1070,11 @@ void dMenu_Fmap2DBack_c::allmap_move2(STControl* param_0) {
                                g_fmapHIO.mScrollSpeedFastBound;
 
         f32 stickValue = param_0->getValueStick();
+        #if PLATFORM_WII
+        if(dComIfGs_getOptPointer()) {
+            stickValue = 0.0f;
+        }
+        #endif
         if (stickValue >= spC) {
             s16 angle = param_0->getAngleStick();
             f32 local_68 = (mTexMaxX - mTexMinX);
@@ -985,8 +1090,18 @@ void dMenu_Fmap2DBack_c::allmap_move2(STControl* param_0) {
             f32 delta_y = speed * cM_ssin(angle);
             f32 delta_x = speed * cM_scos(angle);
 
-            control_xpos = control_xpos + delta_y;
-            control_ypos = control_ypos + delta_x;
+            #if PLATFORM_WII
+                if(dComIfGs_getOptPointer()) {
+                    control_xpos += delta_y;
+                }
+                else {
+                    control_xpos -= delta_y;
+                }
+            #else
+                control_xpos += delta_y;
+            #endif
+        
+            control_ypos += delta_x;
         }
     }
     if (mArrowPos3DX + control_xpos < sp48) {
@@ -1012,6 +1127,12 @@ void dMenu_Fmap2DBack_c::allmap_move2(STControl* param_0) {
     f32 sp14, sp10;
     calcAllMapPos2D((mArrowPos3DX + control_xpos) - mStageTransX,
                     (mArrowPos3DZ + control_ypos) - mStageTransZ, &sp14, &sp10);
+
+    #if PLATFORM_WII
+        if(dComIfGs_getOptPointer()) {
+            sp14 = getMirrorPosX(sp14, 0.0f);
+        }
+    #endif
 
     mSelectRegion = 0xff;
     for (int i = 7; i >= 0; i--) {
@@ -1365,15 +1486,29 @@ void dMenu_Fmap2DBack_c::regionTextureDraw() {
             mpAreaTex[uVar10]->setAlpha(mAlphaRate * 255.0f * fVar3 * field_0xfa4);
 
             if (uVar10 != uVar9) {
-                bool b = 0;
+                #if PLATFORM_WII
+                bool b = true;
+                #else
+                bool b = false;
+                #endif
                 f32 v = mTransX + (dVar14 + (mRegionMinMapX[uVar10] + field_0xf0c[uVar10]));
+                #if PLATFORM_WII
+                    v = getMirrorPosX(v, (mZoom * mRegionMapSizeX[uVar10]) * 0.5f);
+                #endif
                 mpAreaTex[uVar10]->draw(
                     v, mTransZ + (dVar13 + (mRegionMinMapY[uVar10] + field_0xf2c[uVar10])),
                     mRegionMapSizeX[uVar10] * mZoom, mRegionMapSizeY[uVar10] * mZoom, b, false,
                     false);
             } else {
-                bool b = 0;
+                #if PLATFORM_WII
+                bool b = true;
+                #else
+                bool b = false;
+                #endif
                 f32 v = mTransX + (dVar14 + (mRegionMinMapX[uVar9] + field_0xf0c[uVar9]));
+                #if PLATFORM_WII
+                    v = getMirrorPosX(v, (mZoom * mRegionMapSizeX[uVar10]) * 0.5f);
+                #endif
                 mpAreaTex[uVar9]->draw(
                     v, mTransZ + (dVar13 + (mRegionMinMapY[uVar9] + field_0xf2c[uVar9])),
                     mRegionMapSizeX[uVar9] * mZoom, mRegionMapSizeY[uVar9] * mZoom, b, false,
@@ -1402,6 +1537,9 @@ void dMenu_Fmap2DBack_c::worldGridDraw() {
     f32 dVar9 = -mStageTransX;
     f32 dVar8 = -mStageTransZ;
     calcAllMapPos2D(dVar9, dVar8, &local_74, &local_78);
+    #if PLATFORM_WII
+    local_74 = getMirrorPosX(local_74, 0.0f);
+    #endif
 
     J2DDrawLine(local_74, mDoGph_gInf_c::getMinYF(), local_74,
                 mDoGph_gInf_c::getMinYF() + mDoGph_gInf_c::getHeightF(),
@@ -1411,6 +1549,9 @@ void dMenu_Fmap2DBack_c::worldGridDraw() {
     while (true) {
         calcAllMapPos2D(xPos, dVar8, &local_74, &local_78);
         if (local_74 >= getMapScissorAreaLX()) {
+            #if PLATFORM_WII
+            local_74 = getMirrorPosX(local_74, 0.0f);
+            #endif
             J2DDrawLine(local_74, mDoGph_gInf_c::getMinYF(), local_74,
                         mDoGph_gInf_c::getMinYF() + mDoGph_gInf_c::getHeightF(),
                         JUtility::TColor(255, 255, 255, 255), 6);
@@ -1424,6 +1565,9 @@ void dMenu_Fmap2DBack_c::worldGridDraw() {
     while (true) {
         calcAllMapPos2D(xPos, dVar8, &local_74, &local_78);
         if (local_74 <= getMapScissorAreaLX() + getMapScissorAreaSizeRealX()) {
+            #if PLATFORM_WII
+            local_74 = getMirrorPosX(local_74, 0.0f);
+            #endif
             J2DDrawLine(local_74, mDoGph_gInf_c::getMinYF(), local_74,
                         mDoGph_gInf_c::getMinYF() + mDoGph_gInf_c::getHeightF(),
                         JUtility::TColor(255, 255, 255, 255), 6);
@@ -1471,6 +1615,9 @@ void dMenu_Fmap2DBack_c::regionGridDraw() {
     f32 dVar9 = mRegionOriginX[mRegionCursor] - mStageTransX;
     f32 dVar8 = mRegionOriginZ[mRegionCursor] - mStageTransZ;
     calcAllMapPos2D(dVar9, dVar8, &local_74, &local_78);
+    #if PLATFORM_WII
+    local_74 = getMirrorPosX(local_74, 0.0f);
+    #endif
 
     J2DDrawLine(local_74, mDoGph_gInf_c::getMinYF(), local_74,
                 mDoGph_gInf_c::getMinYF() + mDoGph_gInf_c::getHeightF(),
@@ -1480,6 +1627,9 @@ void dMenu_Fmap2DBack_c::regionGridDraw() {
     while (true) {
         calcAllMapPos2D(xPos, dVar8, &local_74, &local_78);
         if (local_74 >= getMapScissorAreaLX()) {
+            #if PLATFORM_WII
+            local_74 = getMirrorPosX(local_74, 0.0f);
+            #endif
             J2DDrawLine(local_74, mDoGph_gInf_c::getMinYF(), local_74,
                         mDoGph_gInf_c::getMinYF() + mDoGph_gInf_c::getHeightF(),
                         JUtility::TColor(180, 0, 0, 255), 6);
@@ -1493,6 +1643,9 @@ void dMenu_Fmap2DBack_c::regionGridDraw() {
     while (true) {
         calcAllMapPos2D(xPos, dVar8, &local_74, &local_78);
         if (local_74 <= getMapScissorAreaLX() + getMapScissorAreaSizeRealX()) {
+            #if PLATFORM_WII
+            local_74 = getMirrorPosX(local_74, 0.0f);
+            #endif
             J2DDrawLine(local_74, mDoGph_gInf_c::getMinYF(), local_74,
                         mDoGph_gInf_c::getMinYF() + mDoGph_gInf_c::getHeightF(),
                         JUtility::TColor(180, 0, 0, 255), 6);
@@ -1541,6 +1694,9 @@ static f32 dummy(int param_0) {
 void dMenu_Fmap2DBack_c::worldOriginDraw() {
     f32 local_44, local_48;
     calcAllMapPos2D(-mStageTransX, -mStageTransZ, &local_44, &local_48);
+    #if PLATFORM_WII
+    local_44 = getMirrorPosX(local_44, 0.0f);
+    #endif
 
     J2DDrawLine(mDoGph_gInf_c::getMinXF(), local_48 - local_44 + mDoGph_gInf_c::getMinXF(),
                 mDoGph_gInf_c::getMinXF() + mDoGph_gInf_c::getWidthF(),
@@ -1576,6 +1732,11 @@ void dMenu_Fmap2DBack_c::scrollAreaDraw() {
         calcAllMapPos2D(x_min - mStageTransX, z_min - mStageTransZ, &local_4c, &local_50);
         calcAllMapPos2D(x_max - mStageTransX, z_max - mStageTransZ, &local_54, &local_58);
 
+        #if PLATFORM_WII
+        local_4c = getMirrorPosX(local_4c, 0.0f);
+        local_54 = getMirrorPosX(local_54, 0.0f);
+        #endif
+
         J2DDrawLine(local_4c, local_50, local_4c, local_58,
                     JUtility::TColor(255, 255, 255, 255), 6);
         J2DDrawLine(local_54, local_50, local_54, local_58,
@@ -1596,6 +1757,9 @@ void dMenu_Fmap2DBack_c::regionOriginDraw() {
         f32 center_x, center_y;
         calcAllMapPos2D(mRegionOriginX[i] - mStageTransX, mRegionOriginZ[i] - mStageTransZ,
                         &center_x, &center_y);
+        #if PLATFORM_WII
+        center_x = getMirrorPosX(center_x - 3.0f, 3.0f);
+        #endif
         J2DFillBox(center_x - 3.0f, center_y - 3.0f, 6.0f, 6.0f, JUtility::TColor(255, 0, 0, 255));
     }
 }
@@ -1613,6 +1777,9 @@ void dMenu_Fmap2DBack_c::stageOriginDraw() {
             f32 v1 = mRegionOriginX[mRegionCursor] + stage_data[i].mOffsetX - mStageTransX;
             f32 v2 = mRegionOriginZ[mRegionCursor] + stage_data[i].mOffsetZ - mStageTransZ;
             calcAllMapPos2D(v1, v2, &center_x, &center_y);
+            #if PLATFORM_WII
+            center_x = getMirrorPosX(center_x - 3.0f, 3.0f);
+            #endif
             J2DFillBox(center_x - 3.0f, center_y - 3.0f, 6.0f, 6.0f,
                        JUtility::TColor(0, 0, 255, 255));
         }
@@ -1825,10 +1992,68 @@ void dMenu_Fmap2DBack_c::setBaseBackAlpha(u8 param_0) {
 
 void dMenu_Fmap2DBack_c::regionMapMove(STControl* i_stick) {
     f32 min_x, min_y, max_x, max_y;
+
+#if PLATFORM_WII
+    if(dComIfGs_getOptPointer()) {
+        calcAllMapPosWorld(getMapScissorAreaLX(), getMapScissorAreaLY(), &min_x, &min_y);
+        calcAllMapPosWorld(getMapScissorAreaLX() + getMapScissorAreaSizeRealX(),
+                       getMapScissorAreaLY() + getMapScissorAreaSizeRealY(), &max_x, &max_y);
+    }
+    else {
+        Mtx local_50;
+        Vec local_2c = mpMapArea->getGlobalVtx(mpMapArea->getPanePtr(), &local_50, 0, false, 0);
+        Vec local_20 = mpMapArea->getGlobalVtx(mpMapArea->getPanePtr(), &local_50, 3, false, 0);
+
+        f32 temp1 = mDoGph_gInf_c::getHeightF() / 456.0f;
+        f32 temp2 = mDoGph_gInf_c::getWidthF() / 640.0f;
+        f32 p0 = (local_20.x - mDoGph_gInf_c::getMinXF()) / temp1;
+        f32 p1 = (local_2c.y) / temp2;
+        f32 a0 = (local_2c.x - local_20.x) / temp1;
+        f32 a1 = (local_20.y - local_2c.y) / temp2;
+        calcAllMapPosWorld(p0, p1, &min_x, &min_y);
+        calcAllMapPosWorld(p0 + a0,
+                       p1 + a1, &max_x, &max_y);
+    }
+#else
     calcAllMapPosWorld(getMapScissorAreaLX(), getMapScissorAreaLY(), &min_x, &min_y);
     calcAllMapPosWorld(getMapScissorAreaLX() + getMapScissorAreaSizeRealX(),
                        getMapScissorAreaLY() + getMapScissorAreaSizeRealY(), &max_x, &max_y);
+#endif
+
     int r27 = 0;
+#if PLATFORM_WII
+    if(dComIfGs_getOptPointer()) {
+        Vec2& pos = mReCPd::getDpd2DPos(0);
+        f32 temp1 = field_0x11bc;
+        f32 temp2 = field_0x11c0;
+        calcAllMapPosWorld(getMirrorPosX(pos.x, 0.0f), pos.y, &field_0x11bc, &field_0x11c0);
+        if(field_0x11bc >= min_x && field_0x11bc <= max_x && field_0x11c0 >= min_y && field_0x11c0 <= max_y) {
+            r27 = 1;
+            control_xpos = field_0x11bc - mArrowPos3DX;
+            control_ypos = field_0x11c0 - mArrowPos3DZ;
+        }
+        else if(temp1 >= min_x && temp1 <= max_x && temp2 >= min_y && temp2 <= max_y) {
+            temp1 = field_0x11bc;
+            temp2 = field_0x11c0;
+            if(field_0x11bc < min_x) {
+                temp1 = min_x;
+            }
+            if(field_0x11bc > max_x) {
+                temp1 = max_x;
+            }
+            if(field_0x11c0 < min_y) {
+                temp2 = min_y;
+            }
+            if(field_0x11c0 > max_y) {
+                temp2 = max_y;
+            }
+            r27 = 1;
+            control_xpos = temp1 - mArrowPos3DX;
+            control_ypos = temp2 - mArrowPos3DZ;
+        }
+    }
+#endif
+
     if (r27 == 0) {
         f32 slow_bound = g_fmapHIO.mScrollSpeedSlowBound < g_fmapHIO.mScrollSpeedFastBound ?
                              g_fmapHIO.mScrollSpeedSlowBound :
@@ -1838,6 +2063,11 @@ void dMenu_Fmap2DBack_c::regionMapMove(STControl* i_stick) {
                              g_fmapHIO.mScrollSpeedFastBound;
 
         f32 stick_value = i_stick->getValueStick();
+#if PLATFORM_WII
+        if(dComIfGs_getOptPointer()) {
+            stick_value = 0.0f;
+        }
+#endif
         if (stick_value >= slow_bound) {
             s16 angle = i_stick->getAngleStick();
             f32 local_68 = mTexMaxX - mTexMinX;
@@ -1854,7 +2084,17 @@ void dMenu_Fmap2DBack_c::regionMapMove(STControl* i_stick) {
             f32 speed = base_speed / 100.0f * local_78;
             f32 speed_y = speed * cM_ssin(angle);
             f32 speed_x = speed * cM_scos(angle);
+
+#if PLATFORM_WII
+            if(dComIfGs_getOptPointer()) {
+                control_xpos += speed_y;
+            }
+            else {
+                control_xpos -= speed_y;
+            }
+#else
             control_xpos += speed_y;
+#endif
             control_ypos += speed_x;
         }
     }
@@ -1923,8 +2163,19 @@ void dMenu_Fmap2DBack_c::stageMapMove(STControl* i_stick, u8 param_1, bool param
         f32 speed = base_speed / 100.0f * local_78;
         f32 speed_x = speed * cM_ssin(angle);
         f32 speed_z = speed * cM_scos(angle);
+        #if PLATFORM_WII
+        if(dComIfGs_getOptPointer()) {
+            mStageTransX += speed_x;
+            mStageTransZ -= speed_z;
+        }
+        else {
+            mStageTransX -= speed_x;
+            mStageTransZ += speed_z;
+        }
+        #else
         mStageTransX += speed_x;
         mStageTransZ += speed_z;
+        #endif
     } else if (!param_2) {
         return;
     }
@@ -2017,6 +2268,9 @@ void dMenu_Fmap2DBack_c::drawDebugStageArea() {
                 if (stage_no >= 0) {
                     f32 v = i + mDoGph_gInf_c::getMinXF();
                     f32 v2 = j;
+                    #if PLATFORM_WII
+                    v = getMirrorPosX(v - 3.0f, 3.0f);
+                    #endif
                     J2DFillBox(v - 3.0f, v2 - 3.0f, 6.0f, 6.0f, colors[stage_no % 6]);
                 }
             }
@@ -2052,6 +2306,9 @@ void dMenu_Fmap2DBack_c::drawDebugRegionArea() {
                     mRegionMapSizeX[region] * mZoom, mRegionMapSizeY[region] * mZoom,
                     mpAreaTex[region]->getTexture(0)->getTexInfo());
                 if (u) {
+                    #if PLATFORM_WII
+                        pos_x = getMirrorPosX(pos_x - 3.0f, 3.0f);
+                    #endif
                     J2DFillBox(pos_x - 3.0f, pos_y - 3.0f, 6.0f, 6.0f, colors[region]);
                     break;
                 }
@@ -2178,7 +2435,7 @@ dMenu_Fmap2DTop_c::dMenu_Fmap2DTop_c(JKRExpHeap* i_heap, STControl* i_stick) {
     dPaneClass_showNullPane(mpTitleScreen);
     mpTitleRoot = new CPaneMgrAlphaMorf(mpTitleScreen, 'ROOT', 2, NULL);
     JUT_ASSERT(3881, mpTitleRoot != NULL);
-#if PLATFORM_SHIELD
+#if PLATFORM_SHIELD || PLATFORM_WII
     for (int i = 0; i < 2; i++) {
         mpArrowLAlpha[i] = NULL;
         mpArrowRAlpha[i] = NULL;
@@ -2202,7 +2459,7 @@ dMenu_Fmap2DTop_c::dMenu_Fmap2DTop_c(JKRExpHeap* i_heap, STControl* i_stick) {
     mpAnalogStick = new CPaneMgr(mpTitleScreen, 'as_n', 0, NULL);
     mpDpad = new CPaneMgr(mpTitleScreen, MULTI_CHAR('juji_c_n'), 0, NULL);
 #endif
-#if PLATFORM_SHIELD
+#if PLATFORM_SHIELD || PLATFORM_WII
     mpButtonA = new CPaneMgr(mpTitleScreen, MULTI_CHAR('abtn_n'), 2, NULL);
     JUT_ASSERT(3935, mpButtonA != NULL);
     mpButtonB = new CPaneMgr(mpTitleScreen, MULTI_CHAR('bbtn_n'), 2, NULL);
@@ -2710,6 +2967,16 @@ void dMenu_Fmap2DTop_c::setAButtonString(u32 param_0, u8 i_alpha) {
     static const u64 font_at[5] = {MULTI_CHAR('font_at1'), MULTI_CHAR('font_at2'), MULTI_CHAR('font_at3'), MULTI_CHAR('font_at4'), MULTI_CHAR('font_at5')};
 #define setAButtonString_font_at font_at
 #endif
+
+#if PLATFORM_WII
+    if(param_0 == 0x3F9) {
+        l_anmCsr->onNavi();
+    }
+    else {
+        l_anmCsr->offNavi();
+    }
+#endif
+
     if (param_0 == 0) {
         mAlphaButtonA = ALPHA_MIN;
     } else {

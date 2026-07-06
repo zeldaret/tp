@@ -59,6 +59,9 @@ public:
     void moveLightDropAnime();
     f32 getIconSizeX(u8 index);
     f32 getIconSizeY(u8 index);
+    #if PLATFORM_WII
+    f32 getMirrorCenterPosX(f32 param_, f32 param_1);
+    #endif
     void debugIcon();
 
     void setCenterPosX(f32 center_pos, u8 param_2) {

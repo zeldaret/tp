@@ -6,6 +6,10 @@
 #include "d/d_select_cursor.h"
 #include "global.h"
 
+#if PLATFORM_WII
+#include "d/d_meter2_info.h"
+#endif
+
 struct map_icon_size_t {
     f32 size_x;
     f32 size_y;
@@ -343,6 +347,10 @@ void dMenuMapCommon_c::drawIcon(f32 i_posX, f32 i_posY, f32 param_3, f32 param_4
                     }
 
                     f32 pos_x = icon_pos_x + i_posX;
+                    #if PLATFORM_WII
+                        pos_x = getMirrorCenterPosX(pos_x, 0.0f);
+                        dMeter2Info_getWide2DPosX(&pos_x);
+                    #endif
                     mpDrawCursor->setPos(pos_x, icon_pos_y + i_posY);
                     mpDrawCursor->setScale(mIconInfo[info_idx].scale * g_fmapHIO.mMapIconHIO.mPortalCursorScale);
                     mpDrawCursor->draw();
@@ -364,6 +372,10 @@ void dMenuMapCommon_c::drawIcon(f32 i_posX, f32 i_posY, f32 param_3, f32 param_4
                     }
 
                     f32 pos_x = (icon_pos_x + i_posX);
+                    #if PLATFORM_WII
+                        pos_x = getMirrorCenterPosX(pos_x, 0.0f);
+                        dMeter2Info_getWide2DPosX(&pos_x);
+                    #endif
                     mpPortalIcon->setPos(pos_x, icon_pos_y + i_posY);
                     mpPortalIcon->setScale(mIconInfo[info_idx].scale * g_fmapHIO.mMapIconHIO.mPortalIconScale);
                     mpPortalIcon->draw();
@@ -399,8 +411,16 @@ void dMenuMapCommon_c::drawIcon(f32 i_posX, f32 i_posY, f32 param_3, f32 param_4
                 }
 
                 f32 pos_x = i_posX + (icon_pos_x - (icon_size_x / 2));
+                bool r4 = false;
+                #if PLATFORM_WII
+                    pos_x = getMirrorCenterPosX(pos_x, icon_size_x / 2);
+
+                    if(mIconInfo[info_idx].icon_no == ICON_GOLD_WOLF_e) {
+                        r4 = true;
+                    }
+                #endif
                 mPictures[mIconInfo[info_idx].icon_no]->draw(pos_x, (i_posY + (icon_pos_y - icon_size_y / 2)),
-                                                             icon_size_x, icon_size_y, false, false, false);
+                                                             icon_size_x, icon_size_y, r4, false, false);
 
                 if (mIconInfo[info_idx].icon_no == ICON_LIGHT_DROP_e) {
                     mLightDropPic->draw((pos_x + (icon_size_x / 2)) - (var_f29 / 2),
@@ -623,6 +643,17 @@ f32 dMenuMapCommon_c::getIconSizeY(u8 i_iconNo) {
 
     return 0.0f;
 }
+
+#if PLATFORM_WII
+f32 dMenuMapCommon_c::getMirrorCenterPosX(f32 param_0, f32 param_1) {
+    if(_c90 == 0) {
+        return param_0;
+    }
+
+    param_0 += param_1;
+    return mCenterPosX * 2.0f - param_0 - param_1;
+}
+#endif
 
 void dMenuMapCommon_c::debugIcon() {
     int link_icon_idx = -1;

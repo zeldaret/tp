@@ -1017,6 +1017,7 @@ public:
         static navi_c* getNavi() { return m_navi; }
 
         dDlst_blo_c* getCsr() { return &field_0x8; }
+        void offNavi() { field_0x13d = 0; }
         void onNavi() { field_0x13d = 1; }
 
         /* 0x008 */ dDlst_blo_c field_0x8;

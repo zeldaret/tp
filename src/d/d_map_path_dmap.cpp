@@ -471,6 +471,10 @@ void dMpath_c::setPointer(s8 i_roomNo, void* i_data, int i_mapLayerNo) {
     if (room != NULL) {
         roomNo = i_roomNo;
 
+        #if PLATFORM_WII
+            dStage_roomControl_c::getFileList2(i_roomNo);
+        #endif
+
         reset();
         data_80450E88 = true;
         setPointer(room, &mBottomFloorNo, &mTopFloorNo);

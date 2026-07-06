@@ -162,6 +162,10 @@ public:
 
     void mapBlink() {}
 
+#if PLATFORM_WII
+    f32 getMirrorPosX(f32 param_0, f32 param_1);
+#endif
+
     // Unknown name
     struct RegionTexData {
         /* 0x00 */ float mMinX;

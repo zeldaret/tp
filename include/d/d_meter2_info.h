@@ -324,6 +324,7 @@ s16 dMeter2Info_getNowLifeGauge();
 bool dMeter2Info_isNextStage(const char*, s16, s16, s16);
 
 #if WIDESCREEN_SUPPORT
+f32 dMeter2Info_getWide2DPosX(f32* param_0);
 void dMeter2Info_onWide2D();
 void dMeter2Info_offWide2D();
 #endif

@@ -239,6 +239,7 @@ public:
     s8 getFloorAll() { return (mFloorAll - mBottomFloor) + 1; }
     s8 getFloorPos(s8 param_0) { return param_0 - mBottomFloor; }
     u16 getCMessageNum() { return mCMessageNum; }
+    u16 getJMessageNum() { return mJMessageNum; }
 
     static dMenu_Dmap_c* myclass;
 

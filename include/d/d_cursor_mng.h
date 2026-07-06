@@ -10,6 +10,10 @@ public:
     struct csr_c;
 
     struct node_c {
+        node_c() {
+            m_prev = NULL;
+            m_next = NULL;
+        }
         virtual ~node_c() {}
 
         BOOL set(u8 i_priority, u8, u16 i_mask);

@@ -23,6 +23,10 @@
 #include "d/actor/d_a_player.h"
 #include "d/actor/d_a_midna.h"
 
+#if PLATFORM_WII
+#include "m_Re/m_Re_controller_pad.h"
+#endif
+
 static dMf_HIO_c g_fmHIO;
 
 static dMenu_Fmap_c::process init_process[30] = {
@@ -442,7 +446,16 @@ void dMenu_Fmap_c::_create() {
         mpDraw2DTop->setArrowAlphaRatio(dMenu_Fmap2DTop_c::ARROW_UP, 0.0f);
         mpDraw2DTop->setArrowAlphaRatio(dMenu_Fmap2DTop_c::ARROW_DOWN, 0.0f);
         mpDraw2DTop->setBButtonString(0x522, dMenu_Fmap2DTop_c::ALPHA_DEFAULT);
-        mpDraw2DTop->setAButtonString(0, dMenu_Fmap2DTop_c::ALPHA_DEFAULT);
+        #if PLATFORM_WII
+            if(dComIfGs_getOptPointer()) {
+                mpDraw2DTop->setAButtonString(0x536, dMenu_Fmap2DTop_c::ALPHA_DEFAULT);
+            }
+            else {
+                mpDraw2DTop->setAButtonString(0, dMenu_Fmap2DTop_c::ALPHA_DEFAULT);
+            }
+        #else
+            mpDraw2DTop->setAButtonString(0, dMenu_Fmap2DTop_c::ALPHA_DEFAULT);
+        #endif
         mpDraw2DTop->setZButtonString(0x529, dMenu_Fmap2DTop_c::ALPHA_DEFAULT);
         mpDraw2DTop->set3DStickString(0x528);
         mpDraw2DBack->iconScale(0, 0.0f, 0.0f, 1.0f);
@@ -561,19 +574,25 @@ u8 dMenu_Fmap_c::getNextStatus(u8* param_0) {
     *param_0 = 0;
 
     if (mProcess == PROC_ALL_MAP && dMw_B_TRIGGER()) {
-        if (mPanDirection == 3) {
+        #if PLATFORM_WII
             mPanDirection = 1;
             dMeter2Info_setMapStatus(0);
             dMeter2Info_setMapKeyDirection(0x400);
-        } else {
-            mPanDirection = 3;
-            if (dMeterMap_c::isEnableDispMapAndMapDispSizeTypeNo()) {
-                dMeter2Info_setMapStatus(1);
-            } else {
+        #else
+            if (mPanDirection == 3) {
+                mPanDirection = 1;
                 dMeter2Info_setMapStatus(0);
+                dMeter2Info_setMapKeyDirection(0x400);
+            } else {
+                mPanDirection = 3;
+                if (dMeterMap_c::isEnableDispMapAndMapDispSizeTypeNo()) {
+                    dMeter2Info_setMapStatus(1);
+                } else {
+                    dMeter2Info_setMapStatus(0);
+                }
+                dMeter2Info_setMapKeyDirection(0x200);
             }
-            dMeter2Info_setMapKeyDirection(0x200);
-        }
+        #endif
 
         ret = 9;
         Z2GetAudioMgr()->seStart(Z2SE_SY_MAP_CLOSE_L, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
@@ -581,25 +600,41 @@ u8 dMenu_Fmap_c::getNextStatus(u8* param_0) {
     }
 
     if (mProcess == PROC_PORTAL_WARP_MAP && dMeter2Info_getWarpStatus() == 3) {
-        if (mPanDirection == 3) {
+        #if PLATFORM_WII
             mPanDirection = 1;
             dMeter2Info_setMapStatus(0);
             dMeter2Info_setMapKeyDirection(0x400);
-        } else {
-            mPanDirection = 3;
-            if (dMeterMap_c::isEnableDispMapAndMapDispSizeTypeNo()) {
-                dMeter2Info_setMapStatus(1);
-            } else {
+        #else
+            if (mPanDirection == 3) {
+                mPanDirection = 1;
                 dMeter2Info_setMapStatus(0);
+                dMeter2Info_setMapKeyDirection(0x400);
+            } else {
+                mPanDirection = 3;
+                if (dMeterMap_c::isEnableDispMapAndMapDispSizeTypeNo()) {
+                    dMeter2Info_setMapStatus(1);
+                } else {
+                    dMeter2Info_setMapStatus(0);
+                }
+                dMeter2Info_setMapKeyDirection(0x200);
             }
-            dMeter2Info_setMapKeyDirection(0x200);
-        }
+        #endif
 
         Z2GetAudioMgr()->seStart(Z2SE_SY_MAP_CLOSE_L, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
         dMeter2Info_set2DVibrationM();
         return 9;
     } else if ((mProcess == PROC_ALL_MAP || mProcess == PROC_REGION_MAP
                 || mProcess == PROC_PORTAL_WARP_MAP || mProcess == PROC_SPOT_MAP) && isSync()) {
+        #if PLATFORM_WII
+        if (dMw_LEFT_TRIGGER()) {
+            dMeter2Info_setMapStatus(0);
+            mPanDirection = 1;
+            dMeter2Info_setMapKeyDirection(0x400);
+            Z2GetAudioMgr()->seStart(Z2SE_SY_MAP_CLOSE_L, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+            dMeter2Info_set2DVibrationM();
+            return 9;
+        }
+        #else
         if (dMw_LEFT_TRIGGER()) {
             if (dMeterMap_c::isEnableDispMapAndMapDispSizeTypeNo()) {
                 dMeter2Info_setMapStatus(1);
@@ -619,6 +654,7 @@ u8 dMenu_Fmap_c::getNextStatus(u8* param_0) {
             dMeter2Info_set2DVibrationM();
             return 9;
         }
+        #endif
     }
 
     return ret;
@@ -660,6 +696,10 @@ void dMenu_Fmap_c::all_map_init() {
 void dMenu_Fmap_c::all_map_proc() {
     mpStick->checkTrigger();
 
+    #if PLATFORM_WII
+        int flag = 0;
+    #endif
+
     u8 region = mpDraw2DBack->getSelectRegion();
     bool region_change = false;
     if (mRegionNo != region) {
@@ -668,15 +708,27 @@ void dMenu_Fmap_c::all_map_proc() {
     }
 
     if (region != 0xff && mpDraw2DBack->isShowRegion(region)) {
-        if (getRegionStageNum(region + 1) == 0) {
-            mpDraw2DTop->setAButtonString(0, dMenu_Fmap2DTop_c::ALPHA_DEFAULT);
-        } else {
+        #if PLATFORM_WII
             mpDraw2DTop->setAButtonString(0x527, dMenu_Fmap2DTop_c::ALPHA_DEFAULT);
-        }
-        if (region_change) {
-            Z2GetAudioMgr()->seStart(Z2SE_SY_MAP_AREA_SELECT, NULL, 0, 0,
-                                     1.0f, 1.0f, -1.0f, -1.0f, 0);
-        }
+            if (region_change) {
+                if(dComIfGs_getOptPointer()) {
+                    flag = 1;
+                    dMeter2Info_set2DVibration();
+                }
+                Z2GetAudioMgr()->seStart(Z2SE_SY_MAP_AREA_SELECT, NULL, flag, 0,
+                                         1.0f, 1.0f, -1.0f, -1.0f, 0);
+            }
+        #else
+            if (getRegionStageNum(region + 1) == 0) {
+                mpDraw2DTop->setAButtonString(0, dMenu_Fmap2DTop_c::ALPHA_DEFAULT);
+            } else {
+                mpDraw2DTop->setAButtonString(0x527, dMenu_Fmap2DTop_c::ALPHA_DEFAULT);
+            }
+            if (region_change) {
+                Z2GetAudioMgr()->seStart(Z2SE_SY_MAP_AREA_SELECT, NULL, 0, 0,
+                                         1.0f, 1.0f, -1.0f, -1.0f, 0);
+            }
+        #endif
     } else {
         mpDraw2DTop->setAButtonString(0, dMenu_Fmap2DTop_c::ALPHA_DEFAULT);
     }
@@ -688,6 +740,14 @@ void dMenu_Fmap_c::all_map_proc() {
             if (!mErrorSound) {
                 Z2GetAudioMgr()->seStart(Z2SE_SYS_ERROR, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
                 mErrorSound = true;
+
+                #if PLATFORM_WII
+                    if(dComIfGs_getOptPointer()) {
+                        field_0x310 = 1;
+                    }
+
+                    return;
+                #endif
             }
         } else {
             mpDraw2DBack->setRegionCursor(region);
@@ -696,6 +756,14 @@ void dMenu_Fmap_c::all_map_proc() {
                     Z2GetAudioMgr()->seStart(Z2SE_SYS_ERROR, NULL, 0, 0,
                                              1.0f, 1.0f, -1.0f, -1.0f, 0);
                     mErrorSound = true;
+
+                    #if PLATFORM_WII
+                        if(dComIfGs_getOptPointer()) {
+                            field_0x310 = 1;
+                        }
+
+                        return;
+                    #endif
                 }
             } else {
                 mpDraw2DBack->calcDrawPriority();
@@ -855,9 +923,28 @@ void dMenu_Fmap_c::region_map_init() {
 }
 
 void dMenu_Fmap_c::region_map_proc() {
-    bool r29 = false;
-    mpDraw2DTop->setAButtonString(0x527, dMenu_Fmap2DTop_c::ALPHA_DEFAULT);
-    r29 = true;
+    #if PLATFORM_WII
+        bool r29 = false;
+        if(dComIfGs_getOptPointer()) {
+            u32 selectRegion = mpDraw2DBack->mSelectRegion;
+            if(mStageCursor >= 0 || selectRegion != 0xFF) {
+                mpDraw2DTop->setAButtonString(0x527, dMenu_Fmap2DTop_c::ALPHA_DEFAULT);
+                r29 = true;
+            }
+            else {
+                mpDraw2DTop->setAButtonString(0, dMenu_Fmap2DTop_c::ALPHA_DEFAULT);
+            }
+        }
+        else {
+            mpDraw2DTop->setAButtonString(0x527, dMenu_Fmap2DTop_c::ALPHA_DEFAULT);
+            r29 = true;
+        }
+    #else
+        bool r29 = false;
+        mpDraw2DTop->setAButtonString(0x527, dMenu_Fmap2DTop_c::ALPHA_DEFAULT);
+        r29 = true;
+    #endif
+
 
     if (dMw_B_TRIGGER() && !dMeter2Info_isTouchKeyCheck(0xc)
         && dMeter2Info_getMeterClass()->getMeterDrawPtr()->getInsideObjCheck() != 1)
@@ -869,9 +956,17 @@ void dMenu_Fmap_c::region_map_proc() {
     {
         if (r29) {
             setProcess(PROC_ZOOM_REGION_TO_SPOT);
-        } else if (!mErrorSound) {
-            Z2GetAudioMgr()->seStart(Z2SE_SYS_ERROR, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
-            mErrorSound = true;
+        } else {
+            if (!mErrorSound) {
+                Z2GetAudioMgr()->seStart(Z2SE_SYS_ERROR, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+                mErrorSound = true;
+            }
+
+            #if PLATFORM_WII
+                if(dComIfGs_getOptPointer()) {
+                    field_0x310 = 1;
+                }
+            #endif
         }
     } else if (dMw_Z_TRIGGER() && mpDraw2DTop->isWarpAccept()) {
             /* dSv_event_flag_c::F_0265 - Arbiter's Grounds - Arbiter's Grounds clear */
@@ -917,9 +1012,25 @@ void dMenu_Fmap_c::region_map_proc() {
         }
         mpDraw2DBack->regionMapMove(mpStick);
         int stage_no, room_no;
-        f32 pos_x = mpDraw2DBack->getArrowPos2DX() - mDoGph_gInf_c::getMinXF()
-                                                    - mDoGph_gInf_c::getWidthF() * 0.5f;
-        f32 pos_y = mpDraw2DBack->getArrowPos2DY() - mDoGph_gInf_c::getHeightF() * 0.5f;
+        #if PLATFORM_WII
+            f32 pos_x;
+            f32 pos_y;
+            if(dComIfGs_getOptPointer()) {
+                Vec2& pos = mReCPd::getDpd2DPos(0);
+                pos_x = mpDraw2DBack->getMirrorPosX(pos.x, 0.0f) - mDoGph_gInf_c::getMinXF()
+                                                            - mDoGph_gInf_c::getWidthF() * 0.5f;
+                pos_y = pos.y - mDoGph_gInf_c::getHeightF() * 0.5f;
+            }
+            else {
+                pos_x = mpDraw2DBack->getArrowPos2DX() - mDoGph_gInf_c::getMinXF()
+                                                            - mDoGph_gInf_c::getWidthF() * 0.5f;
+                pos_y = mpDraw2DBack->getArrowPos2DY() - mDoGph_gInf_c::getHeightF() * 0.5f;
+            }
+        #else
+            f32 pos_x = mpDraw2DBack->getArrowPos2DX() - mDoGph_gInf_c::getMinXF()
+                                                        - mDoGph_gInf_c::getWidthF() * 0.5f;
+            f32 pos_y = mpDraw2DBack->getArrowPos2DY() - mDoGph_gInf_c::getHeightF() * 0.5f;
+        #endif
         mpMenuFmapMap->getPointStagePathInnerNo(getNowFmapRegionData(), pos_x, pos_y,
                                                 mStayStageNo, &stage_no, &room_no);
         if (mStageCursor != stage_no || mRoomCursor != room_no || mResetAreaName) {
@@ -1173,13 +1284,39 @@ void dMenu_Fmap_c::spot_map_init() {
     mpDraw2DTop->setArrowAlphaRatio(dMenu_Fmap2DTop_c::ARROW_UP, 0.0f);
     mpDraw2DTop->setArrowAlphaRatio(dMenu_Fmap2DTop_c::ARROW_DOWN, 0.0f);
     mpDraw2DTop->setBButtonString(0x522, dMenu_Fmap2DTop_c::ALPHA_DEFAULT);
-    mpDraw2DTop->setAButtonString(0, dMenu_Fmap2DTop_c::ALPHA_DEFAULT);
+    #if PLATFORM_WII
+        if(dComIfGs_getOptPointer()) {
+            mpDraw2DTop->setAButtonString(0x536, dMenu_Fmap2DTop_c::ALPHA_DEFAULT);
+        }
+        else {
+            mpDraw2DTop->setAButtonString(0, dMenu_Fmap2DTop_c::ALPHA_DEFAULT);
+        }
+    #else
+        mpDraw2DTop->setAButtonString(0, dMenu_Fmap2DTop_c::ALPHA_DEFAULT);
+    #endif
     mpDraw2DTop->setZButtonString(0x529, dMenu_Fmap2DTop_c::ALPHA_DEFAULT);
     mpDraw2DTop->set3DStickString(0x528);
     mpDraw2DTop->setCrossLRString(0x3f9);
 }
 
 void dMenu_Fmap_c::spot_map_proc() {
+    #if PLATFORM_WII
+        f32 t1 = mpDraw2DBack->getMapScissorAreaLX();
+        f32 t2 = t1 + mpDraw2DBack->getMapScissorAreaSizeRealX();
+        f32 t3 = mpDraw2DBack->getMapScissorAreaLY();
+        f32 t4 = t3 + mpDraw2DBack->getMapScissorAreaSizeRealY();
+        Vec2& pos = mReCPd::getDpd2DPos(0);
+
+        if(dComIfGs_getOptPointer()) {
+            if(pos.x < t1 || pos.x > t2 || pos.y < t3 || pos.y > t4) {
+                mpDraw2DTop->setAButtonString(0, dMenu_Fmap2DTop_c::ALPHA_DEFAULT);
+            }
+            else {
+                mpDraw2DTop->setAButtonString(0x536, dMenu_Fmap2DTop_c::ALPHA_DEFAULT);
+            }
+        }
+    #endif
+
     if (dMw_B_TRIGGER() && !dMeter2Info_isTouchKeyCheck(0xc)
         && dMeter2Info_getMeterClass()->getMeterDrawPtr()->getInsideObjCheck() != 1)
     {
@@ -1187,7 +1324,8 @@ void dMenu_Fmap_c::spot_map_proc() {
         if (mErrorSound == true) {
             mErrorSound = false;
         }
-    } else if (dMw_A_TRIGGER() && !dMeter2Info_isTouchKeyCheck(0xc)
+    }
+    else if (dMw_A_TRIGGER() && !dMeter2Info_isTouchKeyCheck(0xc)
         && dMeter2Info_getMeterClass()->getMeterDrawPtr()->getInsideObjCheck() != 1)
     {
         mpDraw2DBack->stageMapMove(mpStick, 1, true);
@@ -1240,10 +1378,25 @@ void dMenu_Fmap_c::spot_map_proc() {
 
         mpDraw2DBack->stageMapMove(mpStick, 1, true);
 
+        f32 pos_x, pos_y;
+        #if PLATFORM_WII
+        if(dComIfGs_getOptPointer()) {
+            Vec2& pos = mReCPd::getDpd2DPos(0);
+            pos_x = mpDraw2DBack->getMirrorPosX(pos.x, 0.0f) - mDoGph_gInf_c::getMinXF()
+                                                        - mDoGph_gInf_c::getWidthF() * 0.5f;
+            pos_y = pos.y - mDoGph_gInf_c::getHeightF() * 0.5f;
+        }
+        else {
+            pos_x = mpDraw2DBack->getMapAreaGlobalCenterPosX() - mDoGph_gInf_c::getMinXF()
+                                                                    - mDoGph_gInf_c::getWidthF() * 0.5f;
+            pos_y = mpDraw2DBack->getMapAreaGlobalCenterPosY() - mDoGph_gInf_c::getHeightF() * 0.5f;
+        }
+        #else
+            pos_x = mpDraw2DBack->getMapAreaGlobalCenterPosX() - mDoGph_gInf_c::getMinXF()
+                                                                    - mDoGph_gInf_c::getWidthF() * 0.5f;
+            pos_y = mpDraw2DBack->getMapAreaGlobalCenterPosY() - mDoGph_gInf_c::getHeightF() * 0.5f;
+        #endif
         int stage_no, room_no;
-        f32 pos_x = mpDraw2DBack->getMapAreaGlobalCenterPosX() - mDoGph_gInf_c::getMinXF()
-                                                                - mDoGph_gInf_c::getWidthF() * 0.5f;
-        f32 pos_y = mpDraw2DBack->getMapAreaGlobalCenterPosY() - mDoGph_gInf_c::getHeightF() * 0.5f;
         mpMenuFmapMap->getPointStagePathInnerNo(getNowFmapRegionData(), pos_x, pos_y,
                                                 mStayStageNo, &stage_no, &room_no);
         
@@ -2452,8 +2605,21 @@ void dMenu_Fmap_c::portalWarpMapMove(STControl* i_stick) {
     mpDraw2DBack->regionMapMove(i_stick);
     dMenu_Fmap_portal_data_c* portal_dat = mpPortalDat;
     dMenu_Fmap_portal_data_c::data* portals = portal_dat->mData;
-    f32 arrow_x = mpDraw2DBack->getArrowPos2DX();
-    f32 arrow_y = mpDraw2DBack->getArrowPos2DY();
+    f32 arrow_x, arrow_y;
+    #if PLATFORM_WII
+        if(dComIfGs_getOptPointer()) {
+            Vec2& pos = mReCPd::getDpd2DPos(0);
+            arrow_x = mpDraw2DBack->getMirrorPosX(pos.x, 0.0f);
+            arrow_y = pos.y;
+        }
+        else {
+            arrow_x = mpDraw2DBack->getArrowPos2DX();
+            arrow_y = mpDraw2DBack->getArrowPos2DY();
+        }
+    #else
+        arrow_x = mpDraw2DBack->getArrowPos2DX();
+        arrow_y = mpDraw2DBack->getArrowPos2DY();
+    #endif
     u8 uVar6 = 0xff;
 
     for (int i = 0; i < portal_dat->mCount; i++) {
@@ -2477,7 +2643,17 @@ void dMenu_Fmap_c::portalWarpMapMove(STControl* i_stick) {
 
     if (uVar6 != 0xff) {
         if (uVar6 != mPortalNo) {
-            Z2GetAudioMgr()->seStart(Z2SE_WARP_MAP_CURSOR, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+            #if PLATFORM_WII
+                int flag = 0;
+                if(dComIfGs_getOptPointer()) {
+                    flag = 1;
+                    dMeter2Info_set2DVibration();
+                }
+
+                Z2GetAudioMgr()->seStart(Z2SE_WARP_MAP_CURSOR, NULL, flag, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+            #else
+                Z2GetAudioMgr()->seStart(Z2SE_WARP_MAP_CURSOR, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
+            #endif
         }
         mPortalNo = uVar6;
     }
@@ -2524,6 +2700,10 @@ void dMenu_Fmap_c::drawIcon(f32 param_0, bool param_1) {
     if (mProcess == PROC_PORTAL_DEMO1) {
         is_portal_demo1 = 1;
     }
+
+    #if PLATFORM_WII
+        angle = 0x10000 - angle;
+    #endif
     mpDraw2DBack->setIcon2DPos(0x11, stage_name, pos.x, pos.z, cM_sht2d(angle),
                                is_portal_demo1, param_1);
     
@@ -2605,6 +2785,10 @@ void dMenu_Fmap_c::drawPlayEnterIcon() {
             angle = dComIfGs_getPlayerFieldLastStayAngleY();
             strcpy(stage_name, dComIfGs_getPlayerFieldLastStayName());
         }
+
+        #if PLATFORM_WII
+            angle = 0x10000 - angle;
+        #endif
         mpDraw2DBack->setIcon2DPos(0x15, stage_name, pos.x, pos.z, cM_sht2d(angle), 0, false);
     }
 }

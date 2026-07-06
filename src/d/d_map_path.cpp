@@ -416,7 +416,11 @@ void dRenderingFDAmap_c::preRenderingMap() {
     GXSetNumIndStages(0);
     GXSetClipMode(GX_CLIP_ENABLE);
     setTevSettingNonTextureDirectColor();
-    f32 right = field_0x8 * 0.5f;
+    #if PLATFORM_WII
+        f32 right = field_0x8 * -0.5f;
+    #else
+        f32 right = field_0x8 * 0.5f;
+    #endif
     f32 top = field_0xc * 0.5f;
     Mtx44 matrix;
     C_MTXOrtho(matrix, top, -top, -right, right, 0.0f, 10000.0f);

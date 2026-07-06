@@ -391,7 +391,7 @@ d/d_stage.cpp:
 
 d/d_map.cpp:
 	.text       start:0x8002CD10 end:0x8002F47C
-	.rodata     start:0x803BA670 end:0x803BA750
+	.rodata     start:0x803BA670 end:0x803BA74C
 	.data       start:0x803E90F8 end:0x803E94F8
 	.sdata      start:0x8051D9C0 end:0x8051DB6C
 	.sbss       start:0x805209B8 end:0x805209C0
@@ -482,28 +482,29 @@ d/d_resorce.cpp:
 	.text       start:0x8003DFD0 end:0x80040098
 	.rodata     start:0x803BB3C8 end:0x803BB430
 	.data       start:0x803E9DE8 end:0x803EA228
-	.sdata      start:0x8051DCD8 end:0x8051DD08
+	.sdata      start:0x8051DCD8 end:0x8051DD00
 	.sdata2     start:0x80521EA0 end:0x80521EB0
 
 d/d_map_path.cpp:
 	.text       start:0x80040098 end:0x80041054
 	.ctors      start:0x803B8CB8 end:0x803B8CBC
-	.rodata     start:0x803BB430 end:0x803BB450
-	.bss        start:0x804983F8 end:0x80498458
+	.rodata     start:0x803BB430 end:0x803BB44C
+	.bss        start:0x804983F8 end:0x80498420
+	.sdata      start:0x8051DD00 end:0x8051DD08
 	.sdata2     start:0x80521EB0 end:0x80521ED0
 
 d/d_map_path_fmap.cpp:
 	.text       start:0x80041054 end:0x80042454
 	.data       start:0x803EA228 end:0x803EA2E0
 	.sdata      start:0x8051DD08 end:0x8051DD18
-	.sdata2     start:0x80521ED0 end:0x80521EE0
+	.sdata2     start:0x80521ED0 end:0x80521EDC
 
 d/d_map_path_dmap.cpp:
 	.text       start:0x80042454 end:0x80044B3C
-	.rodata     start:0x803BB450 end:0x803BB588
+	.rodata     start:0x803BB450 end:0x803BB578
 	.sdata      start:0x8051DD18 end:0x8051DD40
 	.sbss       start:0x80520AAC end:0x80520AD0
-	.sdata2     start:0x80521EE0 end:0x80521F80
+	.sdata2     start:0x80521EE0 end:0x80521F7C
 
 d/d_event.cpp:
 	.text       start:0x80044B3C end:0x80046D80
@@ -519,6 +520,7 @@ d/d_event_data.cpp:
 
 d/d_event_manager.cpp:
 	.text       start:0x800498B0 end:0x8004BBBC
+	.rodata     start:0x803BB578 end:0x803BB588
 	.data       start:0x803EA698 end:0x803EA860
 	.sdata2     start:0x80521FC0 end:0x80521FD8
 
@@ -988,7 +990,7 @@ d/d_menu_collect.cpp:
 	.text       start:0x80193F8C end:0x8019C10C
 	.rodata     start:0x803D6050 end:0x803D6418
 	.data       start:0x803FE828 end:0x803FEE74
-	.sdata      start:0x8051F17C end:0x8051F1A4
+	.sdata      start:0x8051F17C end:0x8051F1A0
 	.sbss       start:0x80520CD0 end:0x80520CE0
 	.sdata2     start:0x80523DD0 end:0x80523E70
 
@@ -996,13 +998,13 @@ d/d_menu_dmap.cpp:
 	.text       start:0x8019C10C end:0x801A5170
 	.rodata     start:0x803D6418 end:0x803D6790
 	.data       start:0x803FEE74 end:0x803FF118
-	.sdata      start:0x8051F1A4 end:0x8051F1D0
+	.sdata      start:0x8051F1A0 end:0x8051F1D0
 	.sbss       start:0x80520CE0 end:0x80520D00
 	.sdata2     start:0x80523E70 end:0x80523F10
 
 d/d_menu_dmap_map.cpp:
 	.text       start:0x801A5170 end:0x801A6E14
-	.rodata     start:0x803D6790 end:0x803D6800
+	.rodata     start:0x803D6790 end:0x803D67FC
 	.data       start:0x803FF118 end:0x803FF308
 	.sdata      start:0x8051F1D0 end:0x8051F1E4
 	.sbss       start:0x80520D00 end:0x80520D18
