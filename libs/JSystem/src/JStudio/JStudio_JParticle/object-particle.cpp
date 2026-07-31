@@ -377,9 +377,9 @@ void TAdaptor_particle::TJPACallback_emitter_::execute(JPABaseEmitter* pJPAEmitt
         }
         pJPAEmitter->setGlobalTranslation(pVVar9->translation);
         pJPAEmitter->setGlobalRotation(JGeometry::TVec3<s16>(
-            65536.0 * (pVVar9->rotation.x / 360.0),
-            65536.0 * (pVVar9->rotation.y / 360.0),
-            65536.0 * (pVVar9->rotation.z / 360.0)
+            (s16)(65536.0 * (pVVar9->rotation.x / 360.0)),
+            (s16)(65536.0 * (pVVar9->rotation.y / 360.0)),
+            (s16)(65536.0 * (pVVar9->rotation.z / 360.0))
         ));
         pJPAEmitter->setGlobalScale(pVVar9->scaling);
     } else {

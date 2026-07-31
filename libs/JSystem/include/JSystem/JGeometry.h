@@ -65,12 +65,12 @@ struct TUtil<f32> {
 };
 
 template<>
-struct TUtil<double> {
-    static inline double epsilon() { return 32.0f * FLT_EPSILON; }
-    static inline double one() { return 1.0; }
-    static inline double atan2(double x, double y) { return ::atan2(x, y); }
-    static inline double asin(double x) { return ::asin(x); }
-    static inline double halfPI() { return 1.5707963267948966; }
+struct TUtil<f64> {
+    static inline f64 epsilon() { return 32.0f * FLT_EPSILON; }
+    static inline f64 one() { return 1.0; }
+    static inline f64 atan2(f64 x, f64 y) { return ::atan2(x, y); }
+    static inline f64 asin(f64 x) { return ::asin(x); }
+    static inline f64 halfPI() { return 1.5707963267948966; }
 };
 
 template <typename T>
@@ -79,29 +79,31 @@ struct TVec3 {
     T y;
     T z;
 
-    void set(const TVec3& other) {
-        x = other.x;
-        y = other.y;
-        z = other.z;
+    template <class U>
+    void set(const TVec3<U>& other) {
+        x = (T)other.x;
+        y = (T)other.y;
+        z = (T)other.z;
     }
 };
 
 template <>
-struct TVec3<double> {
-    double x, y, z;
+struct TVec3<f64> {
+    f64 x, y, z;
 
-    void set(double x_, double y_, double z_) {
-        x = x_;
-        y = y_;
-        z = z_;
+    template <class U>
+    void set(U x_, U y_, U z_) {
+        x = (f64)x_;
+        y = (f64)y_;
+        z = (f64)z_;
     }
 
-    inline TVec3<double>& operator*=(double b) {
+    inline TVec3<f64>& operator*=(f64 b) {
         scale(b);
         return *this;
     }
 
-    void scale(double b) {
+    void scale(f64 b) {
         x *= b;
         y *= b;
         z *= b;
@@ -114,7 +116,8 @@ struct TVec3<s16> {
 
     TVec3() {}
 
-    TVec3(s16 x, s16 y, s16 z) {
+    template <class U>
+    TVec3(U x, U y, U z) {
         set(x, y, z);
     }
 
@@ -125,7 +128,8 @@ struct TVec3<s16> {
         return *this;
     }
 
-    void set(s16 x_, s16 y_, s16 z_) {
+    template <class U>
+    void set(U x_, U y_, U z_) {
         x = (s16)x_;
         y = (s16)y_;
         z = (s16)z_;
@@ -187,9 +191,9 @@ struct TVec3<f32> : public Vec {
         setTVec3f(&i_vec.x, &x);
     }
 
-    template<class U>
+    template <class U>
     TVec3(U x, U y, U z) {
-        set((U)x, (U)y, (U)z);
+        set(x, y, z);
     }
 
     TVec3() {}
@@ -197,11 +201,11 @@ struct TVec3<f32> : public Vec {
     operator Vec*() { return (Vec*)&x; }
     operator const Vec*() const { return (Vec*)&x; }
 
-    template<class U>
+    template <class U>
     void set(const TVec3<U>& other) {
-        x = (U)other.x;
-        y = (U)other.y;
-        z = (U)other.z;
+        x = (f32)other.x;
+        y = (f32)other.y;
+        z = (f32)other.z;
     }
 
     void set(const Vec& other) {
@@ -210,11 +214,11 @@ struct TVec3<f32> : public Vec {
         z = other.z;
     }
 
-    template<class U>
+    template <class U>
     void set(U x_, U y_, U z_) {
-        x = (U)x_;
-        y = (U)y_;
-        z = (U)z_;
+        x = (f32)x_;
+        y = (f32)y_;
+        z = (f32)z_;
     }
 
     inline void add(const TVec3<f32>& b) {
@@ -399,8 +403,9 @@ struct TVec3<f32> : public Vec {
         return JMathInlineVEC::C_VECDotProduct(this, &other);
     }
 
-    void cubic(const TVec3<f32>& param_1, const TVec3<f32>& param_2, const TVec3<f32>& param_3,
-               const TVec3<f32>& param_4, f32 param_5) {
+    template <class U>
+    void cubic(const TVec3<U>& param_1, const TVec3<U>& param_2, const TVec3<U>& param_3,
+               const TVec3<U>& param_4, U param_5) {
         f32 fVar5 = param_5 * param_5;
         f32 fVar6 = fVar5 * param_5;
         f32 fVar8 = 1.0f + (2.0f * fVar6 - 3.0f * fVar5);
@@ -416,23 +421,27 @@ struct TVec3<f32> : public Vec {
 template <typename T>
 struct TVec2 {
     TVec2() {}
-    TVec2(T v) { set(v); }
+    TVec2(T v) { setAll(v); }
 
-    template <typename U>
-    TVec2(const U x, const U y) { set(x, y); }
+    template <class U>
+    TVec2(U x, U y) { set(x, y); }
 
-    void set(T v) { y = x = v; }
-
-    template <typename U>
-    void set(const U x, const U y) {
-        this->x = x;
-        this->y = y;
+    template <class U>
+    void setAll(U v) {
+        x = (T)v;
+        y = (T)v;
     }
 
-    template <typename U>
+    template <class U>
+    void set(U x_, U y_) {
+        x = (T)x_;
+        y = (T)y_;
+    }
+
+    template <class U>
     void set(const TVec2<U>& other) {
-        x = other.x;
-        y = other.y;
+        x = (T)other.x;
+        y = (T)other.y;
     }
 
     void setMin(const TVec2<f32>& min) {

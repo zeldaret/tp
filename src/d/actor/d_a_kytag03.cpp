@@ -315,8 +315,8 @@ static int daKytag03_Execute(kytag03_class* i_this) {
             sp2C.z = 3.0f;
             i_this->mpEmitter->setGlobalScale(sp2C);
 
-            JGeometry::TVec3<s16> rot(4000, S_ang_y_work, 1500);
-            S_ang_y_work += 100;
+            JGeometry::TVec3<s16> rot((s16)4000, S_ang_y_work, (s16)1500);
+            S_ang_y_work += (s16)100;
 
             i_this->mpEmitter->setGlobalRotation(rot);
             i_this->mpEmitter->setRate(0.5f);
