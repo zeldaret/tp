@@ -17,61 +17,61 @@ static int daKytag16_Draw(kytag16_class* i_this) {
 }
 
 static int daKytag16_Execute(kytag16_class* i_this) {
-    bool var_r29 = false;
-    f32 var_f31 = 0.0f;
-    f32 var_f30 = 0.0f;
+    bool light_set = false;
+    f32 x = 0.0f;
+    f32 y = 0.0f;
 
-    if (i_this->field_0x571 < 31) {
-        if (i_this->field_0x571 > i_this->field_0x572) {
-            if (dKy_getdaytime_hour() >= i_this->field_0x571 ||
-                dKy_getdaytime_hour() <= i_this->field_0x572)
+    if (i_this->time_start < 31) {
+        if (i_this->time_start > i_this->time_end) {
+            if (dKy_getdaytime_hour() >= i_this->time_start ||
+                dKy_getdaytime_hour() <= i_this->time_end)
             {
-                var_r29 = true;
+                light_set = true;
             }
-        } else if (dKy_getdaytime_hour() >= i_this->field_0x571 &&
-                   dKy_getdaytime_hour() <= i_this->field_0x572)
+        } else if (dKy_getdaytime_hour() >= i_this->time_start &&
+                   dKy_getdaytime_hour() <= i_this->time_end)
         {
-            var_r29 = true;
+            light_set = true;
         }
     } else {
-        var_r29 = true;
+        light_set = true;
     }
 
-    if (var_r29) {
-        var_r29 = false;
+    if (light_set) {
+        light_set = false;
 
-        if (i_this->mSwitch != 0xFF) {
-            if (dComIfGs_isSwitch(i_this->mSwitch, dComIfGp_roomControl_getStayNo())) {
-                var_r29 = true;
+        if (i_this->bitsw != 0xFF) {
+            if (dComIfGs_isSwitch(i_this->bitsw, dComIfGp_roomControl_getStayNo())) {
+                light_set = true;
             }
         } else {
-            var_r29 = true;
+            light_set = true;
         }
     }
 
-    if (var_r29) {
+    if (light_set) {
         if (strcmp(dComIfGp_getStartStageName(), "F_SP117") != 0) {
-            cLib_addCalc(&i_this->field_0x568, 1.0f, 0.5f, 0.1f, 0.0001f);
+            cLib_addCalc(&i_this->blend, 1.0f, 0.5f, 0.1f, 0.0001f);
         } else {
-            var_f31 = cM_ssin(i_this->field_0x588);
-            var_f30 = cM_scos(i_this->field_0x58a);
+            x = cM_ssin(i_this->swayX);
+            y = cM_scos(i_this->swayY);
 
-            i_this->field_0x588 += 0x500;
-            i_this->field_0x58a += 800;
+            i_this->swayX += 0x500;
+            i_this->swayY += 800;
 
-            cLib_addCalc(&i_this->field_0x568, 0.9f + (0.1f * cM_ssin(g_Counter.mCounter0 * 0x500)),
+            cLib_addCalc(&i_this->blend, 0.9f + (0.1f * cM_ssin(g_Counter.mCounter0 * 0x500)),
                          0.5f, 0.1f, 0.0001f);
-            i_this->field_0x580 = 40.0f;
+            i_this->cutoff = 40.0f;
         }
     } else {
-        cLib_addCalc(&i_this->field_0x568, 0.0f, 0.5f, 0.05f, 0.0001f);
+        cLib_addCalc(&i_this->blend, 0.0f, 0.5f, 0.05f, 0.0001f);
     }
 
-    if (i_this->field_0x568 > 0.001f) {
-        dKy_BossSpotLight_set(&i_this->current.pos, i_this->field_0x578 + (12.0f * var_f31),
-                              i_this->field_0x57c + (50.0f * var_f30), i_this->field_0x580,
-                              &i_this->mColor, i_this->field_0x574 * i_this->field_0x568,
-                              i_this->field_0x58c, i_this->field_0x58d);
+    if (i_this->blend > 0.001f) {
+        dKy_BossSpotLight_set(&i_this->current.pos, i_this->angleX + (12.0f * x),
+                              i_this->angleY + (50.0f * y), i_this->cutoff,
+                              &i_this->color, i_this->ref_dist * i_this->blend,
+                              i_this->spot_type, i_this->distattn_type);
     }
 
     return 1;
@@ -85,75 +85,75 @@ static int daKytag16_Delete(kytag16_class* i_this) {
     return 1;
 }
 
-static int daKytag16_Create(fopAc_ac_c* i_this) {
-    fopAcM_ct(i_this, kytag16_class);
-    kytag16_class* a_this = (kytag16_class*)i_this;
+static int daKytag16_Create(fopAc_ac_c* actor) {
+    fopAcM_ct(actor, kytag16_class);
+    kytag16_class* i_this = (kytag16_class*)actor;
 
-    a_this->mSwitch = fopAcM_GetParam(a_this) & 0xFF;
-    a_this->field_0x56c = (a_this->current.angle.z >> 10) & 0x3F;
+    i_this->bitsw = fopAcM_GetParam(i_this) & 0xFF;
+    i_this->light_type = (i_this->current.angle.z >> 10) & 0x3F;
 
-    a_this->mColor.r = fopAcM_GetParam(a_this) >> 0x8;
-    a_this->mColor.g = fopAcM_GetParam(a_this) >> 0x10;
-    a_this->mColor.b = fopAcM_GetParam(a_this) >> 0x18;
+    i_this->color.r = fopAcM_GetParam(i_this) >> 0x8;
+    i_this->color.g = fopAcM_GetParam(i_this) >> 0x10;
+    i_this->color.b = fopAcM_GetParam(i_this) >> 0x18;
 
-    a_this->field_0x571 = a_this->current.angle.z & 0x1F;
-    a_this->field_0x572 = (a_this->current.angle.z >> 5) & 0x1F;
-    a_this->field_0x578 = (a_this->shape_angle.x / 32767.0f) * 180.0f;
-    a_this->field_0x57c = (a_this->shape_angle.y / 32767.0f) * 180.0f;
+    i_this->time_start = i_this->current.angle.z & 0x1F;
+    i_this->time_end = (i_this->current.angle.z >> 5) & 0x1F;
+    i_this->angleX = (i_this->shape_angle.x / 32767.0f) * 180.0f;
+    i_this->angleY = (i_this->shape_angle.y / 32767.0f) * 180.0f;
 
-    a_this->field_0x588 = cM_rndFX(65535.0f);
-    a_this->field_0x58a = cM_rndFX(65535.0f);
-    a_this->field_0x584 = 1.0f;
-    a_this->field_0x568 = 0.0f;
+    i_this->swayX = cM_rndFX(65535.0f);
+    i_this->swayY = cM_rndFX(65535.0f);
+    i_this->field_0x584 = 1.0f;
+    i_this->blend = 0.0f;
 
-    switch (a_this->field_0x56c) {
+    switch (i_this->light_type) {
     case 0:
-        a_this->field_0x580 = 45.0f;
-        a_this->field_0x574 = 1.0f;
-        a_this->field_0x58c = 0;
-        a_this->field_0x58d = 3;
+        i_this->cutoff = 45.0f;
+        i_this->ref_dist = 1.0f;
+        i_this->spot_type = 0;
+        i_this->distattn_type = 3;
         break;
     case 1:
-        a_this->field_0x580 = 45.0f;
-        a_this->field_0x574 = 5.0f;
-        a_this->field_0x58c = 0;
-        a_this->field_0x58d = 3;
+        i_this->cutoff = 45.0f;
+        i_this->ref_dist = 5.0f;
+        i_this->spot_type = 0;
+        i_this->distattn_type = 3;
         break;
     case 2:
-        a_this->field_0x580 = 45.0f;
-        a_this->field_0x574 = 10.0f;
-        a_this->field_0x58c = 0;
-        a_this->field_0x58d = 3;
+        i_this->cutoff = 45.0f;
+        i_this->ref_dist = 10.0f;
+        i_this->spot_type = 0;
+        i_this->distattn_type = 3;
         break;
     case 3:
-        a_this->field_0x580 = 25.0f;
-        a_this->field_0x574 = 1.0f;
-        a_this->field_0x58c = 2;
-        a_this->field_0x58d = 3;
+        i_this->cutoff = 25.0f;
+        i_this->ref_dist = 1.0f;
+        i_this->spot_type = 2;
+        i_this->distattn_type = 3;
         break;
     case 4:
-        a_this->field_0x580 = 45.0f;
-        a_this->field_0x574 = 5.0f;
-        a_this->field_0x58c = 2;
-        a_this->field_0x58d = 3;
+        i_this->cutoff = 45.0f;
+        i_this->ref_dist = 5.0f;
+        i_this->spot_type = 2;
+        i_this->distattn_type = 3;
         break;
     case 5:
-        a_this->field_0x580 = 70.0f;
-        a_this->field_0x574 = 10.0f;
-        a_this->field_0x58c = 2;
-        a_this->field_0x58d = 3;
+        i_this->cutoff = 70.0f;
+        i_this->ref_dist = 10.0f;
+        i_this->spot_type = 2;
+        i_this->distattn_type = 3;
         break;
     case 6:
-        a_this->field_0x580 = 60.0f;
-        a_this->field_0x574 = 0.01f;
-        a_this->field_0x58c = 2;
-        a_this->field_0x58d = 1;
+        i_this->cutoff = 60.0f;
+        i_this->ref_dist = 0.01f;
+        i_this->spot_type = 2;
+        i_this->distattn_type = 1;
         break;
     case 7:
-        a_this->field_0x580 = 50.0f;
-        a_this->field_0x574 = 0.01f;
-        a_this->field_0x58c = 2;
-        a_this->field_0x58d = 1;
+        i_this->cutoff = 50.0f;
+        i_this->ref_dist = 0.01f;
+        i_this->spot_type = 2;
+        i_this->distattn_type = 1;
         break;
     }
 

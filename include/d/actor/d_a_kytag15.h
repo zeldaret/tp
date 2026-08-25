@@ -13,12 +13,12 @@
  */
 class kytag15_class : public fopAc_ac_c {
 public:
-    /* 0x568 */ J3DModel* mpModel;
-    /* 0x56C */ mDoExt_btkAnm mBtk;
+    /* 0x568 */ J3DModel* model;
+    /* 0x56C */ mDoExt_btkAnm btk;
     /* 0x584 */ request_of_phase_process_class mPhase;
-    /* 0x58C */ u8 field_0x58c;
+    /* 0x58C */ u8 desert_stage;
     /* 0x58D */ u8 field_0x58d[0x590 - 0x58D];
-    /* 0x590 */ f32 field_0x590;
+    /* 0x590 */ f32 blend;
 };
 
 STATIC_ASSERT(sizeof(kytag15_class) == 0x594);

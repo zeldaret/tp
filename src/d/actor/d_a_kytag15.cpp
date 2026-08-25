@@ -19,33 +19,33 @@ static int daKytag15_Draw(kytag15_class* i_this) {
     scale.y = 0.00524f;
     scale.z = 0.00524f;
 
-    if (i_this->mpModel != NULL && i_this->field_0x590 > 0.0f) {
+    if (i_this->model != NULL && i_this->blend > 0.0f) {
         J3DGXColorS10 color;
-        J3DMaterial* mat_p = i_this->mpModel->getModelData()->getMaterialNodePointer(0);
+        J3DMaterial* mat_p = i_this->model->getModelData()->getMaterialNodePointer(0);
         color.b = 0;
         color.g = 0;
         color.r = 0;
         color.a = -180;
 
-        if (i_this->field_0x58c == 1) {
+        if (i_this->desert_stage == 1) {
             color.a = -100;
         }
 
-        color.a = (color.a + 255.0f) * i_this->field_0x590 + -255.0f;
+        color.a = (color.a + 255.0f) * i_this->blend + -255.0f;
 
         mat_p->setTevColor(0, &color);
-        i_this->mpModel->setBaseScale(scale);
-        i_this->mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
+        i_this->model->setBaseScale(scale);
+        i_this->model->setBaseTRMtx(mDoMtx_stack_c::get());
 
-        i_this->mBtk.entry(i_this->mpModel->getModelData());
-        i_this->mBtk.play();
+        i_this->btk.entry(i_this->model->getModelData());
+        i_this->btk.play();
 
-        if (i_this->field_0x58c == 1) {
-            i_this->mBtk.play();
+        if (i_this->desert_stage == 1) {
+            i_this->btk.play();
         }
 
         dComIfGd_setXluList2DScreen();
-        mDoExt_modelUpdateDL(i_this->mpModel);
+        mDoExt_modelUpdateDL(i_this->model);
         dComIfGd_setList();
     }
 
@@ -53,14 +53,14 @@ static int daKytag15_Draw(kytag15_class* i_this) {
 }
 
 static int daKytag15_Execute(kytag15_class* i_this) {
-    if (!i_this->field_0x58c) {
+    if (!i_this->desert_stage) {
         if (!dKy_daynight_check()) {
-            cLib_addCalc(&i_this->field_0x590, 1.0f, 0.05f, 0.01f, 1.0E-8f);
+            cLib_addCalc(&i_this->blend, 1.0f, 0.05f, 0.01f, 1.0E-8f);
         } else {
-            cLib_addCalc(&i_this->field_0x590, 0.0f, 0.05f, 0.01f, 1.0E-8f);
+            cLib_addCalc(&i_this->blend, 0.0f, 0.05f, 0.01f, 1.0E-8f);
         }
     } else if (g_env_light.wether_pat0 == 11) {
-        cLib_addCalc(&i_this->field_0x590, 1.0f, 0.05f, 0.01f, 1.0E-8f);
+        cLib_addCalc(&i_this->blend, 1.0f, 0.05f, 0.01f, 1.0E-8f);
     }
 
     return 1;
@@ -75,52 +75,52 @@ static int daKytag15_Delete(kytag15_class* i_this) {
     return 1;
 }
 
-static int useHeapInit(fopAc_ac_c* i_this) {
-    kytag15_class* a_this = (kytag15_class*)i_this;
+static int useHeapInit(fopAc_ac_c* actor) {
+    kytag15_class* i_this = (kytag15_class*)actor;
 
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes("Kytag15", 4);
-    a_this->mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000284);
-    if (a_this->mpModel == NULL) {
+    i_this->model = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000284);
+    if (i_this->model == NULL) {
         return 0;
     }
 
     J3DAnmTextureSRTKey* btk = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes("Kytag15", 7);
-    if (!a_this->mBtk.init(modelData, btk, TRUE, 2, 1.0f, 0, -1)) {
+    if (!i_this->btk.init(modelData, btk, TRUE, 2, 1.0f, 0, -1)) {
         return 0;
     }
 
     return 1;
 }
 
-static int daKytag15_Create(fopAc_ac_c* i_this) {
-    kytag15_class* a_this = (kytag15_class*)i_this;
+static int daKytag15_Create(fopAc_ac_c* actor) {
+    kytag15_class* i_this = (kytag15_class*)actor;
 
     if (strcmp(dComIfGp_getStartStageName(), "F_SP118") == 0) {
-        a_this->field_0x58c = 1;
+        i_this->desert_stage = 1;
     } else {
-        a_this->field_0x58c = 0;
+        i_this->desert_stage = 0;
     }
 
-    fopAcM_ct(a_this, kytag15_class);
+    fopAcM_ct(i_this, kytag15_class);
 
-    if (a_this->field_0x58c == 0) {
+    if (i_this->desert_stage == 0) {
         if (!dKy_daynight_check()) {
-            a_this->field_0x590 = 1.0f;
+            i_this->blend = 1.0f;
         } else {
-            a_this->field_0x590 = 0.0f;
+            i_this->blend = 0.0f;
         }
     } else {
-        a_this->field_0x590 = 0.0f;
+        i_this->blend = 0.0f;
     }
 
-    int phase = dComIfG_resLoad(&a_this->mPhase, "Kytag15");
-    if (phase == cPhs_COMPLEATE_e) {
-        if (!fopAcM_entrySolidHeap(a_this, useHeapInit, 0)) {
+    cPhs_Step phase_state = dComIfG_resLoad(&i_this->mPhase, "Kytag15");
+    if (phase_state == cPhs_COMPLEATE_e) {
+        if (!fopAcM_entrySolidHeap(i_this, useHeapInit, 0)) {
             return cPhs_ERROR_e;
         }
     }
 
-    return phase;
+    return phase_state;
 }
 
 static actor_method_class l_daKytag15_Method = {
