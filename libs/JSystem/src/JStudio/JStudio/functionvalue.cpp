@@ -11,6 +11,20 @@
 
 namespace JStudio {
 
+#if DEBUG
+static void dummy_string1() {
+    OSReport("(undefined)");
+    OSReport("composite");
+    OSReport("constant");
+    OSReport("transition");
+    OSReport("list_parameter");
+    OSReport("backward");
+    OSReport("backward_begin");
+    OSReport("backward_end");
+    OSReport("backward_center");
+}
+#endif
+
 namespace {
 
 const ExtrapolateParameter gapfnExtrapolateParameter_[4] = {
@@ -30,8 +44,7 @@ ExtrapolateParameter TFunctionValue::toFunction_outside(int idx) {
                                                              fallback);
 
     if (result == NULL) {
-        JUTWarn w;
-        w << "unknown outside : " << idx;
+        JGADGET_WARNMSG1(112, "unknown outside : ", idx);
 
         return gapfnExtrapolateParameter_[0];
     }
@@ -43,7 +56,12 @@ TFunctionValue::TFunctionValue() {}
 TFunctionValue::~TFunctionValue() {}
 
 void TFunctionValueAttribute_refer::refer_initialize() {
-    clear();
+    mVector.clear();
+}
+
+bool TFunctionValueAttribute_refer::refer_isReferring(const TFunctionValue* p) const {
+    JUT_ASSERT(144, p!=NULL);
+    return false;
 }
 
 static f64 dummy_literal1() {
@@ -59,14 +77,15 @@ f64 interpolateValue_hermite(f64 c0, f64 c1, f64 x, f64 c2, f64 x2, f64 c3, f64 
     f64 d;
 
     a = c0 - c1;
-    b = a * (1.0 / (x2 - c1));               // (a - b) * 1.0 / (c - d)
+    f64 f27 = 1.0 / (x2 - c1);
+    b = a * f27;               // (a - b) * 1.0 / (c - d)
+    f64 f26 = b * b;
     c = b - 1.0;                             // 1.0
-    d = (3.0 + -2.0 * b) * (b * b);  // 3.0 - 2.0 * b
-    f64 cab = (c * a * b);
-    f64 coeffx3 = cab * x3;
+    d = (3.0 + -2.0 * b) * (f26);  // 3.0 - 2.0 * b
+    f64 f25 = (1.0 - d);
     f64 cca = (c * c * a);
-    f64 coeffc2 = cca * c2;
-    return ((1.0 - d) * x + (d * c3)) + coeffc2 + coeffx3;
+    f64 cab = (c * a * b);
+    return (f25 * x + (d * c3)) + cca * c2 + cab * x3;
 }
 
 
@@ -141,8 +160,14 @@ f64 extrapolateParameter_turn(f64 param_0, f64 param_1) {
 
 }  // namespace functionvalue
 
+#if PLATFORM_WII || PLATFORM_SHIELD
+#define NUMERIC_LIMIT double
+#else
+#define NUMERIC_LIMIT float
+#endif
+
 void TFunctionValueAttribute_range::range_initialize() {
-    fBegin_ = NAN;
+    fBegin_ = std::numeric_limits<NUMERIC_LIMIT>::signaling_NaN();
     fEnd_ = fBegin_;
     fDifference_ = fBegin_;
 
@@ -155,10 +180,8 @@ void TFunctionValueAttribute_range::range_prepare() {
     TFunctionValue::TEProgress progress = range_getProgress();
 
     switch (progress) {
-    default:
-        JUTWarn w;
-        w << "unknown progress : " << progress;
     case 0:
+    progress_0:
         _20 = 0.0;
         _28 = 1.0;
         break;
@@ -178,6 +201,9 @@ void TFunctionValueAttribute_range::range_prepare() {
         _20 = 0.5 * (fBegin_ + fEnd_);
         _28 = -1.0;
         break;
+    default:
+        JGADGET_WARNMSG1(447, "unknown progress : ", progress);
+        goto progress_0;
     }
 }
 
@@ -190,38 +216,32 @@ void TFunctionValueAttribute_range::range_set(f64 begin, f64 end) {
 }
 
 f64 TFunctionValueAttribute_range::range_getParameter(f64 arg1, f64 arg2, f64 arg3) const {
-    f64 progress = range_getParameter_progress(arg1);
+    arg1 = range_getParameter_progress(arg1);
     TFunctionValue::TEAdjust adjust = range_getAdjust();
 
-    f64 result;
-
     switch (adjust) {
-    default:
-        JUTWarn w;
-        w << "unknown adjust : " << adjust;
+    adjust_0:
     case 0:
-        result = range_getParameter_outside(progress);
-        break;
+        return range_getParameter_outside(arg1);
     case 1:
-        result = range_getParameter_outside(progress + fBegin_);
-        break;
+        return range_getParameter_outside(arg1 + fBegin_);
     case 2:
-        result = range_getParameter_outside(progress + fEnd_);
-        break;
+        return range_getParameter_outside(arg1 + fEnd_);
     case 3:
-        result = range_getParameter_outside(progress + 0.5 * (fBegin_ + fEnd_));
-        break;
+        return range_getParameter_outside(arg1 + 0.5 * (fBegin_ + fEnd_));
     case 4:
-        f64 temp = range_getParameter_outside(progress);
-        result = arg2 + ((temp - fBegin_) * (arg3 - arg2)) / fDifference_;
-        break;
+        arg1 = range_getParameter_outside(arg1);
+        return arg2 + ((arg1 - fBegin_) * (arg3 - arg2)) / fDifference_;
+    default:
+        JGADGET_WARNMSG1(498, "unknown adjust : ", adjust);
+        goto adjust_0;
+
     }
-    return result;
 }
 
 
 TFunctionValueAttribute_range::TFunctionValueAttribute_range()
-    : fBegin_(NAN), fEnd_(fBegin_), fDifference_(fBegin_),
+    : fBegin_(std::numeric_limits<NUMERIC_LIMIT>::signaling_NaN()), fEnd_(fBegin_), fDifference_(fBegin_),
       mProgress(TFunctionValue::PROG_INIT), mAdjust(TFunctionValue::ADJ_INIT), _20(fBegin_),
       _28(fBegin_), mBegin(TFunctionValue::OUT_INIT), mEnd(TFunctionValue::OUT_INIT) {}
 
@@ -243,196 +263,176 @@ void TFunctionValue_composite::initialize() {
 }
 
 void TFunctionValue_composite::prepare() {
-    /* empty function */
+    refer_prepare();
 }
 
 f64 TFunctionValue_composite::getValue(f64 arg1) {
     const TFunctionValueAttribute_refer* container = refer_getContainer();
-    ASSERT(!refer_isReferring(this));
-    ASSERT(pfn_ != NULL);
+    JUT_ASSERT(564, !refer_isReferring(this));
+    JUT_ASSERT(565, pfn_!=NULL);
 
-    return pfn_(arg1, container, data_getData());
+    return pfn_(container->mVector, *data_getData(), arg1);
 }
 
-f64 TFunctionValue_composite::composite_raw(TVector_pointer<TFunctionValue*> const& param_1,
+f64 TFunctionValue_composite::composite_raw(JGadget::TVector_pointer<TFunctionValue*> const& param_1,
                                                  TData const& param_2, f64 param_3) {
-    u32 index = param_2.get_unsignedInteger();
+    uint index = param_2.get_unsignedInteger();
     if (index >= param_1.size()) {
         return 0.0;
     }
-    TFunctionValue** p = (TFunctionValue**)param_1.begin();
-    std::advance(p, index);
-    JUT_ASSERT(0x247, p!=NULL);
-    TFunctionValue* piVar4 = *p;
-    return piVar4->getValue(param_3);
+    TFunctionValue** sp18 = (TFunctionValue**)param_1.begin();
+    std::advance(sp18, index);
+    TFunctionValue* p = *sp18;
+    JUT_ASSERT(583, p!=NULL);
+    return p->getValue(param_3);
 }
 
 
-f64 TFunctionValue_composite::composite_index(TVector_pointer<TFunctionValue*> const& param_1,
+f64 TFunctionValue_composite::composite_index(JGadget::TVector_pointer<TFunctionValue*> const& param_1,
                                               TData const& param_2, f64 param_3) {
-    s32 size = param_1.size();
-    if (size <= 1) {
+    s32 nSize = param_1.size();
+    if (nSize <= 1) {
         return 0.0;
     }
     TFunctionValue** local_148 = (TFunctionValue**)param_1.begin();
     TFunctionValue* pFront = *local_148;
     JUT_ASSERT(599, pFront!=NULL);
-    TValue fData = pFront->getValue(param_3);
-    s32 index = floor(fData);
-    u32 uVar2 = param_2.get_outside();
-    switch (uVar2) {
+    int nIndex = floor(pFront->getValue(param_3));
+    int outside = param_2.get_outside();
+    switch (outside) {
     case 0:
     case 3:
-    default:
-        if (index < 0) {
-            index = 0;
-        } else if (index >= size - 1) {
-            index = size - 2;
+    outside_0:
+        if (nIndex < 0) {
+            nIndex = 0;
+        } else if (nIndex >= nSize - 1) {
+            nIndex = nSize - 2;
         }
         break;
     case 1: {
 #ifdef __MWERKS__
-        div_t dt = div(index, size - 1);
+        div_t dt = div(nIndex, nSize - 1);
 #else
-        div_t dt = div((int)index, (int)size - 1);
+        div_t dt = div((int)nIndex, (int)nSize - 1);
 #endif
-        index = dt.rem;
-        if (index < 0) {
-            index = size + index;
-            index--;
+        nIndex = dt.rem;
+        if (nIndex < 0) {
+            nIndex = nSize + nIndex;
+            nIndex--;
         }
         break;
     }
     case 2:
-        if (size - 1 == 1) {
-            index = 0;
+        if (nSize - 1 == 1) {
+            nIndex = 0;
         } else {
-            u32 uVar3 = (u32)(size - 2) * 2;
+            u32 uVar3 = (u32)(nSize - 2) * 2;
 #ifdef __MWERKS__
-            div_t dt2 = div(index, uVar3);
+            div_t dt2 = div(nIndex, uVar3);
 #else
-            div_t dt2 = div((int)index, (int)uVar3);
+            div_t dt2 = div((int)nIndex, (int)uVar3);
 #endif
-            index = dt2.rem;
-            if (index < 0) {
-                index += uVar3;
+            nIndex = dt2.rem;
+            if (nIndex < 0) {
+                nIndex += uVar3;
             }
-            if (index >= size - 1) {
-                index = uVar3 - index;
+            if (nIndex >= nSize - 1) {
+                nIndex = uVar3 - nIndex;
             }
         }
         break;
+    default:
+        JGADGET_WARNMSG1(638, "unknown outside : ", outside);
+        goto outside_0;
     }
 
+    JUT_ASSERT(641, nIndex<nSize)
 #ifdef __MWERKS__
-    std::advance_pointer(local_148, index + 1);
+    std::advance(local_148, nIndex + 1);
 #else
-    std::advance(local_148, index + 1);
+    std::advance(local_148, nIndex + 1);
 #endif
-    pFront = *local_148;
-    return pFront->getValue(param_3);
+    TFunctionValue* p = *local_148;
+    JUT_ASSERT(644, p!=NULL)
+    return p->getValue(param_3);
 }
 
-
-// TODO: remove when TContainerEnumerator_const is generic enough
-template <typename T>
-struct TContainerEnumerator_const_TVector : public JGadget::TEnumerator<const T*> {
-    inline TContainerEnumerator_const_TVector(JGadget::TVector_pointer<T> const& param_1)
-        : JGadget::TEnumerator<const T*>(param_1.begin(), param_1.end()) {}
-};
-
-f64
-TFunctionValue_composite::composite_parameter(TVector_pointer<TFunctionValue*> const& param_1,
+f64 TFunctionValue_composite::composite_parameter(JGadget::TVector_pointer<TFunctionValue*> const& param_1,
                                               TData const& param_2, f64 param_3) {
     f64 dVar4 = param_3 - param_2.get_value();
-    TContainerEnumerator_const_TVector<TFunctionValue*> aTStack_18(param_1);
+    JGadget::TContainerEnumerator_const<JGadget::TVector_pointer<TFunctionValue*> > aTStack_18(param_1);
     while (aTStack_18) {
-        TFunctionValue* const* ppiVar3 = *aTStack_18;
-        TFunctionValue* piVar3 = *ppiVar3;
-        dVar4 = piVar3->getValue(dVar4);
+        TFunctionValue* p = **aTStack_18;
+        JUT_ASSERT(658, p!=NULL);
+        dVar4 = p->getValue(dVar4);
     }
     return dVar4;
 }
 
-f64 TFunctionValue_composite::composite_add(TVector_pointer<TFunctionValue*> const& param_1,
+f64 TFunctionValue_composite::composite_add(JGadget::TVector_pointer<TFunctionValue*> const& param_1,
                                                  TData const& param_2, f64 param_3) {
     f64 dVar4 = param_2.get_value();
-    TContainerEnumerator_const_TVector<TFunctionValue*> aTStack_18(param_1);
+    JGadget::TContainerEnumerator_const<JGadget::TVector_pointer<TFunctionValue*> > aTStack_18(param_1);
     while (aTStack_18) {
-        TFunctionValue* const* p = *aTStack_18;
-        JUT_ASSERT(0x2a1, p!=NULL);
-        TFunctionValue* piVar3 = *p;
-        dVar4 += piVar3->getValue(param_3);
+        TFunctionValue* p = **aTStack_18;
+        JUT_ASSERT(673, p!=NULL);
+        dVar4 += p->getValue(param_3);
     }
     return dVar4;
 }
 
-f64 TFunctionValue_composite::composite_subtract(TVector_pointer<TFunctionValue*> const& param_1,
+f64 TFunctionValue_composite::composite_subtract(JGadget::TVector_pointer<TFunctionValue*> const& param_1,
                                                  TData const& param_2, f64 param_3) {
-    u32 size = param_1.size();
-    if (size == 0) {
+    if (param_1.size() == 0) {
         return 0.0;
     }
-    TContainerEnumerator_const_TVector<TFunctionValue*> aTStack_18(param_1);
-    TFunctionValue* const* local_148 = *aTStack_18;
-    TFunctionValue* pFront = *local_148;
+    JGadget::TContainerEnumerator_const<JGadget::TVector_pointer<TFunctionValue*> > aTStack_18(param_1);
+    TFunctionValue* pFront = **aTStack_18;
     JUT_ASSERT(688, pFront!=NULL);
     f64 dVar4 = pFront->getValue(param_3);
     while (aTStack_18) {
-        TFunctionValue* const* p = *aTStack_18;
-        JUT_ASSERT(0x2b5, p!=NULL);
-        TFunctionValue* piVar3 = *p;
-        dVar4 -= piVar3->getValue(param_3);
+        TFunctionValue* p = **aTStack_18;
+        JUT_ASSERT(693, p!=NULL);
+        dVar4 -= p->getValue(param_3);
     }
-    dVar4 -= param_2.f32data;
+    dVar4 -= param_2.get_value();
     return dVar4;
 }
 
 
-f64 TFunctionValue_composite::composite_multiply(TVector_pointer<TFunctionValue*> const& param_1,
+f64 TFunctionValue_composite::composite_multiply(JGadget::TVector_pointer<TFunctionValue*> const& param_1,
                                                  TData const& param_2, f64 param_3) {
     f64 dVar4 = param_2.get_value();
-    TContainerEnumerator_const_TVector<TFunctionValue*> aTStack_18(param_1);
+    JGadget::TContainerEnumerator_const<JGadget::TVector_pointer<TFunctionValue*> > aTStack_18(param_1);
     while (aTStack_18) {
-        TFunctionValue* const* p = *aTStack_18;
-        JUT_ASSERT(0x2c5, p!=NULL);
-        TFunctionValue* piVar3 = *p;
-        dVar4 *= piVar3->getValue(param_3);
+        TFunctionValue* p = **aTStack_18;
+        JUT_ASSERT(709, p!=NULL);
+        dVar4 *= p->getValue(param_3);
     }
     return dVar4;
 }
 
-f64 TFunctionValue_composite::composite_divide(TVector_pointer<TFunctionValue*> const& param_1,
+f64 TFunctionValue_composite::composite_divide(JGadget::TVector_pointer<TFunctionValue*> const& param_1,
                                                  TData const& param_2, f64 param_3) {
-    u32 size = param_1.size();
-    if (size == 0) {
+    if (param_1.size() == 0) {
         return 0.0;
     }
-    TContainerEnumerator_const_TVector<TFunctionValue*> aTStack_18(param_1);
-    TFunctionValue* const* local_148 = *aTStack_18;
-    TFunctionValue* pFront = *local_148;
+    JGadget::TContainerEnumerator_const<JGadget::TVector_pointer<TFunctionValue*> > aTStack_18(param_1);
+    TFunctionValue* pFront = **aTStack_18;
     JUT_ASSERT(724, pFront!=NULL);
-    TValue fData = pFront->getValue(param_3);
+    TValue f31 = pFront->getValue(param_3);
     while (aTStack_18) {
-        TFunctionValue* const* p = *aTStack_18;
-        JUT_ASSERT(0x2d9, p!=NULL);
-        TFunctionValue* piVar3 = *p;
-        fData /= piVar3->getValue(param_3);
-        JGADGET_ASSERTWARN(0x2db, fData!=TValue(0));
+        TFunctionValue* p = **aTStack_18;
+        JUT_ASSERT(729, p!=NULL);
+        TValue fData = p->getValue(param_3);
+        JGADGET_ASSERTWARN(731, fData!=TValue(0));
+        f31 /= fData;
     }
-#if DEBUG
-    TValue v = param_2.get_value();
-    JGADGET_ASSERTWARN(0x2df, fData!=TValue(0));
-#endif
-    fData /= param_2.f32data;
-    return fData;
+    TValue fData = param_2.get_value();
+    JGADGET_ASSERTWARN(735, fData!=TValue(0));
+    f31 /= fData;
+    return f31;
 }
-
-#if PLATFORM_WII || PLATFORM_SHIELD
-#define NUMERIC_LIMIT double
-#else
-#define NUMERIC_LIMIT float
-#endif
 
 TFunctionValue_constant::TFunctionValue_constant() : fValue_(std::numeric_limits<NUMERIC_LIMIT>::signaling_NaN()) {}
 
@@ -445,7 +445,7 @@ TFunctionValueAttributeSet TFunctionValue_constant::getAttributeSet() {
 }
 
 void TFunctionValue_constant::initialize() {
-    fValue_ = NAN;
+    fValue_ = std::numeric_limits<NUMERIC_LIMIT>::signaling_NaN();
 }
 
 void TFunctionValue_constant::prepare() {
@@ -456,7 +456,7 @@ f64 TFunctionValue_constant::getValue(f64 arg1) {
     return fValue_;
 }
 
-TFunctionValue_transition::TFunctionValue_transition() : _48(NAN), _50(_48) {}
+TFunctionValue_transition::TFunctionValue_transition() : _48(std::numeric_limits<NUMERIC_LIMIT>::signaling_NaN()), _50(_48) {}
 
 u32 TFunctionValue_transition::getType() const {
     return 3;
@@ -470,7 +470,7 @@ void TFunctionValue_transition::initialize() {
     range_initialize();
     interpolate_initialize();
 
-    _48 = NAN;
+    _48 = std::numeric_limits<NUMERIC_LIMIT>::signaling_NaN();
     _50 = _48;
 }
 
@@ -480,47 +480,46 @@ void TFunctionValue_transition::prepare() {
 }
 
 f64 TFunctionValue_transition::getValue(f64 param_1) {
-    f64 progress = range_getParameter_progress(param_1);
-    f64 dVar3 = range_getParameter_outside(progress);
-    switch (range_getAdjust()) {
-    default:
-        if (dVar3 < range_getBegin()) {
-            return _48;
-        }
-        return _50;
+    param_1 = range_getParameter_progress(param_1);
+    param_1 = range_getParameter_outside(param_1);
+    TEAdjust adjust = range_getAdjust();
+    switch (adjust) {
+    case TFunctionValue::ADJ_INIT:
+    case TFunctionValue::ADJ_UNK1:
+    adjust_0:
+        return param_1 < range_getBegin() ? _48 : _50;
     case TFunctionValue::ADJ_UNK2:
-        if (dVar3 < range_getEnd()) {
-            return _48;
-        }
-        return _50;
+        return param_1 < range_getEnd() ? _48 : _50;
     case TFunctionValue::ADJ_UNK3:
         ADJ_UNK3_label:
-        if (dVar3 < 0.5 * (range_getBegin() + range_getEnd())) {
-            return _48;
-        }
-        return _50;
+        return (param_1 < 0.5 * (range_getBegin() + range_getEnd())) ? _48 : _50;
     case TFunctionValue::ADJ_UNK4:
-        if (dVar3 < range_getBegin()) {
+        if (param_1 < range_getBegin()) {
             return _48;
         }
-        if (dVar3 >= range_getEnd()) {
+        if (param_1 >= range_getEnd()) {
             return _50;
         }
-        switch (interpolate_get()) {
+        int r28 = interpolate_get();
+        switch (r28) {
         case 0:
             goto ADJ_UNK3_label;
         case 1:
         case 3:
-            return _48 + ((dVar3 - range_getBegin()) * data_getDifference()) / range_getDifference();
+            return _48 + ((param_1 - range_getBegin()) * data_getDifference()) / range_getDifference();
         case 2:
-            return functionvalue::interpolateValue_plateau(dVar3, range_getBegin(), _48, range_getEnd(), _50);
+            return functionvalue::interpolateValue_plateau(param_1, range_getBegin(), _48, range_getEnd(), _50);
         default:
+            JGADGET_WARNMSG1(881, "unknown interpolation : ", r28);
             goto ADJ_UNK3_label;
         }
+    default:
+        JGADGET_WARNMSG1(888, "unknown adjustment : ", adjust);
+        goto adjust_0;
     }
 }
 
-TFunctionValue_list::TFunctionValue_list() : _44(NULL), uData_(0), _50(NAN), pfnUpdate_(NULL) {}
+TFunctionValue_list::TFunctionValue_list() : _44(NULL), uData_(0), _50(std::numeric_limits<NUMERIC_LIMIT>::signaling_NaN()), pfnUpdate_(NULL) {}
 
 u32 TFunctionValue_list::getType() const {
     return 4;
@@ -535,8 +534,9 @@ void TFunctionValue_list::initialize() {
     interpolate_initialize();
 
     _44 = NULL;
-    uData_ = 0;
-    _50 = NAN;
+    u32 r30 = 0;
+    uData_ = r30;
+    _50 = std::numeric_limits<NUMERIC_LIMIT>::signaling_NaN();
     pfnUpdate_ = NULL;
 }
 
@@ -544,13 +544,11 @@ void TFunctionValue_list::prepare() {
     range_prepare();
     interpolate_prepare();
 
-    u32 interp = interpolate_get();
+    int interp = interpolate_get();
 
     switch (interp) {
-    default:
-        JUTWarn w;
-        w << "unknown interpolation : " << interp;
     case 0:
+    interp_0:
         pfnUpdate_ = update_INTERPOLATE_NONE_;
         break;
     case 1:
@@ -564,40 +562,45 @@ void TFunctionValue_list::prepare() {
         if (uData_ == 2)
             pfnUpdate_ = update_INTERPOLATE_LINEAR_;
         break;
+    default:
+        JGADGET_WARNMSG1(1006, "unknown interpolation : ", interp);
+        goto interp_0;
     }
 }
 
 f64 TFunctionValue_list::getValue(f64 param_1) {
-    f64 dVar9 = range_getParameter_progress(param_1);
+    param_1 = range_getParameter_progress(param_1);
     u32 iVar7 = uData_ - 1;
-    TFunctionValue::TEAdjust iVar5 = range_getAdjust();
+    TFunctionValue::TEAdjust r28 = range_getAdjust();
     f64 dVar12 = iVar7;
     TIndexData_ local_178;
-    f64 parOutside;
-    switch (iVar5) {
+    switch (r28) {
     case 0:
-    default:
-        parOutside = range_getParameter_outside(dVar9);
-        local_178._0 = parOutside / _50;
+        r28_0:
+        param_1 = range_getParameter_outside(param_1);
+        local_178._0 = param_1 / _50;
         break;
     case 1:
-        parOutside = range_getParameter_outside(dVar9 + range_getBegin());
-        local_178._0 = parOutside / _50;
+        param_1 = range_getParameter_outside(param_1 + range_getBegin());
+        local_178._0 = param_1 / _50;
         break;
     case 2:
-        parOutside = range_getParameter_outside(dVar9 + range_getEnd());
-        local_178._0 = parOutside / _50;
+        param_1 = range_getParameter_outside(param_1 + range_getEnd());
+        local_178._0 = param_1 / _50;
         break;
     case 3:
-        parOutside = range_getParameter_outside(dVar9 + 0.5 * (range_getBegin() + range_getEnd()));
-        local_178._0 = parOutside / _50;
+        param_1 = range_getParameter_outside(param_1 + 0.5 * (range_getBegin() + range_getEnd()));
+        local_178._0 = param_1 / _50;
         break;
     case 4:
-        parOutside = range_getParameter_outside(dVar9);
-        local_178._0 = (dVar12 * (parOutside - range_getBegin())) / range_getDifference();
+        param_1 = range_getParameter_outside(param_1);
+        local_178._0 = (dVar12 * (param_1 - range_getBegin())) / range_getDifference();
         break;
+    default:
+        JGADGET_WARNMSG1(1051, "unknown adjustment : ", r28);
+        goto r28_0;
     }
-   
+
     if (local_178._0 < 0.0) {
         return _44[0];
     }
@@ -613,13 +616,15 @@ f64 TFunctionValue_list::getValue(f64 param_1) {
 
 f64 TFunctionValue_list::update_INTERPOLATE_NONE_(const TFunctionValue_list& rThis,
                                                   const TIndexData_& data) {
-    return rThis._44[data._10];
+    const f32* r31 = rThis._44;
+    return r31[data._10];
 }
 
 f64 TFunctionValue_list::update_INTERPOLATE_LINEAR_(const TFunctionValue_list& rThis,
                                                     const TIndexData_& data) {
-    return functionvalue::interpolateValue_linear_1(data._0, data._8, rThis._44[data._10],
-                                                    rThis._44[data._10 + 1]);
+     const f32* r30 = rThis._44;
+    return functionvalue::interpolateValue_linear_1(data._0, data._8, r30[data._10],
+                                                    r30[data._10 + 1]);
 }
 
 f64 TFunctionValue_list::update_INTERPOLATE_PLATEAU_(const TFunctionValue_list& rThis,
@@ -633,26 +638,29 @@ f64 TFunctionValue_list::update_INTERPOLATE_PLATEAU_(const TFunctionValue_list& 
 
 f64 TFunctionValue_list::update_INTERPOLATE_BSPLINE_dataMore3_(
     TFunctionValue_list const& rThis, TFunctionValue_list::TIndexData_ const& param_2) {
-    f64 dVar11 = rThis._44[param_2._10];
-    f64 dVar10 = rThis._44[param_2._10 + 1];
+    const f32* r30 = rThis._44;
+    f64 dVar11 = r30[param_2._10];
+    f64 dVar10 = r30[param_2._10 + 1];
     f64 dVar9;
     f64 dVar8;
     if (param_2._10 == 0) {
         JUT_ASSERT(1119, rThis.uData_>=3);
         dVar9 = 2.0 * dVar11 - dVar10;
-        dVar8 = rThis._44[param_2._10 + 2];
+        dVar8 = r30[param_2._10 + 2];
     } else {
         if (param_2._10 == rThis.uData_ - 2) {
             JUT_ASSERT(1125, rThis.uData_>=3);
-            dVar9 = rThis._44[param_2._10 - 1];
+            dVar9 = r30[param_2._10 - 1];
             dVar8 = 2.0 * dVar10 - dVar11;
         } else {
-            JUT_ASSERT(1131, rThis.uData_>=3);
-            dVar9 = rThis._44[param_2._10 - 1];
-            dVar8 = rThis._44[param_2._10 + 2];
+            JUT_ASSERT(1131, rThis.uData_>=4);
+            dVar9 = r30[param_2._10 - 1];
+            dVar8 = r30[param_2._10 + 2];
         }
     }
-    return functionvalue::interpolateValue_BSpline_uniform(param_2._0 - param_2._8, dVar9, dVar11, dVar10, dVar8);
+
+    f64 f27 = param_2._0 - param_2._8;
+    return functionvalue::interpolateValue_BSpline_uniform(f27, dVar9, dVar11, dVar10, dVar8);
 }
 
 
@@ -668,7 +676,7 @@ TFunctionValueAttributeSet TFunctionValue_list_parameter::getAttributeSet() {
 }
 
 void TFunctionValue_list_parameter::data_set(const f32* pf, u32 u) {
-    JUT_ASSERT(1277, (pf != NULL) || (u == 0));
+    JUT_ASSERT(1277, (pf!=NULL)||(u==0));
 
     pfData_ = pf;
     uData_ = u;
@@ -688,9 +696,7 @@ void TFunctionValue_list_parameter::initialize() {
     pfData_ = NULL;
     uData_ = 0;
 
-    TIterator_data_ iter(*this, NULL);
-
-    dat1 = iter;
+    dat1 = TIterator_data_(*this, NULL);
     dat2 = dat1;
     dat3 = dat1;
     pfnUpdate_ = NULL;
@@ -700,12 +706,10 @@ void TFunctionValue_list_parameter::prepare() {
     range_prepare();
     interpolate_prepare();
 
-    u32 interp = interpolate_get();
+    int interp = interpolate_get();
     switch (interp) {
-    default:
-        JUTWarn w;
-        w << "unknown interpolation : " << interp;
     case 0:
+        interpolate_none:
         pfnUpdate_ = update_INTERPOLATE_NONE_;
         break;
     case 1:
@@ -720,6 +724,9 @@ void TFunctionValue_list_parameter::prepare() {
             return;
         pfnUpdate_ = update_INTERPOLATE_LINEAR_;
         break;
+    default:
+        JGADGET_WARNMSG1(1383, "unknown interpolation : ", interp);
+        goto interpolate_none;
     }
 }
 
@@ -744,7 +751,8 @@ f64 TFunctionValue_list_parameter::getValue(f64 param_0) {
 
 f64 TFunctionValue_list_parameter::update_INTERPOLATE_NONE_(
     const TFunctionValue_list_parameter& rThis, f64 d) {
-    return rThis.dat3.get()[-1];
+    const f32* a = rThis.dat3.get();
+    return a[-1];
 }
 
 f64 TFunctionValue_list_parameter::update_INTERPOLATE_LINEAR_(
@@ -851,8 +859,8 @@ TFunctionValueAttributeSet TFunctionValue_hermite::getAttributeSet() {
 }
 
 void TFunctionValue_hermite::data_set(const f32* pf, u32 u, u32 uSize) {
-    JUT_ASSERT(1676, (pf != NULL) || (u == 0));
-    JUT_ASSERT(1677, (uSize == 3) || (uSize == 4));
+    JUT_ASSERT(1676, (pf!=NULL)||(u==0));
+    JUT_ASSERT(1677, (uSize==3)||(uSize==4));
 
     pfData_ = pf;
     u_ = u;

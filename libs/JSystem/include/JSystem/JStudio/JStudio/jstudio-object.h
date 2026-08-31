@@ -10,6 +10,17 @@ typedef struct _GXColor GXColor;
 
 namespace JStudio {
 namespace data {
+    enum TE32Block {
+        BLOCK_ACTOR = 'JACT',
+        BLOCK_AMBIENTLIGHT = 'JABL',
+        BLOCK_CAMERA = 'JCMR',
+        BLOCK_FOG = 'JFOG',
+        BLOCK_LIGHT = 'JLIT',
+        BLOCK_MESSAGE = 'JMSG',
+        BLOCK_PARTICLE = 'JPTC',
+        BLOCK_SOUND = 'JSND',
+    };
+
     enum TEOperationData {
         UNK_0x1 = 0x1,
         UNK_0x2 = 0x2,
@@ -41,6 +52,9 @@ struct TVariableValue {
     TVariableValue() : field_0x4(0), field_0x8(NULL), pOutput_(&soOutput_none_) {}
 
     void setValue_immediate(f32 value) {
+#if DEBUG
+        mValue = std::numeric_limits<f32>::signaling_NaN();
+#endif
         field_0x8 = &update_immediate_;
         field_0x4 = 0;
         field_0xc.val = value;
@@ -54,15 +68,22 @@ struct TVariableValue {
     }
 
     void setValue_time(f32 value) {
+#if DEBUG
+        mValue = std::numeric_limits<f32>::signaling_NaN();
+#endif
         field_0x8 = &update_time_;
         field_0x4 = 0;
         field_0xc.val = value;
     }
     
-    void setValue_functionValue(TFunctionValue* value) {
+    void setValue_functionValue(TFunctionValue* pfv) {
+#if DEBUG
+        mValue = std::numeric_limits<f32>::signaling_NaN();
+#endif
         field_0x8 = &update_functionValue_;
         field_0x4 = 0;
-        field_0xc.fv = value;
+        JUT_ASSERT(145, pfv!=NULL)
+        field_0xc.fv = pfv;
     }
 
     f32 getValue() const { return mValue; }
@@ -104,48 +125,6 @@ struct TVariableValue {
     } field_0xc;
     /* 0x10 */ const TOutput* pOutput_;
 };  // Size: 0x14
-
-typedef void (TObject::*paragraphFunc)(u32, void const*, u32); 
-
-class TObject : public stb::TObject {
-public:
-    TObject(JStudio::stb::data::TParse_TBlock_object const&, JStudio::TAdaptor*);
-    void forward_value(u32);
-
-    virtual ~TObject() = 0;
-    virtual void do_begin();
-    virtual void do_end();
-    virtual void do_paragraph(u32, void const*, u32) = 0;
-    virtual void do_wait(u32);
-    virtual void do_data(void const*, u32, void const*, u32);
-
-    TAdaptor* getAdaptor() const { return mpAdaptor; }
-
-    void setAdaptor(TAdaptor* pAdaptor) {
-        mpAdaptor = pAdaptor;
-        prepareAdaptor();
-    }
-
-    TControl* getControl() { return (TControl*)stb::TObject::getControl(); }
-    const TControl* getControl() const { return (const TControl*)stb::TObject::getControl(); }
-
-    inline void prepareAdaptor();
-
-    template<class T>
-    T* createFromAdaptor(const stb::data::TParse_TBlock_object& param_0, T* param_1) {
-        T* n = new T(param_0, param_1);
-
-        if (n == NULL) {
-            return NULL;
-        }
-
-        n->prepareAdaptor();
-
-        return n;
-    }
-
-    /* 0x34 */ TAdaptor* mpAdaptor;
-};
 
 struct TAdaptor {
     struct TSetVariableValue_immediate {
@@ -197,8 +176,9 @@ struct TAdaptor {
         pObject_ = pObject;
     }
 
-    TVariableValue* adaptor_referVariableValue(u32 param_0) {
-        return &pValue_[param_0];
+    TVariableValue* adaptor_referVariableValue(u32 u) {
+        JUT_ASSERT(291, u<uvv_);
+        return &pValue_[u];
     }
 
     void adaptor_setVariableValue_immediate(u32 param_0, f32 param_1) {
@@ -215,6 +195,50 @@ struct TAdaptor {
     /* 0x4 */ const TObject* pObject_;
     /* 0x8 */ TVariableValue* pValue_;
     /* 0xC */ u32 uvv_;
+};
+
+typedef void (TObject::*paragraphFunc)(u32, void const*, u32); 
+
+class TObject : public stb::TObject {
+public:
+    TObject(data::TE32Block, const void*, u32, JStudio::TAdaptor*);
+    TObject(JStudio::stb::data::TParse_TBlock_object const&, JStudio::TAdaptor*);
+    void forward_value(u32);
+
+    virtual ~TObject() = 0;
+    virtual void do_begin();
+    virtual void do_end();
+    virtual void do_paragraph(u32, void const*, u32) = 0;
+    virtual void do_wait(u32);
+    virtual void do_data(void const*, u32, void const*, u32);
+
+    TAdaptor* getAdaptor() const { return mpAdaptor; }
+
+    void setAdaptor(TAdaptor* pAdaptor) {
+        mpAdaptor = pAdaptor;
+        prepareAdaptor();
+    }
+
+    const char* getID_string() const { return (const char*)getID(); }
+    TControl* getControl() { return (TControl*)stb::TObject::getControl(); }
+    const TControl* getControl() const { return (const TControl*)stb::TObject::getControl(); }
+
+    inline void prepareAdaptor();
+
+    template<class T>
+    T* createFromAdaptor(const stb::data::TParse_TBlock_object& param_0, T* param_1) {
+        T* n = new T(param_0, param_1);
+
+        if (n == NULL) {
+            return NULL;
+        }
+
+        n->prepareAdaptor();
+
+        return n;
+    }
+
+    /* 0x34 */ TAdaptor* mpAdaptor;
 };
 
 inline void TObject::prepareAdaptor() {
@@ -307,6 +331,7 @@ struct TAdaptor_camera : public TAdaptor {
 };
 
 struct TObject_camera : public TObject {
+    TObject_camera(const void*, u32, JStudio::TAdaptor_camera*);
     TObject_camera(JStudio::stb::data::TParse_TBlock_object const&,
                                   JStudio::TAdaptor_camera*);
     

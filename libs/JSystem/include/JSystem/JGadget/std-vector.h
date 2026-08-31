@@ -127,10 +127,7 @@ struct TVector {
     const_iterator end() const { return pEnd_; }
 
     u32 size() const {
-        if (pBegin_ == 0) {
-            return 0;
-        }
-        return (int)((uintptr_t)pEnd_ - (uintptr_t)pBegin_) / 4;
+        return pBegin_ == 0 ? 0 : (int)((uintptr_t)pEnd_ - (uintptr_t)pBegin_) / 4;
     }
 
     u32 capacity() const { return mCapacity; }

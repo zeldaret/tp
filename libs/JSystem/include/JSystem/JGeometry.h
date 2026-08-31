@@ -90,6 +90,7 @@ template <>
 struct TVec3<double> {
     double x, y, z;
 
+    TVec3() {}
     void set(double x_, double y_, double z_) {
         x = x_;
         y = y_;

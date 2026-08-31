@@ -14,6 +14,7 @@ struct TExpandStride_ {};
 
 template <>
 struct TExpandStride_<s32> {
+    TExpandStride_() {}
     static s32 get(s32 n) { return n << 3; }
 };
 

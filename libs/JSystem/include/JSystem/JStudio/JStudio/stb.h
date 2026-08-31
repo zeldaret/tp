@@ -13,22 +13,6 @@ namespace stb {
 
 class TControl;
 
-class TParse : public TParse_header_block {
-public:
-    TParse(TControl*);
-    virtual ~TParse();
-    virtual bool parseHeader_next(void const**, u32*, u32);
-    virtual bool parseBlock_next(void const**, u32*, u32);
-    virtual bool parseHeader(data::TParse_THeader const&, u32);
-    virtual bool parseBlock_block(data::TParse_TBlock const&, u32);
-    virtual bool parseBlock_object(data::TParse_TBlock_object const&, u32);
-
-    TControl* getControl() const { return pControl; }
-
-private:
-    TControl* pControl;
-};
-
 class TObject : public object::TObject_ID {
 public:
     enum TEStatus {
@@ -68,7 +52,7 @@ public:
     void process_sequence_();
     void process_paragraph_reserved_(u32, void const*, u32);
 
-    const char* toString_status(int status);
+    static const char* toString_status(int status);
 
     void on_begin() { do_begin(); }
     void on_end() { do_end(); }
@@ -78,6 +62,7 @@ public:
         do_data(arg1, arg2, arg3, arg4);
     }
 
+    TControl* getControl() { return pControl; }
     TControl* getControl() const { return pControl; }
     void setControl_(TControl* control) { pControl = control; }
     int getSuspend() const { return _20; }
@@ -87,8 +72,7 @@ public:
     const void* getSequence() const { return pSequence; }
     void setSequence_(const void* arg1) { pSequence = arg1; }
     const void* getSequence_offset(s32 i_no) const {
-        intptr_t s32Val = (intptr_t)getSequence();
-        return (const void*)(s32Val + i_no);
+        return (u8*)getSequence() + i_no;
     }
     const void* getSequence_next() const { return pSequence_next; }
     void setSequence_next(const void* seq) { pSequence_next = seq; }
@@ -103,7 +87,7 @@ public:
         return val;
     }
     void setFlag_operation_(u32 u32Data) {
-        ASSERT((u32Data >> data::guBit_TSequence_type) == 0);
+        JGADGET_ASSERTWARN(179, (u32Data>>data::guBit_TSequence_type)==0);
         setFlag_operation(u32Data >> 16, u32Data & 0xFFFF);
     }
 
@@ -121,19 +105,12 @@ public: // private: // public for the fakematch in JStudio_JStage::TAdaptor_acto
     /* 0x30 */ TEStatus mStatus;
 };
 
-class TFactory {
-public:
-    TFactory() {}
-
-    virtual ~TFactory();
-    virtual JStudio::TObject* create(data::TParse_TBlock_object const&);
-    virtual void destroy(TObject*);
-};
-
 class TObject_control : public TObject {
 public:
     TObject_control(void const*, u32);
 };
+
+class TFactory;
 
 // Manages TObjects
 class TControl {
@@ -152,8 +129,8 @@ public:
     void setStatus_(u32 status) { mStatus = status; }
     void resetStatus_() { setStatus_(0); }
     bool isSuspended() const { return _54 > 0; }
-    TFactory* getFactory() const { return pFactory; }
-    void setFactory(TFactory* factory) { pFactory = factory; }
+    TFactory* getFactory() const { return mFactory; }
+    void setFactory(TFactory* factory) { mFactory = factory; }
     TObject_control& referObject_control() { return mObject_control; }
     int getSuspend() const { return _54; }
     void setSuspend(s32 suspend) { mObject_control.setSuspend(suspend); }
@@ -163,11 +140,36 @@ public:
 private:
     /* 0x04 */ u32 _4;
     /* 0x08 */ u32 _8;
-    /* 0x0C */ TFactory* pFactory;
+    /* 0x0C */ TFactory* mFactory;
     /* 0x10 */ JGadget::TLinkList<TObject, -12> ocObject_;
     /* 0x1C */ u32 mStatus;
     /* 0x20 */ TObject_control mObject_control;
     /* 0x54 */ s32 _54;
+};
+
+class TFactory {
+public:
+    TFactory() {}
+
+    virtual ~TFactory();
+    virtual JStudio::TObject* create(data::TParse_TBlock_object const&);
+    virtual void destroy(TObject*);
+};
+
+class TParse : public TParse_header_block {
+public:
+    TParse(TControl*);
+    virtual ~TParse();
+    virtual bool parseHeader_next(void const**, u32*, u32);
+    virtual bool parseBlock_next(void const**, u32*, u32);
+    virtual bool parseHeader(data::TParse_THeader const&, u32);
+    virtual bool parseBlock_block(data::TParse_TBlock const&, u32);
+    virtual bool parseBlock_object(data::TParse_TBlock_object const&, u32);
+
+    TControl* getControl() const { return pControl; }
+
+private:
+    TControl* pControl;
 };
 
 template <int S>

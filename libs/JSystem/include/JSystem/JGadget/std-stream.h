@@ -66,7 +66,7 @@ private:
     /* 0x18 */ char fill_;
 };
 
-class TInputStream {
+class TInputStream : virtual TStream {
 public:
     struct sentry {
         sentry(TInputStream& stream, bool);
@@ -78,27 +78,26 @@ public:
 
     int get();
 
-    TStream* _0x0;
     virtual ~TInputStream();
 
 private:
     /* 0x08 */ int field_0x8;
 };
 
-class TOutputStream {
+class TOutputStream : virtual TStream {
 public:
     struct sentry {
         sentry(TOutputStream& stream) {
             _0x0 = &stream;
             
-            _0x4 = stream._0x0->good();
+            _0x4 = stream.good();
             if (!_0x4) {
-                stream._0x0->setstate(2);
+                stream.setstate(2);
             }
         }
 
         ~sentry() {
-            if (!_0x0->_0x0->fail() && (_0x0->_0x0->flags() & 2)) {
+            if (!_0x0->fail() && (_0x0->flags() & 2)) {
                 _0x0->flush();
             }
         }
@@ -156,19 +155,18 @@ public:
     }
 
     TBufferIterator& Put(bool param_0) {
-        u32 flags = _0x0->flags();
-        const TCString_* s = &saaosz_bool_[!(flags & 8) ? 0 : 1][param_0 ? 1 : 0];
+        u32 l_flags = flags();
+        const TCString_* s = &saaosz_bool_[!(l_flags & 8) ? 0 : 1][param_0 ? 1 : 0];
         return Put_CString_prefixed_(s->sz, s->len, NULL, 0);
     }
 
-    TStream* _0x0;
     virtual ~TOutputStream();
-    
+
     struct TCString_ {
         const char* sz;
         u32 len;
     };
-    
+
     struct saoCaseNumeral_struct {
         const char _0[16];
         TCString_ _1; // 0x10

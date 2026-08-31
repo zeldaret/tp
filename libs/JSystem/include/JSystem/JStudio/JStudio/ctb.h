@@ -100,7 +100,7 @@ struct data {
             return (const void*)((char*)getBlockEnd_() + JGadget::binary::align_roundUp((u16)get_IDSize(), 4));
         }
 
-        const TParse_TBlock* getNext() {
+        const TParse_TBlock* getNext() const {
             return (TParse_TBlock*)((char*)getRaw() + get_size());
         }
     };
@@ -115,13 +115,7 @@ struct TObject_TxyzRy : public TObject {
     virtual int getScheme() const;
 };
 
-struct TFactory {
-    TFactory() {}
-
-    virtual ~TFactory();
-    virtual TObject* create(JStudio::ctb::data::TParse_TBlock const&);
-    virtual void destroy(JStudio::ctb::TObject*);
-};
+struct TFactory;
 
 struct TControl {
     TControl();
@@ -140,13 +134,21 @@ struct TControl {
     /* 0x8 */ JGadget::TLinkList<TObject, -12> ocObject_;
 };
 
+struct TFactory {
+    TFactory() {}
+
+    virtual ~TFactory();
+    virtual TObject* create(JStudio::ctb::data::TParse_TBlock const&);
+    virtual void destroy(JStudio::ctb::TObject*);
+};
+
 struct TParse : public JGadget::binary::TParse_header_block {
     TParse(JStudio::ctb::TControl*);
     virtual ~TParse();
     virtual bool parseHeader_next(void const**, u32*, u32);
     virtual bool parseBlock_next(void const**, u32*, u32);
 
-    TControl* getControl() { return pControl_; }
+    TControl* getControl() const { return pControl_; }
 
     /* 0x4 */ TControl* pControl_;
 };

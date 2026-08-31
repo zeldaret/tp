@@ -29,11 +29,12 @@ template <typename T>
 struct SMatrix33C {
     T data[3][3];
 
-    inline T& ref(int i, int j) {
+    SMatrix33C() {}
+    inline T& ref(u32 i, u32 j) {
         return data[i][j];
     }
 
-    inline T at(int i, int j) const {
+    inline T at(u32 i, u32 j) const {
         return data[i][j];
     }
 
@@ -61,16 +62,17 @@ struct TRotation3 : public T {};
 
 template<typename T>
 struct TRotation3<SMatrix33C<T> > : public SMatrix33C<T> {
-    inline void getEulerXYZ(TVec3<T>* param_1) const {
+    TRotation3() {}
+    inline void getEulerXYZ(TVec3<T>& param_1) const {
         if (this->at(2, 0) - TUtil<T>::one() >= -TUtil<T>::epsilon()) {
-            param_1->set(TUtil<T>::atan2(-this->at(0, 1), this->at(1, 1)), -TUtil<T>::halfPI(), 0.0);
+            param_1.set(TUtil<T>::atan2(-this->at(0, 1), this->at(1, 1)), -TUtil<T>::halfPI(), 0.0);
         } else {
             if (this->at(2, 0) + TUtil<T>::one() <= TUtil<T>::epsilon()) {
-                param_1->set(TUtil<T>::atan2(this->at(0, 1), this->at(1, 1)), TUtil<T>::halfPI(), 0.0);
+                param_1.set(TUtil<T>::atan2(this->at(0, 1), this->at(1, 1)), TUtil<T>::halfPI(), 0.0);
             } else {
-                param_1->x = TUtil<T>::atan2(this->at(2, 1), this->at(2, 2));
-                param_1->z = TUtil<T>::atan2(this->at(1, 0), this->at(0, 0));
-                param_1->y = TUtil<T>::asin(-this->at(2, 0));
+                param_1.x = TUtil<T>::atan2(this->at(2, 1), this->at(2, 2));
+                param_1.z = TUtil<T>::atan2(this->at(1, 0), this->at(0, 0));
+                param_1.y = TUtil<T>::asin(-this->at(2, 0));
             }
         }
     }

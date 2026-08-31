@@ -2,6 +2,7 @@
 #define JGADGET_BINARY_H
 
 #include "JSystem/JUtility/JUTAssert.h"
+#include "JSystem/JGadget/define.h"
 #include "JSystem/JGadget/search.h"
 
 namespace JGadget {
@@ -35,10 +36,9 @@ template <int S>
 struct TParseData_aligned : public TParseData {
     TParseData_aligned(const void* pContent) : TParseData(pContent) {}
     void setRaw(const void* p) {
-        /* if ((u32)p % S != 0) {
-            JUTWarn w;
-            w << "misaligned : " << (u32)p;
-        } */
+        if (uintptr_t(p) % S) {
+            JGADGET_WARNMSG1(368, "misaligned : ", uintptr_t(p));
+        }
         static_cast<TParseData*>(this)->setRaw(p);
     }
 };

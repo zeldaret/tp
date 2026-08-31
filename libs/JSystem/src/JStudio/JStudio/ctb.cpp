@@ -66,10 +66,12 @@ JStudio::ctb::TObject* JStudio::ctb::TControl::getObject_index(u32 param_0) {
 JStudio::ctb::TFactory::~TFactory() {}
 
 JStudio::ctb::TObject* JStudio::ctb::TFactory::create(JStudio::ctb::data::TParse_TBlock const& param_0) {
-    switch(param_0.get_scheme()) {
+    int scheme = param_0.get_scheme();
+    switch(scheme) {
     case 1:
         return new TObject_TxyzRy(param_0);
     default:
+        JGADGET_WARNMSG1(184, "unknown scheme : ", scheme);
         return NULL;
     }
 }
@@ -79,7 +81,9 @@ void JStudio::ctb::TFactory::destroy(JStudio::ctb::TObject* param_0) {
 }
 
 // NONMATCHING TParse_header_block vtable location
-JStudio::ctb::TParse::TParse(JStudio::ctb::TControl* param_0) : pControl_(param_0) {}
+JStudio::ctb::TParse::TParse(JStudio::ctb::TControl* param_0) : pControl_(param_0) {
+    JUT_ASSERT(205, pControl_!=NULL);
+}
 
 JStudio::ctb::TParse::~TParse() {}
 
@@ -92,16 +96,23 @@ bool JStudio::ctb::TParse::parseHeader_next(void const** ppData_inout, u32* puBl
     *ppData_inout = aTStack_478.getContent();
     *puBlock_out = aTStack_478.get_blockNumber();
     if (memcmp(aTStack_478.get_signature(), &JStudio::ctb::data::ga4cSignature, sizeof(JStudio::ctb::data::ga4cSignature)) != 0) {
+        JGADGET_WARNMSG(232, "unknown signature");
         return false;
     }
     if (aTStack_478.get_byteOrder() != 0xfeff) {
+        JGADGET_WARNMSG(232, "illegal byte-order");
         return false;
     }
     u16 version = aTStack_478.get_version();
     if (version < 1) {
+        JGADGET_WARNMSG1(244, "obsolete version : ", version);
         return false;
     }
-    return version <= 1;
+    if (version > 1) {
+        JGADGET_WARNMSG1(249, "unknown version : ", version);
+        return false;
+    }
+    return true;
 }
 
 bool JStudio::ctb::TParse::parseBlock_next(void const** ppData_inout, u32* puData_out, u32 param_3) {
@@ -113,9 +124,11 @@ bool JStudio::ctb::TParse::parseBlock_next(void const** ppData_inout, u32* puDat
     *ppData_inout = aTStack_260.getNext();
     *puData_out = aTStack_260.get_size();
     JStudio::ctb::TControl* pControl = getControl();
+    JStudio::ctb::TObject* pObject;
     JUT_ASSERT(269, pControl!=NULL);
     if ((param_3 & 0x10) != 0) {
-        if (pControl->getObject(aTStack_260.get_ID(), aTStack_260.get_IDSize()) != NULL) {
+        pObject = pControl->getObject(aTStack_260.get_ID(), aTStack_260.get_IDSize());
+        if (pObject != NULL) {
             return true;
         }
     }
@@ -124,17 +137,19 @@ bool JStudio::ctb::TParse::parseBlock_next(void const** ppData_inout, u32* puDat
     }
     JStudio::ctb::TFactory* pFactory = pControl->getFactory();
     if (pFactory == NULL) {
-       return false;
-    } 
+        JGADGET_WARNMSG(287, "factory not specified");
+        return false;
+    }
 
     JStudio::ctb::TObject* pTVar6 = pFactory->create(aTStack_260);
     if (pTVar6 == NULL) {
-        if ((param_3 & 0x40) == 0) {
-            return false;
-        } else {
+        JGADGET_WARNMSG(293, "can\'t create coordinate-transformation");
+        if ((param_3 & 0x40) != 0) {
             return true;
+        } else {
+            return false;
         }
-    } 
+    }
     pControl->appendObject(pTVar6);
     return true;
 }

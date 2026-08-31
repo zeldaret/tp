@@ -33,7 +33,7 @@ void JStudio::TControl::setFactory(JStudio::TFactory* factory) {
 int JStudio::TControl::transformOnSet_setOrigin_TxyzRy(Vec const& param_0, f32 param_1) {
     field_0x8c = param_0;
     mTransformOnSet_RotationY = param_1;
-    JStudio::math::getTransformation_RyT(mTransformOnSet_Matrix, param_0, param_1);
+    JStudio::math::getTransformation_RyT(mTransformOnSet_Matrix, param_1, param_0);
     return 1;
 }
 
@@ -47,17 +47,16 @@ int JStudio::TControl::transformOnGet_setOrigin_TxyzRy(Vec const& param_0, f32 p
 }
 
 int JStudio::TControl::transform_setOrigin_ctb(JStudio::ctb::TObject const& param_0) {
-    switch (param_0.getScheme()) {
+    int scheme = param_0.getScheme();
+    switch (scheme) {
     case 1: {
         const f32* pfVar4 = (const f32*)param_0.getData();
-        Vec local_144 = {0.0f, 0.0f, 0.0f};
-        local_144.x = pfVar4[0];
-        local_144.y = pfVar4[1];
-        local_144.z = pfVar4[2];
+        Vec local_144 = {pfVar4[0], pfVar4[1], pfVar4[2]};
         transform_setOrigin_TxyzRy(local_144, pfVar4[3]);
         break;
     }
     default:
+        JGADGET_WARNMSG1(183, "unknown scheme : ", scheme);
         return 0;
     }
     return 1;
@@ -76,8 +75,9 @@ JStudio::TCreateObject::~TCreateObject() {}
 
 JStudio::TFactory::~TFactory() {}
 
-void JStudio::TFactory::appendCreateObject(JStudio::TCreateObject* param_0) {
-    mList.Push_back(param_0);
+void JStudio::TFactory::appendCreateObject(JStudio::TCreateObject* p) {
+    JUT_ASSERT(227, p!=NULL);
+    mList.Push_back(p);
 }
 
 
@@ -91,13 +91,12 @@ JStudio::TObject* JStudio::TFactory::create(JStudio::stb::data::TParse_TBlock_ob
         }
     }
 #if DEBUG
-    u32 type = rParse.get_type();
     char a5c[8];
-    stb::data::toString_block(a5c, type);
+    stb::data::toString_block(a5c, rParse.get_type());
     const char* szID = (const char*)rParse.get_ID();
     JGADGET_ASSERTWARN(0x108, rParse.get_IDSize()>0);
-    JGADGET_ASSERTWARN(0x109, szID[rParse.get_IDSize()-1]=='\\0');
-    JGADGET_WARNMSG3(0x10c, "ID not found\n demo object : ", szID, "\n  type : ", a5c);
+    JGADGET_ASSERTWARN(0x109, szID[rParse.get_IDSize()-1]=='\0');
+    JGADGET_WARNMSG3(0x10c, "ID not found\n  demo-object : ", szID, "\n  type : ", a5c);
 #endif
     return NULL;
 }
@@ -111,19 +110,27 @@ bool JStudio::TParse::parseHeader(JStudio::stb::data::TParse_THeader const& para
                                       u32 param_1) {
     const JStudio::stb::data::THeader::Target& target = param_0.get_target();
     if (memcmp(target.name, JStudio::data::ga8cSignature, sizeof(JStudio::data::ga8cSignature)) != 0) {
+        JGADGET_WARNMSG(304, "unknown target-system");
         return false;
     }
-    if (target.target_version < 2) {
+    u32 version = target.target_version;
+    if (version < 2) {
+        JGADGET_WARNMSG1(312, "obsolete version : ", version);
         return false;
-    } 
-    if (target.target_version > 6) {
+    }
+    if (version > 6) {
+        JGADGET_WARNMSG1(317, "unknown version : ", version);
         return false;
     }
     JStudio::TControl* pControl = getControl();
     JUT_ASSERT(322, pControl!=NULL);
     if ((param_1 & 0x100) == 0) {
         Vec local_468 = {0.0f, 0.0f, 0.0f};
-        pControl->transform_setOrigin_TxyzRy(local_468, 0.0f);
+        if (!pControl->transform_setOrigin_TxyzRy(local_468, 0.0f)) {
+            JGADGET_WARNMSG(329, "invalid coordinate-transformation");
+            return false;
+        }
+
         pControl->transform_enable(false);
     }
     return true;
@@ -131,7 +138,8 @@ bool JStudio::TParse::parseHeader(JStudio::stb::data::TParse_THeader const& para
 
 bool JStudio::TParse::parseBlock_block(JStudio::stb::data::TParse_TBlock const& param_0,
                                            u32 param_1) {
-    switch(param_0.get_type()) {
+    u32 type = param_0.get_type();
+    switch(type) {
     case 'JFVB':
         return parseBlock_block_fvb_(param_0, param_1);
     case 'JCTB':
@@ -157,7 +165,8 @@ bool JStudio::TParse::parseBlock_block_fvb_(JStudio::stb::data::TParse_TBlock co
     if ((param_1 & 0x40) != 0) {
         uVar4 |= 0x40;
     }
-    fvb::TParse aTStack_30(&pControl->fvb_Control);
+    fvb::TControl* control = &pControl->fvb_Control;
+    fvb::TParse aTStack_30(control);
     if (!aTStack_30.parse(pContent, uVar4)) {
         return false;
     } 
@@ -180,12 +189,14 @@ bool JStudio::TParse::parseBlock_block_ctb_(JStudio::stb::data::TParse_TBlock co
     if ((param_1 & 0x40) != 0) {
         uVar4 |= 0x40;
     }
-    ctb::TParse aTStack_30(&pControl->ctb_Control);
+    ctb::TControl* control = &pControl->ctb_Control;
+    ctb::TParse aTStack_30(control);
     if (!aTStack_30.parse(pContent, uVar4)) {
         return false;
     }
     if ((param_1 & 0x200) == 0) {
         if (pControl->transform_setOrigin_ctb_index(0) == 0) {
+            JGADGET_WARNMSG(407, "invalid coordinate-transformation");
             return 0;
         }
         pControl->transform_enable(true);

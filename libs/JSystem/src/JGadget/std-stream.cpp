@@ -46,30 +46,22 @@ void TStream::init(TStreamBuffer* psb) {
 
 // NONMATCHING
 TInputStream::sentry::sentry(TInputStream& stream, bool param_1) {
-    _0x0 = stream._0x0->good();
+    _0x0 = stream.good();
     if (!_0x0) {
-        stream._0x0->setstate(2);
+        stream.setstate(2);
         return;
     }
 
-    if (!param_1 && (stream._0x0->flags() & TStream_base::dec)) {
-        TStreamBuffer* rdbuf = stream._0x0->rdbuf();
+    if (!param_1 && (stream.flags() & TStream_base::dec)) {
+        TStreamBuffer* rdbuf = stream.rdbuf();
         int var_r28 = rdbuf->sgetc();
 
-        while (true) {
+        while (!TTrait_char<char>::eq_int_type(var_r28, TTrait_char<char>::eof()) && isspace(TTrait_char<char>::to_char_type(var_r28))) {
             var_r28 = rdbuf->snextc();
-
-            if (TTrait_char<char>::eq_int_type(var_r28, TTrait_char<char>::eof())) {
-                break;
-            }
-
-            if (!isspace(TTrait_char<char>::to_char_type(var_r28))) {
-                break;
-            }
         }
     }
 
-    _0x0 = stream._0x0->good();
+    _0x0 = stream.good();
 }
 
 // NONMATCHING
@@ -83,7 +75,7 @@ int TInputStream::get() {
     var_r29 = var_r28;
     sentry entry(*this, true);
     if (entry) {
-        TStreamBuffer* var_r26 = _0x0->rdbuf();
+        TStreamBuffer* var_r26 = rdbuf();
         int var_r27 = 0;
 
         var_r29 = var_r26->sbumpc();
@@ -108,7 +100,7 @@ TOutputStream& TOutputStream::operator<<(const char* param_0) {
     if (entry) {
         TBufferIterator& sp8 = Put(param_0, TTrait_char<char>::length(param_0));
         if (TBufferIterator(sp8).failed()) {
-            _0x0->setstate(6);
+            setstate(6);
         }
     }
 
@@ -124,7 +116,7 @@ TOutputStream& TOutputStream::operator<<(char param_0) {
     if (entry) {
         TBufferIterator& sp8 = Put(sz, 1);
         if (TBufferIterator(sp8).failed()) {
-            _0x0->setstate(6);
+            setstate(6);
         }
     }
 
@@ -137,7 +129,7 @@ TOutputStream& TOutputStream::operator<<(s32 param_0) {
     if (entry) {
         TBufferIterator& sp8 = Put(param_0);
         if (TBufferIterator(sp8).failed()) {
-            _0x0->setstate(6);
+            setstate(6);
         }
     }
 
@@ -150,7 +142,7 @@ TOutputStream& TOutputStream::operator<<(u32 param_0) {
     if (entry) {
         TBufferIterator& sp8 = Put(param_0);
         if (TBufferIterator(sp8).failed()) {
-            _0x0->setstate(6);
+            setstate(6);
         }
     }
 
@@ -163,7 +155,7 @@ TOutputStream& TOutputStream::operator<<(bool param_0) {
     if (entry) {
         TBufferIterator& sp8 = Put(param_0);
         if (TBufferIterator(sp8).failed()) {
-            _0x0->setstate(6);
+            setstate(6);
         }
     }
 
@@ -176,7 +168,7 @@ TOutputStream& TOutputStream::operator<<(double param_0) {
     if (entry) {
         TBufferIterator& sp8 = Put(param_0);
         if (TBufferIterator(sp8).failed()) {
-            _0x0->setstate(6);
+            setstate(6);
         }
     }
 
@@ -185,15 +177,15 @@ TOutputStream& TOutputStream::operator<<(double param_0) {
 
 // NONMATCHING
 TOutputStream::TBufferIterator& TOutputStream::Put(double param_0) {
-    u32 flags = _0x0->flags();
+    u32 l_flags = flags();
     
-    const saoCaseNumeral_struct& sp24 = getCaseNumeral_(flags);
+    const saoCaseNumeral_struct& sp24 = getCaseNumeral_(l_flags);
 
     const TCString_* var_r28 = &saoszPrefix_sign_[0];
     if (param_0 < 0.0f) {
         var_r28 = &saoszPrefix_sign_[2];
         param_0 = -param_0;
-    } else if (flags & 0x1000) {
+    } else if (l_flags & 0x1000) {
         var_r28 = &saoszPrefix_sign_[1];
     }
 
@@ -211,16 +203,16 @@ TOutputStream::TBufferIterator& TOutputStream::Put(double param_0) {
         char* var_r30 = sp28;
 
         *var_r30 = '%';
-        if (flags & 0x800) {
+        if (l_flags & 0x800) {
             *++var_r30 = '#';
         }
         *++var_r30 = '.';
         *++var_r30 = '*';
 
-        static const char pcFormat[] = "gGffeE";
+        static const char* const pcFormat = "gGffeE";
         const char* var_r29 = pcFormat;
 
-        u32 sp18 = flags & 0xF0000000;
+        u32 sp18 = l_flags & 0xF0000000;
         switch (sp18) {
         case 0:
             break;
@@ -232,10 +224,9 @@ TOutputStream::TBufferIterator& TOutputStream::Put(double param_0) {
             break;
         default:
             JGADGET_WARNMSG1(580, "illegal float-field : ", sp18);
-            bool sp9 = false;
         }
 
-        if (flags & 4) {
+        if (l_flags & 4) {
             var_r29++;
         }
 
@@ -243,7 +234,7 @@ TOutputStream::TBufferIterator& TOutputStream::Put(double param_0) {
         *++var_r30 = 0;
 
         char sp38[64];
-        int sp14 = snprintf(sp38, 64, sp28, param_0, _0x0->precision());
+        int sp14 = snprintf(sp38, 64, sp28, param_0, precision());
         sp30.sz = sp38;
         
         int sp10;
@@ -263,24 +254,24 @@ TOutputStream::TBufferIterator& TOutputStream::Put(double param_0) {
 }
 
 TOutputStream::TBufferIterator& TOutputStream::Put_CString_prefixed_(const char* param_0, u32 param_1, const char* param_2, u32 param_3) {
-    TBufferIterator sp8(_0x0->rdbuf());
+    TBufferIterator sp8(rdbuf());
     if (sp8.failed()) {
         return sp8;
     }
 
-    u32 flags = _0x0->flags();
-    char fill = _0x0->fill();
-    s32 width = _0x0->width();
+    u32 l_flags = flags();
+    char l_fill = fill();
+    s32 l_width = width();
 
     s32 var_r26 = param_1 + param_3;
     s32 var_r31 = 0;
-    if (width > var_r26) {
-        var_r31 = width - var_r26;
+    if (l_width > var_r26) {
+        var_r31 = l_width - var_r26;
     }
 
-    if (!(flags & 0x50000)) {
+    if (!(l_flags & 0x50000)) {
         while (var_r31 != 0) {
-            *sp8 = fill;
+            *sp8 = l_fill;
             var_r31--;
             ++sp8;
         }
@@ -293,9 +284,9 @@ TOutputStream::TBufferIterator& TOutputStream::Put_CString_prefixed_(const char*
         ++sp8;
     }
 
-    if (flags & 0x40000) {
+    if (l_flags & 0x40000) {
         while (var_r31 != 0) {
-            *sp8 = fill;
+            *sp8 = l_fill;
             var_r31--;
             ++sp8;
         }
@@ -308,15 +299,15 @@ TOutputStream::TBufferIterator& TOutputStream::Put_CString_prefixed_(const char*
         ++sp8;
     }
 
-    if (flags & 0x10000) {
+    if (l_flags & 0x10000) {
         while (var_r31 != 0) {
-            *sp8 = fill;
+            *sp8 = l_fill;
             var_r31--;
             ++sp8;
         }
     }
 
-    _0x0->width(0);
+    width(0);
     return sp8;
 }
 
@@ -329,15 +320,15 @@ TOutputStream::TBufferIterator& TOutputStream::Put_longInt_(u32 param_0, bool pa
     char* pbufEnd = &buf[32];
     char* pbuf = pbufEnd;
 
-    u32 flags = _0x0->flags();
+    u32 l_flags = flags();
     
-    const saoCaseNumeral_struct& sp20 = getCaseNumeral_(flags);
+    const saoCaseNumeral_struct& sp20 = getCaseNumeral_(l_flags);
     const char* sp1C = sp20._0;
     int sp18 = 10;
 
     const TCString_* var_r29 = &saoszPrefix_sign_[0];
 
-    u32 sp14 = flags & 0xFC00000;
+    u32 sp14 = l_flags & 0xFC00000;
     switch (sp14) {
     case 0x400000:
         if (param_1) {
@@ -345,26 +336,25 @@ TOutputStream::TBufferIterator& TOutputStream::Put_longInt_(u32 param_0, bool pa
             if (sp10 < 0) {
                 var_r29 = &saoszPrefix_sign_[2];
                 param_0 = -sp10;
-            } else if (flags & 0x1000) {
+            } else if (l_flags & 0x1000) {
                 var_r29 = &saoszPrefix_sign_[1];
             }
         }
         break;
     case 0x800000:
         sp18 = 0x10;
-        if (param_0 != 0 && (flags & 0x400)) {
+        if (param_0 != 0 && (l_flags & 0x400)) {
             var_r29 = &sp20._1;
         }
         break;
     case 0x1000000:
         sp18 = 8;
-        if (param_0 != 0 && (flags & 0x400)) {
+        if (param_0 != 0 && (l_flags & 0x400)) {
             var_r29 = &soszPrefix_oct_;
         }
         break;
     default:
         JGADGET_WARNMSG1(737, "illegal base-field : ", sp14);
-        bool spA = false;
     }
 
     if (param_0 == 0) {

@@ -11,29 +11,20 @@ namespace stb {
 
 // unchecked, in debug dol
 const char* TObject::toString_status(int status) {
-    const char* result;
-
     switch (status) {
-    default:
-        result = "(undefined)";
-        break;
     case 0:
-        result = "still";
-        break;
+        return "still";
     case 1:
-        result = "end";
-        break;
+        return "end";
     case 2:
-        result = "wait";
-        break;
+        return "wait";
     case 4:
-        result = "suspend";
-        break;
+        return "suspend";
     case 8:
-        result = "inactive";
-        break;
+        return "inactive";
+    default:
+        return "(undefined)";
     }
-    return result;
 }
 
 TObject::TObject(u32 arg1, const void* id, u32 id_size)
@@ -46,15 +37,12 @@ TObject::TObject(const data::TParse_TBlock_object& object)
       pSequence_next(object.getContent()), u32Wait_(0), mStatus(STATUS_STILL) {}
 
 TObject::~TObject() {
-    JGADGET_ASSERTWARN(0, getControl() == NULL);
+    JGADGET_ASSERTWARN(69, getControl()==NULL);
 }
 
 void TObject::setFlag_operation(u8 op, int val) {
     switch (op) {
-    default:
-        JUTWarn w;
-        w << "unknown flag-operation : " << op;
-        break;
+
     case 1:
         mFlag |= val;
         break;
@@ -64,15 +52,18 @@ void TObject::setFlag_operation(u8 op, int val) {
     case 3:
         mFlag ^= val;
         break;
+    default:
+        JGADGET_WARNMSG1(92, "unknown flag-operation : ", uint(op));
+        break;
     }
 }
 
 #if !PLATFORM_SHIELD || DEBUG
 void TObject::reset(const void* arg1) {
     bSequence_ = 0;
-    mStatus = STATUS_STILL;
-    pSequence_next = arg1;
-    u32Wait_ = 0;
+    setStatus_(STATUS_STILL);
+    setSequence_next(arg1);
+    setWait(0);
 }
 #endif
 
@@ -101,23 +92,23 @@ bool TObject::forward(u32 arg1) {
             case STATUS_INACTIVE:
                 break;
             default:
-                ASSERT(false);
+                JUT_ASSERT(132, false);
                 break;
             }
             return true;
         }
 
         if (getStatus() == STATUS_INACTIVE) {
-            ASSERT(bSequence_);
+            JUT_ASSERT(139, bSequence_);
             on_begin();
             setStatus_(STATUS_WAIT);
         }
-        ASSERT(getStatus() != STATUS_INACTIVE);
+        JUT_ASSERT(143, getStatus()!=STATUS_INACTIVE);
 
         TControl* control = getControl();
         if ((control != NULL && control->isSuspended()) || isSuspended()) {
             if (bSequence_) {
-                ASSERT((getStatus() == STATUS_WAIT) || (getStatus() == STATUS_SUSPEND));
+                JUT_ASSERT(155, (getStatus()==STATUS_WAIT)|| (getStatus()==STATUS_SUSPEND));
                 setStatus_(STATUS_SUSPEND);
                 on_wait(arg1);
             }
@@ -130,7 +121,7 @@ bool TObject::forward(u32 arg1) {
 
             if (nextseq == NULL) {
                 if (bSequence_) {
-                    ASSERT(getStatus() != STATUS_STILL);
+                    JUT_ASSERT(173, getStatus()!=STATUS_STILL);
                     if (!temp) {
                         on_wait(0);
                     }
@@ -142,7 +133,7 @@ bool TObject::forward(u32 arg1) {
             }
 
             if (!bSequence_) {
-                ASSERT(getStatus() == STATUS_STILL);
+                JUT_ASSERT(184, getStatus()==STATUS_STILL);
                 bSequence_ = true;
                 on_begin();
             }
@@ -153,7 +144,7 @@ bool TObject::forward(u32 arg1) {
                     break;
                 }
             }
-            ASSERT(u32Wait_ > 0);
+            JUT_ASSERT(201, u32Wait_>0);
 
             temp = true;
             if (arg1 >= u32Wait_) {
@@ -191,7 +182,7 @@ void TObject::do_data(void const* param_0, u32 param_1, void const* param_2, u32
 }
 
 void TObject::process_sequence_() {
-    ASSERT(getWait() == 0);
+    JUT_ASSERT(245, getWait()==0);
     data::TParse_TSequence seq(getSequence());
 
     data::TParse_TSequence::TData dat;
@@ -205,32 +196,29 @@ void TObject::process_sequence_() {
 
     switch (type) {
     case 0:
-        JGADGET_ASSERTWARN(0, u32Value == 0);
-        JGADGET_ASSERTWARN(0, pContent == NULL);
+        JGADGET_ASSERTWARN(259, u32Value==0);
+        JGADGET_ASSERTWARN(260, pContent==NULL);
         break;
     case 1:
-        JGADGET_ASSERTWARN(0, pContent == NULL);
+        JGADGET_ASSERTWARN(264, pContent==NULL);
         setFlag_operation_(u32Value);
         break;
     case 2:
-        JGADGET_ASSERTWARN(0, pContent == NULL);
+        JGADGET_ASSERTWARN(269, pContent==NULL);
         setWait(u32Value);
         break;
     case 3: {
-        JGADGET_ASSERTWARN(0, pContent == NULL);
-        s32 off = toInt32FromUInt24_(u32Value);
-        void* nextseq = (void*)getSequence_offset(off);
-        setSequence_next(nextseq);
+        JGADGET_ASSERTWARN(274, pContent==NULL);
+        setSequence_next(getSequence_offset(toInt32FromUInt24_(u32Value)));
         break;
     }
     case 4: {
-        JGADGET_ASSERTWARN(0, pContent == NULL);
-        u32 val = toInt32FromUInt24_(u32Value);
-        suspend(val);
+        JGADGET_ASSERTWARN(279, pContent==NULL);
+        suspend(toInt32FromUInt24_(u32Value));
         break;
     }
     case 0x80: {
-        ASSERT(pContent != NULL);
+        JUT_ASSERT(0, pContent!=NULL);
         void* p = (void*)pContent;
         data::TParse_TParagraph para(NULL);
         while (p < pNext) {
@@ -244,14 +232,13 @@ void TObject::process_sequence_() {
                 on_paragraph(para_dat.type, para_dat.content, para_dat.param);
             }
             p = (void*)para_dat.next;
-            ASSERT(p != NULL);
+            JUT_ASSERT(301, p!=NULL);
         }
-        JGADGET_ASSERTWARN(0, p == pNext);
+        JGADGET_ASSERTWARN(303, p==pNext);
         break;
     }
     default:
-        JUTWarn w;
-        w << "unknown sequence : " << dat.type;
+        JGADGET_WARNMSG1(309, "unknown sequence : ", dat.type);
         break;
     }
 }
@@ -259,20 +246,19 @@ void TObject::process_sequence_() {
 void TObject::process_paragraph_reserved_(u32 arg1, const void* pContent, u32 uSize) {
     switch (arg1) {
     case 0x1:
-        ASSERT(pContent != NULL);
-        ASSERT(uSize == 4);
+        JUT_ASSERT(320, pContent!=NULL);
+        JUT_ASSERT(321, uSize==4);
         setFlag_operation_(*(u32*)pContent);
         break;
     case 0x2:
-        ASSERT(pContent != NULL);
-        ASSERT(uSize == 4);
+        JUT_ASSERT(326, pContent!=NULL);
+        JUT_ASSERT(327, uSize==4);
         setWait(*(u32*)pContent);
         break;
     case 0x3: {
-        ASSERT(pContent != NULL);
-        ASSERT(uSize == 4);
-        const void* seq = getSequence_offset(*(s32*)pContent);
-        setSequence_next(seq);
+        JUT_ASSERT(332, pContent!=NULL);
+        JUT_ASSERT(333, uSize==4);
+        setSequence_next(getSequence_offset(*(s32*)pContent));
         break;
     }
     case 0x80:
@@ -280,20 +266,24 @@ void TObject::process_paragraph_reserved_(u32 arg1, const void* pContent, u32 uS
         break;
     case 0x81: {
         data::TParse_TParagraph_dataID dataID(pContent);
-        const void* temp = dataID.getContent();
-        on_data(dataID.get_ID(), dataID.get_IDSize(), temp,
-                uSize - ((uintptr_t)temp - (uintptr_t)dataID.getRaw()));
+        const void* r26 = dataID.getContent();
+        u32 r25 = dataID.get_IDSize();
+        on_data(dataID.get_ID(), r25, r26,
+                uSize - ((uintptr_t)r26 - (uintptr_t)dataID.getRaw()));
         break;
     }
     case 0x82:
-        ASSERT(pContent != NULL);
+        JUT_ASSERT(355, pContent!=NULL);
+        JGADGET_WARNMSG1(356, "not implemented : ", arg1);
         break;
+    default:
+        JGADGET_WARNMSG1(360, "unknown paragraph : ", arg1);
     }
 }
 
 TObject_control::TObject_control(const void* arg1, u32 arg2) : TObject(-1, arg1, arg2) {}
 
-TControl::TControl() : _4(0), _8(0), pFactory(NULL), mObject_control(NULL, 0), _54(0) {
+TControl::TControl() : _4(0), _8(0), mFactory(NULL), mObject_control(NULL, 0), _54(0) {
     resetStatus_();
     mObject_control.setControl_(this);
 }
@@ -302,24 +292,27 @@ TControl::TControl() : _4(0), _8(0), pFactory(NULL), mObject_control(NULL, 0), _
 
 TControl::~TControl() {
     mObject_control.setControl_(NULL);
-    JGADGET_ASSERTWARN(0, ocObject_.empty());
+    JGADGET_ASSERTWARN(422, ocObject_.empty());
 }
 
 void TControl::appendObject(TObject* p) {
+    JUT_ASSERT(434, p!=NULL);
+    JUT_ASSERT(435, p->getControl()==NULL);
     p->setControl_(this);
     ocObject_.Push_back(p);
 }
 
 void TControl::removeObject(TObject* p) {
-    ASSERT(p != NULL);
-    ASSERT(p->getControl() == this);
+    JUT_ASSERT(443, p!=NULL);
+    JUT_ASSERT(444, p->getControl()==this);
     p->setControl_(NULL);
     ocObject_.Erase(p);
 }
 
 void TControl::destroyObject(TObject* p) {
     removeObject(p);
-    ASSERT(pFactory != NULL);
+    TFactory* pFactory = getFactory();
+    JUT_ASSERT(461, pFactory!=NULL);
     pFactory->destroy(p);
 }
 
@@ -334,10 +327,7 @@ TObject* TControl::getObject(void const* param_0, u32 param_1) {
     JGadget::TLinkList<TObject, -12>::iterator begin = ocObject_.begin();
     JGadget::TLinkList<TObject, -12>::iterator end = ocObject_.end();
     JGadget::TLinkList<TObject, -12>::iterator local_50 = std::find_if(begin, end, object::TPRObject_ID_equal(param_0, param_1));
-    if ((local_50 != end) != false) {
-        return &*local_50;
-    }
-    return NULL;
+    return local_50 != end ? &*local_50 : NULL;
 }
 
 void TControl::reset() {
@@ -345,7 +335,8 @@ void TControl::reset() {
     mObject_control.reset();
     JGadget::TContainerEnumerator<JGadget::TLinkList<JStudio::stb::TObject, -12> > aTStack_18(ocObject_);
     while (aTStack_18) {
-        (*aTStack_18).reset();
+        TObject& obj = *aTStack_18;
+        obj.reset();
     }
 }
 
@@ -373,6 +364,7 @@ JStudio::TObject* TFactory::create(data::TParse_TBlock_object const& param_0) {
 }
 
 void TFactory::destroy(TObject* p) {
+    JUT_ASSERT(561, (p==NULL)||(p->getControl()==NULL));
     delete p;
 }
 
@@ -381,46 +373,40 @@ TParse::TParse(TControl* pControl) : pControl(pControl) {}
 TParse::~TParse() {}
 
 bool TParse::parseHeader_next(const void** ppData_inout, u32* puBlock_out, u32 flags) {
-    ASSERT(ppData_inout != NULL);
-    ASSERT(puBlock_out != NULL);
-
+    JUT_ASSERT(590, ppData_inout!=NULL);
+    JUT_ASSERT(591, puBlock_out!=NULL);
     const void* pData = *ppData_inout;
-    ASSERT(pData != NULL);
+    JUT_ASSERT(593, pData!=NULL);
 
     const data::TParse_THeader header(pData);
     *ppData_inout = header.getContent();
     *puBlock_out = header.get_blockNumber();
 
     if (memcmp(header.get_signature(), &data::ga4cSignature, 4) != 0) {
-        JUTWarn w;
-        w << "unknown signature";
+        JGADGET_WARNMSG(601, "unknown signature");
         return false;
     }
 
     if (header.get_byteOrder() != 0xFEFF) {
-        JUTWarn w;
-        w << "illegal byte-order";
+        JGADGET_WARNMSG(606, "illegal byte-order");
         return false;
     }
     u16 version = header.get_version();
     if (version < 1) {
-        JUTWarn w;
-        w << "obselete version : " << (s32)0;
+        JGADGET_WARNMSG1(613, "obsolete version : ", version);
         return false;
     } else if (version > 3) {
-        JUTWarn w;
-        w << "unknown version : " << version;
+        JGADGET_WARNMSG1(618, "unknown version : ", version);
         return false;
     }
     return parseHeader(header, flags);
 }
 
 bool TParse::parseBlock_next(void const** ppData_inout, u32* puData_out, u32 flags) {
-    ASSERT(ppData_inout != NULL);
-    ASSERT(puData_out != NULL);
-
+    JUT_ASSERT(629, ppData_inout!=NULL);
+    JUT_ASSERT(630, puData_out!=NULL);
     const void* pData = *ppData_inout;
-    ASSERT(pData != NULL);
+    JUT_ASSERT(632, pData!=NULL);
 
     data::TParse_TBlock blk(pData);
     *ppData_inout = blk.getNext();
@@ -438,7 +424,7 @@ bool TParse::parseBlock_block(const data::TParse_TBlock& ppBlock, u32 flags) {
 
 bool TParse::parseBlock_object(const data::TParse_TBlock_object& ppObject, u32 flags) {
     TControl* pControl = getControl();
-    ASSERT(pControl != NULL);
+    JUT_ASSERT(662, pControl!=NULL);
 
     if (ppObject.get_type() == data::BLOCK_NONE) {
         TObject_control& ref = pControl->referObject_control();
@@ -459,8 +445,7 @@ bool TParse::parseBlock_object(const data::TParse_TBlock_object& ppObject, u32 f
 
     TFactory* pFactory = pControl->getFactory();
     if (pFactory == NULL) {
-        JUTWarn w;
-        w << "factory not specified";
+        JGADGET_WARNMSG(690, "factory not specified");
         return false;
     }
 
@@ -473,10 +458,11 @@ bool TParse::parseBlock_object(const data::TParse_TBlock_object& ppObject, u32 f
         char t[16];
         int type = ppObject.get_type();
         data::toString_block(a5c, type);
+#if DEBUG
+        sprintf(t, "%08x", type);
+#endif
 
-        JUTWarn w;
-        w << "can't create object : " << a5c;
-        w << "(0x" << type << ")";
+        JGADGET_WARNMSG4(706, "can't create object : ", a5c, "(0x", t, ")");
         return false;
     }
     pControl->appendObject(p);

@@ -160,11 +160,11 @@ end:
 namespace {
 
 TFunctionValue_composite::TData getCompositeData_raw_(const void* arg1) {
-    return TFunctionValue_composite::TData(*(const void**)arg1);
+    return TFunctionValue_composite::TData(*(uint*)arg1);
 }
 
 TFunctionValue_composite::TData getCompositeData_index_(const void* arg1) {
-    return TFunctionValue_composite::TData(*(u32*)arg1);
+    return TFunctionValue_composite::TData(*(TFunctionValue::TEOutside*)arg1);
 }
 
 TFunctionValue_composite::TData getCompositeData_parameter_(const void* arg1) {
@@ -198,8 +198,9 @@ const data::CompositeOperation saCompositeOperation_[8] = {
     {&TFunctionValue_composite::composite_divide, &getCompositeData_divide_},
 };
 
-static const data::CompositeOperation* getCompositeOperation_(data::TEComposite comp) {
-    return &saCompositeOperation_[comp];
+static const data::CompositeOperation* getCompositeOperation_(data::TEComposite e) {
+    JUT_ASSERT(286, e<data::COMPOSITE_ENUM_SIZE);
+    return &saCompositeOperation_[e];
 }
 
 } // namespace
@@ -216,7 +217,7 @@ void TObject_composite::prepare_data_(const data::TParse_TParagraph::TData& rDat
     };
 
     const unknown* pContent = static_cast<const unknown*>(rData.pContent);
-    JGADGET_ASSERTWARN(310, u32Size== 8);
+    JGADGET_ASSERTWARN(310, u32Size==8);
     JUT_ASSERT(311, pContent!=NULL);
 
     data::TEComposite type = pContent->composite_type;
@@ -246,13 +247,12 @@ TObject_transition::TObject_transition(data::TParse_TBlock const& param_0)
 
 void TObject_transition::prepare_data_(const data::TParse_TParagraph::TData& rData,
                                        TControl* control) {
-    ASSERT(rData.u32Type == data::PARAGRAPH_DATA);
+    JUT_ASSERT(364, rData.u32Type==data::PARAGRAPH_DATA);
 
     u32 u32Size = rData.u32Size;
-    JGADGET_ASSERTWARN(0, u32Size == 8);
-
     const f32* pContent = static_cast<const f32*>(rData.pContent);
-    ASSERT(pContent != NULL);
+    JGADGET_ASSERTWARN(368, u32Size==8);
+    JUT_ASSERT(369, pContent!=NULL);
 
     fnValue.data_set(pContent[0], pContent[1]);
 }
@@ -260,30 +260,30 @@ void TObject_transition::prepare_data_(const data::TParse_TParagraph::TData& rDa
 TObject_list::TObject_list(data::TParse_TBlock const& param_0) : TObject(param_0, &fnValue) {}
 
 void TObject_list::prepare_data_(const data::TParse_TParagraph::TData& rData, TControl* control) {
-    ASSERT(rData.u32Type == data::PARAGRAPH_DATA);
+    JUT_ASSERT(391, rData.u32Type==data::PARAGRAPH_DATA);
 
     u32 u32Size = rData.u32Size;
-    JGADGET_ASSERTWARN(0, u32Size >= 8);
-
     const ListData* pContent = static_cast<const ListData*>(rData.pContent);
-    ASSERT(pContent != NULL);
+    JGADGET_ASSERTWARN(395, u32Size>=8);
+    JUT_ASSERT(396, pContent!=NULL);
 
     fnValue.data_setInterval(pContent->_0);
     fnValue.data_set(pContent->_8, pContent->_4);
 }
+
+TObject_list_parameter::TObject_list_parameter(const void* id, u32 id_size) : TObject(id, id_size, &fnValue) {}
 
 TObject_list_parameter::TObject_list_parameter(data::TParse_TBlock const& param_0)
     : TObject(param_0, &fnValue) {}
 
 void TObject_list_parameter::prepare_data_(const data::TParse_TParagraph::TData& rData,
                                            TControl* control) {
-    ASSERT(rData.u32Type == data::PARAGRAPH_DATA);
+    JUT_ASSERT(421, rData.u32Type==data::PARAGRAPH_DATA);
 
     u32 u32Size = rData.u32Size;
-    JGADGET_ASSERTWARN(0, u32Size >= 8);
-
     const ListData* pContent = static_cast<const ListData*>(rData.pContent);
-    ASSERT(pContent != NULL);
+    JGADGET_ASSERTWARN(425, u32Size>=8);
+    JUT_ASSERT(426, pContent!=NULL);
 
     fnValue.data_set(pContent->_4, pContent->_0);
 }
@@ -292,13 +292,12 @@ TObject_hermite::TObject_hermite(data::TParse_TBlock const& param_0) : TObject(p
 
 void TObject_hermite::prepare_data_(const data::TParse_TParagraph::TData& rData,
                                     TControl* control) {
-    ASSERT(rData.u32Type == data::PARAGRAPH_DATA);
+    JUT_ASSERT(448, rData.u32Type==data::PARAGRAPH_DATA);
 
     u32 u32Size = rData.u32Size;
-    JGADGET_ASSERTWARN(0, u32Size >= 8);
-
     const ListData* pContent = static_cast<const ListData*>(rData.pContent);
-    ASSERT(pContent != NULL);
+    JGADGET_ASSERTWARN(452, u32Size>=8);
+    JUT_ASSERT(453, pContent!=NULL);
 
     fnValue.data_set(pContent->_4, pContent->_0 & 0xFFFFFFF, pContent->_0 >> 0x1C);
 }
@@ -306,20 +305,24 @@ void TObject_hermite::prepare_data_(const data::TParse_TParagraph::TData& rData,
 TControl::TControl() : pFactory(NULL) {}
 
 TControl::~TControl() {
-    JGADGET_ASSERTWARN(0, ocObject_.empty());
+    JGADGET_ASSERTWARN(483, ocObject_.empty());
 }
 
-void TControl::appendObject(TObject* object) {
-    ocObject_.Push_back(object);
+void TControl::appendObject(TObject* p) {
+    JUT_ASSERT(495, p!=NULL);
+    ocObject_.Push_back(p);
 }
 
-void TControl::removeObject(TObject* object) {
-    ocObject_.Erase(object);
+void TControl::removeObject(TObject* p) {
+    JUT_ASSERT(502, p!=NULL);
+    ocObject_.Erase(p);
 }
 
 void TControl::destroyObject(TObject* object) {
     removeObject(object);
-    getFactory()->destroy(object);
+    TFactory* pFactory = getFactory();
+    JUT_ASSERT(518, pFactory!=NULL);
+    pFactory->destroy(object);
 }
 
 void TControl::destroyObject_all() {
@@ -349,7 +352,8 @@ TObject* TControl::getObject_index(u32 index) {
 TFactory::~TFactory() {}
 
 TObject* TFactory::create(data::TParse_TBlock const& rBlock) {
-    switch (rBlock.get_type()) {
+    int type = rBlock.get_type();
+    switch (type) {
     case 1:
         return new TObject_composite(rBlock);
     case 2:
@@ -363,8 +367,7 @@ TObject* TFactory::create(data::TParse_TBlock const& rBlock) {
     case 6:
         return new TObject_hermite(rBlock);
     default:
-        JUTWarn w;
-        w << "unknown type : ";
+        JGADGET_WARNMSG1(583, "unknown type : ", type);
         return NULL;
     }
 }
@@ -374,58 +377,52 @@ void TFactory::destroy(TObject* pObject) {
 }
 
 TParse::TParse(TControl* pControl) : pControl_(pControl) {
-    ASSERT(pControl_ != NULL);
+    JUT_ASSERT(604, pControl_!=NULL);
 }
 
 TParse::~TParse() {}
 
 bool TParse::parseHeader_next(void const** ppData_inout, u32* puBlock_out, u32 flags) {
-    ASSERT(ppData_inout != NULL);
-    ASSERT(puBlock_out != NULL);
-
+    JUT_ASSERT(620, ppData_inout!=NULL);
+    JUT_ASSERT(621, puBlock_out!=NULL);
     const void* pData = *ppData_inout;
-    ASSERT(pData != NULL);
+    JUT_ASSERT(623, pData!=NULL);
 
     const data::TParse_THeader header(pData);
     *ppData_inout = header.getContent();
     *puBlock_out = header.get_blockNumber();
 
     if (memcmp(header.get_signature(), &data::ga4cSignature, 4) != 0) {
-        JUTWarn w;
-        w << "unknown signature";
+        JGADGET_WARNMSG(631, "unknown signature");
         return false;
     }
 
     if (header.get_byteOrder() != 0xFEFF) {
-        JUTWarn w;
-        w << "illegal byte-order";
+        JGADGET_WARNMSG(636, "illegal byte-order");
         return false;
     }
     u16 version = header.get_version();
     if (version < 2) {
-        JUTWarn w;
-        w << "obselete version : " << (s32)0;
+        JGADGET_WARNMSG1(643, "obsolete version : ", version);
         return false;
     } else if (version > 0x100) {
-        JUTWarn w;
-        w << "unknown version : " << version;
+        JGADGET_WARNMSG1(648, "unknown version : ", version);
         return false;
     }
     return true;
 }
 
 bool TParse::parseBlock_next(void const** ppData_inout, u32* puData_out, u32 flags) {
-    ASSERT(ppData_inout != NULL);
-    ASSERT(puData_out != NULL);
-
+    JUT_ASSERT(659, ppData_inout!=NULL);
+    JUT_ASSERT(660, puData_out!=NULL);
     const void* pData = *ppData_inout;
-    ASSERT(pData != NULL);
+    JUT_ASSERT(662, pData!=NULL);
     data::TParse_TBlock blk(pData);
     *ppData_inout = blk.getNext();
     *puData_out = blk.get_size();
 
     TControl* pControl = getControl();
-    ASSERT(pControl != NULL);
+    JUT_ASSERT(668, pControl!=NULL);
 
     if (flags & 0x10) {
         if (pControl->getObject(blk.get_ID(), blk.get_IDSize()) != NULL)
@@ -437,15 +434,13 @@ bool TParse::parseBlock_next(void const** ppData_inout, u32* puData_out, u32 fla
 
     TFactory* pFactory = pControl->getFactory();
     if (pFactory == NULL) {
-        JUTWarn w;
-        w << "factory not specified";
+        JGADGET_WARNMSG(686, "factory not specified");
         return 0;
     }
 
     TObject* pObject = pFactory->create(blk);
     if (pObject == NULL) {
-        JUTWarn w;
-        w << "can't create function-value";
+        JGADGET_WARNMSG(692, "can't create function-value");
         if (flags & 0x40) {
             return 1;
         }

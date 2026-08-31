@@ -27,18 +27,7 @@ struct TCreateObject {
     /* 0x4 */ JGadget::TLinkListNode mNode;
 };  // Size: 0xC
 
-struct TFactory : public stb::TFactory {
-    TFactory() {}
-
-    virtual ~TFactory();
-    virtual TObject* create(JStudio::stb::data::TParse_TBlock_object const&);
-
-    void appendCreateObject(JStudio::TCreateObject*);
-
-    /* 0x04 */ JGadget::TLinkList<TCreateObject, -4> mList;
-    /* 0x10 */ fvb::TFactory fvb_Factory;
-    /* 0x14 */ ctb::TFactory ctb_Factory;
-};
+struct TFactory;
 
 class TControl : public stb::TControl {
 public:
@@ -107,16 +96,18 @@ public:
     TFunctionValue* getFunctionValue(const void* param_1, u32 param_2) {
         fvb::TObject* obj = fvb_getObject(param_1, param_2);
         if (obj == NULL) {
+            JGADGET_WARNMSG4(449, "function-value not found : ", param_1, "[", param_2, "]");
             return NULL;
-        } 
+        }
         return obj->referFunctionValue();
     }
 
     TFunctionValue* getFunctionValue_index(u32 index) {
         fvb::TObject* obj = fvb_getObject_index(index);
         if (obj == NULL) {
+            JGADGET_WARNMSG1(459, "function-value not found : ", index);
             return NULL;
-        } 
+        }
         return obj->referFunctionValue();
     }
 
@@ -288,6 +279,19 @@ public:
     /* 0xDC */ Mtx mTransformOnGet_Matrix;
 };
 
+struct TFactory : public stb::TFactory {
+    TFactory() {}
+
+    virtual ~TFactory();
+    virtual TObject* create(JStudio::stb::data::TParse_TBlock_object const&);
+
+    void appendCreateObject(JStudio::TCreateObject*);
+
+    /* 0x04 */ JGadget::TLinkList<TCreateObject, -4> mList;
+    /* 0x10 */ fvb::TFactory fvb_Factory;
+    /* 0x14 */ ctb::TFactory ctb_Factory;
+};
+
 struct TParse : public stb::TParse {
     TParse(JStudio::TControl*);
     bool parseBlock_block_fvb_(JStudio::stb::data::TParse_TBlock const&, u32);
@@ -297,7 +301,7 @@ struct TParse : public stb::TParse {
     virtual bool parseHeader(JStudio::stb::data::TParse_THeader const&, u32);
     virtual bool parseBlock_block(JStudio::stb::data::TParse_TBlock const&, u32);
 
-    TControl* getControl() { return (TControl*)stb::TParse::getControl(); }
+    TControl* getControl() const { return (TControl*)stb::TParse::getControl(); }
 };
 
 };  // namespace JStudio

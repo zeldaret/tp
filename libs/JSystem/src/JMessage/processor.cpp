@@ -57,7 +57,7 @@ u32 JMessage::TProcessor::toMessageCode_messageID(u32 uMsgID, u32 param_1, bool*
         return 0xFFFFFFFF;
     }
 
-    JGadget::TContainerEnumerator_const<JMessage::TResource, 0> enumerator(pResourceContainer->getResourceContainer());
+    JGadget::TContainerEnumerator_const<JMessage::TResourceContainer::TCResource> enumerator(*pResourceContainer->getResourceContainer());
     const TResource* pResource;
     while (enumerator) {
         pResource = (const TResource*)&(*enumerator);

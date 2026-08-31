@@ -10,27 +10,16 @@ namespace fvb {
 
 class TControl;
 
-class TParse : public TParse_header_block {
-public:
-    TParse(JStudio::fvb::TControl*);
-    virtual ~TParse();
-    virtual bool parseHeader_next(void const**, u32*, u32);
-    virtual bool parseBlock_next(void const**, u32*, u32);
-
-    TControl* getControl() const { return pControl_; }
-
-private:
-    TControl* pControl_;
-};
-
 class TObject : public object::TObject_ID {
 public:
     TObject(const data::TParse_TBlock& block);
-    TObject(void const* id, u32 id_size, TFunctionValue* value);
+    TObject(void const* id, u32 id_size, TFunctionValue* value) : TObject_ID(id, id_size), pfv_(value) {
+        JUT_ASSERT(82, pfv_!=NULL);
+    }
 
     explicit TObject(const data::TParse_TBlock& block, TFunctionValue* value)
         : TObject_ID(block.get_ID(), block.get_IDSize()), pfv_(value) {
-        ASSERT(pfv_ != NULL);
+        JUT_ASSERT(88, pfv_!=NULL);
     }
 
     virtual ~TObject() = 0;
@@ -45,35 +34,6 @@ protected:
     /* 0x0C */ JGadget::TLinkListNode mNode;
     /* 0x14 */ TFunctionValue* pfv_;
 };
-
-class TFactory {
-public:
-    TFactory() {}
-
-    virtual ~TFactory();
-    virtual TObject* create(JStudio::fvb::data::TParse_TBlock const&);
-    virtual void destroy(JStudio::fvb::TObject*);
-};
-
-class TControl {
-public:
-    TControl();
-    virtual ~TControl();
-
-    void appendObject(JStudio::fvb::TObject*);
-    void removeObject(JStudio::fvb::TObject*);
-    void destroyObject(JStudio::fvb::TObject*);
-    void destroyObject_all();
-    TObject* getObject(void const*, u32);
-    TObject* getObject_index(u32);
-
-    TFactory* getFactory() const { return pFactory; }
-    void setFactory(TFactory* factory) { pFactory = factory; }
-
-private:
-    /* 0x4 */ TFactory* pFactory;
-    /* 0x8 */ JGadget::TLinkList<TObject, -12> ocObject_;
-};  // Size: 0x14
 
 class TObject_composite : public TObject {
 public:
@@ -130,6 +90,7 @@ public:
         u32 _0;
         f32 _4[0];
     };
+    TObject_list_parameter(const void*, u32);
     TObject_list_parameter(data::TParse_TBlock const&);
     virtual ~TObject_list_parameter() {}
 
@@ -152,6 +113,50 @@ public:
 
 private:
     TFunctionValue_hermite fnValue;
+};
+
+class TFactory;
+
+class TControl {
+public:
+    TControl();
+    virtual ~TControl();
+
+    void appendObject(JStudio::fvb::TObject*);
+    void removeObject(JStudio::fvb::TObject*);
+    void destroyObject(JStudio::fvb::TObject*);
+    void destroyObject_all();
+    TObject* getObject(void const*, u32);
+    TObject* getObject_index(u32);
+
+    TFactory* getFactory() const { return pFactory; }
+    void setFactory(TFactory* factory) { pFactory = factory; }
+
+private:
+    /* 0x4 */ TFactory* pFactory;
+    /* 0x8 */ JGadget::TLinkList<TObject, -12> ocObject_;
+};  // Size: 0x14
+
+class TFactory {
+public:
+    TFactory() {}
+
+    virtual ~TFactory();
+    virtual TObject* create(JStudio::fvb::data::TParse_TBlock const&);
+    virtual void destroy(JStudio::fvb::TObject*);
+};
+
+class TParse : public TParse_header_block {
+public:
+    TParse(JStudio::fvb::TControl*);
+    virtual ~TParse();
+    virtual bool parseHeader_next(void const**, u32*, u32);
+    virtual bool parseBlock_next(void const**, u32*, u32);
+
+    TControl* getControl() const { return pControl_; }
+
+private:
+    TControl* pControl_;
 };
 
 }  // namespace fvb
