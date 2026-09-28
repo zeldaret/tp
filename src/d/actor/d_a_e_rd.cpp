@@ -5860,8 +5860,8 @@ static void demo_camera(e_rd_class* i_this) {
     s8 demo_set = FALSE;
     s16 bank = 0;
 
-    switch (i_this->demo_mode + 1) {
-        case 2:
+    switch (i_this->demo_mode) {
+        case 1:
             if (!enemy->eventInfo.checkCommandDemoAccrpt()) {
                 fopAcM_orderPotentialEvent(enemy, 2, 0xFFFF, 0);
                 enemy->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
@@ -5879,7 +5879,7 @@ static void demo_camera(e_rd_class* i_this) {
             i_this->demo_cam_eye_z = 2000.0f;
             enemy->current.angle.y = i_this->angleY;
             // fallthrough
-        case 3:
+        case 2:
             if (i_this->demo_timer < 85) {
                 mDoMtx_stack_c::YrotS(s16(enemy->current.angle.y));
                 mDoMtx_stack_c::XrotM(0x640);
@@ -5923,7 +5923,7 @@ static void demo_camera(e_rd_class* i_this) {
             }
             break;
 
-        case 11:
+        case 10:
             if (!enemy->eventInfo.checkCommandDemoAccrpt()) {
                 fopAcM_orderPotentialEvent(enemy, 2, 0xFFFF, 0);
                 enemy->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
@@ -5943,7 +5943,7 @@ static void demo_camera(e_rd_class* i_this) {
             enemy->current.angle.y = i_this->angleY;
             i_this->demo_cam_eye_z = 2000.0f;
             // fallthrough
-        case 12:
+        case 11:
             mDoMtx_stack_c::YrotS(s16(enemy->current.angle.y));
             mDoMtx_stack_c::XrotM(0x640);
             mae.x = 0.0f;
@@ -5972,14 +5972,14 @@ static void demo_camera(e_rd_class* i_this) {
             }
             break;
 
-        case 20:
+        case 19:
             if (pla->getClothesChangeWaitTimer() == 0) {
                 i_this->demo_mode = 21;
                 i_this->demo_timer = 0;
             }
             break;
 
-        case 21:
+        case 20:
             if (!enemy->eventInfo.checkCommandDemoAccrpt()) {
                 fopAcM_orderPotentialEvent(enemy, 2, 0xFFFF, 0);
                 enemy->eventInfo.onCondition(dEvtCnd_CANDEMO_e);
@@ -6007,7 +6007,7 @@ static void demo_camera(e_rd_class* i_this) {
                 i_this->demo_mode = 19;
             }
             // fallthrough
-        case 22:
+        case 21:
             daPy_getPlayerActorClass()->setPlayerPosAndAngle(&i_this->field_0x12f0, pla->shape_angle.y, 0);
 
             if (i_this->demo_mode != 19) {
@@ -6051,7 +6051,7 @@ static void demo_camera(e_rd_class* i_this) {
             }
             break;
 
-        case 23:
+        case 22:
             cam_3d_morf(i_this, BREG_F(17) + 0.2f);
             cLib_addCalc2(&i_this->demo_cam_morf, BREG_F(16) + 0.15f, 1.0f, BREG_F(17) + 0.005f);
             cLib_addCalc2(&i_this->demo_cam_zoom, 55.0f, 0.1f, 0.5f);
@@ -6073,7 +6073,7 @@ static void demo_camera(e_rd_class* i_this) {
             }
             break;
 
-        case 24:
+        case 23:
             i_this->field_0x9a4 = 1;
 
             if (i_this->demo_timer == 20) {
@@ -6103,7 +6103,7 @@ static void demo_camera(e_rd_class* i_this) {
             }
             break;
 
-        case 25:
+        case 24:
             i_this->field_0x9a4 = 1;
             i_this->attack_range = 0.0f;
 
@@ -6139,7 +6139,7 @@ static void demo_camera(e_rd_class* i_this) {
             }
             break;
 
-        case 26:
+        case 25:
             if (i_this->demo_timer == 40) {
                 mDoGph_gInf_c::fadeIn(0.5f, g_blackColor);
                 i_this->demo_cam_zoom = 55.0f;
@@ -6158,7 +6158,7 @@ static void demo_camera(e_rd_class* i_this) {
             }
             break;
 
-        case 27:
+        case 26:
             cam_3d_morf(i_this, BREG_F(17) + 0.2f);
             cLib_addCalc2(&i_this->demo_cam_morf, BREG_F(16) + 0.5f, 1.0f, BREG_F(17) + 0.01f);
 
@@ -6173,7 +6173,7 @@ static void demo_camera(e_rd_class* i_this) {
             }
             break;
 
-        case 28:
+        case 27:
             fpcM_Search(s_lv9rd_sub3, i_this);
 
             if (i_this->demo_timer == 40) {
@@ -6217,7 +6217,7 @@ static void demo_camera(e_rd_class* i_this) {
             i_this->demo_cam_way.set(-5058.0f, 2181.0f, 5124.0f);
             cam_spd_set(i_this);
             // fallthrough
-        case 29:
+        case 28:
             if (i_this->demo_timer == 1) {
                 pla->changeDemoMode(20, 0, 0, 0);
             }
@@ -6261,7 +6261,7 @@ static void demo_camera(e_rd_class* i_this) {
             }
             break;
 
-        case 30:
+        case 29:
             i_this->demo_cam_zoom = 55.0f;
             i_this->demo_cam_eye.set(-3963.0f, 147.0f, 8094.0f);
             target = actor->current.pos;
@@ -6283,7 +6283,7 @@ static void demo_camera(e_rd_class* i_this) {
             }
             break;
 
-        case 31:
+        case 30:
             cam_3d_morf(i_this, BREG_F(17) + 0.1f);
             cLib_addCalc2(&i_this->demo_cam_morf, BREG_F(16) + 0.1f, 1.0f, BREG_F(17) + 0.002f);
 
@@ -6300,7 +6300,7 @@ static void demo_camera(e_rd_class* i_this) {
             }
             break;
 
-        case 32:
+        case 31:
             cam_3d_morf(i_this, BREG_F(17) + 0.05f);
             cLib_addCalc2(&i_this->demo_cam_morf, BREG_F(16) + 0.05f, 1.0f, BREG_F(17) + 0.001f);
 
@@ -6313,7 +6313,7 @@ static void demo_camera(e_rd_class* i_this) {
             }
             break;
 
-        case 33:
+        case 32:
             if (i_this->demo_timer == 60) {
                 i_this->demo_cam_ctr.set(-3906.0f, 42.0f, 8198.0f);
                 i_this->demo_cam_eye.set(-4274.0f, 272.0f, 7969.0f);
@@ -6324,7 +6324,7 @@ static void demo_camera(e_rd_class* i_this) {
             }
             break;
 
-        case 34:
+        case 33:
             if (i_this->demo_timer == 65) {
                 daPy_getPlayerActorClass()->changeDemoMode(60, 1, 0, 0);
             }
@@ -6338,7 +6338,7 @@ static void demo_camera(e_rd_class* i_this) {
             }
             break;
 
-        case 35:
+        case 34:
             cLib_addCalc2(&i_this->demo_cam_zoom, 40.0f, 0.05f, 0.02f);
             if (i_this->demo_timer == 80) {
                 i_this->demo_cam_ctr.set(-4712.0f, 870.0f, 7432.0f);
@@ -6351,7 +6351,7 @@ static void demo_camera(e_rd_class* i_this) {
             }
             break;
 
-        case 36:
+        case 35:
             if (i_this->demo_timer == 120) {
                 demo_set = true;
                 int bitsw = (fopAcM_GetParam(enemy) & 0xFF000000) >> 24;
@@ -6359,6 +6359,9 @@ static void demo_camera(e_rd_class* i_this) {
                     dComIfGs_onSwitch(bitsw, fopAcM_GetRoomNo(enemy));
                 }
             }
+            break;
+
+        case -1:
             break;
     }
 
