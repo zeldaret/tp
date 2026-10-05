@@ -1484,7 +1484,7 @@ int daNpcT_c::draw(BOOL param_0, BOOL i_setEffMtx, f32 param_2, GXColorS10* i_co
     if (i_drawGhost) {
         drawGhost();
     } else if (mTwilight) {
-        g_env_light.settingTevStruct(4, &current.pos, &tevStr);
+        g_env_light.settingTevStruct(TEVSTR_TYPE_TWILIGHT_NPC, &current.pos, &tevStr);
         g_env_light.setLightTevColorType_MAJI(model, &tevStr);
         dComIfGd_setListDark();
         mpMorf[0]->entryDL();

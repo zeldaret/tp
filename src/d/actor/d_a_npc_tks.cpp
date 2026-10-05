@@ -2999,9 +2999,9 @@ void daNpcTks_c::drawOtherMdls() {
         J3DModel* model = mTksTsubo.mpModelMorf->getModel();
 
         if (mTwilight) {
-            g_env_light.settingTevStruct(4, &mTksTsubo.mPos, &mTksTsubo.mTevStr);
+            g_env_light.settingTevStruct(TEVSTR_TYPE_TWILIGHT_NPC, &mTksTsubo.mPos, &mTksTsubo.mTevStr);
         } else {
-            g_env_light.settingTevStruct(8, &mTksTsubo.mPos, &mTksTsubo.mTevStr);
+            g_env_light.settingTevStruct(TEVSTR_TYPE_UNK8, &mTksTsubo.mPos, &mTksTsubo.mTevStr);
         }
 
         g_env_light.setLightTevColorType_MAJI(model, &mTksTsubo.mTevStr);

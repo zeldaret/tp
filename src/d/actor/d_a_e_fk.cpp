@@ -654,7 +654,7 @@ void daE_FK_c::At_Check(int i_sphIdx) {
 int daE_FK_c::Draw() {
     J3DModel* model_p = mpModelMorf->getModel();
     
-    g_env_light.settingTevStruct(7, &current.pos, &tevStr);
+    g_env_light.settingTevStruct(TEVSTR_TYPE_GHOST, &current.pos, &tevStr);
     g_env_light.setLightTevColorType_MAJI(model_p, &tevStr);
 
     model_p->getModelData()->getMaterialNodePointer(0)->getTevKColor(3)->a = 255.0f * mAlpha * l_HIO.alpha;

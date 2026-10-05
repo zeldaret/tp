@@ -414,7 +414,7 @@ void daDitem_c::set_mtx() {
 }
 
 void daDitem_c::setTevStr() {
-    g_env_light.settingTevStruct(14, &current.pos, &tevStr);
+    g_env_light.settingTevStruct(TEVSTR_TYPE_DEMO_ITEM, &current.pos, &tevStr);
     g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
 }
 

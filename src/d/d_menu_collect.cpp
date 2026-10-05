@@ -2323,7 +2323,7 @@ void dMenu_Collect3D_c::draw() {
         daAlink_getAlinkActorClass()->statusWindowDraw();
     }
     if (mpModel) {
-        g_env_light.settingTevStruct(13, &mMaskMirrorPos, &mTevStr);
+        g_env_light.settingTevStruct(TEVSTR_TYPE_COLLECTION_MODEL, &mMaskMirrorPos, &mTevStr);
         g_env_light.setLightTevColorType_MAJI(mpModel, &mTevStr);
         animeEntry();
         mDoExt_modelUpdateDL(mpModel);

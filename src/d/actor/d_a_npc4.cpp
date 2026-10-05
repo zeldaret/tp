@@ -645,7 +645,7 @@ int daNpcF_c::draw(BOOL i_isTest, BOOL param_1, f32 i_shadowDepth, _GXColorS10* 
         }
 
         if (mTwilight) {
-            g_env_light.settingTevStruct(4, &current.pos, &tevStr);
+            g_env_light.settingTevStruct(TEVSTR_TYPE_TWILIGHT_NPC, &current.pos, &tevStr);
         } else {
             g_env_light.settingTevStruct(0, &current.pos, &tevStr);
         }

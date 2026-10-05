@@ -551,7 +551,7 @@ static int daCstaF_Execute(daCstaF_c* a_this) {
 }
 
 int daCstaF_c::Draw() {
-    g_env_light.settingTevStruct(8, &current.pos, &tevStr);
+    g_env_light.settingTevStruct(TEVSTR_TYPE_UNK8, &current.pos, &tevStr);
     g_env_light.setLightTevColorType_MAJI(mp_model, &tevStr);
 
     m_brk.entry(mp_model->getModelData());

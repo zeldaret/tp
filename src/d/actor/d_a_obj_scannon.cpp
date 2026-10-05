@@ -182,7 +182,7 @@ int daSCannon_c::execute() {
 }
 
 int daSCannon_c::draw() {
-    g_env_light.settingTevStruct(8, &current.pos, &tevStr);
+    g_env_light.settingTevStruct(TEVSTR_TYPE_UNK8, &current.pos, &tevStr);
     g_env_light.setLightTevColorType_MAJI(mpModels[mIsRepaired], &tevStr);
 
     if (mLayerNo == 3 || mLayerNo == 10) {

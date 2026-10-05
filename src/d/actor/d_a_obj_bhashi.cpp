@@ -463,7 +463,7 @@ int daObjBHASHI_c::Execute(Mtx** param_0) {
 }
 
 int daObjBHASHI_c::Draw() {
-    g_env_light.settingTevStruct(8, &current.pos, &tevStr);
+    g_env_light.settingTevStruct(TEVSTR_TYPE_UNK8, &current.pos, &tevStr);
 
     if (mMode == 0) {
         g_env_light.setLightTevColorType_MAJI(mpPillarMdl, &tevStr);

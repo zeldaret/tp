@@ -806,7 +806,7 @@ int daObjCRVGATE_c::Execute(Mtx** param_0) {
 }
 
 int daObjCRVGATE_c::Draw() {
-    g_env_light.settingTevStruct(8, &current.pos, &tevStr);
+    g_env_light.settingTevStruct(TEVSTR_TYPE_UNK8, &current.pos, &tevStr);
     g_env_light.setLightTevColorType_MAJI(mpModelGate, &tevStr);
     if (mKeyParam == 0x01) {
         g_env_light.setLightTevColorType_MAJI(mpModelKey, &tevStr);

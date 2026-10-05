@@ -108,7 +108,7 @@ int daObjNagaisu_c::Delete() {
 }
 
 int daObjNagaisu_c::draw() {
-    g_env_light.settingTevStruct(8, &current.pos, &tevStr);
+    g_env_light.settingTevStruct(TEVSTR_TYPE_UNK8, &current.pos, &tevStr);
     g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
 
     dMdl_c* a_mdl_p = dMdl_mng_c::entry(mpModel->getModelData(), 0, current.roomNo);

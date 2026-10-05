@@ -508,7 +508,7 @@ int daNpc_zanB_c::drawDbgInfo() {
 
 void daNpc_zanB_c::drawGhost() {
     J3DModel* mdl_p = mpMorf[0]->getModel();
-    g_env_light.settingTevStruct(3, &current.pos, &tevStr);
+    g_env_light.settingTevStruct(TEVSTR_TYPE_TWILI, &current.pos, &tevStr);
     g_env_light.setLightTevColorType_MAJI(mdl_p, &tevStr);
     mpMorf[0]->entryDL();
 }

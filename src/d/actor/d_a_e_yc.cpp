@@ -38,7 +38,7 @@ static int daE_YC_Draw(e_yc_class* i_this) {
     }
 
     J3DModel* model = i_this->mpMorf->getModel();
-    g_env_light.settingTevStruct(2, &i_this->current.pos, &i_this->tevStr);
+    g_env_light.settingTevStruct(TEVSTR_TYPE_TWILIGHT_ENEMY, &i_this->current.pos, &i_this->tevStr);
     g_env_light.setLightTevColorType_MAJI(model, &i_this->tevStr);
     dComIfGd_setListDark();
     i_this->mpMorf->entryDL();

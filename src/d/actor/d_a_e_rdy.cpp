@@ -390,7 +390,7 @@ static int daE_RDY_Draw(e_rdy_class* i_this) {
     fopAc_ac_c* a_this = &i_this->actor;
 
     J3DModel* model = i_this->mpMorf->getModel(); // sp18
-    g_env_light.settingTevStruct(2, &a_this->current.pos, &a_this->tevStr);
+    g_env_light.settingTevStruct(TEVSTR_TYPE_TWILIGHT_ENEMY, &a_this->current.pos, &a_this->tevStr);
     dComIfGd_setListDark();
     g_env_light.setLightTevColorType_MAJI(model, &a_this->tevStr);
     J3DModelData* model_data;

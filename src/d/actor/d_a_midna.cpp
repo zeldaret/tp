@@ -3361,7 +3361,7 @@ int daMidna_c::draw() {
     dComIfGd_setListDark();
 
     if (!checkStateFlg0(FLG0_NO_DRAW) && !checkStateFlg1(FLG1_SHADOW_MODEL_DRAW_DEMO_FORCE) && mpModel != NULL) {
-        g_env_light.settingTevStruct(3, &current.pos, &tevStr);
+        g_env_light.settingTevStruct(TEVSTR_TYPE_TWILI, &current.pos, &tevStr);
         if (checkSetAnime(0, ANM_RETURN)) {
             tevStr.TevColor.r = (mpMorf->getFrame() / mpMorf->getEndFrame()) * -32.0f;
             tevStr.TevColor.g = tevStr.TevColor.r;
@@ -3457,7 +3457,7 @@ int daMidna_c::draw() {
             bvar1 = true;
         }
     } else {
-        g_env_light.settingTevStruct(1, &current.pos, &tevStr);
+        g_env_light.settingTevStruct(TEVSTR_TYPE_SHADOW_MIDNA, &current.pos, &tevStr);
         if (field_0x668 != NULL) {
             field_0x668->getTevColorReg(0, &tevStr.TevColor);
         }

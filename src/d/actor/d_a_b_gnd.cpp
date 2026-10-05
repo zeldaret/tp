@@ -297,7 +297,7 @@ static int daB_GND_Draw(b_gnd_class* i_this) {
 
     i_this->mpModelMorf->entryDL();
 
-    g_env_light.settingTevStruct(5, &a_this->current.pos, &i_this->mSwordTevstr);
+    g_env_light.settingTevStruct(TEVSTR_TYPE_SOLID_GHOST, &a_this->current.pos, &i_this->mSwordTevstr);
     g_env_light.setLightTevColorType_MAJI(i_this->mpSwordModel, &i_this->mSwordTevstr);
     mDoExt_modelUpdateDL(i_this->mpSwordModel);
 

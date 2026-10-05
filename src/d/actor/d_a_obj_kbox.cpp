@@ -69,7 +69,7 @@ static void break_eff(obj_kbox_class* i_this) {
 
 static int daObj_Kbox_Draw(obj_kbox_class* i_this) {
     fopAc_ac_c* a_this = (fopAc_ac_c*)&i_this->mActor;
-    g_env_light.settingTevStruct(8, &a_this->current.pos, &a_this->tevStr);
+    g_env_light.settingTevStruct(TEVSTR_TYPE_UNK8, &a_this->current.pos, &a_this->tevStr);
     g_env_light.setLightTevColorType_MAJI(i_this->mModel, &a_this->tevStr);
     J3DMaterial* material = i_this->mModel->getModelData()->getMaterialNodePointer(0);
     material->getTevKColor(1)->a = 125.0f - i_this->field_0x59c;

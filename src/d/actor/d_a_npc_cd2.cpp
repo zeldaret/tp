@@ -753,7 +753,7 @@ int daNpcCd2_c::drawObj(int idx, J3DModel* i_model, f32 i_scale) {
 
 int daNpcCd2_c::drawNpc() {
     if (mIsDarkWorld) {
-        g_env_light.settingTevStruct(4, &current.pos, &tevStr);
+        g_env_light.settingTevStruct(TEVSTR_TYPE_TWILIGHT_NPC, &current.pos, &tevStr);
     } else {
         g_env_light.settingTevStruct(0, &current.pos, &tevStr);
     }

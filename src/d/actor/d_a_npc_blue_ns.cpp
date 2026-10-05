@@ -394,13 +394,13 @@ int daNpcBlueNS_c::Draw() {
     tevStr.TevColor.a = 0;
 
     if (mTwilight) {
-        g_env_light.settingTevStruct(2, &current.pos, &tevStr);
+        g_env_light.settingTevStruct(TEVSTR_TYPE_TWILIGHT_ENEMY, &current.pos, &tevStr);
         g_env_light.setLightTevColorType_MAJI(mdl_p, &tevStr);
         dComIfGd_setListDark();
         mAnm_p->entryDL();
         dComIfGd_setList();
     } else {
-        g_env_light.settingTevStruct(2, &current.pos, &tevStr);
+        g_env_light.settingTevStruct(TEVSTR_TYPE_TWILIGHT_ENEMY, &current.pos, &tevStr);
         g_env_light.setLightTevColorType_MAJI(mdl_p, &tevStr);
         mAnm_p->entryDL();
     }

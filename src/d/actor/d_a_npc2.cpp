@@ -446,7 +446,7 @@ int daBaseNpc_c::draw(f32 param_0) {
     J3DModelData* modelData_p = model_p->getModelData();
 
     if (dKy_darkworld_check()) {
-        g_env_light.settingTevStruct(4, &current.pos, &tevStr);
+        g_env_light.settingTevStruct(TEVSTR_TYPE_TWILIGHT_NPC, &current.pos, &tevStr);
     } else {
         g_env_light.settingTevStruct(0, &current.pos, &tevStr);
     }

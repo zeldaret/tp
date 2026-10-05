@@ -702,7 +702,7 @@ int daNpc_zrA_c::Draw() {
 
     if (!checkHide()) {
         if (mTwilight) {
-            g_env_light.settingTevStruct(4, &current.pos, &tevStr);
+            g_env_light.settingTevStruct(TEVSTR_TYPE_TWILIGHT_NPC, &current.pos, &tevStr);
         } else {
             g_env_light.settingTevStruct(0, &current.pos, &tevStr);
         }

@@ -119,7 +119,7 @@ void e_ai_class::anm_init(int i_anm, f32 i_morf, u8 i_mode, f32 i_speed) {
 int e_ai_class::Draw() {
     J3DModel* model_p = m_modelMorf->getModel();
 
-    g_env_light.settingTevStruct(8, &current.pos, &tevStr);
+    g_env_light.settingTevStruct(TEVSTR_TYPE_UNK8, &current.pos, &tevStr);
     g_env_light.setLightTevColorType_MAJI(model_p, &tevStr);
 
     J3DModelData* modelData_p = model_p->getModelData();

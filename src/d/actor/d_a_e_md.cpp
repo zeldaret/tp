@@ -355,7 +355,7 @@ int daE_MD_c::Draw() {
     }
 
     J3DModel* model = mpModelMorf->getModel();
-    g_env_light.settingTevStruct(8, &current.pos, &tevStr);
+    g_env_light.settingTevStruct(TEVSTR_TYPE_UNK8, &current.pos, &tevStr);
     g_env_light.setLightTevColorType_MAJI(model, &tevStr);
     mpModelMorf->entryDL();
 

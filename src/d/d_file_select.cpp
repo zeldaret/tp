@@ -5239,7 +5239,7 @@ void dFile_select3D_c::_move() {
 void dFile_select3D_c::draw() {
     if (mpModel) {
         dComIfGd_setListItem3D();
-        g_env_light.settingTevStruct(13, &field_0x03a4, &mTevstr);
+        g_env_light.settingTevStruct(TEVSTR_TYPE_COLLECTION_MODEL, &field_0x03a4, &mTevstr);
         g_env_light.setLightTevColorType_MAJI(mpModel, &mTevstr);
         animeEntry();
         mDoExt_modelUpdateDL(mpModel);

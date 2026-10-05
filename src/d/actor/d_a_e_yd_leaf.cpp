@@ -9,7 +9,7 @@
 #include "d/d_com_inf_game.h"
 
 static int daE_YD_LEAF_Draw(e_yd_leaf_class* i_this) {
-    g_env_light.settingTevStruct(2, &i_this->current.pos, &i_this->tevStr);
+    g_env_light.settingTevStruct(TEVSTR_TYPE_TWILIGHT_ENEMY, &i_this->current.pos, &i_this->tevStr);
     g_env_light.setLightTevColorType_MAJI(i_this->mpMorf->getModel(), &i_this->tevStr);
 
     dComIfGd_setListDark();

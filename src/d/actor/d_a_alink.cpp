@@ -19273,9 +19273,9 @@ void daAlink_c::initTevCustomColor() {
 
 int daAlink_c::draw() {
     if (checkWolf()) {
-        g_env_light.settingTevStruct(9, &current.pos, &tevStr);
+        g_env_light.settingTevStruct(TEVSTR_TYPE_WOLF_LINK, &current.pos, &tevStr);
     } else {
-        g_env_light.settingTevStruct(10, &current.pos, &tevStr);
+        g_env_light.settingTevStruct(TEVSTR_TYPE_HUMAN_LINK, &current.pos, &tevStr);
     }
 
     initTevCustomColor();

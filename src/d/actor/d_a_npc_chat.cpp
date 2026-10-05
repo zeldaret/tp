@@ -2824,7 +2824,7 @@ int daNpcChat_c::draw(int param_1, int param_2, f32 param_3, _GXColorS10* i_colo
     }
 
     if (mTwilight) {
-        g_env_light.settingTevStruct(4, &current.pos, &tevStr);
+        g_env_light.settingTevStruct(TEVSTR_TYPE_TWILIGHT_NPC, &current.pos, &tevStr);
     } else {
         g_env_light.settingTevStruct(0, &current.pos, &tevStr);
     }

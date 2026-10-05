@@ -257,7 +257,7 @@ static int daNpc_Ks_Draw(npc_ks_class* i_this) {
 #else
     if (i_this->res_name == "Npc_kst") {
 #endif
-        g_env_light.settingTevStruct(4, &actor->current.pos, &actor->tevStr);
+        g_env_light.settingTevStruct(TEVSTR_TYPE_TWILIGHT_NPC, &actor->current.pos, &actor->tevStr);
     } else {
         g_env_light.settingTevStruct(0, &actor->current.pos, &actor->tevStr);
     }

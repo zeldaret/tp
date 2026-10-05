@@ -322,7 +322,7 @@ void daAlink_c::statusWindowDraw() {
     static const GXColorS10 waterColor = {0, 0, 0, 0};
 
     if (mClothesChangeWaitTimer == 0) {
-        g_env_light.settingTevStruct(12, &current.pos, &tevStr);
+        g_env_light.settingTevStruct(TEVSTR_TYPE_COLLECTION_LINK, &current.pos, &tevStr);
         initTevCustomColor();
 
         if (!checkWolf()) {
