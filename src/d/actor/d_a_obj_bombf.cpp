@@ -11,9 +11,9 @@
 static const char l_arcName[] = "Bombf";
 
 bool daObjBombf_c::createHeap() {
-    field_0x570 = mDoExt_J3DModel__create((J3DModelData*)dComIfG_getObjectRes(l_arcName, 4),
-                                          0x80000, 0x11000084);
-    return (field_0x570 != NULL);
+    mpModel = mDoExt_J3DModel__create((J3DModelData*)dComIfG_getObjectRes(l_arcName, 4), 0x80000,
+                                      0x11000084);
+    return (mpModel != NULL);
 }
 
 static bool daObjBombf_createHeap(fopAc_ac_c* i_this) {
@@ -23,17 +23,17 @@ static bool daObjBombf_createHeap(fopAc_ac_c* i_this) {
 int daObjBombf_c::create() {
     fopAcM_ct(this, daObjBombf_c);
 
-    int phase = dComIfG_resLoad(&field_0x568, l_arcName);
+    int phase = dComIfG_resLoad(&mPhase, l_arcName);
     if (phase == cPhs_COMPLEATE_e) {
         if (!fopAcM_entrySolidHeap(this, (heapCallbackFunc)daObjBombf_createHeap, 0x820)) {
             return cPhs_ERROR_e;
         }
 
-        fopAcM_SetMtx(this, field_0x570->getBaseTRMtx());
+        fopAcM_SetMtx(this, mpModel->getBaseTRMtx());
         tevStr.room_no = fopAcM_GetRoomNo(this);
         attention_info.position = current.pos;
         eyePos = attention_info.position;
-        field_0x574 = 0xffffffff;
+        mBombId = fpcM_ERROR_PROCESS_ID_e;
         setMatrix();
         fopAcM_SetMin(this, -75.0f, 0.0f, -75.0f);
         fopAcM_SetMax(this, 75.0f, 30.0f, 75.0f);
@@ -47,7 +47,7 @@ static int daObjBombf_Create(fopAc_ac_c* i_this) {
 }
 
 daObjBombf_c::~daObjBombf_c() {
-    dComIfG_resDelete(&field_0x568, l_arcName);
+    dComIfG_resDelete(&mPhase, l_arcName);
 }
 
 static int daObjBombf_Delete(daObjBombf_c* i_this) {
@@ -56,37 +56,36 @@ static int daObjBombf_Delete(daObjBombf_c* i_this) {
 }
 
 void daObjBombf_c::setMatrix() {
-    mDoMtx_stack_c::transS(current.pos.x, current.pos.y + field_0x584, current.pos.z);
+    mDoMtx_stack_c::transS(current.pos.x, current.pos.y + mOffsetY, current.pos.z);
     mDoMtx_stack_c::ZXYrotM(shape_angle.x, shape_angle.y, shape_angle.z);
-    MTXCopy(mDoMtx_stack_c::now, field_0x570->mBaseTransformMtx);
+    MTXCopy(mDoMtx_stack_c::now, mpModel->mBaseTransformMtx);
 }
 
 static const Vec bombOffset = {0.0f, 7.0f, 0.0f};
 
 int daObjBombf_c::execute() {
-    u32 uVar;
-    cXyz vStack;
+    cXyz bomb_pos;
 
     setMatrix();
 
-    if (field_0x574 == -1) {
-        if (field_0x578 != 0) {
-            field_0x578--;
+    if (mBombId == fpcM_ERROR_PROCESS_ID_e) {
+        if (mRespawnTimer != 0) {
+            mRespawnTimer--;
         } else {
-            mDoMtx_multVec(field_0x570->getBaseTRMtx(), &bombOffset, &vStack);
+            mDoMtx_multVec(mpModel->getBaseTRMtx(), &bombOffset, &bomb_pos);
 
             fopAc_ac_c* bomb_actor =
-                dBomb_c::createFlowerBomb(&vStack, &shape_angle, fopAcM_GetRoomNo(this));
-            field_0x574 = fopAcM_GetID(bomb_actor);
+                dBomb_c::createFlowerBomb(&bomb_pos, &shape_angle, fopAcM_GetRoomNo(this));
+            mBombId = fopAcM_GetID(bomb_actor);
         }
     } else {
-        fopAc_ac_c* actor = fopAcM_SearchByID(field_0x574);
+        fopAc_ac_c* actor = fopAcM_SearchByID(mBombId);
 
         if (actor == NULL) {
-            field_0x574 = -1;
-            field_0x578 = 150;
+            mBombId = fpcM_ERROR_PROCESS_ID_e;
+            mRespawnTimer = 150;
         } else if (dBomb_c::checkFlowerBombWait(actor)) {
-            mDoMtx_multVec(field_0x570->getBaseTRMtx(), &bombOffset, &actor->current.pos);
+            mDoMtx_multVec(mpModel->getBaseTRMtx(), &bombOffset, &actor->current.pos);
         }
     }
     return 1;
@@ -98,8 +97,8 @@ static int daObjBombf_Execute(daObjBombf_c* i_this) {
 
 int daObjBombf_c::draw() {
     g_env_light.settingTevStruct(0, &current.pos, &tevStr);
-    g_env_light.setLightTevColorType_MAJI(field_0x570, &tevStr);
-    mDoExt_modelUpdateDL(field_0x570);
+    g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
+    mDoExt_modelUpdateDL(mpModel);
     return 1;
 }
 

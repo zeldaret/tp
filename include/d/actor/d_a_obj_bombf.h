@@ -22,14 +22,14 @@ public:
     int draw();
 
 private:
-    /* 0x568 */ request_of_phase_process_class field_0x568;
-    /* 0x570 */ J3DModel* field_0x570;
-    /* 0x574 */ u32 field_0x574;
-    /* 0x578 */ u8 field_0x578;
+    /* 0x568 */ request_of_phase_process_class mPhase;
+    /* 0x570 */ J3DModel* mpModel;
+    /* 0x574 */ fpc_ProcID mBombId;
+    /* 0x578 */ u8 mRespawnTimer;
     /* 0x57C */ u32 field_0x57c;
     /* 0x580 */ u16 field_0x580;
     /* 0x582 */ u8 field_0x582;
-    /* 0x584 */ f32 field_0x584;
+    /* 0x584 */ f32 mOffsetY;
 };
 
 STATIC_ASSERT(sizeof(daObjBombf_c) == 0x588);
