@@ -9199,8 +9199,8 @@ int daAlink_c::procWolfDigThroughInit(int param_0) {
 
         ((daObjDigholl_c*)mPriActorOwn)->onDigStart();
 
-        mProcVar4.field_0x3010 = ((daObjDigholl_c*)mPriActorOwn)->getSceneNum();
-        if (mProcVar4.field_0x3010 >= 0) {
+        mProcVar4.mDigExitID = ((daObjDigholl_c*)mPriActorOwn)->getSceneNum();
+        if (mProcVar4.mDigExitID >= 0) {
             field_0x3198 = 1;
         } else {
             field_0x3198 = 3;
@@ -9214,7 +9214,7 @@ int daAlink_c::procWolfDigThroughInit(int param_0) {
         }
     } else {
         field_0x3198 = -1;
-        mProcVar4.field_0x3010 = -1;
+        mProcVar4.mDigExitID = -1;
         current.pos.x -= 30.0f * cM_ssin(shape_angle.y);
         current.pos.z -= 30.0f * cM_scos(shape_angle.y);
     }
@@ -9243,7 +9243,7 @@ int daAlink_c::procWolfDigThroughInit(int param_0) {
     field_0x3588 = l_wolfBaseAnime;
     field_0x2f99 = 4;
     field_0x34d4 = l_wolfBaseAnime;
-    mProcVar3.field_0x300e = 0;
+    mProcVar3.mDigChangeArea = false;
     return 1;
 }
 
@@ -9251,8 +9251,8 @@ int daAlink_c::procWolfDigThrough() {
     daPy_frameCtrl_c* frameCtrl_p = mUnderFrameCtrl;
     field_0x2f99 = 4;
 
-    if (mProcVar3.field_0x300e != 0) {
-        onSceneChangeArea(mProcVar4.field_0x3010, 0xFF, NULL);
+    if (mProcVar3.mDigChangeArea) {
+        onSceneChangeArea(mProcVar4.mDigExitID, 0xFF, NULL);
     } else {
         if (checkAnmEnd(frameCtrl_p)) {
             if (mProcVar5.field_0x3012 != 0) {
@@ -9271,8 +9271,8 @@ int daAlink_c::procWolfDigThrough() {
             return 1;
         }
 
-        if (mProcVar4.field_0x3010 >= 0 && frameCtrl_p->checkPass(21.0f)) {
-            mProcVar3.field_0x300e = 1;
+        if (mProcVar4.mDigExitID >= 0 && frameCtrl_p->checkPass(21.0f)) {
+            mProcVar3.mDigChangeArea = true;
         }
     }
 

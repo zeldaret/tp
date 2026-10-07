@@ -11,15 +11,15 @@
 
 int daObjDigholl_c::create() {
     fopAcM_ct(this, daObjDigholl_c);
-    field_0x569 = fopAcM_GetParam(this);
-    field_0x56a = fopAcM_GetParam(this) >> 8;
-    field_0x56c = fopAcM_GetParam(this) >> 0x10 & 0xff;
-    if (field_0x56c == 0xff) {
-        field_0x56c = -1;
+    mSwitch = fopAcM_GetParam(this);
+    mEnableSwitch = fopAcM_GetParam(this) >> 8;
+    mSceneNum = fopAcM_GetParam(this) >> 0x10 & 0xff;
+    if (mSceneNum == 0xff) {
+        mSceneNum = -1;
     }
-    if (fopAcM_isSwitch(this, field_0x569)) {
-        field_0x568 = 2;
-        field_0x56b = 1;
+    if (fopAcM_isSwitch(this, mSwitch)) {
+        mDigState = 2;
+        mDigEnd = 1;
     }
     fopAcM_SetMin(this, -60.0f, 0.0f, -100.0f);
     fopAcM_SetMax(this, 60.0f, 10.0f, 100.0f);
@@ -42,28 +42,27 @@ static int daObjDigholl_Delete(daObjDigholl_c* i_this) {
 
 int daObjDigholl_c::execute() {
     daPy_py_c* player = daPy_getLinkPlayerActorClass();
-    if (player->checkNowWolf() &&
-        (field_0x56a == 0xff || fopAcM_isSwitch(this, field_0x56a)) &&
+    if (player->checkNowWolf() && (mEnableSwitch == 0xff || fopAcM_isSwitch(this, mEnableSwitch)) &&
         (f32)fabsf(current.pos.y - player->current.pos.y) < 40.0f)
     {
         attention_info.flags = fopAc_AttnFlag_ETC_e;
     } else {
         attention_info.flags = 0;
     }
-    if (field_0x568 == 1) {
+    if (mDigState == 1) {
         if (cLib_distanceAngleS(player->shape_angle.y, shape_angle.y) < 0x6000) {
             shape_angle.y = player->shape_angle.y + 0x10000 - 0x8000;
             current.angle.y = shape_angle.y;
         }
-        fopAcM_onSwitch(this, field_0x569);
+        fopAcM_onSwitch(this, mSwitch);
 
         if (dComIfGp_event_runCheck()) {
             if (player->getBaseAnimeFrame() > 35.0f) {
-                field_0x56b = 1;
+                mDigEnd = 1;
             }
         } else {
-            field_0x568 = 2;
-            field_0x56b = 1;
+            mDigState = 2;
+            mDigEnd = 1;
         }
     } else {
         if ((player->current.pos.abs2XZ(current.pos) < 250000.0f) &&
