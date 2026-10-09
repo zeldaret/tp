@@ -800,7 +800,7 @@ int mDoGph_AfterOfDraw() {
 }
 
 #if PLATFORM_WII
-void darwFilterQuad(s8 param_0, s8 param_1) {
+void darwFilter(s8 param_0, s8 param_1) {
     GXBegin(GX_QUADS, GX_VTXFMT0, 4);
     GXPosition3s8(0, 0, -5);
     GXTexCoord2s8(0, 0);
