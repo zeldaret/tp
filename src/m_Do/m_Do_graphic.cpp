@@ -484,13 +484,6 @@ void mDoGph_gInf_c::csr_c::init(float x, float y) {
     m_oldOldEffPos = m_oldEffPos;
 }
 
-cXyz* cXyz::operator=(const cXyz& other) {
-    x = other.x;
-    y = other.y;
-    z = other.z;
-}
-
-
 // Matches in the scratch https://www.decomp.me/scratch/39qc5
 void mDoGph_gInf_c::csr_c::beforeDraw(float x, float y) {
     m_oldOldEffPos = m_oldEffPos;

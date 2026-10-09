@@ -135,7 +135,7 @@ s16 dComIfG_play_c::getItemMaxBombNumCount(u8 i_bombType) {
 }
 
 void dComIfG_play_c::setNowVibration(u8 i_vibration) {
-#if PLATFORM_GC
+#if PLATFORM_GCN
     mItemInfo.mNowVibration = i_vibration;
 #endif
 }

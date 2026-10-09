@@ -1611,15 +1611,6 @@ s32 dPa_control_c::getPolyColor(cBgS_PolyInfo& param_0, int param_1, _GXColor* p
     return 1;
 }
 
-#if PLATFORM_WII
-void dPa_control_c::levelExecute(u32 param_0) {
-        level_c::emitter_c* emitter = field_0x210.get(param_0);
-        if (emitter != NULL) {
-            field_0x210.execute(emitter);
-        }
-}
-#endif
-
 JPABaseEmitter* dPa_control_c::setPoly(u16 param_0, cBgS_PolyInfo& param_1, cXyz const* param_2,
                                 dKy_tevstr_c const* param_3, csXyz const* param_4,
                                 cXyz const* param_5, int param_6, dPa_levelEcallBack* param_7,

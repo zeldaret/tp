@@ -433,16 +433,16 @@ public:
 
     void levelAllForceOnEventMove() { field_0x210.allForceOnEventMove(); }
 
-    #if PLATFORM_GC
+    // TODO: this doesn't seem to get inlined, at least not
+    // in WII_USA_R2, adding NO_INLINE seems to fix it but i'm 
+    // not sure if this is ipa file funny business or if that's 
+    // what's actually meant to be done here.
     void levelExecute(u32 param_0) {
         level_c::emitter_c* emitter = field_0x210.get(param_0);
         if (emitter != NULL) {
             field_0x210.execute(emitter);
         }
     }
-    #else
-    void levelExecute(u32 param_0);
-    #endif
 
     static void onStatus(u8 status) { mStatus |= status; }
     static void offStatus(u8 status) {

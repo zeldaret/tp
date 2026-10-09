@@ -81,7 +81,6 @@ struct cXyz : Vec {
         PSVECScale(this, this, 1.0f / scale);
         return this;
     }
-    cXyz* operator=(const cXyz& other);
     cXyz getCrossProduct(Vec const&) const;
     cXyz outprod(Vec const&) const;
     cXyz norm() const;
