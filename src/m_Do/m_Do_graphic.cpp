@@ -580,19 +580,23 @@ void mDoGph_gInf_c::setTvSize() {
     m_invScale = 1.0f / m_scale;
 }
 
-#if PLATFORM_GC
+#if PLATFORM_WII 
+inline
+#endif
 void mDoGph_gInf_c::onWide() {
     mWide = TRUE;
     setTvSize();
     dMeter2Info_onWide2D();
 }
 
+#if PLATFORM_WII 
+inline
+#endif
 void mDoGph_gInf_c::offWide() {
     mWide = FALSE;
     setTvSize();
     dMeter2Info_offWide2D();
 }
-#endif
 
 void mDoGph_gInf_c::onWideZoom() {
     mWideZoom = TRUE;
