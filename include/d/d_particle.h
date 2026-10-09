@@ -437,7 +437,7 @@ public:
     // in WII_USA_R2, adding NO_INLINE seems to fix it but i'm 
     // not sure if this is ipa file funny business or if that's 
     // what's actually meant to be done here.
-    void levelExecute(u32 param_0) {
+    NO_INLINE void levelExecute(u32 param_0) {
         level_c::emitter_c* emitter = field_0x210.get(param_0);
         if (emitter != NULL) {
             field_0x210.execute(emitter);
