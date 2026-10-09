@@ -36,6 +36,7 @@ void cAPICPad_recalibrate(void);
 u32 cAPICPad_ANY_BUTTON(u32 param_0);
 
 #if PLATFORM_WII
+bool cAPICPad_isConnect(u32 i_padNo);
 u32 cAPICPad_BUTTON(u32 i_padNo);
 u32 cAPICPad_Z_BUTTON(u32 i_padNo);
 u32 cAPICPad_R_BUTTON(u32 i_padNo);

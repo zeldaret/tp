@@ -11,6 +11,12 @@
 #include "m_Re/m_Re_controller_pad.h"
 #endif
 
+#if PLATFORM_WII
+bool cAPICPad_isConnect(u32 i_padNo) {
+    return mDoCPd_c::isConnect(i_padNo);
+}
+#endif
+
 void cAPICPad_recalibrate() {
     mDoCPd_c::recalibrate();
 
@@ -20,7 +26,11 @@ void cAPICPad_recalibrate() {
 }
 
 u32 cAPICPad_ANY_BUTTON(u32 portNo) {
+    #if PLATFORM_WII
+    return mReCPd::getTrig(portNo) & (WPAD_BUTTON_A | WPAD_BUTTON_B);
+    #else
     return mDoCPd_c::getTrig(portNo) & (PAD_BUTTON_A | PAD_BUTTON_B | PAD_BUTTON_START);
+    #endif
 }
 
 #if PLATFORM_WII
