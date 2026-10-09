@@ -21,6 +21,22 @@
 #include "f_pc/f_pc_priority.h"
 #include "m_Do/m_Do_controller_pad.h"
 
+#if PLATFORM_WII
+#include "d/d_home_button.h"
+#include "d/d_com_inf_game.h"
+#include "d/d_error_msg.h"
+#include "d/d_cursor_mng.h"
+#include "m_Re/m_Re_controller_pad.h"
+#endif
+
+#if PLATFORM_GCN
+#define FPCM_MANAGEMENT_GAMEPAD_COUNT 1
+#elif PLATFORM_SHIELD && !DEBUG
+#define FPCM_MANAGEMENT_GAMEPAD_COUNT 0
+#else
+#define FPCM_MANAGEMENT_GAMEPAD_COUNT 4
+#endif
+
 void fpcM_Draw(void* i_proc) {
     fpcDw_Execute((base_process_class*)i_proc);
 }
@@ -51,13 +67,23 @@ void fpcM_Management(fpcM_ManagementFunc i_preExecuteFn, fpcM_ManagementFunc i_p
     if (!dShutdownErrorMsg_c::execute()) {
         static bool l_dvdError = false;
 
+#if PLATFORM_WII
+        if (!dHomeButton_c::execute() && !dDvdErrorMsg_c::execute() && !dConnectErrorMsg_c::execute()) {
+#else
         if (!dDvdErrorMsg_c::execute()) {
+#endif
             if (l_dvdError) {
                 dLib_time_c::startTime();
                 Z2GetSoundMgr()->pauseAllGameSound(false);
+#if PLATFORM_WII
+                dHomeButton_c::lbl_8053A725 = 0;
+#endif
                 l_dvdError = false;
             }
 
+#if PLATFORM_WII
+            mReCPd::updateMoterWave();
+#endif
             cAPIGph_Painter();
 
             if (!dPa_control_c::isStatus(1)) {
@@ -80,6 +106,9 @@ void fpcM_Management(fpcM_ManagementFunc i_preExecuteFn, fpcM_ManagementFunc i_p
 
             if (!fapGm_HIO_c::isCaptureScreen()) {
                 fpcEx_Handler((fpcLnIt_QueueFunc)fpcM_Execute);
+#if PLATFORM_WII
+                dCsr_mng_c::update();
+#endif
             }
             if (!fapGm_HIO_c::isCaptureScreen() || fapGm_HIO_c::getCaptureScreenDivH() != 1) {
                 fpcDw_Handler((fpcDw_HandlerFuncFunc)fpcM_DrawIterater, (fpcDw_HandlerFunc)fpcM_Draw);
@@ -90,18 +119,22 @@ void fpcM_Management(fpcM_ManagementFunc i_preExecuteFn, fpcM_ManagementFunc i_p
             }
 
             dComIfGp_drawSimpleModel();
+#if PLATFORM_WII
+            mDoGph_gInf_c::drawCsr();
+#endif
         } else if (!l_dvdError) {
             dLib_time_c::stopTime();
             Z2GetSoundMgr()->pauseAllGameSound(true);
-#if PLATFORM_GCN
-#define FPCM_MANAGEMENT_GAMEPAD_COUNT 1
-#elif PLATFORM_SHIELD && !DEBUG
-#define FPCM_MANAGEMENT_GAMEPAD_COUNT 0
-#else
-#define FPCM_MANAGEMENT_GAMEPAD_COUNT 4
+#if PLATFORM_WII
+            mReCPd::stopMoter();
 #endif
-            for (u32 i = 0; i < FPCM_MANAGEMENT_GAMEPAD_COUNT; i++) {
+
+            for (s32 i = 0; i < FPCM_MANAGEMENT_GAMEPAD_COUNT; i++) {
+#if PLATFORM_WII
+                mReCPd::stopMoterWave(i);
+#else
                 mDoCPd_c::stopMotorWaveHard(i);
+#endif
             }
             l_dvdError = true;
         }
@@ -146,4 +179,3 @@ void* fpcM_JudgeInLayer(fpc_ProcID i_layerID, fpcCtIt_JudgeFunc i_judgeFunc, voi
 
     return NULL;
 }
-

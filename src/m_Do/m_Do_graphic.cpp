@@ -36,6 +36,8 @@
 
 #if PLATFORM_WII || PLATFORM_SHIELD
 #include <revolution/sc.h>
+#include "m_Re/m_Re_controller_pad.h"
+#include "d/d_home_button.h"
 #endif
 
 #if PLATFORM_WII
@@ -474,6 +476,29 @@ void mDoGph_gInf_c::calcFade() {
 #if PLATFORM_WII || PLATFORM_SHIELD
 u32 mDoGph_gInf_c::csr_c::m_blurID;
 
+// Matches in the scratch https://decomp.me/scratch/B3msN
+void mDoGph_gInf_c::csr_c::init(float x, float y) {
+    m_nowEffPos.x = x - (FB_WIDTH_BASE/2.0f);
+    m_nowEffPos.y = y - (FB_HEIGHT_BASE/2.0f);
+    m_oldEffPos = m_nowEffPos;
+    m_oldOldEffPos = m_oldEffPos;
+}
+
+cXyz* cXyz::operator=(const cXyz& other) {
+    x = other.x;
+    y = other.y;
+    z = other.z;
+}
+
+
+// Matches in the scratch https://www.decomp.me/scratch/39qc5
+void mDoGph_gInf_c::csr_c::beforeDraw(float x, float y) {
+    m_oldOldEffPos = m_oldEffPos;
+    m_oldEffPos = m_nowEffPos;
+    m_nowEffPos.x = x - (FB_WIDTH_BASE/2.0f);
+    m_nowEffPos.y = y - (FB_HEIGHT_BASE/2.0f);
+}
+
 void mDoGph_gInf_c::csr_c::particleExecute() {
     dComIfGp_particle_levelExecute(m_blurID);
 }
@@ -663,6 +688,16 @@ void mDoGph_gInf_c::setWideZoomLightProjection(Mtx& m) {
 #endif
 
 #if PLATFORM_WII || PLATFORM_SHIELD
+void mDoGph_gInf_c::drawCsr(void) {
+    Vec2& pos = mReCPd::getDpd2DPos(0);
+    if(!m_csr) {
+        csr_c::init(pos.x, pos.y);
+    } else {
+        csr_c::beforeDraw(pos.x, pos.y);
+        m_csr->draw(pos.x, pos.y);
+    }
+}
+
 void mDoGph_gInf_c::entryBaseCsr(mDoGph_gInf_c::csr_c* i_entry) {
     JUT_ASSERT(876, m_baseCsr == NULL);
     m_baseCsr = i_entry;
@@ -702,7 +737,11 @@ int mDoGph_AfterOfDraw() {
         JUTDbPrint::getManager()->setVisible(true);
     } else {
         int sysConsole_visible = JFWSystem::getSystemConsole()->isVisible();
+#if PLATFORM_WII
+        s32 port3_connected = cAPICPad_isConnect(PAD_3);
+#else
         s32 port3_connected = mDoCPd_c::isConnect(PAD_3);
+#endif
 
         BOOL procBar_visible = port3_connected && fapGmHIO_getMeter() && !sysConsole_visible;
         BOOL console_visible = port3_connected && fapGmHIO_isPrint();
@@ -761,7 +800,7 @@ int mDoGph_AfterOfDraw() {
 }
 
 #if PLATFORM_WII
-void drawFilterQuad(s8 param_0, s8 param_1) {
+void darwFilterQuad(s8 param_0, s8 param_1) {
     GXBegin(GX_QUADS, GX_VTXFMT0, 4);
     GXPosition3s8(0, 0, -5);
     GXTexCoord2s8(0, 0);
@@ -773,9 +812,6 @@ void drawFilterQuad(s8 param_0, s8 param_1) {
     GXTexCoord2s8(0, 1);
     GXEnd();
 }
-
-// mapping to simplify call changes between wii / other platforms
-#define mDoGph_drawFilterQuad drawFilterQuad
 #endif
 
 static void drawDepth2(view_class* param_0, view_port_class* param_1, int param_2) {
@@ -1052,7 +1088,11 @@ static void trimming(view_class* param_0, view_port_class* param_1) {
         GXLoadPosMtxImm(cMtx_getIdentity(), 0);
         GXClearVtxDesc();
         GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
+        #if PLATFORM_WII
+        GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_CLR_RGB, GX_RGBA4, 0);
+        #else
         GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_CLR_RGBA, GX_RGBA4, 0);
+        #endif
         GXSetProjection(ortho, GX_ORTHOGRAPHIC);
         GXSetCurrentMtx(0);
         GXBegin(GX_QUADS, GX_VTXFMT0, 8);
@@ -1070,7 +1110,6 @@ static void trimming(view_class* param_0, view_port_class* param_1) {
                  param_1->scissor.height);
 }
 
-#if !PLATFORM_WII
 void mDoGph_drawFilterQuad(s8 param_0, s8 param_1) {
     GXBegin(GX_QUADS, GX_VTXFMT0, 4);
     GXPosition2s8(0, 0);
@@ -1083,7 +1122,6 @@ void mDoGph_drawFilterQuad(s8 param_0, s8 param_1) {
     GXTexCoord2s8(0, 1);
     GXEnd();
 }
-#endif
 
 void mDoGph_gInf_c::bloom_c::create() {
     if (m_buffer == NULL) {
@@ -1352,11 +1390,7 @@ static void motionBlure(view_class* param_0) {
         GXClearVtxDesc();
         GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
         GXSetVtxDesc(GX_VA_TEX0, GX_DIRECT);
-        #if PLATFORM_WII
-        GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_CLR_RGBA, GX_RGB8, 0);
-        #else
         GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_CLR_RGB, GX_RGB8, 0);
-        #endif
         GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_CLR_RGBA, GX_RGB8, 0);
         mDoGph_drawFilterQuad(1, 1);
         GXSetProjection(param_0->projMtx, GX_PERSPECTIVE);
@@ -2025,7 +2059,7 @@ int mDoGph_Painter() {
         GXSetVtxDesc(GX_VA_TEX0, GX_DIRECT);
         GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_S8, 0);
         GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_TEX_ST, GX_RGB8, 0);
-        drawFilterQuad(1, 1);
+        mDoGph_drawFilterQuad(1, 1);
     }
     #endif
 
@@ -2073,7 +2107,7 @@ int mDoGph_Painter() {
             dComIfGp_particle_draw2Dfore(&draw_info3);
         }
 
-#if DEBUG
+#if DEBUG || PLATFORM_WII
         j3dSys.setViewMtx(m5);
         dComIfGd_drawListCursor();
 #endif
@@ -2085,6 +2119,12 @@ int mDoGph_Painter() {
 
         dComIfGp_particle_draw2DmenuFore(&draw_info3);
         j3dSys.setViewMtx(m4);
+
+#if PLATFORM_WII
+        if(dHomeButton_c::lbl_8053A724) {
+            darwFilter(g_blackColor);
+        }
+#endif
     }
 
     #if DEBUG
