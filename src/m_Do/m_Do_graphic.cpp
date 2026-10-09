@@ -580,6 +580,7 @@ void mDoGph_gInf_c::setTvSize() {
     m_invScale = 1.0f / m_scale;
 }
 
+#if PLATFORM_GC
 void mDoGph_gInf_c::onWide() {
     mWide = TRUE;
     setTvSize();
@@ -591,6 +592,7 @@ void mDoGph_gInf_c::offWide() {
     setTvSize();
     dMeter2Info_offWide2D();
 }
+#endif
 
 void mDoGph_gInf_c::onWideZoom() {
     mWideZoom = TRUE;
@@ -798,21 +800,6 @@ int mDoGph_AfterOfDraw() {
     mDoGph_gInf_c::endFrame();
     return 1;
 }
-
-#if PLATFORM_WII
-void darwFilter(s8 param_0, s8 param_1) {
-    GXBegin(GX_QUADS, GX_VTXFMT0, 4);
-    GXPosition3s8(0, 0, -5);
-    GXTexCoord2s8(0, 0);
-    GXPosition3s8(param_0, 0, -5);
-    GXTexCoord2s8(1, 0);
-    GXPosition3s8(param_0, param_1, -5);
-    GXTexCoord2s8(1, 1);
-    GXPosition3s8(0, param_1, -5);
-    GXTexCoord2s8(0, 1);
-    GXEnd();
-}
-#endif
 
 static void drawDepth2(view_class* param_0, view_port_class* param_1, int param_2) {
     static GXColorS10 l_tevColor0 = {0, 0, 0, 0};
