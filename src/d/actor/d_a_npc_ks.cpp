@@ -6823,7 +6823,7 @@ static int daNpc_Ks_Execute(npc_ks_class* i_this) {
         if (i_this->field_0x620 == 2) {
             if (i_this->field_0x604 < 0 && i_this->field_0x602 < 0) {
                 dComIfGp_event_offHindFlag(2);
-                dComIfGp_setDoStatusForce(1, 2);
+                dComIfGp_setDoStatusForce(BUTTON_STATUS_LET_GO, 2);
             }
 
             player->changeDemoParam0(1);

@@ -1705,7 +1705,7 @@ void cloud_shadow_move() {
             pos.x = packet->mCloudEff[i].mBasePos.x + packet->mCloudEff[i].mPosition.x;
             pos.y = packet->mCloudEff[i].mBasePos.y + packet->mCloudEff[i].mPosition.y;
             pos.z = packet->mCloudEff[i].mBasePos.z + packet->mCloudEff[i].mPosition.z;
-            
+
             f32 sp20 = 0.0f;
             f32 sp1C = 700.0f;
             f32 sp24 = pos.abs(camera->view.lookat.eye);
@@ -2165,7 +2165,7 @@ static void dKyr_draw_rev_moon(Mtx drawMtx, u8** tex) {
             1.0f, 0.83f, 0.6f, 0.78f,
             1.0f, 0.78f, 0.6f, 0.83f,
         };
-        
+
         dKyr_get_vectle_calc(&camera->view.lookat.eye, &camera->view.lookat.center, &camfwd);
 
         f32 cam_distXZ = JMAFastSqrt((camfwd.x * camfwd.x) + (camfwd.z * camfwd.z));
@@ -3244,11 +3244,11 @@ void dKyr_drawSibuki(Mtx drawMtx, u8** tex) {
     camera_class* camera = (camera_class*)dComIfGp_getCamera(0);
     dKankyo_rain_Packet* rain_packet = g_env_light.mpRainPacket;
     cXyz eyevect;
-    cXyz sp38;    
+    cXyz sp38;
 
     if (g_env_light.mSnowCount == 0 && g_env_light.camera_water_in_status == 0 && dComIfGd_getView() != NULL) {
         Mtx camMtx;
-        MTXInverse(dComIfGd_getView()->viewMtxNoTrans, camMtx);   
+        MTXInverse(dComIfGd_getView()->viewMtxNoTrans, camMtx);
     } else {
         return;
     }
@@ -3772,7 +3772,7 @@ void dKyr_drawSnow(Mtx drawMtx, u8** tex) {
             } else {
                 sp54 = snow_packet->field_0x6d88;
             }
-    
+
             if (!g_env_light.camera_water_in_status) {
                 dKy_ParticleColor_get_bg(&camera->view.lookat.eye, NULL, &sp64, &sp60, &sp5C, &sp58, 0.0f);
                 color_reg0.r = 178.5f + (0.3f * sp60.r);
@@ -4324,7 +4324,7 @@ void drawCloudShadow(Mtx drawMtx, u8** tex) {
 
     if (cloud_packet->mCount > 0) {
         j3dSys.reinitGX();
-        
+
         if (dComIfGd_getView() != NULL) {
             MTXInverse(dComIfGd_getView()->viewMtxNoTrans, camMtx);
         } else {
@@ -4338,7 +4338,7 @@ void drawCloudShadow(Mtx drawMtx, u8** tex) {
         if (g_env_light.mMoyaMode < 50) {
             dKy_ParticleColor_get_bg(&camera->view.lookat.eye, NULL, &sp48, &sp44, &sp40, &sp3C, 0.0f);
             f32 temp_f30 = 0.4f;
-            
+
             color_reg0.r = (sp38.r * temp_f30) + (sp44.r * (1.0f - temp_f30));
             color_reg0.g = (sp38.g * temp_f30) + (sp44.g * (1.0f - temp_f30));
             color_reg0.b = (sp38.b * temp_f30) + (sp44.b * (1.0f - temp_f30));
@@ -5157,7 +5157,7 @@ void dKyr_thunder_move() {
                     sp50 = -64.0f * temp_f31;
                     dKy_bg_addcol_amb_set(sp60, sp58, sp50, temp_f30);
 
-                    
+
                     s16 sp48 = -64.0f * temp_f31;
                     s16 sp40 = -64.0f * temp_f31;
                     s16 sp38 = -64.0f * temp_f31;
@@ -5202,7 +5202,7 @@ void dKyr_odour_move() {
     dScnKy_env_light_c* envlight = dKy_getEnvlight();
     dKy_Odour_Data* pOdourData = &envlight->mOdourData;
     dKankyo_odour_Packet* odour_packet = pOdourData->mpOdourPacket;
-    
+
     Mtx camMtx;
     cXyz sp20(0.0f, 1.0f, 0.0f);
     cXyz sp14;
@@ -5697,7 +5697,7 @@ void dKyr_mud_draw(Mtx drawMtx, u8** tex) {
         if (g_env_light.field_0x1300 != -1) {
             spC = g_env_light.field_0x1300;
         }
-    
+
         sp50.r = 1.3f * g_env_light.bg_amb_col[1].r;
         sp50.g = 1.3f * g_env_light.bg_amb_col[1].g;
         sp50.b = 1.3f * g_env_light.bg_amb_col[1].b;
@@ -5761,7 +5761,7 @@ void dKyr_mud_draw(Mtx drawMtx, u8** tex) {
         } else {
             return;
         }
-    
+
         if (g_env_light.camera_water_in_status == 0) {
             for (int i = 0; i < 1; i++) {
                 GXTexObj texobj;
@@ -5910,7 +5910,7 @@ static void dKyr_evil_draw2(Mtx drawMtx, u8** tex) {
             OS_REPORT("\nevil_draw return!!");
             return;
         }
-    
+
         GXColor color_reg0;
         GXColor color_reg1;
 
@@ -5918,7 +5918,7 @@ static void dKyr_evil_draw2(Mtx drawMtx, u8** tex) {
         color_reg1.g = 120.0f * sp48;
         color_reg1.b = 0;
         color_reg1.a = 0xFF;
-        
+
         color_reg0.r = 0xFF;
         color_reg0.g = 0x9F;
         color_reg0.b = 0x87;

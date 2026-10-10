@@ -1161,7 +1161,7 @@ int daNpc_Fairy_c::wait(int param_1) {
         case 2:
             if (mStatus == 1) {
                 if (daNpcT_chkDoBtnIsSpeak(this)) {
-                    dComIfGp_setDoStatus(8, 0);
+                    dComIfGp_setDoStatus(BUTTON_STATUS_CHECK, 0);
                 }
             } else if (mStatus == 0 && !mStagger.checkStagger()) {
                 if (mPlayerActorMngr.getActorP() != NULL && !mTwilight) {

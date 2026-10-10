@@ -3288,7 +3288,7 @@ int daNpc_Maro_c::tend(void* ) {
 
             if (dComIfGs_isSaveSwitch(actor_p->getSwitchBit1()) == 0
                 && daNpcT_chkDoBtnIsSpeak(this)) {
-                dComIfGp_setDoStatusForce(0x39, 2);
+                dComIfGp_setDoStatusForce(BUTTON_STATUS_UNK_57, 2);
             }
 
             if (srchPlayerActor()) {

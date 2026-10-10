@@ -38,7 +38,7 @@ void daObjMasterSword_c::executeWait() {
                 if (dComIfGp_getAttention()->getActionBtnB() != NULL &&
                     dComIfGp_getAttention()->getActionBtnB()->mType == fopAc_attn_CARRY_e)
                 {
-                    dComIfGp_setDoStatusForce(8, 0);
+                    dComIfGp_setDoStatusForce(BUTTON_STATUS_CHECK, 0);
                 }
             }
         }

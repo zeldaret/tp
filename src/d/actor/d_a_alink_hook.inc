@@ -1269,7 +1269,7 @@ void daAlink_c::hookshotRoofTurn() {
         }
 
         if (!checkEventRun()) {
-            dComIfGp_set3DStatusForce(0x78, status_dir, 0);
+            dComIfGp_set3DStatusForce(BUTTON_STATUS_MOVE, status_dir, 0);
         }
     }
 

@@ -747,7 +747,7 @@ int daNpc_Seirei_c::wait(void* param_1) {
             }
 
             if (arg0 == 0 && chkFirstMeeting() && getDoBtnChkFlag() && daNpcT_chkDoBtnIsSpeak(this)) {
-                dComIfGp_setDoStatus(8, 0);
+                dComIfGp_setDoStatus(BUTTON_STATUS_CHECK, 0);
             }
             break;
 
