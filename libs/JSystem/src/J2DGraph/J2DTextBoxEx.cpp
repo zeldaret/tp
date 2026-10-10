@@ -393,8 +393,8 @@ bool J2DTextBoxEx::getBlackWhite(JUtility::TColor* param_0, JUtility::TColor* pa
 
     u32 tevStageNum = mMaterial->getTevBlock()->getTevStageNum();
     bool manyTevStages = tevStageNum == 1 ? false : true;
-    *param_0 = JUtility::TColor(0);
-    *param_1 = JUtility::TColor(0xffffffff);
+    *param_0 = JUtility::TColor((u32)0x00000000);
+    *param_1 = JUtility::TColor((u32)0xffffffff);
     if (manyTevStages) {
         J2DGXColorS10 color0(*mMaterial->getTevBlock()->getTevColor(0));
         J2DGXColorS10 color1(*mMaterial->getTevBlock()->getTevColor(1));
@@ -424,7 +424,7 @@ JUtility::TColor J2DTextBoxEx::getBlack() const {
     JUtility::TColor black;
     JUtility::TColor white;
     if (getBlackWhite(&black, &white) == 0) {
-        return JUtility::TColor(0);
+        return JUtility::TColor((u32)0x00000000);
     }
     return black;
 }

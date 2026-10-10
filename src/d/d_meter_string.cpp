@@ -48,24 +48,24 @@ int dMeterString_c::_create() {
     }
 
     mpScreen = new J2DScreen();
-    JUT_ASSERT(0, mpScreen != NULL);
+    JUT_ASSERT(96, mpScreen != NULL);
 
     bool fg = mpScreen->setPriority("zelda_game_image_cow_get_in.blo", 0x20000, mpMapArchive);
-    JUT_ASSERT(0, fg != false);
+    JUT_ASSERT(100, fg != false);
     dPaneClass_showNullPane(mpScreen);
 
     OSInitFastCast();
-    mpGetInBck = (J2DAnmTransformKey*)J2DAnmLoaderDataBase::load(
-        JKRGetNameResource("zelda_game_image_cow_get_in.bck", mpMapArchive));
+    void* bckRes = JKRGetNameResource("zelda_game_image_cow_get_in.bck", mpMapArchive);
+    mpGetInBck = (J2DAnmTransformKey*)J2DAnmLoaderDataBase::load(bckRes);
 
     mpParentPane = new CPaneMgr(mpScreen, MULTI_CHAR('get_in_n'), 2, NULL);
-    JUT_ASSERT(0, mpParentPane != NULL);
+    JUT_ASSERT(109, mpParentPane != NULL);
 
     mpRootPane = new CPaneMgr(mpScreen, MULTI_CHAR('n_all'), 0, NULL);
-    JUT_ASSERT(0, mpRootPane != NULL);
+    JUT_ASSERT(112, mpRootPane != NULL);
 
     mpTextPane = new CPaneMgr(mpScreen, MULTI_CHAR('get_in'), 0, NULL);
-    JUT_ASSERT(0, mpTextPane != NULL);
+    JUT_ASSERT(115, mpTextPane != NULL);
 
     static_cast<J2DTextBox*>(mpScreen->search(MULTI_CHAR('get_in_s')))->setFont(mDoExt_getMesgFont());
     static_cast<J2DTextBox*>(mpScreen->search(MULTI_CHAR('get_in')))->setFont(mDoExt_getMesgFont());
@@ -98,27 +98,28 @@ void dMeterString_c::draw() {
     if (mpMapArchive != NULL && !dComIfGp_isPauseFlag()) {
         J2DGrafContext* graf_ctx = dComIfGp_getCurrentGrafPort();
         graf_ctx->setup2D();
+        f32 var_f31 = 60.0f;
 
-        f32 var_f31 = (f32)g_drawHIO.mMiniGame.field_0x172 +
-                      ((f32)g_drawHIO.mMiniGame.mReadyFightTextWaitFrames + 60.0f);
-        if (mAnimFrame > 0.0f && mAnimFrame < var_f31) {
-            f32 var_f30 = 1.0f;
+        f32 var_f30 = (f32)g_drawHIO.mMiniGame.field_0x172 +
+                      (var_f31 + (f32)g_drawHIO.mMiniGame.mReadyFightTextWaitFrames);
+        if (mAnimFrame > 0.0f && mAnimFrame < var_f30) {
+            f32 var_f29 = 1.0f;
 
-            if (mAnimFrame < 60.0f) {
+            if (mAnimFrame < var_f31) {
                 mAnimFrame += g_drawHIO.mMiniGame.mReadyFightTextAnimSpeed;
-                if (mAnimFrame > 60.0f) {
-                    mAnimFrame = 60.0f;
+                if (mAnimFrame > var_f31) {
+                    mAnimFrame = var_f31;
                 }
 
                 playBckAnimation(mAnimFrame);
-            } else if (mAnimFrame < (f32)g_drawHIO.mMiniGame.mReadyFightTextWaitFrames + 60.0f) {
-                mAnimFrame += var_f30;
-            } else if (mAnimFrame < var_f31) {
-                mAnimFrame += var_f30;
-                var_f30 = acc(g_drawHIO.mMiniGame.field_0x172, var_f31 - mAnimFrame, 0);
+            } else if (mAnimFrame < var_f31 + (f32)g_drawHIO.mMiniGame.mReadyFightTextWaitFrames) {
+                mAnimFrame += 1.0f;
+            } else if (mAnimFrame < var_f30) {
+                mAnimFrame += 1.0f;
+                var_f29 = acc(g_drawHIO.mMiniGame.field_0x172, var_f30 - mAnimFrame, 0);
             }
 
-            mpParentPane->setAlphaRate(var_f30);
+            mpParentPane->setAlphaRate(var_f29);
             mpRootPane->paneTrans(mOffsetX + g_drawHIO.mMiniGame.mReadyFightTextPosX,
                                   mOffsetY + g_drawHIO.mMiniGame.mReadyFightTextPosY);
             mpRootPane->scale(g_drawHIO.mMiniGame.mReadyFightTextSizeX,
@@ -133,7 +134,7 @@ void dMeterString_c::draw() {
                 mPikariAnimFrame = 18.0f - g_drawHIO.mMiniGame.mReadyFightPikariAnimSpeed;
             }
 
-            if (mAnimFrame >= var_f31) {
+            if (mAnimFrame >= var_f30) {
                 dMeter2Info_resetMeterString();
             }
         }
@@ -189,6 +190,7 @@ void dMeterString_c::drawPikari() {
     Vec center = mpTextPane->getGlobalVtxCenter(false, 0);
     char* string = static_cast<J2DTextBox*>(mpTextPane->getPanePtr())->getStringPtr();
 
+    f32 frame;
     s16 str_idx = 0;
     f32 var_f25 = 0.0f;
     f32 var_f29 = 0.0f;
@@ -219,7 +221,6 @@ void dMeterString_c::drawPikari() {
     }
 
     var_f25 = center.x - (var_f25 / 2);
-    f32 frame;
 
     for (str_idx = 0; string[str_idx] != 0; str_idx++) {
         frame = anim_frame;
@@ -255,5 +256,5 @@ void dMeterString_c::drawPikari() {
 }
 
 bool dMeterString_c::isLeadByte(int c) {
-    return (c >= 0x81 && c <= 0x9F) || (c >= 0xE0 && c <= 0xFC);
+    return JUTFont::isLeadByte_ShiftJIS(c);
 }

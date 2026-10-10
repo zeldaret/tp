@@ -48,18 +48,6 @@ public:
     /* 0x4 */ fmpTresTypeGroupData_c* mpNextData;
 };
 
-class fmpTresTypeGroupDataListAll_c {
-public:
-    void addTypeGroupData(u8 i_typeGroupNo, const dTres_c::data_s* i_data) {
-        mpTypeGroupData[i_typeGroupNo].addTypeGroupData(i_typeGroupNo, i_data);
-    }
-    fmpTresTypeGroupDataList_c* getTypeGroupDataList(int i_typeGroupNo) {
-        return &mpTypeGroupData[i_typeGroupNo];
-    }
-
-    /* 0x0 */ fmpTresTypeGroupDataList_c mpTypeGroupData[17];
-};
-
 class dMenu_Fmap_data_c {
 public:
     dMenu_Fmap_data_c() {
@@ -68,12 +56,25 @@ public:
         mp_mapPath = NULL;
         mp_dzsData = NULL;
     }
+    ~dMenu_Fmap_data_c() {}
 
     dTres_c::list_class* getTresure() { return mp_tresure; }
-    f32 getFilelist2MinX() { return m_fileList2->mLeftRmX; }
-    f32 getFilelist2MinZ() { return m_fileList2->mInnerRmZ; }
-    f32 getFilelist2MaxX() { return m_fileList2->mRightRmX; }
-    f32 getFilelist2MaxZ() { return m_fileList2->mFrontRmZ; }
+    f32 getFilelist2MinX() {
+        JUT_ASSERT(123, m_fileList2 != NULL);
+        return m_fileList2->mLeftRmX;
+    }
+    f32 getFilelist2MinZ() {
+        JUT_ASSERT(127, m_fileList2 != NULL);
+        return m_fileList2->mInnerRmZ;
+    }
+    f32 getFilelist2MaxX() {
+        JUT_ASSERT(131, m_fileList2 != NULL);
+        return m_fileList2->mRightRmX;
+    }
+    f32 getFilelist2MaxZ() {
+        JUT_ASSERT(135, m_fileList2 != NULL);
+        return m_fileList2->mFrontRmZ;
+    }
     dDrawPath_c::room_class* getMapPath() { return mp_mapPath; }
     void* getDzsData() { return mp_dzsData; }
 
@@ -86,6 +87,20 @@ public:
     /* 0x4 */ dStage_FileList2_dt_c* m_fileList2;
     /* 0x8 */ dDrawPath_c::room_class* mp_mapPath;
     /* 0xC */ void* mp_dzsData;
+};
+
+class fmpTresTypeGroupDataListAll_c {
+public:
+    fmpTresTypeGroupDataList_c* getTypeGroupDataList(int i_typeGroupNo) {
+        JUT_ASSERT(281, (i_typeGroupNo >= 0) && (i_typeGroupNo < dTres_c::TYPE_GROUP_ENUM_NUMBER));
+        return &mpTypeGroupData[i_typeGroupNo];
+    }
+    void addTypeGroupData(u8 i_typeGroupNo, const dTres_c::data_s* i_data) {
+        JUT_ASSERT(285, (i_typeGroupNo >= 0) && (i_typeGroupNo < dTres_c::TYPE_GROUP_ENUM_NUMBER));
+        mpTypeGroupData[i_typeGroupNo].addTypeGroupData(i_typeGroupNo, i_data);
+    }
+
+    /* 0x0 */ fmpTresTypeGroupDataList_c mpTypeGroupData[17];
 };
 
 class dMenu_Fmap_stage_data_c;
@@ -111,13 +126,25 @@ public:
     }
 
     fmpTresTypeGroupDataListAll_c* getTypeGroupDataListAll() { return mp_fmpTresTypeGroupDataListAll; }
-    f32 getFileList2MinX() { return mp_fmapData->getFilelist2MinX(); }
-    f32 getFileList2MinZ() { return mp_fmapData->getFilelist2MinZ(); }
-    f32 getFileList2MaxX() { return mp_fmapData->getFilelist2MaxX(); }
-    f32 getFileList2MaxZ() { return mp_fmapData->getFilelist2MaxZ(); }
+    f32 getFileList2MinX() {
+        JUT_ASSERT(379, mp_fmapData != NULL);
+        return mp_fmapData->getFilelist2MinX();
+    }
+    f32 getFileList2MinZ() {
+        JUT_ASSERT(383, mp_fmapData != NULL);
+        return mp_fmapData->getFilelist2MinZ();
+    }
+    f32 getFileList2MaxX() {
+        JUT_ASSERT(387, mp_fmapData != NULL);
+        return mp_fmapData->getFilelist2MaxX();
+    }
+    f32 getFileList2MaxZ() {
+        JUT_ASSERT(391, mp_fmapData != NULL);
+        return mp_fmapData->getFilelist2MaxZ();
+    }
     dMenu_Fmap_room_data_c* getNextData() { return mp_nextData; }
     dMenu_Fmap_data_c* getFmapData() { return mp_fmapData; }
-    int getRoomNo() { return m_roomNo; }
+    u8 getRoomNo() { return m_roomNo; }
     void setNextData(dMenu_Fmap_room_data_c* i_nextData) { mp_nextData = i_nextData; }
 
     /* 0x00 */ dMenu_Fmap_data_c* mp_fmapData;
@@ -158,6 +185,7 @@ public:
             name[i] = '\0';
         }
     }
+    ~dMenu_Fmap_stage_data_c() {}
 
     f32 getStageCenterX() { return (m_stageMaxX + m_stageMinX) * 0.5f; }
     f32 getStageCenterZ() { return (m_stageMaxZ + m_stageMinZ) * 0.5f; }
@@ -176,7 +204,16 @@ public:
     void setStageArc(dMenu_Fmap_stage_arc_data_c* i_stageArc) { mpStageArc = i_stageArc; }
     void setFmapRoomDataTop(dMenu_Fmap_room_data_c* i_roomTop) { mp_roomTop = i_roomTop; }
     void setNextData(dMenu_Fmap_stage_data_c* i_nextData) { mpNextData = i_nextData; }
-    void setStageCntNo(int i_no) { m_stageCntNo = i_no; }
+    void setName(const char* i_name) {
+        for (int i = 0; i < ARRAY_SIZE(name); i++) {
+            name[i] = i_name[i];
+        }
+        OS_REPORT("name<%s>\n", name);
+    }
+    void setStageCntNo(int i_no) {
+        m_stageCntNo = i_no;
+        OS_REPORT("m_stageCntNo<%d>\n", m_stageCntNo);
+    }
     void setOffsetX(f32 i_offsetX) { m_offsetX = i_offsetX; }
     void setOffsetZ(f32 i_offsetZ) { m_offsetZ = i_offsetZ; }
 
@@ -201,6 +238,7 @@ public:
 
 class dMenu_Fmap_region_data_c {
 public:
+    ~dMenu_Fmap_region_data_c() {}
     dMenu_Fmap_stage_data_c* getMenuFmapStageData(int);
     int getPointStagePathInnerNo(f32, f32, int, int*, int*);
     int buildFmapRegionData(int);
@@ -220,11 +258,15 @@ public:
     }
 
     f32 getStageCenterX_CoordWorld(int i_stageNo) {
-        return mRegionOffsetX + getMenuFmapStageData(i_stageNo)->getStageCenterX_CoordRegion();
+        dMenu_Fmap_stage_data_c* menuFmapStageData = getMenuFmapStageData(i_stageNo);
+        JUT_ASSERT(763, menuFmapStageData != 0);
+        return mRegionOffsetX + menuFmapStageData->getStageCenterX_CoordRegion();
     }
 
     f32 getStageCenterZ_CoordWorld(int i_stageNo) {
-        return mRegionOffsetZ + getMenuFmapStageData(i_stageNo)->getStageCenterZ_CoordRegion();
+        dMenu_Fmap_stage_data_c* menuFmapStageData = getMenuFmapStageData(i_stageNo);
+        JUT_ASSERT(768, menuFmapStageData != 0);
+        return mRegionOffsetZ + menuFmapStageData->getStageCenterZ_CoordRegion();
     }
 
     dMenu_Fmap_stage_data_c* getMenuFmapStageDataTop() { return mpMenuFmapStageDataTop; }
@@ -251,6 +293,7 @@ public:
 
 class dMenu_Fmap_world_data_c {
 public:
+    ~dMenu_Fmap_world_data_c() {}
     void create(dMenu_Fmap_region_data_c*);
     int buildFmapWorldData();
 
@@ -285,13 +328,13 @@ public:
     /* 0x08 */ int mStayRoomNo;
     /* 0x0C */ int mSaveTbl;
     /* 0x10 */ dMenu_Fmap_region_data_c* mpRegionData;
-    /* 0x14 */ dMenu_Fmap_stage_data_c* mpStageData;
-    /* 0x18 */ dMenu_Fmap_room_data_c* mpRoomData;
+    /* 0x14 */ dMenu_Fmap_stage_data_c* m_menuFmapStageData;
+    /* 0x18 */ dMenu_Fmap_room_data_c* m_menuFmapRoomData;
     /* 0x1C */ fmpTresTypeGroupDataListAll_c* mpFmpTresTypeGroupDataListAll;
     /* 0x20 */ fmpTresTypeGroupDataList_c* mpFmpTresTypeGroupDataList;
     /* 0x24 */ fmpTresTypeGroupData_c* mpFmpTresTypeGroupData;
     /* 0x28 */ dTres_c::typeGroupData_c* mpTresTypeGroupData;
-    /* 0x2C */ const dTres_c::data_s* mpTresData;
+    /* 0x2C */ const dTres_c::data_s* m_tresData;
     /* 0x30 */ u8 mTypeGroupNo;
     /* 0x31 */ u8 mType;
 };
@@ -300,6 +343,10 @@ class dMenuFmapIconDisp_c : public dMenuFmapIconPointer_c {
 public:
     bool getPosition(int*, int*, f32*, f32*, dTres_c::data_s const**);
     virtual bool isDrawDisp();
+    bool init(dMenu_Fmap_region_data_c* param_0, dMenu_Fmap_stage_data_c* param_1, u8 param_2,
+              int param_3, int param_4) {
+        dMenuFmapIconPointer_c::init(param_0, param_1, param_2, param_3, param_4);
+    }
 };
 
 #endif /* D_MAP_D_MAP_PATH_FMAP_H */

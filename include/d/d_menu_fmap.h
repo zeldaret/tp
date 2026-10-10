@@ -102,6 +102,23 @@ public:
     /* 0xC */ data mData[0];
 };
 
+class dMf_HIO_c : public JORReflexible {
+public:
+    dMf_HIO_c();
+    virtual ~dMf_HIO_c() {}
+#if DEBUG
+    virtual void genMessage(JORMContext*);
+#endif
+
+    /* 0x04 */ u8 field_0x4[4];
+    /* 0x08 */ f32 mBackAnimeStep;
+    /* 0x0C */ f32 mTopAnimeStep;
+    /* 0x10 */ u8 mBaseBackAlpha;
+    /* 0x11 */ u8 mMoyaAlpha;
+
+    static dMf_HIO_c* mMySelfPointer;
+};
+
 class dMenu_Fmap_c {
 public:
     typedef void (dMenu_Fmap_c::*process)();
@@ -190,6 +207,7 @@ public:
     bool readRoomData(char const*, dMenu_Fmap_stage_data_c*, void*, int, u8);
     bool readFieldMapData(void**, char const*, bool, bool);
     void decodeFieldMapData();
+    void decodeFieldMapData2();
     void decodePortalData();
     bool readRoomDzsData(void**, u32, char const*);
     bool removeAreaData();
@@ -229,36 +247,36 @@ public:
     virtual ~dMenu_Fmap_c();
 
     enum process_e {
-        /* 0x00 */ PROC_ALL_MAP,
-        /* 0x01 */ PROC_PORTAL_DEMO2,
-        /* 0x02 */ PROC_PORTAL_DEMO3,
-        /* 0x03 */ PROC_TABLE_DEMO1,
-        /* 0x04 */ PROC_ZOOM_ALL_TO_REGION,
-        /* 0x05 */ PROC_ZOOM_REGION_TO_ALL,
-        /* 0x06 */ PROC_REGION_MAP,
-        /* 0x07 */ PROC_TO_PORTAL_WARP_MAP,
-        /* 0x08 */ PROC_PORTAL_WARP_MAP,
-        /* 0x09 */ PROC_PORTAL_WARP_SELECT,
-        /* 0x0A */ PROC_PORTAL_WARP_FORBID,
-        /* 0x0B */ PROC_ZOOM_REGION_TO_SPOT,
-        /* 0x0C */ PROC_ZOOM_SPOT_TO_REGION,
-        /* 0x0D */ PROC_SPOT_MAP,
-        /* 0x0E */ PROC_PORTAL_DEMO1,
-        /* 0x0F */ PROC_PORTAL_DEMO4,
-        /* 0x10 */ PROC_PORTAL_DEMO5,
-        /* 0x11 */ PROC_PORTAL_DEMO6,
-        /* 0x12 */ PROC_YAMIBOSS_DEMO1,
-        /* 0x13 */ PROC_YAMIBOSS_DEMO2,
-        /* 0x14 */ PROC_YAMIBOSS_DEMO3,
-        /* 0x15 */ PROC_YAMIBOSS_DEMO4,
-        /* 0x16 */ PROC_YAMIBOSS_DEMO5,
-        /* 0x17 */ PROC_LIGHT_DEMO1,
-        /* 0x18 */ PROC_LIGHT_DEMO2,
-        /* 0x19 */ PROC_TABLE_DEMO2,
-        /* 0x1A */ PROC_TABLE_DEMO3,
-        /* 0x1B */ PROC_HOWL_DEMO1,
-        /* 0x1C */ PROC_HOWL_DEMO2,
-        /* 0x1D */ PROC_HOWL_DEMO3,
+        /* 0x00 */ PROC_ALL_MAP_e,
+        /* 0x01 */ PROC_PORTAL_DEMO2_e,
+        /* 0x02 */ PROC_PORTAL_DEMO3_e,
+        /* 0x03 */ PROC_TABLE_DEMO1_e,
+        /* 0x04 */ PROC_ZOOM_ALL_TO_REGION_e,
+        /* 0x05 */ PROC_ZOOM_REGION_TO_ALL_e,
+        /* 0x06 */ PROC_REGION_MAP_e,
+        /* 0x07 */ PROC_TO_PORTAL_WARP_MAP_e,
+        /* 0x08 */ PROC_PORTAL_WARP_MAP_e,
+        /* 0x09 */ PROC_PORTAL_WARP_SELECT_e,
+        /* 0x0A */ PROC_PORTAL_WARP_FORBID_e,
+        /* 0x0B */ PROC_ZOOM_REGION_TO_SPOT_e,
+        /* 0x0C */ PROC_ZOOM_SPOT_TO_REGION_e,
+        /* 0x0D */ PROC_SPOT_MAP_e,
+        /* 0x0E */ PROC_PORTAL_DEMO1_e,
+        /* 0x0F */ PROC_PORTAL_DEMO4_e,
+        /* 0x10 */ PROC_PORTAL_DEMO5_e,
+        /* 0x11 */ PROC_PORTAL_DEMO6_e,
+        /* 0x12 */ PROC_YAMIBOSS_DEMO1_e,
+        /* 0x13 */ PROC_YAMIBOSS_DEMO2_e,
+        /* 0x14 */ PROC_YAMIBOSS_DEMO3_e,
+        /* 0x15 */ PROC_YAMIBOSS_DEMO4_e,
+        /* 0x16 */ PROC_YAMIBOSS_DEMO5_e,
+        /* 0x17 */ PROC_LIGHT_DEMO1_e,
+        /* 0x18 */ PROC_LIGHT_DEMO2_e,
+        /* 0x19 */ PROC_TABLE_DEMO2_e,
+        /* 0x1A */ PROC_TABLE_DEMO3_e,
+        /* 0x1B */ PROC_HOWL_DEMO1_e,
+        /* 0x1C */ PROC_HOWL_DEMO2_e,
+        /* 0x1D */ PROC_HOWL_DEMO3_e,
      };
 
     static dMenu_Fmap_c* MyClass;
@@ -329,27 +347,10 @@ private:
     /* 0x30D */ u8 mOldStageCursor;
     /* 0x30E */ u8 mFlashRoomCount;
     /* 0x30F */ u8 field_0x30f;
-    /* 0x310 */ u8 field_0x310;
+    /* 0x310 */ bool field_0x310;
     /* 0x311 */ u8 mRegionNo;
     /* 0x312 */ bool mResetAreaName;
     /* 0x313 */ bool mAreaNameSet;
-};
-
-class dMf_HIO_c : public JORReflexible {
-public:
-    dMf_HIO_c();
-    virtual ~dMf_HIO_c() {}
-#if DEBUG
-    virtual void genMessage(JORMContext*);
-#endif
-
-    /* 0x04 */ u8 field_0x4[4];
-    /* 0x08 */ f32 mBackAnimeStep;
-    /* 0x0C */ f32 mTopAnimeStep;
-    /* 0x10 */ u8 mBaseBackAlpha;
-    /* 0x11 */ u8 mMoyaAlpha;
-
-    static dMf_HIO_c* mMySelfPointer;
 };
 
 const char* dMenuFmap_getStartStageName(void* param_0);

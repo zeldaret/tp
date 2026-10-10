@@ -1451,7 +1451,7 @@ inline int dStage_stagInfo_GetEscapeWarp(stage_stag_info_class* pstag) {
     return (pstag->field_0x10 >> 24);
 }
 
-inline u32 dStage_stagInfo_GetMiniMap(stage_stag_info_class* pstag) {
+inline int dStage_stagInfo_GetMiniMap(stage_stag_info_class* pstag) {
     return (pstag->field_0x0a >> 0xD) & 7;
 }
 

@@ -73,7 +73,7 @@ public:
     s32 getTransparency() const { return mTexInfo->alphaEnabled; }
     s32 getWidth() const { return mTexInfo->width; }
     s32 getHeight() const { return mTexInfo->height; }
-    void setCaptureFlag(bool flag) { mFlags &= 2 | flag; }
+    void setCaptureFlag(bool flag) { mFlags = (mFlags & 0x2) | flag; }
     bool getCaptureFlag() const { return mFlags & 1; }
     bool getEmbPaletteDelFlag() const { return mFlags & 2; }
     void setEmbPaletteDelFlag(bool flag) { mFlags = (mFlags & 1) | (flag << 1);}

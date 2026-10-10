@@ -1004,8 +1004,8 @@ bool J2DPictureEx::getBlackWhite(JUtility::TColor* black, JUtility::TColor* whit
         bVar1 = tev_stage_num == tex_gen_num + 1 ? false : true;
     }
 
-    *black = 0x00000000;
-    *white = 0xffffffff;
+    *black = (u32)0x00000000;
+    *white = (u32)0xffffffff;
 
     if (bVar1) {
         // possible fakematch?
@@ -1048,7 +1048,7 @@ bool J2DPictureEx::isSetBlackWhite(JUtility::TColor black, JUtility::TColor whit
 JUtility::TColor J2DPictureEx::getBlack() const {
     JUtility::TColor black, white;
     if (!getBlackWhite(&black, &white)) {
-        return 0x00000000;
+        return JUtility::TColor((u32)0x00000000);
     } else {
         return black;
     }

@@ -174,7 +174,7 @@ void dMw_offMenuRing() {
     }
 }
 
-static BOOL dMw_isMenuRing() {
+BOOL dMw_isMenuRing() {
     dMw_c* menu_window = dMeter2Info_getMenuWindowClass();
     if (menu_window != NULL) {
         return menu_window->isShowFlag();
@@ -531,7 +531,7 @@ void dMw_c::key_wait_proc() {
             break;
         }
 
-        mMenuProc = RING_OPEN;
+        mStatus = RING_OPEN;
         field_0x14B = 0;
     }
 
@@ -564,7 +564,7 @@ void dMw_c::key_wait_proc() {
             }
 
             dComIfGp_setHeapLockFlag(1);
-            mMenuProc = INSECT_AGITHA_OPEN1;
+            mStatus = INSECT_AGITHA_OPEN1;
             dMeter2Info_resetPauseStatus();
         } else if ((dMw_START_TRIGGER() && !dMw_A_TRIGGER()) &&
                    (dMeter2Info_getMapStatus() == 0 || dMeter2Info_getMapStatus() == 1) &&
@@ -578,7 +578,7 @@ void dMw_c::key_wait_proc() {
             }
 
             dComIfGp_setHeapLockFlag(1);
-            mMenuProc = COLLECT_OPEN;
+            mStatus = COLLECT_OPEN;
         } else if (dMeter2Info_getMapStatus() == 2 ||
                    dMeter2Info_getMapStatus() == 3 ||
                    dMeter2Info_getMapStatus() == 4 ||
@@ -608,11 +608,11 @@ void dMw_c::key_wait_proc() {
                 dMeter2Info_getMapStatus() == 9)
             {
                 dComIfGp_setHeapLockFlag(2);
-                mMenuProc = FMAP_OPEN;
+                mStatus = FMAP_OPEN;
                 dMw_fmap_create();
             } else if (dStage_stagInfo_GetUpButton(dComIfGp_getStage()->getStagInfo()) == 1 || dMeter2Info_getMapStatus() == 6) {
                 dComIfGp_setHeapLockFlag(3);
-                mMenuProc = DMAP_OPEN;
+                mStatus = DMAP_OPEN;
                 dMw_dmap_create();
             }
         } else if ((((dMw_UP_TRIGGER() || dMw_DOWN_TRIGGER()) && !dMw_LEFT_TRIGGER() && !dMw_RIGHT_TRIGGER()) || dMeter2Info_isMenuInForce(2) || dMeter2Info_isTouchKeyCheck(2)) &&
@@ -635,7 +635,7 @@ void dMw_c::key_wait_proc() {
                 dMw_ring_create(0);
             }
 
-            mMenuProc = RING_OPEN;
+            mStatus = RING_OPEN;
             field_0x14B = 0;
             dComIfGp_setHeapLockFlag(1);
         }
@@ -644,21 +644,21 @@ void dMw_c::key_wait_proc() {
 
 void dMw_c::ring_open_proc() {
     if (mpMenuRing->isOpen()) {
-        mMenuProc = RING_MOVE;
+        mStatus = RING_MOVE;
     }
 }
 
 void dMw_c::ring_move_proc() {
     mpMenuRing->_move();
     if (mpMenuRing->isMoveEnd()) {
-        mMenuProc = RING_CLOSE;
+        mStatus = RING_CLOSE;
     }
 }
 
 void dMw_c::ring_close_proc() {
     if (mpMenuRing->isClose()) {
         dMeter2Info_offMenuInForce(2);
-        mMenuProc = NO_MENU;
+        mStatus = NO_MENU;
     }
 }
 
@@ -669,15 +669,15 @@ void dMw_c::collect_open_proc() {
     }
 
     if (mDoGph_gInf_c::getFader()->getStatus() == JUTFader::UNKSTATUS_0) {
-        mMenuProc = COLLECT_MOVE;
+        mStatus = COLLECT_MOVE;
     }
 }
 
 void dMw_c::collect_move_proc() {
     if (mpMenuCollect->getSubWindowOpenCheck()) {
-        mMenuProc = COLLECT_CLOSE;
+        mStatus = COLLECT_CLOSE;
     } else if ((dMw_isPush_S_Button() && !mpMenuCollect->isKeyCheck()) || mpMenuCollect->isOutCheck()) {
-        mMenuProc = COLLECT_CLOSE;
+        mStatus = COLLECT_CLOSE;
     } else {
         mpMenuCollect->_move();
     }
@@ -686,19 +686,19 @@ void dMw_c::collect_move_proc() {
 void dMw_c::collect_close_proc() {
     if (mDoGph_gInf_c::getFader()->getStatus() == 0) {
         if (mpMenuCollect->getSubWindowOpenCheck() == 1) {
-            mMenuProc = SAVE_OPEN;
+            mStatus = SAVE_OPEN;
         } else if (mpMenuCollect->getSubWindowOpenCheck() == 2) {
-            mMenuProc = OPTIONS_OPEN;
+            mStatus = OPTIONS_OPEN;
         } else if (mpMenuCollect->getSubWindowOpenCheck() == 3) {
-            mMenuProc = LETTER_OPEN;
+            mStatus = LETTER_OPEN;
         } else if (mpMenuCollect->getSubWindowOpenCheck() == 4) {
-            mMenuProc = FISHING_OPEN;
+            mStatus = FISHING_OPEN;
         } else if (mpMenuCollect->getSubWindowOpenCheck() == 5) {
-            mMenuProc = SKILL_OPEN;
+            mStatus = SKILL_OPEN;
         } else if (mpMenuCollect->getSubWindowOpenCheck() == 6) {
-            mMenuProc = INSECT_OPEN;
+            mStatus = INSECT_OPEN;
         } else {
-            mMenuProc = NO_MENU;
+            mStatus = NO_MENU;
         }
     }
 }
@@ -710,7 +710,7 @@ void dMw_c::fmap_open_proc() {
     }
 
     if (mpMenuFmap->isOpen()) {
-        mMenuProc = FMAP_MOVE;
+        mStatus = FMAP_MOVE;
     }
 }
 
@@ -718,10 +718,10 @@ void dMw_c::fmap_move_proc() {
     mpMenuFmap->_move();
 
     if (mDoGph_gInf_c::getFader()->getStatus() == 1) {
-        mMenuProc = mpMenuFmap->getNextStatus(&field_0x14B);
+        mStatus = mpMenuFmap->getNextStatus(&field_0x14B);
 
         if (g_fmapHIO.field_0x2f9 != 0) {
-            mMenuProc = FMAP_CLOSE;
+            mStatus = FMAP_CLOSE;
             Z2GetAudioMgr()->seStart(Z2SE_SY_MAP_CLOSE_L, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
                                             -1.0f, 0);
         }
@@ -738,7 +738,7 @@ void dMw_c::fmap_move_proc() {
 
 void dMw_c::fmap_close_proc() {
     if (mpMenuFmap->isClose()) {
-        mMenuProc = NO_MENU;
+        mStatus = NO_MENU;
     }
 }
 
@@ -749,7 +749,7 @@ void dMw_c::dmap_open_proc() {
     }
 
     if (mpMenuDmap->isOpen()) {
-        mMenuProc = DMAP_MOVE;
+        mStatus = DMAP_MOVE;
     }
 }
 
@@ -764,14 +764,14 @@ void dMw_c::dmap_move_proc() {
             dMeter2Info_getMeterMapClass()->setDispPosOutsideFlg_SE_On();
         }
         dMeter2Info_setMapKeyDirection(0x200);
-        mMenuProc = DMAP_CLOSE;
+        mStatus = DMAP_CLOSE;
         mpMenuDmap->setInOutDir(3);
         Z2GetAudioMgr()->seStart(Z2SE_SY_MAP_CLOSE_L, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
                                         0);
     } else if (nextStatus == 2) {
         dMeter2Info_setMapStatus(0);
         dMeter2Info_setMapKeyDirection(0x400);
-        mMenuProc = DMAP_CLOSE;
+        mStatus = DMAP_CLOSE;
         dMeter2Info_getMeterMapClass()->setDispPosOutsideFlg_SE_On();
         mpMenuDmap->setInOutDir(1);
         Z2GetAudioMgr()->seStart(Z2SE_SY_MAP_CLOSE_L, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
@@ -783,7 +783,7 @@ void dMw_c::dmap_move_proc() {
             dMeter2Info_setMapStatus(0);
         }
 
-        mMenuProc = DMAP_CLOSE;
+        mStatus = DMAP_CLOSE;
         mpMenuDmap->setInOutDir(2);
         Z2GetAudioMgr()->seStart(Z2SE_SY_MAP_CLOSE_L, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
                                         0);
@@ -794,7 +794,7 @@ void dMw_c::dmap_move_proc() {
 
 void dMw_c::dmap_close_proc() {
     if (mpMenuDmap->isClose()) {
-        mMenuProc = NO_MENU;
+        mStatus = NO_MENU;
     }
 }
 
@@ -804,7 +804,7 @@ void dMw_c::collect_save_open_proc() {
     }
 
     if (mpMenuSave->getSaveStatus() == 2) {
-        mMenuProc = SAVE_MOVE;
+        mStatus = SAVE_MOVE;
     }
 }
 
@@ -814,7 +814,7 @@ void dMw_c::collect_save_move_proc() {
     }
 
     if (mpMenuSave->getSaveStatus() == 3 || mpMenuSave->getSaveStatus() == 4) {
-        mMenuProc = SAVE_CLOSE;
+        mStatus = SAVE_CLOSE;
     }
 }
 
@@ -823,9 +823,9 @@ void dMw_c::collect_save_close_proc() {
         mpMenuSave->_move();
 
         if (mpMenuSave->getSaveStatus() == 3) {
-            mMenuProc = COLLECT_MOVE;
+            mStatus = COLLECT_MOVE;
         } else {
-            mMenuProc = NO_MENU;
+            mStatus = NO_MENU;
         }
     }
 }
@@ -836,7 +836,7 @@ void dMw_c::collect_option_open_proc() {
     }
 
     if (mpMenuOption->getQuitStatus() == 2 && mDoGph_gInf_c::getFader()->getStatus() == 1) {
-        mMenuProc = OPTIONS_MOVE;
+        mStatus = OPTIONS_MOVE;
     }
 }
 
@@ -846,13 +846,13 @@ void dMw_c::collect_option_move_proc() {
     }
 
     if (mpMenuOption->getQuitStatus() == 3) {
-        mMenuProc = OPTIONS_CLOSE;
+        mStatus = OPTIONS_CLOSE;
     }
 }
 
 void dMw_c::collect_option_close_proc() {
     if (mDoGph_gInf_c::getFader()->getStatus() == 0) {
-        mMenuProc = COLLECT_MOVE;
+        mStatus = COLLECT_MOVE;
     }
 }
 
@@ -867,7 +867,7 @@ void dMw_c::collect_letter_open_proc() {
     }
 
     if (mpMenuLetter->getStatus() == 2 && field_0x152 == 1) {
-        mMenuProc = LETTER_MOVE;
+        mStatus = LETTER_MOVE;
         field_0x152 = 0;
     }
 }
@@ -878,13 +878,13 @@ void dMw_c::collect_letter_move_proc() {
     }
 
     if (mpMenuLetter->getStatus() == 3) {
-        mMenuProc = LETTER_CLOSE;
+        mStatus = LETTER_CLOSE;
     }
 }
 
 void dMw_c::collect_letter_close_proc() {
     if (mDoGph_gInf_c::getFader()->getStatus() == JUTFader::UNKSTATUS_0) {
-        mMenuProc = COLLECT_MOVE;
+        mStatus = COLLECT_MOVE;
     }
 }
 
@@ -899,7 +899,7 @@ void dMw_c::collect_fishing_open_proc() {
     }
 
     if (mpMenuFishing->getStatus() == dMenu_Fishing_c::READY_MOVE && field_0x152 == 1) {
-        mMenuProc = FISHING_MOVE;
+        mStatus = FISHING_MOVE;
         field_0x152 = 0;
     }
 }
@@ -910,13 +910,13 @@ void dMw_c::collect_fishing_move_proc() {
     }
 
     if (mpMenuFishing->getStatus() == dMenu_Fishing_c::READY_CLOSE) {
-        mMenuProc = FISHING_CLOSE;
+        mStatus = FISHING_CLOSE;
     }
 }
 
 void dMw_c::collect_fishing_close_proc() {
     if (mDoGph_gInf_c::getFader()->getStatus() == JUTFader::UNKSTATUS_0) {
-        mMenuProc = COLLECT_MOVE;
+        mStatus = COLLECT_MOVE;
     }
 }
 
@@ -930,7 +930,7 @@ void dMw_c::collect_skill_open_proc() {
     }
 
     if (mpMenuSkill->getStatus() == 2 && field_0x152 == 1) {
-        mMenuProc = SKILL_MOVE;
+        mStatus = SKILL_MOVE;
         field_0x152 = 0;
     }
 }
@@ -941,13 +941,13 @@ void dMw_c::collect_skill_move_proc() {
     }
 
     if (mpMenuSkill->getStatus() == 3) {
-        mMenuProc = SKILL_CLOSE;
+        mStatus = SKILL_CLOSE;
     }
 }
 
 void dMw_c::collect_skill_close_proc() {
     if (mDoGph_gInf_c::getFader()->getStatus() == JUTFader::UNKSTATUS_0) {
-        mMenuProc = COLLECT_MOVE;
+        mStatus = COLLECT_MOVE;
     }
 }
 
@@ -961,7 +961,7 @@ void dMw_c::collect_insect_open_proc() {
     }
 
     if (mpMenuInsect->getStatus() == 2 && field_0x152 == 1) {
-        mMenuProc = INSECT_MOVE;
+        mStatus = INSECT_MOVE;
         field_0x152 = 0;
     }
 }
@@ -972,13 +972,13 @@ void dMw_c::collect_insect_move_proc() {
     }
 
     if (mpMenuInsect->getStatus() == 3) {
-        mMenuProc = INSECT_CLOSE;
+        mStatus = INSECT_CLOSE;
     }
 }
 
 void dMw_c::collect_insect_close_proc() {
     if (mDoGph_gInf_c::getFader()->getStatus() == JUTFader::UNKSTATUS_0) {
-        mMenuProc = COLLECT_MOVE;
+        mStatus = COLLECT_MOVE;
     }
 }
 
@@ -987,7 +987,7 @@ void dMw_c::insect_open_proc() {
         field_0x152 = 0;
         dComIfGp_setHeapLockFlag(1);
         dMw_insect_create(1);
-        mMenuProc = INSECT_AGITHA_OPEN2;
+        mStatus = INSECT_AGITHA_OPEN2;
     }
 }
 
@@ -1001,7 +1001,7 @@ void dMw_c::insect_open2_proc() {
     }
 
     if (mpMenuInsect->getStatus() == 2 && field_0x152 == 1) {
-        mMenuProc = INSECT_AGITHA_MOVE;
+        mStatus = INSECT_AGITHA_MOVE;
         field_0x152 = 0;
     }
 }
@@ -1013,14 +1013,14 @@ void dMw_c::insect_move_proc() {
         }
 
         if (mpMenuInsect->getStatus() == 3) {
-            mMenuProc = INSECT_AGITHA_CLOSE;
+            mStatus = INSECT_AGITHA_CLOSE;
         }
     }
 }
 
 void dMw_c::insect_close_proc() {
     if (mDoGph_gInf_c::getFader()->getStatus() == JUTFader::UNKSTATUS_0) {
-        mMenuProc = NO_MENU;
+        mStatus = NO_MENU;
     }
 }
 
@@ -1511,7 +1511,7 @@ int dMw_c::_create() {
     mpCStick->setWaitParm(5, 2, 3, 2, 0.9f, 0.5f, 0, 0x2000);
 
     mButtonBits = 0;
-    mMenuProc = NO_MENU;
+    mStatus = NO_MENU;
     mShowFlag = 1;
     field_0x148 = 0;
     field_0x14C = 0;
@@ -1553,7 +1553,7 @@ int dMw_c::_execute() {
     }
 
     JKRHeap* prev_heap = mDoExt_setCurrentHeap(mpHeap);
-    u8 prev_proc = mMenuProc;
+    u8 prev_proc = mStatus;
     mpStick->checkTrigger();
 
     if (dMw_isMenuRing()) {
@@ -1569,9 +1569,9 @@ int dMw_c::_execute() {
         field_0x148 = 0;
     }
 
-    (this->*move_proc[mMenuProc])();
-    if (mMenuProc != prev_proc) {
-        (this->*init_proc[mMenuProc])(prev_proc);
+    (this->*move_proc[mStatus])();
+    if (mStatus != prev_proc) {
+        (this->*init_proc[mStatus])(prev_proc);
     }
 
     if (!mDoCPd_c::getHoldLockL(PAD_1) && dMw_isButtonBit(1)) {

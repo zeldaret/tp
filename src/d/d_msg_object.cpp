@@ -1031,7 +1031,7 @@ void dMsgObject_c::selectProc() {
     if (mpScrnDraw->isSelect() || getStatusLocal() == 20) {
         mpRefer->selectMessage();
         if (dMeter2Info_isShopTalkFlag()) {
-            dComIfGp_setAStatusForce(0x2a, 0);
+            dComIfGp_setAStatusForce(BUTTON_STATUS_QUIT, 0);
         }
     }
     if (mDoCPd_c::getTrigA(0)) {
@@ -1526,7 +1526,7 @@ void dMsgObject_c::delete_screen(bool param_1) {
 }
 
 u8 dMsgObject_c::isSend() {
-    dComIfGp_setDoStatusForce(0, 0);
+    dComIfGp_setDoStatusForce(BUTTON_STATUS_NONE, 0);
     u8 mesgCancelButton = dComIfGp_checkMesgCancelButton();
     if (mesgCancelButton) {
         dComIfGp_setMesgCancelButton(0);
@@ -2112,20 +2112,20 @@ void dMsgObject_c::setButtonStatusLocal() {
     {
         if (getStatusLocal() == 0x10) {
             if (isHowlMessage()) {
-                dComIfGp_setDoStatusForce(5, 0);
-                dComIfGp_setAStatusForce(42, 0);
+                dComIfGp_setDoStatusForce(BUTTON_STATUS_HOWL, 0);
+                dComIfGp_setAStatusForce(BUTTON_STATUS_QUIT, 0);
             } else {
-                dComIfGp_setDoStatusForce(35, 0);
+                dComIfGp_setDoStatusForce(BUTTON_STATUS_NEXT, 0);
             }
         } else if (getStatusLocal() == 8 || getStatusLocal() == 9 ||
             getStatusLocal() == 20)
         {
-            dComIfGp_setDoStatusForce(0x22, 0);
+            dComIfGp_setDoStatusForce(BUTTON_STATUS_CONFIRM, 0);
         } else if (getStatusLocal() == 21) {
-            dComIfGp_setDoStatusForce(0x22, 0);
-            dComIfGp_setAStatusForce(0x2a, 0);
+            dComIfGp_setDoStatusForce(BUTTON_STATUS_CONFIRM, 0);
+            dComIfGp_setAStatusForce(BUTTON_STATUS_QUIT, 0);
         } else {
-            dComIfGp_setDoStatusForce(0x23, 0);
+            dComIfGp_setDoStatusForce(BUTTON_STATUS_NEXT, 0);
         }
     }
 }

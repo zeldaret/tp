@@ -6,12 +6,16 @@
 #include "d/actor/d_a_npc.h"
 #include "d/actor/d_a_npc4.h"
 #include "d/d_item_data.h"
+#include "d/d_menu_window.h"
 #include "d/d_meter2.h"
 #include "d/d_meter2_info.h"
 #include "d/d_meter_map.h"
 #include "d/d_msg_class.h"
 #include "d/d_msg_object.h"
 #include "d/d_meter_HIO.h"
+#if PLATFORM_WII
+#include "m_Re/m_Re_controller_pad.h"
+#endif
 
 #include <cstring>
 
@@ -173,6 +177,8 @@ enum dMeter2_ItemType {
     ItemType_HAWK_ARROW,
 };
 
+dMeter2Info_c g_meter2_info;
+
 dMeter2Info_c::dMeter2Info_c() {
     init();
     mTempBits = 0;
@@ -236,7 +242,7 @@ void dMeter2Info_c::init() {
     mFloatingFlowID = 0xFFFF;
     mFloatingMessageID = 0xFFFF;
     mFloatingMessageTimer = 0;
-    mFloatingMessageWakuVisible = 0;
+    mFloatingMessageWakuVisible = false;
 
     resetWarpStatus();
     resetPauseStatus();
@@ -277,7 +283,9 @@ void dMeter2Info_c::init() {
     mScopeZoomPointer = 0;
     mItemExplainWindowStatus = 0;
     mLifeGaugeSE = 0;
+#if VERSION != VERSION_WII_USA_R0
     mMapDrugFlag = false;
+#endif
 
     for (int i = 0; i < 3; i++) {
         if (dComIfGs_isLightDropGetFlag(i)) {
@@ -363,6 +371,10 @@ void dMeter2Info_c::getString(u32 i_stringID, char* o_string, JMSMesgEntry_c* i_
         msgRes = (u8*)mMsgResource;
     }
 
+#if PLATFORM_WII
+    i_stringID = getRevoMessage(i_stringID, (void*)msgRes);
+#endif
+
     JMSMesgInfo_c* bmg_inf = (JMSMesgInfo_c*)(msgRes + sizeof(bmg_header_t));
     u8* bmg_data = (u8*)bmg_inf + bmg_inf->header.size;
     u8* string_data = bmg_data + sizeof(bmg_section_t);  // pointer to start of message data
@@ -400,6 +412,10 @@ void dMeter2Info_c::getStringKana(u32 i_stringID, char* o_string, JMSMesgEntry_c
         msgRes = (u8*)mMsgResource;
     }
 
+#if PLATFORM_WII
+    i_stringID = getRevoMessage(i_stringID, msgRes);
+#endif
+
     JMSMesgInfo_c* bmg_inf = (JMSMesgInfo_c*)(msgRes + sizeof(bmg_header_t));
     u8* bmg_data = (u8*)bmg_inf + bmg_inf->header.size;
     u8* string_data = bmg_data + sizeof(bmg_section_t);
@@ -408,7 +424,8 @@ void dMeter2Info_c::getStringKana(u32 i_stringID, char* o_string, JMSMesgEntry_c
     for (u16 i = 0; i < bmg_inf->entry_num; i++) {
         // check if i_stringID equals the message entry "Message ID"
         if (i_stringID == bmg_inf->entries[i].message_id) {
-            string_ptr = (char*)(string_data + bmg_inf->entries[i].string_offset);  // use entry "String Offset" to get string pointer
+            // use entry "String Offset" to get string pointer
+            string_ptr = (char*)(string_data + bmg_inf->entries[i].string_offset);
 
             int var_r29 = 0;
             int sp14 = 0;
@@ -423,7 +440,7 @@ void dMeter2Info_c::getStringKana(u32 i_stringID, char* o_string, JMSMesgEntry_c
                             *o_string = string_ptr[var_r29 + spC + 6];
                             o_string++;
                         }
-                    }                    
+                    }
 
                     var_r29 += string_ptr[var_r29 + 1];
                     continue;
@@ -469,6 +486,10 @@ void dMeter2Info_c::getStringKanji(u32 i_stringID, char* o_string, JMSMesgEntry_
         msgRes = (u8*)mMsgResource;
     }
 
+#if PLATFORM_WII
+    i_stringID = getRevoMessage(i_stringID, msgRes);
+#endif
+
     JMSMesgInfo_c* bmg_inf = (JMSMesgInfo_c*)(msgRes + sizeof(bmg_header_t));
     u8* bmg_data = (u8*)bmg_inf + bmg_inf->header.size;
     u8* string_data = bmg_data + sizeof(bmg_section_t);
@@ -510,6 +531,7 @@ void dMeter2Info_c::getStringKanji(u32 i_stringID, char* o_string, JMSMesgEntry_
 }
 
 static void dummyString() {
+    // "ID for Revo =====>%d, %d"
     OS_REPORT("レボ用ＩＤ＝＝＝＝＝＞%d, %d\n");
 }
 
@@ -532,9 +554,17 @@ f32 dMeter2Info_c::getStringLength(J2DTextBox* i_textbox, char* i_string) {
             str_width = 0.0f;
         } else {
             int c = (u8)*string;
-#if VERSION == VERSION_GCN_JPN
+#if REGION_JPN
             bool unkFlag1 = false;
             if ((c >= 0x81 && c <= 0x9f) || (c >= 0xe0 && c <= 0xfc)) {
+                unkFlag1 = true;
+            }
+            if (unkFlag1) {
+                c = (c << 8) | (u8)*++string;
+            }
+#elif VERSION == VERSION_WII_USA_R0
+            bool unkFlag1 = false;
+            if ((c >= 0xA1 && c <= 0xFE) || c == 0x8E) {
                 unkFlag1 = true;
             }
             if (unkFlag1) {
@@ -552,6 +582,33 @@ f32 dMeter2Info_c::getStringLength(J2DTextBox* i_textbox, char* i_string) {
     return str_len;
 }
 
+#if PLATFORM_WII
+u32 dMeter2Info_c::getRevoMessage(u32 param_0, void* param_1) {
+    JMSMesgInfo_c* msg_info = (JMSMesgInfo_c*)((u8*)param_1 + sizeof(bmg_header_t));
+    u32 entry_num = msg_info->entry_num;
+
+    for (int i = 0; i < entry_num; i++) {
+        if (param_0 == msg_info->entries[i].message_id) {
+            char* string_ptr = (char*)msg_info + msg_info->header.size;
+            string_ptr += msg_info->entries[i].string_offset;
+            if (string_ptr[0x8] == 0x1A && string_ptr[0xA] == 0x03 && string_ptr[0xC] == 0x00) {
+                return msg_info->entries[*reinterpret_cast<u32*>(string_ptr + 0xD)].message_id;
+            }
+            return param_0;
+        }
+    }
+
+    return param_0;
+}
+
+u8 dMeter2Info_c::getMenuWindowStatus() {
+    if (mMenuWindowClass != 0) {
+        return mMenuWindowClass->getStatus();
+    }
+    return 0;
+}
+#endif
+
 f32 dMeter2Info_c::getStringLength(JUTFont* i_font, f32 param_2, f32 param_3, char* i_string) {
     f32 str_width = 0.0f;
     f32 str_len = 0.0f;
@@ -564,9 +621,17 @@ f32 dMeter2Info_c::getStringLength(JUTFont* i_font, f32 param_2, f32 param_3, ch
             str_width = 0.0f;
         } else {
             int c = (u8)*string;
-#if VERSION == VERSION_GCN_JPN
+#if REGION_JPN
             bool unkFlag1 = false;
             if ((c >= 0x81 && c <= 0x9f) || (c >= 0xe0 && c <= 0xfc)) {
+                unkFlag1 = true;
+            }
+            if (unkFlag1) {
+                c = (c << 8) | (u8)*++string;
+            }
+#elif VERSION == VERSION_WII_USA_R0
+            bool unkFlag1 = false;
+            if ((c >= 0xA1 && c <= 0xFE) || c == 0x8E) {
                 unkFlag1 = true;
             }
             if (unkFlag1) {
@@ -591,8 +656,6 @@ void dMeter2Info_c::onDirectUseItem(int param_0) {
 BOOL dMeter2Info_c::isDirectUseItem(int param_0) {
     return (mDirectUseItem & (u8)(1 << param_0)) ? TRUE : FALSE;
 }
-
-dMeter2Info_c g_meter2_info;
 
 int dMeter2Info_c::setMeterString(s32 i_string) {
     if (mMeterString != 0) {
@@ -804,7 +867,11 @@ int dMeter2Info_c::readItemTexture(u8 i_itemNo, void* i_texBuf1, J2DPicture* i_p
     int tex_num = 0;
 
     if (i_texBuf1 != NULL) {
-        if ((i_itemNo == dItemNo_KANTERA_e && dComIfGs_getOil() == 0) || i_itemNo == dItemNo_KANTERA2_e) {
+        if ((i_itemNo == dItemNo_KANTERA_e && dComIfGs_getOil() == 0)
+#if !PLATFORM_WII || (VERSION == VERSION_WII_USA_R2 || VERSION == VERSION_WII_JPN)
+            || i_itemNo == dItemNo_KANTERA2_e
+#endif
+        ) {
             u32 size = JKRReadIdxResource(i_texBuf1, 0xC00, ITEMICON_BTI_IM_KANTERA_OFF_48, dComIfGp_getItemIconArchive());
             JUT_ASSERT(1166, size != 0);
         } else if (i_itemNo == dItemNo_COPY_ROD_e && !daPy_getPlayerActorClass()->checkCopyRodTopUse() && param_9 == -1) {
@@ -1009,7 +1076,7 @@ s16 dMeter2Info_c::get4thTexture(u8 i_itemType) {
 
 void dMeter2Info_c::set1stColor(u8 i_itemType, J2DPicture* i_pic) {
     // TODO: probably some way to rectify this for both versions
-    #if VERSION == VERSION_SHIELD_DEBUG
+    #if PLATFORM_WII || PLATFORM_SHIELD
     static JUtility::TColor const black_color[37] = {
         JUtility::TColor(0x00, 0x00, 0x00, 0x00), JUtility::TColor(0x00, 0x60, 0x00, 0x00), JUtility::TColor(0x00, 0x00, 0xC0, 0x00),
         JUtility::TColor(0xA0, 0x60, 0x00, 0x00), JUtility::TColor(0xA0, 0x00, 0x00, 0x00), JUtility::TColor(0x40, 0x00, 0x60, 0x00),
@@ -1213,7 +1280,7 @@ void dMeter2Info_c::set1stColor(u8 i_itemType, J2DPicture* i_pic) {
 
 void dMeter2Info_c::set2ndColor(u8 i_itemType, J2DPicture* i_pic) {
     // TODO: probably some way to rectify this for both versions
-    #if VERSION == VERSION_SHIELD_DEBUG
+    #if PLATFORM_WII || PLATFORM_SHIELD
     static JUtility::TColor const black_color[37] = {
         JUtility::TColor(0x00, 0x00, 0x00, 0x00), JUtility::TColor(0x00, 0x00, 0x00, 0x00), JUtility::TColor(0x00, 0x00, 0x00, 0x00),
         JUtility::TColor(0x00, 0x00, 0x00, 0x00), JUtility::TColor(0x00, 0x00, 0x00, 0x00), JUtility::TColor(0x00, 0x00, 0x00, 0x00),
@@ -1504,7 +1571,7 @@ void dMeter2Info_c::setMiniGameItem(u8 i_minigameFlag) {
 
     mMiniGameItemSetFlag = i_minigameFlag;
 
-    for (int i = 0; i < 2; i++) {
+    for (int i = 0; i < SELECT_ITEMS_COUNT; i++) {
         mSaveMixItemIdx[i] = dComIfGs_getMixItemIndex(i);
         mSaveSelItemIdx[i] = dComIfGs_getSelectItemIndex(i);
     }
@@ -1515,7 +1582,7 @@ void dMeter2Info_c::setMiniGameItem(u8 i_minigameFlag) {
     mSaveBombItem = dComIfGs_getItem((u8)(mRentalBombBagIdx + SLOT_15), false);
 
     if (item_set) {
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < SELECT_ITEMS_COUNT; i++) {
             dComIfGs_setMixItemIndex(i, mSaveMixItemIdxMG[i]);
             dComIfGs_setSelectItemIndex(i, mSaveSelItemIdxMG[i]);
         }
@@ -1533,22 +1600,35 @@ void dMeter2Info_c::setMiniGameItem(u8 i_minigameFlag) {
     if (mMiniGameItemSetFlag != 3) {
         dComIfGs_setItem(SLOT_4, dItemNo_BOW_e);
         dComIfGp_setItem(SLOT_4, dItemNo_BOW_e);
+#if PLATFORM_WII
+        for (int i = 0; i < 3; i++) {
+            dComIfGs_setMixItemIndex((u8)i, 0xFF);
+            dComIfGs_setSelectItemIndex((u8)i, 0xFF);
+        }
+        dComIfGs_setMixItemIndex(SELECT_ITEM_B, SLOT_4);
+        dComIfGs_setSelectItemIndex(SELECT_ITEM_B, (u8)(mRentalBombBagIdx + SLOT_15));
+#else
         dComIfGs_setMixItemIndex(SELECT_ITEM_Y, 0xFF);
         dComIfGs_setSelectItemIndex(SELECT_ITEM_Y, 0xFF);
         dComIfGs_setMixItemIndex(SELECT_ITEM_X, SLOT_4);
         dComIfGs_setSelectItemIndex(SELECT_ITEM_X, (u8)(mRentalBombBagIdx + SLOT_15));
+#endif
     }
 
     if (!item_set) {
         dComIfGs_setBombNum(mRentalBombBagIdx, 30);
+#if VERSION == VERSION_WII_USA_R0
+        dComIfGs_setArrowNum(30);
+#else
         dComIfGs_setArrowNum(dComIfGs_getArrowMax());
+#endif
     }
 }
 
 void dMeter2Info_c::resetMiniGameItem(bool i_saveItem) {
     if (mMiniGameItemSetFlag != 0) {
         if (i_saveItem) {
-            for (int i = 0; i < 2; i++) {
+            for (int i = 0; i < SELECT_ITEMS_COUNT; i++) {
                 mSaveMixItemIdxMG[i] = dComIfGs_getMixItemIndex(i);
                 mSaveSelItemIdxMG[i] = dComIfGs_getSelectItemIndex(i);
             }
@@ -1559,7 +1639,7 @@ void dMeter2Info_c::resetMiniGameItem(bool i_saveItem) {
             mSaveBombItemMG = dComIfGs_getItem((u8)(mRentalBombBagIdx + SLOT_15), false);
         }
 
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < SELECT_ITEMS_COUNT; i++) {
             dComIfGs_setMixItemIndex(i, mSaveMixItemIdx[i]);
             dComIfGs_setSelectItemIndex(i, mSaveSelItemIdx[i]);
         }
@@ -1725,12 +1805,42 @@ void dMeter2Info_setShield(u8 i_itemId, bool i_offItemBit) {
 }
 
 bool dMeter2Info_is2DActiveTouchArea() {
+#if PLATFORM_WII
+    if (dMeter2Info_getMeterClass() != NULL) {
+        int inside_result = dMeter2Info_getMeterClass()->getTouchAreaInsideCheck();
+        if (inside_result > 0) {
+            if (inside_result > 2) {
+                return true;
+            } else {
+                f32 temp = dMeter2Info_getMeterClass()->field_0x174[inside_result - 1];
+                if (temp == 0.0f) {
+                    return true;
+                }
+            }
+        }
+    }
+
     return false;
+#else
+    return false;
+#endif
 }
+
+#if PLATFORM_WII
+u8 dMeter2Info_get2DActiveTouchArea() {
+    return dMeter2Info_getMeterClass()->getTouchAreaInsideCheck();
+}
+#endif
 
 bool dMeter2Info_isMapOpenCheck() {
     return dMeter2Info_getMeterMapClass()->isMapOpenCheck();
 }
+
+#if PLATFORM_WII
+bool dMeter2Info_isAreaMapOpenCheck() {
+    return dMeter2Info_getMeterMapClass()->isAreaMapOpenCheck();
+}
+#endif
 
 bool dMeter2Info_isItemOpenCheck() {
     if (daPy_getPlayerActorClass()->checkCanoeSlider() || daPy_getPlayerActorClass()->getSumouMode() || dMeter2Info_isSub2DStatus(1)) {
@@ -1856,7 +1966,9 @@ int dMeter2Info_recieveLetter() {
 #if WIDESCREEN_SUPPORT
 f32 dMeter2Info_getWide2DPosX(f32* param_0) {
     J2DOrthoGraph graf(0.0f, 0.0f, 640.0f, 456.0f, -1.0f, 1.0f);
-    graf.setOrtho(mDoGph_gInf_c::getMinXF(), mDoGph_gInf_c::getMinYF(), mDoGph_gInf_c::getWidthF(), mDoGph_gInf_c::getHeightF(), -1.0f, 1.0f);
+    graf.setOrtho(mDoGph_gInf_c::getMinXF(), mDoGph_gInf_c::getMinYF(),
+                  mDoGph_gInf_c::getWidthF(), mDoGph_gInf_c::getHeightF(),
+                  -1.0f, 1.0f);
     JGeometry::TBox2<f32>* bounds = graf.getBounds();
     const JGeometry::TBox2<f32>* ortho = graf.getOrtho();
 
@@ -1880,8 +1992,122 @@ void dMeter2Info_offWide2D() {
 #endif
 #endif
 
-void dMeter2Info_set2DVibrationT() {}
+#if VERSION == VERSION_WII_USA_KIOSK
+void dMeter2Info_setItemE3INSIDE0() {
+    for (int i = 0; i < 24; i++) {
+        dComIfGs_setItem(i, dItemNo_NONE_e);
+    }
 
-void dMeter2Info_set2DVibration() {}
+    dComIfGs_onEventBit(dSv_event_flag_c::F_0338);
+    dComIfGs_onEventBit(dSv_event_flag_c::F_0339);
 
-void dMeter2Info_set2DVibrationM() {}
+    dComIfGs_onItemFirstBit(dItemNo_L2_KEY_PIECES1_e);
+    dComIfGs_onItemFirstBit(dItemNo_L2_KEY_PIECES2_e);
+    dComIfGs_onItemFirstBit(dItemNo_L2_KEY_PIECES3_e);
+    dComIfGs_onItemFirstBit(dItemNo_LV2_BOSS_KEY_e);
+    dComIfGs_onItemFirstBit(dItemNo_BOW_e);
+    dComIfGs_onItemFirstBit(dItemNo_HOOKSHOT_e);
+    dComIfGs_onItemFirstBit(dItemNo_BOOMERANG_e);
+    dComIfGs_onItemFirstBit(dItemNo_RED_BOTTLE_e);
+    dComIfGs_onItemFirstBit(dItemNo_OIL_BOTTLE_e);
+    dComIfGs_onItemFirstBit(dItemNo_FAIRY_e);
+    dComIfGs_onItemFirstBit(dItemNo_HVY_BOOTS_e);
+
+    dComIfGs_setItem(4, dItemNo_BOW_e);
+    dComIfGs_setItem(9, dItemNo_HOOKSHOT_e);
+    dComIfGs_setItem(0, dItemNo_BOOMERANG_e);
+    dComIfGs_setItem(13, dItemNo_FAIRY_e);
+    dComIfGs_setItem(12, dItemNo_OIL_BOTTLE_e);
+    dComIfGs_setItem(11, dItemNo_RED_BOTTLE_e);
+    dComIfGs_setItem(1, dItemNo_KANTERA_e);
+    dComIfGs_setItem(3, dItemNo_HVY_BOOTS_e);
+
+    dComIfGs_setMixItemIndex(0, dItemNo_NONE_e);
+    dComIfGs_setMixItemIndex(1, dItemNo_NONE_e);
+    dComIfGs_setMixItemIndex(2, dItemNo_NONE_e);
+    dComIfGs_setMixItemIndex(3, dItemNo_NONE_e);
+
+    dComIfGs_setSelectItemIndex(0, dItemNo_HEART_e);
+    dComIfGs_setSelectItemIndex(1, dItemNo_L_MAGIC_e);
+    dComIfGs_setSelectItemIndex(2, dItemNo_YELLOW_RUPEE_e);
+    dComIfGs_setSelectItemIndex(3, dItemNo_RED_RUPEE_e);
+
+    dComIfGs_setRupee(0);
+    dComIfGs_setMaxLife(25);
+    dComIfGs_setLife(12);
+    dComIfGs_setArrowNum(60);
+    dComIfGs_setArrowMax(60);
+    dComIfGs_setMaxOil(21600);
+    dComIfGs_setOil(21600);
+    dComIfGp_setMaxOxygen(600);
+    dComIfGp_setOxygen(600);
+
+    dComIfGs_getSaveData()->getSave(17).getBit().onDungeonItemBossKey();
+
+    dComIfGs_onEventBit(dSv_event_flag_c::M_067);
+
+    if (strcmp(dComIfGp_getNextStageName(), "D_MN54") == 0) {
+        g_meter2_info.onTempBit(0);
+    }
+}
+#endif
+
+void dMeter2Info_set2DVibrationT() {
+#if PLATFORM_WII
+    if (!dComIfGp_getNowVibration()) {
+        return;
+    }
+
+    static u8 wave_data[4];
+
+    if (dComIfGp_isPauseFlag()) {
+        wave_data[0] = 0x0;
+        wave_data[1] = 0x3;
+        wave_data[2] = 0x80;
+        wave_data[3] = 0x0;
+        mReCPd::startMoterWave(0, wave_data, false);
+    } else {
+        dComIfGp_getVibration().StartShock(VIBMODE_S_POWER1, 1, cXyz(0.0f, 1.0f, 0.0f));
+    }
+#endif
+}
+
+void dMeter2Info_set2DVibration() {
+#if PLATFORM_WII
+    if (!dComIfGp_getNowVibration()) {
+        return;
+    }
+
+    static u8 wave_data[4];
+
+    if (dComIfGp_isPauseFlag()) {
+        wave_data[0] = 0x0;
+        wave_data[1] = 0x4;
+        wave_data[2] = 0xC0;
+        wave_data[3] = 0x0;
+        mReCPd::startMoterWave(0, wave_data, false);
+    } else {
+        dComIfGp_getVibration().StartShock(VIBMODE_S_FOR2D, 1, cXyz(0.0f, 1.0f, 0.0f));
+    }
+#endif
+}
+
+void dMeter2Info_set2DVibrationM() {
+#if PLATFORM_WII
+    if (!dComIfGp_getNowVibration()) {
+        return;
+    }
+
+    static u8 wave_data[4];
+
+    if (dComIfGp_isPauseFlag()) {
+        wave_data[0] = 0x0;
+        wave_data[1] = 0x6;
+        wave_data[2] = 0xE8;
+        wave_data[3] = 0x0;
+        mReCPd::startMoterWave(0, wave_data, false);
+    } else {
+        dComIfGp_getVibration().StartShock(VIBMODE_S_POWER3, 1, cXyz(0.0f, 1.0f, 0.0f));
+    }
+#endif
+}

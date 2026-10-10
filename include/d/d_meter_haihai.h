@@ -39,7 +39,7 @@ public:
     virtual int _delete();
 
     void onPlayAllAnime() { mPlayAnimFlags = 0xFF; }
-    bool checkPlayAnime(int i_flag) { return mPlayAnimFlags & (1 << i_flag); }
+    bool checkPlayAnime(int i_flag) { return (mPlayAnimFlags & (u8)(1 << i_flag)) ? true : false; }
 
     /* 0x04 */ J2DScreen* mpHaihaiScreen;
     /* 0x08 */ CPaneMgr* mpParent;

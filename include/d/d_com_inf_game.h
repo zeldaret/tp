@@ -311,9 +311,9 @@ public:
     /* 0x04EED */ u8 field_0x4eed;
     /* 0x04EEE */ u8 m3DStatus;
     /* 0x04EEF */ u8 mNunDirectionForce;
-    /* 0x04EF0 */ u8 field_0x4ef0;  // related to NunStatus
+    /* 0x04EF0 */ u8 mNunDirection;
     /* 0x04EF1 */ u8 mRemoConDirectionForce;
-    /* 0x04EF2 */ u8 field_0x4ef2;  // related to RemoConStatus
+    /* 0x04EF2 */ u8 mRemoConDirection;
     /* 0x04EF3 */ u8 field_0x4ef3[2];
     /* 0x04EF5 */ u8 m3DDirection;
     /* 0x04EF6 */ u8 m3DDirectionForce;
@@ -671,10 +671,11 @@ public:
         mItemInfo.mASetFlagForce = flag;
     }
     u8 getNunStatus() { return mItemInfo.mNunStatus; }
+    u8 getNunDirection() { return mItemInfo.mNunDirection; }
     bool isNunSetFlag(u8 flag) { return (mItemInfo.mNunSetFlag & flag) ? true : false; }
     void setNunStatus(u8 status, u8 direction, u8 flag) {
         mItemInfo.mNunStatus = status;
-        mItemInfo.field_0x4ef0 = direction;
+        mItemInfo.mNunDirection = direction;
         mItemInfo.mNunSetFlag = flag;
     }
     u8 getNunStatusForce() { return mItemInfo.mNunStatus; }
@@ -697,10 +698,11 @@ public:
         mItemInfo.mBottleSetFlagForce = flag;
     }
     u8 getRemoConStatus() { return mItemInfo.mRemoConStatus; }
+    u8 getRemoConDirection() { return mItemInfo.mRemoConDirection; }
     bool isRemoConSetFlag(u8 flag) { return (mItemInfo.mRemoConSetFlag & flag) ? true : false; }
     void setRemoConStatus(u8 status, u8 direction, u8 flag) {
         mItemInfo.mRemoConStatus = status;
-        mItemInfo.field_0x4ef2 = direction;
+        mItemInfo.mRemoConDirection = direction;
         mItemInfo.mRemoConSetFlag = flag;
     }
     u8 getRemoConStatusForce() { return mItemInfo.mBottleStatusForce; }
@@ -847,6 +849,8 @@ public:
     }
     u8 getDirection() { return mItemInfo.mDirection; }
     void setDirection(u8 i_dir) { mItemInfo.mDirection = i_dir; }
+    u8 getUnk0x4F4A() { return mItemInfo.field_0x4f4a; }
+    void setUnk0x4F4A(u8 param_0) { mItemInfo.field_0x4f4a = param_0; }
     u8 checkMesgCancelButton() { return mItemInfo.mMesgCancelButton; }
     void setMesgCancelButton(u8 button) { mItemInfo.mMesgCancelButton = button; }
     u8 getGameoverStatus() { return mItemInfo.mGameoverStatus; }
@@ -3754,6 +3758,10 @@ inline u8 dComIfGp_getNunStatus() {
     return g_dComIfG_gameInfo.play.getNunStatus();
 }
 
+inline u8 dComIfGp_getNunDirection() {
+    return g_dComIfG_gameInfo.play.getNunDirection();
+}
+
 inline bool dComIfGp_isNunSetFlag(u8 flag) {
     return g_dComIfG_gameInfo.play.isNunSetFlag(flag);
 }
@@ -3800,6 +3808,10 @@ inline void dComIfGp_setBottleStatusForce(u8 status, u8 flag) {
 
 inline u8 dComIfGp_getRemoConStatus() {
     return g_dComIfG_gameInfo.play.getRemoConStatus();
+}
+
+inline u8 dComIfGp_getRemoConDirection() {
+    return g_dComIfG_gameInfo.play.getRemoConDirection();
 }
 
 inline bool dComIfGp_isRemoConSetFlag(u8 flag) {
@@ -3886,7 +3898,7 @@ inline u8 dComIfGp_getCStickDirection() {
     return g_dComIfG_gameInfo.play.getCStickDirection();
 }
 
-inline bool dComIfGp_isCStickSetFlag(u8 flag) {
+inline BOOL dComIfGp_isCStickSetFlag(u8 flag) {
     return g_dComIfG_gameInfo.play.isCStickSetFlag(flag);
 }
 
@@ -4116,6 +4128,14 @@ inline u8 dComIfGp_getAdvanceDirection() {
 
 inline void dComIfGp_setAdvanceDirection(u8 i_dir) {
     g_dComIfG_gameInfo.play.setDirection(i_dir);
+}
+
+inline u8 dComIfGp_getUnk0x4F4A() {
+    return g_dComIfG_gameInfo.play.getUnk0x4F4A();
+}
+
+inline void dComIfGp_setUnk0x4F4A(u8 param_0) {
+    g_dComIfG_gameInfo.play.setUnk0x4F4A(param_0);
 }
 
 inline u8 dComIfGp_checkMesgCancelButton() {

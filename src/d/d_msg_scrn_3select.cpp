@@ -40,25 +40,44 @@ dMsgScrn3Select_c::dMsgScrn3Select_c() {
     mpScreen = new J2DScreen();
     JUT_ASSERT(0, mpScreen != NULL);
 
+#if PLATFORM_WII
+    bool fg = mpScreen->setPriority("zelda_window_3menu_revo.blo", 0x20000, dComIfGp_getMsgArchive(0));
+#else
     bool fg = mpScreen->setPriority("zelda_window_3menu.blo", 0x20000, dComIfGp_getMsgArchive(0));
+#endif
     JUT_ASSERT(0, fg != false);
     dPaneClass_showNullPane(mpScreen);
 
     OSInitFastCast();
 
+#if PLATFORM_WII
+    mpAnmBck = (J2DAnmTransform*)J2DAnmLoaderDataBase::load(
+        JKRGetNameResource("zelda_window_3menu_revo.bck", dComIfGp_getMsgArchive(0)));
+#else
     mpAnmBck = (J2DAnmTransform*)J2DAnmLoaderDataBase::load(
         JKRGetNameResource("zelda_window_3menu.bck", dComIfGp_getMsgArchive(0)));
+#endif
     mBckFrame = 0.0f;
     mBckFrame = 190.0f;
     mOffsetX = 0.0f;
 
+#if PLATFORM_WII
+    mpAnmBpk = (J2DAnmColorKey*)J2DAnmLoaderDataBase::load(
+        JKRGetNameResource("zelda_window_3menu_revo.bpk", dComIfGp_getMsgArchive(0)));
+#else
     mpAnmBpk = (J2DAnmColorKey*)J2DAnmLoaderDataBase::load(
         JKRGetNameResource("zelda_window_3menu.bpk", dComIfGp_getMsgArchive(0)));
+#endif
     mpAnmBpk->searchUpdateMaterialID(mpScreen);
     mBpkFrame = 0.0f;
 
+#if PLATFORM_WII
+    mpAnmBtk = (J2DAnmTextureSRTKey*)J2DAnmLoaderDataBase::load(
+        JKRGetNameResource("zelda_window_3menu_revo.btk", dComIfGp_getMsgArchive(0)));
+#else
     mpAnmBtk = (J2DAnmTextureSRTKey*)J2DAnmLoaderDataBase::load(
         JKRGetNameResource("zelda_window_3menu.btk", dComIfGp_getMsgArchive(0)));
+#endif
     mpAnmBtk->searchUpdateMaterialID(mpScreen);
     mBtkFrame = 0.0f;
 
@@ -380,7 +399,11 @@ void dMsgScrn3Select_c::draw(f32 i_xPos, f32 i_yPos) {
         Vec center = mpCursor_c[mSelNo]->getGlobalVtxCenter(true, 0);
         mpSelectCursor->setPos(mOffsetX + (mCursorPos[mSelNo].x + var_f31), center.y,
                                mpCursor_c[mSelNo]->getPanePtr(), true);
+#if PLATFORM_WII
+        mpSelectCursor->setParam(0.82f, 0.75f, 0.05f, 0.5f, 0.5f);
+#else
         mpSelectCursor->setParam(0.9f, 0.7f, 0.05f, 0.5f, 0.5f);
+#endif
         mpSelectCursor->draw();
     }
 }

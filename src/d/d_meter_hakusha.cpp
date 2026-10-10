@@ -31,25 +31,25 @@ int dMeterHakusha_c::_create() {
 
     for (int i = 0; i < 6; i++) {
         mpHakushaPos[i] = new CPaneMgr(field_0x004, haku_tag[i], 0, NULL);
-        JUT_ASSERT(0, mpHakushaPos[i] != NULL);
+        JUT_ASSERT(64, mpHakushaPos[i] != NULL);
     }
 
     mpHakushaParent = new CPaneMgr(field_0x004, MULTI_CHAR('hakunall'), 0, NULL);
-    JUT_ASSERT(0, mpHakushaParent != NULL);
+    JUT_ASSERT(68, mpHakushaParent != NULL);
 
     mpHakushaScreen = new J2DScreen();
-    JUT_ASSERT(0, mpHakushaScreen != NULL);
+    JUT_ASSERT(71, mpHakushaScreen != NULL);
 
     bool fg = mpHakushaScreen->setPriority("zelda_game_image_hakusha_parts.blo", 0x20000,
                                            dComIfGp_getMain2DArchive());
-    JUT_ASSERT(0, fg != false);
+    JUT_ASSERT(75, fg != false);
     dPaneClass_showNullPane(mpHakushaScreen);
 
     mpHakushaOn = new CPaneMgr(mpHakushaScreen, MULTI_CHAR('haku_n'), 2, NULL);
-    JUT_ASSERT(0, mpHakushaOn != NULL);
+    JUT_ASSERT(79, mpHakushaOn != NULL);
 
     mpHakushaOff = new CPaneMgr(mpHakushaScreen, MULTI_CHAR('haku_b_n'), 2, NULL);
-    JUT_ASSERT(0, mpHakushaOff != NULL);
+    JUT_ASSERT(81, mpHakushaOff != NULL);
 
     mpHakushaOn->setAlphaRate(0.0f);
     mpHakushaOff->setAlphaRate(0.0f);
@@ -67,15 +67,20 @@ int dMeterHakusha_c::_create() {
     mHakushaNum = dMeter2Info_getHorseLifeCount();
 
     mpButtonScreen = new J2DScreen();
-    JUT_ASSERT(0, mpButtonScreen != NULL);
+    JUT_ASSERT(100, mpButtonScreen != NULL);
 
-    fg = mpButtonScreen->setPriority("zelda_game_image_hakusha_a_btn.blo", 0x20000,
-                                     dComIfGp_getMain2DArchive());
-    JUT_ASSERT(0, fg != false);
+    fg = mpButtonScreen->setPriority(
+#if PLATFORM_WII
+        "zelda_game_image_hakusha_a_btn_revo.blo",
+#else
+        "zelda_game_image_hakusha_a_btn.blo",
+#endif
+        0x20000, dComIfGp_getMain2DArchive());
+    JUT_ASSERT(110, fg != false);
     dPaneClass_showNullPane(mpButtonScreen);
 
     mpButtonA = new CPaneMgr(mpButtonScreen, MULTI_CHAR('abtn_n'), 2, NULL);
-    JUT_ASSERT(0, mpButtonA != NULL);
+    JUT_ASSERT(114, mpButtonA != NULL);
     mpButtonA->show();
     mpButtonA->setAlphaRate(0.0f);
 
@@ -83,11 +88,15 @@ int dMeterHakusha_c::_create() {
     field_0x100 = g_drawHIO.mButtonAHorsePosX;
     field_0x104 = g_drawHIO.mButtonAHorsePosY;
 
+#if PLATFORM_GCN
     if (strcmp(dComIfGp_getStartStageName(), "F_SP108") == 0) {
         mpHakushaParent->paneTrans(g_drawHIO.mSpurBarPosX + 28.4f, g_drawHIO.mSpurBarPosY);
     } else {
         mpHakushaParent->paneTrans(g_drawHIO.mSpurBarPosX, g_drawHIO.mSpurBarPosY);
     }
+#else
+    mpHakushaParent->paneTrans(g_drawHIO.mSpurBarPosX, g_drawHIO.mSpurBarPosY);
+#endif
     mpHakushaParent->scale(g_drawHIO.mSpurBarScale, g_drawHIO.mSpurBarScale);
 
     mpButtonA->paneTrans(g_drawHIO.mButtonAHorsePosX, g_drawHIO.mButtonAHorsePosY);
@@ -115,13 +124,13 @@ void dMeterHakusha_c::draw() {
     mpButtonScreen->draw(0.0f, 0.0f, graf_ctx);
 
     for (int i = 0; i < getHakushaNum(); i++) {
-        if (mHakushaData[i].flags & 1) {
+        if ((mHakushaData[i].flags & 1) ? TRUE : FALSE) {
             mpHakushaOn->show();
         } else {
             mpHakushaOn->hide();
         }
 
-        if (mHakushaData[i].flags & 2) {
+        if ((mHakushaData[i].flags & 2) ? TRUE : FALSE) {
             mpHakushaOff->show();
         } else {
             mpHakushaOff->hide();
@@ -181,12 +190,16 @@ int dMeterHakusha_c::_delete() {
 }
 
 void dMeterHakusha_c::alphaAnimeHakusha(u32 i_flags) {
-    if ((i_flags & 0x4000) || (i_flags & 0x40) || (i_flags & 0x100000) || (i_flags & 0x1000) ||
+    if ((i_flags & 0x4000) || (i_flags & 0x40) || (i_flags & 0x100000) ||
+#if PLATFORM_GCN
+        (i_flags & 0x1000) ||
+#endif
         (i_flags & 8) || (i_flags & 0x10) || (i_flags & 0x20) || (i_flags & 0x04000000) ||
         (i_flags & 0x08000000) || (i_flags & 0x01000000) || !(i_flags & 0x02000000) ||
         (strcmp(dComIfGp_getStartStageName(), "F_SP00") == 0 &&
          dComIfG_play_c::getLayerNo(0) == 4) ||
-        (dComIfGp_getDoStatus() != 9 && dComIfGp_getDoStatus() != 0))
+        (dComIfGp_getDoStatus() != BUTTON_STATUS_DASH &&
+         dComIfGp_getDoStatus() != BUTTON_STATUS_NONE))
     {
         setAlphaHakushaAnimeMin();
         setAlphaButtonAnimeMin();
@@ -194,7 +207,7 @@ void dMeterHakusha_c::alphaAnimeHakusha(u32 i_flags) {
     }
 
     setAlphaHakushaAnimeMax();
-    if (dComIfGp_getDoStatus() == 9) {
+    if (dComIfGp_getDoStatus() == BUTTON_STATUS_DASH) {
         setAlphaButtonAnimeMax();
     } else {
         setAlphaButtonAnimeMin();
@@ -242,29 +255,29 @@ void dMeterHakusha_c::updateHakusha() {
         mHakushaData[i].pos_y = abtn_y_offset;
 
         if (mpHakushaOn->getAlpha() == 0) {
-            mHakushaData[i].flags &= ~0x1;
+            mHakushaData[i].flags &= (u8)~0x1;
         } else if (i < dMeter2Info_getHorseLifeCount() ||
                    (mHakushaAnimFrame[i] != 0.0f && mHakushaAnimFrame[i] <= 20.0f &&
                     mHakushaStatus[i] == 0) ||
                    (mHakushaAnimFrame[i] != 0.0f && mHakushaAnimFrame[i] > 20.0f &&
                     mHakushaStatus[i] == 1))
         {
-            mHakushaData[i].flags |= 0x1;
+            mHakushaData[i].flags |= (u8)0x1;
         } else {
-            mHakushaData[i].flags &= ~0x1;
+            mHakushaData[i].flags &= (u8)~0x1;
         }
 
         if (mpHakushaOff->getAlpha() == 0) {
-            mHakushaData[i].flags &= ~0x2;
+            mHakushaData[i].flags &= ~(u8)0x2;
         } else if (i < dMeter2Info_getHorseLifeCount() ||
                    (mHakushaAnimFrame[i] != 0.0f && mHakushaAnimFrame[i] <= 20.0f &&
                     mHakushaStatus[i] == 0) ||
                    (mHakushaAnimFrame[i] != 0.0f && mHakushaAnimFrame[i] > 20.0f &&
                     mHakushaStatus[i] == 1))
         {
-            mHakushaData[i].flags &= ~0x2;
+            mHakushaData[i].flags &= ~(u8)0x2;
         } else {
-            mHakushaData[i].flags |= 0x2;
+            mHakushaData[i].flags |= (u8)0x2;
         }
 
         abtn_x_offset += temp_f28;
@@ -277,11 +290,15 @@ void dMeterHakusha_c::updateHakusha() {
         field_0x100 = g_drawHIO.mButtonAHorsePosX;
         field_0x104 = g_drawHIO.mButtonAHorsePosY;
 
+#if PLATFORM_GCN
         if (strcmp(dComIfGp_getStartStageName(), "F_SP108") == 0) {
             mpHakushaParent->paneTrans(g_drawHIO.mSpurBarPosX + 28.4f, g_drawHIO.mSpurBarPosY);
         } else {
             mpHakushaParent->paneTrans(g_drawHIO.mSpurBarPosX, g_drawHIO.mSpurBarPosY);
         }
+#else
+        mpHakushaParent->paneTrans(g_drawHIO.mSpurBarPosX, g_drawHIO.mSpurBarPosY);
+#endif
         mpHakushaParent->scale(g_drawHIO.mSpurBarScale, g_drawHIO.mSpurBarScale);
 
         mpButtonA->paneTrans(g_drawHIO.mButtonAHorsePosX, g_drawHIO.mButtonAHorsePosY);

@@ -49,7 +49,8 @@ int dMeterButton_c::_execute(u32 i_flags, bool i_drawA, bool i_drawB, bool i_dra
     updateText(i_flags);
     field_0x4b0 = 0;
 
-    if (dComIfGs_isTmpBit((u16)dSv_event_tmp_flag_c::tempBitLabels[49]) && !dMsgObject_isTalkNowCheck())
+    if (dComIfGs_isTmpBit((u16)dSv_event_tmp_flag_c::tempBitLabels[49]) &&
+        !dMsgObject_isTalkNowCheck())
     {
         i_flags &= ~0x4000;
     }
@@ -85,28 +86,43 @@ int dMeterButton_c::_execute(u32 i_flags, bool i_drawA, bool i_drawB, bool i_dra
     }
 
     for (int i = 0; i < 2; i++) {
-        if ((draw_a && field_0x4be[i] == BUTTON_A_e) || (draw_b && field_0x4be[i] == BUTTON_B_e) ||
-            (draw_r && field_0x4be[i] == BUTTON_R_e) || (draw_z && field_0x4be[i] == BUTTON_Z_e) ||
-            (draw_3d && field_0x4be[i] == BUTTON_3D_e) ||
-            (draw_c && field_0x4be[i] == BUTTON_C_e) || (draw_s && field_0x4be[i] == BUTTON_S_e) ||
-            (draw_x && field_0x4be[i] == BUTTON_X_e) || (draw_y && field_0x4be[i] == BUTTON_Y_e) ||
-            (draw_nun && field_0x4be[i] == BUTTON_NUN_e) ||
-            (draw_remo && field_0x4be[i] == BUTTON_REMO_e) ||
-            (draw_remo2 && field_0x4be[i] == BUTTON_REMO2_e) ||
-            (draw_ar && field_0x4be[i] == BUTTON_AR_e) ||
-            (draw_3db && field_0x4be[i] == BUTTON_3DB_e) ||
-            (draw_nure && field_0x4be[i] == BUTTON_NURE_e) ||
-            (draw_reel && field_0x4be[i] == BUTTON_REEL_e) ||
-            (draw_reel2 && field_0x4be[i] == BUTTON_REEL2_e) ||
-            (draw_ab && field_0x4be[i] == BUTTON_AB_e) ||
-            (draw_tate && field_0x4be[i] == BUTTON_TATE_e) ||
-            (draw_nunZ && field_0x4be[i] == BUTTON_NUNZ_e) ||
-            (draw_nunC && field_0x4be[i] == BUTTON_NUNC_e) ||
-            (draw_bin && field_0x4be[i] == BUTTON_BIN_e))
+#if PLATFORM_WII
+#endif
         {
-            setAlphaButtonOAnimeMax(i);
-        } else {
-            setAlphaButtonOAnimeMin(i);
+            if ((draw_a && field_0x4be[i] == BUTTON_A_e) ||
+                (draw_b && field_0x4be[i] == BUTTON_B_e) ||
+                (draw_r && field_0x4be[i] == BUTTON_R_e) ||
+                (draw_z && field_0x4be[i] == BUTTON_Z_e) ||
+                (draw_3d && field_0x4be[i] == BUTTON_3D_e) ||
+                (draw_c && field_0x4be[i] == BUTTON_C_e) ||
+                (draw_s && field_0x4be[i] == BUTTON_S_e) ||
+                (draw_x && field_0x4be[i] == BUTTON_X_e) ||
+                (draw_y && field_0x4be[i] == BUTTON_Y_e) ||
+                (draw_nun && field_0x4be[i] == BUTTON_NUN_e) ||
+                (draw_remo && field_0x4be[i] == BUTTON_REMO_e) ||
+                (draw_remo2 && field_0x4be[i] == BUTTON_REMO2_e) ||
+                (draw_ar && field_0x4be[i] == BUTTON_AR_e) ||
+                (draw_3db && field_0x4be[i] == BUTTON_3DB_e) ||
+                (draw_nure && field_0x4be[i] == BUTTON_NURE_e) ||
+                (draw_reel && field_0x4be[i] == BUTTON_REEL_e) ||
+                (draw_reel2 && field_0x4be[i] == BUTTON_REEL2_e) ||
+                (draw_ab && field_0x4be[i] == BUTTON_AB_e) ||
+                (draw_tate && field_0x4be[i] == BUTTON_TATE_e) ||
+                (draw_nunZ && field_0x4be[i] == BUTTON_NUNZ_e) ||
+                (draw_nunC && field_0x4be[i] == BUTTON_NUNC_e) ||
+                (draw_bin && field_0x4be[i] == BUTTON_BIN_e))
+            {
+#if PLATFORM_WII
+                if (field_0x4be[i] == BUTTON_3D_e && dComIfGp_is3DSetFlag(0x8)) {
+                    setAlphaButtonOAnimeMin(i);
+                } else
+#endif
+                {
+                    setAlphaButtonOAnimeMax(i);
+                }
+            } else {
+                setAlphaButtonOAnimeMin(i);
+            }
         }
     }
 
@@ -180,8 +196,179 @@ int dMeterButton_c::_execute(u32 i_flags, bool i_drawA, bool i_drawB, bool i_dra
                 mpButtonScreen->search(MULTI_CHAR('yaji_r_n'))->hide();
             }
         }
+
+#if PLATFORM_WII
+        if (dComIfGp_is3DSetFlag(0x8)) {
+            if (dir_3D & DIR_LEFT_e) {
+                if (!field_0x00c->search(MULTI_CHAR('yaji_l_n'))->isVisible()) {
+                    field_0x00c->search(MULTI_CHAR('yaji_l_n'))->show();
+                }
+            } else {
+                if (field_0x00c->search(MULTI_CHAR('yaji_l_n'))->isVisible() == true) {
+                    field_0x00c->search(MULTI_CHAR('yaji_l_n'))->hide();
+                }
+            }
+
+            if (dir_3D & DIR_UP_e) {
+                if (!field_0x00c->search(MULTI_CHAR('yaji_u_n'))->isVisible()) {
+                    field_0x00c->search(MULTI_CHAR('yaji_u_n'))->show();
+                }
+            } else {
+                if (field_0x00c->search(MULTI_CHAR('yaji_u_n'))->isVisible() == true) {
+                    field_0x00c->search(MULTI_CHAR('yaji_u_n'))->hide();
+                }
+            }
+
+            if (dir_3D & DIR_DOWN_e) {
+                if (!field_0x00c->search(MULTI_CHAR('yaji_d_n'))->isVisible()) {
+                    field_0x00c->search(MULTI_CHAR('yaji_d_n'))->show();
+                }
+            } else {
+                if (field_0x00c->search(MULTI_CHAR('yaji_d_n'))->isVisible() == true) {
+                    field_0x00c->search(MULTI_CHAR('yaji_d_n'))->hide();
+                }
+            }
+
+            if (dir_3D & DIR_RIGHT_e) {
+                if (!field_0x00c->search(MULTI_CHAR('yaji_r_n'))->isVisible()) {
+                    field_0x00c->search(MULTI_CHAR('yaji_r_n'))->show();
+                }
+            } else {
+                if (field_0x00c->search(MULTI_CHAR('yaji_r_n'))->isVisible() == true) {
+                    field_0x00c->search(MULTI_CHAR('yaji_r_n'))->hide();
+                }
+            }
+        }
+#endif
     }
 
+#if PLATFORM_WII
+    if (i_drawC) {
+        u8 dir_c = dComIfGp_getCStickDirection();
+
+        if (dir_c == DIR_UP_e) {
+            if (!mpMidona->isVisible()) {
+                mpMidona->show();
+            }
+        } else {
+            if (mpMidona->isVisible() == true) {
+                mpMidona->hide();
+            }
+        }
+
+        if (dir_c & DIR_LEFT_e) {
+            field_0x4da[1] = 1;
+        } else {
+            field_0x4da[1] = 0;
+        }
+
+        if (dir_c & DIR_UP_e) {
+            field_0x4da[0] = 1;
+        } else {
+            field_0x4da[0] = 0;
+        }
+
+        if (dir_c & DIR_DOWN_e) {
+            field_0x4da[2] = 1;
+        } else {
+            field_0x4da[2] = 0;
+        }
+
+        if (dir_c & DIR_RIGHT_e) {
+            field_0x4da[3] = 1;
+        } else {
+            field_0x4da[3] = 0;
+        }
+    }
+
+    if (i_drawNun) {
+        u8 dir_nun = dComIfGp_getNunDirection();
+
+        if (dir_nun == 0) {
+            mpButtonScreen->search(MULTI_CHAR('ny_mae_n'))->hide();
+            mpButtonScreen->search(MULTI_CHAR('ny_kai_n'))->hide();
+            mpButtonScreen->search(MULTI_CHAR('ny_lr_n'))->show();
+            mpButtonScreen->search(MULTI_CHAR('ny_ud_n'))->hide();
+            mpButtonScreen->search(MULTI_CHAR('ny_taten'))->hide();
+        } else if (dir_nun == 1) {
+            mpButtonScreen->search(MULTI_CHAR('ny_mae_n'))->hide();
+            mpButtonScreen->search(MULTI_CHAR('ny_kai_n'))->hide();
+            mpButtonScreen->search(MULTI_CHAR('ny_lr_n'))->hide();
+            mpButtonScreen->search(MULTI_CHAR('ny_ud_n'))->show();
+            mpButtonScreen->search(MULTI_CHAR('ny_taten'))->hide();
+        } else if (dir_nun == 2) {
+            mpButtonScreen->search(MULTI_CHAR('ny_mae_n'))->hide();
+            mpButtonScreen->search(MULTI_CHAR('ny_kai_n'))->show();
+            mpButtonScreen->search(MULTI_CHAR('ny_lr_n'))->hide();
+            mpButtonScreen->search(MULTI_CHAR('ny_ud_n'))->hide();
+            mpButtonScreen->search(MULTI_CHAR('ny_taten'))->hide();
+        } else if (dir_nun == 3) {
+            mpButtonScreen->search(MULTI_CHAR('ny_mae_n'))->show();
+            mpButtonScreen->search(MULTI_CHAR('ny_kai_n'))->hide();
+            mpButtonScreen->search(MULTI_CHAR('ny_lr_n'))->hide();
+            mpButtonScreen->search(MULTI_CHAR('ny_ud_n'))->hide();
+            mpButtonScreen->search(MULTI_CHAR('ny_taten'))->hide();
+        } else if (dir_nun == 5) {
+            mpButtonScreen->search(MULTI_CHAR('ny_mae_n'))->hide();
+            mpButtonScreen->search(MULTI_CHAR('ny_kai_n'))->hide();
+            mpButtonScreen->search(MULTI_CHAR('ny_lr_n'))->hide();
+            mpButtonScreen->search(MULTI_CHAR('ny_ud_n'))->hide();
+            mpButtonScreen->search(MULTI_CHAR('ny_taten'))->show();
+        } else {
+            mpButtonScreen->search(MULTI_CHAR('ny_mae_n'))->hide();
+            mpButtonScreen->search(MULTI_CHAR('ny_kai_n'))->hide();
+            mpButtonScreen->search(MULTI_CHAR('ny_lr_n'))->hide();
+            mpButtonScreen->search(MULTI_CHAR('ny_ud_n'))->hide();
+            mpButtonScreen->search(MULTI_CHAR('ny_taten'))->hide();
+        }
+    }
+
+    if (i_drawRemo) {
+        u8 dir_rc = dComIfGp_getRemoConDirection();
+
+        if (dir_rc == 3) {
+            mpButtonScreen->search(MULTI_CHAR('ry_awase'))->show();
+            mpButtonScreen->search(MULTI_CHAR('ry_kaite'))->hide();
+            mpButtonScreen->search(MULTI_CHAR('ry_taosu'))->hide();
+            mpButtonScreen->search(MULTI_CHAR('tski_n'))->hide();
+        } else if (dir_rc == 2) {
+            mpButtonScreen->search(MULTI_CHAR('ry_awase'))->hide();
+            mpButtonScreen->search(MULTI_CHAR('ry_kaite'))->show();
+            mpButtonScreen->search(MULTI_CHAR('ry_taosu'))->hide();
+            mpButtonScreen->search(MULTI_CHAR('tski_n'))->hide();
+        } else if (dir_rc == 4) {
+            mpButtonScreen->search(MULTI_CHAR('ry_awase'))->hide();
+            mpButtonScreen->search(MULTI_CHAR('ry_kaite'))->hide();
+            mpButtonScreen->search(MULTI_CHAR('ry_taosu'))->show();
+            mpButtonScreen->search(MULTI_CHAR('tski_n'))->hide();
+        } else if (dir_rc == 1) {
+            mpButtonScreen->search(MULTI_CHAR('ry_awase'))->hide();
+            mpButtonScreen->search(MULTI_CHAR('ry_kaite'))->hide();
+            mpButtonScreen->search(MULTI_CHAR('ry_taosu'))->hide();
+            mpButtonScreen->search(MULTI_CHAR('tski_n'))->show();
+        } else {
+            mpButtonScreen->search(MULTI_CHAR('ry_awase'))->hide();
+            mpButtonScreen->search(MULTI_CHAR('ry_kaite'))->hide();
+            mpButtonScreen->search(MULTI_CHAR('ry_taosu'))->hide();
+            mpButtonScreen->search(MULTI_CHAR('tski_n'))->hide();
+        }
+    }
+
+    if (i_drawAR) {
+        u8 dir_rc = dComIfGp_getRemoConDirection();
+
+        if (dir_rc == 3) {
+            mpButtonScreen->search(MULTI_CHAR('rytasy_n'))->hide();
+            mpButtonScreen->search(MULTI_CHAR('ry_tate1'))->show();
+        } else if (dir_rc == 1) {
+            mpButtonScreen->search(MULTI_CHAR('rytasy_n'))->show();
+            mpButtonScreen->search(MULTI_CHAR('ry_tate1'))->hide();
+        } else {
+            mpButtonScreen->search(MULTI_CHAR('rytasy_n'))->hide();
+            mpButtonScreen->search(MULTI_CHAR('ry_tate1'))->hide();
+        }
+    }
+#else
     if (i_drawC) {
         u8 dir_c = dComIfGp_getCStickDirection();
 
@@ -221,6 +408,7 @@ int dMeterButton_c::_execute(u32 i_flags, bool i_drawA, bool i_drawB, bool i_dra
             mpButtonScreen->search(MULTI_CHAR('yaji_rn'))->hide();
         }
     }
+#endif
 
     for (int i = 0; i < 2; i++) {
         if (field_0x2f4[i] != 0.0f) {
@@ -235,6 +423,7 @@ int dMeterButton_c::_execute(u32 i_flags, bool i_drawA, bool i_drawB, bool i_dra
 
         trans_button(i, field_0x2fc[i]);
     }
+
     return 1;
 }
 
@@ -268,11 +457,11 @@ void dMeterButton_c::draw() {
     }
 
     for (int i = 0; i < 2; i++) {
-        bool var_r22 = 0;
-        bool var_r23 = 0;
+        bool var_r22 = false;
+        bool var_r23 = false;
 
         if (field_0x4be[i] == BUTTON_A_e && dComIfGp_isDoSetFlag(4)) {
-            var_r23 = 1;
+            var_r23 = true;
 
             if (field_0x4b8[i] == 0 && field_0x4bc[i] == 0) {
                 field_0x2e8[i] = 18.0f - g_drawHIO.mEmpButton.mPikariRepeatHitAnimSpeed;
@@ -292,23 +481,32 @@ void dMeterButton_c::draw() {
                 }
             }
 
-            f32 var_f2;
+            f32 var_f31;
             if (temp_r6_2 < field_0x4b8[i]) {
-                var_f2 = (f32)field_0x4b8[i] / (f32)temp_r6_2;
+                var_f31 = (f32)field_0x4b8[i] / (f32)temp_r6_2;
             } else {
-                var_f2 = (f32)(temp_r6 - field_0x4b8[i]) / (f32)temp_r6_2;
+                var_f31 = (f32)(temp_r6 - field_0x4b8[i]) / (f32)temp_r6_2;
             }
 
-            f32 temp_f0 = (g_drawHIO.mEmpButton.mRepeatHitScale - 1.0f) * var_f2 + 1.0f;
-            mpButtonA->scale(mButtonAScale * temp_f0, mButtonAScale * temp_f0);
+            //TODO: possible fakematch for Wii
+            f32 var_f30;
+#if PLATFORM_WII
+            var_f30 = (g_drawHIO.mEmpButton.mRepeatHitScale - 1.0f) * var_f31;
+            var_f30 = 1.0f + var_f30;
+#else
+            var_f30 = (g_drawHIO.mEmpButton.mRepeatHitScale - 1.0f) * var_f31 + 1.0f;
+#endif
+            mpButtonA->scale(mButtonAScale * var_f30, mButtonAScale * var_f30);
         } else if ((field_0x4be[i] == BUTTON_A_e &&
-                    (dComIfGp_getDoStatus() == 0x3B || dComIfGp_getDoStatus() == 0x3F ||
-                     dComIfGp_getDoStatus() == 0x40) &&
+                    (dComIfGp_getDoStatus() == BUTTON_STATUS_LISTEN ||
+                     dComIfGp_getDoStatus() == BUTTON_STATUS_PUSH ||
+                     dComIfGp_getDoStatus() == BUTTON_STATUS_RESIST) &&
                     dMeter2Info_isBlinkButton(1)) ||
-                   (field_0x4be[i] == BUTTON_B_e && dComIfGp_getAStatus() == 0x3A &&
+                   (field_0x4be[i] == BUTTON_B_e &&
+                    dComIfGp_getAStatus() == BUTTON_STATUS_SHIELD_ATTACK &&
                     dMeter2Info_isBlinkButton(2)))
         {
-            var_r22 = 1;
+            var_r22 = true;
             if (field_0x2e8[i] <= 0.0f) {
                 field_0x2e8[i] = 18.0f - g_drawHIO.mEmpButton.mPikariListenAnimSpeed;
             }
@@ -320,46 +518,116 @@ void dMeterButton_c::draw() {
 
             if (field_0x4be[i] == BUTTON_A_e) {
                 vtx = mpButtonA->getGlobalVtxCenter(false, 0);
-                var_r3 = 1;
+                var_r3 = true;
             } else if (field_0x4be[i] == BUTTON_B_e) {
                 vtx = mpButtonB->getGlobalVtxCenter(false, 0);
-                var_r3 = 1;
+                var_r3 = true;
             } else if (field_0x4be[i] == BUTTON_R_e) {
+#if PLATFORM_GCN || PLATFORM_SHIELD
                 vtx = mpButtonR->getGlobalVtxCenter(false, 0);
-                var_r3 = 1;
+                var_r3 = true;
+#endif
             } else if (field_0x4be[i] == BUTTON_Z_e) {
+#if PLATFORM_GCN || PLATFORM_SHIELD
                 vtx = mpButtonZ->getGlobalVtxCenter(false, 0);
-                var_r3 = 1;
+                var_r3 = true;
+#endif
             } else if (field_0x4be[i] == BUTTON_3D_e) {
                 vtx = mpButton3D->getGlobalVtxCenter(false, 0);
-                var_r3 = 1;
+#if PLATFORM_WII
+                if (dComIfGp_is3DSetFlag(0x8)) {
+                    var_r3 = false;
+                } else {
+                    var_r3 = true;
+                }
+#else
+                var_r3 = true;
+#endif
             } else if (field_0x4be[i] == BUTTON_C_e) {
                 vtx = mpButtonC->getGlobalVtxCenter(false, 0);
-                var_r3 = 1;
+                var_r3 = true;
             } else if (field_0x4be[i] == BUTTON_S_e) {
                 vtx = mpButtonS->getGlobalVtxCenter(false, 0);
-                var_r3 = 1;
+                var_r3 = true;
             } else if (field_0x4be[i] == BUTTON_X_e) {
+#if PLATFORM_GCN || PLATFORM_SHIELD
                 vtx = mpButtonX->getGlobalVtxCenter(false, 0);
-                var_r3 = 1;
+                var_r3 = true;
+#endif
             } else if (field_0x4be[i] == BUTTON_Y_e) {
+#if PLATFORM_GCN || PLATFORM_SHIELD
                 vtx = mpButtonY->getGlobalVtxCenter(false, 0);
-                var_r3 = 1;
-            } else if (field_0x4be[i] != BUTTON_NUN_e && field_0x4be[i] != BUTTON_REMO_e &&
-                       field_0x4be[i] != BUTTON_REMO2_e && field_0x4be[i] != BUTTON_AR_e)
-            {
-                if (field_0x4be[i] == BUTTON_3DB_e) {
-                    vtx = mpButton3DB->getGlobalVtxCenter(false, 0);
-                    var_r3 = 1;
-                } else if (field_0x4be[i] != BUTTON_NURE_e && field_0x4be[i] != BUTTON_REEL_e &&
-                           field_0x4be[i] != BUTTON_REEL2_e && field_0x4be[i] != BUTTON_AB_e &&
-                           field_0x4be[i] != BUTTON_TATE_e && field_0x4be[i] != BUTTON_NUNZ_e &&
-                           field_0x4be[i] != BUTTON_NUNC_e && field_0x4be[i] == BUTTON_BIN_e)
-                {
-                    vtx = mpButtonBin->getGlobalVtxCenter(false, 0);
-                    var_r3 = 1;
-                }
+                var_r3 = true;
+#endif
+            } else if (field_0x4be[i] == BUTTON_NUN_e) {
+#if PLATFORM_WII
+                vtx = mpButtonNun->getGlobalVtxCenter(false, 0);
+                var_r3 = true;
+#endif
+            } else if (field_0x4be[i] == BUTTON_REMO_e) {
+#if PLATFORM_WII
+                vtx = mpButtonRemo->getGlobalVtxCenter(false, 0);
+                var_r3 = true;
+#endif
+            } else if (field_0x4be[i] == BUTTON_REMO2_e) {
+#if PLATFORM_WII
+                vtx = mpButtonRemo2->getGlobalVtxCenter(false, 0);
+                var_r3 = true;
+#endif
+            } else if (field_0x4be[i] == BUTTON_AR_e) {
+#if PLATFORM_WII
+                vtx = mpButtonAR->getGlobalVtxCenter(false, 0);
+                var_r3 = true;
+#endif
+            } else if (field_0x4be[i] == BUTTON_3DB_e) {
+#if PLATFORM_GCN || PLATFORM_SHIELD
+                vtx = mpButton3DB->getGlobalVtxCenter(false, 0);
+                var_r3 = true;
+#endif
+            } else if (field_0x4be[i] == BUTTON_NURE_e) {
+#if PLATFORM_WII
+                vtx = mpButtonNURE->getGlobalVtxCenter(false, 0);
+                var_r3 = true;
+#endif
+            } else if (field_0x4be[i] == BUTTON_REEL_e) {
+#if PLATFORM_WII
+                vtx = mpButtonReel->getGlobalVtxCenter(false, 0);
+                var_r3 = true;
+#endif
+            } else if (field_0x4be[i] == BUTTON_REEL2_e) {
+#if PLATFORM_WII
+                vtx = mpButtonReel2->getGlobalVtxCenter(false, 0);
+                var_r3 = true;
+#endif
+            } else if (field_0x4be[i] == BUTTON_AB_e) {
+#if PLATFORM_WII
+                vtx = mpButtonAB->getGlobalVtxCenter(false, 0);
+                var_r3 = true;
+#endif
+            } else if (field_0x4be[i] == BUTTON_TATE_e) {
+#if PLATFORM_WII
+                vtx = mpButtonTate->getGlobalVtxCenter(false, 0);
+                var_r3 = true;
+#endif
+            } else if (field_0x4be[i] == BUTTON_NUNZ_e) {
+#if PLATFORM_WII
+                vtx = mpButtonNunZ->getGlobalVtxCenter(false, 0);
+                var_r3 = true;
+#endif
+            } else if (field_0x4be[i] == BUTTON_NUNC_e) {
+#if PLATFORM_WII
+                vtx = mpButtonNunC->getGlobalVtxCenter(false, 0);
+                var_r3 = true;
+#endif
+            } else if (field_0x4be[i] == BUTTON_BIN_e) {
+                vtx = mpButtonBin->getGlobalVtxCenter(false, 0);
+                var_r3 = true;
             }
+
+#if PLATFORM_WII
+            f32 var_f1 = (0.5f * (mDoGph_gInf_c::getMinXF() + mDoGph_gInf_c::getMaxX()));
+            vtx.x = var_f1 + mDoGph_gInf_c::getInvScale() * (vtx.x - var_f1);
+#endif
 
             if (var_r3) {
                 if (var_r22) {
@@ -570,9 +838,9 @@ int dMeterButton_c::_delete() {
     delete mpItem_c;
     mpItem_c = NULL;
 
-    if (field_0x080 != NULL) {
-        delete field_0x080;
-        field_0x080 = NULL;
+    if (mButtonInfo != NULL) {
+        delete mButtonInfo;
+        mButtonInfo = NULL;
     }
 
     delete mpScreen;
@@ -646,7 +914,7 @@ bool dMeterButton_c::alphaAnimeButtonB(u32 i_flags, bool i_drawButton) {
 bool dMeterButton_c::alphaAnimeButtonR(u32 i_flags, bool i_drawButton) {
     if ((i_flags & 0x4000) || dMsgObject_isTalkNowCheck() || !i_drawButton ||
         mButtonTimers[BUTTON_R_e] > 0 ||
-        #if DEBUG
+        #if PLATFORM_WII || PLATFORM_SHIELD
         (i_flags & 0x80) ||
         #endif
         (i_flags & 0x40000000) ||
@@ -670,10 +938,14 @@ bool dMeterButton_c::alphaAnimeButtonZ(u32 i_flags, bool i_drawButton) {
         (i_flags & 0x1000) || ((i_flags & 0x40) && dComIfGp_event_checkHind(8)) ||
         (i_flags & 0x100) || (i_flags & 8) || (i_flags & 0x10) || (i_flags & 0x20))
     {
+#if PLATFORM_GCN || PLATFORM_SHIELD
         setAlphaButtonZAnimeMin();
+#endif
         offButtonShowBit(BUTTON_Z_e);
     } else {
+#if PLATFORM_GCN || PLATFORM_SHIELD
         setAlphaButtonZAnimeMax();
+#endif
         onButtonShowBit(BUTTON_Z_e);
         return true;
     }
@@ -986,15 +1258,51 @@ bool dMeterButton_c::alphaAnimeButtonBin(u32 i_flags, bool i_drawButton) {
 }
 
 void dMeterButton_c::screenInitButton() {
+#if PLATFORM_WII
+    static u64 const juji_red[] = {
+        MULTI_CHAR('red_00'), MULTI_CHAR('red_01'), MULTI_CHAR('red_02'), MULTI_CHAR('red_03'),
+    };
+#endif
+
     static u64 const text_tag[] = {
-        MULTI_CHAR('info_ar0'), MULTI_CHAR('info_ar1'), MULTI_CHAR('info_ar2'), MULTI_CHAR('info_ar3'), MULTI_CHAR('info_ar4'),
-        MULTI_CHAR('info_ar5'), MULTI_CHAR('info_ar6'), MULTI_CHAR('info_ar7'), MULTI_CHAR('info_ar8'), MULTI_CHAR('info_ar9'),
+        MULTI_CHAR('info_ar0'), MULTI_CHAR('info_ar1'), MULTI_CHAR('info_ar2'),
+        MULTI_CHAR('info_ar3'), MULTI_CHAR('info_ar4'), MULTI_CHAR('info_ar5'),
+        MULTI_CHAR('info_ar6'), MULTI_CHAR('info_ar7'), MULTI_CHAR('info_ar8'),
+        MULTI_CHAR('info_ar9'),
     };
 
+#if PLATFORM_WII
     static u64 const ftext_tag[] = {
-        MULTI_CHAR('fnfo_ar0'), MULTI_CHAR('fnfo_ar1'), MULTI_CHAR('fnfo_ar2'), MULTI_CHAR('fnfo_ar3'), MULTI_CHAR('fnfo_ar4'),
-        MULTI_CHAR('fnfo_ar5'), MULTI_CHAR('fnfo_ar6'), MULTI_CHAR('fnfo_ar7'), MULTI_CHAR('fnfo_ar8'), MULTI_CHAR('fnfo_ar9'),
+        MULTI_CHAR('fnfo_a0'), MULTI_CHAR('fnfo_a1'), MULTI_CHAR('fnfo_a2'),
+        MULTI_CHAR('fnfo_a3'), MULTI_CHAR('fnfo_a4'), MULTI_CHAR('fnfo_a5'),
+        MULTI_CHAR('fnfo_a6'), MULTI_CHAR('fnfo_a7'), MULTI_CHAR('fnfo_a8'),
+        MULTI_CHAR('fnfo_a9'),
     };
+#else
+    static u64 const ftext_tag[] = {
+        MULTI_CHAR('fnfo_ar0'), MULTI_CHAR('fnfo_ar1'), MULTI_CHAR('fnfo_ar2'),
+        MULTI_CHAR('fnfo_ar3'), MULTI_CHAR('fnfo_ar4'), MULTI_CHAR('fnfo_ar5'),
+        MULTI_CHAR('fnfo_ar6'), MULTI_CHAR('fnfo_ar7'), MULTI_CHAR('fnfo_ar8'),
+        MULTI_CHAR('fnfo_ar9'),
+    };
+#endif
+
+#if PLATFORM_WII
+    static u64 const vtext_tag[] = {
+        MULTI_CHAR('info_ar0'), MULTI_CHAR('info_ar1'), MULTI_CHAR('info_ar2'),
+        MULTI_CHAR('info_ar3'), MULTI_CHAR('info_ar4'), MULTI_CHAR('info_ar5'),
+        MULTI_CHAR('info_ar6'), MULTI_CHAR('info_ar7'), MULTI_CHAR('info_ar8'),
+        MULTI_CHAR('info_ar9'),
+    };
+
+    static u64 const fvtext_tag[] = {
+        MULTI_CHAR('fnfo_ar0'), MULTI_CHAR('fnfo_ar1'), MULTI_CHAR('fnfo_ar2'),
+        MULTI_CHAR('fnfo_ar3'), MULTI_CHAR('fnfo_ar4'), MULTI_CHAR('fnfo_ar5'),
+        MULTI_CHAR('fnfo_ar6'), MULTI_CHAR('fnfo_ar7'), MULTI_CHAR('fnfo_ar8'),
+        MULTI_CHAR('fnfo_ar9'),
+    };
+#endif
+
 
     OS_REPORT("enter dMeterButton_c::screenInitButton\n");
 
@@ -1003,15 +1311,26 @@ void dMeterButton_c::screenInitButton() {
 
     OS_REPORT("load zelda_game_image_button_info.blo");
 
-    bool fg = mpButtonScreen->setPriority("zelda_game_image_button_info.blo", 0x20000,
-                                          dComIfGp_getMeterButtonArchive());
+    bool fg = mpButtonScreen->setPriority(
+#if PLATFORM_WII
+        "zelda_game_image_button_info_revo.blo",
+#else
+        "zelda_game_image_button_info.blo",
+#endif
+        0x20000, dComIfGp_getMeterButtonArchive());
     JUT_ASSERT(1857, fg != false);
     if (!fg) {
         OS_REPORT("[%s] %d\n", __FILE__, 1859);
     }
 
     dPaneClass_showNullPane(mpButtonScreen);
+#if PLATFORM_WII
+    field_0x00c = new J2DScreen();
+    field_0x00c->setPriority("zelda_view_change_guide.blo", 0x20000,
+                             dComIfGp_getMeterButtonArchive());
+#else
     field_0x00c = NULL;
+#endif
 
     mpParent = new CPaneMgr(mpButtonScreen, MULTI_CHAR('info_n'), 0, NULL);
     if (mpParent == NULL)
@@ -1038,6 +1357,130 @@ void dMeterButton_c::screenInitButton() {
     mParentCenterX = (FB_WIDTH_BASE / 2.0f) - mpParent->getInitCenterPosX();
     paneTrans(mpParent, mParentCenterX, 0.0f, 0xFF);
 
+#if PLATFORM_WII
+    mpButtonA = new CPaneMgr(mpButtonScreen, MULTI_CHAR('abtn_r_n'), 2, NULL);
+    if (mpButtonA == NULL) {
+        OS_REPORT("[%s] %d\n", __FILE__, 1902);
+    }
+    JUT_ASSERT(1903, mpButtonA != NULL);
+    mpButtonA->setAlphaRate(0.0f);
+    mpButtonA->show();
+
+    mpButtonB = new CPaneMgr(mpButtonScreen, MULTI_CHAR('bbtn_r_n'), 2, NULL);
+    if (mpButtonB == NULL) {
+        OS_REPORT("[%s] %d\n", __FILE__, 1914);
+    }
+    JUT_ASSERT(1916, mpButtonB != NULL);
+    mpButtonB->setAlphaRate(0.0f);
+    mpButtonB->show();
+
+    mpButtonR = NULL;
+
+    mpButtonZ = NULL;
+
+    mpButton3D = new CPaneMgr(mpButtonScreen, MULTI_CHAR('asbtn_n'), 2, NULL);
+    if (mpButton3D == NULL) {
+        OS_REPORT("[%s] %d\n", __FILE__, 1914);
+    }
+    JUT_ASSERT(0, mpButton3D != NULL);
+    mpButton3D->setAlphaRate(0.0f);
+    mpButton3D->show();
+
+    mpButtonScreen->search(MULTI_CHAR('yaji_l_n'))->hide();
+    mpButtonScreen->search(MULTI_CHAR('yaji_u_n'))->hide();
+    mpButtonScreen->search(MULTI_CHAR('yaji_d_n'))->hide();
+    mpButtonScreen->search(MULTI_CHAR('yaji_r_n'))->hide();
+
+    mpMidona = new CPaneMgr(mpButtonScreen, MULTI_CHAR('midona'), 0, NULL);
+    JUT_ASSERT(1939, mpMidona != NULL);
+    if (mpMidona == NULL) {
+        OS_REPORT("[%s] %d\n", __FILE__, 1941);
+    }
+
+    static_cast<J2DPicture*>(mpMidona->getPanePtr())->setMirror(J2DMirror_X);
+
+    for (int i = 0; i < ARRAY_SIZE(field_0x0fc); i++) {
+        field_0x0fc[i] = new CPaneMgr(mpButtonScreen, juji_red[i], 0, NULL);
+        mPlayedButtonSound[0x1A + i] = false;
+    }
+
+    mpButtonC = new CPaneMgr(mpButtonScreen, MULTI_CHAR('jujbtn_n'), 2, NULL);
+    JUT_ASSERT(0, mpButtonS != NULL);
+    if (mpButtonC == NULL) {
+        OS_REPORT("[%s] %d\n", __FILE__, 0);
+    }
+    mpButtonC->setAlphaRate(0.0f);
+    mpButtonC->show();
+
+    mpButtonS = new CPaneMgr(mpButtonScreen, MULTI_CHAR('sbtn_n'), 2, NULL);
+    JUT_ASSERT(0, mpButtonS != NULL);
+    mpButtonS->setAlphaRate(0.0f);
+
+    mpButtonX = NULL;
+    mpButtonY = NULL;
+
+    mpButtonNun = new CPaneMgr(mpButtonScreen, MULTI_CHAR('nstick_n'), 2, NULL);
+    JUT_ASSERT(0, mpButtonNun != NULL);
+    mpButtonNun->setAlphaRate(0.0f);
+
+    mpButtonRemo = new CPaneMgr(mpButtonScreen, MULTI_CHAR('rimoco_n'), 2, NULL);
+    JUT_ASSERT(0, mpButtonRemo != NULL);
+    mpButtonRemo->setAlphaRate(0.0f);
+
+    mpButtonRemo2 = new CPaneMgr(mpButtonScreen, MULTI_CHAR('action_n'), 2, NULL);
+    JUT_ASSERT(0, mpButtonRemo2 != NULL);
+    mpButtonRemo2->setAlphaRate(0.0f);
+
+    mpButtonAR = new CPaneMgr(mpButtonScreen, MULTI_CHAR('a_to_r_n'), 2, NULL);
+    JUT_ASSERT(0, mpButtonAR != NULL);
+    mpButtonAR->setAlphaRate(0.0f);
+
+    mpButton3DB = NULL;
+
+    mpButtonNURE = new CPaneMgr(mpButtonScreen, MULTI_CHAR('nu_re_n'), 2, NULL);
+    JUT_ASSERT(0, mpButtonNURE != NULL);
+    mpButtonNURE->setAlphaRate(0.0f);
+
+    mpButtonReel = new CPaneMgr(mpButtonScreen, MULTI_CHAR('n_kuru_n'), 2, NULL);
+    JUT_ASSERT(0, mpButtonReel != NULL);
+    mpButtonReel->setAlphaRate(0.0f);
+
+    mpButtonReel2 = new CPaneMgr(mpButtonScreen, MULTI_CHAR('n_only_n'), 2, NULL);
+    JUT_ASSERT(0, mpButtonReel2 != NULL);
+    mpButtonReel2->setAlphaRate(0.0f);
+
+    mpButtonAB = new CPaneMgr(mpButtonScreen, MULTI_CHAR('AB_null'), 2, NULL);
+    JUT_ASSERT(0, mpButtonAB != NULL);
+    mpButtonAB->setAlphaRate(0.0f);
+
+    mpButtonTate = new CPaneMgr(mpButtonScreen, MULTI_CHAR('tate_n'), 2, NULL);
+    JUT_ASSERT(0, mpButtonTate != NULL);
+    mpButtonTate->setAlphaRate(0.0f);
+
+    mpButtonNunZ = new CPaneMgr(mpButtonScreen, MULTI_CHAR('z_btn_n'), 2, NULL);
+    JUT_ASSERT(0, mpButtonNunZ != NULL);
+    mpButtonNunZ->setAlphaRate(0.0f);
+
+    mpButtonNunC = new CPaneMgr(mpButtonScreen, MULTI_CHAR('c_btn_n'), 2, NULL);
+    JUT_ASSERT(0, mpButtonNunC != NULL);
+    mpButtonNunC->setAlphaRate(0.0f);
+
+    mpButtonBin = new CPaneMgr(mpButtonScreen, MULTI_CHAR('bottl_n'), 2, NULL);
+    JUT_ASSERT(0, mpButtonBin != NULL);
+    mpButtonBin->setAlphaRate(0.0f);
+
+    mpText[0] = new CPaneMgr(mpButtonScreen, MULTI_CHAR('text_n'), 2, NULL);
+    JUT_ASSERT(0, mpText[0] != NULL);
+    mpText[0]->setAlphaRate(0.0f);
+
+    mpText[1] = new CPaneMgr(mpButtonScreen, MULTI_CHAR('text2_n'), 2, NULL);
+    JUT_ASSERT(0, mpText[1] != NULL);
+    mpText[1]->setAlphaRate(0.0f);
+
+    mpItem_c = new CPaneMgr(mpButtonScreen, MULTI_CHAR('fishing'), 0, NULL);
+    JUT_ASSERT(0, mpItem_c != NULL);
+    mpItem_c->setAlphaRate(0.0f);
+#else
     mpButtonA = new CPaneMgr(mpButtonScreen, MULTI_CHAR('abtn_n'), 2, NULL);
     if (mpButtonA == NULL) {
         OS_REPORT("[%s] %d\n", __FILE__, 1902);
@@ -1053,7 +1496,6 @@ void dMeterButton_c::screenInitButton() {
     JUT_ASSERT(1916, mpButtonB != NULL);
     mpButtonB->setAlphaRate(0.0f);
     mpButtonB->show();
-
     mpButtonR = new CPaneMgr(mpButtonScreen, MULTI_CHAR('rbtn_n'), 2, NULL);
     if (mpButtonR == NULL) {
         OS_REPORT("[%s] %d\n", __FILE__, 1932);
@@ -1072,10 +1514,10 @@ void dMeterButton_c::screenInitButton() {
         field_0x0fc[i] = NULL;
     }
 
-    #if DEBUG
+#if DEBUG
     if (mpButtonScreen->search('zbtn') == 0) OS_REPORT("[%s] %d\n", __FILE__, 1947);
     if (mpButtonScreen->search(MULTI_CHAR('z_btnl')) == 0) OS_REPORT("[%s] %d\n", __FILE__, 1948);
-    #endif
+#endif
     mpButtonScreen->search('zbtn')->show();
     mpButtonScreen->search(MULTI_CHAR('z_btnl'))->show();
 
@@ -1151,6 +1593,7 @@ void dMeterButton_c::screenInitButton() {
     mpItem_c = new CPaneMgr(mpButtonScreen, MULTI_CHAR('fishing'), 0, NULL);
     JUT_ASSERT(2083, mpItem_c != NULL);
     mpItem_c->setAlphaRate(0.0f);
+#endif
 
     mpHeap = mDoExt_getCurrentHeap();
     mpFishingTex = mpHeap->alloc(0xC00, 0x20);
@@ -1170,8 +1613,8 @@ void dMeterButton_c::screenInitButton() {
                                 NULL, NULL, NULL, -1);
     field_0x4d9 = 0xFF;
 
-    for (int i = 0; i < 10; i++) {
-#if VERSION == VERSION_GCN_JPN
+    for (int i = 0; i < ARRAY_SIZE(mpTextBox); i++) {
+#if REGION_JPN
         mpTextBox[i] = (J2DTextBox*)mpButtonScreen->search(text_tag[i]);
         mpButtonScreen->search(ftext_tag[i])->hide();
 #else
@@ -1197,77 +1640,182 @@ void dMeterButton_c::screenInitButton() {
         field_0x4bc[i] = 0;
     }
 
-    field_0x080 = NULL;
+#if PLATFORM_WII
+    mButtonInfo = new CPaneMgr(field_0x00c, MULTI_CHAR('info_n'), 2, NULL);
+    JUT_ASSERT(0, mButtonInfo != NULL);
+    mButtonInfo->setAlphaRate(0.0f);
+#else
+    mButtonInfo = NULL;
+#endif
+
+#if PLATFORM_WII
+    for (int i = 0; i < ARRAY_SIZE(field_0x0ac); i++) {
+        field_0x0ac[i] =
+            static_cast<J2DTextBox*>(field_0x00c->search(MULTI_CHAR(fvtext_tag[i])));
+        field_0x00c->search(MULTI_CHAR(vtext_tag[i]))->hide();
+        field_0x0ac[i]->setFont(mDoExt_getMesgFont());
+        field_0x0ac[i]->setString(0x20, "");
+    }
+#endif
 
     mVtxCenterA = mpButtonA->getGlobalVtxCenter(false, 0);
-    field_0x244[0] = mVtxCenterA.x;
+    field_0x244[BUTTON_A_e] = mVtxCenterA.x;
 
     mVtxCenterB = mpButtonB->getGlobalVtxCenter(false, 0);
-    field_0x244[1] = mVtxCenterB.x;
+    field_0x244[BUTTON_B_e] = mVtxCenterB.x;
 
-    mVtxCenterR = mpButtonR->getGlobalVtxCenter(false, 0);
-    field_0x244[2] = mVtxCenterR.x;
+#if PLATFORM_WII
+    field_0x244[BUTTON_R_e] = 0.0f;
 
-    mVtxCenterZ = mpButtonZ->getGlobalVtxCenter(false, 0);
-
-    {
-        CPaneMgr pane;
-        Mtx m, m2;
-        Vec sp108 = pane.getGlobalVtx(mpButtonScreen->search('zbtn'), &m, 0, false, 0);
-        Vec spFC = pane.getGlobalVtx(mpButtonScreen->search('zbtn'), &m, 3, false, 0);
-        Vec spF0 = pane.getGlobalVtx(mpButtonScreen->search(MULTI_CHAR('midona')), &m2, 0, false, 0);
-        Vec spE4 = pane.getGlobalVtx(mpButtonScreen->search(MULTI_CHAR('midona')), &m2, 3, false, 0);
-
-        f32 var_f2;
-        if (sp108.x > spF0.x) {
-            var_f2 = spF0.x;
-        } else {
-            var_f2 = sp108.x;
-        }
-
-        f32 var_f1;
-        if (spFC.x > spE4.x) {
-            var_f1 = spFC.x;
-        } else {
-            var_f1 = spE4.x;
-        }
-
-        field_0x244[3] = (var_f2 + var_f1) / 2;
-    }
+    field_0x244[BUTTON_Z_e] = 0.0f;
 
     mVtxCenter3D = mpButton3D->getGlobalVtxCenter(false, 0);
-    field_0x244[4] = mVtxCenter3D.x;
+    field_0x244[BUTTON_3D_e] = mVtxCenter3D.x;
 
     mVtxCenterC = mpButtonC->getGlobalVtxCenter(false, 0);
-    field_0x244[5] = mVtxCenterC.x;
+#else
+    mVtxCenterR = mpButtonR->getGlobalVtxCenter(false, 0);
+    field_0x244[BUTTON_R_e] = mVtxCenterR.x;
+
+    mVtxCenterZ = mpButtonZ->getGlobalVtxCenter(false, 0);
+#endif
+
+#if !PLATFORM_WII
+    // Scope for pane variable. GCN/Shield expect it to be destructed midway
+    // through the function, whereas Wii expects it to be destructed at the end.
+    // Not sure how else to reconcile this.
+    {
+#endif
+    CPaneMgr pane;
+    Mtx m, m2;
+
+#if PLATFORM_WII
+    Vec sp108 = pane.getGlobalVtx(mpButtonScreen->search('juji_btn'), &m, 0, false, 0);
+    Vec spFC = pane.getGlobalVtx(mpButtonScreen->search('juji_btn'), &m, 3, false, 0);
+#else
+    Vec sp108 = pane.getGlobalVtx(mpButtonScreen->search('zbtn'), &m, 0, false, 0);
+    Vec spFC = pane.getGlobalVtx(mpButtonScreen->search('zbtn'), &m, 3, false, 0);
+#endif
+    Vec spF0 = pane.getGlobalVtx(mpButtonScreen->search(MULTI_CHAR('midona')), &m2, 0, false, 0);
+    Vec spE4 = pane.getGlobalVtx(mpButtonScreen->search(MULTI_CHAR('midona')), &m2, 3, false, 0);
+
+    f32 var_f2;
+    if (sp108.x > spF0.x) {
+        var_f2 = spF0.x;
+    } else {
+        var_f2 = sp108.x;
+    }
+
+    f32 var_f1;
+    if (spFC.x > spE4.x) {
+        var_f1 = spFC.x;
+    } else {
+        var_f1 = spE4.x;
+    }
+
+#if PLATFORM_WII
+    field_0x2a4 = (var_f2 + var_f1) / 2;
+
+    field_0x2a8 = mVtxCenterC.x;
+    field_0x244[BUTTON_C_e] = mVtxCenterC.x;
 
     mVtxCenterS = mpButtonS->getGlobalVtxCenter(false, 0);
-    field_0x244[6] = mVtxCenterS.x;
+    field_0x244[BUTTON_S_e] = mVtxCenterS.x;
+
+    mVtxCenterNun = mpButtonNun->getGlobalVtxCenter(false, 0);
+
+    mVtxCenterRemo = mpButtonRemo->getGlobalVtxCenter(false, 0);
+
+    mVtxCenterRemo2 = mpButtonRemo2->getGlobalVtxCenter(false, 0);
+
+    mVtxCenterAR = mpButtonAR->getGlobalVtxCenter(false, 0);
+
+    mVtxCenterNURE = mpButtonNURE->getGlobalVtxCenter(false, 0);
+
+    mVtxCenterReel = mpButtonReel->getGlobalVtxCenter(false, 0);
+
+    mVtxCenterReel2 = mpButtonReel2->getGlobalVtxCenter(false, 0);
+
+    mVtxCenterAB = mpButtonAB->getGlobalVtxCenter(false, 0);
+
+    mVtxCenterTate = mpButtonTate->getGlobalVtxCenter(false, 0);
+
+    mVtxCenterNunZ = mpButtonNunZ->getGlobalVtxCenter(false, 0);
+
+    mVtxCenterNunC = mpButtonNunC->getGlobalVtxCenter(false, 0);
+
+    if (mDoGph_gInf_c::mWide == true) {
+        field_0x244[BUTTON_X_e] = 0.0f;
+        field_0x244[BUTTON_Y_e] = 0.0f;
+        field_0x244[BUTTON_NUN_e] = mVtxCenterNun.x;
+        field_0x244[BUTTON_REMO_e] = mVtxCenterRemo.x + 15.0f;
+        field_0x244[BUTTON_REMO2_e] = mVtxCenterRemo2.x + 24.0f;
+        field_0x244[BUTTON_AR_e] = mVtxCenterAR.x + 22.0f;
+        field_0x244[BUTTON_3DB_e] = 0.0f;
+        field_0x244[BUTTON_NURE_e] = mVtxCenterNURE.x + 6.0f;
+        field_0x244[BUTTON_REEL_e] = mVtxCenterReel.x;
+        field_0x244[BUTTON_REEL2_e] = mVtxCenterReel2.x - 4.0f;
+        field_0x244[BUTTON_AB_e] = mVtxCenterAB.x + 8.0f;
+        field_0x244[BUTTON_TATE_e] = mVtxCenterTate.x;
+        field_0x244[BUTTON_NUNZ_e] = mVtxCenterNunZ.x;
+        field_0x244[BUTTON_NUNC_e] = mVtxCenterNunC.x - 6.0f;
+    } else {
+        field_0x244[BUTTON_X_e] = 0.0f;
+        field_0x244[BUTTON_Y_e] = 0.0f;
+        field_0x244[BUTTON_NUN_e] = mVtxCenterNun.x;
+        field_0x244[BUTTON_REMO_e] = mVtxCenterRemo.x;
+        field_0x244[BUTTON_REMO2_e] = mVtxCenterRemo2.x;
+        field_0x244[BUTTON_AR_e] = mVtxCenterAR.x;
+        field_0x244[BUTTON_3DB_e] = 0.0f;
+        field_0x244[BUTTON_NURE_e] = mVtxCenterNURE.x;
+        field_0x244[BUTTON_REEL_e] = mVtxCenterReel.x;
+        field_0x244[BUTTON_REEL2_e] = mVtxCenterReel2.x;
+        field_0x244[BUTTON_AB_e] = mVtxCenterAB.x;
+        field_0x244[BUTTON_TATE_e] = mVtxCenterTate.x;
+        field_0x244[BUTTON_NUNZ_e] = mVtxCenterNunZ.x;
+        field_0x244[BUTTON_NUNC_e] = mVtxCenterNunC.x;
+    }
+#else
+    field_0x244[BUTTON_Z_e] = (var_f2 + var_f1) / 2;
+    } // end of scope for pane variable
+#endif
+
+
+#if !PLATFORM_WII
+    mVtxCenter3D = mpButton3D->getGlobalVtxCenter(false, 0);
+    field_0x244[BUTTON_3D_e] = mVtxCenter3D.x;
+
+    mVtxCenterC = mpButtonC->getGlobalVtxCenter(false, 0);
+    field_0x244[BUTTON_C_e] = mVtxCenterC.x;
+
+    mVtxCenterS = mpButtonS->getGlobalVtxCenter(false, 0);
+    field_0x244[BUTTON_S_e] = mVtxCenterS.x;
 
     mVtxCenterX = mpButtonX->getGlobalVtxCenter(false, 0);
-    field_0x244[7] = mVtxCenterX.x;
+    field_0x244[BUTTON_X_e] = mVtxCenterX.x;
 
     mVtxCenterY = mpButtonY->getGlobalVtxCenter(false, 0);
-    field_0x244[8] = mVtxCenterY.x - 8.0f;
+    field_0x244[BUTTON_Y_e] = mVtxCenterY.x - 8.0f;
 
-    field_0x244[9] = 0.0f;
-    field_0x244[10] = 0.0f;
-    field_0x244[11] = 0.0f;
-    field_0x244[12] = 0.0f;
+    field_0x244[BUTTON_NUN_e] = 0.0f;
+    field_0x244[BUTTON_REMO_e] = 0.0f;
+    field_0x244[BUTTON_REMO2_e] = 0.0f;
+    field_0x244[BUTTON_AR_e] = 0.0f;
 
     mVtxCenter3DB = mpButton3DB->getGlobalVtxCenter(false, 0);
-    field_0x244[13] = mVtxCenter3DB.x;
+    field_0x244[BUTTON_3DB_e] = mVtxCenter3DB.x;
 
-    field_0x244[14] = 0.0f;
-    field_0x244[15] = 0.0f;
-    field_0x244[16] = 0.0f;
-    field_0x244[17] = 0.0f;
-    field_0x244[18] = 0.0f;
-    field_0x244[19] = 0.0f;
-    field_0x244[20] = 0.0f;
+    field_0x244[BUTTON_NURE_e] = 0.0f;
+    field_0x244[BUTTON_REEL_e] = 0.0f;
+    field_0x244[BUTTON_REEL2_e] = 0.0f;
+    field_0x244[BUTTON_AB_e] = 0.0f;
+    field_0x244[BUTTON_TATE_e] = 0.0f;
+    field_0x244[BUTTON_NUNZ_e] = 0.0f;
+    field_0x244[BUTTON_NUNC_e] = 0.0f;
+#endif
 
     mVtxCenterBin = mpButtonBin->getGlobalVtxCenter(false, 0);
-    field_0x244[21] = mVtxCenterBin.x;
+    field_0x244[BUTTON_BIN_e] = mVtxCenterBin.x;
 
     mVtxCenterText0 = mpText[0]->getGlobalVtxCenter(false, 0);
     field_0x2e0[0] = mVtxCenterText0.x;
@@ -1305,42 +1853,42 @@ void dMeterButton_c::screenInitButton() {
     mButtonYPosX = 0.0f;
     mButtonYPosY = 0.0f;
     mButtonYScale = 1.0f;
-    field_0x558 = 0.0f;
-    field_0x55c = 0.0f;
-    field_0x560 = 1.0f;
-    field_0x564 = 0.0f;
-    field_0x568 = 0.0f;
-    field_0x56c = 1.0f;
-    field_0x570 = 0.0f;
-    field_0x574 = 0.0f;
-    field_0x578 = 1.0f;
-    field_0x57c = 0.0f;
-    field_0x580 = 0.0f;
-    field_0x584 = 1.0f;
+    mButtonNunPosX = 0.0f;
+    mButtonNunPosY = 0.0f;
+    mButtonNunScale = 1.0f;
+    mButtonRemoPosX = 0.0f;
+    mButtonRemoPosY = 0.0f;
+    mButtonRemoScale = 1.0f;
+    mButtonRemo2PosX = 0.0f;
+    mButtonRemo2PosY = 0.0f;
+    mButtonRemo2Scale = 1.0f;
+    mButtonARPosX = 0.0f;
+    mButtonARPosY = 0.0f;
+    mButtonARScale = 1.0f;
     mButton3DBPosX = 0.0f;
     mButton3DBPosY = 0.0f;
     mButton3DBScale = 1.0f;
-    field_0x594 = 0.0f;
-    field_0x598 = 0.0f;
-    field_0x59c = 1.0f;
-    field_0x5a0 = 0.0f;
-    field_0x5a4 = 0.0f;
-    field_0x5a8 = 1.0f;
-    field_0x5ac = 0.0f;
-    field_0x5b0 = 0.0f;
-    field_0x5b4 = 1.0f;
-    field_0x5b8 = 0.0f;
-    field_0x5bc = 0.0f;
-    field_0x5c0 = 1.0f;
-    field_0x5c4 = 0.0f;
-    field_0x5c8 = 0.0f;
-    field_0x5cc = 1.0f;
-    field_0x5d0 = 0.0f;
-    field_0x5d4 = 0.0f;
-    field_0x5d8 = 1.0f;
-    field_0x5dc = 0.0f;
-    field_0x5e0 = 0.0f;
-    field_0x5e4 = 1.0f;
+    mButtonNUREPosX = 0.0f;
+    mButtonNUREPosY = 0.0f;
+    mButtonNUREScale = 1.0f;
+    mButtonReelPosX = 0.0f;
+    mButtonReelPosY = 0.0f;
+    mButtonReelScale = 1.0f;
+    mButtonReel2PosX = 0.0f;
+    mButtonReel2PosY = 0.0f;
+    mButtonReel2Scale = 1.0f;
+    mButtonABPosX = 0.0f;
+    mButtonABPosY = 0.0f;
+    mButtonABScale = 1.0f;
+    mButtonTatePosX = 0.0f;
+    mButtonTatePosY = 0.0f;
+    mButtonTateScale = 1.0f;
+    mButtonNunZPosX = 0.0f;
+    mButtonNunZPosY = 0.0f;
+    mButtonNunZScale = 1.0f;
+    mButtonNunCPosX = 0.0f;
+    mButtonNunCPosY = 0.0f;
+    mButtonNunCScale = 1.0f;
     mButtonBinPosX = 0.0f;
     mButtonBinPosY = 0.0f;
     field_0x5f0 = 1.0f;
@@ -1362,11 +1910,15 @@ void dMeterButton_c::screenInitButton() {
     field_0x140 = 304.5f;
     field_0x144 = 347.5f;
 
+#if PLATFORM_GCN || PLATFORM_SHIELD
     if (dComIfGp_checkCameraAttentionStatus(0, 8)) {
         field_0x148 = 0.0f;
     } else {
         field_0x148 = 307.25f;
     }
+#else
+    field_0x148 = 307.25f;
+#endif
 
     field_0x14c = 307.25f;
     field_0x150 = 307.25f;
@@ -1402,7 +1954,7 @@ void dMeterButton_c::screenInitText() {
 
     bool fg =
         mpScreen->setPriority(
-            #if DEBUG
+            #if PLATFORM_WII || VERSION == VERSION_SHIELD_DEBUG
             "zelda_message_window_new_revo.blo",
             #else
             "zelda_message_window_new.blo",
@@ -1558,7 +2110,7 @@ void dMeterButton_c::updateButton() {
         parent_y_offset = -25.0f;
         set_parent_offset = true;
     }
-    #if !DEBUG
+    #if PLATFORM_GCN
     else if (strcmp(dComIfGp_getStartStageName(), "R_SP161") == 0 &&
                dComIfGs_isOneZoneSwitch(14, -1))
     {
@@ -1571,7 +2123,8 @@ void dMeterButton_c::updateButton() {
         parent_scale_factor = 0.8f;
     }
 
-    if (dComIfGp_getSButtonStatus() == 0x43 || dComIfGp_getSButtonStatus() == 0x4D) {
+    if (dComIfGp_getSButtonStatus() == BUTTON_STATUS_SKIP ||
+        dComIfGp_getSButtonStatus() == BUTTON_STATUS_CANT_SKIP) {
         parent_x_offset = -10.0f;
         parent_y_offset = 25.0f;
         parent_scale_factor = 0.9f;
@@ -1593,7 +2146,8 @@ void dMeterButton_c::updateButton() {
     {
         mButtonAPosX = g_drawHIO.mEmpButton.mButtonAPosX;
         mButtonAPosY = g_drawHIO.mEmpButton.mButtonAPosY;
-        paneTrans(mpButtonA, field_0x304[0] + (mButtonAPosX + field_0x18c[0]), mButtonAPosY, 0xFF);
+        paneTrans(mpButtonA, field_0x304[BUTTON_A_e] + (mButtonAPosX + field_0x18c[BUTTON_A_e]),
+                  mButtonAPosY, 0xFF);
     }
 
     if (mButtonAScale != g_drawHIO.mEmpButton.mButtonAScale) {
@@ -1609,7 +2163,8 @@ void dMeterButton_c::updateButton() {
     {
         mButtonBPosX = g_drawHIO.mEmpButton.mButtonBPosX;
         mButtonBPosY = g_drawHIO.mEmpButton.mButtonBPosY;
-        paneTrans(mpButtonB, field_0x304[1] + (mButtonBPosX + field_0x18c[1]), mButtonBPosY, 0xFF);
+        paneTrans(mpButtonB, field_0x304[BUTTON_B_e] + (mButtonBPosX + field_0x18c[BUTTON_B_e]),
+                  mButtonBPosY, 0xFF);
     }
 
     if (mButtonBScale != g_drawHIO.mEmpButton.mButtonBScale) {
@@ -1618,12 +2173,241 @@ void dMeterButton_c::updateButton() {
         mpButtonB->scale(mButtonBScale, mButtonBScale);
     }
 
+#if PLATFORM_WII
+    if (mButton3DPosX != g_drawHIO.mEmpButton.m3DButtonPosX ||
+        mButton3DPosY != g_drawHIO.mEmpButton.m3DButtonPosY)
+    {
+        mButton3DPosX = g_drawHIO.mEmpButton.m3DButtonPosX;
+        mButton3DPosY = g_drawHIO.mEmpButton.m3DButtonPosY;
+        paneTrans(mpButton3D, field_0x304[BUTTON_3D_e] + (mButton3DPosX + field_0x18c[BUTTON_3D_e]),
+                  mButton3DPosY, 0xFF);
+    }
+
+    if (mButton3DScale != g_drawHIO.mEmpButton.m3DButtonScale)
+    {
+        mButton3DScale = g_drawHIO.mEmpButton.m3DButtonScale;
+        mpButton3D->scale(mButton3DScale, mButton3DScale);
+    }
+
+    if (mButtonCPosX != g_drawHIO.mEmpButton.mCButtonPosX ||
+        mButtonCPosY != g_drawHIO.mEmpButton.mCButtonPosY)
+    {
+        mButtonCPosX = g_drawHIO.mEmpButton.mCButtonPosX;
+        mButtonCPosY = g_drawHIO.mEmpButton.mCButtonPosY;
+        paneTrans(mpButtonC, field_0x304[BUTTON_C_e] + (mButtonCPosX + field_0x18c[BUTTON_C_e]),
+                  mButtonCPosY, 0xFF);
+    }
+
+    if (mButtonCScale != g_drawHIO.mEmpButton.mCButtonScale)
+    {
+        mButtonCScale = g_drawHIO.mEmpButton.mCButtonScale;
+        mpButtonC->scale(mButtonCScale, mButtonCScale);
+    }
+
+    if (mButtonSPosX != g_drawHIO.mEmpButton.mSButtonPosX ||
+        mButtonSPosY != g_drawHIO.mEmpButton.mSButtonPosY)
+    {
+        mButtonSPosX = g_drawHIO.mEmpButton.mSButtonPosX;
+        mButtonSPosY = g_drawHIO.mEmpButton.mSButtonPosY;
+        paneTrans(mpButtonS, field_0x304[BUTTON_S_e] + (mButtonSPosX + field_0x18c[BUTTON_S_e]),
+                  mButtonSPosY, 0xFF);
+    }
+
+    if (mButtonSScale != g_drawHIO.mEmpButton.mSButtonScale)
+    {
+        mButtonSScale = g_drawHIO.mEmpButton.mSButtonScale;
+        mpButtonS->scale(mButtonSScale, mButtonSScale);
+    }
+
+    if (mButtonNunPosX != g_drawHIO.mEmpButton.mNunchukPosX ||
+        mButtonNunPosY != g_drawHIO.mEmpButton.mNunchukPosY)
+    {
+        mButtonNunPosX = g_drawHIO.mEmpButton.mNunchukPosX;
+        mButtonNunPosY = g_drawHIO.mEmpButton.mNunchukPosY;
+        paneTrans(mpButtonNun,
+                  field_0x304[BUTTON_NUN_e] + (mButtonNunPosX + field_0x18c[BUTTON_NUN_e]),
+                  mButtonNunPosY, 0xFF);
+    }
+
+    if (mButtonNunScale != g_drawHIO.mEmpButton.mNunchukScale)
+    {
+        mButtonNunScale = g_drawHIO.mEmpButton.mNunchukScale;
+        mpButtonNun->scale(mButtonNunScale, mButtonNunScale);
+    }
+
+    if (mButtonRemoPosX != g_drawHIO.mEmpButton.mWiimotePosX ||
+        mButtonRemoPosY != g_drawHIO.mEmpButton.mWiimotePosY)
+    {
+        mButtonRemoPosX = g_drawHIO.mEmpButton.mWiimotePosX;
+        mButtonRemoPosY = g_drawHIO.mEmpButton.mWiimotePosY;
+        paneTrans(mpButtonRemo,
+                  field_0x304[BUTTON_REMO_e] + (mButtonRemoPosX + field_0x18c[BUTTON_REMO_e]),
+                  mButtonRemoPosY, 0xFF);
+    }
+
+    if (mButtonRemoScale != g_drawHIO.mEmpButton.mWiimoteScale)
+    {
+        mButtonRemoScale = g_drawHIO.mEmpButton.mWiimoteScale;
+        mpButtonRemo->scale(mButtonRemoScale, mButtonRemoScale);
+    }
+
+    if (mButtonRemo2PosX != g_drawHIO.mEmpButton.mWiimoteLRPosX ||
+        mButtonRemo2PosY != g_drawHIO.mEmpButton.mWiimoteLRPosY)
+    {
+        mButtonRemo2PosX = g_drawHIO.mEmpButton.mWiimoteLRPosX;
+        mButtonRemo2PosY = g_drawHIO.mEmpButton.mWiimoteLRPosY;
+        paneTrans(mpButtonRemo2,
+                  field_0x304[BUTTON_REMO2_e] + (mButtonRemo2PosX + field_0x18c[BUTTON_REMO2_e]),
+                  mButtonRemo2PosY, 0xFF);
+    }
+
+    if (mButtonRemo2Scale != g_drawHIO.mEmpButton.mWiimoteLRScale)
+    {
+        mButtonRemo2Scale = g_drawHIO.mEmpButton.mWiimoteLRScale;
+        mpButtonRemo2->scale(mButtonRemo2Scale, mButtonRemo2Scale);
+    }
+
+    if (mButtonARPosX != g_drawHIO.mEmpButton.mWiimoteAPosX ||
+        mButtonARPosY != g_drawHIO.mEmpButton.mWiimoteAPosY)
+    {
+        mButtonARPosX = g_drawHIO.mEmpButton.mWiimoteAPosX;
+        mButtonARPosY = g_drawHIO.mEmpButton.mWiimoteAPosY;
+        paneTrans(mpButtonAR,
+                  field_0x304[BUTTON_AR_e] + (mButtonARPosX + field_0x18c[BUTTON_AR_e]),
+                  mButtonARPosY, 0xFF);
+    }
+
+    if (mButtonARScale != g_drawHIO.mEmpButton.mWiimoteAScale)
+    {
+        mButtonARScale = g_drawHIO.mEmpButton.mWiimoteAScale;
+        mpButtonAR->scale(mButtonARScale, mButtonARScale);
+    }
+
+    if (mButtonNUREPosX != g_drawHIO.mEmpButton.mNunchukWiimotePosX ||
+        mButtonNUREPosY != g_drawHIO.mEmpButton.mNunchukWiimotePosY)
+    {
+        mButtonNUREPosX = g_drawHIO.mEmpButton.mNunchukWiimotePosX;
+        mButtonNUREPosY = g_drawHIO.mEmpButton.mNunchukWiimotePosY;
+        paneTrans(mpButtonNURE, mButtonNUREPosX + field_0x304[BUTTON_NURE_e],
+                  mButtonNUREPosY, 0xFF);
+    }
+
+    if (mButtonNUREScale != g_drawHIO.mEmpButton.mNunchukWiimoteScale)
+    {
+        mButtonNUREScale = g_drawHIO.mEmpButton.mNunchukWiimoteScale;
+        mpButtonNURE->scale(mButtonNUREScale, mButtonNUREScale);
+    }
+
+    if (mButtonReelPosX != g_drawHIO.mEmpButton.mNunchukWiimoteRealPosX ||
+        mButtonReelPosY != g_drawHIO.mEmpButton.mNunchukWiimoteRealPosY)
+    {
+        mButtonReelPosX = g_drawHIO.mEmpButton.mNunchukWiimoteRealPosX;
+        mButtonReelPosY = g_drawHIO.mEmpButton.mNunchukWiimoteRealPosY;
+        paneTrans(mpButtonReel, mButtonReelPosX + field_0x304[BUTTON_REEL_e],
+                  mButtonReelPosY, 0xFF);
+    }
+
+    if (mButtonReelScale != g_drawHIO.mEmpButton.mNunchukWiimoteRealScale)
+    {
+        mButtonReelScale = g_drawHIO.mEmpButton.mNunchukWiimoteRealScale;
+        mpButtonReel->scale(mButtonReelScale, mButtonReelScale);
+    }
+
+    if (mButtonReel2PosX != g_drawHIO.mEmpButton.mNunchukRealPosX ||
+        mButtonReel2PosY != g_drawHIO.mEmpButton.mNunchukRealPosY)
+    {
+        mButtonReel2PosX = g_drawHIO.mEmpButton.mNunchukRealPosX;
+        mButtonReel2PosY = g_drawHIO.mEmpButton.mNunchukRealPosY;
+        paneTrans(mpButtonReel2, mButtonReel2PosX + field_0x304[BUTTON_REEL2_e],
+                  mButtonReel2PosY, 0xFF);
+    }
+
+    if (mButtonReel2Scale != g_drawHIO.mEmpButton.mNunchukRealScale)
+    {
+        mButtonReel2Scale = g_drawHIO.mEmpButton.mNunchukRealScale;
+        mpButtonReel2->scale(mButtonReel2Scale, mButtonReel2Scale);
+    }
+
+    if (mButtonABPosX != g_drawHIO.mEmpButton.mAButtonBPosX ||
+        mButtonABPosY != g_drawHIO.mEmpButton.mAButtonBPosY)
+    {
+        mButtonABPosX = g_drawHIO.mEmpButton.mAButtonBPosX;
+        mButtonABPosY = g_drawHIO.mEmpButton.mAButtonBPosY;
+        paneTrans(mpButtonAB, mButtonABPosX + field_0x304[BUTTON_AB_e],
+                  mButtonABPosY, 0xFF);
+    }
+
+    if (mButtonABScale != g_drawHIO.mEmpButton.mAButtonBScale)
+    {
+        mButtonABScale = g_drawHIO.mEmpButton.mAButtonBScale;
+        mpButtonAB->scale(mButtonABScale, mButtonABScale);
+    }
+
+    if (mButtonTatePosX != g_drawHIO.mEmpButton.mNunchukAttackPosX ||
+        mButtonTatePosY != g_drawHIO.mEmpButton.mNunchukAttackPosY)
+    {
+        mButtonTatePosX = g_drawHIO.mEmpButton.mNunchukAttackPosX;
+        mButtonTatePosY = g_drawHIO.mEmpButton.mNunchukAttackPosY;
+        paneTrans(mpButtonTate, mButtonTatePosX + field_0x304[BUTTON_TATE_e],
+                  mButtonTatePosY, 0xFF);
+    }
+
+    if (mButtonTateScale != g_drawHIO.mEmpButton.mNunchukAttackScale)
+    {
+        mButtonTateScale = g_drawHIO.mEmpButton.mNunchukAttackScale;
+        mpButtonTate->scale(mButtonTateScale, mButtonTateScale);
+    }
+
+    if (mButtonNunZPosX != g_drawHIO.mEmpButton.mNunchukButtonZPosX ||
+        mButtonNunZPosY != g_drawHIO.mEmpButton.mNunchukButtonZPosY)
+    {
+        mButtonNunZPosX = g_drawHIO.mEmpButton.mNunchukButtonZPosX;
+        mButtonNunZPosY = g_drawHIO.mEmpButton.mNunchukButtonZPosY;
+        paneTrans(mpButtonNunZ,
+                  field_0x304[BUTTON_NUNZ_e] + (mButtonXPosX + field_0x18c[BUTTON_NUNZ_e]),
+                  mButtonNunZPosY, 0xFF);
+    }
+
+    if (mButtonNunZScale != g_drawHIO.mEmpButton.mNunchukButtonZScale)
+    {
+        mButtonNunZScale = g_drawHIO.mEmpButton.mNunchukButtonZScale;
+        mpButtonNunZ->scale(mButtonNunZScale, mButtonNunZScale);
+    }
+
+    if (mButtonNunCPosX != g_drawHIO.mEmpButton.mNunchukCButtonPosX ||
+        mButtonNunCPosY != g_drawHIO.mEmpButton.mNunchukCButtonPosY)
+    {
+        mButtonNunCPosX = g_drawHIO.mEmpButton.mNunchukCButtonPosX;
+        mButtonNunCPosY = g_drawHIO.mEmpButton.mNunchukCButtonPosY;
+        paneTrans(mpButtonNunC,
+                  field_0x304[BUTTON_NUNC_e] + (mButtonXPosX + field_0x18c[BUTTON_NUNC_e]),
+                  mButtonNunCPosY, 0xFF);
+    }
+
+    if (mButtonNunCScale != g_drawHIO.mEmpButton.mNunchukCButtonScale)
+    {
+        mButtonNunCScale = g_drawHIO.mEmpButton.mNunchukCButtonScale;
+        mpButtonNunC->scale(mButtonNunCScale, mButtonNunCScale);
+    }
+
+    if (mButtonBinPosX != g_drawHIO.mEmpButton.mBottleIconPosX ||
+        mButtonBinPosY != g_drawHIO.mEmpButton.mBottleIconPosY)
+    {
+        mButtonBinPosX = g_drawHIO.mEmpButton.mBottleIconPosX;
+        mButtonBinPosY = g_drawHIO.mEmpButton.mBottleIconPosY;
+        paneTrans(mpButtonBin,
+                  field_0x304[BUTTON_BIN_e] + (mButtonXPosX + field_0x18c[BUTTON_BIN_e]),
+                  mButtonBinPosY, 0xFF);
+    }
+#else
+
     if (mButtonRPosX != g_drawHIO.mEmpButton.mRButtonPosX ||
         mButtonRPosY != g_drawHIO.mEmpButton.mRButtonPosY)
     {
         mButtonRPosX = g_drawHIO.mEmpButton.mRButtonPosX;
         mButtonRPosY = g_drawHIO.mEmpButton.mRButtonPosY;
-        paneTrans(mpButtonR, field_0x304[2] + (mButtonRPosX + field_0x18c[2]), mButtonRPosY, 0xFF);
+        paneTrans(mpButtonR, field_0x304[BUTTON_R_e] + (mButtonRPosX + field_0x18c[BUTTON_R_e]),
+                  mButtonRPosY, 0xFF);
     }
 
     if (mButtonRScale != g_drawHIO.mEmpButton.mRButtonScale) {
@@ -1637,7 +2421,8 @@ void dMeterButton_c::updateButton() {
     {
         mButtonZPosX = g_drawHIO.mEmpButton.mButtonZPosX;
         mButtonZPosY = g_drawHIO.mEmpButton.mButtonZPosY;
-        paneTrans(mpButtonZ, field_0x304[3] + (mButtonZPosX + field_0x18c[3]), mButtonZPosY, 0xFF);
+        paneTrans(mpButtonZ, field_0x304[BUTTON_Z_e] + (mButtonZPosX + field_0x18c[BUTTON_Z_e]),
+                  mButtonZPosY, 0xFF);
     }
 
     if (mButtonZScale != g_drawHIO.mEmpButton.mButtonZScale) {
@@ -1651,8 +2436,8 @@ void dMeterButton_c::updateButton() {
     {
         mButton3DPosX = g_drawHIO.mEmpButton.m3DButtonPosX;
         mButton3DPosY = g_drawHIO.mEmpButton.m3DButtonPosY;
-        paneTrans(mpButton3D, field_0x304[4] + (mButton3DPosX + field_0x18c[4]), mButton3DPosY,
-                  0xFF);
+        paneTrans(mpButton3D, field_0x304[BUTTON_3D_e] + (mButton3DPosX + field_0x18c[BUTTON_3D_e]),
+                  mButton3DPosY, 0xFF);
     }
 
     if (mButton3DScale != g_drawHIO.mEmpButton.m3DButtonScale) {
@@ -1666,7 +2451,8 @@ void dMeterButton_c::updateButton() {
     {
         mButtonCPosX = g_drawHIO.mEmpButton.mCButtonPosX;
         mButtonCPosY = g_drawHIO.mEmpButton.mCButtonPosY;
-        paneTrans(mpButtonC, field_0x304[5] + (mButtonCPosX + field_0x18c[5]), mButtonCPosY, 0xFF);
+        paneTrans(mpButtonC, field_0x304[BUTTON_C_e] + (mButtonCPosX + field_0x18c[BUTTON_C_e]),
+                  mButtonCPosY, 0xFF);
     }
 
     if (mButtonCScale != g_drawHIO.mEmpButton.mCButtonScale) {
@@ -1680,7 +2466,8 @@ void dMeterButton_c::updateButton() {
     {
         mButtonSPosX = g_drawHIO.mEmpButton.mSButtonPosX;
         mButtonSPosY = g_drawHIO.mEmpButton.mSButtonPosY;
-        paneTrans(mpButtonS, field_0x304[6] + (mButtonSPosX + field_0x18c[6]), mButtonSPosY, 0xFF);
+        paneTrans(mpButtonS, field_0x304[BUTTON_S_e] + (mButtonSPosX + field_0x18c[BUTTON_S_e]),
+                  mButtonSPosY, 0xFF);
     }
 
     if (mButtonSScale != g_drawHIO.mEmpButton.mSButtonScale) {
@@ -1694,7 +2481,8 @@ void dMeterButton_c::updateButton() {
     {
         mButtonXPosX = g_drawHIO.mEmpButton.mButtonXPosX;
         mButtonXPosY = g_drawHIO.mEmpButton.mButtonXPosY;
-        paneTrans(mpButtonX, field_0x304[7] + (mButtonXPosX + field_0x18c[7]), mButtonXPosY, 0xFF);
+        paneTrans(mpButtonX, field_0x304[BUTTON_X_e] + (mButtonXPosX + field_0x18c[BUTTON_X_e]),
+                  mButtonXPosY, 0xFF);
     }
 
     if (mButtonXScale != g_drawHIO.mEmpButton.mButtonXScale) {
@@ -1708,7 +2496,8 @@ void dMeterButton_c::updateButton() {
     {
         mButtonYPosX = g_drawHIO.mEmpButton.mButtonYPosX;
         mButtonYPosY = g_drawHIO.mEmpButton.mButtonYPosY;
-        paneTrans(mpButtonY, field_0x304[8] + (mButtonXPosX + field_0x18c[8]), mButtonYPosY, 0xFF);
+        paneTrans(mpButtonY, field_0x304[BUTTON_Y_e] + (mButtonXPosX + field_0x18c[BUTTON_Y_e]),
+                  mButtonYPosY, 0xFF);
     }
 
     if (mButtonYScale != g_drawHIO.mEmpButton.mButtonYScale) {
@@ -1722,8 +2511,9 @@ void dMeterButton_c::updateButton() {
     {
         mButton3DBPosX = g_drawHIO.mEmpButton.m3DBButtonPosX;
         mButton3DBPosY = g_drawHIO.mEmpButton.m3DBButtonPosY;
-        paneTrans(mpButton3DB, field_0x304[13] + (mButtonXPosX + field_0x18c[13]), mButton3DBPosY,
-                  0xFF);
+        paneTrans(mpButton3DB,
+                  field_0x304[BUTTON_3DB_e] + (mButtonXPosX + field_0x18c[BUTTON_3DB_e]),
+                  mButton3DBPosY, 0xFF);
     }
 
     if (mButton3DBScale != g_drawHIO.mEmpButton.m3DBButtonScale) {
@@ -1737,23 +2527,25 @@ void dMeterButton_c::updateButton() {
     {
         mButtonBinPosX = g_drawHIO.mEmpButton.mBottleIconPosX;
         mButtonBinPosY = g_drawHIO.mEmpButton.mBottleIconPosY;
-        paneTrans(mpButtonBin, field_0x304[21] + (mButtonXPosX + field_0x18c[21]), mButtonBinPosY,
-                  0xFF);
+        paneTrans(mpButtonBin,
+                  field_0x304[BUTTON_BIN_e] + (mButtonXPosX + field_0x18c[BUTTON_BIN_e]),
+                  mButtonBinPosY, 0xFF);
     }
+#endif
 
-    if (field_0x080 != NULL) {
+    if (mButtonInfo != NULL) {
         if (field_0x5f4 != g_drawHIO.mEmpButton.mViewChangePosX ||
             field_0x5f8 != g_drawHIO.mEmpButton.mViewChangePosY)
         {
             field_0x5f4 = g_drawHIO.mEmpButton.mViewChangePosX;
             field_0x5f8 = g_drawHIO.mEmpButton.mViewChangePosY;
-            paneTrans(field_0x080, field_0x5f4, field_0x5f8, 0xFF);
+            paneTrans(mButtonInfo, field_0x5f4, field_0x5f8, 0xFF);
         }
 
         if (field_0x5fc != g_drawHIO.mEmpButton.mViewChangeScale) {
             field_0x5fc = g_drawHIO.mEmpButton.mViewChangeScale;
 
-            field_0x080->scale(field_0x5fc, field_0x5fc);
+            mButtonInfo->scale(field_0x5fc, field_0x5fc);
         }
     }
 
@@ -1788,6 +2580,12 @@ void dMeterButton_c::updateButton() {
             y_offset = mButtonSPosY;
         }
 
+#if WIDESCREEN_SUPPORT && !PLATFORM_SHIELD
+        if (mDoGph_gInf_c::mWide == true) {
+            x_offset -= 10.0f;
+        }
+#endif
+
         paneTrans(mpText[0], mTextPosX[0] + x_offset, mTextPosY[0] + y_offset, 0);
     }
 
@@ -1813,6 +2611,12 @@ void dMeterButton_c::updateButton() {
         if (field_0x4be[1] == BUTTON_S_e) {
             y_offset = mButtonSPosY;
         }
+
+#if WIDESCREEN_SUPPORT && !PLATFORM_SHIELD
+        if (mDoGph_gInf_c::mWide == true) {
+            x_offset -= 10.0f;
+        }
+#endif
 
         paneTrans(mpText[1], mTextPosX[1] + x_offset, mTextPosY[1] + y_offset, 1);
     }
@@ -2048,6 +2852,7 @@ void dMeterButton_c::setAlphaButtonBAnimeMax() {
 }
 
 void dMeterButton_c::setAlphaButtonRAnimeMin() {
+#if PLATFORM_GCN || PLATFORM_SHIELD
     if (mpButtonR->getAlphaRate() != 0.0f) {
         if (mButtonTimers[BUTTON_R_e] == 0) {
             mButtonTimers[BUTTON_R_e] = 30;
@@ -2064,9 +2869,11 @@ void dMeterButton_c::setAlphaButtonRAnimeMin() {
             mPlayedButtonSound[BUTTON_R_e] = false;
         }
     }
+#endif
 }
 
 void dMeterButton_c::setAlphaButtonRAnimeMax() {
+#if PLATFORM_GCN || PLATFORM_SHIELD
     if (mpButtonR->getAlphaRate() != 1.0f) {
         if (dComIfGp_isRSetFlag(1)) {
             mpButtonR->setAlphaRate(1.0f);
@@ -2081,6 +2888,7 @@ void dMeterButton_c::setAlphaButtonRAnimeMax() {
             mPlayedButtonSound[BUTTON_R_e] = true;
         }
     }
+#endif
 }
 
 void dMeterButton_c::setAlphaButtonZAnimeMin() {
@@ -2156,9 +2964,42 @@ void dMeterButton_c::setAlphaButton3DAnimeMax() {
     }
 }
 
-void dMeterButton_c::setAlphaButton3DVAnimeMin() {}
+void dMeterButton_c::setAlphaButton3DVAnimeMin() {
+#if PLATFORM_WII
+    if (mButtonInfo->getAlphaRate() != 0.0f) {
+        if (mButtonTimers[BUTTON_3D_e] == 0) {
+            mButtonTimers[BUTTON_3D_e] = 30;
+        }
 
-void dMeterButton_c::setAlphaButton3DVAnimeMax() {}
+        mButtonInfo->setAlphaRate(0.0f);
+        mButtonInfo->mAlphaTimer = 0;
+        mButtonTimers[BUTTON_3D_e] = 0;
+
+        if (mButtonInfo->getAlphaRate() == 0.0f) {
+            hide_button(BUTTON_3D_e);
+            mPlayedButtonSound[BUTTON_3D_e] = false;
+        }
+    }
+#endif
+}
+
+void dMeterButton_c::setAlphaButton3DVAnimeMax() {
+#if PLATFORM_WII
+    if (mButtonInfo->getAlphaRate() != 1.0f) {
+        if (dComIfGp_is3DSetFlag(1)) {
+            mButtonInfo->setAlphaRate(1.0f);
+            mButtonInfo->mAlphaTimer = 5;
+        } else {
+            mButtonInfo->setAlphaRate(1.0f);
+            dMeter2Info_getMeterClass()->getMeterDrawPtr()->setAlphaAnimeMax(mButtonInfo, 5);
+        }
+
+        if (mButtonInfo->getAlphaRate() == 1.0f && mPlayedButtonSound[BUTTON_3D_e] == 0) {
+            mPlayedButtonSound[BUTTON_3D_e] = true;
+        }
+    }
+#endif
+}
 
 void dMeterButton_c::setAlphaButtonCAnimeMin() {
     if (mpButtonC->getAlphaRate() != 0.0f) {
@@ -2266,6 +3107,7 @@ void dMeterButton_c::setAlphaButtonSAnimeMax() {
 }
 
 void dMeterButton_c::setAlphaButtonXAnimeMin() {
+#if PLATFORM_GCN || PLATFORM_SHIELD
     if (mpButtonX->getAlphaRate() != 0.0f) {
         if (mButtonTimers[BUTTON_X_e] == 0) {
             mButtonTimers[BUTTON_X_e] = 30;
@@ -2282,9 +3124,11 @@ void dMeterButton_c::setAlphaButtonXAnimeMin() {
             mPlayedButtonSound[BUTTON_X_e] = false;
         }
     }
+#endif
 }
 
 void dMeterButton_c::setAlphaButtonXAnimeMax() {
+#if PLATFORM_GCN || PLATFORM_SHIELD
     if (mpButtonX->getAlphaRate() != 1.0f) {
         if (dComIfGp_isXSetFlag(1)) {
             mpButtonX->setAlphaRate(1.0f);
@@ -2299,9 +3143,11 @@ void dMeterButton_c::setAlphaButtonXAnimeMax() {
             mPlayedButtonSound[BUTTON_X_e] = true;
         }
     }
+#endif
 }
 
 void dMeterButton_c::setAlphaButtonYAnimeMin() {
+#if PLATFORM_GCN || PLATFORM_SHIELD
     if (mpButtonY->getAlphaRate() != 0.0f) {
         if (mButtonTimers[BUTTON_Y_e] == 0) {
             mButtonTimers[BUTTON_Y_e] = 30;
@@ -2318,9 +3164,11 @@ void dMeterButton_c::setAlphaButtonYAnimeMin() {
             mPlayedButtonSound[BUTTON_Y_e] = false;
         }
     }
+#endif
 }
 
 void dMeterButton_c::setAlphaButtonYAnimeMax() {
+#if PLATFORM_GCN || PLATFORM_SHIELD
     if (mpButtonY->getAlphaRate() != 1.0f) {
         if (dComIfGp_isYSetFlag(1)) {
             mpButtonY->setAlphaRate(1.0f);
@@ -2335,6 +3183,7 @@ void dMeterButton_c::setAlphaButtonYAnimeMax() {
             mPlayedButtonSound[BUTTON_Y_e] = true;
         }
     }
+#endif
 }
 
 void dMeterButton_c::setAlphaButtonNunAnimeMin() {
@@ -2892,6 +3741,22 @@ void dMeterButton_c::setAlphaIconAnimeMax() {
 }
 
 bool dMeterButton_c::isClose() {
+#if PLATFORM_WII
+    if (mpButtonA->getAlphaRate() == 0.0f && mpButtonB->getAlphaRate() == 0.0f &&
+        mpButton3D->getAlphaRate() == 0.0f && mpButtonC->getAlphaRate() == 0.0f &&
+        mpButtonS->getAlphaRate() == 0.0f && mpButtonNun->getAlphaRate() == 0.0f &&
+        mpButtonRemo->getAlphaRate() == 0.0f && mpButtonRemo2->getAlphaRate() == 0.0f &&
+        mpButtonAR->getAlphaRate() == 0.0f && mpButtonNURE->getAlphaRate() == 0.0f &&
+        mpButtonReel->getAlphaRate() == 0.0f && mpButtonReel2->getAlphaRate() == 0.0f &&
+        mpButtonAB->getAlphaRate() == 0.0f && mpButtonTate->getAlphaRate() == 0.0f &&
+        mpButtonNunZ->getAlphaRate() == 0.0f && mpButtonNunC->getAlphaRate() == 0.0f &&
+        mButtonInfo->getAlphaRate() == 0.0f && mpButtonBin->getAlphaRate() == 0.0f &&
+        mpText[0]->getAlphaRate() == 0.0f && mpText[1]->getAlphaRate() == 0.0f &&
+        mpItem_c->getAlphaRate() == 0.0f)
+    {
+        return true;
+    }
+#else
     if (mpButtonA->getAlphaRate() == 0.0f && mpButtonB->getAlphaRate() == 0.0f &&
         mpButtonR->getAlphaRate() == 0.0f && mpButtonZ->getAlphaRate() == 0.0f &&
         mpButton3D->getAlphaRate() == 0.0f && mpButtonC->getAlphaRate() == 0.0f &&
@@ -2902,6 +3767,7 @@ bool dMeterButton_c::isClose() {
     {
         return true;
     }
+#endif
 
     return false;
 }
@@ -2986,7 +3852,7 @@ void dMeterButton_c::setString(char* i_string, u8 i_button, u8 param_2, u8 param
 
         f32 centerPosCalc = getCenterPosCalc(i_button, i_string, param_2);
         f32 temp_f2_2;
-        
+
         if (param_2 == 0 && field_0x4be[1] == BUTTON_NONE_e) {
             field_0x2f4[param_2] = 0.0f;
         } else if (dComIfGp_is3DSetFlag(8)) {
@@ -3012,6 +3878,14 @@ void dMeterButton_c::setString(char* i_string, u8 i_button, u8 param_2, u8 param
         for (int i = 0; i < 5; i++) {
             strcpy(mpTextBox[i]->getStringPtr(), i_string);
         }
+
+#if PLATFORM_WII
+        if (dComIfGp_is3DSetFlag(0x8) && i_button == BUTTON_3D_e) {
+            for (int i = 0; i < ARRAY_SIZE(field_0x0ac); i++) {
+                strcpy(field_0x0ac[i]->getStringPtr(), i_string);
+            }
+        }
+#endif
         return;
     }
 
@@ -3024,6 +3898,14 @@ void dMeterButton_c::setString(char* i_string, u8 i_button, u8 param_2, u8 param
     for (int i = 0; i < 5; i++) {
         strcpy(mpTextBox[5 + i]->getStringPtr(), i_string);
     }
+
+#if PLATFORM_WII
+    if (dComIfGp_is3DSetFlag(0x8) && i_button == BUTTON_3D_e) {
+        for (int i = 0; i < ARRAY_SIZE(field_0x0ac); i++) {
+            strcpy(field_0x0ac[i]->getStringPtr(), i_string);
+        }
+    }
+#endif
 }
 
 void dMeterButton_c::hideAll() {
@@ -3041,9 +3923,14 @@ f32 dMeterButton_c::getCenterPosCalc(u8 i_button, char* i_string, int param_2) {
     f32 var_f0;
     f32 var_f3;
     f32 rv;
-    f32 temp_f0 = 1.0f;
+    f32 aspect = 1.0f;
+#if WIDESCREEN_SUPPORT && !PLATFORM_SHIELD
+    if (mDoGph_gInf_c::mWide != true) {
+        aspect = 606.0f / 456.0f;
+    }
+#endif
     field_0x1e4[param_2] =
-        (mTextScale[param_2] * dMeter2Info_getStringLength(mpTextBox[0], i_string)) * temp_f0;
+        (mTextScale[param_2] * dMeter2Info_getStringLength(mpTextBox[0], i_string)) * aspect;
 
     if (field_0x4d9 == param_2 && field_0x4be[param_2] == 1) {
         field_0x1e4[param_2] = mButtonBScale * mpButtonScreen->search(MULTI_CHAR('fishing'))->getWidth();
@@ -3059,13 +3946,31 @@ f32 dMeterButton_c::getCenterPosCalc(u8 i_button, char* i_string, int param_2) {
 
     switch (i_button) {
     case BUTTON_A_e:
-        mButtonWidth[i_button] = mButtonAScale * mpButtonScreen->search(MULTI_CHAR('a_btn1'))->getWidth();
+        mButtonWidth[i_button] = mButtonAScale * mpButtonScreen->search(
+#if PLATFORM_WII
+            MULTI_CHAR('a_btn_c2')
+#else
+            MULTI_CHAR('a_btn1')
+#endif
+        )->getWidth();
         field_0x304[i_button] = field_0x1e4[param_2] + mButtonWidth[i_button];
         break;
     case BUTTON_B_e:
-        mButtonWidth[i_button] = mButtonBScale * mpButtonScreen->search(MULTI_CHAR('b_btn'))->getWidth();
+        mButtonWidth[i_button] = mButtonBScale * mpButtonScreen->search(
+#if PLATFORM_WII
+            MULTI_CHAR('b_btn_cp')
+#else
+            MULTI_CHAR('b_btn')
+#endif
+        )->getWidth();
         field_0x304[i_button] = field_0x1e4[param_2] + mButtonWidth[i_button];
         break;
+#if PLATFORM_WII
+    case BUTTON_Z_e:
+        mButtonWidth[i_button] = 0.0f;
+        field_0x304[i_button] = field_0x1e4[param_2] + mButtonWidth[i_button];
+        break;
+#else
     case BUTTON_R_e:
         mButtonWidth[i_button] = mButtonRScale * mpButtonScreen->search(MULTI_CHAR('r_btn_b'))->getWidth();
         field_0x304[i_button] = field_0x1e4[param_2] + mButtonWidth[i_button];
@@ -3099,6 +4004,7 @@ f32 dMeterButton_c::getCenterPosCalc(u8 i_button, char* i_string, int param_2) {
         // clang-format on
         field_0x304[i_button] = field_0x1e4[param_2] + mButtonWidth[i_button];
         break;
+#endif
     case BUTTON_3D_e:
         mButtonWidth[i_button] = mButton3DScale * mpButtonScreen->search(MULTI_CHAR('as_btn1'))->getWidth();
 
@@ -3112,6 +4018,39 @@ f32 dMeterButton_c::getCenterPosCalc(u8 i_button, char* i_string, int param_2) {
 
         field_0x304[i_button] = 0.0f;
         break;
+#if PLATFORM_WII
+    case BUTTON_C_e:
+        if (dComIfGp_getCStickDirection() == 8) {
+            CPaneMgr pane;
+            Mtx m, m2;
+            Vec sp124 = pane.getGlobalVtx(mpButtonScreen->search('juji_btn'), &m, 0, false, 0);
+            Vec sp130 = pane.getGlobalVtx(mpButtonScreen->search('juji_btn'), &m, 3, false, 0);
+            Vec sp13C = pane.getGlobalVtx(mpButtonScreen->search(MULTI_CHAR('midona')), &m2, 0, false, 0);
+            Vec sp148 = pane.getGlobalVtx(mpButtonScreen->search(MULTI_CHAR('midona')), &m2, 3, false, 0);
+
+            f32 var_f2;
+            if (sp124.x > sp13C.x) {
+                var_f2 = sp13C.x;
+            } else {
+                var_f2 = sp124.x;
+            }
+
+            f32 var_f1;
+            if (sp130.x > sp148.x) {
+                var_f1 = sp130.x;
+            } else {
+                var_f1 = sp148.x;
+            }
+
+            field_0x244[BUTTON_C_e] = field_0x2a4;
+            mButtonWidth[i_button] = var_f1 - var_f2;
+        } else {
+            field_0x244[BUTTON_C_e] = field_0x2a8;
+            mButtonWidth[i_button] = mButtonCScale * mpButtonScreen->search('juji_btn')->getWidth();
+        }
+        field_0x304[i_button] = field_0x1e4[param_2] + mButtonWidth[i_button];
+        break;
+#else
     case BUTTON_C_e:
         if (dComIfGp_checkCameraAttentionStatus(0, 8)) {
             mButtonWidth[i_button] = mButtonCScale * mpButtonScreen->search(MULTI_CHAR('c_btn'))->getWidth();
@@ -3123,8 +4062,10 @@ f32 dMeterButton_c::getCenterPosCalc(u8 i_button, char* i_string, int param_2) {
             field_0x304[i_button] = field_0x1e4[param_2] + mButtonWidth[i_button];
         }
         break;
+#endif
     case BUTTON_S_e:
-        mButtonWidth[i_button] = mButtonSScale * mpButtonScreen->search(MULTI_CHAR('a_btn2'))->getWidth();
+        mButtonWidth[i_button] =
+            mButtonSScale * mpButtonScreen->search(MULTI_CHAR('a_btn2'))->getWidth();
         field_0x304[i_button] = field_0x1e4[param_2] + mButtonWidth[i_button];
         break;
     case BUTTON_X_e:
@@ -3135,10 +4076,57 @@ f32 dMeterButton_c::getCenterPosCalc(u8 i_button, char* i_string, int param_2) {
         mButtonWidth[i_button] = mButtonYScale * mpButtonScreen->search(MULTI_CHAR('y_btn'))->getWidth();
         field_0x304[i_button] = field_0x1e4[param_2] + mButtonWidth[i_button];
         break;
+#if PLATFORM_WII
+    case BUTTON_NUN_e:
+        mButtonWidth[i_button] = mButtonNunScale * mpButtonScreen->search(MULTI_CHAR('nstick_n'))->getWidth();
+        field_0x304[i_button] = 0.0f;
+        break;
+    case BUTTON_REMO_e:
+        mButtonWidth[i_button] = mButtonRemoScale * mpButtonScreen->search(MULTI_CHAR('rimoco_n'))->getWidth();
+        field_0x304[i_button] = field_0x1e4[param_2] + mButtonWidth[i_button];
+        break;
+    case BUTTON_REMO2_e:
+        mButtonWidth[i_button] = mButtonRemo2Scale * mpButtonScreen->search(MULTI_CHAR('action_n'))->getWidth();
+        field_0x304[i_button] = field_0x1e4[param_2] + mButtonWidth[i_button];
+        break;
+    case BUTTON_AR_e:
+        mButtonWidth[i_button] = mButtonARScale * mpButtonScreen->search(MULTI_CHAR('a_to_r_n'))->getWidth();
+        field_0x304[i_button] = field_0x1e4[param_2] + mButtonWidth[i_button];
+        break;
+    case BUTTON_NURE_e:
+        mButtonWidth[i_button] = mButtonNUREScale * mpButtonScreen->search(MULTI_CHAR('nu_re_n'))->getWidth();
+        field_0x304[i_button] = 0.0f;
+        break;
+    case BUTTON_REEL_e:
+        mButtonWidth[i_button] = mButtonReelScale * mpButtonScreen->search(MULTI_CHAR('n_kuru_n'))->getWidth();
+        field_0x304[i_button] = 0.0f;
+        break;
+    case BUTTON_REEL2_e:
+        mButtonWidth[i_button] = mButtonReel2Scale * mpButtonScreen->search(MULTI_CHAR('n_only_n'))->getWidth();
+        field_0x304[i_button] = 0.0f;
+        break;
+    case BUTTON_AB_e:
+        mButtonWidth[i_button] = mButtonReel2Scale * mpButtonScreen->search(MULTI_CHAR('AB_null'))->getWidth();
+        field_0x304[i_button] = field_0x1e4[param_2] + mButtonWidth[i_button];
+        break;
+    case BUTTON_TATE_e:
+        mButtonWidth[i_button] = mButtonTateScale * mpButtonScreen->search(MULTI_CHAR('tate_n'))->getWidth();
+        field_0x304[i_button] = 0.0f;
+        break;
+    case BUTTON_NUNZ_e:
+        mButtonWidth[i_button] = mButtonNunZScale * mpButtonScreen->search(MULTI_CHAR('z_btn_n'))->getWidth();
+        field_0x304[i_button] = 0.0f;
+        break;
+    case BUTTON_NUNC_e:
+        mButtonWidth[i_button] = mButtonNunCScale * mpButtonScreen->search(MULTI_CHAR('c_btn_n'))->getWidth();
+        field_0x304[i_button] = 0.0f;
+        break;
+#else
     case BUTTON_3DB_e:
         mButtonWidth[i_button] = mButton3DBScale * mpButtonScreen->search(MULTI_CHAR('as_b_n'))->getWidth();
         field_0x304[i_button] = field_0x1e4[param_2] + mButtonWidth[i_button];
         break;
+#endif
     case BUTTON_BIN_e:
         mButtonWidth[i_button] = field_0x5f0 * mpButtonScreen->search(MULTI_CHAR('bottl_n'))->getWidth();
         field_0x304[i_button] = 0.0f;
@@ -3176,93 +4164,239 @@ f32 dMeterButton_c::getCenterPosCalc(u8 i_button, char* i_string, int param_2) {
 void dMeterButton_c::trans_button(int i_idx, f32 param_1) {
     u8 button = field_0x4be[i_idx];
 
-    if (button != BUTTON_NONE_e) {
-        f32 buttonPosOffsetX = 0.0f;
-        f32 offsetY = 0.0f;
-        f32 screenCenter = (mDoGph_gInf_c::getMinXF() + mDoGph_gInf_c::getMaxX()) * 0.5f;
-        f32 fVar4 = 20.0f;
-        u8 var_r26 = 1;
-        field_0x18c[button] = screenCenter - field_0x244[button];
-        buttonPosOffsetX = field_0x18c[button];
-        field_0x304[button] = ((mButtonWidth[button] + field_0x29c[i_idx] + fVar4) * 0.5f) - (mButtonWidth[button] * 0.5f);
+    if (button == BUTTON_NONE_e) {
+        return;
+    }
 
-        switch (button) {
-        case BUTTON_A_e:
-            paneTrans(mpButtonA, field_0x304[BUTTON_A_e] + (param_1 + (mButtonAPosX + buttonPosOffsetX)),
-                      mButtonAPosY, 0xFF);
-            break;
-        case BUTTON_B_e:
-            paneTrans(mpButtonB, field_0x304[BUTTON_B_e] + (param_1 + (mButtonBPosX + buttonPosOffsetX)),
-                      mButtonBPosY, 0xFF);
-            break;
-        case BUTTON_R_e:
-            paneTrans(mpButtonR, field_0x304[BUTTON_R_e] + (param_1 + (mButtonRPosX + buttonPosOffsetX)),
-                      mButtonRPosY, 0xFF);
-            break;
-        case BUTTON_Z_e:
-            paneTrans(mpButtonZ, field_0x304[BUTTON_Z_e] + (param_1 + (mButtonZPosX + buttonPosOffsetX)),
-                      mButtonZPosY, 0xFF);
-            break;
-        case BUTTON_3D_e:
-            var_r26 = 0;
-            field_0x304[button] = -field_0x304[button];
-            paneTrans(mpButton3D, field_0x304[BUTTON_3D_e] + (param_1 + (mButton3DPosX + buttonPosOffsetX)),
-                      mButton3DPosY, 0xFF);
-            break;
-        case BUTTON_C_e:
-            paneTrans(mpButtonC, field_0x304[BUTTON_C_e] + (param_1 + (mButtonCPosX + buttonPosOffsetX)),
-                      mButtonCPosY, 0xFF);
-            break;
-        case BUTTON_S_e:
-            paneTrans(mpButtonS, field_0x304[BUTTON_S_e] + (param_1 + (mButtonSPosX + buttonPosOffsetX)),
-                      mButtonSPosY, 0xFF);
-            offsetY = mButtonSPosY;
-            break;
-        case BUTTON_X_e:
-            paneTrans(mpButtonX, field_0x304[BUTTON_X_e] + (param_1 + (mButtonXPosX + buttonPosOffsetX)),
-                      mButtonXPosY, 0xFF);
-            break;
-        case BUTTON_Y_e:
-            paneTrans(mpButtonY, field_0x304[BUTTON_Y_e] + (param_1 + (mButtonYPosX + buttonPosOffsetX)),
-                      mButtonYPosY, 0xFF);
-            break;
-        case BUTTON_3DB_e:
-            if (mpButton3DB != NULL) {
-                paneTrans(mpButton3DB,
-                          field_0x304[BUTTON_3DB_e] + (param_1 + (mButton3DBPosX + buttonPosOffsetX)),
-                          mButton3DBPosY, 0xFF);
-            }
-            break;
-        case BUTTON_BIN_e:
-            if (mpButtonBin != NULL) {
-                paneTrans(mpButtonBin,
-                          field_0x304[BUTTON_BIN_e] + (param_1 + (mButtonBinPosX + buttonPosOffsetX)),
-                          mButtonBinPosY, 0xFF);
-                buttonPosOffsetX -= 10.0f;
-            }
+    f32 buttonPosOffsetX = 0.0f;
+    f32 offsetY = 0.0f;
+    f32 screenCenter = (mDoGph_gInf_c::getMinXF() + mDoGph_gInf_c::getMaxX()) * 0.5f;
+    f32 fVar4;
+#if WIDESCREEN_SUPPORT && !PLATFORM_SHIELD
+    if (mDoGph_gInf_c::mWide == true) {
+        fVar4 = 10.0f;
+    } else {
+        fVar4 = 20.0f;
+    }
+#else
+    fVar4 = 20.0f;
+#endif
+    u8 var_r26 = 1;
+    field_0x18c[button] = screenCenter - field_0x244[button];
+    buttonPosOffsetX = field_0x18c[button];
+    field_0x304[button] = ((mButtonWidth[button] + field_0x29c[i_idx] + fVar4) * 0.5f) -
+                          (mButtonWidth[button] * 0.5f);
+
+    switch (button) {
+    case BUTTON_A_e:
+        paneTrans(mpButtonA,
+                  field_0x304[BUTTON_A_e] + (param_1 + (mButtonAPosX + buttonPosOffsetX)),
+                  mButtonAPosY, 0xFF);
+        break;
+    case BUTTON_B_e:
+        paneTrans(mpButtonB,
+                  field_0x304[BUTTON_B_e] + (param_1 + (mButtonBPosX + buttonPosOffsetX)),
+                  mButtonBPosY, 0xFF);
+        break;
+#if PLATFORM_GCN || PLATFORM_SHIELD
+    case BUTTON_R_e:
+        paneTrans(mpButtonR,
+                  field_0x304[BUTTON_R_e] + (param_1 + (mButtonRPosX + buttonPosOffsetX)),
+                  mButtonRPosY, 0xFF);
+        break;
+    case BUTTON_Z_e:
+        paneTrans(mpButtonZ,
+                  field_0x304[BUTTON_Z_e] + (param_1 + (mButtonZPosX + buttonPosOffsetX)),
+                  mButtonZPosY, 0xFF);
+        break;
+#endif
+    case BUTTON_3D_e:
+        var_r26 = 0;
+        field_0x304[button] = -field_0x304[button];
+        paneTrans(mpButton3D,
+                  field_0x304[BUTTON_3D_e] + (param_1 + (mButton3DPosX + buttonPosOffsetX)),
+                  mButton3DPosY, 0xFF);
+        break;
+    case BUTTON_C_e:
+        paneTrans(mpButtonC,
+                  field_0x304[BUTTON_C_e] + (param_1 + (mButtonCPosX + buttonPosOffsetX)),
+                  mButtonCPosY, 0xFF);
+        break;
+    case BUTTON_S_e:
+        paneTrans(mpButtonS,
+                  field_0x304[BUTTON_S_e] + (param_1 + (mButtonSPosX + buttonPosOffsetX)),
+                  mButtonSPosY, 0xFF);
+        offsetY = mButtonSPosY;
+        break;
+#if PLATFORM_WII
+    case BUTTON_NUN_e:
+        if (mpButtonNun == NULL) {
             break;
         }
-
-        f32 var_f30;
-        switch (var_r26) {
-        case 1:
-            var_f30 = ((field_0x35c * 0.5f) + (field_0x360 + (screenCenter - field_0x2e0[i_idx]))) - ((mButtonWidth[button] + field_0x29c[i_idx] + fVar4) * 0.5f);
+        field_0x304[button] = -field_0x304[button];
+        var_r26 = 0;
+        paneTrans(mpButtonNun,
+                  field_0x304[BUTTON_NUN_e] + (param_1 + (mButtonNunPosX + buttonPosOffsetX)),
+                  mButtonNunPosY, 0xFF);
+        break;
+    case BUTTON_REMO_e:
+        if (mpButtonRemo == NULL) {
             break;
-        case 0:
+        }
+        paneTrans(mpButtonRemo,
+                  field_0x304[BUTTON_REMO_e] + (param_1 + (mButtonRemoPosX + buttonPosOffsetX)),
+                  mButtonRemoPosY, 0xFF);
+        break;
+    case BUTTON_REMO2_e:
+        if (mpButtonRemo2 == NULL) {
+            break;
+        }
+        paneTrans(mpButtonRemo2,
+                  field_0x304[BUTTON_REMO2_e] + (param_1 + (mButtonRemo2PosX + buttonPosOffsetX)),
+                  mButtonRemo2PosY, 0xFF);
+        break;
+    case BUTTON_AR_e:
+        if (mpButtonAR == NULL) {
+            break;
+        }
+        paneTrans(mpButtonAR,
+                  field_0x304[BUTTON_AR_e] + (param_1 + (mButtonARPosX + buttonPosOffsetX)),
+                  mButtonARPosY, 0xFF);
+        break;
+    case BUTTON_NURE_e:
+        if (mpButtonNURE == NULL) {
+            break;
+        }
+        var_r26 = 2;
+        paneTrans(mpButtonNURE,
+                  (param_1 + (mButtonNUREPosX + buttonPosOffsetX)),
+                  mButtonNUREPosY, 0xFF);
+        break;
+    case BUTTON_REEL_e:
+        if (mpButtonReel == NULL) {
+            break;
+        }
+        field_0x304[button] = -field_0x304[button];
+        var_r26 = 0;
+        paneTrans(mpButtonReel,
+                  field_0x304[BUTTON_REEL_e] + (param_1 + (mButtonReelPosX + buttonPosOffsetX)),
+                  mButtonReelPosY, 0xFF);
+        break;
+    case BUTTON_REEL2_e:
+        if (mpButtonReel2 == NULL) {
+            break;
+        }
+        field_0x304[button] = -field_0x304[button];
+        var_r26 = 0;
+        paneTrans(mpButtonReel2,
+                  field_0x304[BUTTON_REEL2_e] + (param_1 + (mButtonReel2PosX + buttonPosOffsetX)),
+                  mButtonReel2PosY, 0xFF);
+        break;
+    case BUTTON_AB_e:
+        if (mpButtonAB == NULL) {
+            break;
+        }
+        paneTrans(mpButtonAB,
+                  field_0x304[BUTTON_AB_e] + (param_1 + (mButtonABPosX + buttonPosOffsetX)),
+                  mButtonABPosY, 0xFF);
+        break;
+    case BUTTON_TATE_e:
+        if (mpButtonTate == NULL) {
+            break;
+        }
+        field_0x304[button] = -field_0x304[button];
+        var_r26 = 0;
+        paneTrans(mpButtonTate,
+                  field_0x304[BUTTON_TATE_e] + (param_1 + (mButtonTatePosX + buttonPosOffsetX)),
+                  mButtonTatePosY, 0xFF);
+        break;
+    case BUTTON_NUNZ_e:
+        if (mpButtonNunZ == NULL) {
+            break;
+        }
+        field_0x304[button] = -field_0x304[button];
+        var_r26 = 0;
+        paneTrans(mpButtonNunZ,
+                  field_0x304[BUTTON_NUNZ_e] + (param_1 + (mButtonNunZPosX + buttonPosOffsetX)),
+                  mButtonNunZPosY, 0xFF);
+        break;
+    case BUTTON_NUNC_e:
+        if (mpButtonNunC == NULL) {
+            break;
+        }
+        field_0x304[button] = -field_0x304[button];
+        var_r26 = 0;
+        paneTrans(mpButtonNunC,
+                  field_0x304[BUTTON_NUNC_e] + (param_1 + (mButtonNunCPosX + buttonPosOffsetX)),
+                  mButtonNunCPosY, 0xFF);
+        break;
+#else
+    case BUTTON_X_e:
+        paneTrans(mpButtonX,
+                  field_0x304[BUTTON_X_e] + (param_1 + (mButtonXPosX + buttonPosOffsetX)),
+                  mButtonXPosY, 0xFF);
+        break;
+    case BUTTON_Y_e:
+        paneTrans(mpButtonY,
+                  field_0x304[BUTTON_Y_e] + (param_1 + (mButtonYPosX + buttonPosOffsetX)),
+                  mButtonYPosY, 0xFF);
+        break;
+    case BUTTON_3DB_e:
+        if (mpButton3DB != NULL) {
+            paneTrans(mpButton3DB,
+                      field_0x304[BUTTON_3DB_e] + (param_1 + (mButton3DBPosX + buttonPosOffsetX)),
+                      mButton3DBPosY, 0xFF);
+        }
+        break;
+#endif
+    case BUTTON_BIN_e:
+        if (mpButtonBin != NULL) {
+            paneTrans(mpButtonBin,
+                      field_0x304[BUTTON_BIN_e] + (param_1 + (mButtonBinPosX + buttonPosOffsetX)),
+                      mButtonBinPosY, 0xFF);
+        }
+        break;
+    }
+
+#if PLATFORM_WII
+#endif
+
+    buttonPosOffsetX -= 10.0f;
+
+    f32 var_f30;
+    switch (var_r26) {
+    case 1:
+        var_f30 = ((field_0x35c * 0.5f) + (field_0x360 + (screenCenter - field_0x2e0[i_idx]))) -
+                  ((mButtonWidth[button] + field_0x29c[i_idx] + fVar4) * 0.5f);
+        break;
+    case 0:
+#if WIDESCREEN_SUPPORT && !PLATFORM_SHIELD
+        if (mDoGph_gInf_c::mWide == true) {
             var_f30 = mButtonWidth[button] +
-                      (((field_0x35c * 0.5f) + (field_0x360 + (screenCenter - field_0x2e0[i_idx]))) - ((mButtonWidth[button] + field_0x29c[i_idx] + fVar4) * 0.5f));
-            break;
-        case 2:
-            var_f30 = ((field_0x35c * 0.5f) + (field_0x360 + (screenCenter - field_0x2e0[i_idx]))) - (field_0x29c[i_idx] * 0.5f);
-            break;
+                      (((field_0x35c * 0.5f) +
+                          (field_0x360 + (screenCenter - field_0x2e0[i_idx]))) -
+                              ((mButtonWidth[button] + field_0x29c[i_idx] + fVar4) * 0.5f)) -
+                                  field_0x360;
+        } else
+#endif
+        {
+            var_f30 = mButtonWidth[button] +
+                      (((field_0x35c * 0.5f) +
+                          (field_0x360 + (screenCenter - field_0x2e0[i_idx]))) -
+                              ((mButtonWidth[button] + field_0x29c[i_idx] + fVar4) * 0.5f));
         }
+        break;
+    case 2:
+        var_f30 = ((field_0x35c * 0.5f) + (field_0x360 + (screenCenter - field_0x2e0[i_idx]))) -
+                  (field_0x29c[i_idx] * 0.5f);
+        break;
+    }
 
-        paneTrans(mpText[i_idx], param_1 + (mTextPosX[i_idx] + var_f30),
-                  (mTextPosY[i_idx] + offsetY) - 2.0f, i_idx);
+    paneTrans(mpText[i_idx], param_1 + (mTextPosX[i_idx] + var_f30),
+              (mTextPosY[i_idx] + offsetY) - 2.0f, i_idx);
 
-        if (field_0x4d9 == i_idx) {
-            paneTrans(mpItem_c, mItemPosX + param_1, mItemPosY, 0xFF);
-        }
+    if (field_0x4d9 == i_idx) {
+        paneTrans(mpItem_c, mItemPosX + param_1, mItemPosY, 0xFF);
     }
 }
 

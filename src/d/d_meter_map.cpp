@@ -18,8 +18,32 @@
 #include "d/d_camera.h"
 #include <cstring>
 
-#if (PLATFORM_WII || PLATFORM_SHIELD)
+#if PLATFORM_WII || PLATFORM_SHIELD
+#include "m_Re/m_Re_controller_pad.h"
+#endif
+
+#if DEBUG
 dMeter_map_HIO_c g_meter_mapHIO;
+
+#define MAP_HIO_MED_HOR g_meter_mapHIO.mMediumHorizontal
+#define MAP_HIO_MED_VER g_meter_mapHIO.mMediumVertical
+#define MAP_HIO_BIG_HOR g_meter_mapHIO.mBigHorizontal
+#define MAP_HIO_BIG_VER g_meter_mapHIO.mBigVertical
+#define MAP_HIO_SM_HOR g_meter_mapHIO.mSmallHorizontal
+#define MAP_HIO_SM_VER g_meter_mapHIO.mSmallVertical
+#define MAP_HIO_WIDE_BOTTOM_LEFT_X g_meter_mapHIO.mWideBottomLeftX
+#define MAP_HIO_NORMAL_BOTTOM_LEFT_X g_meter_mapHIO.mNormalBottomLeftX
+#define MAP_HIO_NORMAL_HIDDEN_RIGHT_X g_meter_mapHIO.mHiddenRightX
+#else
+#define MAP_HIO_MED_HOR 144
+#define MAP_HIO_MED_VER 144
+#define MAP_HIO_BIG_HOR 216
+#define MAP_HIO_BIG_VER 216
+#define MAP_HIO_SM_HOR 96
+#define MAP_HIO_SM_VER 96
+#define MAP_HIO_WIDE_BOTTOM_LEFT_X (-38)
+#define MAP_HIO_NORMAL_BOTTOM_LEFT_X 35
+#define MAP_HIO_NORMAL_HIDDEN_RIGHT_X -36.0f
 #endif
 
 #if DEBUG
@@ -129,34 +153,33 @@ void dMeter_map_HIO_c::listenPropertyEvent(const JORPropertyEvent* evt) {
         case 0x4000001:
             int mapDispType = dStage_stagInfo_GetUpButton(dComIfGp_getStage()->getStagInfo());
             if (dMeterMap_c::mMySelfPointer != NULL) {
-                dMeterMap_c* map_p = dMeterMap_c::mMySelfPointer->getMapPointer();
-                if (map_p != NULL) {
-                    int sizeType = map_p->getMapDispSizeTypeNo();
+                if (dMeterMap_c::mMySelfPointer->getMapPointer() != NULL) {
                     s16 width;
                     s16 height;
 
-                    switch (sizeType) {                     
-                        case dMeterMap_c::MAP_SIZE_TYPE_BIG:
+                    switch (dMeterMap_c::mMySelfPointer->getMapDispSizeTypeNo()) {
+                    case dMeterMap_c::MAP_SIZE_TYPE_UNK_1:
+                    case dMeterMap_c::MAP_SIZE_TYPE_MEDIUM:
+                        width = g_meter_mapHIO.mMediumHorizontal;
+                        height = g_meter_mapHIO.mMediumVertical;
+                        break;
+
+                    case dMeterMap_c::MAP_SIZE_TYPE_BIG:
+                        if (mapDispType != dStage_stagInfo_c::UB_D_MAP) {
                             width = g_meter_mapHIO.mBigHorizontal;
                             height = g_meter_mapHIO.mBigVertical;
                             break;
-                            
-                        case 4:
-                            if (mapDispType != dStage_stagInfo_c::UB_D_MAP) {
-                                width = g_meter_mapHIO.mMediumHorizontal;
-                                height = g_meter_mapHIO.mMediumVertical;
-                                break;
-                            }
+                        }
 
-                            // You cannot specify a large size for the dungeon map
-                            OS_REPORT("ダンジョンマップは大サイズ指定できません\n");
-                            break;
+                        // You cannot specify a large size for the dungeon map
+                        OS_REPORT("ダンジョンマップは大サイズ指定できません\n");
+                        break;
 
-                        case 1:
-                        case dMeterMap_c::MAP_SIZE_TYPE_SMALL:
-                            width = g_meter_mapHIO.mSmallHorizontal;
-                            height = g_meter_mapHIO.mSmallVertical;
-                            break;
+                    case dMeterMap_c::MAP_SIZE_TYPE_SMALL:
+                    case dMeterMap_c::MAP_SIZE_TYPE_UNK_5:
+                        width = g_meter_mapHIO.mSmallHorizontal;
+                        height = g_meter_mapHIO.mSmallVertical;
+                        break;
                     }
 
                     if (g_meter_mapHIO.mTextureResolutionHalved) {
@@ -192,44 +215,47 @@ bool dMeterMap_c::isEnableDispMap() {
         minimapEnable = dStage_stagInfo_GetMiniMap(pstag) != 0;
     }
 
-    bool enableMap = false;
-    if (minimapEnable && dMpath_c::isExistMapPathData()) {
-        enableMap = true;
-    }
-    
-    return enableMap;
+    minimapEnable = minimapEnable && dMpath_c::isExistMapPathData();
+    return minimapEnable;
+}
+
+void dMeterMap_c_dummy() {
+    void* mMap;
+    JUT_ASSERT(0, mMap != NULL);
 }
 
 int dMeterMap_c::getMapDispSizeTypeNo() {
-    int uvar6 = 7;
+    int var_r26 = 7;
+    int var_r28;
 
     dStage_FileList_dt_c* fList =
         dComIfGp_roomControl_getStatusRoomDt(dComIfGp_roomControl_getStayNo())->getFileListInfo();
     if (fList != NULL) {
-        uvar6 = dStage_FileList_dt_getMiniMap(fList);
+        var_r26 = dStage_FileList_dt_getMiniMap(fList);
     }
+    var_r28 = var_r26;
 
-    u32 stageMapSizeTypeNo = dStage_stagInfo_GetMiniMap(dComIfGp_getStage()->getStagInfo());
+    int stageMapSizeTypeNo = dStage_stagInfo_GetMiniMap(dComIfGp_getStage()->getStagInfo());
     JUT_ASSERT(536, stageMapSizeTypeNo != MAP_SIZE_TYPE_STAGE);
     s32 mapDispType = dStage_stagInfo_GetUpButton(dComIfGp_getStage()->getStagInfo());
 
     if (mapDispType == 1) {
-        uvar6 = 1;
+        var_r28 = 1;
         JUT_ASSERT(544, stageMapSizeTypeNo != MAP_SIZE_TYPE_SMALL);
         JUT_ASSERT(545, stageMapSizeTypeNo != MAP_SIZE_TYPE_BIG);
-    } else if (uvar6 == 7) {
-        uvar6 = stageMapSizeTypeNo;
+    } else if (var_r26 == 7) {
+        var_r28 = stageMapSizeTypeNo;
     }
 
     int mapDispSizeType = 0;
 
     #if DEBUG
     if (g_meter_mapHIO.mSizeTypeChange) {
-        uvar6 = g_meter_mapHIO.field_0x18;
+        var_r28 = g_meter_mapHIO.field_0x18;
     }
     #endif
     
-    switch (uvar6) {
+    switch (var_r28) {
     case 0:
         break;
     case 1:
@@ -268,7 +294,7 @@ bool dMeterMap_c::isEnableDispMapAndMapDispSizeTypeNo() {
 }
 
 f32 dMeterMap_c::getMapDispEdgeBottomY_Layout() {
-    #if (PLATFORM_WII || PLATFORM_SHIELD)
+#if DEBUG
     if (dComIfGs_getOptPointer() == 0) {
         return g_meter_mapHIO.mGcY;
     }
@@ -278,9 +304,17 @@ f32 dMeterMap_c::getMapDispEdgeBottomY_Layout() {
     }
 
     return g_meter_mapHIO.mNormalY;
-    #else
+#elif PLATFORM_GCN
     return 421.0f;
-    #endif
+#elif PLATFORM_WII
+    if (dComIfGs_getOptPointer() == 0) {
+        return 421.0f;
+    } else {
+        return 380.0f;
+    }
+#else
+    return 380.0f;
+#endif
 }
 
 bool dMeterMap_c::isEventRunCheck() {
@@ -300,15 +334,15 @@ bool dMeterMap_c::isEventRunCheck() {
 }
 
 f32 dMeterMap_c::getMapDispEdgeLeftX_Layout() {
-    #if (PLATFORM_WII || PLATFORM_SHIELD)
+#if PLATFORM_GCN
+    return mSlidePositionOffset + 35;
+#else
     if (mDoGph_gInf_c::isWide()) {
-        return g_meter_mapHIO.mWideBottomLeftX + mSlidePositionOffset;
+        return MAP_HIO_WIDE_BOTTOM_LEFT_X + mSlidePositionOffset;
     }
 
-    return g_meter_mapHIO.mNormalBottomLeftX + mSlidePositionOffset;
-    #else
-    return mSlidePositionOffset + 35;
-    #endif
+    return MAP_HIO_NORMAL_BOTTOM_LEFT_X + mSlidePositionOffset;
+#endif
 }
 
 f32 dMeterMap_c::getMapDispEdgeTop() {
@@ -327,16 +361,13 @@ s16 dMeterMap_c::getDispPosInside_OffsetX() {
 }
 
 s16 dMeterMap_c::getDispPosOutSide_OffsetX() {
-    #if DEBUG
-    f32 fVar1 = g_meter_mapHIO.mHiddenRightX + mDoGph_gInf_c::getMinXF();
-    #endif
-    f32 dvar3 =
-        #if DEBUG
-        fVar1
-        #else
-        -36.0f 
-        #endif
-        - mSizeW;
+    f32 fVar1;
+#if PLATFORM_GCN
+    fVar1 = -36.0f;
+#else
+    fVar1 = MAP_HIO_NORMAL_HIDDEN_RIGHT_X + mDoGph_gInf_c::getMinXF();
+#endif
+    f32 dvar3 = fVar1 - mSizeW;
     f32 offset = 0.0f;
     if (mMap != NULL) {
         offset = mMap->getTexelPerCm() * mMap->getPackX();
@@ -365,18 +396,32 @@ void dMeterMap_c::setMapAlpha(u8 i_alpha) {
 }
 
 bool dMeterMap_c::isMapOpenCheck() {
-    #if DEBUG
+    #if PLATFORM_WII || PLATFORM_SHIELD
     if (dCam_getBody()->Gear() == 1) {
         return false;
     }
     #endif
-    
+
     if (dStage_stagInfo_GetUpButton(dComIfGp_getStage()->getStagInfo()) == 7) {
         return false;
     }
 
     return true;
 }
+
+#if PLATFORM_WII
+bool dMeterMap_c::isAreaMapOpenCheck() {
+    if (!isMapOpenCheck()) {
+        return false;
+    }
+
+    if (isEnableDispMapAndMapDispSizeTypeNo() && !mMapIsInside) {
+        return true;
+    }
+
+    return false;
+}
+#endif
 
 dMeterMap_c::dMeterMap_c(J2DScreen* i_scrn) {
 #if DEBUG
@@ -397,49 +442,53 @@ dMeterMap_c::~dMeterMap_c() {
     _delete();
 }
 
-void dMeterMap_c::_create(J2DScreen* unused) {
+void dMeterMap_c::_create(J2DScreen* i_screen) {
     s32 sizeX;
     s32 sizeY;
     s32 dispSizeW;
     s32 dispSizeH;
 
-    getMapDispSizeTypeNo();
+    UNUSED(i_screen);
+    int sp0C = getMapDispSizeTypeNo();
     switch (getMapDispSizeTypeNo()) {
-    case 1:
+    case MAP_SIZE_TYPE_UNK_1:
         dispSizeW = 216;
         dispSizeH = 216;
-        sizeX = 144;
-        sizeY = 144;
+        sizeX = MAP_HIO_MED_HOR;
+        sizeY = MAP_HIO_MED_VER;
         break;
-    case 2:
+    case MAP_SIZE_TYPE_BIG:
         dispSizeW = 216;
         dispSizeH = 216;
-        sizeX = 216;
-        sizeY = 216;
+        sizeX = MAP_HIO_BIG_HOR;
+        sizeY = MAP_HIO_BIG_VER;
         break;
-    case 3:
+    case MAP_SIZE_TYPE_SMALL:
         dispSizeW = 216;
         dispSizeH = 216;
-        sizeX = 96;
-        sizeY = 96;
+        sizeX = MAP_HIO_SM_HOR;
+        sizeY = MAP_HIO_SM_VER;
         break;
-    case 0:
-    case 4:
+    case MAP_SIZE_TYPE_UNK_0:
+    case MAP_SIZE_TYPE_MEDIUM:
         dispSizeW = 144;
         dispSizeH = 144;
-        sizeX = 144;
-        sizeY = 144;
+        sizeX = MAP_HIO_MED_HOR;
+        sizeY = MAP_HIO_MED_VER;
         break;
-    case 5:
+    case MAP_SIZE_TYPE_UNK_5:
         dispSizeW = 144;
         dispSizeH = 144;
-        sizeX = 96;
-        sizeY = 96;
+        sizeX = MAP_HIO_SM_HOR;
+        sizeY = MAP_HIO_SM_VER;
         break;
     default:
         JUT_ASSERT(988, FALSE);
         break;
     }
+#if DEBUG
+    g_meter_mapHIO.field_0x28 = sizeX;
+#endif
 
     mSizeW = (s16)sizeX;
     mSizeH = (s16)sizeY;
@@ -470,14 +519,26 @@ void dMeterMap_c::_create(J2DScreen* unused) {
     }
 
     if (mMapIsInside != 0) {
+#if PLATFORM_GCN
         mMapIsInside = 1;
         mSlidePositionOffset = getDispPosInside_OffsetX();
+#else
+        setDispPosInSide();
+#endif
         dMeter2Info_setMapStatus(1);
     } else {
+#if PLATFORM_GCN
         mMapIsInside = 0;
         mSlidePositionOffset = getDispPosOutSide_OffsetX();
+#else
+        setDispPosOutSide();
+#endif
         dMeter2Info_setMapStatus(0);
     }
+
+#if PLATFORM_WII || PLATFORM_SHIELD
+    dMeter2Info_setMapStatus(0);
+#endif
 
     field_0x2e = 0;
     mSlidePositionOffset = 0;
@@ -515,8 +576,9 @@ void dMeterMap_c::_delete() {
 }
 
 void dMeterMap_c::_move(u32 param_0) {
-        /* dSv_event_flag_c::M_085 - Twilight Hyrule Field - Midna dialogue right before Boss Bug's Tear of Light appears */
+    /* dSv_event_flag_c::M_085 - Twilight Hyrule Field - Midna dialogue right before Boss Bug's Tear of Light appears */
     if (!field_0x2b && dComIfGs_isEventBit(dSv_event_flag_c::saveBitLabels[118])) {
+        int unused; // dummy decl to force stack pointer into r31 on debug
         if (strcmp(dComIfGp_getStartStageName(), "F_SP115") == 0) {
             /* dSv_event_flag_c::M_086 - Twilight Hyrule Field - Show Boss Bug's Tear of Light on the map */
             dComIfGs_onEventBit(dSv_event_flag_c::saveBitLabels[119]);
@@ -599,20 +661,27 @@ void dMeterMap_c::_draw() {
 }
 
 void dMeterMap_c::draw() {
+    J2DGrafContext* graf;
+    f32 sizeX;
+    f32 sizeY;
+    f32 drawPosX;
+    f32 drawPosY;
+    u8 alpha;
+
     if (
         #if DEBUG
         !g_meter_mapHIO.mMapDisplayProhibited &&
         #endif
         mMap != NULL && mMap->isDraw()
     ) {
-        J2DGrafContext* graf = dComIfGp_getCurrentGrafPort();
+        graf = dComIfGp_getCurrentGrafPort();
         graf->setup2D();
-        f32 sizeX = mSizeW;
-        f32 sizeY = mSizeH;
-        f32 drawPosX = mDrawPosX;
-        f32 drawPosY = mDrawPosY;
+        sizeX = mSizeW;
+        sizeY = mSizeH;
+        drawPosX = mDrawPosX;
+        drawPosY = mDrawPosY;
 
-        u8 alpha = mMapAlpha;
+        alpha = mMapAlpha;
         #if DEBUG
         if (g_meter_mapHIO.mMapAlphaTest) {
             alpha = g_meter_mapHIO.mAlpha;
@@ -639,7 +708,7 @@ void dMeterMap_c::ctrlShowMap() {
             dMeter2Info_getPauseStatus() == 3 || dMeter2Info_getPauseStatus() == 5 ||
             dMeter2Info_getPauseStatus() == 2 || dMeter2Info_getPauseStatus() == 6)
         {
-            #if !DEBUG
+            #if PLATFORM_GCN
             if (dMeter2Info_getMapStatus() == 0 && mMapIsInside == 0) {
                 setDispPosInsideFlg_SE_On();
                 Z2GetAudioMgr()->seStart(Z2SE_SY_MAP_OPEN_S, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
@@ -650,10 +719,10 @@ void dMeterMap_c::ctrlShowMap() {
             #endif
 
             if (
-            #if DEBUG
-                dMeter2Info_getMapStatus() == 0 &&
-            #else
+            #if PLATFORM_GCN
                 dMeter2Info_getMapStatus() == 1 && mMapIsInside != 0 &&
+            #else
+                dMeter2Info_getMapStatus() == 0 &&
             #endif
                 isFmapScreen()
             ) {
@@ -679,9 +748,14 @@ void dMeterMap_c::ctrlShowMap() {
                 }
 
                 dMeter2Info_setMapKeyDirection(0x400);
+#if PLATFORM_GCN
                 Z2GetAudioMgr()->seStart(Z2SE_SY_MAP_OPEN_S, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
                                             -1.0f, 0);
-                #if !DEBUG
+#else
+                Z2GetAudioMgr()->seStart(Z2SE_SY_MAP_OPEN_L, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
+                                            -1.0f, 0);
+#endif
+                #if PLATFORM_GCN
                 dMeter2Info_set2DVibration();
                 #endif
             }
@@ -689,7 +763,7 @@ void dMeterMap_c::ctrlShowMap() {
         } else if (dMeter2Info_getPauseStatus() == 4) {
             dMeter2Info_resetPauseStatus();
             if (isDmapScreen()) {
-                #if !DEBUG
+                #if PLATFORM_GCN
                 if (dMeter2Info_getMapStatus() == 0 && mMapIsInside == 0) {
                     setDispPosInsideFlg_SE_On();
                     Z2GetAudioMgr()->seStart(Z2SE_SY_MAP_OPEN_S, NULL, 0, 0, 1.0f, 1.0f,
@@ -700,10 +774,10 @@ void dMeterMap_c::ctrlShowMap() {
                 #endif
 
                 if (
-                #if DEBUG
-                    dMeter2Info_getMapStatus() == 0
-                #else
+                #if PLATFORM_GCN
                     dMeter2Info_getMapStatus() == 1 && mMapIsInside != 0
+                #else
+                    dMeter2Info_getMapStatus() == 0
                 #endif
                 ) {
                     dMeter2Info_setMapStatus(6);
@@ -713,15 +787,20 @@ void dMeterMap_c::ctrlShowMap() {
                     dMeter2Info_set2DVibration();
                 }
             }
-
-        } else if (!mDoCPd_c::getTrigUp(PAD_1) && !mDoCPd_c::getTrigDown(PAD_1)) {
+        }
+#if PLATFORM_GCN || PLATFORM_SHIELD
+        else if (!mDoCPd_c::getTrigUp(PAD_1) && !mDoCPd_c::getTrigDown(PAD_1))
+#else
+        else if (!cAPICPad_UP_TRIGGER(PAD_1) && !cAPICPad_DOWN_TRIGGER(PAD_1))
+#endif
+        {
             keyCheck();
         }
 
         if (mIsCompass != dComIfGs_isDungeonItemCompass()) {
             if (!isDispPosInsideFlg()) {
                 setDispPosInsideFlg_SE_On();
-                #if !DEBUG
+                #if PLATFORM_GCN
                 dMeter2Info_setMapStatus(1);
                 #endif
             }
@@ -733,13 +812,13 @@ void dMeterMap_c::ctrlShowMap() {
         if (mIsMap != dComIfGs_isDungeonItemMap()) {
             if (!isDispPosInsideFlg()) {
                 setDispPosInsideFlg_SE_On();
-                #if !DEBUG
+                #if PLATFORM_GCN
                 dMeter2Info_setMapStatus(1);
                 #endif
             }
 
             mIsMap = dComIfGs_isDungeonItemMap();
-            unused = 0;
+            unused = false;
         }
     }
 }
@@ -810,16 +889,16 @@ void dMeterMap_c::meter_map_move(u32 param_0) {
             }
             dMeter2Info_resetPauseStatus();
         } else if (
-            #if DEBUG
+            #if PLATFORM_WII || PLATFORM_SHIELD
             dMw_RIGHT_TRIGGER() &&
             #else
-            dMw_LEFT_TRIGGER() && 
+            dMw_LEFT_TRIGGER() &&
             #endif
             !dComIfGp_event_runCheck() &&
             !dMsgObject_isTalkNowCheck() &&
             (dMeter2Info_getMapStatus() == 0 || dMeter2Info_getMapStatus() == 1))
         {
-            #if !DEBUG
+            #if PLATFORM_GCN
             if (dMeter2Info_getMapStatus() == 0 && !dMeter2Info_isSub2DStatus(1)) {
                 if (isFmapScreen() || isDmapScreen()) {
                     dMeter2Info_setMapStatus(2);
@@ -848,6 +927,37 @@ void dMeterMap_c::meter_map_move(u32 param_0) {
 }
 
 void dMeterMap_c::keyCheck() {
+#if PLATFORM_WII
+    if (dMw_RIGHT_TRIGGER() && !isEventRunCheck() &&
+        (dMeter2Info_getMapStatus() == 0 || dMeter2Info_getMapStatus() == 1)) {
+        if (!dMeter2Info_isSub2DStatus(1) && (isFmapScreen() || isDmapScreen())) {
+            dMeter2Info_setMapStatus(2);
+            dMeter2Info_setMapKeyDirection(0x200);
+            Z2GetAudioMgr()->seStart(Z2SE_SY_MAP_OPEN_L, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
+                                     0);
+        }
+    } else {
+        if ((mReCPd::getTrig2(PAD_1) || dMeter2Info_isTouchKeyCheck(0xD)) &&
+            !dComIfGp_event_runCheck()) {
+            u32 var_r30 = 0;
+            if (!mReCPd::getTrig2(PAD_1) && dMeter2Info_isTouchKeyCheck(0xD)) {
+                var_r30 = 1;
+            }
+            if (isEnableDispMapAndMapDispSizeTypeNo()) {
+                if (!isDispPosInsideFlg()) {
+                    setDispPosInsideFlg_SE_On();
+                    Z2GetAudioMgr()->seStart(Z2SE_SY_MAP_OPEN_S, NULL, var_r30, 0, 1.0f, 1.0f,
+                                             -1.0f, -1.0f, 0);
+                    dMeter2Info_set2DVibration();
+                } else {
+                    setDispPosOutsideFlg_SE_On();
+                    Z2GetAudioMgr()->seStart(Z2SE_SY_MAP_CLOSE_S, NULL, var_r30, 0, 1.0f, 1.0f,
+                                             -1.0f, -1.0f, 0);
+                }
+            }
+        }
+    }
+#else
     if (dMw_LEFT_TRIGGER() && !isEventRunCheck() &&
         (dMeter2Info_getMapStatus() == 0 || dMeter2Info_getMapStatus() == 1))
     {
@@ -876,7 +986,8 @@ void dMeterMap_c::keyCheck() {
     } else if (dMw_RIGHT_TRIGGER() && !isEventRunCheck() &&
                (dMeter2Info_getMapStatus() == 0 || dMeter2Info_getMapStatus() == 1))
     {
-        if (dMeter2Info_getMapStatus() == 0) {
+        if (dMeter2Info_getMapStatus() == 0)
+        {
             if (isEnableDispMapAndMapDispSizeTypeNo()) {
                 if (!isDispPosInsideFlg()) {
                     setDispPosInsideFlg_SE_On();
@@ -885,14 +996,16 @@ void dMeterMap_c::keyCheck() {
                     dMeter2Info_set2DVibration();
                     dMeter2Info_setMapStatus(1);
                 }
-            } else if (!dMeter2Info_isSub2DStatus(1) && (isFmapScreen() || isDmapScreen())) {
+            }
+            else if (!dMeter2Info_isSub2DStatus(1) && (isFmapScreen() || isDmapScreen())) {
                 dMeter2Info_setMapStatus(2);
                 dMeter2Info_setMapKeyDirection(0x400);
                 Z2GetAudioMgr()->seStart(Z2SE_SY_MAP_OPEN_S, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f,
                                          0);
                 dMeter2Info_set2DVibration();
             }
-        } else if (dMeter2Info_getMapStatus() == 1 && isDispPosInsideFlg()) {
+        }
+        else if (dMeter2Info_getMapStatus() == 1 && isDispPosInsideFlg()) {
             if (!dMeter2Info_isSub2DStatus(1) && (isFmapScreen() || isDmapScreen())) {
                 dMeter2Info_setMapStatus(2);
                 dMeter2Info_setMapKeyDirection(0x400);
@@ -907,4 +1020,5 @@ void dMeterMap_c::keyCheck() {
             }
         }
     }
+#endif
 }

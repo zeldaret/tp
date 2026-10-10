@@ -34,6 +34,7 @@ void dMw_onPauseWindow();
 void dMw_offPauseWindow();
 void dMw_onMenuRing();
 void dMw_offMenuRing();
+BOOL dMw_isMenuRing();
 
 class dDlst_MENU_CAPTURE_c;
 
@@ -193,6 +194,10 @@ public:
     bool isShowFlag() { return (mShowFlag & 1) != 0; }
     bool isFadeNowCheck() { return mDoGph_gInf_c::getFader()->getStatus() == 1; }
 
+#if PLATFORM_WII
+    inline u8 getStatus() { return mStatus; }
+#endif
+
 private:
     /* 0x0FC */ int field_0xfc;
     /* 0x100 */ JKRExpHeap* mpHeap;
@@ -214,7 +219,7 @@ private:
     /* 0x140 */ f32 mFmapStageTransZ;
     /* 0x144 */ u8 field_0x144;
     /* 0x145 */ u8 mButtonBits;
-    /* 0x146 */ u8 mMenuProc;
+    /* 0x146 */ u8 mStatus;
     /* 0x147 */ u8 mShowFlag;
     /* 0x148 */ s8 field_0x148;
     /* 0x149 */ u8 field_0x149;

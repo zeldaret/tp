@@ -2,6 +2,7 @@
 #define D_METER_D_METER2_H
 
 #include "d/d_drawlist.h"
+#include "d/d_item.h"
 #include "f_op/f_op_msg.h"
 
 class CPaneMgr;
@@ -17,7 +18,7 @@ class dMeterString_c;
 class dMeterButton_c;
 class dMeterHaihai_c;
 
-class dMeterSub_c : public dDlst_base_c {
+class dMeterSub_c : dDlst_base_c {
 public:
     virtual void draw() {}
     virtual ~dMeterSub_c() {}
@@ -27,13 +28,8 @@ public:
     virtual bool isDead() { return false; }
 };
 
-class dMeter2_c : public msg_class {
+class dMeter2_c {
 public:
-    enum {
-        /* 0x2 */ ARROW_MAX = 2,
-        /* 0x3 */ PACHINKO_MAX,
-    };
-
     enum {
         /* 0x0 */ X_ITEM,
         /* 0x1 */ X_STATUS,
@@ -46,6 +42,9 @@ public:
     int _draw();
     int _delete();
     int emphasisButtonDelete();
+#if PLATFORM_WII
+    u8 getTouchAreaInsideCheck();
+#endif
     void setLifeZero();
     void checkStatus();
     void moveLife();
@@ -82,26 +81,29 @@ public:
     void alphaAnimeButtonCross();
     bool isShowLightDrop();
     void killSubContents(u8);
-    u8 isKeyVisible();
+    bool isKeyVisible();
     int isArrowEquip();
     int isPachinkoEquip();
 
     void setNowLifeGauge(s16 life) { mNowLifeGauge = life; }
-    void onArrowSoundBit(int bit) { mArrowSound |= (1 << bit); }
-    void offArrowSoundBit(int bit) { mArrowSound &= ~(1 << bit); }
-    bool isArrowSoundBit(int bit) { return mArrowSound & (1 << bit) ? true : false; }
-    void onRupeeSoundBit(int bit) { mRupeeSound |= (1 << bit); }
-    void offRupeeSoundBit(int bit) { mRupeeSound &= ~(1 << bit); }
-    bool isRupeeSoundBit(int bit) { return mRupeeSound & (1 << bit); }
+    void onArrowSoundBit(int bit) { mArrowSound |= (u8)(1 << bit); }
+    void offArrowSoundBit(int bit) { mArrowSound &= ~(u8)(1 << bit); }
+    bool isArrowSoundBit(int bit) { return mArrowSound & (u8)(1 << bit) ? true : false; }
+    void onRupeeSoundBit(int bit) { mRupeeSound |= (u8)(1 << bit); }
+    void offRupeeSoundBit(int bit) { mRupeeSound &= ~(u8)(1 << bit); }
+    bool isRupeeSoundBit(int bit) { return mRupeeSound & (u8)(1 << bit) ? true : false; }
     dMeter2Draw_c* getMeterDrawPtr() { return mpMeterDraw; }
     s16 getNowLifeGauge() { return mNowLifeGauge; }
     u8 getSubContents() { return mSubContentType; }
     u16 getSubContentsStringType() { return mSubContentsStringType; }
-    bool isShowFlag(int i_no) { return field_0x1e6 & (1 << i_no); }
-    void onShowFlag(int i_no) { field_0x1e6 |= (1 << i_no); }
+    bool isShowFlag(int i_no) { return field_0x1e6 & (u8)(1 << i_no) ? true : false; }
+    void onShowFlag(int i_no) { field_0x1e6 |= (u8)(1 << i_no); }
 
 private:
-    /* 0x0FC */ int field_0xfc;
+    /* 0x000 */ msg_class mMsg;
+
+    virtual ~dMeter2_c();
+
     /* 0x100 */ JKRExpHeap* mpHeap;
     /* 0x104 */ JKRExpHeap* mpSubHeap;
     /* 0x108 */ JKRHeap* field_0x108;
@@ -121,10 +123,15 @@ private:
     /* 0x148 */ f32 field_0x148[2];
     /* 0x150 */ f32 field_0x150[2];
     /* 0x158 */ f32 field_0x158;
+#if PLATFORM_WII
+    /* WII 0x15C */ u8 field_0x15c_wii[0x168 - 0x15c];
+#endif
     /* 0x15C */ f32 field_0x15c;
     /* 0x160 */ f32 field_0x160[4];
     /* 0x170 */ u8 field_0x170[4];
+public:
     /* 0x174 */ f32 field_0x174[4];
+private:
     /* 0x184 */ u8 field_0x184[4];
     /* 0x188 */ f32 field_0x188;
     /* 0x18C */ f32 field_0x18c;
@@ -149,6 +156,9 @@ private:
     /* 0x1C4 */ u8 mDoStatus;
     /* 0x1C5 */ u8 mAStatus;
     /* 0x1C6 */ u8 field_0x1c6;
+#if PLATFORM_WII
+    /* WII 0x1C7 */ u8 field_0x1c7_wii;
+#endif
     /* 0x1C7 */ u8 mCollectSmell;
     /* 0x1C8 */ u8 mRStatus;
     /* 0x1C9 */ u8 mZStatus;
@@ -163,6 +173,9 @@ private:
     /* 0x1D2 */ u8 mItemStatus[4];
     /* 0x1D6 */ u8 field_0x1d6[2];
     /* 0x1D8 */ u8 field_0x1d8[2];
+#if PLATFORM_WII
+    /* 0x1DA */ u8 temp0[8];
+#endif
     /* 0x1DA */ u8 mArrowNum;
     /* 0x1DB */ u8 mPachinkoNum;
     /* 0x1DC */ u8 mDoSetFlag;
@@ -170,6 +183,9 @@ private:
     /* 0x1DE */ u8 mRSetFlag;
     /* 0x1DF */ u8 mXSetFlag;
     /* 0x1E0 */ u8 mYSetFlag;
+#if PLATFORM_WII
+    /* 0x1EF */ u8 temp2[2];
+#endif
     /* 0x1E1 */ u8 field_0x1e1;
     /* 0x1E2 */ u8 mEquipSword;
     /* 0x1E3 */ u8 field_0x1e3;
@@ -187,18 +203,20 @@ private:
     /* 0x1EF */ u8 mBottleNum[4];
     /* 0x1F3 */ u8 mBombNum[3];
     /* 0x1F6 */ u8 mBombMax[3];
-    /* 0x1F9 */ u8 mItemMaxNum[4];
+    /* 0x1F9 */ u8 mItemMaxNum[SELECT_ITEMS_MAX];
+    /* 0x1F9 */ u8 mArrowMax;
+    /* 0x1F9 */ u8 mPachinkoMax;
     /* 0x1FD */ u8 field_0x1fd;
     /* 0x1FE */ u8 field_0x1fe;
     /* 0x1FF */ u8 field_0x1ff;
-    /* 0x200 */ u8 field_0x200;
+    /* 0x200 */ bool field_0x200;
     /* 0x201 */ u8 field_0x201;
     /* 0x204 */ f32 mLifeGaugePosX;
     /* 0x208 */ f32 mLifeGaugePosY;
     /* 0x20C */ f32 mLifeGaugeScale;
     /* 0x210 */ f32 mHeartScale;
     /* 0x214 */ f32 mLargeHeartScale;
-    /* 0x218 */ u8 field_0x218[0x22C - 0x218];
+    /* 0x218 */ u8 field_0x218[0x22C - 0x21A];
     /* 0x22C */ f32 mLanternMeterScale;
     /* 0x230 */ f32 mLanternMeterPosX;
     /* 0x234 */ f32 mLanternMeterPosY;
@@ -290,7 +308,11 @@ private:
     /* 0x428 */ f32 mVesselScale;
     /* 0x42C */ f32 mVesselAlpha;
     /* 0x430 */ f32 field_0x430;
-    /* 0x434 */ u8 field_0x434[0x448 - 0x434];
+    /* 0x434 */ JUtility::TColor field_0x434;
+    /* 0x438 */ JUtility::TColor field_0x438;
+    /* 0x43C */ JUtility::TColor field_0x43c;
+    /* 0x440 */ JUtility::TColor field_0x440;
+    /* 0x444 */ f32 field_0x444;
     /* 0x448 */ f32 mButtonCrossOFFPosX;
     /* 0x44C */ f32 mButtonCrossOFFPosY;
     /* 0x450 */ f32 mButtonCrossScale;
@@ -299,7 +321,7 @@ private:
     /* 0x45C */ f32 mButtonCrossTextScale;
     /* 0x460 */ u8 field_0x460[0x4bc - 0x460];
     /* 0x4BC */ u8 field_0x4bc;
-    /* 0x4BC */ u8 field_0x4bd;
+    /* 0x4BD */ u8 field_0x4bd;
 };
 
 #endif /* D_METER_D_METER2_H */

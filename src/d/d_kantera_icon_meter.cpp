@@ -12,7 +12,8 @@ dKantera_icon_c::dKantera_icon_c() {
 }
 
 dKantera_icon_c::~dKantera_icon_c() {
-    delete mpKanteraIcon->getScreen();
+    J2DScreen* screen = mpKanteraIcon->getScreen();
+    delete screen;
     delete mpKanteraIcon;
     mpKanteraIcon = NULL;
 
@@ -25,15 +26,19 @@ dKantera_icon_c::~dKantera_icon_c() {
 
 void dKantera_icon_c::initiate() {
     mpKanteraIcon = new dDlst_KanteraIcon_c();
+    JUT_ASSERT(71, mpKanteraIcon != NULL);
 
-    J2DScreen* scrn = new J2DScreen();
-    scrn->setPriority("zelda_kantera_icon_mater.blo", 0x20000, dComIfGp_getMain2DArchive());
-    dPaneClass_showNullPane(scrn);
-    mpKanteraIcon->setScreen(scrn);
+    J2DScreen* mp_scrn = new J2DScreen();
+    JUT_ASSERT(74, mp_scrn != NULL);
+    mp_scrn->setPriority("zelda_kantera_icon_mater.blo", 0x20000, dComIfGp_getMain2DArchive());
+    dPaneClass_showNullPane(mp_scrn);
+    mpKanteraIcon->setScreen(mp_scrn);
 
-    mpParent = new CPaneMgr(scrn, MULTI_CHAR('kan_m_n'), 2, NULL);
+    mpParent = new CPaneMgr(mp_scrn, MULTI_CHAR('kan_m_n'), 2, NULL);
+    JUT_ASSERT(84, mpParent != NULL);
 
-    mpGauge = new CPaneMgr(scrn, MULTI_CHAR('yellow_m'), 0, NULL);
+    mpGauge = new CPaneMgr(mp_scrn, MULTI_CHAR('yellow_m'), 0, NULL);
+    JUT_ASSERT(87, mpGauge != NULL);
 }
 
 void dKantera_icon_c::setAlphaRate(f32 alphaRate) {
@@ -49,7 +54,8 @@ void dKantera_icon_c::setScale(f32 h, f32 v) {
 }
 
 void dKantera_icon_c::setNowGauge(u16 h, u16 v) {
-    mpGauge->scale((f32)v / (f32)h, 1.0f);
+    f32 aspect = (f32)v / (f32)h;
+    mpGauge->scale(aspect, 1.0f);
 }
 
 void dDlst_KanteraIcon_c::draw() {

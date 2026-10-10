@@ -61,8 +61,8 @@ J2DPicture::J2DPicture(J2DPane* p_pane, JSURandomInputStream* p_stream, J2DMater
         mAlpha = material->getColorBlock()->getMatColor(0)->a;
     }
 
-    mBlack = JUtility::TColor(0);
-    mWhite = JUtility::TColor(0xFFFFFFFF);
+    mBlack = JUtility::TColor((u32)0x00000000);
+    mWhite = JUtility::TColor((u32)0xFFFFFFFF);
     mTextureNum = 0;
 
     if (material != NULL && material->getTevBlock() != NULL) {
@@ -178,8 +178,8 @@ void J2DPicture::private_readStream(J2DPane* parent, JSURandomInputStream* strea
         r29--;
     }
 
-    mBlack = 0;
-    mWhite = 0xFFFFFFFF;
+    mBlack = JUtility::TColor((u32)0x00000000);
+    mWhite = JUtility::TColor((u32)0xFFFFFFFF);
 
     if (r29 != 0) {
         mBlack = stream->readU32();
@@ -262,8 +262,8 @@ void J2DPicture::initinfo() {
     setTexCoord(NULL, BIND15, MIRROR0, false);
     setBlendRatio(1.0f, 1.0f);
 
-    mBlack = 0;
-    mWhite = -1;
+    mBlack = JUtility::TColor((u32)0x00000000);
+    mWhite = JUtility::TColor((u32)0xFFFFFFFF);
     setCornerColor(-1, -1, -1, -1);
 }
 

@@ -125,7 +125,7 @@ public:
         size.mSizeY = mFontSizeY;
     }
 
-    void setFontColor(JUtility::TColor i_charColor, JUtility::TColor i_GradientColor) {
+    inline void setFontColor(JUtility::TColor i_charColor, JUtility::TColor i_GradientColor) {
         mCharColor = i_charColor;
         mGradientColor = i_GradientColor;
     }
