@@ -1616,7 +1616,7 @@ def generate_objdiff_config(
         "GC/2.6": "mwcc_247_107",
         "GC/2.7": "mwcc_247_108",
         "GC/3.0a3": "mwcc_41_51213",
-        "GC/3.0a3p1": "mwcc_41_51213", # TODO: Use mwcc_41_51213p1 when added
+        "GC/3.0a3p1": "mwcc_41_51213p1",
         "GC/3.0a3.2": "mwcc_41_60126",
         "GC/3.0a3.3": "mwcc_41_60209",
         "GC/3.0a3.4": "mwcc_42_60308",
