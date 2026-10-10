@@ -1414,7 +1414,7 @@ config.libs = [
             Object(MatchingFor(ALL_GCN), "JSystem/J2DGraph/J2DPane.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/J2DGraph/J2DScreen.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/J2DGraph/J2DWindow.cpp"),
-            Object(MatchingFor(ALL_GCN), "JSystem/J2DGraph/J2DPicture.cpp"),
+            Object(MatchingFor(ALL_GCN, ALL_WII), "JSystem/J2DGraph/J2DPicture.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/J2DGraph/J2DTextBox.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/J2DGraph/J2DWindowEx.cpp"),
             Object(MatchingFor(ALL_GCN), "JSystem/J2DGraph/J2DPictureEx.cpp"),
