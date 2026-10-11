@@ -396,6 +396,11 @@ void dMeterMap_c::setMapAlpha(u8 i_alpha) {
 }
 
 bool dMeterMap_c::isMapOpenCheck() {
+    #if VERSION == VERSION_WII_USA_KIOSK
+    if (strcmp(dComIfGp_getStartStageName(), "F_SP127") == 0) {
+        return false;
+    }
+    #endif
     #if PLATFORM_WII || VERSION == VERSION_SHIELD_DEBUG
     if (dCam_getBody()->Gear() == 1) {
         return false;
