@@ -892,9 +892,9 @@ bool dEvt_control_c::skipper() {
 
         if (mSkipTimer > 0) {
             if (canSkip) {
-                dComIfGp_setSButtonStatusForce(0x43, 1);
+                dComIfGp_setSButtonStatusForce(BUTTON_STATUS_SKIP, 1);
             } else {
-                dComIfGp_setSButtonStatusForce(0x4D, 1);
+                dComIfGp_setSButtonStatusForce(BUTTON_STATUS_CANT_SKIP, 1);
             }
 
             if (mSkipTimer++ > 45) {

@@ -2218,7 +2218,7 @@ bool daNpcWrestler_c::sumouReady(void* param_1) {
                     field_0xe84++;
                     // fallthrough
                 case 2:
-                    field_0xe5e += field_0xbd8->field_0xac;
+                    field_0xe5e = field_0xe5e + field_0xbd8->field_0xac;
                     field_0xe54 -= fabsf((f32)field_0xbd8->field_0xac);
                     if (field_0xe54 < fabsf((f32)field_0xbd8->field_0xac)) {
                         field_0xe80 = 1;
@@ -2265,7 +2265,7 @@ bool daNpcWrestler_c::sumouReady(void* param_1) {
                         dMeter2Info_setMeterString(0x516);
                         Z2GetAudioMgr()->seStart(Z2SE_SY_SUMO_START, NULL, 0, 0, 1.0f, 1.0f, -1.0f, -1.0f, 0);
                         Z2GetAudioMgr()->changeSubBgmStatus(1);
-                        dComIfGp_setDoStatus(21, 0);
+                        dComIfGp_setDoStatus(BUTTON_STATUS_GRAB, 0);
                         player->setSumouReadyAcceptButton();
                         player->setSumouForceStand();
                         setMotionAnm(31, 3.0f);
@@ -2296,7 +2296,7 @@ bool daNpcWrestler_c::sumouReady(void* param_1) {
         }
 
         default:
-            JUT_ASSERT(3181, FALSE);
+            JUT_ASSERT(3186, FALSE);
             break;
     }
 

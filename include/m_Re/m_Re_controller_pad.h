@@ -181,6 +181,7 @@ public:
     static u32 getHoldLeft(u32 i_pad) { return getHold(i_pad) & WPAD_BUTTON_LEFT; }
     static u32 getHoldUp(u32 i_pad) { return getHold(i_pad) & WPAD_BUTTON_UP; }
     static u32 getTrigA(u32 i_pad) { return getTrig(i_pad) & WPAD_BUTTON_A; }
+    static u32 getTrig2(u32 i_pad) { return getTrig(i_pad) & WPAD_BUTTON_2; }
     static u32 getTrigRight(u32 i_pad) { return getTrig(i_pad) & WPAD_BUTTON_RIGHT; }
     static u32 getTrigLeft(u32 i_pad) { return getTrig(i_pad) & WPAD_BUTTON_LEFT; }
 

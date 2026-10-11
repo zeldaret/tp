@@ -184,7 +184,7 @@ int daTagLv8Gate_c::execute() {
                     if (dComIfGp_getAttention()->getActionBtnB() != NULL &&
                         dComIfGp_getAttention()->getActionBtnB()->mType == fopAc_attn_CARRY_e)
                     {
-                        dComIfGp_setDoStatusForce(7, 0);
+                        dComIfGp_setDoStatusForce(BUTTON_STATUS_ENTER, 0);
                     }
                 }
             }

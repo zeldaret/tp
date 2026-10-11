@@ -72,7 +72,7 @@ public:
         struct data {
             // Unknown name
 
-            /* 0x00 */ char mName[8];
+            /* 0x00 */ const char mName[8];
             /* 0x08 */ u8 mRoomNo;
             /* 0x09 */ u8 mRegionNo;
             /* 0x0A */ u16 mAreaName;

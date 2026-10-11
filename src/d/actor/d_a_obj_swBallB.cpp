@@ -297,7 +297,7 @@ void daObjSwBallB_c::PutCrrPos() {
         {
             player->setForcePutPos(current.pos);
             if (!dComIfGp_event_runCheck()) {
-                dComIfGp_setDoStatus(0x14, 2);
+                dComIfGp_setDoStatus(BUTTON_STATUS_PLACE, 2);
             }
         }
     }

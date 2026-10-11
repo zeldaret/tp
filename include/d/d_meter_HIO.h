@@ -623,7 +623,7 @@ public:
     #endif
 
     /* 0x000 */  // vtable
-    /* 0x004 */ s8 field_0x4;
+    /* 0x004 */ s8 mChild;
     #if DEBUG
     dMeter_map_HIO_c* field_0x8_debug;
     #endif
@@ -770,8 +770,8 @@ public:
     /* 0x2C0 */ JUtility::TColor mButtonATextColor;
     /* 0x2C4 */ f32 mButtonATextSpacing;
     /* 0x2C8 */ s32 mButtonATextActionID;
-    /* 0x2CC */ u32 field_0x2cc;
-    /* 0x2D0 */ u8 mButtonATextDebug;
+    /* 0x2CC */ int field_0x2cc;
+    /* 0x2D0 */ bool mButtonATextDebug;
     /* 0x2D4 */ f32 mButtonBFontScale;
     /* 0x2D8 */ f32 mButtonBFontPosX;
     /* 0x2DC */ f32 mButtonBFontPosY;
@@ -924,7 +924,7 @@ public:
     /* 0x514 */ f32 mScrollArrowPosY[2];
     /* 0x51C */ f32 mScrollArrowCenterPosX;
     /* 0x520 */ f32 mScrollArrowCenterPosY;
-    /* 0x524 */ bool mScrollArrowDisplayAll;
+    /* 0x524 */ u8 mScrollArrowDisplayAll;
     /* 0x528 */ f32 mWiiLockArrowScaleX;
     /* 0x52C */ f32 mWiiLockArrowScaleY;
     /* 0x530 */ f32 mWiiLockArrowBPKAnimSpeed;
@@ -933,7 +933,7 @@ public:
     /* 0x53C */ f32 mWiiLockArrowPosX[2];
     /* 0x544 */ f32 mWiiLockArrowPosY[2];
     /* 0x54C */ f32 field_0x54c;
-    /* 0x550 */ bool mWiiLockArrowDisplayAll;
+    /* 0x550 */ u8 mWiiLockArrowDisplayAll;
     /* 0x554 */ f32 mFloatingMessagePosX;
     /* 0x558 */ f32 mFloatingMessagePosY;
     /* 0x55C */ u32 mMessageID;
@@ -1008,7 +1008,7 @@ public:
     };
 
     /* 0x000 */  // vtable
-    /* 0x004 */ s8 field_0x4;
+    /* 0x004 */ s8 mChild;
     /* 0x008 */ f32 mRingRadiusH;
     /* 0x00C */ f32 mRingRadiusV;
     /* 0x010 */ f32 field_0x10;
@@ -1238,7 +1238,7 @@ public:
 #endif
     virtual ~dMeter_fmapHIO_c();
 
-    /* 0x004 */ s8 field_0x4;
+    /* 0x004 */ s8 mChild;
     #if DEBUG
     /* 0x008 */ subJOREventCallbackListNode* mpEvtCallBack;
     #endif
@@ -1332,7 +1332,7 @@ public:
     /* 0x2FA */ bool mTerminalOutput;
     /* 0x2FB */ bool mPortalDataTerminalOutput;
     /* 0x2FC */ bool mAllRegionsUnlocked;
-    /* 0x2FD */ bool mDisplayAllPaths;
+    /* 0x2FD */ u8 mDisplayAllPaths;
     /* 0x2FE */ bool mRegionPrintGlobalScroll;
     /* 0x2FF */ bool mRangeCheck;
     /* 0x300 */ bool mRangeCheckDrawPriority;
@@ -1361,7 +1361,7 @@ public:
     virtual void genMessage(JORMContext*);
 #endif
 
-    /* 0x04 */ s8 field_0x4;
+    /* 0x04 */ s8 mChild;
     /* 0x08 */ cXyz mSeraShopObjZoom;
     /* 0x14 */ cXyz mObjZoom;
     /* 0x20 */ cXyz mMagicArmorObjZoom;

@@ -74,7 +74,7 @@ public:
                 continue;
             }
 
-            if (r29 < field_0x1003c) {
+            if ((int)r29 < field_0x1003c) {
                 return;
             }
             u32 r26 = port.receive(field_0x38, field_0x1003c);
@@ -103,7 +103,7 @@ public:
     /* 0x0000C */ JHIpvector<JHITag<T>*, 10> field_0xc;
     /* 0x00038 */ char field_0x38[0x10000];
     /* 0x10038 */ u32 field_0x10038;
-    /* 0x1003C */ u32 field_0x1003c;
+    /* 0x1003C */ int field_0x1003c;
     /* 0x10040 */ u8 field_0x10040;
     /* 0x10041 */ u8 field_0x10041;
 };

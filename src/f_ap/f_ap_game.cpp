@@ -43,17 +43,17 @@ fapGm_HIO_c::fapGm_HIO_c() {
     mLROnValue = 0.9f;
     mLROffValue = 0.6f;
 
-    mLetterTopColor = JUtility::TColor(255, 150, 0, 255);
-    mLetterBottomColor = JUtility::TColor(255, 120, 0, 255);
-    mLetterTopShadowColor = JUtility::TColor(0, 0, 0, 255);
-    mLetterBottomShadowColor = JUtility::TColor(0, 0, 0, 255);
+    mErrMsgTopColor = JUtility::TColor(255, 150, 0, 255);
+    mErrMsgBottomColor = JUtility::TColor(255, 120, 0, 255);
+    mErrMsgTopShadowColor = JUtility::TColor(0, 0, 0, 255);
+    mErrMsgBottomShadowColor = JUtility::TColor(0, 0, 0, 255);
 
-    mLetterPositionX = 0;
-    mLetterPositionY = 10;
+    mErrMsgPosX = 0;
+    mErrPosY = 10;
     mLetterFontSize = 27;
-    mLineSpacing = 0;
-    mLetterSpacing = 0;
-    mBackgroundAlpha = 130;
+    mErrMsgLineSpacing = 0;
+    mErrMsgCharSpacing = 0;
+    mErrMsgBackgroundAlpha = 130;
 
 #if DEBUG
     mTrapFilter = 0;
@@ -82,30 +82,49 @@ u8 fapGm_HIO_c::mParticle254Fix;
 
 #if DEBUG
 void fapGm_HIO_c::genMessage(JORMContext* mctx) {
+    // "Clear warning"
     mctx->genButton("警告消去", 0x4000020);
+    // "BMP capture"
     mctx->genButton("ＢＭＰキャプチャー", 0x4000003);
+    // "BMP capture magnification"
     mctx->genSlider("ＢＭＰキャプチャー倍率", &mCaptureMagnification, 1, 8);
+    // "Snapshot"
     mctx->genButton("スナップショット", 0x4000002);
+    // "CPU time"
     mctx->genButton("ＣＰＵ時間", 0x4000007);
+    // "Use host IO"
     mctx->genCheckBox("ホストＩＯ使用", &mUsingHostIO, 0x1);
+    // "Meter display"
     mctx->genCheckBox("メーター表示(JUTProcBar)", &mDisplayMeter, 0x1);
+    // "Print display"
     mctx->genCheckBox("プリント表示(JUTDbPrint)", &mDisplayPrint, 0x1);
+    // "2D display"
     mctx->genCheckBox("２Ｄ表示", &mDisplay2D, 0x1);
+    // "Particle display"
     mctx->genCheckBox("パーティクル表示", &mDisplayParticle, 0x1);
+    // "Particle count fixed at 254"
     mctx->genCheckBox("パーティクル２５４固定", &mParticle254Fix, 0x1);
+    // "Pack archive mode"
     mctx->genCheckBox("パックアーカイブモード", &mPackArchiveMode, 0x1);
 
+    // "Print"
     mctx->genLabel("−−−−−−−【プリント】−−−−−−−", 0x4000001);
+    // "Color R"
     mctx->genSlider(" 色     Ｒ", &mColor.r, 0, 0xFF, 0x4000010);
     mctx->genSlider("        Ｇ", &mColor.g, 0, 0xFF, 0x4000011);
     mctx->genSlider("        Ｂ", &mColor.b, 0, 0xFF, 0x4000012);
     mctx->genSlider("        Ａ", &mColor.a, 0, 0xFF, 0x4000013);
 
+    // "Information-related"
     mctx->genLabel("−−−−−−−【情報関係】−−−−−−−", 0x4000001);
+    // "Free memory"
     mctx->genButton("空きメモリ", 0x4000005);
+    // "Process ID display"
     mctx->genCheckBox("プロセスＩＤ表示", &mDisplayProcessID, 0x1);
+    // "Trap filter"
     mctx->genCheckBox("トラップフィルター", &mTrapFilter, 0x1);
 
+    // "Gamma correction factor"
     mctx->startComboBox("ガンマ補正係数", &mGammaCorrection);
     mctx->genComboBoxItem("0.1", 1);
     mctx->genComboBoxItem("0.2", 2);
@@ -139,53 +158,89 @@ void fapGm_HIO_c::genMessage(JORMContext* mctx) {
     mctx->genComboBoxItem("3.0", 30);
     mctx->endComboBox();
 
+    // "Shoulder button"
     mctx->genLabel("−−−−−−−【肩ボタン】−−−−−−−", 0x4000001);
+    // "Threshold On"
     mctx->genSlider(" しきい値  オン", &g_HIO.mLROnValue, 0.0f, 1.0f);
+    // "Off"
     mctx->genSlider("           オフ", &g_HIO.mLROffValue, 0.0f, 1.0f);
-    
+
+    // "For debugging"
     mctx->genLabel("−−−−−−−【デバッグ用】−−−−−−", 0x4000001);
+    // "Memory block OFF"
     mctx->genCheckBox("メモリーブロックＯＦＦ", &mMemBlockOff, 0x1);
-    
+
+    // "System register"
     mctx->genLabel("−−−−−−−【システムレジスタ】−−−", 0x4000001);
+    // "Register 0"
     mctx->genSlider("レジスタ０", &mRegister0, -0x8000, 0x7fff);
+    // "Register 1"
     mctx->genSlider("レジスタ１", &mRegister1, -0x8000, 0x7fff);
+    // "Register 2"
     mctx->genSlider("レジスタ２", &mRegister2, -0x8000, 0x7fff);
+    // "Register 3"
     mctx->genSlider("レジスタ３", &mRegister3, -0x8000, 0x7fff);
 
+    // "Conversion to BDL File"
     mctx->genLabel("−−−−−−−【ＢＤＬファイルへの変換】", 0x4000001);
+    // "Conversion"
     mctx->genButton("変換", 0x4000014);
-    
+
+    // "Memory file"
     mctx->genLabel("−−−−−−−【メモリファイル】−", 0x4000001);
+    // "Output"
     mctx->genButton("出力", 0x4000016);
-    
+
+    // "Error message"
     mctx->genLabel("−−−−−−−【エラーメッセージ】−", 0x4000001);
-    mctx->genSlider("文字色上ｒ", &mLetterTopColor.r, 0, 0xFF);
-    mctx->genSlider("文字色上ｇ", &mLetterTopColor.g, 0, 0xFF);
-    mctx->genSlider("文字色上ｂ", &mLetterTopColor.b, 0, 0xFF);
-    mctx->genSlider("文字色上α", &mLetterTopColor.a, 0, 0xFF);
+    // "Top text color r"
+    mctx->genSlider("文字色上ｒ", &mErrMsgTopColor.r, 0, 0xFF);
+    // "Top text color g"
+    mctx->genSlider("文字色上ｇ", &mErrMsgTopColor.g, 0, 0xFF);
+    // "TOp text color b"
+    mctx->genSlider("文字色上ｂ", &mErrMsgTopColor.b, 0, 0xFF);
+    // "Top text color α"
+    mctx->genSlider("文字色上α", &mErrMsgTopColor.a, 0, 0xFF);
 
-    mctx->genSlider("文字色下ｒ", &mLetterBottomColor.r, 0, 0xFF);
-    mctx->genSlider("文字色下ｇ", &mLetterBottomColor.g, 0, 0xFF);
-    mctx->genSlider("文字色下ｂ", &mLetterBottomColor.b, 0, 0xFF);
-    mctx->genSlider("文字色下α", &mLetterBottomColor.a, 0, 0xFF);
+    // "Bottom text color r"
+    mctx->genSlider("文字色下ｒ", &mErrMsgBottomColor.r, 0, 0xFF);
+    // "Bottom text color g"
+    mctx->genSlider("文字色下ｇ", &mErrMsgBottomColor.g, 0, 0xFF);
+    // "Bottom text color b"
+    mctx->genSlider("文字色下ｂ", &mErrMsgBottomColor.b, 0, 0xFF);
+    // "Bottom text color α"
+    mctx->genSlider("文字色下α", &mErrMsgBottomColor.a, 0, 0xFF);
 
-    mctx->genSlider("文字位置Ｘ", &mLetterPositionX, -300, 300);
-    mctx->genSlider("文字位置Ｙ", &mLetterPositionY, -300, 300);
-    mctx->genSlider("文字行間", &mLineSpacing, -10, 10);
-    mctx->genSlider("文字字間", &mLetterSpacing, -10, 10);
+    // "Text position X"
+    mctx->genSlider("文字位置Ｘ", &mErrMsgPosX, -300, 300);
+    // "Text position Y"
+    mctx->genSlider("文字位置Ｙ", &mErrPosY, -300, 300);
+    // "Text line spacing"
+    mctx->genSlider("文字行間", &mErrMsgLineSpacing, -10, 10);
+    // "Text character spacing"
+    mctx->genSlider("文字字間", &mErrMsgCharSpacing, -10, 10);
+    // "Text font size"
     mctx->genSlider("文字フォントサイズ", &mLetterFontSize, 0, 0x32);
 
-    mctx->genSlider("文字色影上ｒ", &mLetterTopShadowColor.r, 0, 0xFF);
-    mctx->genSlider("文字色影上ｇ", &mLetterTopShadowColor.g, 0, 0xFF);
-    mctx->genSlider("文字色影上ｂ", &mLetterTopShadowColor.b, 0, 0xFF);
-    mctx->genSlider("文字色影上α", &mLetterTopShadowColor.a, 0, 0xFF);
+    // "Top text shadow color r"
+    mctx->genSlider("文字色影上ｒ", &mErrMsgTopShadowColor.r, 0, 0xFF);
+    // "Top text shadow color g"
+    mctx->genSlider("文字色影上ｇ", &mErrMsgTopShadowColor.g, 0, 0xFF);
+    // "Top text shadow color b"
+    mctx->genSlider("文字色影上ｂ", &mErrMsgTopShadowColor.b, 0, 0xFF);
+    // "Top text shadow color α"
+    mctx->genSlider("文字色影上α", &mErrMsgTopShadowColor.a, 0, 0xFF);
 
-    mctx->genSlider("文字色影下ｒ", &mLetterBottomShadowColor.r, 0, 0xFF);
-    mctx->genSlider("文字色影下ｇ", &mLetterBottomShadowColor.g, 0, 0xFF);
-    mctx->genSlider("文字色影下ｂ", &mLetterBottomShadowColor.b, 0, 0xFF);
-    mctx->genSlider("文字色影下α", &mLetterBottomShadowColor.a, 0, 0xFF);
+    // "Bottom text shadow color r"
+    mctx->genSlider("文字色影下ｒ", &mErrMsgBottomShadowColor.r, 0, 0xFF);
+    // "Bottom text shadow color g"
+    mctx->genSlider("文字色影下ｇ", &mErrMsgBottomShadowColor.g, 0, 0xFF);
+    // "Bottom text shadow color b"
+    mctx->genSlider("文字色影下ｂ", &mErrMsgBottomShadowColor.b, 0, 0xFF);
+    // "Bottom text shadow color α"
+    mctx->genSlider("文字色影下α", &mErrMsgBottomShadowColor.a, 0, 0xFF);
 
-    mctx->genSlider("背景α", &mBackgroundAlpha, 0, 0xFF);
+    mctx->genSlider("背景α", &mErrMsgBackgroundAlpha, 0, 0xFF);
 }
 
 char fapGm_dataMem::mCsv[0x8000];
@@ -415,64 +470,96 @@ void fapGm_dataMem::dumpTag() {
     printfTag(TagAtt_Fixed_e, TagType_Heap_e, HeapType_Game_e, NULL, mDoExt_getGameHeap(), 0, NULL, NULL);
     printfTag(TagAtt_Fixed_e, TagType_Heap_e, HeapType_Command_e, NULL, mDoExt_getCommandHeap(), 0, NULL, NULL);
     printfTag(TagAtt_Fixed_e, TagType_Heap_e, HeapType_ARAM_e, NULL, NULL, 0, NULL, NULL);
+    // "Audio"
     printfTag(TagAtt_Fixed_e, TagType_Audio_e, 0, "オーディオ", g_mDoAud_audioHeap, 0x169000, NULL, NULL);
+    // "Particle archive"
     printfTag(TagAtt_Fixed_e, TagType_Particle_e, 0, "パーティクルアーカイブ", g_dComIfG_gameInfo.play.getParticle()->getResHeap(), 0, NULL, NULL);
+    // "Particle (persistent)"
     printfTag(TagAtt_Fixed_e, TagType_Particle_e, 0, "パーティクル(常駐)", g_dComIfG_gameInfo.play.getParticle()->getHeap(), 0, NULL, NULL);
+    // "Particle (stage)"
     printfTag(TagAtt_Variable_e, TagType_Particle_e, 0, "パーティクル(ステージ)", g_dComIfG_gameInfo.play.getParticle()->getSceneHeap(), 0, NULL, NULL);
+    // "Graphic FIFO"
     printfTag(TagAtt_Fixed_e, TagType_System_e, HeapType_System_e, "グラフィックFIFO", NULL, 0xA0000, 0, NULL);
     #if PLATFORM_WII || PLATFORM_SHIELD
+    // "Graphics-related buffers"
     printfTag(TagAtt_Fixed_e, TagType_System_e, 0, "グラフィック関係バッファ", mDoGph_gInf_c::getHeap(), 0, NULL, NULL);
     #endif
 
     if (mDoGph_gInf_c::getBloom()->getBuffer() != NULL) {
+        // "Bloom buffer"
         printfTag(TagAtt_Variable_e, TagType_System_e, 0, "飽和加算用バッファ", mDoGph_gInf_c::getBloom()->getBuffer(), NULL, 0, NULL);
     }
 
     if (dComIfGp_getSimpleModel() != NULL) {
+        // "Simple model buffer"
         printfTag(TagAtt_Fixed_e, TagType_System_e, 0, "シンプルモデルバッファ", dComIfGp_getSimpleModel(), NULL, 0, NULL);
     }
 
     if (dMdl_mng_c::m_myObj != NULL) {
+        // "Savings model buffer" (LOD model buffer?)
         printfTag(TagAtt_Fixed_e, TagType_System_e, 0, "節約モデルバッファ", dMdl_mng_c::m_myObj, NULL, 0, NULL);
     }
 
     if (daGrass_c::getGrass() != NULL) {
+        // "Grass buffer"
         printfTag(TagAtt_Variable_e, TagType_System_e, 0, "草バッファ", daGrass_c::getGrass(), NULL, 0, NULL);
     }
 
     if (daGrass_c::getFlower() != NULL) {
+        // "Flower buffer"
         printfTag(TagAtt_Variable_e, TagType_System_e, 0, "花バッファ", daGrass_c::getFlower(), NULL, 0, NULL);
     }
 
     if (dTres_c::getTypeGroupData() != NULL) {
+        // "Persistent treasure chest buffer"
         printfTag(TagAtt_Fixed_e, TagType_System_e, 0, "常駐宝箱バッファ", (char*)dTres_c::getTypeGroupData() - 16, NULL, 0, NULL);
     }
 
     if (dComIfGp_getAttention()->getHeap() != NULL) {
+        // "Attention-processing buffer"
         printfTag(TagAtt_Fixed_e, TagType_System_e, 0, "注目処理用バッファ", dComIfGp_getAttention()->getHeap(), NULL, 0, NULL);
     }
 
+    // "For 2D transfer"
     printfTag(TagAtt_Fixed_e, TagType_2D_e, 0, "2D転送用", dComIfGp_getExpHeap2D(), JKRGetMemBlockSize(NULL, dComIfGp_getExpHeap2D()) + JKRGetMemBlockSize(NULL, dComIfGp_getMsgExpHeap()), 0, NULL);
+    // "Message data (persistent)"
     printfTag(TagAtt_Fixed_e, TagType_Message_e, 0, "メッセージデータ(常駐)", ((JKRAramArchive*)dComIfGp_getMsgDtArchive())->mBlock, NULL, 0, NULL);
+    // "Message data (stage)"
     printfTag(TagAtt_Variable_e, TagType_Message_e, 0, "メッセージデータ(ステージ)", ((JKRAramArchive*)dComIfGp_getMsgDtArchive(1))->mBlock, NULL, 0, NULL);
+    // "Meter-related"
     printfTag(TagAtt_Fixed_e, TagType_2D_e, 0, "メーター関係", ((JKRAramArchive*)dComIfGp_getMain2DArchive())->mBlock, NULL, 0, NULL);
+    // "Item spawn table"
     printfTag(TagAtt_Fixed_e, TagType_System_e, 0, "アイテム出現テーブル", dComIfGp_getItemTable(), NULL, 0, NULL);
+    // "Cached font buffer"
     printfTag(TagAtt_Fixed_e, TagType_Message_e, HeapType_Zelda_e, "キャッシュフォントバッファ", NULL, JKRGetMemBlockSize(NULL, ((JKRAramArchive*)dComIfGp_getRubyArchive())->mBlock) + 0x1C328, 0, NULL);
+    // "Audio"
     printfTag(TagAtt_Fixed_e, TagType_Audio_e, HeapType_ARAM_e, "オーディオ", NULL, 0xB00000, 0, NULL);
+    // "Link animation"
     printfTag(TagAtt_Fixed_e, TagType_Player_e, HeapType_ARAM_e, "リンクアニメーション", NULL, ((JKRAramArchive*)dComIfGp_getAnmArchive())->mBlock->getSize(), 0, NULL);
+    // "Field map layout"
     printfTag(TagAtt_Fixed_e, TagType_2D_e, HeapType_ARAM_e, "フィールドマップレイアウト", NULL, ((JKRAramArchive*)dComIfGp_getFmapResArchive())->mBlock->getSize(), 0, NULL);
+    // "Field map data"
     printfTag(TagAtt_Fixed_e, TagType_2D_e, HeapType_ARAM_e, "フィールドマップデータ", NULL, ((JKRAramArchive*)dComIfGp_getFieldMapArchive2())->mBlock->getSize(), 0, NULL);
+    // "Dungeon map layout"
     printfTag(TagAtt_Fixed_e, TagType_2D_e, HeapType_ARAM_e, "ダンジョンマップレイアウト", NULL, ((JKRAramArchive*)dComIfGp_getDmapResArchive())->mBlock->getSize(), 0, NULL);
+    // "Collect & save & options"
     printfTag(TagAtt_Fixed_e, TagType_2D_e, HeapType_ARAM_e, "コレクト&セーブ&オプション", NULL, ((JKRAramArchive*)dComIfGp_getCollectResArchive())->mBlock->getSize(), 0, NULL);
+    // "Select ring item"
     printfTag(TagAtt_Fixed_e, TagType_2D_e, HeapType_ARAM_e, "リングアイテム選択", NULL, ((JKRAramArchive*)dComIfGp_getRingResArchive())->mBlock->getSize(), 0, NULL);
+    // "Item icon"
     printfTag(TagAtt_Fixed_e, TagType_2D_e, HeapType_ARAM_e, "アイテムアイコン", NULL, ((JKRAramArchive*)dComIfGp_getItemIconArchive())->mBlock->getSize(), 0, NULL);
+    // "Item description screen"
     printfTag(TagAtt_Fixed_e, TagType_2D_e, HeapType_ARAM_e, "アイテム説明画面", NULL, ((JKRAramArchive*)dComIfGp_getDemoMsgArchive())->mBlock->getSize(), 0, NULL);
+    // "Highlight button display"
     printfTag(TagAtt_Fixed_e, TagType_2D_e, HeapType_ARAM_e, "強調ボタン表示", NULL, ((JKRAramArchive*)dComIfGp_getMeterButtonArchive())->mBlock->getSize(), 0, NULL);
+    // "Standard 2D speech bubble data"
     printfTag(TagAtt_Fixed_e, TagType_Message_e, HeapType_ARAM_e, "フキダシ共通2Dデータ", NULL, ((JKRAramArchive*)dComIfGp_getMsgCommonArchive())->mBlock->getSize(), 0, NULL);
+    // "Cached font"
     printfTag(TagAtt_Fixed_e, TagType_Message_e, HeapType_ARAM_e, "キャッシュフォント", NULL, mDoExt_getAraCacheSize(), 0, NULL);
 
     for (int i = 0; i < 6; i++) {
         char label[64];
+        // "Message (%d) slots and others"
         sprintf(label, "メッセージ(%d)枠ほか", i);
         printfTag(TagAtt_Fixed_e, TagType_Message_e, HeapType_ARAM_e, label, NULL, ((JKRAramArchive*)dComIfGp_getMsgArchive(i))->mBlock->getSize(), 0, NULL);
     }
@@ -488,6 +575,7 @@ void fapGm_dataMem::dumpTag() {
     }
 
     if (var_r28 != NULL) {
+        // "Stage memory block"
         printfTag(TagAtt_Variable_e, TagType_Stage_e, 0, "ステージメモリーブロック", dStage_roomControl_c::getMemoryBlockHeap(0), var_r28, 0, NULL);
         printfTag(TagAtt_Variable_e, TagType_Heap_e, HeapType_Stage_e, NULL, NULL, var_r28, 0, NULL);
     }
@@ -497,40 +585,73 @@ void fapGm_dataMem::dumpTag() {
 }
 
 void fapGm_dataMem::dumpCsv() {
+    // "Main memory,,,"
     sprintf(mCsv, "メインメモリ,,,\n");
+    // ",,,Maximum size,available size"
     sprintf(getCsvEnd(), ",,,最大サイズ,空きサイズ\n");
+    // ",System heap,%d,%d,%d,"
     sprintf(getCsvEnd(), ",システムヒープ,%d,%d,%d,\n\n", ((JKRExpHeap*)JKRGetSystemHeap())->getTotalUsedSize(), JKRGetSystemHeap()->getHeapSize(), JKRGetSystemHeap()->getFreeSize());
+    // ",Zelda heap,%d,%d,%d,"
     sprintf(getCsvEnd(), ",ゼルダヒープ,%d,%d,%d,\n", mDoExt_getZeldaHeap()->getTotalUsedSize(), mDoExt_getZeldaHeap()->getHeapSize(), mDoExt_getZeldaHeap()->getFreeSize());
+    // ",Audio memory,%d,"
     sprintf(getCsvEnd(), ",オーディオメモリ,%d,\n", 0x169000);
+    // ",Particle memory (resident),%d,"
     sprintf(getCsvEnd(), ",パーティクルメモリ（常駐）,%d,\n", g_dComIfG_gameInfo.play.getParticle()->getHeap()->getHeapSize());
+    // ",Particle memory (per-scene),%d,"
     sprintf(getCsvEnd(), ",パーティクルメモリ（シーン依存）,%d,\n", g_dComIfG_gameInfo.play.getParticle()->getSceneHeap()->getHeapSize());
+    // ",Graphic FIFO,%d,"
     sprintf(getCsvEnd(), ",グラフィックＦＩＦＯ,%d,\n", 0xA0000);
+    // ",Frame buffer,"
     sprintf(getCsvEnd(), ",フレームバッファ,%d,\n", mDoGph_gInf_c::getFrameBufferSize() * 2);
+    // ",Frame buffer texture,%d,"
     sprintf(getCsvEnd(), ",フレームバッファテクスチャー,%d,\n", 0x70820);
+    // ",2D transfer heap,%d,"
     sprintf(getCsvEnd(), ",２Ｄ転送用ヒープ,%d,\n", dComIfGp_getExpHeap2D()->getHeapSize() + dComIfGp_getMsgExpHeap()->getHeapSize());
+    // ",Archive heap,%d,%d,%d,"
     sprintf(getCsvEnd(), ",アーカイブヒープ,%d,%d,%d,\n\n", mDoExt_getArchiveHeap()->getTotalUsedSize(), mDoExt_getArchiveHeap()->getHeapSize(), mDoExt_getArchiveHeap()->getFreeSize());
+    // ",Message data (resident),%d,"
     sprintf(getCsvEnd(), ",メッセージデータ（常駐）,%d,\n", JKRGetMemBlockSize(NULL, ((JKRAramArchive*)dComIfGp_getMsgDtArchive())->mBlock));
+    // ",Message data (per-scene),%d,"
     sprintf(getCsvEnd(), ",メッセージデータ（ステージ読み）,%d,\n", JKRGetMemBlockSize(NULL, ((JKRAramArchive*)dComIfGp_getMsgDtArchive(1))->mBlock));
+    // ",Meter-related,%d,"
     sprintf(getCsvEnd(), ",メーター関係,%d,\n", JKRGetMemBlockSize(NULL, ((JKRAramArchive*)dComIfGp_getMain2DArchive())->mBlock));
+    // ",Item spawn table,%d,"
     sprintf(getCsvEnd(), ",アイテム出現テーブル,%d,\n", JKRGetMemBlockSize(NULL, dComIfGp_getItemTable()));
+    // ",Font cache buffer,%d,"
     sprintf(getCsvEnd(), ",キャッシュフォントバッファ,%d,\n", JKRGetMemBlockSize(NULL, ((JKRAramArchive*)dComIfGp_getRubyArchive())->mBlock) + 0x1C328);
+    // ",Game heap,%d,%d,%d,"
     sprintf(getCsvEnd(), ",ゲームヒープ,%d,%d,%d,\n", mDoExt_getGameHeap()->getTotalUsedSize(), mDoExt_getGameHeap()->getHeapSize(), mDoExt_getGameHeap()->getFreeSize());
+    // ",Command heap,%d,%d,%d,"
     sprintf(getCsvEnd(), ",コマンドヒープ,%d,%d,%d,\n\n", mDoExt_getCommandHeap()->getTotalUsedSize(), mDoExt_getCommandHeap()->getHeapSize(), mDoExt_getCommandHeap()->getFreeSize());
+    // ",ARAM memory,%d,%d,%d,"
     sprintf(getCsvEnd(), ",ＡＲＡＭメモリ,%d,%d,%d,\n\n", JKRGetAramUsedSize(0) + 0xB00000, (JKRGetAramUsedSize(0) + 0xB00000 + JKRGetAramTotalFreeSize()), JKRGetAramFreeSize());
+    // ",Audio ARAM memory,%d,"
     sprintf(getCsvEnd(), ",オーディオＡＲＡＭメモリ,%d,\n", 0xB00000);
+    // ",Link animation,%d,"
     sprintf(getCsvEnd(), ",リンクアニメーション,%d,\n", ((JKRAramArchive*)dComIfGp_getAnmArchive())->mBlock->getSize());
+    // ",Field map layout,%d,"
     sprintf(getCsvEnd(), ",フィールドマップレイアウト,%d,\n", ((JKRAramArchive*)dComIfGp_getFmapResArchive())->mBlock->getSize());
+    // ",Field map data,%d,"
     sprintf(getCsvEnd(), ",フィールドマップデータ,%d,\n", ((JKRAramArchive*)dComIfGp_getFieldMapArchive2())->mBlock->getSize());
+    // ",Dungeon map layout,%d,"
     sprintf(getCsvEnd(), ",ダンジョンマップレイアウト,%d,\n", ((JKRAramArchive*)dComIfGp_getDmapResArchive())->mBlock->getSize());
+    // ",Collect & save & options,%d,"
     sprintf(getCsvEnd(), ",コレクト＆セーブ＆オプション,%d,\n", ((JKRAramArchive*)dComIfGp_getCollectResArchive())->mBlock->getSize());
+    // ",Select ring item,%d,"
     sprintf(getCsvEnd(), ",リングアイテム選択,%d,\n", ((JKRAramArchive*)dComIfGp_getRingResArchive())->mBlock->getSize());
+    // ",Item icon,%d,"
     sprintf(getCsvEnd(), ",アイテムアイコン,%d,\n", ((JKRAramArchive*)dComIfGp_getItemIconArchive())->mBlock->getSize());
+    // ",Item description screen,%d,"
     sprintf(getCsvEnd(), ",アイテム説明画面,%d,\n", ((JKRAramArchive*)dComIfGp_getDemoMsgArchive())->mBlock->getSize());
+    // ",Highlight button display,%d,"
     sprintf(getCsvEnd(), ",強調ボタン表示,%d,\n", ((JKRAramArchive*)dComIfGp_getMeterButtonArchive())->mBlock->getSize());
+    // ",Standard 2D speech bubble data,%d,"
     sprintf(getCsvEnd(), ",フキダシ共通２Ｄデータ,%d,\n", ((JKRAramArchive*)dComIfGp_getMsgCommonArchive())->mBlock->getSize());
+    // ",Font cache,%d,"
     sprintf(getCsvEnd(), ",キャッシュフォント,%d,\n\n", mDoExt_getAraCacheSize());
 
     for (int i = 0; i < 6; i++) {
+        // ",Message (%d) slots and others,%d,"
         sprintf(getCsvEnd(), ",メッセージ(%d)枠ほか,%d,\n", i, ((JKRAramArchive*)dComIfGp_getMsgArchive(i))->mBlock->getSize());
     }
 
@@ -545,13 +666,16 @@ void fapGm_dataMem::dumpCsv() {
     }
 
     if (memblock_total_size != NULL) {
+        // ",Stage memory block,%d"
         sprintf(getCsvEnd(), ",ステージメモリーブロック,%d\n\n", memblock_total_size);
     }
 
     DynamicModuleControlBase::dump(mCsv);
 
+    // ",Object Name (ID),Size,"
     sprintf(getCsvEnd(), ",オブジェクト名（ＩＤ）,サイズ,\n");
     fpcLyIt_All(dumpObject, mCsv);
+    // ",2D memory,%d,"
     sprintf(getCsvEnd(), ",２Ｄメモリ,%d,\n", dComIfGp_getExpHeap2D()->getHeapSize() + dComIfGp_getMsgExpHeap()->getHeapSize());
 }
 
@@ -567,12 +691,14 @@ void fapGm_HIO_c::listenPropertyEvent(const JORPropertyEvent* property) {
         mCaptureScreenFlag = -1;
         break;
     case 0x4000002:
+        // "GameCube image file (*.gfb)"
         if (file.open(6, "ゲームキューブイメージファイル(*.gfb)", "gfb", NULL, NULL)) {
             file.writeData(mDoGph_gInf_c::getFrameBufferMemory(), mDoGph_gInf_c::getFrameBufferSize());
             file.close();
         }
         break;
     case 0x4000005:
+        // "Contiguous free space = %fK, remaining free space = %fK"
         OSReport("\x1b[43;30m連続空き=%fK 残り空き=%fK\n\x1b[m", JKRGetSystemHeap()->getFreeSize() * 0.0009765625f, JKRGetSystemHeap()->getTotalFreeSize() * 0.0009765625f);
         break;
     case 0x4000007:
@@ -583,8 +709,11 @@ void fapGm_HIO_c::listenPropertyEvent(const JORPropertyEvent* property) {
         void* model_buffer = mDoExt_getArchiveHeap()->alloc(0x96000, 0x20);
         
         if (model_buffer == NULL) {
+            // "Insufficient memory to load BMD file!!"
             OSReport("ＢＭＤファイル読み込みメモリがありません！！\n");
+            // "BMD file (*.bmd)"
         } else if (!file.open(1, "ＢＭＤファイル(*.bmd)", NULL, NULL, NULL)) {
+            // "Failed to open BMD file!!"
             OSReport("ＢＭＤファイルオープン失敗！！\n");
         } else {
             file.readData(model_buffer, 0);
@@ -592,11 +721,13 @@ void fapGm_HIO_c::listenPropertyEvent(const JORPropertyEvent* property) {
 
             J3DModelData* modelData = J3DModelLoaderDataBase::load(model_buffer, 0x10000);
             if (modelData == NULL) {
+                // "BMD data load failed!!"
                 OSReport("ＢＭＤデータロード失敗！！\n");
             }
 
             JKRSolidHeap* heap = mDoExt_createSolidHeapFromGameToCurrent(0x4B000, 0x20);
             if (heap == NULL) {
+                // "Insufficient memory for J3D model!!"
                 OSReport("Ｊ３ＤＭｏｄｅｌ用メモリがありません！！\n");
                 JKRFree(model_buffer);
                 break;
@@ -607,6 +738,7 @@ void fapGm_HIO_c::listenPropertyEvent(const JORPropertyEvent* property) {
             mDoExt_adjustSolidHeap(heap);
 
             if (model == NULL) {
+                // "J3D model generation failed!!"
                 OSReport("Ｊ３ＤＭｏｄｅｌ生成失敗！！\n");
                 mDoExt_destroySolidHeap(heap);
                 JKRFree(model_buffer);
@@ -642,11 +774,14 @@ void fapGm_HIO_c::listenPropertyEvent(const JORPropertyEvent* property) {
             new_filename[sp10 - 3] = 'd';
             new_filename[sp10 - 2] = 'l';
 
+            // "BDL file (*.bdl)"
             if (!out_file.open(NULL, 6, "ＢＤＬファイル(*.bdl)", "bdl", NULL, new_filename)) {
+                // "Failed to open BDL file!!"
                 OSReport("ＢＤＬファイルオープン失敗！！\n");
             } else {
                 bdlData = (u8*)J3DModelSaverDataBase::saveBinaryDisplayList(model, J3DBinaryDisplayListSaverFlag_UNK_1, 0xC8000);
                 if (bdlData == NULL) {
+                    // "BDL file generation failed!!"
                     OSReport("ＢＤＬファイル生成失敗！！\n");
                 } else {
                     OSReport("############ bdlData=%x size=%d\n", bdlData, *(int*)((char*)bdlData + 8));
@@ -662,7 +797,9 @@ void fapGm_HIO_c::listenPropertyEvent(const JORPropertyEvent* property) {
         break;
     }
     case 0x4000016:
+        // "Memory file (*.csv)"
         if (!file.open(NULL, 6, "メモリファイル(*.csv)", "csv", NULL, NULL)) {
+            // "Failed to open memory file!!"
             OSReport("メモリファイルオープン失敗！！\n");
         } else {
             fapGm_dataMem::dumpCsv();
@@ -671,7 +808,9 @@ void fapGm_HIO_c::listenPropertyEvent(const JORPropertyEvent* property) {
             OSReport("csv file size=%d\n", fapGm_dataMem::getCsvSize());
         }
 
+        // "New memory file (*.tag)"
         if (!file.open(NULL, 6, "新メモリファイル(*.tag)", "tag", NULL, NULL)) {
+            // "Failed to open new memory file!!"
             OSReport("新メモリファイルオープン失敗！！\n");
         } else {
             fapGm_dataMem::dumpTag();
@@ -747,5 +886,6 @@ void fapGm_Create() {
     #if DEBUG
     fapGm_HIO_c::createCaptureScreen();
     #endif
+    // "Game system"
     g_HIO.field_0x04 = mDoHIO_CREATE_CHILD("ゲームシステム", &g_HIO);
 }

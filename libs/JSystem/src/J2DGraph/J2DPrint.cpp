@@ -32,7 +32,7 @@ f32 J2DPrint_print_alpha_va(J2DPrint* pPrint, u8 alpha, const char* fmt, va_list
 }
 
 J2DPrint::J2DPrint(JUTFont* pFont, JUtility::TColor charColor, JUtility::TColor gradColor) {
-    private_initiate(pFont, 0.0f, 0.0f, charColor, gradColor, 0, 0xFFFFFFFF, true);
+    private_initiate(pFont, 0.0f, 0.0f, charColor, gradColor, (u32)0, 0xFFFFFFFF, true);
 }
 
 J2DPrint::J2DPrint(JUTFont* pFont, f32 charSpacing, f32 lineSpacing, JUtility::TColor charColor,

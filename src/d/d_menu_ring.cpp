@@ -1844,13 +1844,13 @@ void dMenu_Ring_c::drawNumber(int i_itemNum, int i_itemMaxNum, f32 i_posX, f32 i
 }
 
 u8 dMenu_Ring_c::getItem(int i_slot_no, u8 i_slot_no2) {
-    u8 item = dComIfGs_getItem(i_slot_no, 0);
-    dComIfGs_getItem(i_slot_no2, 0);
+    u8 item = dComIfGs_getItem(i_slot_no, false);
+    dComIfGs_getItem(i_slot_no2, false);
     return item;
 }
 
 void dMenu_Ring_c::setDoStatus(u8 i_doStatus) {
-    if (i_doStatus == 0 && mDoStatus == 0x24) {
+    if (i_doStatus == BUTTON_STATUS_NONE && mDoStatus == BUTTON_STATUS_INFO) {
         if (field_0x68e > 0) {
             field_0x68e--;
             if (field_0x68e == 0) {
@@ -1895,15 +1895,15 @@ bool dMenu_Ring_c::isMixItemOff() {
         if ((dComIfGs_getMixItemIndex(0) == SLOT_4) &&
             (mItemSlots[mCurrentSlot] == dComIfGs_getSelectItemIndex(0)))
         {
-            return 1;
+            return true;
         }
         if ((dComIfGs_getMixItemIndex(1) == SLOT_4) &&
             (mItemSlots[mCurrentSlot] == dComIfGs_getSelectItemIndex(1)))
         {
-            return 1;
+            return true;
         }
     }
-    return 0;
+    return false;
 }
 
 void dMenu_Ring_c::setMixMessage() {

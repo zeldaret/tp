@@ -860,8 +860,8 @@ inline void pos3Dto2D(Vec* a, Vec* b) {
 
 int dShopSystem_c::seq_start(fopAc_ac_c* actor, dMsgFlow_c* i_flow) {
     if (field_0xf79 != 0) {
-        dComIfGp_setDoStatusForce(0, 0);
-        dComIfGp_setAStatusForce(0, 0);
+        dComIfGp_setDoStatusForce(BUTTON_STATUS_NONE, 0);
+        dComIfGp_setAStatusForce(BUTTON_STATUS_NONE, 0);
         field_0xf79 = 0;
     }
 
@@ -875,8 +875,8 @@ int dShopSystem_c::seq_start(fopAc_ac_c* actor, dMsgFlow_c* i_flow) {
         return 0;
     } else {
         if (dMsgObject_c::isMsgSendControl()) {
-            dComIfGp_setDoStatusForce(0, 0);
-            dComIfGp_setAStatusForce(0x2A, 0);
+            dComIfGp_setDoStatusForce(BUTTON_STATUS_NONE, 0);
+            dComIfGp_setAStatusForce(BUTTON_STATUS_QUIT, 0);
 
             int control_status = checkController(SEQ_WAIT, i_flow);
             if (control_status != 0) {
@@ -995,8 +995,8 @@ int dShopSystem_c::seq_select(fopAc_ac_c* actor, dMsgFlow_c* i_flow) {
     }
 
     int control_status = checkController(SEQ_START, i_flow);
-    dComIfGp_setDoStatusForce(0x22, 0);
-    dComIfGp_setAStatusForce(0x2A, 0);
+    dComIfGp_setDoStatusForce(BUTTON_STATUS_CONFIRM, 0);
+    dComIfGp_setAStatusForce(BUTTON_STATUS_QUIT, 0);
 
     if (control_status != 0) {
         int cursor_status = moveCursor(control_status, 1);
@@ -1137,11 +1137,11 @@ int dShopSystem_c::seq_moving(fopAc_ac_c*, dMsgFlow_c*) {
 int dShopSystem_c::seq_decide(fopAc_ac_c* actor, dMsgFlow_c* i_flow) {
     int control_status = checkController(SEQ_SELECT_WAIT, i_flow);
 
-    dComIfGp_setDoStatusForce(0x22, 0);
+    dComIfGp_setDoStatusForce(BUTTON_STATUS_CONFIRM, 0);
     if (!i_flow->isSelectMessage()) {
-        dComIfGp_setAStatusForce(0x2A, 0);
+        dComIfGp_setAStatusForce(BUTTON_STATUS_QUIT, 0);
     } else if (dMsgObject_getMsgObjectClass()->getSelectCancelPos() != 0) {
-        dComIfGp_setAStatusForce(0x2A, 0);
+        dComIfGp_setAStatusForce(BUTTON_STATUS_QUIT, 0);
     }
 
     if (control_status != 0) {
@@ -1162,11 +1162,11 @@ int dShopSystem_c::seq_decide(fopAc_ac_c* actor, dMsgFlow_c* i_flow) {
 }
 
 int dShopSystem_c::seq_choose(fopAc_ac_c* actor, dMsgFlow_c* i_flow) {
-    dComIfGp_setDoStatusForce(0x22, 0);
+    dComIfGp_setDoStatusForce(BUTTON_STATUS_CONFIRM, 0);
     if (!i_flow->isSelectMessage()) {
-        dComIfGp_setAStatusForce(0x2A, 0);
+        dComIfGp_setAStatusForce(BUTTON_STATUS_QUIT, 0);
     } else if (dMsgObject_getMsgObjectClass()->getSelectCancelPos() != 0) {
-        dComIfGp_setAStatusForce(0x2A, 0);
+        dComIfGp_setAStatusForce(BUTTON_STATUS_QUIT, 0);
     }
 
     i_flow->doFlow(actor, NULL, 0);

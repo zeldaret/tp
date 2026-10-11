@@ -1972,7 +1972,7 @@ void jmessage_tSequenceProcessor::do_end() {
 
 bool jmessage_tSequenceProcessor::do_isReady() {
     jmessage_tReference* pReference = (jmessage_tReference*)getReference();
-    #if DEBUG
+    #if PLATFORM_WII || VERSION == VERSION_SHIELD_DEBUG
     if (pReference->getRevoMessageID() != 0) {
         return 0;
     }
@@ -1993,7 +1993,11 @@ bool jmessage_tSequenceProcessor::do_isReady() {
     }
 
     if (pReference->isButtonTagStopFlag()) {
+#if PLATFORM_WII
+        if (cAPICPad_A_TRIGGER(PAD_1)) {
+#else
         if (mDoCPd_c::getTrigA(PAD_1)) {
+#endif
             pReference->offButtonTagStopFlag();
             pReference->onLightBatchFlag();
         }
@@ -2050,7 +2054,13 @@ bool jmessage_tSequenceProcessor::do_isReady() {
             case 0:
             case 5:
             case 6:
-                if (mDoCPd_c::getTrigA(PAD_1) || field_0xb2 != 0) {
+                if (
+#if PLATFORM_WII
+                    cAPICPad_A_TRIGGER(PAD_1)
+#else
+                    mDoCPd_c::getTrigA(PAD_1)
+#endif
+                    || field_0xb2 != 0) {
                     field_0xa4 = 0;
                     pReference->onBatchFlag();
                     pReference->setCharCnt(D_MSG_CLASS_CHAR_CNT_MAX);
@@ -3922,6 +3932,8 @@ s16 jmessage_string_tReference::getLineCountNowPage() {
 }
 
 jmessage_string_tControl::jmessage_string_tControl() {}
+
+//jmessage_string_tControl::~jmessage_string_tControl() {}
 
 jmessage_string_tMeasureProcessor::jmessage_string_tMeasureProcessor(jmessage_string_tReference const* pReference) : JMessage::TRenderingProcessor(pReference) {
     mpReference = (jmessage_string_tReference*)getReference();

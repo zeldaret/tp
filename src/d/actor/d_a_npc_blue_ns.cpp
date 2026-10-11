@@ -264,7 +264,7 @@ void daNpcBlueNS_c::_Execute() {
     if (mTwilight) {
         attention_info.flags |= fopAc_AttnFlag_UNK_0x400000;
         if (daNpcF_chkDoBtnEqSpeak(this)) {
-            dComIfGp_setDoStatusForce(59, 0);
+            dComIfGp_setDoStatusForce(BUTTON_STATUS_LISTEN, 0);
         }
     }
 

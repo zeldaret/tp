@@ -570,8 +570,8 @@ bool J2DWindowEx::getBlackWhite(JUtility::TColor* o_black, JUtility::TColor* o_w
 
     u32 stageNum = mFrameMaterial[0]->getTevBlock()->getTevStageNum();
     bool cVar6 = stageNum == 1 ? false : true;
-    *o_black = JUtility::TColor(0);
-    *o_white = JUtility::TColor(0xffffffff);
+    *o_black = JUtility::TColor((u32)0x00000000);
+    *o_white = JUtility::TColor((u32)0xFFFFFFFF);
     if (cVar6) {
         J2DGXColorS10 color0 = *mFrameMaterial[0]->getTevBlock()->getTevColor(0);
         J2DGXColorS10 color1 = *mFrameMaterial[0]->getTevBlock()->getTevColor(1);
@@ -598,7 +598,7 @@ bool J2DWindowEx::isSetBlackWhite(JUtility::TColor param_0, JUtility::TColor par
 JUtility::TColor J2DWindowEx::getBlack() const {
     JUtility::TColor black, white;
     if (!getBlackWhite(&black, &white)) {
-        return JUtility::TColor(0);
+        return JUtility::TColor((u32)0x00000000);
     }
 
     return black;
@@ -607,7 +607,7 @@ JUtility::TColor J2DWindowEx::getBlack() const {
 JUtility::TColor J2DWindowEx::getWhite() const {
     JUtility::TColor black, white;
     if (!getBlackWhite(&black, &white)) {
-        return JUtility::TColor(0xffffffff);
+        return JUtility::TColor((u32)0xFFFFFFFF);
     }
 
     return white;

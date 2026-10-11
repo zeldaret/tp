@@ -143,7 +143,7 @@ public:
     u8 getRegionCursor() { return mRegionCursor; }
     u8 getSpotCursor() { return mSpotCursor; }
     u8 getSelectRegion() { return mSelectRegion; }
-    bool getAllPathShowFlag() { return mAllPathShowFlag; }
+    u8 getAllPathShowFlag() { return mAllPathShowFlag; }
     f32 getRegionOriginX(int i_region) { return mRegionOriginX[i_region]; }
     f32 getRegionOriginZ(int i_region) { return mRegionOriginZ[i_region]; }
 
@@ -161,6 +161,8 @@ public:
     BOOL isShowRegionFlag(int region_bit) { return mRegionFlag & (u8)(1 << region_bit) ? TRUE : FALSE; }
 
     void mapBlink() {}
+
+    f32 getMirrorPosX(f32 f32, float x);
 
     // Unknown name
     struct RegionTexData {
@@ -289,7 +291,7 @@ public:
     /* 0x122C */ u8 mRegionFlag;
     /* 0x122D */ u8 field_0x122d;
     /* 0x122E */ bool field_0x122e;
-    /* 0x122F */ bool mAllPathShowFlag;
+    /* 0x122F */ u8 mAllPathShowFlag;
     /* 0x1230 */ u8 field_0x1230[8];
     /* 0x1238 */ u8 field_0x1238;
     /* 0x1239 */ bool mMapDrawFlag;

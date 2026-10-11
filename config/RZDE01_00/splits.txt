@@ -1134,47 +1134,49 @@ d/d_meter_button.cpp:
 d/d_meter_haihai.cpp:
 	.text       start:0x801F2544 end:0x801F3A10
 	.data       start:0x80416790 end:0x80416870
-	.sdata      start:0x80539350 end:0x80539360
+	.sdata      start:0x80539350 end:0x80539358
 	.sdata2     start:0x8053E668 end:0x8053E6C8
 
 d/d_meter_hakusha.cpp:
 	.text       start:0x801F3A10 end:0x801F4990
 	.data       start:0x80416870 end:0x80416970
-	.sdata      start:0x80539360 end:0x80539370
+	.sdata      start:0x80539358 end:0x80539368
 	.sdata2     start:0x8053E6C8 end:0x8053E6E8
 
 d/d_meter_map.cpp:
 	.text       start:0x801F4990 end:0x801F5ED4
 	.data       start:0x80416970 end:0x804169F8
-	.sdata      start:0x80539370 end:0x8053937C
+	.sdata      start:0x80539368 end:0x8053937C
 	.sdata2     start:0x8053E6E8 end:0x8053E710
 
 d/d_meter_string.cpp:
 	.text       start:0x801F5ED4 end:0x801F6B8C
 	.data       start:0x804169F8 end:0x80416A38
-	.sdata      start:0x8053937C end:0x80539394
+	.sdata      start:0x8053937C end:0x80539388
 	.sdata2     start:0x8053E710 end:0x8053E748
 
 d/d_meter2_draw.cpp:
 	.text       start:0x801F6B8C end:0x8020602C
 	.rodata     start:0x803ECF90 end:0x803ED748
-	.data       start:0x80416A38 end:0x80417114
+	.data       start:0x80416A38 end:0x80417108
 	.bss        start:0x804BCB48 end:0x804BCB68
-	.sdata      start:0x80539394 end:0x805393B0
-	.sbss       start:0x8053AD80 end:0x8053ADB0
+	.sdata      start:0x80539388 end:0x805393A0
+	.sbss       start:0x8053AD80 end:0x8053AD90
 	.sdata2     start:0x8053E748 end:0x8053E870
 
 d/d_meter2_info.cpp:
 	.text       start:0x8020602C end:0x8020B914
 	.ctors      start:0x803CE2C0 end:0x803CE2C4
-	.data       start:0x80417114 end:0x804175A8
+	.data       start:0x80417108 end:0x804175A8
 	.bss        start:0x804BCB68 end:0x804BD360
-	.sdata      start:0x805393B0 end:0x805393DC
+	.sdata      start:0x805393A0 end:0x805393C0
+	.sbss       start:0x8053AD90 end:0x8053ADA8
 	.sdata2     start:0x8053E870 end:0x8053E8B0
 
 d/d_meter2.cpp:
 	.text       start:0x8020B914 end:0x80213F5C
 	.data       start:0x804175A8 end:0x80417610
+	.sdata      start:0x805393C0 end:0x805393DC
 	.sdata2     start:0x8053E8B0 end:0x8053E920
 
 d/d_msg_out_font.cpp:
@@ -1188,6 +1190,7 @@ d/d_msg_class.cpp:
 	.rodata     start:0x803ED748 end:0x803ED790
 	.data       start:0x80417C20 end:0x80418BA0
 	.sdata      start:0x80539414 end:0x80539494
+	.sbss       start:0x8053ADA8 end:0x8053ADB0
 	.sdata2     start:0x8053E968 end:0x8053E9A8
 
 d/d_msg_object.cpp:

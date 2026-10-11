@@ -55,6 +55,30 @@ struct J2DScrnBlockPictureParameter {
  */
 class J2DPicture : public J2DPane {
 public:
+    struct TCornerColor {
+        JUtility::TColor mColor0;
+        JUtility::TColor mColor1;
+        JUtility::TColor mColor2;
+        JUtility::TColor mColor3;
+
+        TCornerColor() {}
+
+        TCornerColor(const TCornerColor& other) {
+            mColor0 = other.mColor0;
+            mColor1 = other.mColor1;
+            mColor2 = other.mColor2;
+            mColor3 = other.mColor3;
+        }
+
+        TCornerColor& operator=(TCornerColor other) {
+            mColor0 = other.mColor0;
+            mColor1 = other.mColor1;
+            mColor2 = other.mColor2;
+            mColor3 = other.mColor3;
+            return *this;
+        }
+    };
+
     virtual ~J2DPicture();
     virtual u16 getTypeID() const { return 18; }
     virtual void drawSelf(f32, f32);
@@ -201,6 +225,13 @@ public:
     void setTexCoord(JUTTexture const*, J2DBinding, J2DMirror, bool);
     GXTlut getTlutID(ResTIMG const*, u8);
 
+    void getCornerColor(TCornerColor& o_corner_color) {
+        o_corner_color.mColor0 = mCornerColor[0];
+        o_corner_color.mColor1 = mCornerColor[1];
+        o_corner_color.mColor2 = mCornerColor[2];
+        o_corner_color.mColor3 = mCornerColor[3];
+    }
+
     void setCornerColor(JUtility::TColor c0, JUtility::TColor c1, JUtility::TColor c2,
                         JUtility::TColor c3) {
         mCornerColor[0] = c0;
@@ -208,8 +239,16 @@ public:
         mCornerColor[2] = c2;
         mCornerColor[3] = c3;
     }
-    void setCornerColor(JUtility::TColor c0) {
-        setCornerColor(c0, c0, c0, c0);
+
+    void setCornerColor(JUtility::TColor i_color) {
+        setCornerColor(i_color, i_color, i_color, i_color);
+    }
+
+    void setCornerColor(TCornerColor i_colors) {
+        mCornerColor[0] = (JUtility::TColor)i_colors.mColor0;
+        mCornerColor[1] = (JUtility::TColor)i_colors.mColor1;
+        mCornerColor[2] = (JUtility::TColor)i_colors.mColor2;
+        mCornerColor[3] = (JUtility::TColor)i_colors.mColor3;
     }
 
 protected:

@@ -534,10 +534,6 @@ struct jmessage_tRenderingProcessor : public JMessage::TRenderingProcessor {
     /* 0x187 */ u8 field_0x187;
 };
 
-struct jmessage_string_tControl : public JMessage::TControl {
-    jmessage_string_tControl();
-};
-
 struct jmessage_string_tReference : public JMessage::TReference {
     jmessage_string_tReference();
     void init(J2DTextBox*, J2DTextBox*, JUTFont*, COutFont_c*, u8);
@@ -591,6 +587,10 @@ struct jmessage_string_tReference : public JMessage::TReference {
     /* 0x82 */ u8 mLineMax;
     /* 0x83 */ u8 mNowPage;
     /* 0x84 */ u8 mFlags;
+};
+
+struct jmessage_string_tControl : public JMessage::TControl {
+    jmessage_string_tControl();
 };
 
 struct jmessage_string_tMeasureProcessor : public JMessage::TRenderingProcessor {

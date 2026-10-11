@@ -328,7 +328,7 @@ int daNpc_FairySeirei_c::wait(int param_0) {
         mMode = 2;
     case 2:
         if (daNpcT_chkDoBtnIsSpeak(this)) {
-            dComIfGp_setDoStatus(8, 0);
+            dComIfGp_setDoStatus(BUTTON_STATUS_CHECK, 0);
         }
     case 3:
     default:

@@ -123,6 +123,13 @@ void fopAcM_showAssert_f(const fopAc_ac_c* i_actor, const char* i_filename, int 
 }
 #endif
 
+#if DEBUG
+void showAssert_f_va(u32 param_0, const char* param_1, int param_2, const char* param_3, va_list args) {
+    JUtility::TColor color = JUTDirectPrint::getManager()->getCharColor();
+    JUTDirectPrint::getManager()->setCharColor(color);
+}
+#endif
+
 fopAc_ac_c* fopAcM_FastCreate(s16 i_procName, FastCreateReqFunc i_createFunc, void* i_createData,
                               void* i_append) {
     return (fopAc_ac_c*)fpcM_FastCreate(i_procName, i_createFunc, i_createData, i_append);

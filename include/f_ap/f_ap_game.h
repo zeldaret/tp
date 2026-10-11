@@ -101,16 +101,16 @@ public:
     #if DEBUG
     /* 0x26 */ u8 field_0x26[2];
     #endif
-    /* 0x24 */ JUtility::TColor mLetterTopColor;
-    /* 0x28 */ JUtility::TColor mLetterBottomColor;
-    /* 0x2C */ JUtility::TColor mLetterTopShadowColor;
-    /* 0x30 */ JUtility::TColor mLetterBottomShadowColor;
-    /* 0x34 */ s16 mLetterPositionX;
-    /* 0x36 */ s16 mLetterPositionY;
-    /* 0x38 */ s16 mLineSpacing;
-    /* 0x3A */ s16 mLetterSpacing;
+    /* 0x24 */ JUtility::TColor mErrMsgTopColor;
+    /* 0x28 */ JUtility::TColor mErrMsgBottomColor;
+    /* 0x2C */ JUtility::TColor mErrMsgTopShadowColor;
+    /* 0x30 */ JUtility::TColor mErrMsgBottomShadowColor;
+    /* 0x34 */ s16 mErrMsgPosX;
+    /* 0x36 */ s16 mErrPosY;
+    /* 0x38 */ s16 mErrMsgLineSpacing;
+    /* 0x3A */ s16 mErrMsgCharSpacing;
     /* 0x3C */ s16 mLetterFontSize;
-    /* 0x3E */ u8 mBackgroundAlpha;
+    /* 0x3E */ u8 mErrMsgBackgroundAlpha;
 };  // Size: 0x40
 
 extern fapGm_HIO_c g_HIO;

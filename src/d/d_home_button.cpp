@@ -26,7 +26,7 @@ void drawCallback(J2DOrthoGraph& param_0, void* param_1) {
     if (mDoGph_gInf_c::isWide()) {
         MTXOrtho(sp8, 228.0f, -228.0f, -416.0f, 416.0f, 0.0f, 500.0f);
     } else {
-        MTXOrtho(sp8, 228.0f, -228.0f, -(FB_WIDTH / 2), (FB_WIDTH / 2), 0.0f, 500.0f);
+        MTXOrtho(sp8, 228.0f, -228.0f, -(FB_WIDTH_BASE / 2), (FB_WIDTH_BASE / 2), 0.0f, 500.0f);
     }
 
     GXSetProjection(sp8, GX_ORTHOGRAPHIC);

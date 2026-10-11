@@ -308,7 +308,7 @@ static void demo_camera(obj_sw_class* i_this) {
         // [[fallthrough]]
 
     case 2:
-        dComIfGp_setDoStatusForce(1, 0);
+        dComIfGp_setDoStatusForce(BUTTON_STATUS_LET_GO, 0);
         if (i_this->field_0x8ce < 10) {
             cLib_addCalc2(&i_this->field_0x598.x, a_this->eyePos.x, 1.0f, 40.0f);
             cLib_addCalc2(&i_this->field_0x598.y, a_this->eyePos.y, 1.0f, 40.0f);

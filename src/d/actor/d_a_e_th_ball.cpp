@@ -761,7 +761,7 @@ static void e_th_ball_end(e_th_ball_class* i_this) {
     i_this->mCcSph.SetR(45.0f);
 
     if (i_this->mDemoMode == 0 && fopAcM_searchPlayerDistance(i_this) < 130.0f) {
-        dComIfGp_setDoStatusForce(0x35, 0);
+        dComIfGp_setDoStatusForce(BUTTON_STATUS_TAKE, 0);
         if (mDoCPd_c::getTrigA(PAD_1)) {
             i_this->mDemoMode = 1;
         }

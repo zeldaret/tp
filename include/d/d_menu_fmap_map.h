@@ -9,30 +9,64 @@
 #include "d/d_map_path.h"
 #include "d/d_map_path_fmap.h"
 
+// real name unknown
+struct dMfm_prm_res_colors_s {
+    /* 0x00 */ GXColor field_0x00;
+    /* 0x04 */ GXColor field_0x04;
+    /* 0x08 */ GXColor field_0x08;
+    /* 0x0C */ GXColor field_0x0c;
+    /* 0x10 */ GXColor field_0x10[8];
+    /* 0x30 */ GXColor field_0x30[8];
+    /* 0x50 */ GXColor field_0x50[8];
+    /* 0x70 */ GXColor field_0x70[8];
+    /* 0x90 */ s16 field_0x90;
+    /* 0x92 */ s16 field_0x92;
+    /* 0x94 */ u8 field_0x94;
+    /* 0x95 */ u8 field_0x95;
+};
+
 struct dMfm_prm_res_s {
     /* 0x000 */ dMpath_RGB5A3_palDt_s palette_data[27];
-    /* 0x0D8 */ GXColor field_0xd8;
-    /* 0x0DC */ GXColor field_0xdc;
-    /* 0x0E0 */ GXColor field_0xe0;
-    /* 0x0E4 */ GXColor field_0xe4;
-    /* 0x0E8 */ GXColor field_0xe8[8];
-    /* 0x108 */ GXColor field_0x108[8];
-    /* 0x128 */ GXColor field_0x128[8];
-    /* 0x148 */ GXColor field_0x148[8];
-    /* 0x168 */ s16 field_0x168;
-    /* 0x16A */ s16 field_0x16a;
-    /* 0x16C */ u8 field_0x16c;
-    /* 0x16D */ u8 field_0x16d;
+    /* 0x0D8 */ dMfm_prm_res_colors_s colors;
 };
 
 struct dMfm_HIO_prm_res_src_s {
-    /* 0x0 */ u8 mFlashDuration;
+#if DEBUG
+    /* 0x00 */ u8 field_0x00_dbg[0x2 - 0x0];
+    /* 0x02 */ s16 field_0x02_dbg;
+    /* 0x04 */ u8 field_0x04_dbg;
+    /* 0x05 */ u8 field_0x05_dbg;
+    /* 0x06 */ u8 field_0x06_dbg;
+    /* 0x07 */ u8 field_0x07_dbg;
+    /* 0x08 */ u8 field_0x08_dbg;
+    /* 0x09 */ u8 field_0x09_dbg;
+    /* 0x0A */ u8 field_0x0a_dbg;
+    /* 0x0B */ u8 field_0x0b_dbg;
+#endif
+    /* 0x00 */ u8 mFlashDuration;
 
     static const dMfm_HIO_prm_res_src_s m_other;
 };
 
 struct dMfm_HIO_prm_res_dst_s {
-    static const void* m_res;
+#if DEBUG
+    /* 0x00 */ u8 field_0x00_dbg;
+    /* 0x00 */ u8 field_0x01_dbg;
+    /* 0x02 */ s16 field_0x02_dbg;
+    /* 0x04 */ u8 field_0x04_dbg;
+    /* 0x05 */ u8 field_0x05_dbg;
+    /* 0x06 */ u8 field_0x06_dbg;
+    /* 0x07 */ u8 field_0x07_dbg;
+    /* 0x08 */ u8 field_0x08_dbg;
+    /* 0x09 */ u8 field_0x09_dbg;
+    /* 0x0A */ u8 field_0x0a_dbg;
+    /* 0x0B */ u8 field_0x0b_dbg;
+#endif
+    /* 0x00 */ u8 mFlashDuration;
+    /* 0x01 */ u8 field_0x01;
+
+    static dMfm_prm_res_s* m_res;
+    static dMfm_HIO_prm_res_dst_s m_other;
 };
 
 class renderingFmap_c : public dRenderingFDAmap_c {
@@ -127,41 +161,6 @@ public:
     /* 0xBB */ bool mDrawEnable;
 };
 
-class dMfm_HIO_list_c : public dMpath_HIO_n::hioList_c {
-public:
-    virtual void copySrcToHio();
-    virtual void copyHioToDst();
-    virtual void copyBufToHio(const char*);
-};
-
-class dMfm_HIO_c : public dMpath_HIO_file_base_c {
-public:
-    dMfm_HIO_c();
-    virtual ~dMfm_HIO_c() { mMySelfPointer = NULL; }
-    virtual void listenPropertyEvent(const JORPropertyEvent*);
-    virtual void genMessage(JORMContext*);
-    virtual u32 addString(char* param_1, u32 param_2, u32 param_3) { return field_0xc.addString(param_1, param_2, param_3); }
-    virtual u32 addData(char* param_1, u32 param_2, u32 param_3) {
-        UNUSED(param_2);
-        UNUSED(param_3);
-        memcpy(param_1, dMfm_HIO_prm_res_dst_s::m_res, 366);
-        return 366;
-    }
-    virtual void copyReadBufToData(const char* param_1, s32 param_2) {
-        UNUSED(param_2);
-        field_0xc.copyBufToHio(param_1);
-    }
-    virtual u32 addStringBinary(char* param_1, u32 param_2, u32 param_3) { return field_0xc.addStringBinary(param_1, param_2, param_3); }
-
-    /* 0x04 */ u8 field_0x4[0x8 - 0x4];
-    /* 0x08 */ dMenu_FmapMap_c* field_0x8;
-    /* 0x0C */ dMfm_HIO_list_c field_0xc;
-    /* 0x18 */ u8 field_0x18;
-
-    static dMfm_HIO_c* mMySelfPointer;
-    static dMpath_HIO_n::list_s l_list;
-};
-
 class dMenu_FmapMap_c : public renderingFmap_c {
 public:
     void setFmapPaletteColor(palette_e, GXColor const&);
@@ -182,10 +181,6 @@ public:
     const GXColor* getColor(int);
     void setTexture(u16, u16, u16, u16);
     void setRendering(dMenu_Fmap_world_data_c*, int, f32, f32, f32, f32);
-
-    f32 getRateWithFrameCount(int param_0) {
-        return (f32)(g_Counter.mCounter0 % param_0) / (f32)param_0;
-    }
 
     bool isDrawEnable() {
         // probably a fakematch
@@ -231,5 +226,61 @@ public:
     static dMenu_FmapMap_c* mMySelfPointer;
 };
 
+class dMfm_HIO_list_c : public dMpath_HIO_n::hioList_c {
+public:
+    virtual void copySrcToHio();
+    virtual void copyHioToDst();
+    virtual void copyBufToHio(const char*);
+};
+
+// real name unknown
+struct dMfm_HIO_data_s {
+    /* 0x000 */ GXColor palette[27];
+    /* 0x06C */ dMfm_prm_res_colors_s colors;
+    /* 0x102 */ dMfm_HIO_prm_res_dst_s field_0x102;
+};
+
+class dMfm_HIO_c : public dMpath_HIO_file_base_c {
+public:
+    struct list_s {
+        u8 field_0x00;
+        const char* field_0x04;
+        const char* field_0x08;
+        void* field_0x0c;
+        f32 field_0x10;
+        f32 field_0x14;
+        f32 field_0x18;
+    };
+
+    dMfm_HIO_c();
+    virtual ~dMfm_HIO_c() { mMySelfPointer = NULL; }
+    virtual void listenPropertyEvent(const JORPropertyEvent*);
+    virtual void genMessage(JORMContext*);
+    virtual u32 addString(char* param_1, u32 param_2, u32 param_3) { return field_0xc.addString(param_1, param_2, param_3); }
+    virtual u32 addData(char* param_1, u32 param_2, u32 param_3) {
+        UNUSED(param_2);
+        UNUSED(param_3);
+        memcpy(param_1, dMfm_HIO_prm_res_dst_s::m_res, 366);
+        return 366;
+    }
+    virtual void copyReadBufToData(const char* param_1, s32 param_2) {
+        UNUSED(param_2);
+        field_0xc.copyBufToHio(param_1);
+    }
+    virtual u32 addStringBinary(char* param_1, u32 param_2, u32 param_3) { return field_0xc.addStringBinary(param_1, param_2, param_3); }
+
+    /* 0x04 */ u8 field_0x4[0x8 - 0x4];
+    /* 0x08 */ dMenu_FmapMap_c* field_0x8;
+    /* 0x0C */ dMfm_HIO_list_c field_0xc;
+    /* 0x18 */ u8 field_0x18;
+
+    static dMfm_HIO_c* mMySelfPointer;
+    static const dMpath_HIO_n::list_s l_list;
+#if DEBUG
+    static dMfm_prm_res_s* m_res_src_p;
+    static const dMfm_HIO_c::list_s l_listData[101];
+    static dMfm_HIO_data_s m_prm_hio;
+#endif
+};
 
 #endif /* D_MENU_D_MENU_FMAP_MAP_H */

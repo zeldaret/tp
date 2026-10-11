@@ -1689,7 +1689,7 @@ void daB_MGN_c::executeThrown() {
     case 3:
         mSound.startCreatureVoiceLevel(Z2SE_EN_MGN_V_MIDNA_CATCHED, -1);
 
-        dComIfGp_set3DStatusForce(0x13, 5, 0);
+        dComIfGp_set3DStatusForce(BUTTON_STATUS_THROW, 5, 0);
 
         cLib_chasePos(&current.pos, target, 100.0f);
         shape_angle.y = fopAcM_searchPlayerAngleY(this);

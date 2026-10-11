@@ -1537,7 +1537,7 @@ static BOOL b_gnd_g_attack(b_gnd_class* i_this) {
         i_this->field_0x2698 = 2;
 
         if (player->checkMasterSwordEquip() && i_this->mPlayerDistXZ < 600.0f) {
-            dComIfGp_setDoStatusForce(107, 0);
+            dComIfGp_setDoStatusForce(BUTTON_STATUS_CHANCE, 0);
             i_this->field_0x2740 = 1;
         }
 
@@ -1581,7 +1581,7 @@ static BOOL b_gnd_g_attack(b_gnd_class* i_this) {
         }
 
         if (anm_frame < 28 && player->checkMasterSwordEquip()) {
-            dComIfGp_setDoStatusForce(107, 0);
+            dComIfGp_setDoStatusForce(BUTTON_STATUS_CHANCE, 0);
             i_this->field_0x2740 = 1;
             if (cc_pl_cut_bit_get() == 0x100 && player->speed.y < 0.0f) {
                 i_this->mActionMode = ACTION_TUBA;
@@ -3286,7 +3286,7 @@ static void demo_camera(b_gnd_class* i_this) {
             dComIfGp_getVibration().StartQuake(VIBMODE_Q_POWER2, 1, cXyz(0.0f, 1.0f, 0.0f));
         }
 
-        dComIfGp_setDoStatusForce(100, 4);
+        dComIfGp_setDoStatusForce(BUTTON_STATUS_BLANK, 4);
         cMtx_YrotS(*calc_mtx, player->shape_angle.y);
         sp114.x = 0.0f;
         sp114.y = 0.0f;

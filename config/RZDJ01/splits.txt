@@ -1134,59 +1134,62 @@ d/d_meter_button.cpp:
 d/d_meter_haihai.cpp:
 	.text       start:0x801F2074 end:0x801F3540
 	.data       start:0x803FFA18 end:0x803FFAF8
-	.sdata      start:0x8051D270 end:0x8051D280
+	.sdata      start:0x8051D270 end:0x8051D278
 	.sdata2     start:0x805224F0 end:0x80522550
 
 d/d_meter_hakusha.cpp:
 	.text       start:0x801F3540 end:0x801F44C0
 	.data       start:0x803FFAF8 end:0x803FFBF8
-	.sdata      start:0x8051D280 end:0x8051D290
+	.sdata      start:0x8051D278 end:0x8051D288
 	.sdata2     start:0x80522550 end:0x80522570
 
 d/d_meter_map.cpp:
 	.text       start:0x801F44C0 end:0x801F5A04
 	.data       start:0x803FFBF8 end:0x803FFC80
-	.sdata      start:0x8051D290 end:0x8051D29C
+	.sdata      start:0x8051D288 end:0x8051D298
 	.sdata2     start:0x80522570 end:0x80522598
 
 d/d_meter_string.cpp:
 	.text       start:0x801F5A04 end:0x801F66BC
 	.data       start:0x803FFC80 end:0x803FFCC0
-	.sdata      start:0x8051D29C end:0x8051D2B4
+	.sdata      start:0x8051D298 end:0x8051D2A8
 	.sdata2     start:0x80522598 end:0x805225D0
 
 d/d_meter2_draw.cpp:
 	.text       start:0x801F66BC end:0x80205BE8
 	.rodata     start:0x803D6510 end:0x803D6CC8
-	.data       start:0x803FFCC0 end:0x8040039C
-	.sdata      start:0x8051D2B4 end:0x8051D2D0
-	.sbss       start:0x8051EC08 end:0x8051EC38
+	.data       start:0x803FFCC0 end:0x80400390
+	.sdata      start:0x8051D2A8 end:0x8051D2C0
+	.sbss       start:0x8051EC08 end:0x8051EC18
 	.sdata2     start:0x805225D0 end:0x805226F8
 
 d/d_meter2_info.cpp:
 	.text       start:0x80205BE8 end:0x8020B510
 	.ctors      start:0x803BA7C4 end:0x803BA7C8
-	.data       start:0x8040039C end:0x80400830
+	.data       start:0x80400390 end:0x80400830
 	.bss        start:0x804A2010 end:0x804A2808
-	.sdata      start:0x8051D2D0 end:0x8051D2FC
+	.sdata      start:0x8051D2C0 end:0x8051D2E0
+	.sbss       start:0x8051EC18 end:0x8051EC30
 	.sdata2     start:0x805226F8 end:0x80522738
 
 d/d_meter2.cpp:
 	.text       start:0x8020B510 end:0x80213CB4
 	.data       start:0x80400830 end:0x80400898
+	.sdata      start:0x8051D2E0 end:0x8051D2F8
 	.sdata2     start:0x80522738 end:0x805227A8
 
 d/d_msg_out_font.cpp:
 	.text       start:0x80213CB4 end:0x8021668C
 	.data       start:0x80400898 end:0x80400EB8
-	.sdata      start:0x8051D2FC end:0x8051D334
+	.sdata      start:0x8051D2F8 end:0x8051D310
 	.sdata2     start:0x805227A8 end:0x805227F0
 
 d/d_msg_class.cpp:
 	.text       start:0x8021668C end:0x80220BA0
 	.rodata     start:0x803D6CC8 end:0x803D6D10
 	.data       start:0x80400EB8 end:0x80401E38
-	.sdata      start:0x8051D334 end:0x8051D3B4
+	.sdata      start:0x8051D310 end:0x8051D3B0
+	.sbss       start:0x8051EC30 end:0x8051EC38
 	.sdata2     start:0x805227F0 end:0x80522830
 
 d/d_msg_object.cpp:
@@ -1194,7 +1197,7 @@ d/d_msg_object.cpp:
 	.ctors      start:0x803BA7C8 end:0x803BA7CC
 	.data       start:0x80401E38 end:0x80401FAC
 	.bss        start:0x804A2808 end:0x804A2C40
-	.sdata      start:0x8051D3B4 end:0x8051D3E0
+	.sdata      start:0x8051D3B0 end:0x8051D3C8
 	.sbss       start:0x8051EC38 end:0x8051EC40
 	.sdata2     start:0x80522830 end:0x805228D0
 
@@ -1203,7 +1206,7 @@ d/d_msg_unit.cpp:
 	.ctors      start:0x803BA7CC end:0x803BA7D0
 	.data       start:0x80401FAC end:0x80401FC8
 	.bss        start:0x804A2C40 end:0x804A2C50
-	.sdata      start:0x8051D3E0 end:0x8051D3EC
+	.sdata      start:0x8051D3C8 end:0x8051D3E8
 	.sbss       start:0x8051EC40 end:0x8051EC48
 	.sdata2     start:0x805228D0 end:0x805228E8
 
@@ -1211,7 +1214,7 @@ d/d_msg_scrn_3select.cpp:
 	.text       start:0x80226B08 end:0x80229B14
 	.rodata     start:0x803D6D10 end:0x803D6E48
 	.data       start:0x80401FC8 end:0x80402110
-	.sdata      start:0x8051D3EC end:0x8051D3F8
+	.sdata      start:0x8051D3E8 end:0x8051D3F8
 	.sbss       start:0x8051EC48 end:0x8051EC58
 	.sdata2     start:0x805228E8 end:0x80522928
 

@@ -329,7 +329,7 @@ public:
     /* 0x4CC */ u8 field_0x4cc;
     /* 0x4CD */ u8 field_0x4cd;
     /* 0x4CE */ u8 field_0x4ce;
-    /* 0x4CF */ u8 mAutoMessageFlag;
+    /* 0x4CF */ bool mAutoMessageFlag;
     /* 0x4D0 */ bool mPaymentFlag;
     /* 0x4D1 */ u8 field_0x4d1;
     /* 0x4D2 */ bool mKillMessageFlag;

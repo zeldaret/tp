@@ -88,8 +88,8 @@ J2DTextBox::J2DTextBox(J2DPane* p_pane, JSURandomInputStream* p_stream, u32 para
 
     p_stream->skip(info.field_0x1e);
     p_stream->seek(startPos + header.mSize, JSUStreamSeekFrom_SET);
-    mBlackColor = JUtility::TColor(0);
-    mWhiteColor = JUtility::TColor(0xFFFFFFFF);
+    mBlackColor = JUtility::TColor((u32)0x00000000);
+    mWhiteColor = JUtility::TColor((u32)0xFFFFFFFF);
 
     if (mat != NULL && mat->getTevBlock() != NULL) {
         u8 tevStageNum = u32(mat->getTevBlock()->getTevStageNum());
@@ -124,10 +124,10 @@ void J2DTextBox::initiate(ResFONT const* p_font, char const* string, s16 length,
         mFont = new JUTResFont(p_font, NULL);
     }
 
-    mCharColor.set(0xFFFFFFFF);
-    mGradientColor.set(0xFFFFFFFF);
-    mBlackColor = JUtility::TColor(0);
-    mWhiteColor = JUtility::TColor(0xFFFFFFFF);
+    mCharColor.set((u32)0xFFFFFFFF);
+    mGradientColor.set((u32)0xFFFFFFFF);
+    mBlackColor = JUtility::TColor((u32)0x00000000);
+    mWhiteColor = JUtility::TColor((u32)0xFFFFFFFF);
 
     mFlags = (hBind << 2) | vBind;
     mStringLength = 0;
@@ -219,8 +219,8 @@ void J2DTextBox::private_readStream(J2DPane* p_pane, JSURandomInputStream* p_str
         spA--;
     }
 
-    mBlackColor = JUtility::TColor(0);
-    mWhiteColor = JUtility::TColor(0xFFFFFFFF);
+    mBlackColor = JUtility::TColor((u32)0x00000000);
+    mWhiteColor = JUtility::TColor((u32)0xFFFFFFFF);
 
     if (spA != 0) {
         mBlackColor.set(p_stream->read32b());

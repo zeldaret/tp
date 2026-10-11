@@ -12,12 +12,15 @@ class JKRHeap;
 
 class dKantera_icon_c;
 
-class dMeter2Draw_c : public dDlst_base_c {
+class dMeter2Draw_c : dDlst_base_c {
 public:
     enum {
         SELECT_X_e,
         SELECT_Y_e,
         SELECT_Z_e,
+#if PLATFORM_WII
+        SELECT_C_e,
+#endif
         SELECT_MAX_e = 2,
     };
 
@@ -41,6 +44,9 @@ public:
     void initRupeeKey();
     void initButton();
     void initButtonCross();
+#if PLATFORM_WII
+    void initTouchSubMenu();
+#endif
     void playPikariBckAnimation(f32);
     void setPikariBpkAnimation(J2DAnmColor*);
     void playPikariBpkAnimation(f32);
@@ -82,11 +88,20 @@ public:
     void setAlphaKeyAnimeMax();
     void drawButtonA(u8, f32, f32, f32, f32, f32, bool, bool);
     void drawButtonB(u8, bool, f32, f32, f32, f32, f32, bool);
+#if PLATFORM_WII
+    void drawTouchText(u8, f32, f32, f32, bool);
+#endif
     void drawButtonR(u8, u8, bool, bool);
     void drawButtonZ(u8);
     void drawButton3D(u8);
     void drawButtonC(u8, bool);
     void drawButtonS(u8);
+#if PLATFORM_WII
+    void drawButtonNun(u8);
+    void drawButtonRemo(u8);
+    void drawButtonNunZ(u8);
+    void drawButtonNunC(u8);
+#endif
     void drawButtonBin(u8);
     void drawButtonXY(int, u8, u8, bool, bool);
     f32 getButtonCrossParentInitTransY();
@@ -97,6 +112,12 @@ public:
     void setAlphaButtonCrossItemAnimeMax();
     void setAlphaButtonCrossMapAnimeMin();
     void setAlphaButtonCrossMapAnimeMax();
+#if PLATFORM_WII
+    void drawTouchSubMenu(int, f32, f32, u16);
+    void scaleTouchSubMenu(int, f32);
+    void setAlphaTouchSubMenuAnimeMin(int);
+    void setAlphaTouchSubMenuAnimeMax(int);
+#endif
     void setAlphaButtonChange(bool);
     void setAlphaButtonAnimeMin();
     void setAlphaButtonAnimeMax();
@@ -104,6 +125,9 @@ public:
     void setAlphaButtonAAnimeMax();
     void setAlphaButtonBAnimeMin();
     void setAlphaButtonBAnimeMax();
+#if PLATFORM_WII
+    void setAlphaTriangle(u32, u32);
+#endif
     void setButtonIconAAlpha(u8, u32, bool);
     void setButtonIconBAlpha(u8, u32, bool);
     void setButtonIconMidonaAlpha(u32);
@@ -111,24 +135,33 @@ public:
     ResTIMG* getNumberTexture(int);
     char* getActionString(u8, u8, u8*);
     void changeTextureItemB(u8);
+    void changeTextureItemB2(u8);
     void changeTextureItemXY(int, u8);
     void setAlphaAnimeMin(CPaneMgrAlpha*, s16);
     void setAlphaAnimeMax(CPaneMgrAlpha*, s16);
     void setItemNum(u8, u8, u8);
     void drawItemNum(u8, f32);
     void drawKanteraMeter(u8, f32);
-    u8 isButtonVisible();
+    bool isButtonVisible();
+#if PLATFORM_WII
+    void setTouchAreaAnime(bool);
+#endif
     void setItemParamX(u8);
     void setItemParamY(u8);
     void setItemParamZ(u8);
     void setItemParamB(u8);
-    bool getFishingType();
+    u8 getFishingType();
     u8 getCanoeFishing();
     bool getCameraSubject();
     bool getItemSubject();
     bool getPlayerSubject();
     bool isBButtonShow(bool);
     s16 getButtonTimer();
+#if PLATFORM_WII
+    void moveItemInit();
+    void moveItemMove();
+    void moveItemDraw();
+#endif
 
     virtual ~dMeter2Draw_c();
 
@@ -146,22 +179,39 @@ public:
     bool isEmphasisR() { return field_0x768[2] == 7 ? true : false; }
     void setEmphasisA(u8 param_0) { field_0x761 = param_0; }
     void setEmphasisB(u8 param_0) { field_0x762 = param_0; }
+#if PLATFORM_WII
     u8 getInsideObjCheck() { return field_0x772; }
+#else
+    u8 getInsideObjCheck() { return field_0x772; }
+#endif
 
 private:
     /* 0x004 */ item_params mItemParams[4];
     /* 0x074 */ JKRExpHeap* heap;
     /* 0x078 */ J2DScreen* mpScreen;
+#if PLATFORM_WII
+    /* WII 0x07C */ J2DScreen* mpWiiScreen;
+#endif
     /* 0x07C */ J2DScreen* mpKanteraScreen;
     /* 0x080 */ J2DScreen* mpPikariScreen;
+#if PLATFORM_WII
+    /* WII 0x088 */ J2DPicture* mpItemNumTex[4][3];
+#else
     /* 0x084 */ J2DPicture* mpItemNumTex[2][3];
-    /* 0x09C */ CPaneMgr* field_0x9c[3];
-    /* 0x0A8 */ int field_0xa8;
-    /* 0x0AC */ dKantera_icon_c* mpKanteraMeter[2];
-    /* 0x0B4 */ u8 field_0xb4[8];
+#endif
+    /* 0x09C */ J2DPicture* field_0x9c[3];
+    /* 0x0A8 */ J2DPicture* field_0xa8;
+    /* 0x0AC */ dKantera_icon_c* mpKanteraMeter[4];
     /* 0x0BC */ CPaneMgr* mpParent;
     /* 0x0C0 */ CPaneMgr* mpAText[5];
     /* 0x0D4 */ CPaneMgr* mpBText[5];
+#if PLATFORM_WII
+    /* WII 0x104 */ J2DScreen* field_0x104_wii;
+    /* WII 0x108 */ CPaneMgr* field_0x108_wii;
+    /* WII 0x10C */ CPaneMgr* field_0x10c_wii[5];
+    /* WII 0x120 */ CPaneMgr* field_0x120_wii[5];
+    /* WII 0x134 */ CPaneMgr* field_0x134_wii[4];
+#endif
     /* 0x0E8 */ CPaneMgr* mpXYText[5][3];
     /* 0x124 */ CPaneMgr* mpLifeParent;
     /* 0x128 */ CPaneMgr* mpLifeParts[20];
@@ -185,36 +235,83 @@ private:
     /* 0x2FC */ int field_0x2fc;
     /* 0x300 */ CPaneMgr* mpButtonA;
     /* 0x304 */ CPaneMgr* mpButtonB;
+#if PLATFORM_WII
+    /* WII 0x364 */ CPaneMgr* field_0x364_wii;
+#endif
     /* 0x308 */ CPaneMgr* mpButtonMidona;
     /* 0x30C */ CPaneMgr* mpButtonXY[3];
     /* 0x318 */ CPaneMgr* mpLightB;
+#if PLATFORM_WII
+    /* WII 0x37C */ CPaneMgr* mpLightXY[4];
+#else
     /* 0x31C */ CPaneMgr* mpLightXY[3];
+#endif
     /* 0x328 */ CPaneMgr* mpItemB;
+#if PLATFORM_WII
+    /* WII 0x390 */ CPaneMgr* mpItemXY[4];
+#else
     /* 0x32C */ CPaneMgr* mpItemXY[2];
+#endif
     /* 0x334 */ CPaneMgr* mpItemR;
     /* 0x338 */ CPaneMgr* mpBTextA;
     /* 0x33C */ CPaneMgr* mpBTextB;
+#if PLATFORM_WII
+    /* WII 0x3AC */ CPaneMgr* mpXYTextN[2];
+    /* WII 0x3B4 */ CPaneMgr* mpJTextN;
+    /* WII 0x3B8 */ CPaneMgr* mpFATextN;
+    /* WII 0x3BC */ CPaneMgr* mpFBTextN;
+    /* WII 0x3C0 */ CPaneMgr* mpFA2TextN;
+    /* WII 0x3C4 */ CPaneMgr* mpItemT1N;
+    /* WII 0x3C8 */ CPaneMgr* mpFJTextN;
+#else
     /* 0x340 */ CPaneMgr* mpBTextXY[3];
     /* 0x34C */ CPaneMgr* mpTextA;
     /* 0x350 */ CPaneMgr* mpTextB;
+#endif
     /* 0x354 */ CPaneMgr* mpTextXY[3];
     /* 0x360 */ CPaneMgr* mpTextI;
     /* 0x364 */ CPaneMgr* mpTextM;
     /* 0x368 */ CPaneMgr* mpButtonCrossParent;
-    /* 0x36C */ int field_0x36c;
-    /* 0x370 */ u8 field_0x370[0x2C];
+#if PLATFORM_WII
+    /* WII 0x3E4 */ CPaneMgr* field_0x3e4_wii;
+    /* WII 0x3E8 */ CPaneMgr* field_0x3e8_wii[2];
+    /* WII 0x3F0 */ CPaneMgr* mpITextN;
+    /* 0x34C */ CPaneMgr* mpTextA;
+    /* 0x350 */ CPaneMgr* mpTextB;
+#endif
+    /* 0x36C */ CPaneMgr* field_0x36c;
+#if PLATFORM_WII
+    /* 0x370 */ CPaneMgr* field_0x370[5];
+#else
+    /* 0x370 */ u8 field_0x370[0x39c - 0x370];
+#endif
     /* 0x39C */ CPaneMgr* mpPikariParent;
+#if PLATFORM_WII
+    /* WII 0x418 */ CPaneMgr* field_0x418_wii;
+    /* WII 0x41C */ CPaneMgr* field_0x41c_wii;
+    /* WII 0x420 */ CPaneMgr* field_0x420_wii;
+#endif
     /* 0x3A0 */ CPaneMgrAlpha* mpLifeTexture[20][2];
     /* 0x440 */ CPaneMgrAlpha* mpHeartBase[20];
+#if PLATFORM_GCN
     /* 0x490 */ CPaneMgr* mpJujiI[5];
     /* 0x4A4 */ CPaneMgr* mpJujiM[5];
-    /* 0x4B8 */ CPaneMgrAlpha* mpUzu;
-    /* 0x4BC */ u8 field_0x4bc[0x28];
+#else
+    /* 0x490 */ CPaneMgr* mpJujiI[3];
+    /* 0x4A4 */ CPaneMgr* mpJujiM[3];
+#endif
+    /* 0x52C */ CPaneMgrAlpha* mpUzu;
+    /* 0x530 */ CPaneMgrAlpha* field_0x530_wii[5];
+    /* 0x4C8 */ CPaneMgrAlpha* field_0x544_wii[5];
     /* 0x4E4 */ ResTIMG* mpItemBTex[2][2];
+#if PLATFORM_WII
+    /* 0x4F4 */ ResTIMG* mpItemXYTex[4][2][2];
+#else
     /* 0x4F4 */ ResTIMG* mpItemXYTex[2][2][2];
+#endif
     /* 0x514 */ J2DPicture* mpItemBPane;
     /* 0x518 */ J2DPicture* mpItemXYPane[3];
-    /* 0x524 */ int field_0x524[2][2];
+    /* 0x524 */ J2DPicture* field_0x524[2][2];
     /* 0x534 */ J2DAnmTransformKey* mPikariBck;
     /* 0x538 */ J2DAnmColor* mPikariBpk;
     /* 0x53C */ J2DAnmColor* mpOxygenBpk[3];
@@ -246,7 +343,16 @@ private:
     /* 0x5FC */ f32 mMeterAlphaRate[3];
     /* 0x608 */ f32 field_0x608;
     /* 0x60C */ f32 field_0x60c;
-    /* 0x610 */ f32 field_0x610[3];
+#if PLATFORM_WII
+    /* WII 0x6A4 */ f32 field_0x6a4_wii;
+    /* WII 0x6A8 */ f32 field_0x6a8_wii;
+#endif
+#if PLATFORM_WII
+    /* WII 0x6AC */ f32 field_0x610[3];
+#else
+    /* 0x610 */ f32 field_0x610[2];
+    /* 0x618 */ u8 field_0x618[0x61c - 0x618];
+#endif
     /* 0x61C */ f32 field_0x61c;
     /* 0x620 */ f32 field_0x620[3];
     /* 0x62C */ f32 field_0x62c[16];
@@ -261,12 +367,18 @@ private:
     /* 0x6E8 */ f32 field_0x6e8;
     /* 0x6EC */ f32 field_0x6ec;
     /* 0x6F0 */ f32 field_0x6f0;
+#if PLATFORM_WII
+    /* WII 0x790 */ f32 field_0x790_wii;
+    /* WII 0x794 */ f32 field_0x794_wii;
+    /* WII 0x798 */ f32 field_0x798_wii[4];
+#endif
     /* 0x6F4 */ f32 mLightDropVesselScale;
     /* 0x6F8 */ f32 field_0x6f8;
     /* 0x6FC */ f32 field_0x6fc;
-    /* 0x700 */ u8 field_0x700[0x18];
+    /* 0x700 */ f32 field_0x700;
+    /* 0x704 */ f32 field_0x704[5];
     /* 0x718 */ f32 field_0x718;
-    /* 0x71C */ u8 field_0x71c[4];
+    /* 0x71C */ f32 field_0x71c;
     /* 0x720 */ f32 mButtonZAlpha;
     /* 0x724 */ f32 field_0x724;
     /* 0x728 */ f32 field_0x728;
@@ -277,8 +389,14 @@ private:
     /* 0x73C */ f32 field_0x73c;
     /* 0x740 */ u16 field_0x740;
     /* 0x742 */ s16 field_0x742[3];
-    /* 0x748 */ u8 field_0x748[0xC];
-    /* 0x756 */ u16 field_0x754;
+#if PLATFORM_WII
+    /* WII 0x7FC */ u8 field_0x7fc_wii[0x7FE - 0x7FC];
+    /* WII 0x7FE */ s16 field_0x7fe_wii[5];
+    /* 0x808 */ s16 field_0x808_wii;
+#else
+    /* 0x748 */ u8 field_0x748[0x754 - 0x748];
+#endif
+    /* 0x754 */ s16 field_0x754;
     /* 0x756 */ s16 field_0x756;
     /* 0x758 */ u8 field_0x758;
     /* 0x759 */ u8 field_0x759;
@@ -289,6 +407,12 @@ private:
     /* 0x760 */ u8 field_0x760;
     /* 0x761 */ u8 field_0x761;
     /* 0x762 */ u8 field_0x762;
+#if PLATFORM_WII
+    /* WII 0x819 */ u8 field_0x819_wii;
+    /* WII 0x81A */ u8 field_0x81a_wii;
+    /* WII 0x81B */ u8 field_0x81b_wii;
+    /* WII 0x81C */ u8 field_0x81c_wii;
+#endif
     /* 0x763 */ u8 field_0x763;
     /* 0x764 */ u8 field_0x764;
     /* 0x765 */ u8 field_0x765;
@@ -302,7 +426,8 @@ private:
     /* 0x770 */ u8 field_0x770;
     /* 0x771 */ u8 field_0x771;
     /* 0x772 */ u8 field_0x772;
-    /* 0x773 */ u8 field_0x773[2];
+    /* 0x773 */ u8 field_0x773[4];
+    /* 0x777 */ u8 field_0x777;
     /* 0x778 */ f32 mParentScale;
     /* 0x77C */ f32 mParentAlpha;
     /* 0x780 */ f32 mButtonsPosX;
@@ -345,8 +470,8 @@ private:
     /* 0x814 */ f32 mItemBBaseAlpha[2];
     /* 0x81C */ f32 mButtonXItemBaseAlpha[2];
     /* 0x824 */ f32 mButtonYItemBaseAlpha[2];
-    /* 0x82C */ f32 field_0x82c[2];
-    /* 0x834 */ f32 mButtonZItemBaseAlpha;
+    /* 0x82C */ f32 mButtonZWiiItemBaseAlpha[2];
+    /* 0x834 */ f32 mButtonZGCNItemBaseAlpha;
     /* 0x838 */ f32 mButtonBaseAlpha;
     /* 0x83C */ f32 mButtonATextSpacing;
     /* 0x840 */ f32 mButtonCrossAlpha;

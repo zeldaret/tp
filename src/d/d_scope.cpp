@@ -118,10 +118,10 @@ int dScope_c::_execute(u32) {
     }
 
     if (mProcess != PROC_CLOSE) {
-        dComIfGp_setCStickStatusForce(61, 10, 3);
+        dComIfGp_setCStickStatusForce(BUTTON_STATUS_UNK_61, 10, 3);
 
         if (dComIfGp_checkPlayerStatus0(0, 0x1000)) {
-            dComIfGp_setRStatusForce(0x11, 3);
+            dComIfGp_setRStatusForce(BUTTON_STATUS_SWITCH, 3);
         }
     }
 

@@ -5264,7 +5264,7 @@ dMeter_fmapHIO_c::dMeter_fmapHIO_c() {
         mRegionImagePosX[i] = 0.0f;
         mRegionImagePosZ[i] = 0.0f;
         mRegionImageScale[i] = 0.0f;
-        
+
         mRegionScrollRangeMinX[i] = -300000.0f;
         mRegionScrollRangeMinZ[i] = -300000.0f;
 

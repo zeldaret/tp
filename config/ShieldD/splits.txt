@@ -1363,7 +1363,7 @@ d/d_meter_map.cpp:
 	.ctors      start:0x8062F8A0 end:0x8062F8A4
 	.data       start:0x806DE670 end:0x806DEAD8
 	.sdata      start:0x80746630 end:0x807466A0
-	.sbss       start:0x8074CA00 end:0x8074CA18
+	.sbss       start:0x8074CA00 end:0x8074CA08
 	.sdata2     start:0x80750CB8 end:0x80750CE0
 	.bss        start:0x807C2FC0 end:0x807C3008
 
@@ -1386,6 +1386,7 @@ d/d_meter2_info.cpp:
 	.ctors      start:0x8062F8A4 end:0x8062F8A8
 	.data       start:0x806DF978 end:0x806E0010
 	.sdata      start:0x807466D8 end:0x80746708
+	.sbss       start:0x8074CA08 end:0x8074CA18
 	.sdata2     start:0x80750E30 end:0x80750E70
 	.bss        start:0x807C3028 end:0x807C3820
 

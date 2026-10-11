@@ -2038,7 +2038,7 @@ static void demo_camera_shop(npc_henna_class* i_this) {
             mDoGph_gInf_c::fadeIn(0.1f, g_blackColor);
         }
 
-        dComIfGp_setDoStatusForce(0x22, 0);
+        dComIfGp_setDoStatusForce(BUTTON_STATUS_CONFIRM, 0);
 
 #if VERSION != VERSION_SHIELD_DEBUG
         if (unk_bss_5136 == 0) {

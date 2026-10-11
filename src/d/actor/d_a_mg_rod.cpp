@@ -1064,7 +1064,7 @@ static void lure_onboat(dmg_rod_class* i_this) {
     }
 
     if (i_this->input_cooldown == 0 && !dComIfGp_checkPlayerStatus0(0, 0x2000)) {
-        dComIfGp_setAStatusForce(79, 2);
+        dComIfGp_setAStatusForce(BUTTON_STATUS_UNK_79, 2);
     }
 
     i_this->field_0xf64 = -30.0f + KREG_F(8);
@@ -1130,9 +1130,9 @@ static int lure_standby(dmg_rod_class* i_this) {
     }
 
     if (data_804BBBD4 != 0) {
-        dComIfGp_setDoStatusForce(4, 0);
+        dComIfGp_setDoStatusForce(BUTTON_STATUS_PUT_AWAY, 0);
     } else {
-        dComIfGp_setDoStatusForce(42, 0);
+        dComIfGp_setDoStatusForce(BUTTON_STATUS_QUIT, 0);
     }
 
     i_this->rod_stick_x = mDoCPd_c::getStickX3D(PAD_1) * mDoCPd_c::getStickX3D(PAD_1);
@@ -1257,7 +1257,7 @@ static int lure_standby(dmg_rod_class* i_this) {
     }
     #if VERSION != VERSION_SHIELD_DEBUG
     else if (i_this->field_0x14f8 < 5000) {
-        dComIfGp_setCStickStatusForce(80, 2, 0);
+        dComIfGp_setCStickStatusForce(BUTTON_STATUS_UNK_80, 2, 0);
     }
     #endif
 
@@ -2068,8 +2068,8 @@ static void lure_action(dmg_rod_class* i_this) {
 
     if (i_this->field_0x10a6 == 0) {
         dMeter2Info_onUseButton(2);
-        dComIfGp_setAStatusForce(86, 0);
-        dComIfGp_set3DStatusForce(114, 5, 0);
+        dComIfGp_setAStatusForce(BUTTON_STATUS_REEL, 0);
+        dComIfGp_set3DStatusForce(BUTTON_STATUS_ACTION, 5, 0);
     }
 
     if (i_this->timers[4] == 1) {
@@ -2431,8 +2431,8 @@ static void lure_hit(dmg_rod_class* i_this, mg_fish_class* i_mg_fish) {
 
         if (sp8 != 0) {
             dMeter2Info_onUseButton(2);
-            dComIfGp_setAStatusForce(82, 0);
-            dComIfGp_set3DStatusForce(82, 2, 0);
+            dComIfGp_setAStatusForce(BUTTON_STATUS_HOOK, 0);
+            dComIfGp_set3DStatusForce(BUTTON_STATUS_HOOK, 2, 0);
 
             if (i_this->reel_btn_flags != 0) {
                 cLib_addCalc2(&i_this->field_0xf5c, 0.5f, 1.0f, 0.2f + DREG_F(14));
@@ -2506,8 +2506,8 @@ static void lure_hit(dmg_rod_class* i_this, mg_fish_class* i_mg_fish) {
             }
         } else if (i_this->field_0x10a6 == 0 && i_this->field_0x100f == 0) {
             dMeter2Info_onUseButton(2);
-            dComIfGp_setAStatusForce(0x55, 0);
-            dComIfGp_set3DStatusForce(0x55, 2, 0);
+            dComIfGp_setAStatusForce(BUTTON_STATUS_PULL, 0);
+            dComIfGp_set3DStatusForce(BUTTON_STATUS_PULL, 2, 0);
         }
     }
 }
@@ -3173,7 +3173,7 @@ static void lure_main(dmg_rod_class* i_this) {
     case ACTION_LURE_ACTION:
         lure_action(i_this);
         sp20 = 1;
-        dComIfGp_setCStickStatusForce(91, 2, 0);
+        dComIfGp_setCStickStatusForce(BUTTON_STATUS_REEL_FAST, 2, 0);
         dMeter2Info_onGameStatus(1);
         sp18 = 1;
         break;
@@ -3657,7 +3657,7 @@ static void uki_standby(dmg_rod_class* i_this) {
     cXyz sp30;
     cXyz sp24;
 
-    dComIfGp_setDoStatusForce(42, 0);
+    dComIfGp_setDoStatusForce(BUTTON_STATUS_QUIT, 0);
 
     f32 substickYAdj = -(i_this->rod_substick_y * (1.05f + AREG_F(13)));
     f32 substickX = i_this->rod_substick_x;
@@ -4502,13 +4502,13 @@ static void play_camera(dmg_rod_class* i_this) {
         }
 
         if (daAlink_getAlinkActorClass()->checkCanoeRide()) {
-            dComIfGp_setZStatusForce(94, 0);
+            dComIfGp_setZStatusForce(BUTTON_STATUS_UNK_94, 0);
             dMeter2Info_onUseButton(0x800);
 
             if (data_804BBBD4 != 0) {
-                dComIfGp_setDoStatusForce(124, 0);
+                dComIfGp_setDoStatusForce(BUTTON_STATUS_HELP, 0);
             } else {
-                dComIfGp_setDoStatusForce(15, 0);
+                dComIfGp_setDoStatusForce(BUTTON_STATUS_SELECT, 0);
             }
 
             if (i_this->input_cooldown == 0) {
@@ -5019,7 +5019,7 @@ static void play_camera(dmg_rod_class* i_this) {
         i_this->play_cam_center.y += AREG_F(7) - 25.0f;
         // fallthrough
     case 951:
-        dComIfGp_setDoStatusForce(34, 0);
+        dComIfGp_setDoStatusForce(BUTTON_STATUS_CONFIRM, 0);
         i_this->field_0xf78 = 0.1f + TREG_F(19);
 
         cMtx_YrotS(*calc_mtx, player->shape_angle.y);
@@ -6038,9 +6038,9 @@ static int dmg_rod_Execute(dmg_rod_class* i_this) {
 
     if (daAlink_getAlinkActorClass()->checkFishingRodGrab(actor) && i_this->field_0x100f != 0) {
         if (i_this->field_0x100f == 1) {
-            dComIfGp_setDoStatusForce(81, 0);
+            dComIfGp_setDoStatusForce(BUTTON_STATUS_LAND, 0);
         } else if (i_this->field_0x100f == 2) {
-            dComIfGp_set3DStatusForce(116, 8, 0);
+            dComIfGp_set3DStatusForce(BUTTON_STATUS_TILT, 8, 0);
         }
     }
 

@@ -939,7 +939,7 @@ int dKy_light_influence_id(cXyz position, int param_1) {
         closest_plight_dist = 1000000.0f;
     }
 
-    
+
     if (param_1 == 0) {
         spC = closest_plight_no;
     } else {

@@ -71,6 +71,9 @@ public:
     void setDispPosOutsideFlg_SE_On();
     void setMapAlpha(u8);
     static bool isMapOpenCheck();
+#if PLATFORM_WII
+    bool isAreaMapOpenCheck();
+#endif
     dMeterMap_c(J2DScreen*);
     void _create(J2DScreen*);
     void setDispPosOutSide();
@@ -94,7 +97,15 @@ public:
     void setSizeW(f32 w) { mSizeW = w; }
     void setSizeH(f32 h) { mSizeH = h; }
 
-    enum { MAP_SIZE_TYPE_BIG = 2, MAP_SIZE_TYPE_SMALL = 3, MAP_SIZE_TYPE_MEDIUM = 4, MAP_SIZE_TYPE_STAGE = 7 };
+    enum {
+        MAP_SIZE_TYPE_UNK_0 = 0,
+        MAP_SIZE_TYPE_UNK_1 = 1,
+        MAP_SIZE_TYPE_BIG = 2,
+        MAP_SIZE_TYPE_SMALL = 3,
+        MAP_SIZE_TYPE_MEDIUM = 4,
+        MAP_SIZE_TYPE_UNK_5 = 5,
+        MAP_SIZE_TYPE_STAGE = 7,
+    };
 
     static dMeterMap_c* mMySelfPointer;
 

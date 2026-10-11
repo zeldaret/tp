@@ -11,9 +11,9 @@ J2DWindow::J2DWindow()
     : field_0x100(NULL), field_0x104(NULL), field_0x108(NULL), field_0x10c(NULL), field_0x110(NULL),
       mPalette(NULL) {
     field_0x144 = 0;
-    setContentsColor(JUtility::TColor(0xffffffff));
-    mBlack = JUtility::TColor(0);
-    mWhite = JUtility::TColor(0xffffffff);
+    setContentsColor(JUtility::TColor((u32)0xFFFFFFFF));
+    mBlack = JUtility::TColor((u32)0x00000000);
+    mWhite = JUtility::TColor((u32)0xFFFFFFFF);
 }
 
 J2DWindow::J2DWindow(J2DPane* param_0, JSURandomInputStream* param_1, JKRArchive* param_2)
@@ -91,8 +91,8 @@ J2DWindow::J2DWindow(J2DPane* param_0, JSURandomInputStream* param_1, J2DMateria
         mAlpha = local_98[0]->getColorBlock()->getMatColor(0)->a;
     }
 
-    mBlack = JUtility::TColor(0);
-    mWhite = JUtility::TColor(0xffffffff);
+    mBlack = JUtility::TColor((u32)0x00000000);
+    mWhite = JUtility::TColor((u32)0xffffffff);
 
     if (local_98[0] != NULL && local_98[0]->getTevBlock() != NULL) {
         u8 tevStageNum = u8(local_98[0]->getTevBlock()->getTevStageNum());
@@ -222,8 +222,8 @@ void J2DWindow::private_readStream(J2DPane* param_0, JSURandomInputStream* param
         }
         r27--;
     }
-    mBlack = JUtility::TColor(0);
-    mWhite = JUtility::TColor(0xffffffff);
+    mBlack = JUtility::TColor((u32)0x00000000);
+    mWhite = JUtility::TColor((u32)0xFFFFFFFF);
     if (r27) {
         mBlack = JUtility::TColor(param_1->readU32());
         r27--;
@@ -238,9 +238,9 @@ void J2DWindow::private_readStream(J2DPane* param_0, JSURandomInputStream* param
 
 void J2DWindow::initinfo() {
     mKind = 'WIN1';
-    setContentsColor(JUtility::TColor(0xffffffff));
-    mBlack = JUtility::TColor(0);
-    mWhite = JUtility::TColor(0xffffffff);
+    setContentsColor(JUtility::TColor((u32)0xFFFFFFFF));
+    mBlack = JUtility::TColor((u32)0x00000000);
+    mWhite = JUtility::TColor((u32)0xFFFFFFFF);
     initinfo2();
 }
 
@@ -551,7 +551,7 @@ void J2DWindow::drawContentsTexture(f32 param_0, f32 param_1, f32 param_2, f32 p
         stack_f0.field_0xc.a = stack_f0.field_0xc.a * mColorAlpha / 0xff;
     }
     field_0x110->load(GX_TEXMAP0);
-    setTevMode(field_0x110, 0, 0xffffffff);
+    setTevMode(field_0x110, (u32)0x00000000, (u32)0xFFFFFFFF);
     GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_CLR_RGBA, GX_RGBA6, 0);
     GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_F32, 0);
     GXBegin(GX_QUADS, GX_VTXFMT0, 4);
