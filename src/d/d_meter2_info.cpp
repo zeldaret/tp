@@ -868,7 +868,7 @@ int dMeter2Info_c::readItemTexture(u8 i_itemNo, void* i_texBuf1, J2DPicture* i_p
 
     if (i_texBuf1 != NULL) {
         if ((i_itemNo == dItemNo_KANTERA_e && dComIfGs_getOil() == 0)
-#if !PLATFORM_WII || (VERSION == VERSION_WII_USA_R2 || VERSION == VERSION_WII_JPN)
+#if PLATFORM_GCN || (VERSION == VERSION_WII_USA_R2 || VERSION == VERSION_WII_JPN) || PLATFORM_SHIELD
             || i_itemNo == dItemNo_KANTERA2_e
 #endif
         ) {
@@ -1076,7 +1076,7 @@ s16 dMeter2Info_c::get4thTexture(u8 i_itemType) {
 
 void dMeter2Info_c::set1stColor(u8 i_itemType, J2DPicture* i_pic) {
     // TODO: probably some way to rectify this for both versions
-    #if PLATFORM_WII || PLATFORM_SHIELD
+    #if PLATFORM_WII || VERSION == VERSION_SHIELD_DEBUG
     static JUtility::TColor const black_color[37] = {
         JUtility::TColor(0x00, 0x00, 0x00, 0x00), JUtility::TColor(0x00, 0x60, 0x00, 0x00), JUtility::TColor(0x00, 0x00, 0xC0, 0x00),
         JUtility::TColor(0xA0, 0x60, 0x00, 0x00), JUtility::TColor(0xA0, 0x00, 0x00, 0x00), JUtility::TColor(0x40, 0x00, 0x60, 0x00),
@@ -1280,7 +1280,7 @@ void dMeter2Info_c::set1stColor(u8 i_itemType, J2DPicture* i_pic) {
 
 void dMeter2Info_c::set2ndColor(u8 i_itemType, J2DPicture* i_pic) {
     // TODO: probably some way to rectify this for both versions
-    #if PLATFORM_WII || PLATFORM_SHIELD
+    #if PLATFORM_WII || VERSION == VERSION_SHIELD_DEBUG
     static JUtility::TColor const black_color[37] = {
         JUtility::TColor(0x00, 0x00, 0x00, 0x00), JUtility::TColor(0x00, 0x00, 0x00, 0x00), JUtility::TColor(0x00, 0x00, 0x00, 0x00),
         JUtility::TColor(0x00, 0x00, 0x00, 0x00), JUtility::TColor(0x00, 0x00, 0x00, 0x00), JUtility::TColor(0x00, 0x00, 0x00, 0x00),

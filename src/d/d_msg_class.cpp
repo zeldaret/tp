@@ -1972,7 +1972,7 @@ void jmessage_tSequenceProcessor::do_end() {
 
 bool jmessage_tSequenceProcessor::do_isReady() {
     jmessage_tReference* pReference = (jmessage_tReference*)getReference();
-    #if PLATFORM_WII || PLATFORM_SHIELD
+    #if PLATFORM_WII || VERSION == VERSION_SHIELD_DEBUG
     if (pReference->getRevoMessageID() != 0) {
         return 0;
     }

@@ -396,7 +396,7 @@ void dMeterMap_c::setMapAlpha(u8 i_alpha) {
 }
 
 bool dMeterMap_c::isMapOpenCheck() {
-    #if PLATFORM_WII || PLATFORM_SHIELD
+    #if PLATFORM_WII || VERSION == VERSION_SHIELD_DEBUG
     if (dCam_getBody()->Gear() == 1) {
         return false;
     }
@@ -536,7 +536,7 @@ void dMeterMap_c::_create(J2DScreen* i_screen) {
         dMeter2Info_setMapStatus(0);
     }
 
-#if PLATFORM_WII || PLATFORM_SHIELD
+#if PLATFORM_WII || VERSION == VERSION_SHIELD_DEBUG
     dMeter2Info_setMapStatus(0);
 #endif
 
@@ -708,7 +708,7 @@ void dMeterMap_c::ctrlShowMap() {
             dMeter2Info_getPauseStatus() == 3 || dMeter2Info_getPauseStatus() == 5 ||
             dMeter2Info_getPauseStatus() == 2 || dMeter2Info_getPauseStatus() == 6)
         {
-            #if PLATFORM_GCN
+#if PLATFORM_GCN || VERSION == VERSION_SHIELD
             if (dMeter2Info_getMapStatus() == 0 && mMapIsInside == 0) {
                 setDispPosInsideFlg_SE_On();
                 Z2GetAudioMgr()->seStart(Z2SE_SY_MAP_OPEN_S, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
@@ -716,14 +716,14 @@ void dMeterMap_c::ctrlShowMap() {
                 dMeter2Info_set2DVibration();
                 dMeter2Info_setMapStatus(1);
             }
-            #endif
+#endif
 
             if (
-            #if PLATFORM_GCN
+#if PLATFORM_GCN || VERSION == VERSION_SHIELD
                 dMeter2Info_getMapStatus() == 1 && mMapIsInside != 0 &&
-            #else
+#else
                 dMeter2Info_getMapStatus() == 0 &&
-            #endif
+#endif
                 isFmapScreen()
             ) {
                 switch (dMeter2Info_getPauseStatus()) {
@@ -748,22 +748,22 @@ void dMeterMap_c::ctrlShowMap() {
                 }
 
                 dMeter2Info_setMapKeyDirection(0x400);
-#if PLATFORM_GCN
+#if PLATFORM_GCN || VERSION == VERSION_SHIELD
                 Z2GetAudioMgr()->seStart(Z2SE_SY_MAP_OPEN_S, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
                                             -1.0f, 0);
 #else
                 Z2GetAudioMgr()->seStart(Z2SE_SY_MAP_OPEN_L, NULL, 0, 0, 1.0f, 1.0f, -1.0f,
                                             -1.0f, 0);
 #endif
-                #if PLATFORM_GCN
+#if PLATFORM_GCN || VERSION == VERSION_SHIELD
                 dMeter2Info_set2DVibration();
-                #endif
+#endif
             }
             dMeter2Info_resetPauseStatus();
         } else if (dMeter2Info_getPauseStatus() == 4) {
             dMeter2Info_resetPauseStatus();
             if (isDmapScreen()) {
-                #if PLATFORM_GCN
+#if PLATFORM_GCN || VERSION == VERSION_SHIELD
                 if (dMeter2Info_getMapStatus() == 0 && mMapIsInside == 0) {
                     setDispPosInsideFlg_SE_On();
                     Z2GetAudioMgr()->seStart(Z2SE_SY_MAP_OPEN_S, NULL, 0, 0, 1.0f, 1.0f,
@@ -771,14 +771,14 @@ void dMeterMap_c::ctrlShowMap() {
                     dMeter2Info_set2DVibration();
                     dMeter2Info_setMapStatus(1);
                 }
-                #endif
+#endif
 
                 if (
-                #if PLATFORM_GCN
+#if PLATFORM_GCN || VERSION == VERSION_SHIELD
                     dMeter2Info_getMapStatus() == 1 && mMapIsInside != 0
-                #else
+#else
                     dMeter2Info_getMapStatus() == 0
-                #endif
+#endif
                 ) {
                     dMeter2Info_setMapStatus(6);
                     dMeter2Info_setMapKeyDirection(0x400);
@@ -800,9 +800,9 @@ void dMeterMap_c::ctrlShowMap() {
         if (mIsCompass != dComIfGs_isDungeonItemCompass()) {
             if (!isDispPosInsideFlg()) {
                 setDispPosInsideFlg_SE_On();
-                #if PLATFORM_GCN
+#if PLATFORM_GCN || VERSION == VERSION_SHIELD
                 dMeter2Info_setMapStatus(1);
-                #endif
+#endif
             }
 
             mIsCompass = dComIfGs_isDungeonItemCompass();
@@ -812,9 +812,9 @@ void dMeterMap_c::ctrlShowMap() {
         if (mIsMap != dComIfGs_isDungeonItemMap()) {
             if (!isDispPosInsideFlg()) {
                 setDispPosInsideFlg_SE_On();
-                #if PLATFORM_GCN
+#if PLATFORM_GCN || VERSION == VERSION_SHIELD
                 dMeter2Info_setMapStatus(1);
-                #endif
+#endif
             }
 
             mIsMap = dComIfGs_isDungeonItemMap();
@@ -889,7 +889,7 @@ void dMeterMap_c::meter_map_move(u32 param_0) {
             }
             dMeter2Info_resetPauseStatus();
         } else if (
-            #if PLATFORM_WII || PLATFORM_SHIELD
+            #if PLATFORM_WII || VERSION == VERSION_SHIELD_DEBUG
             dMw_RIGHT_TRIGGER() &&
             #else
             dMw_LEFT_TRIGGER() &&
@@ -898,7 +898,7 @@ void dMeterMap_c::meter_map_move(u32 param_0) {
             !dMsgObject_isTalkNowCheck() &&
             (dMeter2Info_getMapStatus() == 0 || dMeter2Info_getMapStatus() == 1))
         {
-            #if PLATFORM_GCN
+            #if PLATFORM_GCN || VERSION == VERSION_SHIELD
             if (dMeter2Info_getMapStatus() == 0 && !dMeter2Info_isSub2DStatus(1)) {
                 if (isFmapScreen() || isDmapScreen()) {
                     dMeter2Info_setMapStatus(2);
