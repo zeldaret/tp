@@ -1697,9 +1697,12 @@ dDlst_list_c::dDlst_list_c() {
 
 dDlst_shadowSimple_c::dDlst_shadowSimple_c() {}
 
-static u16 const l_drawlistSize[21] = {
+static u16 const l_drawlistSize[dDlst_list_c::DB_LIST_MAX] = {
     0x0001, 0x0001, 0x0001, 0x0080, 0x0001, 0x0001, 0x0001, 0x0080, 0x0100, 0x0001, 0x0100,
     0x0001, 0x0020, 0x0010, 0x0010, 0x0020, 0x0020, 0x0100, 0x0001, 0x0004, 0x0004,
+    #if PLATFORM_WII || PLATFORM_SHIELD
+    0x0001
+    #endif
 };
 
 static u8 const l_nonSortId[9] = {
