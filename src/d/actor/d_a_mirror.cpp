@@ -147,7 +147,7 @@ void dMirror_packet_c::mirrorZdraw(f32* param_0, f32* param_1, f32 param_2, f32 
             GXSetNumTexGens(1);
             GXSetZCompLoc(GX_FALSE);
             GXSetVtxDesc(GX_VA_TEX0, GX_DIRECT);
-            GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_POS_XYZ, GX_S8, 0);
+            GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_TEX_ST, GX_S8, 0);
             GXBegin(GX_QUADS, GX_VTXFMT0, 4);
 
             static s8 const l_texCoord[4][2] = {
