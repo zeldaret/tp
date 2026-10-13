@@ -25,6 +25,10 @@
 #include <cstdio>
 #include <cstring>
 
+#if PLATFORM_WII
+#include <revolution/wpad.h>
+#endif
+
 void dComIfG_play_c::ct() {
     mWindowNum = 0;
     mParticle = NULL;
@@ -131,11 +135,17 @@ s16 dComIfG_play_c::getItemMaxBombNumCount(u8 i_bombType) {
 }
 
 void dComIfG_play_c::setNowVibration(u8 i_vibration) {
+#if PLATFORM_GCN
     mItemInfo.mNowVibration = i_vibration;
+#endif
 }
 
 u8 dComIfG_play_c::getNowVibration() {
+#if PLATFORM_WII
+    return WPADIsMotorEnabled() != 0;
+#else
     return mItemInfo.mNowVibration;
+#endif
 }
 
 void dComIfG_play_c::setStartStage(dStage_startStage_c* i_startStage) {

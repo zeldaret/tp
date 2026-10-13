@@ -13,6 +13,7 @@ struct dDvdErrorMsg_c {
 #if !PLATFORM_GCN
 struct dConnectErrorMsg_c {
     static void disable();
+    static bool execute();
 };
 #endif
 

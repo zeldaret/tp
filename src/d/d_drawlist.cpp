@@ -1689,7 +1689,7 @@ dDlst_list_c::dDlst_list_c() {
     mp2DXluEnd = &mp2DXluDrawLists[32];
 
     J3DDrawBuffer** buffer = mDrawBuffers;
-    for (int i = 0; i < 21; i++) {
+    for (int i = 0; i < dDlst_list_c::DB_LIST_MAX; i++) {
         *buffer = NULL;
         buffer++;
     }
@@ -1697,16 +1697,22 @@ dDlst_list_c::dDlst_list_c() {
 
 dDlst_shadowSimple_c::dDlst_shadowSimple_c() {}
 
-static u16 const l_drawlistSize[21] = {
+static u16 const l_drawlistSize[] = {
     0x0001, 0x0001, 0x0001, 0x0080, 0x0001, 0x0001, 0x0001, 0x0080, 0x0100, 0x0001, 0x0100,
     0x0001, 0x0020, 0x0010, 0x0010, 0x0020, 0x0020, 0x0100, 0x0001, 0x0004, 0x0004,
+    #if PLATFORM_WII || PLATFORM_SHIELD
+    0x0001
+    #endif
 };
 
-static u8 const l_nonSortId[9] = {
+static u8 const l_nonSortId[] = {
     0x00, 0x01, 0x02, 0x04, 0x05, 0x06, 0x09, 0x12, 0x0D,
+    #if PLATFORM_WII || PLATFORM_SHIELD || PLATFORM_PC
+    0x15, //0x00, 0x00
+    #endif
 };
 
-static const u8 l_zSortId[6] = {
+static const u8 l_zSortId[] = {
     0x08, 0x0A, 0x0C, 0x0E, 0x10, 0x11,
 };
 
@@ -1714,18 +1720,19 @@ void dDlst_list_c::init() {
     J3DDrawBuffer** var_r30 = mDrawBuffers;
     const u16* var_r29 = l_drawlistSize;
 
-    for (int i = 0; i < 21; i++) {
+    for (int i = 0; i < ARRAY_SIZE(l_drawlistSize); i++) {
+        // TODO: J3DDrawBuffer__create doesn't inline here'
         *var_r30 = J3DDrawBuffer__create(*var_r29++);
         var_r30++;
     }
 
     const u8* var_r5 = l_nonSortId;
-    for (int i = 0; i < 9; i++) {
+    for (int i = 0; i < ARRAY_SIZE(l_nonSortId); i++) {
         mDrawBuffers[*var_r5++]->setNonSort();
     }
 
     const u8* var_r5_2 = l_zSortId;
-    for (int i = 0; i < 6; i++) {
+    for (int i = 0; i < ARRAY_SIZE(l_zSortId); i++) {
         mDrawBuffers[*var_r5_2++]->setZSort();
     }
 
@@ -1741,7 +1748,7 @@ void dDlst_list_c::init() {
 
 dDlst_list_c::~dDlst_list_c() {
     J3DDrawBuffer** buffer = mDrawBuffers;
-    for (int i = 0; i < 21; i++) {
+    for (int i = 0; i < dDlst_list_c::DB_LIST_MAX; i++) {
         J3DDrawBuffer* tmp = *buffer;
         buffer++;
 
@@ -1751,7 +1758,7 @@ dDlst_list_c::~dDlst_list_c() {
 
 void dDlst_list_c::reset() {
     J3DDrawBuffer** buffer = mDrawBuffers;
-    for (int i = 0; i < 21; i++) {
+    for (int i = 0; i < dDlst_list_c::DB_LIST_MAX; i++) {
         J3DDrawBuffer* tmp = *buffer;
         buffer++;
 

@@ -433,6 +433,7 @@ public:
 
     void levelAllForceOnEventMove() { field_0x210.allForceOnEventMove(); }
 
+    // TODO: MWCC isn't inlining this on Wii.
     void levelExecute(u32 param_0) {
         level_c::emitter_c* emitter = field_0x210.get(param_0);
         if (emitter != NULL) {

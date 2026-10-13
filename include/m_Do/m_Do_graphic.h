@@ -61,6 +61,8 @@ public:
         virtual void draw(f32, f32) = 0;
         virtual bool isPointer() { return true; }
 
+        static void init(f32, f32);
+        static void beforeDraw(f32, f32);
         static void particleExecute();
         static u32 getBlurID() { return m_blurID; }
 
@@ -70,6 +72,7 @@ public:
         static cXyz m_nowEffPos;
     };
 
+    static void drawCsr(void);
     static void entryBaseCsr(csr_c*);
     static void releaseCsr(void);
     static void entryCsr(csr_c*);

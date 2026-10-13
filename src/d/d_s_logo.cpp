@@ -498,7 +498,7 @@ void dScnLogo_c::warningDispDraw() {
         field_0x210--;
     }
 
-    #if PLATFORM_WII && VERSION != VERSION_WII_PAL
+    #if PLATFORM_WII && VERSION != VERSION_WII_PAL && VERSION != VERSION_WII_USA_R2
     if (mTimer == 0 || cAPICPad_A_TRIGGER(PAD_1) || cAPICPad_B_TRIGGER(PAD_1) || cAPICPad_START_TRIGGER(PAD_1))
     #else
     if (mTimer == 0 || mDoCPd_c::getTrig(PAD_1) &

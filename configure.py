@@ -240,7 +240,11 @@ config.reconfig_deps = []
 
 # Optional numeric ID for decomp.me preset
 # Can be overridden in libraries or objects
-config.scratch_preset_id = 69 # Twilight Princess (DOL)
+if config.version in WII_VERSIONS or config.version in SHIELD_VERSIONS:
+    config.scratch_preset_id = 0 # None, so MWCC version isn't overriden.
+else:
+    config.scratch_preset_id = 69 # Twilight Princess (DOL)
+
 
 # Globs to exclude from context files
 # *.mch excludes precompiled header output (which cannot be parsed)
@@ -1748,6 +1752,12 @@ config.libs = [
         ],
     ),
     RevolutionLib(
+        "db",
+        [
+            Object(NonMatching, "revolution/db/db.c"),
+        ],
+    ),
+    RevolutionLib(
         "mtx",
         [
             Object(NonMatching, "revolution/mtx/mtx.c"),
@@ -1964,6 +1974,79 @@ config.libs = [
         [
             Object(NonMatching, "revolution/gd/GDBase.c"),
             Object(NonMatching, "revolution/gd/GDGeometry.c"),
+        ],
+    ),
+    RevolutionLib(
+        "bte",
+        [
+            Object(NonMatching, "revolution/bte/gki_buffer.c"),
+            Object(NonMatching, "revolution/bte/gki_time.c"),
+            Object(NonMatching, "revolution/bte/gki_ppc.c"),
+            Object(NonMatching, "revolution/bte/hcisu_h2.c"),
+            Object(NonMatching, "revolution/bte/uusb_ppc.c"),
+            Object(NonMatching, "revolution/bte/bta_dm_cfg.c"),
+            Object(NonMatching, "revolution/bte/bta_hh_cfg.c"),
+            Object(NonMatching, "revolution/bte/bta_sys_cfg.c"),
+            Object(NonMatching, "revolution/bte/bte_hcisu.c"),
+            Object(NonMatching, "revolution/bte/bte_init.c"),
+            Object(NonMatching, "revolution/bte/bte_logmsg.c"),
+            Object(NonMatching, "revolution/bte/bte_main.c"),
+            Object(NonMatching, "revolution/bte/btu_task1.c"),
+            Object(NonMatching, "revolution/bte/bd.c"),
+            Object(NonMatching, "revolution/bte/bta_sys_conn.c"),
+            Object(NonMatching, "revolution/bte/bta_sys_main.c"),
+            Object(NonMatching, "revolution/bte/ptim.c"),
+            Object(NonMatching, "revolution/bte/utl.c"),
+            Object(NonMatching, "revolution/bte/bta_dm_act.c"),
+            Object(NonMatching, "revolution/bte/bta_dm_api.c"),
+            Object(NonMatching, "revolution/bte/bta_dm_main.c"),
+            Object(NonMatching, "revolution/bte/bta_dm_pm.c"),
+            Object(NonMatching, "revolution/bte/bta_hh_act.c"),
+            Object(NonMatching, "revolution/bte/bta_hh_api.c"),
+            Object(NonMatching, "revolution/bte/bta_hh_main.c"),
+            Object(NonMatching, "revolution/bte/bta_hh_utils.c"),
+            Object(NonMatching, "revolution/bte/btm_acl.c"),
+            Object(NonMatching, "revolution/bte/btm_dev.c"),
+            Object(NonMatching, "revolution/bte/btm_devctl.c"),
+            Object(NonMatching, "revolution/bte/btm_discovery.c"),
+            Object(NonMatching, "revolution/bte/btm_inq.c"),
+            Object(NonMatching, "revolution/bte/btm_main.c"),
+            Object(NonMatching, "revolution/bte/btm_pm.c"),
+            Object(NonMatching, "revolution/bte/btm_sco.c"),
+            Object(NonMatching, "revolution/bte/btm_sec.c"),
+            Object(NonMatching, "revolution/bte/btu_hcif.c"),
+            Object(NonMatching, "revolution/bte/btu_init.c"),
+            Object(NonMatching, "revolution/bte/wbt_ext.c"),
+            Object(NonMatching, "revolution/bte/gap_api.c"),
+            Object(NonMatching, "revolution/bte/gap_conn.c"),
+            Object(NonMatching, "revolution/bte/gap_utils.c"),
+            Object(NonMatching, "revolution/bte/hcicmds.c"),
+            Object(NonMatching, "revolution/bte/hidd_api.c"),
+            Object(NonMatching, "revolution/bte/hidd_conn.c"),
+            Object(NonMatching, "revolution/bte/hidd_mgmt.c"),
+            Object(NonMatching, "revolution/bte/hidd_pm.c"),
+            Object(NonMatching, "revolution/bte/hidh_api.c"),
+            Object(NonMatching, "revolution/bte/hidh_conn.c"),
+            Object(NonMatching, "revolution/bte/l2c_api.c"),
+            Object(NonMatching, "revolution/bte/l2c_csm.c"),
+            Object(NonMatching, "revolution/bte/l2c_link.c"),
+            Object(NonMatching, "revolution/bte/l2c_main.c"),
+            Object(NonMatching, "revolution/bte/l2c_utils.c"),
+            Object(NonMatching, "revolution/bte/port_api.c"),
+            Object(NonMatching, "revolution/bte/port_rfc.c"),
+            Object(NonMatching, "revolution/bte/port_utils.c"),
+            Object(NonMatching, "revolution/bte/rfc_l2cap_if.c"),
+            Object(NonMatching, "revolution/bte/rfc_mx_fsm.c"),
+            Object(NonMatching, "revolution/bte/rfc_port_fsm.c"),
+            Object(NonMatching, "revolution/bte/rfc_port_if.c"),
+            Object(NonMatching, "revolution/bte/rfc_ts_frames.c"),
+            Object(NonMatching, "revolution/bte/rfc_utils.c"),
+            Object(NonMatching, "revolution/bte/sdp_api.c"),
+            Object(NonMatching, "revolution/bte/sdp_db.c"),
+            Object(NonMatching, "revolution/bte/sdp_discovery.c"),
+            Object(NonMatching, "revolution/bte/sdp_main.c"),
+            Object(NonMatching, "revolution/bte/sdp_server.c"),
+            Object(NonMatching, "revolution/bte/sdp_utils.c"),
         ],
     ),
     RevolutionLib(
