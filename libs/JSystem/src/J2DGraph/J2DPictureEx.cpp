@@ -122,8 +122,8 @@ void J2DPictureEx::drawTexCoord(f32 param_0, f32 param_1, f32 param_2, f32 param
             GXSetChanMatColor(GX_ALPHA0, JUtility::TColor(mColorAlpha));
         }
     }
-    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_CLR_RGBA, GX_F32, 0);
-    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_CLR_RGBA, GX_RGBA4, 8);
+    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_F32, 0);
+    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_TEX_ST, GX_S16, 8);
     GXBegin(GX_QUADS, GX_VTXFMT0, 4);
     GXPosition3f32(param_0, param_1, 0.0f);
     GXColor1u32(TStack_8c);
@@ -138,8 +138,8 @@ void J2DPictureEx::drawTexCoord(f32 param_0, f32 param_1, f32 param_2, f32 param
     GXColor1u32(TStack_94);
     GXTexCoord2s16(param_8, param_9);
     GXEnd();
-    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_CLR_RGBA, GX_RGBX8, 0xf);
-    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_CLR_RGBA, GX_RGBA4, 0);
+    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_TEX_ST, GX_U16, 0xf);
+    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_S16, 0);
 }
 
 
@@ -541,8 +541,8 @@ void J2DPictureEx::drawOut(JGeometry::TBox2<f32> const& param_0,
     f32 y1 = (param_0.i.y - param_1.i.y) / param_1.getHeight();
     f32 y2 = (param_0.f.y - param_1.f.y) / param_1.getHeight() + 1.0f;
     
-    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_CLR_RGBA, GX_F32, 0);
-    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_CLR_RGBA, GX_F32, 0);
+    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_TEX_ST, GX_F32, 0);
+    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_F32, 0);
     GXBegin(GX_QUADS, GX_VTXFMT0, 4);
 
     GXPosition3f32(param_0.i.x, param_0.i.y, 0.0f);
@@ -559,8 +559,8 @@ void J2DPictureEx::drawOut(JGeometry::TBox2<f32> const& param_0,
     GXTexCoord2f32(x1, y2);
 
     GXEnd();
-    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_CLR_RGBA, GX_RGBA4, 0);
-    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_CLR_RGBA, GX_RGBX8, 15);
+    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_S16, 0);
+    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_TEX_ST, GX_U16, 15);
     GXSetNumTexGens(0);
     GXSetNumTevStages(1);
     GXSetTevOp(GX_TEVSTAGE0, GX_PASSCLR);

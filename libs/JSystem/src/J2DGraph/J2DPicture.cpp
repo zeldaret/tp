@@ -550,7 +550,7 @@ void J2DPicture::draw(f32 x, f32 y, f32 width, f32 height, bool mirrorX, bool mi
 
         JGeometry::TVec2<s16> coords[4];
         setTexCoord(coords, mTexture[0], BIND15, (J2DMirror)((mirrorX << 1) | mirrorY), rotate90);
-        GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_POS_XYZ, GX_S16, 8);
+        GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_TEX_ST, GX_S16, 8);
 
         GXBegin(GX_QUADS, GX_VTXFMT0, 4);
         GXPosition3f32(0.0f, 0.0f, 0.0f);
@@ -570,7 +570,7 @@ void J2DPicture::draw(f32 x, f32 y, f32 width, f32 height, bool mirrorX, bool mi
         GXTexCoord2s16(coords[2].x, coords[2].y);
         GXEnd();
 
-        GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_POS_XYZ, GX_U16, 15);
+        GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_TEX_ST, GX_U16, 15);
         GXSetNumTexGens(0);
         GXSetNumTevStages(1);
         GXSetTevOp(GX_TEVSTAGE0, GX_PASSCLR);
@@ -670,8 +670,8 @@ void J2DPicture::drawTexCoord(f32 param_0, f32 param_1, f32 param_2, f32 param_3
         GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
         GXSetVtxDesc(GX_VA_CLR0, GX_DIRECT);
         GXSetVtxDesc(GX_VA_TEX0, GX_DIRECT);
-        GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_CLR_RGBA, GX_F32, 0);
-        GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_CLR_RGBA, GX_RGBA4, 8);
+        GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_F32, 0);
+        GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_TEX_ST, GX_S16, 8);
         GXBegin(GX_QUADS, GX_VTXFMT0, 4);
 
         GXPosition3f32(param_0, param_1, 0.0f);
@@ -692,8 +692,8 @@ void J2DPicture::drawTexCoord(f32 param_0, f32 param_1, f32 param_2, f32 param_3
 
         GXEnd();
 
-        GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_CLR_RGBA, GX_RGBX8, 0xf);
-        GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_CLR_RGBA, GX_RGBA4, 0);
+        GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_TEX_ST, GX_U16, 0xf);
+        GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_S16, 0);
     }
 }
 

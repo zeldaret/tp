@@ -552,7 +552,7 @@ void J2DWindow::drawContentsTexture(f32 param_0, f32 param_1, f32 param_2, f32 p
     }
     field_0x110->load(GX_TEXMAP0);
     setTevMode(field_0x110, 0, 0xffffffff);
-    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_CLR_RGBA, GX_RGBA6, 0);
+    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_TEX_ST, GX_F32, 0);
     GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_F32, 0);
     GXBegin(GX_QUADS, GX_VTXFMT0, 4);
     GXPosition3f32(param_0, param_1, 0.0f);
@@ -568,7 +568,7 @@ void J2DWindow::drawContentsTexture(f32 param_0, f32 param_1, f32 param_2, f32 p
     GXColor1u32(stack_f0.field_0x8);
     GXTexCoord2f32(f27, f24);
     GXEnd();
-    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_CLR_RGBA, GX_RGBX8, 0xf);
+    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_TEX_ST, GX_U16, 0xf);
     GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_S16, 0);
 }
 

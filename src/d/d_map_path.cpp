@@ -389,7 +389,7 @@ void dRenderingFDAmap_c::setTevSettingIntensityTextureToCI() const {
 void dRenderingFDAmap_c::drawBack() const {
     GXClearVtxDesc();
     GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
-    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_CLR_RGBA, GX_F32, 0);
+    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_F32, 0);
     GXSetTevColor(GX_TEVREG0, *getBackColor());
     GXBegin(GX_QUADS, GX_VTXFMT0, 4);
     GXPosition3f32(-field_0x8, -field_0xc, 0);
@@ -456,7 +456,7 @@ void dRenderingFDAmap_c::renderingDecoration(dDrawPath_c::line_class const* p_li
     GXSetVtxDesc(GX_VA_POS, GX_INDEX16);
     GXSetVtxDesc(GX_VA_TEX0, GX_DIRECT);
     GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XY, GX_F32, 0);
-    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_POS_XYZ, GX_F32, 0);
+    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_TEX_ST, GX_F32, 0);
     GXSetNumTevStages(1);
     GXLoadTexObj(dMpath_n::m_texObjAgg.getTexObjPointer(6), GX_TEXMAP0);
 
@@ -500,7 +500,7 @@ void dRenderingFDAmap_c::renderingDecoration(dDrawPath_c::line_class const* p_li
     setTevSettingNonTextureDirectColor();
     GXClearVtxDesc();
     GXSetVtxDesc(GX_VA_POS, GX_INDEX16);
-    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_CLR_RGB, GX_F32, 0);
+    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XY, GX_F32, 0);
 }
 
 const GXColor* dRenderingFDAmap_c::getDecoLineColor(int param_0, int param_1) {

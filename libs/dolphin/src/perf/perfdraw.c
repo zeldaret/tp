@@ -164,7 +164,7 @@ void PERFPreDraw(void) {
     GXSetNumTevStages(1);
     GXSetZMode(GX_DISABLE, GX_ALWAYS, GX_DISABLE);
     GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
-    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_TEX_ST, GX_RGBA6, 0);
+    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_RGBA6, 0);
 }
 
 static void DrawBWBar(PerfSample* s) {

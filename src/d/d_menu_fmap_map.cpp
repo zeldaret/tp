@@ -116,7 +116,7 @@ void renderingFmap_c::preDrawPath() {
     GXLoadPosMtxImm(mViewMtx, GX_PNMTX0);
     GXClearVtxDesc();
     GXSetVtxDesc(GX_VA_POS, GX_INDEX16);
-    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_CLR_RGB, GX_F32, 0);
+    GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XY, GX_F32, 0);
     GXSetMisc(GX_MT_XF_FLUSH, 8);
 }
 
