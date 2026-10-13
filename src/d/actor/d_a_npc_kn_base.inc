@@ -205,7 +205,7 @@ int daNpc_Kn_c::draw(BOOL param_0, BOOL i_setEffMtx, f32 param_2, GXColorS10* i_
     if (i_isDrawGhost) {
         drawGhost();
     } else if (mTwilight) {
-        g_env_light.settingTevStruct(4, &current.pos, &tevStr);
+        g_env_light.settingTevStruct(TEVSTR_TYPE_TWILIGHT_NPC, &current.pos, &tevStr);
         g_env_light.setLightTevColorType_MAJI(model_p, &tevStr);
 
         dComIfGd_setListDark();

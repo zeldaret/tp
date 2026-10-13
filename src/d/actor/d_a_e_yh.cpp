@@ -88,7 +88,7 @@ static BOOL leaf_anm_init(e_yh_class* i_this, int param_2, f32 param_3, u8 param
 static int daE_YH_Draw(e_yh_class* i_this) {
     fopAc_ac_c* a_this = (fopAc_ac_c*)i_this;
 
-    g_env_light.settingTevStruct(2, &a_this->current.pos, &a_this->tevStr);
+    g_env_light.settingTevStruct(TEVSTR_TYPE_TWILIGHT_ENEMY, &a_this->current.pos, &a_this->tevStr);
 
     J3DModel* model = i_this->mpMorf->getModel();
     g_env_light.setLightTevColorType_MAJI(model, &a_this->tevStr);

@@ -2909,7 +2909,7 @@ void dScnKy_env_light_c::setLight_actor(dKy_tevstr_c* tevstr_p, GXColorS10* fog_
         stage_palette_info_class* next_pal_start_p = &g_env_light.stage_palette_info[next_pal_start_id];
         stage_palette_info_class* next_pal_end_p = &g_env_light.stage_palette_info[next_pal_end_id];
 
-        if (tevstr_p->Type == 10 || tevstr_p->Type == 9 || tevstr_p->Material_id != 0) {
+        if (tevstr_p->Type == TEVSTR_TYPE_HUMAN_LINK || tevstr_p->Type == TEVSTR_TYPE_WOLF_LINK || tevstr_p->Material_id != 0) {
             dKy_calc_color_set(&tevstr_p->AmbCol, &prev_pal_start_p->actor_amb_col,
                                &next_pal_start_p->actor_amb_col, &prev_pal_end_p->actor_amb_col,
                                &next_pal_end_p->actor_amb_col, color_ratio, tevstr_p->pat_ratio,
@@ -2940,7 +2940,7 @@ void dScnKy_env_light_c::setLight_actor(dKy_tevstr_c* tevstr_p, GXColorS10* fog_
             J3DLightInfo* light_info = tevstr_p->mLights[i].getLightInfo();
 
             if (i == 0) {
-                if (tevstr_p->Type == 10 || tevstr_p->Type == 9 || tevstr_p->Material_id != 0) {
+                if (tevstr_p->Type == TEVSTR_TYPE_HUMAN_LINK || tevstr_p->Type == TEVSTR_TYPE_WOLF_LINK || tevstr_p->Material_id != 0) {
                     dKy_calc_color_set(&plight_col[i], &prev_pal_start_p->plight_col[i],
                                        &next_pal_start_p->plight_col[i],
                                        &prev_pal_end_p->plight_col[i],
@@ -2977,7 +2977,7 @@ void dScnKy_env_light_c::setLight_actor(dKy_tevstr_c* tevstr_p, GXColorS10* fog_
                     kankyo_color_ratio_calc(&light_info->mColor, plight_col[i],
                                             field_0x1210 * tevstr_p->field_0x374);
                 }
-            } else if (tevstr_p->Type == 10 || tevstr_p->Type == 9 || tevstr_p->Material_id != 0) {
+            } else if (tevstr_p->Type == TEVSTR_TYPE_HUMAN_LINK || tevstr_p->Type == TEVSTR_TYPE_WOLF_LINK || tevstr_p->Material_id != 0) {
                 dKy_calc_color_set(&plight_col[i], &prev_pal_start_p->plight_col[i],
                                    &next_pal_start_p->plight_col[i], &prev_pal_end_p->plight_col[i],
                                    &next_pal_end_p->plight_col[i], color_ratio, tevstr_p->pat_ratio,
@@ -3018,7 +3018,7 @@ void dScnKy_env_light_c::setLight_actor(dKy_tevstr_c* tevstr_p, GXColorS10* fog_
         dKy_calc_color_set(fog_col_p, &prev_pal_start_p->fog_col, &next_pal_start_p->fog_col,
                            &prev_pal_end_p->fog_col, &next_pal_end_p->fog_col, color_ratio,
                            tevstr_p->pat_ratio, addcol_fog, g_env_light.now_fogcol_ratio);
-        if ((tevstr_p->Type != 10 && tevstr_p->Type != 9) || g_env_light.field_0x1210 == 1.0f) {
+        if ((tevstr_p->Type != TEVSTR_TYPE_HUMAN_LINK && tevstr_p->Type != TEVSTR_TYPE_WOLF_LINK) || g_env_light.field_0x1210 == 1.0f) {
             *fog_near_p = float_kankyo_color_ratio_set(
                 prev_pal_start_p->fog_start_z, prev_pal_end_p->fog_start_z, color_ratio,
                 next_pal_start_p->fog_start_z, next_pal_end_p->fog_start_z, tevstr_p->pat_ratio,
@@ -3078,10 +3078,10 @@ void dScnKy_env_light_c::settingTevStruct_colget_actor(cXyz* unused, dKy_tevstr_
         tevstr_p->UseCol = 0;
     }
 
-    if ((tevstr_p->Type >= 1 && tevstr_p->Type <= 7) ||
-        (tevstr_p->Type == 9 && dKy_darkworld_check()))
+    if ((tevstr_p->Type >= TEVSTR_TYPE_SHADOW_MIDNA && tevstr_p->Type <= TEVSTR_TYPE_GHOST) ||
+        (tevstr_p->Type == TEVSTR_TYPE_WOLF_LINK && dKy_darkworld_check()))
     {
-        if ((tevstr_p->Type != 2 && tevstr_p->Type != 3) || dKy_darkworld_check()) {
+        if ((tevstr_p->Type != TEVSTR_TYPE_TWILIGHT_ENEMY && tevstr_p->Type != TEVSTR_TYPE_TWILI) || dKy_darkworld_check()) {
             tevstr_p->field_0x374 = 0.0f;
         }
     }
@@ -3092,7 +3092,7 @@ void dScnKy_env_light_c::settingTevStruct_colget_actor(cXyz* unused, dKy_tevstr_
         tevstr_p->pat_ratio = 0.0f;
     }
 
-    if (tevstr_p->Type != 8) {
+    if (tevstr_p->Type != TEVSTR_TYPE_UNK8) {
         setLight_actor(tevstr_p, fog_col_p, fog_near_p, fog_far_p);
         *out_color_p = tevstr_p->AmbCol;
     } else {
@@ -3104,7 +3104,7 @@ void dScnKy_env_light_c::settingTevStruct_colget_actor(cXyz* unused, dKy_tevstr_
     #if DEBUG
     if (g_kankyoHIO.light.m_HOSTIO_setting) {
         if (tevstr_p->UseCol == g_env_light.UseCol && tevstr_p->PrevCol == g_env_light.PrevCol) {
-            if (tevstr_p->Type != 8) {
+            if (tevstr_p->Type != TEVSTR_TYPE_UNK8) {
                 *out_color_p = actor_amb_col;
             } else {
                 *out_color_p = g_env_light.bg_amb_col[0];
@@ -3201,13 +3201,13 @@ void dScnKy_env_light_c::settingTevStruct_plightcol_plus(cXyz* pos_p, dKy_tevstr
         light_inf_id = dKy_light_influence_id(*pos_p, 0);
         sp44 = 0;
 
-        if (tevstr_p->Type == 7 || tevstr_p->Type == 1 ||
-            ((tevstr_p->Type == 2 || tevstr_p->Type == 6 || tevstr_p->Type == 3) &&
+        if (tevstr_p->Type == TEVSTR_TYPE_GHOST || tevstr_p->Type == TEVSTR_TYPE_SHADOW_MIDNA ||
+            ((tevstr_p->Type == TEVSTR_TYPE_TWILIGHT_ENEMY || tevstr_p->Type == TEVSTR_TYPE_TWILIGHT_INSECT || tevstr_p->Type == TEVSTR_TYPE_TWILI) &&
              dKy_darkworld_check()) ||
-            tevstr_p->Type == 4 || tevstr_p->Type == 5)
+            tevstr_p->Type == TEVSTR_TYPE_TWILIGHT_NPC || tevstr_p->Type == TEVSTR_TYPE_SOLID_GHOST)
         {
             light_inf_id = -2;
-        } else if (tevstr_p->Type == 9 && dKy_darkworld_check()) {
+        } else if (tevstr_p->Type == TEVSTR_TYPE_WOLF_LINK && dKy_darkworld_check()) {
             light_inf_id = -2;
         }
 
@@ -3255,7 +3255,7 @@ void dScnKy_env_light_c::settingTevStruct_plightcol_plus(cXyz* pos_p, dKy_tevstr
                 light_pos.y += g_kankyoHIO.navy.adjust_height;
                 #endif
 
-                if (tevstr_p->Type >= 1 && tevstr_p->Type <= 9) {
+                if (tevstr_p->Type >= TEVSTR_TYPE_SHADOW_MIDNA && tevstr_p->Type <= TEVSTR_TYPE_WOLF_LINK) {
                     dKyr_get_vectle_calc(&camera->view.lookat.center, &camera->view.lookat.eye, &camfwd);
                     light_pos = camera->view.lookat.eye + (camfwd * 180.0f);
                 }
@@ -3272,7 +3272,7 @@ void dScnKy_env_light_c::settingTevStruct_plightcol_plus(cXyz* pos_p, dKy_tevstr
 
                 if (strcmp(dComIfGp_getStartStageName(), "D_MN09A") == 0) {
                     if (dComIfG_play_c::getLayerNo(0) == 0) {
-                        if (tevstr_p->Type == 0) {
+                        if (tevstr_p->Type == TEVSTR_TYPE_DEFAULT) {
                             field_0x10f8.r = 0x1E;
                             field_0x10f8.g = 0x37;
                             field_0x10f8.b = 0x6E;
@@ -3289,7 +3289,7 @@ void dScnKy_env_light_c::settingTevStruct_plightcol_plus(cXyz* pos_p, dKy_tevstr
                             light_power = g_kankyoHIO.navy.possessed_zelda_light_power;
                             #endif
                         }
-                    } else if (dComIfG_play_c::getLayerNo(0) == 1 && tevstr_p->Type == 0) {
+                    } else if (dComIfG_play_c::getLayerNo(0) == 1 && tevstr_p->Type == TEVSTR_TYPE_DEFAULT) {
                         field_0x10f8.r = 60;
                         field_0x10f8.g = 95;
                         field_0x10f8.b = 100;
@@ -3404,7 +3404,7 @@ void dScnKy_env_light_c::settingTevStruct_plightcol_plus(cXyz* pos_p, dKy_tevstr
                 }
 
                 #if DEBUG
-                if (tevstr_p->Type >= 1 && tevstr_p->Type <= 9 && g_kankyoHIO.navy.adjust_light_mode == 2) {
+                if (tevstr_p->Type >= TEVSTR_TYPE_SHADOW_MIDNA && tevstr_p->Type <= TEVSTR_TYPE_WOLF_LINK && g_kankyoHIO.navy.adjust_light_mode == 2) {
                     field_0x10f8.r = (s16)g_kankyoHIO.navy.adjust_light_dif0_col_R;
                     field_0x10f8.g = (s16)g_kankyoHIO.navy.adjust_light_dif0_col_G;
                     field_0x10f8.b = (s16)g_kankyoHIO.navy.adjust_light_dif0_col_B;
@@ -3432,7 +3432,7 @@ void dScnKy_env_light_c::settingTevStruct_plightcol_plus(cXyz* pos_p, dKy_tevstr
         var_f31 = (1.0f - var_f31);
         var_f31 *= g_env_light.now_actcol_ratio;
 
-        if ((tevstr_p->Type != 10 && tevstr_p->Type != 9) || tevstr_p->Material_id != 0) {
+        if ((tevstr_p->Type != TEVSTR_TYPE_HUMAN_LINK && tevstr_p->Type != TEVSTR_TYPE_WOLF_LINK) || tevstr_p->Material_id != 0) {
             field_0x10f0.r = field_0x10f8.r * (var_f31 * kankyo->field_0x1210);
             field_0x10f0.g = field_0x10f8.g * (var_f31 * kankyo->field_0x1210);
             field_0x10f0.b = field_0x10f8.b * (var_f31 * kankyo->field_0x1210);
@@ -3511,7 +3511,7 @@ void dScnKy_env_light_c::settingTevStruct_plightcol_plus(cXyz* pos_p, dKy_tevstr
         cMtx_multVec(view_mtx, &spB8, &spDC);
 
         if (dKy_shadow_mode_check(4) == 0) {
-            if ((tevstr_p->Type == 9 || tevstr_p->Type == 10) &&
+            if ((tevstr_p->Type == TEVSTR_TYPE_WOLF_LINK || tevstr_p->Type == TEVSTR_TYPE_HUMAN_LINK) &&
                 (player->getSinkShapeOffset() < -20.0f || player->checkSinkDead() || dKy_camera_water_in_status_check() || !player->checkSwimUp()))
             {
                 cLib_addCalc(&tevstr_p->mLightPosWorld.x, pos_p->x, 0.5f, 5000.0f, 0.1f);
@@ -3582,14 +3582,14 @@ void dScnKy_env_light_c::settingTevStruct_plightcol_plus(cXyz* pos_p, dKy_tevstr
                 }
             }
 
-            if ((tevstr_p->Type == 9 || tevstr_p->Type == 10) &&
+            if ((tevstr_p->Type == TEVSTR_TYPE_WOLF_LINK || tevstr_p->Type == TEVSTR_TYPE_HUMAN_LINK) &&
                 (player->checkSinkDead() || dComIfGp_checkPlayerStatus0(0, 0x02000308) ||
                  dComIfGp_checkPlayerStatus1(0, 0x02000000) || player->checkMagneBootsOn()))
             {
                 cLib_addCalc(&tevstr_p->field_0x344, 0.0f, 0.75f, 0.21f, 0.0001f);
-            } else if (tevstr_p->Type == 9 && player->getSinkShapeOffset() < -35.0f) {
+            } else if (tevstr_p->Type == TEVSTR_TYPE_WOLF_LINK && player->getSinkShapeOffset() < -35.0f) {
                 cLib_addCalc(&tevstr_p->field_0x344, 0.0f, 0.1f, 0.01f, 0.00001f);
-            } else if (tevstr_p->Type == 10 && player->getSinkShapeOffset() < -100.0f) {
+            } else if (tevstr_p->Type == TEVSTR_TYPE_HUMAN_LINK && player->getSinkShapeOffset() < -100.0f) {
                 cLib_addCalc(&tevstr_p->field_0x344, 0.0f, 0.1f, 0.01f, 0.00001f);
             } else if (init_timer != 0) {
                 tevstr_p->field_0x344 = kankyo->field_0x1238 +
@@ -3666,7 +3666,7 @@ void dScnKy_env_light_c::settingTevStruct(int tevstrType, cXyz* pos_p, dKy_tevst
     tevstr_p->Material_use_fg = 124;
     actor_amb_col.a = 255;
 
-    if (tevstrType == 14) {
+    if (tevstrType == TEVSTR_TYPE_DEMO_ITEM) {
         MtxPtr sp50 = j3dSys.getViewMtx();
         camera_class* camera_p = (camera_class*)dComIfGp_getCamera(0);
         cXyz calc_pos;
@@ -3817,7 +3817,7 @@ void dScnKy_env_light_c::settingTevStruct(int tevstrType, cXyz* pos_p, dKy_tevst
         light_info->mDistAtten.x = 1.0f;
         light_info->mDistAtten.y = 0.0f;
         light_info->mDistAtten.z = 0.0f;
-    } else if (tevstrType == 12 || tevstrType == 13) {
+    } else if (tevstrType == TEVSTR_TYPE_COLLECTION_LINK || tevstrType == TEVSTR_TYPE_COLLECTION_MODEL) {
         MtxP sp3C = j3dSys.getViewMtx();
         camera_class* camera_p = (camera_class*)dComIfGp_getCamera(0);
         cXyz spD8;
@@ -3839,7 +3839,7 @@ void dScnKy_env_light_c::settingTevStruct(int tevstrType, cXyz* pos_p, dKy_tevst
             tevstr_p->UseCol = tevstr_p->room_no;
         }
 
-        if (tevstrType == 12) {
+        if (tevstrType == TEVSTR_TYPE_COLLECTION_LINK) {
             field_0x10f0.r = 25;
             field_0x10f0.g = 20;
             field_0x10f0.b = 25;
@@ -3872,7 +3872,7 @@ void dScnKy_env_light_c::settingTevStruct(int tevstrType, cXyz* pos_p, dKy_tevst
             J3DLightInfo& temp_r31 = *tevstr_p->mLights[i].getLightInfo();
 
             if (i == 0) {
-                if (tevstrType == 12) {
+                if (tevstrType == TEVSTR_TYPE_COLLECTION_LINK) {
                     temp_r31.mLightPosition.x = -30000.0f;
                     temp_r31.mLightPosition.y = 18800.0f;
                     temp_r31.mLightPosition.z = 29000.0f;
@@ -3899,7 +3899,7 @@ void dScnKy_env_light_c::settingTevStruct(int tevstrType, cXyz* pos_p, dKy_tevst
                 }
                 #endif
             } else if (i == 1) {
-                if (tevstrType == 12) {
+                if (tevstrType == TEVSTR_TYPE_COLLECTION_LINK) {
                     temp_r31.mLightPosition.x = 14400.0f;
                     temp_r31.mLightPosition.y = 7500.0f;
                     temp_r31.mLightPosition.z = 3900.0f;
@@ -3954,7 +3954,7 @@ void dScnKy_env_light_c::settingTevStruct(int tevstrType, cXyz* pos_p, dKy_tevst
         cMtx_multVec(view_mtx, &sp68, &sp74);
 
         light_info->mLightPosition = sp74;
-        if (tevstrType == 13) {
+        if (tevstrType == TEVSTR_TYPE_COLLECTION_MODEL) {
             tevstr_p->field_0x32c = sp68;
             tevstr_p->mLightPosWorld = sp68;
         }
@@ -3981,13 +3981,14 @@ void dScnKy_env_light_c::settingTevStruct(int tevstrType, cXyz* pos_p, dKy_tevst
         fog_near = mFogNear;
         fog_far = mFogFar;
 
-        if (tevstrType == 0 || tevstrType == 0 || tevstrType == 8 || tevstrType == 7 ||
-            tevstrType == 1 || tevstrType == 2 || tevstrType == 3 || tevstrType == 5 ||
-            tevstrType == 4 || tevstrType == 11)
+        // Duplication of first condition may imply some sort of alias that got merged?
+        if (tevstrType == TEVSTR_TYPE_DEFAULT || tevstrType == TEVSTR_TYPE_DEFAULT || tevstrType == TEVSTR_TYPE_UNK8 || tevstrType == TEVSTR_TYPE_GHOST ||
+            tevstrType == TEVSTR_TYPE_SHADOW_MIDNA || tevstrType == TEVSTR_TYPE_TWILIGHT_ENEMY || tevstrType == TEVSTR_TYPE_TWILI || tevstrType == TEVSTR_TYPE_SOLID_GHOST ||
+            tevstrType == TEVSTR_TYPE_TWILIGHT_NPC || tevstrType == TEVSTR_TYPE_UNK11)
         {
             settingTevStruct_colget_actor(pos_p, tevstr_p, &amb_col, &fog_tev_col, &fog_near,
                                           &fog_far);
-        } else if (tevstrType == 10 || tevstrType == 9) {
+        } else if (tevstrType == TEVSTR_TYPE_HUMAN_LINK || tevstrType == TEVSTR_TYPE_WOLF_LINK) {
             if (g_env_light.player_room_no != (u8)dComIfGp_roomControl_getStayNo()) {
                 g_env_light.player_room_no = dComIfGp_roomControl_getStayNo();
                 mDoAud_setSceneName(
@@ -4011,11 +4012,11 @@ void dScnKy_env_light_c::settingTevStruct(int tevstrType, cXyz* pos_p, dKy_tevst
         field_0x10f0.b = (s16)amb_col.b;
         field_0x10f0.a = 255;
 
-        if (tevstrType != 11) {
+        if (tevstrType != TEVSTR_TYPE_UNK11) {
             settingTevStruct_plightcol_plus(pos_p, tevstr_p, amb_col, amb_col, init_timer);
         }
 
-        if (tevstrType == 10 || tevstrType == 9) {
+        if (tevstrType == TEVSTR_TYPE_HUMAN_LINK || tevstrType == TEVSTR_TYPE_WOLF_LINK) {
             g_env_light.plight_near_pos = tevstr_p->mLightPosWorld;
         }
     } else {
@@ -4187,49 +4188,49 @@ static void setLightTevColorType_MAJI_sub(J3DMaterial* material_p, dKy_tevstr_c*
         amb_col.b = tevstr_p->AmbCol.b;
         amb_col.a = tevstr_p->AmbCol.a;
 
-        if (((tevstr_p->Type >= 1 && tevstr_p->Type <= 7) || tevstr_p->Type == 5 ||
-             tevstr_p->Type == 15 || (tevstr_p->Type == 9 && dKy_darkworld_check())) &&
-            ((tevstr_p->Type != 2 && tevstr_p->Type != 3) || dKy_darkworld_check()))
+        if (((tevstr_p->Type >= TEVSTR_TYPE_SHADOW_MIDNA && tevstr_p->Type <= TEVSTR_TYPE_GHOST) || tevstr_p->Type == TEVSTR_TYPE_SOLID_GHOST ||
+             tevstr_p->Type == TEVSTR_TYPE_UNK15 || (tevstr_p->Type == TEVSTR_TYPE_WOLF_LINK && dKy_darkworld_check())) &&
+            ((tevstr_p->Type != TEVSTR_TYPE_TWILIGHT_ENEMY && tevstr_p->Type != TEVSTR_TYPE_TWILI) || dKy_darkworld_check()))
         {
             amb_col.r = 0;
             amb_col.g = 0;
             amb_col.b = 0;
             amb_col.a = 0;
 
-            if (tevstr_p->Type == 7) {
+            if (tevstr_p->Type == TEVSTR_TYPE_GHOST) {
                 amb_col.a = 4;
             }
 
-            if (tevstr_p->Type == 3) {
+            if (tevstr_p->Type == TEVSTR_TYPE_TWILI) {
                 amb_col.r = 12;
                 amb_col.g = 12;
                 amb_col.b = 12;
-            } else if (tevstr_p->Type == 6) {
+            } else if (tevstr_p->Type == TEVSTR_TYPE_TWILIGHT_INSECT) {
                 f32 var_r30 = fabsf(cM_ssin(g_Counter.mCounter0 * 662));
                 amb_col.r = 255.0f - (185.0f * var_r30);
                 amb_col.g = 255.0f - (185.0f * var_r30);
                 amb_col.b = 255.0f - (185.0f * var_r30);
-            } else if (tevstr_p->Type == 2) {
+            } else if (tevstr_p->Type == TEVSTR_TYPE_TWILIGHT_ENEMY) {
                 amb_col.r = 0x12;
                 amb_col.g = 0x12;
                 amb_col.b = 0x12;
-            } else if (tevstr_p->Type == 4) {
+            } else if (tevstr_p->Type == TEVSTR_TYPE_TWILIGHT_NPC) {
                 amb_col.r = 0xFF;
                 amb_col.g = 0x33;
                 amb_col.b = 0xB;
-            } else if (tevstr_p->Type == 5) {
+            } else if (tevstr_p->Type == TEVSTR_TYPE_SOLID_GHOST) {
                 amb_col.r = 0xA;
                 amb_col.g = 0xA;
                 amb_col.b = 8;
-            } else if (tevstr_p->Type == 15) {
+            } else if (tevstr_p->Type == TEVSTR_TYPE_UNK15) {
                 amb_col.r = 0x19;
                 amb_col.g = 0x1E;
                 amb_col.b = 0x23;
             }
 
             #if DEBUG
-            if ((tevstr_p->Type == 4 || tevstr_p->Type == 2 || tevstr_p->Type == 1 || tevstr_p->Type == 7 ||
-                tevstr_p->Type == 6 || tevstr_p->Type == 5 || tevstr_p->Type == 15 || (tevstr_p->Type == 9 && dKy_darkworld_check())))
+            if ((tevstr_p->Type == TEVSTR_TYPE_TWILIGHT_NPC || tevstr_p->Type == TEVSTR_TYPE_TWILIGHT_ENEMY || tevstr_p->Type == TEVSTR_TYPE_SHADOW_MIDNA || tevstr_p->Type == TEVSTR_TYPE_GHOST ||
+                tevstr_p->Type == TEVSTR_TYPE_TWILIGHT_INSECT || tevstr_p->Type == TEVSTR_TYPE_SOLID_GHOST || tevstr_p->Type == TEVSTR_TYPE_UNK15 || (tevstr_p->Type == TEVSTR_TYPE_WOLF_LINK && dKy_darkworld_check())))
             {
                 if (g_kankyoHIO.navy.adjust_light_mode == 2) {
                     amb_col.r = g_kankyoHIO.navy.adjust_light_ambcol.r & 0xFF;
@@ -4412,7 +4413,7 @@ static void setLightTevColorType_MAJI_sub(J3DMaterial* material_p, dKy_tevstr_c*
                     fog_info->mColor.r = 0;
                     fog_info->mColor.g = 0;
                     fog_info->mColor.b = 0;
-                } else if (fog_info->mType == 6) {
+                } else if (fog_info->mType == TEVSTR_TYPE_TWILIGHT_INSECT) {
                     fog_info->mColor.r = 0xFF;
                     fog_info->mColor.g = 0xFF;
                     fog_info->mColor.b = 0xFF;
@@ -4492,13 +4493,13 @@ void dScnKy_env_light_c::setLightTevColorType_MAJI(J3DModelData* modelData_p,
             dKy_tevstr_init(tevstr_p, dComIfGp_roomControl_getStayNo(), 0xFF);
         }
 
-        settingTevStruct(11, NULL, tevstr_p);
+        settingTevStruct(TEVSTR_TYPE_UNK11, NULL, tevstr_p);
     }
 
     dKy_setLight_nowroom_actor(tevstr_p);
 
     int lightType;
-    if (tevstr_p->Type > 10 && tevstr_p->Type != 12 && tevstr_p->Type != 13) {
+    if (tevstr_p->Type > TEVSTR_TYPE_HUMAN_LINK && tevstr_p->Type != TEVSTR_TYPE_COLLECTION_LINK && tevstr_p->Type != TEVSTR_TYPE_COLLECTION_MODEL) {
         lightType = 0;
     } else {
         lightType = 1;
@@ -8729,11 +8730,11 @@ void dKy_setLight_nowroom_actor(dKy_tevstr_c* tevstr_p) {
     s8 room_no = tevstr_p->room_no;
     f32 light_ratio = 1.0f;
 
-    if (tevstr_p->Type == 9 || tevstr_p->Type == 10) {
+    if (tevstr_p->Type == TEVSTR_TYPE_WOLF_LINK || tevstr_p->Type == TEVSTR_TYPE_HUMAN_LINK) {
         light_ratio = dKy_move_room_ratio(tevstr_p, &room_no);
     }
 
-    if (tevstr_p->Type == 14 || tevstr_p->Type == 12 || tevstr_p->Type == 13) {
+    if (tevstr_p->Type == TEVSTR_TYPE_DEMO_ITEM || tevstr_p->Type == TEVSTR_TYPE_COLLECTION_LINK || tevstr_p->Type == TEVSTR_TYPE_COLLECTION_MODEL) {
         return;
     }
 
@@ -8837,7 +8838,7 @@ void dKy_setLight_nowroom_actor(dKy_tevstr_c* tevstr_p) {
                 }
 
                 #if DEBUG
-                if ((tevstr_p->Type == 10 || tevstr_p->Type == 9) &&
+                if ((tevstr_p->Type == TEVSTR_TYPE_HUMAN_LINK || tevstr_p->Type == TEVSTR_TYPE_WOLF_LINK) &&
                     dComIfGp_roomControl_getStayNo() == room_no) {
                     if (room_lights != NULL) {
                         if (i < room_light_num) {
@@ -8989,9 +8990,9 @@ void dKy_Global_amb_set(dKy_tevstr_c* tevstr_p) {
     color.b = tevstr_p->AmbCol.b;
     color.a = tevstr_p->AmbCol.a;
 
-    if (tevstr_p->Type == 2 || tevstr_p->Type == 3) {
+    if (tevstr_p->Type == TEVSTR_TYPE_TWILIGHT_ENEMY || tevstr_p->Type == TEVSTR_TYPE_TWILI) {
         if (dKy_darkworld_check()) {
-            if (tevstr_p->Type == 2) {
+            if (tevstr_p->Type == TEVSTR_TYPE_TWILIGHT_ENEMY) {
                 color.r = 18;
                 color.g = 18;
                 color.b = 18;
@@ -9003,8 +9004,8 @@ void dKy_Global_amb_set(dKy_tevstr_c* tevstr_p) {
                 color.a = 0;
             }
         }
-    } else if ((tevstr_p->Type >= 1 && tevstr_p->Type <= 7) ||
-               (tevstr_p->Type == 9 && dKy_darkworld_check()))
+    } else if ((tevstr_p->Type >= TEVSTR_TYPE_SHADOW_MIDNA && tevstr_p->Type <= TEVSTR_TYPE_GHOST) ||
+               (tevstr_p->Type == TEVSTR_TYPE_WOLF_LINK && dKy_darkworld_check()))
     {
         color.r = 0;
         color.g = 0;
@@ -10960,7 +10961,7 @@ void dKy_depth_dist_set(void* process_p) {
     fopAc_ac_c* actor_p = (fopAc_ac_c*)process_p;
     sp24 = actor_p->eyePos;
 
-    if (dComIfGp_event_runCheck() && actor_p->tevStr.Type <= 10) {
+    if (dComIfGp_event_runCheck() && actor_p->tevStr.Type <= TEVSTR_TYPE_HUMAN_LINK) {
         if (fabsf(sp24.y - camera_p->view.lookat.eye.y) < 400.0f) {
             sp24.y = camera_p->view.lookat.eye.y;
         }

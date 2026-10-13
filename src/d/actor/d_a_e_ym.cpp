@@ -164,7 +164,7 @@ int daE_YM_c::draw() {
     }
 
     J3DModel* model_p = mpMorf->getModel();
-    g_env_light.settingTevStruct(6, &current.pos, &tevStr);
+    g_env_light.settingTevStruct(TEVSTR_TYPE_TWILIGHT_INSECT, &current.pos, &tevStr);
     g_env_light.setLightTevColorType_MAJI(model_p, &tevStr);
 
     J3DModelData* modelData_p = model_p->getModelData();

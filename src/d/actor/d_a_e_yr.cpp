@@ -412,7 +412,7 @@ static int daE_Yr_Draw(e_yr_class* i_this) {
 
     J3DModel* model = i_this->mpMorfSO->getModel();
 
-    g_env_light.settingTevStruct(2, &actor->current.pos, &actor->tevStr);
+    g_env_light.settingTevStruct(TEVSTR_TYPE_TWILIGHT_ENEMY, &actor->current.pos, &actor->tevStr);
     g_env_light.setLightTevColorType_MAJI(model, &actor->tevStr);
 
     dComIfGd_setListDark();

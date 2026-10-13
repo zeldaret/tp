@@ -145,7 +145,7 @@ static int daNpc_Ne_Draw(npc_ne_class* i_this) {
         if (!dComIfGs_wolfeye_effect_check()) {
             return 1;
         }
-        g_env_light.settingTevStruct(4, &i_this->current.pos, &i_this->tevStr);
+        g_env_light.settingTevStruct(TEVSTR_TYPE_TWILIGHT_NPC, &i_this->current.pos, &i_this->tevStr);
     } else {
         g_env_light.settingTevStruct(0, &i_this->current.pos, &i_this->tevStr);
     }

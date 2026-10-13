@@ -94,7 +94,7 @@ int daWindStone_c::execute() {
 }
 
 int daWindStone_c::draw() {
-    g_env_light.settingTevStruct(8, &current.pos, &tevStr);
+    g_env_light.settingTevStruct(TEVSTR_TYPE_UNK8, &current.pos, &tevStr);
     g_env_light.setLightTevColorType_MAJI(mpModel, &tevStr);
     dComIfGd_setListBG();
     mDoExt_modelUpdateDL(mpModel);

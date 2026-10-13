@@ -913,7 +913,7 @@ int daObj_Sekizoa_c::setYariAnm(int i_frame, int i_mode, f32 i_morf) {
 void daObj_Sekizoa_c::drawGhost() {
     J3DModel* ghost_model = mpMorf[0]->getModel();
     if (mType == TYPE_6) {
-        g_env_light.settingTevStruct(7, &current.pos, &tevStr);
+        g_env_light.settingTevStruct(TEVSTR_TYPE_GHOST, &current.pos, &tevStr);
         g_env_light.setLightTevColorType_MAJI(ghost_model->getModelData(), &tevStr);
         mInvModel.entryDL(NULL);
     } else {

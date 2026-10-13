@@ -142,7 +142,7 @@ static int daE_YG_Draw(e_yg_class* i_this) {
     fopAc_ac_c* actor = (fopAc_ac_c*)&i_this->actor;
 
     J3DModel* model = i_this->mpMorf->getModel();
-    g_env_light.settingTevStruct(2, &actor->current.pos, &actor->tevStr);
+    g_env_light.settingTevStruct(TEVSTR_TYPE_TWILIGHT_ENEMY, &actor->current.pos, &actor->tevStr);
     g_env_light.setLightTevColorType_MAJI(model, &i_this->actor.tevStr);
     dComIfGd_setListDark();
     i_this->mpMorf->entryDL();

@@ -1394,7 +1394,7 @@ void daNpc_Kn_c::drawOtherMdl() {
 
 void daNpc_Kn_c::drawGhost() {
     J3DModel* model = mpModelMorf[0]->getModel();
-    g_env_light.settingTevStruct(7, &current.pos, &tevStr);
+    g_env_light.settingTevStruct(TEVSTR_TYPE_GHOST, &current.pos, &tevStr);
     g_env_light.setLightTevColorType_MAJI(model, &tevStr);
 
     if (dKy_darkworld_check()) {

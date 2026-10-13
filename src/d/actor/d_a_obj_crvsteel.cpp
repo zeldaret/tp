@@ -128,7 +128,7 @@ int daObjCRVSTEEL_c::Execute(Mtx** param_1) {
 }
 
 int daObjCRVSTEEL_c::Draw() {
-    g_env_light.settingTevStruct(8, &current.pos, &tevStr);
+    g_env_light.settingTevStruct(TEVSTR_TYPE_UNK8, &current.pos, &tevStr);
     g_env_light.setLightTevColorType_MAJI(mModel, &tevStr);
     dComIfGd_setListBG();
     mDoExt_modelUpdateDL(mModel);

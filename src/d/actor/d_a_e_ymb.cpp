@@ -307,7 +307,7 @@ static void rideCallBack(dBgW* param_1, fopAc_ac_c* aActor_p, fopAc_ac_c* param_
 }
 
 int daE_YMB_c::draw() {
-    g_env_light.settingTevStruct(6, &current.pos, &tevStr);
+    g_env_light.settingTevStruct(TEVSTR_TYPE_TWILIGHT_INSECT, &current.pos, &tevStr);
 
     if (!field_0x6d8 || field_0x710 != 0) {
         return 1;

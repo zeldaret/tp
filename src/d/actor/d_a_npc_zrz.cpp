@@ -367,7 +367,7 @@ int daNpc_zrZ_c::draw(int i_isTest, int param_1, f32 i_shadowDepth, _GXColorS10*
             return 1;
         }
 
-        g_env_light.settingTevStruct(7, &current.pos, &tevStr);
+        g_env_light.settingTevStruct(TEVSTR_TYPE_GHOST, &current.pos, &tevStr);
         g_env_light.setLightTevColorType_MAJI(model->getModelData(), &tevStr);
 
         if (!drawDbgInfo()) {

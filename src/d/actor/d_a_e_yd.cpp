@@ -78,7 +78,7 @@ static s32 daE_YD_Draw(e_yd_class* i_this) {
 
     fopAc_ac_c* actor = (fopAc_ac_c*)i_this;
 
-    g_env_light.settingTevStruct(2, &i_this->actor.current.pos, &i_this->actor.tevStr);
+    g_env_light.settingTevStruct(TEVSTR_TYPE_TWILIGHT_ENEMY, &i_this->actor.current.pos, &i_this->actor.tevStr);
     dComIfGd_setListDark();
     J3DModel* model = i_this->mpMorf->getModel();
     g_env_light.setLightTevColorType_MAJI(model, &i_this->actor.tevStr);

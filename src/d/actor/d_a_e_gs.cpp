@@ -32,7 +32,7 @@ static int daE_GS_Draw(e_gs_class* a_this) {
         return 1;
     }
 
-    g_env_light.settingTevStruct(7, &actor->current.pos, &actor->tevStr);
+    g_env_light.settingTevStruct(TEVSTR_TYPE_GHOST, &actor->current.pos, &actor->tevStr);
     actor->tevStr.TevColor.a = (u8)a_this->opacity;
     g_env_light.setLightTevColorType_MAJI(model, &actor->tevStr);
 

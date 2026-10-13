@@ -371,7 +371,7 @@ int daB_DS_c::draw() {
 
         if (mDrawZant) {
             J3DModel* zant_model = mpZantMorf->getModel();
-            g_env_light.settingTevStruct(3, &mSwordPos, &tevStr);
+            g_env_light.settingTevStruct(TEVSTR_TYPE_TWILI, &mSwordPos, &tevStr);
             g_env_light.setLightTevColorType_MAJI(zant_model->mModelData, &tevStr);
 
             J3DShape* shape =

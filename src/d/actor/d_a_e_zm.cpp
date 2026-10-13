@@ -128,7 +128,7 @@ int daE_ZM_c::draw() {
     }
 
     J3DModel* model = mpModelMorf->getModel();
-    g_env_light.settingTevStruct(2, &current.pos, &tevStr);
+    g_env_light.settingTevStruct(TEVSTR_TYPE_TWILIGHT_ENEMY, &current.pos, &tevStr);
     g_env_light.setLightTevColorType_MAJI(model, &tevStr);
 
     J3DModelData* modelData = model->getModelData();

@@ -23,7 +23,7 @@ static int daE_ARROW_Draw(e_arrow_class* i_this) {
     }
 
     if (fopAcM_GetParam(i_this) & 0x80000000) {
-        g_env_light.settingTevStruct(2, &i_this->current.pos, &i_this->tevStr);
+        g_env_light.settingTevStruct(TEVSTR_TYPE_TWILIGHT_ENEMY, &i_this->current.pos, &i_this->tevStr);
     } else {
         g_env_light.settingTevStruct(0, &i_this->current.pos, &i_this->tevStr);
     }

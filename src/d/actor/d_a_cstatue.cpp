@@ -1173,7 +1173,7 @@ static int daCstatue_Execute(daCstatue_c* actor) {
 }
 
 int daCstatue_c::draw() {
-    int tevstrType = checkBossType() ? 0x10 : 8;
+    int tevstrType = checkBossType() ? 0x10 : TEVSTR_TYPE_UNK8;
     g_env_light.settingTevStruct(tevstrType, &current.pos, &tevStr);
     g_env_light.setLightTevColorType_MAJI(mModel, &tevStr);
     mAnim2.entry(mModel->getModelData());

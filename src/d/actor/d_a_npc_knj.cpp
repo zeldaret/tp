@@ -415,7 +415,7 @@ bool daNpc_Knj_c::afterSetMotionAnm(int param_1, int param_2, f32 param_3, int p
 
 void daNpc_Knj_c::drawGhost() {
     J3DModel* model = mpMorf[0]->getModel();
-    g_env_light.settingTevStruct(5, &current.pos, &tevStr);
+    g_env_light.settingTevStruct(TEVSTR_TYPE_SOLID_GHOST, &current.pos, &tevStr);
     g_env_light.setLightTevColorType_MAJI(model, &tevStr);
     mpMorf[0]->entryDL();
 }

@@ -440,7 +440,7 @@ int daNpc_GWolf_c::draw(int param_1, int param_2, f32 param_3, _GXColorS10* i_co
             tevStr.TevColor.r = 0;
         }
 
-        g_env_light.settingTevStruct(5, &current.pos, &tevStr);
+        g_env_light.settingTevStruct(TEVSTR_TYPE_SOLID_GHOST, &current.pos, &tevStr);
         g_env_light.setLightTevColorType_MAJI(model, &tevStr);
 
         if (!drawDbgInfo()) {

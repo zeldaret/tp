@@ -192,7 +192,7 @@ int daKago_c::draw() {
         return 1;
     }
 
-    g_env_light.settingTevStruct(2, &current.pos, &tevStr);
+    g_env_light.settingTevStruct(TEVSTR_TYPE_TWILIGHT_ENEMY, &current.pos, &tevStr);
     J3DModel* model = mAnm_p->getModel();
     g_env_light.setLightTevColorType_MAJI(model, &tevStr);
 
