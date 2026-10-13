@@ -240,7 +240,11 @@ config.reconfig_deps = []
 
 # Optional numeric ID for decomp.me preset
 # Can be overridden in libraries or objects
-config.scratch_preset_id = 69 # Twilight Princess (DOL)
+if config.version in WII_VERSIONS or config.version in SHIELD_VERSIONS:
+    config.scratch_preset_id = 0 # None, so MWCC version isn't overriden.
+else:
+    config.scratch_preset_id = 69 # Twilight Princess (DOL)
+
 
 # Globs to exclude from context files
 # *.mch excludes precompiled header output (which cannot be parsed)
