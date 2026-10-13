@@ -1697,7 +1697,7 @@ dDlst_list_c::dDlst_list_c() {
 
 dDlst_shadowSimple_c::dDlst_shadowSimple_c() {}
 
-static u16 const l_drawlistSize[dDlst_list_c::DB_LIST_MAX] = {
+static u16 const l_drawlistSize[] = {
     0x0001, 0x0001, 0x0001, 0x0080, 0x0001, 0x0001, 0x0001, 0x0080, 0x0100, 0x0001, 0x0100,
     0x0001, 0x0020, 0x0010, 0x0010, 0x0020, 0x0020, 0x0100, 0x0001, 0x0004, 0x0004,
     #if PLATFORM_WII || PLATFORM_SHIELD
@@ -1705,20 +1705,14 @@ static u16 const l_drawlistSize[dDlst_list_c::DB_LIST_MAX] = {
     #endif
 };
 
-#if PLATFORM_GCN
-#define NUM_NON_SORT_ID 9
-#else
-#define NUM_NON_SORT_ID 10
-#endif
-
-static u8 const l_nonSortId[NUM_NON_SORT_ID] = {
+static u8 const l_nonSortId[] = {
     0x00, 0x01, 0x02, 0x04, 0x05, 0x06, 0x09, 0x12, 0x0D,
     #if PLATFORM_WII || PLATFORM_SHIELD || PLATFORM_PC
     0x15, //0x00, 0x00
     #endif
 };
 
-static const u8 l_zSortId[6] = {
+static const u8 l_zSortId[] = {
     0x08, 0x0A, 0x0C, 0x0E, 0x10, 0x11,
 };
 
@@ -1726,19 +1720,19 @@ void dDlst_list_c::init() {
     J3DDrawBuffer** var_r30 = mDrawBuffers;
     const u16* var_r29 = l_drawlistSize;
 
-    for (int i = 0; i < dDlst_list_c::DB_LIST_MAX; i++) {
+    for (int i = 0; i < ARRAY_SIZE(l_drawlistSize); i++) {
         // TODO: J3DDrawBuffer__create doesn't inline here'
         *var_r30 = J3DDrawBuffer__create(*var_r29++);
         var_r30++;
     }
 
     const u8* var_r5 = l_nonSortId;
-    for (int i = 0; i < sizeof(l_nonSortId); i++) {
+    for (int i = 0; i < ARRAY_SIZE(l_nonSortId); i++) {
         mDrawBuffers[*var_r5++]->setNonSort();
     }
 
     const u8* var_r5_2 = l_zSortId;
-    for (int i = 0; i < 6; i++) {
+    for (int i = 0; i < ARRAY_SIZE(l_zSortId); i++) {
         mDrawBuffers[*var_r5_2++]->setZSort();
     }
 
