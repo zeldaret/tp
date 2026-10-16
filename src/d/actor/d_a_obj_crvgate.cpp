@@ -8,18 +8,6 @@
 #include "d/actor/d_a_obj_crvgate.h"
 #include "d/d_s_play.h"
 
-const static dCcD_SrcSph ccSphSrc = {
-    {
-        {0x0, {{0x0, 0x0, 0x13}, {0x100000, 0x1F}, 0x75}},  // mObj
-        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0},                 // mGObjAt
-        {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x1},                 // mGObjTg
-        {0x0},                                              // mGObjCo
-    },                                                      // mObjInf
-    {
-        {{0.0f, 100.0f, 0.0f}, 60.0f},  // mSph
-    }  // mSphAttr
-};
-
 static char* l_arcName = "CrvGate";
 
 namespace {
@@ -27,6 +15,18 @@ static u16 s_CoCount = 0;
 }
 
 void daObjCRVGATE_c::initCcCylinder() {
+    const static dCcD_SrcSph ccCylSrc = {
+        {
+            {0x0, {{0x0, 0x0, 0x13}, {0x100000, 0x1F}, 0x75}},  // mObj
+            {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x0},                 // mGObjAt
+            {dCcD_SE_NONE, 0x0, 0x0, 0x0, 0x1},                 // mGObjTg
+            {0x0},                                              // mGObjCo
+        },                                                      // mObjInf
+        {
+            {{0.0f, 100.0f, 0.0f}, 60.0f},  // mSph
+        }  // mSphAttr
+    };
+
     mStts.Init(0xff, 0xff, this);
 
     for (int i = 0; i < 3; i++) {
@@ -36,15 +36,15 @@ void daObjCRVGATE_c::initCcCylinder() {
         mDoMtx_stack_c::multVecZero(&mXyzSph[i]);
     }
 
-    mSph[0].Set(ccSphSrc);
+    mSph[0].Set(ccCylSrc);
     mSph[0].SetStts(&mStts);
     mSph[0].SetC(mXyzSph[0]);
 
-    mSph[1].Set(ccSphSrc);
+    mSph[1].Set(ccCylSrc);
     mSph[1].SetStts(&mStts);
     mSph[1].SetC(mXyzSph[1]);
 
-    mSph[2].Set(ccSphSrc);
+    mSph[2].Set(ccCylSrc);
     mSph[2].SetStts(&mStts);
     mSph[2].SetC(mXyzSph[2]);
 }
@@ -663,21 +663,17 @@ static int daObjCRVGATE_Execute(daObjCRVGATE_c* i_this) {
 }
 
 int daObjCRVGATE_c::CreateHeap() {
-    J3DModelData* model_data_gate =
-        (J3DModelData*)dComIfG_getObjectRes(l_arcName, "CaravanGate.bmd");
+    J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, "CaravanGate.bmd");
+    JUT_ASSERT(92, modelData != NULL);
 
-    JUT_ASSERT(762, model_data_gate != NULL)
-
-    mpModelGate = mDoExt_J3DModel__create(model_data_gate, 0x80000, 0x11000084);
-
+    mpModelGate = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     if (mpModelGate == NULL) {
         return 0;
     }
 
-    J3DModelData* model_data_key;
     if (mKeyParam == 0x00) {
-        model_data_key = (J3DModelData*)dComIfG_getObjectRes(l_arcName, "CaravanKey.bmd");
-        mpModelKey = mDoExt_J3DModel__create(model_data_key, 0x80000, 0x11000084);
+        modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, "CaravanKey.bmd");
+        mpModelKey = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
     }
 
     if (mpModelGate == NULL) {  // ?
@@ -714,7 +710,7 @@ void daObjCRVGATE_c::SetDoor() {
     }
 }
 
-int daObjCRVGATE_c::create() {
+inline int daObjCRVGATE_c::create() {
     fopAcM_ct(this, daObjCRVGATE_c);
     cPhs_Step phase = dComIfG_resLoad(&mPhaseReq, l_arcName);
 
@@ -725,8 +721,8 @@ int daObjCRVGATE_c::create() {
         if (dzb_id == -1) {
             // "dzb data not found!<%s>"
             OS_REPORT("dzbデータが見つかりませんでした!<%s>\n\n", l_arcName);
-            JUT_ASSERT(783, dzb_id != -1)
         }
+        JUT_ASSERT(1506, dzb_id != -1);
         phase =
             MoveBGCreate(l_arcName, dzb_id, dBgS_MoveBGProc_TypicalRotY, 0x1480, NULL);
 

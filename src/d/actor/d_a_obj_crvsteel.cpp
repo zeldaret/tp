@@ -7,12 +7,16 @@
 
 #include "d/actor/d_a_obj_crvsteel.h"
 #include "d/d_com_inf_game.h"
+#include "d/d_s_play.h"
 
 static int daObjCRVSTEEL_Create(fopAc_ac_c* i_this) {
-    return static_cast<daObjCRVSTEEL_c*>(i_this)->create();
+    daObjCRVSTEEL_c* a_this = (daObjCRVSTEEL_c*)i_this;
+    fpc_ProcID id = fopAcM_GetID(i_this);
+    return a_this->create();
 }
 
 static int daObjCRVSTEEL_Delete(daObjCRVSTEEL_c* i_this) {
+    fpc_ProcID id = fopAcM_GetID(i_this);
     i_this->MoveBGDelete();
     return 1;
 }
@@ -32,7 +36,8 @@ void daObjCRVSTEEL_c::CloseExecute() {
     current.pos.y += speed.y;
     if (current.pos.y < mMinHeight) {
         current.pos.y = mMinHeight;
-        fopAcM_effSmokeSet1(&mSmokeParticle1, &mSmokeParticle2, &current.pos, 0, 5.0f, &tevStr, 1);
+        fopAcM_effSmokeSet1(&mSmokeParticle1, &mSmokeParticle2, &current.pos, 0, 5.0f + nREG_F(0),
+                            &tevStr, 1);
         mAction = 0;
     }
 }
@@ -65,7 +70,7 @@ void daObjCRVSTEEL_c::setBaseMtx() {
 }
 
 static int daObjCRVSTEEL_Draw(daObjCRVSTEEL_c* i_this) {
-   return i_this->Draw();
+    return i_this->MoveBGDraw();
 }
 
 static int daObjCRVSTEEL_Execute(daObjCRVSTEEL_c* i_this) {
@@ -78,20 +83,23 @@ int daObjCRVSTEEL_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, "U_CrvSteelGate.bmd");
     JUT_ASSERT(86, modelData != NULL);
     mModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
-    return mModel != NULL ? TRUE : FALSE;
+    if (mModel == NULL) {
+        return FALSE;
+    }
+    return TRUE;
 }
 
-int daObjCRVSTEEL_c::create() {
+inline int daObjCRVSTEEL_c::create() {
     fopAcM_ct(this, daObjCRVSTEEL_c);
     int rv = dComIfG_resLoad(&mPhase, l_arcName);
     if (rv == cPhs_COMPLEATE_e) {
-        gravity = -9.0f;
+        gravity = -9.0f + nREG_F(0);
         int dzb_id = dComIfG_getObjctResName2Index(l_arcName, "U_CrvSteelGate.dzb");
         if (dzb_id == -1) {
             // "dzb data not found!<%s>"
             OS_REPORT("dzbデータが見つかりませんでした!<%s>\n\n", l_arcName);
-            JUT_ASSERT(443, dzb_id != -1);
         }
+        JUT_ASSERT(443, dzb_id != -1);
         rv = MoveBGCreate(l_arcName, dzb_id, dBgS_MoveBGProc_TypicalRotY, 0x4000, NULL);
         if (rv == cPhs_ERROR_e) {
             return rv;

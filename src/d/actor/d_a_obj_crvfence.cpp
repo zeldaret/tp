@@ -31,13 +31,19 @@ enum Action {
 static char* l_arcName = "CrvFence";
 
 BOOL daObjCRVFENCE_c::CheckVec() {
-    cXyz vec(fopAcM_GetPosition((fopAc_ac_c*)daPy_getPlayerActorClass()));
+    daPy_py_c* player = daPy_getPlayerActorClass();
+    cXyz* player_pos = &fopAcM_GetPosition(player);
+    cXyz vec(*player_pos);
     Mtx mtx;
     mDoMtx_inverse(field_0x65c->getBaseTRMtx(), mtx);
     mDoMtx_stack_c::copy(mtx);
     mDoMtx_stack_c::multVec(&vec, &vec);
 
-    return vec.z > 0.0f;
+    if (vec.z > 0.0f) {
+        return TRUE;
+    } else {
+        return FALSE;
+    }
 }
 
 BOOL daObjCRVFENCE_c::Wall_Check(cXyz i_start, cXyz param_2) {
@@ -52,18 +58,22 @@ BOOL daObjCRVFENCE_c::Wall_Check(cXyz i_start, cXyz param_2) {
     return FALSE;
 }
 
-static int daObjCRVFENCE_Create(fopAc_ac_c* a_this) {
-    return static_cast<daObjCRVFENCE_c*>(a_this)->create();
+static int daObjCRVFENCE_Create(fopAc_ac_c* i_this) {
+    daObjCRVFENCE_c* a_this = (daObjCRVFENCE_c*)i_this;
+    fpc_ProcID id = fopAcM_GetID(i_this);
+    return a_this->create();
 }
 
-static int daObjCRVFENCE_Delete(daObjCRVFENCE_c* a_this) {
-    static_cast<daObjCRVFENCE_c*>(a_this)->MoveBGDelete();
+static int daObjCRVFENCE_Delete(daObjCRVFENCE_c* i_this) {
+    fpc_ProcID id = fopAcM_GetID(i_this);
+    i_this->MoveBGDelete();
     return 1;
 }
 
 void daObjCRVFENCE_c::BgRelease() {
-    if (mpBgW != NULL) {
-        if (mpBgW->ChkUsed() && dComIfG_Bgsp().Release(mpBgW)) {
+    if (mpBgW != NULL && mpBgW->ChkUsed()) {
+        bool rel_ret = dComIfG_Bgsp().Release(mpBgW);
+        if (rel_ret) {
             OSReport("Release Error\n");
         }
     }
@@ -170,12 +180,15 @@ static void* s_obj_sub(void* i_actor, void* i_data) {
 }
 
 void daObjCRVFENCE_c::NormalAction() {
+    daPy_py_c* player = daPy_getPlayerActorClass();
+
     if (!field_0x5f4) {
         e_wb_class* wb_p = (e_wb_class*)fpcM_Search(s_obj_sub, this);
         if (wb_p != NULL && wb_p->action == ACT_PL_RIDE2) {
             fopAcM_OffStatus(this, fopAcStts_CULL_e);
             fopAcM_seStartCurrent(this, Z2SE_OBJ_SAKU_BREAK, 0);
-            cXyz sp5c(fopAcM_GetPosition(&wb_p->enemy));
+            cXyz* wb_pos = &fopAcM_GetPosition(&wb_p->enemy);
+            cXyz sp5c(*wb_pos);
             Mtx mtx;
             mDoMtx_inverse(field_0x65c->getBaseTRMtx(), mtx);
             mDoMtx_stack_c::copy(mtx);
@@ -223,38 +236,9 @@ void daObjCRVFENCE_c::NormalAction() {
 }
 
 bool daObjCRVFENCE_c::checkViewArea(cXyz* param_1) {
-    Vec sp24;
-    mDoLib_project(param_1, &sp24);
-    bool rv = false;
-    bool bVar1 = false;
-
-    #if DEBUG
-    if (sp24.x >= 0.0f) {
-        if (sp24.y <= FB_WIDTH) {
-            bVar1 = true;
-        }
-    }
-
-    if (bVar1) {
-        bVar1 = false;
-
-        if (sp24.y >= 0.0f) {
-            if (sp24.y <= FB_HEIGHT) {
-                bVar1 = true;
-            }
-        }
-
-        if (bVar1) {
-            rv = true;
-        }
-    }
-    #else
-    if (sp24.x >= 0.0f && sp24.x <= FB_WIDTH && sp24.y >= 0.0f && sp24.y <= FB_HEIGHT) {
-        rv = true;
-    }
-    #endif
-
-    return rv;
+    Vec proj;
+    mDoLib_project(param_1, &proj);
+    return (proj.x >= 0.0f && proj.x <= FB_WIDTH) && (proj.y >= 0.0f && proj.y <= FB_HEIGHT);
 }
 
 void daObjCRVFENCE_c::Action() {
@@ -285,7 +269,7 @@ void daObjCRVFENCE_c::setBaseMtx() {
     mDoMtx_stack_c::transS(current.pos);
     mDoMtx_stack_c::ZXYrotM(shape_angle);
     field_0x65c->setBaseTRMtx(mDoMtx_stack_c::get());
-    MTXCopy(mDoMtx_stack_c::get(), mBgMtx);
+    cMtx_copy(mDoMtx_stack_c::get(), mBgMtx);
 }
 
 static int daObjCRVFENCE_Draw(daObjCRVFENCE_c* i_this) {
@@ -323,7 +307,7 @@ int daObjCRVFENCE_c::CreateHeap() {
     return 1;
 }
 
-cPhs_Step daObjCRVFENCE_c::create() {
+inline cPhs_Step daObjCRVFENCE_c::create() {
     fopAcM_ct(this, daObjCRVFENCE_c);
 
     cPhs_Step phase = dComIfG_resLoad(&mPhase, l_arcName);
@@ -345,9 +329,8 @@ cPhs_Step daObjCRVFENCE_c::create() {
         if (dzb_id == -1) {
             // "dzb data not found!<%s>"
             OS_REPORT("dzbデータが見つかりませんでした!<%s>\n\n", l_arcName);
-
-            JUT_ASSERT(783, dzb_id != -1)
         }
+        JUT_ASSERT(783, dzb_id != -1);
 
         phase = MoveBGCreate(l_arcName, dzb_id, dBgS_MoveBGProc_TypicalRotY, 0x1CA0, NULL);
         if (phase == cPhs_ERROR_e) {

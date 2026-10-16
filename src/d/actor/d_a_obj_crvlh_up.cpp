@@ -11,10 +11,13 @@
 #include "d/d_s_play.h"
 
 static int daObjCRVLH_UP_Create(fopAc_ac_c* i_this) {
-    return ((daObjCRVLH_UP_c*)i_this)->create();
+    daObjCRVLH_UP_c* a_this = (daObjCRVLH_UP_c*)i_this;
+    fpc_ProcID id = fopAcM_GetID(i_this);
+    return a_this->create();
 }
 
 static int daObjCRVLH_UP_Delete(daObjCRVLH_UP_c* i_this) {
+    fpc_ProcID id = fopAcM_GetID(i_this);
     i_this->MoveBGDelete();
     return 1;
 }
@@ -22,11 +25,13 @@ static int daObjCRVLH_UP_Delete(daObjCRVLH_UP_c* i_this) {
 static char* l_arcName = "CrvLH_Up";
 
 void daObjCRVLH_UP_c::HakaiSet() {
-    fopAcM_GetPosition(daPy_getPlayerActorClass());
+    daPy_py_c* player = daPy_getPlayerActorClass();
+    cXyz* player_pos = &fopAcM_GetPosition(player);
     field_0x5db = 1;
 
     if (mpBgW != NULL && mpBgW->ChkUsed()) {
-        if (dComIfG_Bgsp().Release(mpBgW)) {
+        bool rel_ret = dComIfG_Bgsp().Release(mpBgW);
+        if (rel_ret) {
             OSReport("Release Error\n");
         }
     }
@@ -35,7 +40,7 @@ void daObjCRVLH_UP_c::HakaiSet() {
 
 void daObjCRVLH_UP_c::UpMotion() {
     if (!(field_0x5dc < nREG_F(2) + -120.0f)) {
-        field_0x5dc += -5.0f;
+        field_0x5dc += -(5.0f + HREG_F(10));
     }
 }
 
@@ -43,7 +48,7 @@ void daObjCRVLH_UP_c::Hakai() {
     if (cLib_chaseAngleS(&shape_angle.x, 0x3800, field_0x5d8) != 0) {
         fopAcM_seStartCurrent(this, Z2SE_OBJ_YAGURA_LAND, 0);
         field_0x5da = 1;
-        csXyz cStack_30(shape_angle.x, field_0x5d6, shape_angle.z);
+        csXyz cStack_30((s16)shape_angle.x, (s16)field_0x5d6, (s16)shape_angle.z);
         csXyz cStack_38(0, 0, 0);
 
         for (int i = 0; i < 2; i++) {
@@ -78,7 +83,7 @@ void daObjCRVLH_UP_c::setBaseMtx() {
 }
 
 static int daObjCRVLH_UP_Draw(daObjCRVLH_UP_c* i_this) {
-    return i_this->Draw();
+    return i_this->MoveBGDraw();
 }
 
 static int daObjCRVLH_UP_Execute(daObjCRVLH_UP_c* i_this) {
@@ -87,15 +92,16 @@ static int daObjCRVLH_UP_Execute(daObjCRVLH_UP_c* i_this) {
 
 int daObjCRVLH_UP_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, "U_CrvLH_UP.bmd");
-    if (modelData == NULL) {
-        JUT_ASSERT(87, modelData != NULL);
-    }
+    JUT_ASSERT(87, modelData != NULL);
 
     mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
-    return mpModel != NULL ? 1 : 0;
+    if (mpModel == NULL) {
+        return 0;
+    }
+    return 1;
 }
 
-int daObjCRVLH_UP_c::create() {
+inline int daObjCRVLH_UP_c::create() {
     fopAcM_ct(this, daObjCRVLH_UP_c);
     int phase = dComIfG_resLoad(&mPhase, l_arcName);
 
@@ -104,7 +110,7 @@ int daObjCRVLH_UP_c::create() {
         int dzb_id = dComIfG_getObjctResName2Index(l_arcName, "U_CrvLH_Up.dzb");
         if (dzb_id == -1) {
             // "dzb data not found!<%s>"
-            OS_REPORT("dzbデータが見つかりませんでした!<%s>", l_arcName);
+            OS_REPORT("dzbデータが見つかりませんでした!<%s>\n\n", l_arcName);
         }
 
         JUT_ASSERT(504, dzb_id != -1);
