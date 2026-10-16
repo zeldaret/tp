@@ -40,7 +40,8 @@ void daObjCRVLH_DW_c::initCcCylinder() {
 }
 
 void daObjCRVLH_DW_c::SetCcSyl() {
-    cXyz cStack_18 = current.pos;
+    cXyz cStack_18;
+    cStack_18 = current.pos;
 
     cStack_18.y += XREG_F(0) + 100.0f;
     mCyl.SetC(cStack_18);
@@ -49,19 +50,21 @@ void daObjCRVLH_DW_c::SetCcSyl() {
 }
 
 static int daObjCRVLH_DW_Create(fopAc_ac_c* i_this) {
-    fopAcM_GetID(i_this);
-    return ((daObjCRVLH_DW_c*)i_this)->create();
+    daObjCRVLH_DW_c* a_this = (daObjCRVLH_DW_c*)i_this;
+    fpc_ProcID id = fopAcM_GetID(i_this);
+    return a_this->create();
 }
 
 static int daObjCRVLH_DW_Delete(daObjCRVLH_DW_c* i_this) {
-    fopAcM_GetID(i_this);
+    fpc_ProcID id = fopAcM_GetID(i_this);
     i_this->MoveBGDelete();
     return 1;
 }
 
 void daObjCRVLH_DW_c::BgRelease() {
     if (mpBgW != NULL && mpBgW->ChkUsed()) {
-        if (dComIfG_Bgsp().Release(mpBgW)) {
+        bool rel_ret = dComIfG_Bgsp().Release(mpBgW);
+        if (rel_ret) {
             OSReport("Release Error\n");
         }
     }
@@ -69,7 +72,9 @@ void daObjCRVLH_DW_c::BgRelease() {
 
 void daObjCRVLH_DW_c::Break() {
     fopAc_ac_c* local_30;
-    csXyz cStack_2c(0, fopAcM_searchPlayerAngleY(this) + 0x8000, 0);
+    s16 angle = fopAcM_searchPlayerAngleY(this);
+    angle += 0x8000;
+    csXyz cStack_2c(0, angle, 0);
     dComIfGp_particle_set(dPa_RM(ID_ZF_S_CRVYAGURA00_SMK), &current.pos, &tevStr, &shape_angle, 0);
     dComIfGp_particle_set(dPa_RM(ID_ZF_S_CRVYAGURA01_PIECE), &current.pos, &tevStr, &shape_angle,
                           0);
@@ -95,15 +100,16 @@ void daObjCRVLH_DW_c::Obj_Hit() {
 
     if (field_0x5b8 == 0) {
         if (mCyl.ChkCoHit() != 0) {
-            fopAc_ac_c* actor = mCyl.GetCoHitObj()->GetAc();
-            if (fopAcM_GetName(dCc_GetAc(actor)) == fpcNm_E_WB_e &&
+            fopAc_ac_c* actor = dCc_GetAc(mCyl.GetCoHitObj()->GetAc());
+            if (fopAcM_GetName(actor) == fpcNm_E_WB_e &&
                 ((e_wb_class*)actor)->action == ACT_PL_RIDE2)
             {
                 Break();
             }
         } else {
             if (mCyl.ChkTgHit() != 0) {
-                if (mCyl.GetTgHitObj()->ChkAtType(AT_TYPE_IRON_BALL) != 0) {
+                cCcD_Obj* hit_obj = mCyl.GetTgHitObj();
+                if (hit_obj->ChkAtType(AT_TYPE_IRON_BALL) != 0) {
                     Break();
                 }
             }
@@ -128,15 +134,16 @@ static int daObjCRVLH_DW_Execute(daObjCRVLH_DW_c* i_this) {
 
 int daObjCRVLH_DW_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, "U_CrvLH_Down.bmd");
-    if (modelData == NULL) {
-        JUT_ASSERT(87, modelData != NULL);
-    }
+    JUT_ASSERT(87, modelData != NULL);
 
     mpModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000084);
-    return mpModel != NULL ? 1 : 0;
+    if (mpModel == NULL) {
+        return 0;
+    }
+    return 1;
 }
 
-int daObjCRVLH_DW_c::create() {
+inline int daObjCRVLH_DW_c::create() {
     fopAcM_ct(this, daObjCRVLH_DW_c);
     int phase = dComIfG_resLoad(&mPhase, l_arcName);
 
@@ -145,7 +152,8 @@ int daObjCRVLH_DW_c::create() {
 
         if (mParam != 0xFF) {
             if (dComIfGs_isSwitch(mParam, fopAcM_GetRoomNo(this))) {
-                OS_REPORT("???");
+                // "E_SM: Already defeated, so not re-setting"
+                OS_REPORT("E_SM やられ後なので再セットしません\n");
                 return cPhs_ERROR_e;
             }
         }
@@ -154,7 +162,7 @@ int daObjCRVLH_DW_c::create() {
         int dzb_id = dComIfG_getObjctResName2Index(l_arcName, "U_CrvLH_Down.dzb");
         if (dzb_id == -1) {
             // "dzb data not found!<%s>"
-            OS_REPORT("dzbデータが見つかりませんでした!<%s>", l_arcName);
+            OS_REPORT("dzbデータが見つかりませんでした!<%s>\n\n", l_arcName);
         }
 
         JUT_ASSERT(611, dzb_id != -1);

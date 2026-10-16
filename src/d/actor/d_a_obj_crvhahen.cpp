@@ -7,14 +7,16 @@
 
 #include "d/actor/d_a_obj_crvhahen.h"
 #include "d/actor/d_a_player.h"
+#include "d/d_s_play.h"
 
 static const char* l_arcName = "CrvFence";
 
 inline int daObjCRVHAHEN_c::CreateHeap() {
-    J3DModelData* model_data = (J3DModelData*)dComIfG_getObjectRes(l_arcName, "CaravanPiece.bmd");
+    J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, "CaravanPiece.bmd");
+    JUT_ASSERT(82, modelData != 0);
 
     for (int i = 0; i < 10; i++) {
-        mpModel[i] = mDoExt_J3DModel__create(model_data, 0x20000, 0x11000084);
+        mpModel[i] = mDoExt_J3DModel__create(modelData, 0x20000, 0x11000084);
         if (mpModel[i] == NULL) {
             return 0;
         }
@@ -24,14 +26,18 @@ inline int daObjCRVHAHEN_c::CreateHeap() {
 }
 
 static int useHeapInit(fopAc_ac_c* i_this) {
-    return ((daObjCRVHAHEN_c*)i_this)->CreateHeap();
+    daObjCRVHAHEN_c* a_this = (daObjCRVHAHEN_c*)i_this;
+    return a_this->CreateHeap();
 }
 
 static int daObjCRVHAHEN_Create(fopAc_ac_c* i_this) {
-    return static_cast<daObjCRVHAHEN_c*>(i_this)->create();
+    daObjCRVHAHEN_c* a_this = (daObjCRVHAHEN_c*)i_this;
+    fpc_ProcID id = fopAcM_GetID(i_this);
+    return a_this->create();
 }
 
 static int daObjCRVHAHEN_Delete(daObjCRVHAHEN_c* i_this) {
+    fpc_ProcID id = fopAcM_GetID(i_this);
     i_this->Delete();
     return 1;
 }
@@ -44,7 +50,9 @@ int daObjCRVHAHEN_c::HahenSet(cXyz i_param_1, cXyz i_param_2, cXyz i_param_3, cX
     for (int i = 0; i < 10; i++) {
         mPos[i].set(i_param_2.x + cM_rndFX(i_param_1.x), i_param_2.y + cM_rndF(i_param_1.y),
                     i_param_2.z + cM_rndFX(i_param_1.z));
-        mInitialPos[i].set(cM_rndF(1.0f) + 0.5f, cM_rndF(1.0f) + 0.5f, cM_rndF(1.0f) + 0.5f);
+        mInitialPos[i].set(0.5f + kREG_F(3) + cM_rndF(1.0f + kREG_F(0)),
+                           0.5f + kREG_F(4) + cM_rndF(1.0f + kREG_F(1)),
+                           0.5f + kREG_F(5) + cM_rndF(1.0f + kREG_F(2)));
         mVelocity[i].set(i_param_4.x + cM_rndFX(i_param_3.x), i_param_4.y + cM_rndF(i_param_3.y),
                          i_param_4.z + cM_rndF(i_param_3.z));
 
@@ -55,8 +63,8 @@ int daObjCRVHAHEN_c::HahenSet(cXyz i_param_1, cXyz i_param_2, cXyz i_param_3, cX
         mDoMtx_stack_c::ZXYrotS(shape_angle);
         mDoMtx_stack_c::multVec(&mVelocity[i], &mVelocity[i]);
 
-        mRotSpeed[i].x = cM_rndFX(5000.0f);
-        mRotSpeed[i].y = cM_rndFX(5000.0f);
+        mRotSpeed[i].x = cM_rndFX(5000.0f + nREG_F(0));
+        mRotSpeed[i].y = cM_rndFX(5000.0f + nREG_F(0));
         mRotation[i].x = cM_rndFX(65536.0f);
         mRotation[i].y = cM_rndFX(65536.0f);
     }
@@ -70,14 +78,11 @@ bool daObjCRVHAHEN_c::Wall_Check(cXyz i_origin, cXyz i_target) {
 
     line_check.Set(&i_origin, &linePos, NULL);
 
-    bool did_line_cross = dComIfG_Bgsp().LineCross(&line_check);
-
-    if (did_line_cross == true) {
+    if (dComIfG_Bgsp().LineCross(&line_check) == true) {
         return true;
     } else {
         return false;
     }
-    return did_line_cross;
 }
 
 void daObjCRVHAHEN_c::Hahen_Hakai(int i_start, int i_end) {
@@ -86,12 +91,8 @@ void daObjCRVHAHEN_c::Hahen_Hakai(int i_start, int i_end) {
             mPos[i].y = mGroundHeight;
             mRotation[i].x = 0x4000;
         } else {
-            mVelocity[i].y += +-9.0f;
+            mVelocity[i].y += -9.0f;
             Wall_Check(mPos[i], mVelocity[i]);
-
-            // mPos[i].x = mPos[i].x + mVelocity[i].x;
-            // mPos[i].y = mPos[i].y + mVelocity[i].y;
-            // mPos[i].z = mPos[i].z + mVelocity[i].z;
 
             mPos[i].x += mVelocity[i].x;
             mPos[i].y += mVelocity[i].y;
@@ -109,12 +110,8 @@ void daObjCRVHAHEN_c::Hahen_Hakai(int i_start, int i_end) {
                 mVelocity[i].x = mVelocity[i].x * 0.8f;
                 mVelocity[i].z = mVelocity[i].z * 0.8f;
 
-                // mVelocity[i].y *= -0.6f;
-                // mVelocity[i].x *= 0.8f;
-                // mVelocity[i].z *= 0.8f;
-
                 mRotation[i].x = 0x4000;
-                mRotation[i].y = mRotation[i].y + mRotSpeed[i].y;
+                mRotation[i].y += mRotSpeed[i].y;
             }
         }
     }
@@ -138,14 +135,7 @@ void daObjCRVHAHEN_c::CheckCull() {
 bool daObjCRVHAHEN_c::checkViewArea(cXyz* i_this) {
     Vec proj;
     mDoLib_project(i_this, &proj);
-
-    bool ret = false;
-
-    if (proj.x >= 0.0f && proj.x <= FB_WIDTH && proj.y >= 0.0f && proj.y <= FB_HEIGHT) {
-        ret = true;
-    }
-
-    return ret;
+    return (proj.x >= 0.0f && proj.x <= FB_WIDTH) && (proj.y >= 0.0f && proj.y <= FB_HEIGHT);
 }
 
 int daObjCRVHAHEN_c::Execute() {
@@ -159,7 +149,7 @@ int daObjCRVHAHEN_c::Execute() {
     return 1;
 }
 
-int daObjCRVHAHEN_c::Delete() {
+inline int daObjCRVHAHEN_c::Delete() {
     if (mInitialized) {
         J3DModelData* model_data = (J3DModelData*)dComIfG_getObjectRes(l_arcName, "CaravanPiece.bmd");
         dComIfGp_removeSimpleModel(model_data, fopAcM_GetRoomNo(this));
@@ -182,15 +172,15 @@ void daObjCRVHAHEN_c::setBaseMtx() {
 inline int daObjCRVHAHEN_c::Draw() {
     g_env_light.settingTevStruct(0, &current.pos, &tevStr);
 
-    for (int i = 0, j = i; i < 10; i = i + 1) {
+    for (int i = 0; i < 10; i++) {
         g_env_light.setLightTevColorType_MAJI(mpModel[i], &tevStr);
     }
 
     dComIfGd_setListBG();
 
     if (mDrawHahen) {
-        for (int i = 0; i < 10; i = i + 1) {
-            s8 roomno = fopAcM_GetRoomNo(this);
+        for (int i = 0; i < 10; i++) {
+            int roomno = fopAcM_GetRoomNo(this);
             dComIfGp_entrySimpleModel(mpModel[i], roomno);
         }
     }
@@ -208,21 +198,24 @@ static int daObjCRVHAHEN_Execute(daObjCRVHAHEN_c* i_this) {
     return i_this->Execute();
 }
 
-int daObjCRVHAHEN_c::create() {
+inline int daObjCRVHAHEN_c::create() {
     fopAcM_ct(this, daObjCRVHAHEN_c);
-
-    
 
     int phase_state = dComIfG_resLoad(&mPhase, l_arcName);
 
     if (phase_state == cPhs_COMPLEATE_e) {
+        OS_REPORT("CRVHAHEN PARAM %x\n", fopAcM_GetParam(this));
         if (!fopAcM_entrySolidHeap(this, useHeapInit, 0x1320)) {
             return cPhs_ERROR_e;
         }
         mDrawHahen = 0;
-        gravity = -9.0f;
-        J3DModelData* model_data = (J3DModelData*)dComIfG_getObjectRes(l_arcName, "CaravanPiece.bmd");
-        dComIfGp_addSimpleModel(model_data, fopAcM_GetRoomNo(this), '\0');
+        gravity = -9.0f + nREG_F(0);
+        J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, "CaravanPiece.bmd");
+        JUT_ASSERT(561, modelData != 0);
+        if (dComIfGp_addSimpleModel(modelData, fopAcM_GetRoomNo(this), '\0') == -1) {
+            // "Fire Demon room pillar fragments: Simple model registration failed."
+            OS_REPORT("\x1B[43;30m火魔神部屋の柱の破片：シンプルモデル登録失敗しました。\n\x1B[m");
+        }
         mInitialized = true;
         mGroundHeight = current.pos.y;
         fopAcM_setCullSizeBox(this, -1000.0, -500.0, -1000.0, 1000.0, 500.0, 1000.0);

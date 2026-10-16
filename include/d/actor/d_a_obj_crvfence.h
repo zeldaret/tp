@@ -4,6 +4,7 @@
 #include "d/d_bg_s_acch.h"
 #include "d/d_bg_s_movebg_actor.h"
 #include "d/d_cc_d.h"
+#include "d/d_cc_uty.h"
 #include "f_op/f_op_actor_mng.h"
 
 /**
@@ -63,7 +64,8 @@ private:
     /* 0x06B0 */ dBgS_ObjAcch mBgc;
     /* 0x0888 */ dCcD_Stts mStts;
     /* 0x08C4 */ dCcD_Sph mSphs[6];
-    /* 0x1014 */ u8 field_0x1014[0x103c - 0x1014];
+    /* 0x1014 */ dCcU_AtInfo mAtInfo;
+    /* 0x1038 */ u8 field_0x1038[4];
 };
 
 STATIC_ASSERT(sizeof(daObjCRVFENCE_c) == 0x103c);
