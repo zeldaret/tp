@@ -8,15 +8,15 @@
 #include "d/d_jnt_col.h"
 
 struct daObjCarry_dt_t {
-    /* 0x00 */ f32 m_throwInitSpeedY;
-    /* 0x04 */ f32 m_throwInitSpeedXZ;
-    /* 0x08 */ f32 m_wolfThrowInitSpeedY;
-    /* 0x0C */ f32 m_wolfThrowInitSpeedXZ;
-    /* 0x10 */ f32 field_0x10;
-    /* 0x14 */ f32 field_0x14;
-    /* 0x18 */ f32 m_gravity;
-    /* 0x1C */ f32 m_Buoyancy;
-    /* 0x20 */ f32 m_urnWindEffRatio;
+    /* 0x00 */ f32 m_throwInitSpeedY;       // 鉛直初速度 - Initial vertical speed
+    /* 0x04 */ f32 m_throwInitSpeedXZ;      // 水平初速度 - Initial horizontal speed
+    /* 0x08 */ f32 m_wolfThrowInitSpeedY;   // 狼・鉛直初速度 - Wolf: initial vertical speed
+    /* 0x0C */ f32 m_wolfThrowInitSpeedXZ;  // 狼・水平初速度 - Wolf: initial horizontal speed
+    /* 0x10 */ f32 m_reflectCoefY;     // 垂直速度反射係数 - Vertical speed reflection coefficient
+    /* 0x14 */ f32 m_reflectCoefXZ;    // 水平速度反射係数 - Horizontal speed reflection coefficient
+    /* 0x18 */ f32 m_gravity;          // 重力 - Gravity
+    /* 0x1C */ f32 m_Buoyancy;         // 浮力 - Buoyancy
+    /* 0x20 */ f32 m_urnWindEffRatio;  // 風の影響率 - Wind effect ratio
     /* 0x24 */ f32 field_0x24;
     /* 0x28 */ f32 field_0x28;
     /* 0x2C */ f32 field_0x2c;
@@ -25,9 +25,7 @@ struct daObjCarry_dt_t {
     /* 0x35 */ u8 m_flags;
     /* 0x36 */ u8 m_colliderWeight;
     /* 0x37 */ u8 m_cyl_atp;
-    /* 0x38 */ f32 m_cullsph_min_x;
-    /* 0x3C */ f32 m_cullsph_min_y;
-    /* 0x40 */ f32 m_cullsph_min_z;
+    /* 0x38 */ Vec m_cullsph_min;
     /* 0x44 */ f32 field_0x44;
     /* 0x48 */ f32 field_0x48;
     /* 0x4C */ f32 m_height;
@@ -41,15 +39,59 @@ struct daObjCarry_dt_t {
     /* 0x6C */ u32 m_fallWaterSound;
     /* 0x70 */ u32 field_0x70;
     /* 0x74 */ f32 field_0x74;
-    /* 0x78 */ s16 m_rollAngle;
-    /* 0x7A */ s16 m_urnRotateFactor;
+    /* 0x78 */ s16 m_rollAngle;        // 転がり角度 - Roll angle
+    /* 0x7A */ s16 m_urnRotateFactor;  // 回転係数 - Rotation factor
     /* 0x7C */ s16 field_0x7c;
-    /* 0x80 */ f32 m_slopeInfluence;
-    /* 0x84 */ f32 m_friction;
+    /* 0x80 */ f32 m_slopeInfluence;  // 傾斜の影響 - Slope influence
+    /* 0x84 */ f32 m_friction;        // 摩擦 - Friction
     /* 0x88 */ f32 field_0x88;
     /* 0x8C */ f32 field_0x8c;
     /* 0x90 */ u32 m_heapSize;
 };
+
+#if DEBUG
+class daObj_HIO_c : public JORReflexible {
+public:
+    daObj_HIO_c(int);
+    virtual ~daObj_HIO_c() {}
+
+    void entry();
+    void remove();
+    void genMessage(JORMContext*);
+
+    /* 0x04 */ u8 mType;
+    /* 0x08 */ daObjCarry_dt_t mData;
+    /* 0x9C */ s8 mCount;
+};
+
+class daObj_HIO_common_c : public JORReflexible {
+public:
+    daObj_HIO_common_c();
+    virtual ~daObj_HIO_common_c() {}
+
+    void entry();
+    void remove();
+    void genMessage(JORMContext*);
+
+    /* 0x04 */ u8 mCount;
+    /* 0x05 */ u8 mTestOn;              // ここの機能ＯＮ - Enable these functions
+    /* 0x06 */ u8 mNoBgHitBreak;        // ＢＧヒット破壊無し - No breaking on BG hit
+    /* 0x07 */ u8 mDrawStop;            // Draw Stop
+    /* 0x08 */ u8 mExecStop;            // ExecStop
+    /* 0x09 */ u8 mBreakItemSet;        // 破壊時のアイテム指定有効 - Enable item selection on break
+    /* 0x0A */ u8 mBreakItemNo;         // アイテム番号 - Item number
+    /* 0x0B */ u8 mBokkuriChangeFrame;  // 変化するフレーム - Frames to change
+    /* 0x0C */ u8 mBokkuriChangeStart;  // 変化開始時間（落ちてから） - Delay after falling
+    /* 0x10 */ f32 mWaterResist;        // 水抵抗 - Water resistance
+    /* 0x14 */ f32 mWaterMaxSpeed;      // 水中最高速度 - Maximum speed in water
+    /* 0x18 */ f32 mCannonReflectCoefXZ;  // 砲撃・水平速度反射係数 - Cannon: XZ reflection
+    /* 0x1C */ u8 field_0x1c;
+    /* 0x1D */ u8 mScaleAdjust;          // スケール調整 - Scale adjustment
+    /* 0x20 */ cXyz mScale;              // スケール - Scale
+    /* 0x2C */ J3DGXColor mKColor[2];    // コンレジ１ - Konst register 1 (cc_ball, aa_hikari)
+    /* 0x34 */ J3DGXColorS10 mTevColor;  // カラレジ１ - Color register 1 (cc_ball)
+};
+#endif
 
 /**
  * @ingroup actors-objects
@@ -258,17 +300,17 @@ public:
 
     s32 getType() { return mType; }
     u8 getSwbit() { return fopAcM_GetParamBit(this, 6, 8); }
-    u32 getSwbit2() { return fopAcM_GetParamBit(this, 14, 8); }
+    u8 getSwbit2() { return fopAcM_GetParamBit(this, 14, 8); }
     s8 getRoomNo() { return fopAcM_GetParamBit(this, 0, 6); }
 
-    u32 checkOnMoveBg() { return ~((field_0xd18 >> 0xc) & 1); }
-    u32 checkCrashRoll() { return field_0xd18 >> 6 & 1; }
+    u8 checkOnMoveBg() { return ~((field_0xd18 >> 0xc) & 1); }
+    u8 checkCrashRoll() { return field_0xd18 >> 6 & 1; }
     u8 getItemNo() { return mItemNo; }
-    u8 getItemBit() { return mItemNo >> 8; }
+    u8 getItemBit() { return (mItemNo >> 8) & 0xFF; }
     u8 getItemType() { return field_0xd18 & 1; }
     u8 getSaveID() { return getItemNo(); }
     u8 getTrboxBit() { return (mItemNo >> 8) & 0x3F; }
-    u32 getSetType() { return (field_0xd18 >> 13) & 0x7; }
+    u8 getSetType() { return (field_0xd18 >> 13) & 0x7; }
     bool prm_chk_type_ironball() { return getType() == TYPE_IRON_BALL; }
     bool prm_chk_type_lightball() { return getType() == TYPE_BALL_S || getType() == TYPE_BALL_S_2; }
     void startCtrl() { mCtrl = 1; }
@@ -305,6 +347,9 @@ public:
     }
 
     static const daObjCarry_dt_t mData[];
+#if DEBUG
+    static daObj_HIO_c mHIO[];
+#endif
     static cXyz mPos[5];
     static u8 mSttsFlag[5];
     static s8 mRoomNo[5];
@@ -376,7 +421,7 @@ public:
     /* 0xDB4 */ u8 field_0xdb4;
     /* 0xDB5 */ bool mCanCrashRoll;
     /* 0xDB6 */ u8 mDeleteTimer;
-    /* 0xDB7 */ bool mDraw;
+    /* 0xDB7 */ u8 mDraw;
     /* 0xDB8 */ u8 mCtrl;
     /* 0xDB9 */ u8 field_0xdb9;
     /* 0xDBA */ bool mReset;
@@ -408,7 +453,7 @@ public:
     /* 0xE27 */ u8 field_0xe27;
 
 private:
-    u16 getType_private() { return field_0xd18 >> 1 & 0x1f; }
+    u8 getType_private() { return field_0xd18 >> 1 & 0x1f; }
 };
 
 STATIC_ASSERT(sizeof(daObjCarry_c) == 0xE28);

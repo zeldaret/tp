@@ -3,7 +3,21 @@
 
 #include "f_op/f_op_actor_mng.h"
 #include "d/d_event_lib.h"
-#include "d/d_lib.h"
+
+#if DEBUG
+class daObjSwBallB_HIO_c : public fOpAcm_HIO_entry_c {
+public:
+    daObjSwBallB_HIO_c();
+
+    void genMessage(JORMContext*);
+
+    /* 0x06 */ u8 mPutRangeDisp;  // 「おく」範囲表示 - "Put" range display
+    /* 0x07 */ u8 field_0x7;
+    /* 0x08 */ u8 field_0x8;
+    /* 0x0C */ f32 mPutRange;   // 「おく」範囲 - "Put" range
+    /* 0x10 */ GXColor mColor;  // カラー - Color
+};
+#endif
 
 /**
  * @ingroup actors-objects
@@ -29,18 +43,21 @@ public:
     void actionStop();
     void PutCrrPos();
     int draw();
+#if DEBUG
+    void debugDraw();
+#endif
     int _delete();
     virtual ~daObjSwBallB_c() {}
 
-    s32 getID() { return fopAcM_GetParamBit(this, 0, 8); }
-    u32 getSwbit2() { return fopAcM_GetParamBit(this, 8, 8); }
-    u32 getSwbit() { return fopAcM_GetParamBit(this, 16, 8); }
-    u32 getType() { return fopAcM_GetParamBit(this, 24, 4); }
-    u32 getArg1() { return fopAcM_GetParamBit(this, 28, 4); }
+    u8 getID() { return fopAcM_GetParamBit(this, 0, 8); }
+    u8 getSwbit2() { return fopAcM_GetParamBit(this, 8, 8); }
+    u8 getSwbit() { return fopAcM_GetParamBit(this, 16, 8); }
+    u8 getType() { return fopAcM_GetParamBit(this, 24, 4); }
+    u8 getArg1() { return fopAcM_GetParamBit(this, 28, 4); }
     u8 getEvent() { return field_0x5a2; }
     void clrFlag(u8 idx) { field_0x597[idx] = 0; }
     void onFlag(u8 idx, u8 val) { field_0x597[idx] |= val; }
-    u8 checkFlag(u8 idx, u8 val) { return field_0x597[idx] & val; }
+    BOOL checkFlag(u8 idx, u8 val) { return field_0x597[idx] & val; }
     void setLightOn() { field_0x5ac = 1; }
     void setLightOff() { field_0x5ad = 1; }
 

@@ -14,34 +14,73 @@
 #include "d/actor/d_a_player.h"
 #include "f_op/f_op_msg_mng.h"
 #include "f_op/f_op_msg.h"
+#include "d/d_s_play.h"
+
+static GXColor const l_color = {0x03, 0x96, 0xFF, 0xFF};
+
+static char* l_arcName = "P_LBswBC";
+
+static char* l_evName = "REVIVE_MASTER_SWORD";
+
+static char* l_staffName = "lbsw";
+
+#if DEBUG
+daObjSwBallC_HIO_c l_HIO;
+
+daObjSwBallC_HIO_c::daObjSwBallC_HIO_c() {
+    field_0x6 = 0;
+    field_0x7 = 0;
+    field_0x8 = 0xFF;
+    mColor = l_color;
+}
+
+void daObjSwBallC_HIO_c::genMessage(JORMContext* ctx) {
+    ctx->genLabel("光球スイッチＯＢＪ", 0);  // Light ball switch OBJ
+    ctx->genLabel("カラー", 0);              // Color
+    ctx->genSlider("Ｒ", &mColor.r, 0, 255);
+    ctx->genSlider("Ｇ", &mColor.g, 0, 255);
+    ctx->genSlider("Ｂ", &mColor.b, 0, 255);
+}
+#endif
 
 static int CheckCreateHeap(fopAc_ac_c* param_0) {
-    return ((daObjSwBallC_c*)param_0)->CreateHeap();
+    daObjSwBallC_c* a_this = (daObjSwBallC_c*)param_0;
+    return a_this->CreateHeap();
 }
 
 static void* s_swb_sub(void* param_1, void* param_2) {
-    if (fopAcM_IsActor(param_1) && fopAcM_GetName(param_1) == fpcNm_Obj_SwBallB_e &&
-        (u32)((daObjSwBallB_c*)param_1)->getID() == ((daObjSwBallC_c*)param_2)->field_0x582)
-    {
-        return param_1;
+    UNUSED(param_2);
+
+    if (fopAcM_IsActor(param_1) && fopAcM_GetName(param_1) == fpcNm_Obj_SwBallB_e) {
+        daObjSwBallB_c* ballB = (daObjSwBallB_c*)param_1;
+        daObjSwBallC_c* ballC = (daObjSwBallC_c*)param_2;
+        if (ballB->getID() == ballC->field_0x582) {
+            return ballB;
+        }
     }
     return NULL;
 }
 
 static void* s_ballA_sub(void* param_1, void* param_2) {
-    if (fopAcM_IsActor(param_1) && fopAcM_GetName(param_1) == fpcNm_Obj_Carry_e &&
-        ((daObjCarry_c*)param_1)->getType() == daObjCarry_c::TYPE_BALL_S)
-    {
-        return param_1;
+    UNUSED(param_2);
+
+    if (fopAcM_IsActor(param_1) && fopAcM_GetName(param_1) == fpcNm_Obj_Carry_e) {
+        daObjCarry_c* carry = (daObjCarry_c*)param_1;
+        if (carry->getType() == daObjCarry_c::TYPE_BALL_S) {
+            return carry;
+        }
     }
     return NULL;
 }
 
 static void* s_ballB_sub(void* param_1, void* param_2) {
-    if (fopAcM_IsActor(param_1) && fopAcM_GetName(param_1) == fpcNm_Obj_Carry_e &&
-        ((daObjCarry_c*)param_1)->getType() == daObjCarry_c::TYPE_BALL_S_2)
-    {
-        return param_1;
+    UNUSED(param_2);
+
+    if (fopAcM_IsActor(param_1) && fopAcM_GetName(param_1) == fpcNm_Obj_Carry_e) {
+        daObjCarry_c* carry = (daObjCarry_c*)param_1;
+        if (carry->getType() == daObjCarry_c::TYPE_BALL_S_2) {
+            return carry;
+        }
     }
     return NULL;
 }
@@ -51,20 +90,17 @@ void daObjSwBallC_c::initBaseMtx() {
 }
 
 void daObjSwBallC_c::setBaseMtx() {
-    mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
+    mDoMtx_stack_c::transS(current.pos.x, current.pos.y + KREG_F(2), current.pos.z);
     mDoMtx_stack_c::YrotM(shape_angle.y);
     mModel->setBaseTRMtx(mDoMtx_stack_c::get());
 }
 
-static GXColor const l_color = {0x03, 0x96, 0xFF, 0xFF};
-
-static char* l_arcName = "P_LBswBC";
-
-static char* l_evName = "REVIVE_MASTER_SWORD";
-
+#if PLATFORM_GCN
+// Only GCN places this float up here, maybe stripped function
 static f32 dummyFloat() {
     return -1.0f;
 }
+#endif
 
 int daObjSwBallC_c::Create() {
     initBaseMtx();
@@ -78,13 +114,16 @@ int daObjSwBallC_c::Create() {
         field_0x574->setPlaySpeed(1.0f);
         field_0x574->setFrame(field_0x574->getEndFrame());
     }
-    GXColor* color = mModel->getModelData()->getMaterialNodePointer(0)->getTevKColor(1);
+    J3DMaterial* material = mModel->getModelData()->getMaterialNodePointer(0);
+    GXColor* color = material->getTevKColor(1);
     color->r = l_color.r;
     color->g = l_color.g;
     color->b = l_color.b;
     field_0x57e = -1;
     eventInfo.setArchiveName(l_arcName);
-    field_0x57c = dComIfGp_getEventManager().getEventIdx(this, l_evName, 0xff);
+    field_0x57c = (s16)dComIfGp_getEventManager().getEventIdx(this, l_evName, 0xff);
+    // "River flow return tag: evid<%d>tool<%d>\n"
+    OS_REPORT("川流れ戻しタグ：evid<%d>tool<%d>\n", field_0x57c, field_0x57e);
     if (fopAcM_isSwitch(this, 0x3f)) {
         setLightOnSwB();
         setAction(3);
@@ -93,17 +132,15 @@ int daObjSwBallC_c::Create() {
     return 1;
 }
 
-static char* l_staffName = "lbsw";
-
 int daObjSwBallC_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 6);
-    JUT_ASSERT(427, modelData != NULL);
+    JUT_ASSERT(348, modelData != NULL);
     mModel = mDoExt_J3DModel__create(modelData, 0x80000, 0x11000284);
     if (mModel == 0) {
         return 0;
     }
     J3DAnmTextureSRTKey* pbtk = (J3DAnmTextureSRTKey*)dComIfG_getObjectRes(l_arcName, 10);
-    JUT_ASSERT(441, pbtk != NULL);
+    JUT_ASSERT(362, pbtk != NULL);
     field_0x574 = new mDoExt_btkAnm();
     if (field_0x574 == NULL || field_0x574->init(modelData, pbtk, 1, 0, 1.0f, 0, -1) == 0) {
         return 0;
@@ -121,6 +158,10 @@ int daObjSwBallC_c::create() {
         } else if (Create() == 0) {
             return cPhs_ERROR_e;
         }
+
+#if DEBUG
+        l_HIO.entryHIO("Ｒ００中央用・光球スイッチＯＢＪ");
+#endif
     }
     return res;
 }
@@ -135,11 +176,6 @@ void daObjSwBallC_c::event_proc_call() {
     static ballfunc l_func[4] = {&daObjSwBallC_c::actionWait, &daObjSwBallC_c::actionOrderEvent, &daObjSwBallC_c::actionEvent, &daObjSwBallC_c::actionDead};
     (this->*l_func[field_0x57f])(); 
 }
-
-static char* action_table[13] = {
-    "WAIT",    "ON",   "OFF",     "ON_ALL_B", "OFF_ALL_B", "DEL_BALL",  "SOUND",
-    "SCALING", "INIT", "MESSAGE", "ST_CUT2",  "LINK_INIT", "EQUIP_SWD",
-};
 
 void daObjSwBallC_c::actionWait() {
     if (fopAcM_isSwitch(this, 0x3d) && fopAcM_isSwitch(this, 0x3e)) {
@@ -180,6 +216,11 @@ void daObjSwBallC_c::actionDead() {
 }
 
 int daObjSwBallC_c::demoProc() {
+    static char* action_table[13] = {
+        "WAIT",    "ON",   "OFF",     "ON_ALL_B", "OFF_ALL_B", "DEL_BALL",  "SOUND",
+        "SCALING", "INIT", "MESSAGE", "ST_CUT2",  "LINK_INIT", "EQUIP_SWD",
+    };
+
     daPy_py_c* player = daPy_getPlayerActorClass();
     cXyz acStack_38;
     int uVar1 = dComIfGp_evmng_getMyActIdx(field_0x578, action_table, 13, 0, 0);
@@ -307,6 +348,8 @@ void daObjSwBallC_c::setLightOnSwB() {
         daObjSwBallB_c* ball = (daObjSwBallB_c*)fpcM_Search(s_swb_sub, this);
         if (ball != NULL) {
             ball->setLightOn();
+            // "Light ball ID<%d> turned ON\n"
+            OS_REPORT("光球ＩＤ<%d>ＯＮしました\n", field_0x582);
         }
     }
 }
@@ -317,6 +360,8 @@ void daObjSwBallC_c::setLightOffSwB() {
         daObjSwBallB_c* ball = (daObjSwBallB_c*)fpcM_Search(s_swb_sub, this);
         if (ball != NULL) {
             ball->setLightOff();
+            // "Light ball ID<%d> turned OFF\n"
+            OS_REPORT("光球ＩＤ<%d>ＯＦＦしました\n", field_0x582);
         }
     }
 }
@@ -378,11 +423,35 @@ int daObjSwBallC_c::draw() {
     mDoExt_modelUpdateDL(mModel);
     mDoExt_btkAnmRemove(mModel->getModelData());
     dComIfGd_setList();
+
+#if DEBUG
+    debugDraw();
+#endif
+
     return 1;
 }
 
+#if DEBUG
+void daObjSwBallC_c::debugDraw() {
+    if (l_HIO.field_0x6) {
+        // empty
+    }
+
+    J3DMaterial* material = mModel->getModelData()->getMaterialNodePointer(0);
+    J3DGXColor* kcolor = material->getTevKColor(1);
+    kcolor->r = l_HIO.mColor.r;
+    kcolor->g = l_HIO.mColor.g;
+    kcolor->b = l_HIO.mColor.b;
+}
+#endif
+
 int daObjSwBallC_c::_delete() {
     dComIfG_resDelete(&field_0x568, l_arcName);
+
+#if DEBUG
+    l_HIO.removeHIO();
+#endif
+
     return 1;
 }
 
@@ -395,10 +464,12 @@ static int daObjSwBallC_Execute(daObjSwBallC_c* param_0) {
 }
 
 static int daObjSwBallC_Delete(daObjSwBallC_c* param_0) {
+    fopAcM_RegisterDeleteID(param_0, "SwLBall");
     return param_0->_delete();
 }
 
 static int daObjSwBallC_Create(daObjSwBallC_c* param_0) {
+    fopAcM_RegisterCreateID(param_0, "SwLBall");
     return param_0->create();
 }
 

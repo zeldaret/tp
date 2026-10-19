@@ -3,6 +3,20 @@
 
 #include "f_op/f_op_actor_mng.h"
 
+#if DEBUG
+class daObjSwBallC_HIO_c : public mDoHIO_entry_c {
+public:
+    daObjSwBallC_HIO_c();
+
+    void genMessage(JORMContext*);
+
+    /* 0x06 */ u8 field_0x6;
+    /* 0x07 */ u8 field_0x7;
+    /* 0x08 */ u8 field_0x8;
+    /* 0x09 */ GXColor mColor;  // カラー - Color
+};
+#endif
+
 /**
  * @ingroup actors-objects
  * @class daObjSwBallC_c
@@ -32,6 +46,9 @@ public:
     void deleteLightBallB();
     int calcLightBallScale();
     int draw();
+#if DEBUG
+    void debugDraw();
+#endif
     int _delete();
 
     void setAction(u8 action) { field_0x57f = action; }

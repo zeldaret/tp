@@ -11,26 +11,14 @@
 #include "d/d_com_inf_game.h"
 #include "JSystem/J3DGraphBase/J3DMaterial.h"
 #include "d/d_lib.h"
+#include "d/d_s_play.h"
+#include "d/d_debug_viewer.h"
 
 static daObjCarry_c* l_target_info[2];
 
 static int l_target_info_count;
 
-static void* s_ball_sub(void* param_1, void* param_2) {
-    if (fopAcM_IsActor(param_1) && fopAcM_GetName(param_1) == fpcNm_Obj_Carry_e &&
-        ((daObjCarry_c*)param_1)->prm_chk_type_lightball())
-    {
-        if (l_target_info_count < 2) {
-            l_target_info[l_target_info_count] = (daObjCarry_c*)param_1;
-            l_target_info_count++;
-        }
-    }
-    return NULL;
-}
-
-static int CheckCreateHeap(fopAc_ac_c* param_0) {
-    return ((daObjSwBallB_c*)param_0)->CreateHeap();
-}
+static char* l_arcName = "P_LBswBC";
 
 static GXColor const l_color = {0x03, 0x96, 0xFF, 0xFF};
 
@@ -51,6 +39,51 @@ static u16 const l_event_bitB[6] = {
     0x4401, /* dSv_event_flag_c::F_0561 - Palace of Twilight - Palace of Twilight control use 11 */
     0x4580, /* dSv_event_flag_c::F_0562 - Palace of Twilight - Palace of Twilight control use 12 */
 };
+
+#if DEBUG
+daObjSwBallB_HIO_c l_HIO;
+
+daObjSwBallB_HIO_c::daObjSwBallB_HIO_c() {
+    mPutRangeDisp = 0;
+    field_0x7 = 0;
+    field_0x8 = 0xFF;
+    mPutRange = 150.0f;
+    mColor = l_color;
+}
+
+void daObjSwBallB_HIO_c::genMessage(JORMContext* ctx) {
+    ctx->genLabel("光球スイッチＯＢＪ", 0);  // Light ball switch OBJ
+    ctx->genCheckBox("「おく」範囲表示", &mPutRangeDisp, 1);
+    ctx->genSlider("「おく」範囲", &mPutRange, 0.0f, 300.0f);
+    ctx->genLabel("カラー", 0);  // Color
+    ctx->genSlider("Ｒ", &mColor.r, 0, 255);
+    ctx->genSlider("Ｇ", &mColor.g, 0, 255);
+    ctx->genSlider("Ｂ", &mColor.b, 0, 255);
+}
+#endif
+
+static void* s_ball_sub(void* param_1, void* param_2) {
+    UNUSED(param_2);
+
+    if (fopAcM_IsActor(param_1) && fopAcM_GetName(param_1) == fpcNm_Obj_Carry_e) {
+        daObjCarry_c* carry = (daObjCarry_c*)param_1;
+        if (carry->prm_chk_type_lightball()) {
+            if (l_target_info_count < 2) {
+                l_target_info[l_target_info_count] = (daObjCarry_c*)param_1;
+                l_target_info_count++;
+            } else {
+                // "Light ball reaction area switch: more light balls than it can handle!\n"
+                OS_REPORT("\x1B[43;30m光球反応領域スイッチ：光球対応できる数を越えてます！\n\x1B[m");
+            }
+        }
+    }
+    return NULL;
+}
+
+static int CheckCreateHeap(fopAc_ac_c* param_0) {
+    daObjSwBallB_c* a_this = (daObjSwBallB_c*)param_0;
+    return a_this->CreateHeap();
+}
 
 int daObjSwBallB_c::checkArea_sub(fopAc_ac_c* param_1) {
     if (param_1 == NULL) {
@@ -108,13 +141,18 @@ void daObjSwBallB_c::search_ball() {
         }
     }
 
+    fopAc_ac_c* actor;
     for (int j = 0; j < 2; j++) {
-        if (fopAcM_SearchByID(field_0x58c[j]) == NULL) {
+        actor = fopAcM_SearchByID(field_0x58c[j]);
+        if (actor == NULL) {
             field_0x58c[j] = -1;
         }
     }
-    if (field_0x59c != -1 && fopAcM_SearchByID(field_0x59c) == NULL) {
-        field_0x59c = -1;
+    if (field_0x59c != -1) {
+        actor = fopAcM_SearchByID(field_0x59c);
+        if (actor == NULL) {
+            field_0x59c = -1;
+        }
     }
 }
 
@@ -123,7 +161,7 @@ void daObjSwBallB_c::initBaseMtx() {
 }
 
 void daObjSwBallB_c::setBaseMtx() {
-    mDoMtx_stack_c::transS(current.pos.x, current.pos.y, current.pos.z);
+    mDoMtx_stack_c::transS(current.pos.x, current.pos.y + KREG_F(2), current.pos.z);
     mDoMtx_stack_c::YrotM(shape_angle.y);
     mModel->setBaseTRMtx(mDoMtx_stack_c::get());
 }
@@ -148,15 +186,14 @@ int daObjSwBallB_c::Create() {
         fopAcM_onSwitch(this, getSwbit());
         field_0x596 = 5;
     }
-    GXColor* color = mModel->getModelData()->getMaterialNodePointer(0)->getTevKColor(1);
+    J3DMaterial* material = mModel->getModelData()->getMaterialNodePointer(0);
+    GXColor* color = material->getTevKColor(1);
     color->r = l_color.r;
     color->g = l_color.g;
     color->b = l_color.b;
     execute();
     return 1;
 }
-
-static char* l_arcName = "P_LBswBC";
 
 int daObjSwBallB_c::CreateHeap() {
     J3DModelData* modelData = (J3DModelData*)dComIfG_getObjectRes(l_arcName, 5);
@@ -177,16 +214,21 @@ int daObjSwBallB_c::CreateHeap() {
 
 int daObjSwBallB_c::create() {
     fopAcM_ct(this, daObjSwBallB_c);
+
+#if DEBUG
+    if (getID() > 5 && fopAcM_GetRoomNo(this) == 0) {
+        // "Light ball switch OBJ: ID setting <%d> is invalid\n"
+        OS_REPORT_ERROR("光球スイッチＯＢＪ：ＩＤ設定<%d>が正しくありません\n", getID());
+        return cPhs_ERROR_e;
+    }
+#endif
+
     if (field_0x5a0 == 0) {
         field_0x5a0 = 1;
         field_0x5a2 = home.angle.x;
         field_0x5a4 = home.angle.z;
-        shape_angle.x = 0;
-        current.angle.x = 0;
-        home.angle.x = 0;
-        shape_angle.z = 0;
-        current.angle.z = 0;
-        home.angle.z = 0;
+        home.angle.x = current.angle.x = shape_angle.x = 0;
+        home.angle.z = current.angle.z = shape_angle.z = 0;
     }
     int res = dComIfG_resLoad(&field_0x57c, l_arcName);
     if (res == cPhs_COMPLEATE_e) {
@@ -195,6 +237,10 @@ int daObjSwBallB_c::create() {
         } else if (Create() == 0) {
             return cPhs_ERROR_e;
         }
+
+#if DEBUG
+        l_HIO.entryHIO("光球スイッチＯＢＪ");
+#endif
     }
     return res;
 }
@@ -205,13 +251,26 @@ int daObjSwBallB_c::execute() {
     (this->*l_func[field_0x595])();
     eventUpdate();
     field_0x588->play();
+
+#if DEBUG
+    if (l_HIO.field_0x7 && getSwbit() == l_HIO.field_0x8) {
+        for (int i = 0; i < 2; i++) {
+            dDbVw_Report(50, i * 12 + 90, "ID:<%d>", field_0x58c[i]);
+        }
+        dDbVw_Report(50, 126, "sw<%d>stts<%d>mStatus<%d>", getSwbit(),
+                     fopAcM_isSwitch(this, getSwbit()), field_0x596);
+    }
+#endif
+
     return 1;
 }
 
 void daObjSwBallB_c::actionRun() {
     u32 iVar4 = field_0x59c;
     search_ball();
+    int target_count = l_target_info_count;
     PutCrrPos();
+    int anm_end = 0;
     switch (field_0x596) {
     case 0:
         if (iVar4 == -1 && field_0x59c != -1) {
@@ -268,7 +327,7 @@ void daObjSwBallB_c::actionRun() {
     case 2:
         break;
     case 3:
-        field_0x588->play();
+        anm_end = field_0x588->play();
         fopAcM_seStartLevel(this, Z2SE_OBJ_L8_L_BALL_SW, 0);
         break;
     case 4:
@@ -290,27 +349,35 @@ void daObjSwBallB_c::actionStop() {
 void daObjSwBallB_c::PutCrrPos() {
     daPy_py_c* player = daPy_getPlayerActorClass();
     s16 sVar5 = cLib_targetAngleY(&player->current.pos, &current.pos) - player->shape_angle.y;
+#if DEBUG
+    if (fopAcM_searchPlayerDistanceXZ(this) < l_HIO.mPutRange && sVar5 < 0x4000 && sVar5 > -0x4000)
+    {
+#else
     if (fopAcM_searchPlayerDistanceXZ(this) < 150.0f && sVar5 < 0x4000 && sVar5 > -0x4000) {
-        daObjCarry_c* carryObj = (daObjCarry_c*)fopAcM_SearchByID(player->getGrabActorID());
-        if (carryObj != NULL && fopAcM_IsActor(carryObj) &&
-            fopAcM_GetName(carryObj) == fpcNm_Obj_Carry_e && carryObj->prm_chk_type_lightball())
+#endif
+        fopAc_ac_c* grab_actor = fopAcM_SearchByID(player->getGrabActorID());
+        if (grab_actor != NULL && fopAcM_IsActor(grab_actor) &&
+            fopAcM_GetName(grab_actor) == fpcNm_Obj_Carry_e)
         {
-            player->setForcePutPos(current.pos);
-            if (!dComIfGp_event_runCheck()) {
-                dComIfGp_setDoStatus(0x14, 2);
+            daObjCarry_c* grab_carry = (daObjCarry_c*)grab_actor;
+            if (grab_carry->prm_chk_type_lightball()) {
+                player->setForcePutPos(current.pos);
+                if (!dComIfGp_event_runCheck()) {
+                    dComIfGp_setDoStatus(0x14, 2);
+                }
             }
         }
     }
     daObjCarry_c* carryObj;
     for (u8 i = 0; i < 2; i++) {
         bool isArea = false;
-        u8 carryNow = 0;
-        u8 hookCarryNow = 0;
+        bool carryNow = false;
+        bool hookCarryNow = false;
         if (field_0x58c[i] != -1) {
             carryObj = (daObjCarry_c*)fopAcM_SearchByID(field_0x58c[i]);
             isArea = checkArea_sub(carryObj);
-            carryNow = fopAcM_checkCarryNow(carryObj) >> 13;
-            hookCarryNow = fopAcM_checkHookCarryNow(carryObj) >> 20;
+            carryNow = fopAcM_checkCarryNow(carryObj);
+            hookCarryNow = fopAcM_checkHookCarryNow(carryObj);
             if (field_0x59c == -1 || field_0x59c == field_0x58c[i]) {
                 switch(field_0x599[i]) {
                 case 0:
@@ -378,11 +445,43 @@ int daObjSwBallB_c::draw() {
     mDoExt_modelUpdateDL(mModel);
     mDoExt_btkAnmRemove(mModel->getModelData());
     dComIfGd_setList();
+
+#if DEBUG
+    debugDraw();
+#endif
+
     return 1;
 }
 
+#if DEBUG
+void daObjSwBallB_c::debugDraw() {
+    if (l_HIO.mPutRangeDisp) {
+        GXColor color = (GXColor){0xFF, 0x00, 0x00, 0x40};
+        if (getType() == 0) {
+            cXyz pos(current.pos);
+            pos.y += 50.0f;
+            dDbVw_drawCircleXlu(pos, scale.y * l_HIO.mPutRange, color, 1, 12);
+        } else if (getType() == 1) {
+            cXyz size(100.0f * scale.x, 100.0f * scale.y, 100.0f * scale.z);
+            dDbVw_drawCubeXlu(current.pos, size, shape_angle, color);
+        }
+    }
+
+    J3DMaterial* material = mModel->getModelData()->getMaterialNodePointer(0);
+    J3DGXColor* kcolor = material->getTevKColor(1);
+    kcolor->r = l_HIO.mColor.r;
+    kcolor->g = l_HIO.mColor.g;
+    kcolor->b = l_HIO.mColor.b;
+}
+#endif
+
 int daObjSwBallB_c::_delete() {
     dComIfG_resDelete(&field_0x57c, l_arcName);
+
+#if DEBUG
+    l_HIO.removeHIO(this);
+#endif
+
     return 1;
 }
 
@@ -395,11 +494,14 @@ static int daObjSwBallB_Execute(daObjSwBallB_c* param_0) {
 }
 
 static int daObjSwBallB_Delete(daObjSwBallB_c* param_0) {
+    fopAcM_RegisterDeleteID(param_0, "SwLBall");
     return param_0->_delete();
 }
 
 static int daObjSwBallB_Create(fopAc_ac_c* param_0) {
-    return ((daObjSwBallB_c*)param_0)->create();
+    daObjSwBallB_c* a_this = (daObjSwBallB_c*)param_0;
+    fopAcM_RegisterCreateID(param_0, "SwLBall");
+    return a_this->create();
 }
 
 static actor_method_class l_daObjSwBallB_Method = {
