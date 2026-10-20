@@ -159,7 +159,7 @@ public:
     void initBaseMtx();
     void setBaseMtx();
     int preInit();
-    daObjCarry_c();
+    inline daObjCarry_c();
     BOOL checkBreakWolfAttack();
     BOOL checkCarryBoomerang();
     BOOL checkCarryHookshot();

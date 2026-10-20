@@ -1071,7 +1071,7 @@ int daObjCarry_c::preInit() {
     return 1;
 }
 
-daObjCarry_c::daObjCarry_c() {}
+inline daObjCarry_c::daObjCarry_c() {}
 
 BOOL daObjCarry_c::checkBreakWolfAttack() {
     if (mType == TYPE_TSUBO   ||
