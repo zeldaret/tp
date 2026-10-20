@@ -4,6 +4,20 @@
 #include "f_op/f_op_actor_mng.h"
 #include "d/d_event_lib.h"
 
+#if DEBUG
+class daObjSwBallA_HIO_c : public mDoHIO_entry_c {
+public:
+    daObjSwBallA_HIO_c();
+
+    void genMessage(JORMContext*);
+
+    /* 0x06 */ u8 mRangeDisp;  // 範囲表示 - Range display
+    /* 0x07 */ u8 field_0x7;
+    /* 0x08 */ u8 field_0x8;
+    /* 0x09 */ GXColor mColor;  // カラー - Color
+};
+#endif
+
 // dEvLib_callback_c is not generated at the correct location.
 /**
  * @ingroup actors-objects
@@ -29,17 +43,20 @@ public:
     void actionStop();
     void PutCrrPos();
     int draw();
+#if DEBUG
+    void debugDraw();
+#endif
     int _delete();
     virtual ~daObjSwBallA_c() {}
 
-    u32 getArg0() { return fopAcM_GetParamBit(this, 0, 8); }
-    u32 getSwbit2() { return fopAcM_GetParamBit(this, 8, 8); }
-    u32 getSwbit() { return fopAcM_GetParamBit(this, 16, 8); }
-    u32 getType() { return fopAcM_GetParamBit(this, 24, 4); }
+    u8 getArg0() { return fopAcM_GetParamBit(this, 0, 8); }
+    u8 getSwbit2() { return fopAcM_GetParamBit(this, 8, 8); }
+    u8 getSwbit() { return fopAcM_GetParamBit(this, 16, 8); }
+    u8 getType() { return fopAcM_GetParamBit(this, 24, 4); }
     u8 getEvent() { return field_0x5c6; }
     void clrFlag(u8 idx) { field_0x5af[idx] = 0; }
     void onFlag(u8 idx, u8 val) { field_0x5af[idx] |= val; }
-    u8 checkFlag(u8 idx, u8 val) { return field_0x5af[idx] & val; }
+    BOOL checkFlag(u8 idx, u8 val) { return field_0x5af[idx] & val; }
 
 private:
     /* 0x57C */ request_of_phase_process_class field_0x57c;

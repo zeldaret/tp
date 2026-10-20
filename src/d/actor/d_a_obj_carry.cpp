@@ -21,6 +21,7 @@
 #include "d/d_lib.h"
 #include "d/d_debug_viewer.h"
 #include "f_op/f_op_kankyo_mng.h"
+#include "d/d_a_obj.h"
 
 static const cM3dGCylS l_cyl_info[] = {
     { 0.0f, 0.0f, 0.0f, 30.0f, 100.0f },
@@ -59,9 +60,7 @@ const daObjCarry_dt_t daObjCarry_c::mData[] = {
         0,
         200,
         2,
-        0.0f,
-        28.0f,
-        0.0f,
+        {0.0f, 28.0f, 0.0f},
         48.0f,
         30.0f,
         30.0f,
@@ -103,9 +102,7 @@ const daObjCarry_dt_t daObjCarry_c::mData[] = {
         4,
         200,
         3,
-        0.0f,
-        48.0f,
-        0.0f,
+        {0.0f, 48.0f, 0.0f},
         68.0f,
         50.0f,
         50.0f,
@@ -147,9 +144,7 @@ const daObjCarry_dt_t daObjCarry_c::mData[] = {
         1,
         200,
         2,
-        0.0f,
-        28.0f,
-        0.0f,
+        {0.0f, 28.0f, 0.0f},
         50.0f,
         37.5f,
         30.0f,
@@ -191,9 +186,7 @@ const daObjCarry_dt_t daObjCarry_c::mData[] = {
         8,
         200,
         3,
-        0.0f,
-        0.0f,
-        0.0f,
+        {0.0f, 0.0f, 0.0f},
         40.0f,
         0.0f,
         30.0f,
@@ -235,9 +228,7 @@ const daObjCarry_dt_t daObjCarry_c::mData[] = {
         4,
         200,
         3,
-        0.0f,
-        48.0f,
-        0.0f,
+        {0.0f, 48.0f, 0.0f},
         68.0f,
         50.0f,
         50.0f,
@@ -279,9 +270,7 @@ const daObjCarry_dt_t daObjCarry_c::mData[] = {
         0,
         200,
         2,
-        0.0f,
-        28.0f,
-        0.0f,
+        {0.0f, 28.0f, 0.0f},
         48.0f,
         30.0f,
         30.0f,
@@ -323,9 +312,7 @@ const daObjCarry_dt_t daObjCarry_c::mData[] = {
         0,
         200,
         2,
-        0.0f,
-        48.0f,
-        0.0f,
+        {0.0f, 48.0f, 0.0f},
         60.0f,
         45.0f,
         30.0f,
@@ -367,9 +354,7 @@ const daObjCarry_dt_t daObjCarry_c::mData[] = {
         0,
         200,
         2,
-        0.0f,
-        28.0f,
-        0.0f,
+        {0.0f, 28.0f, 0.0f},
         48.0f,
         30.0f,
         30.0f,
@@ -411,9 +396,7 @@ const daObjCarry_dt_t daObjCarry_c::mData[] = {
         0,
         200,
         3,
-        0.0f,
-        0.0f,
-        0.0f,
+        {0.0f, 0.0f, 0.0f},
         60.0f,
         40.0f,
         50.0f,
@@ -455,9 +438,7 @@ const daObjCarry_dt_t daObjCarry_c::mData[] = {
         0,
         200,
         3,
-        0.0f,
-        0.0f,
-        0.0f,
+        {0.0f, 0.0f, 0.0f},
         100.0f,
         40.0f,
         50.0f,
@@ -499,9 +480,7 @@ const daObjCarry_dt_t daObjCarry_c::mData[] = {
         4,
         200,
         3,
-        0.0f,
-        48.0f,
-        0.0f,
+        {0.0f, 48.0f, 0.0f},
         68.0f,
         50.0f,
         50.0f,
@@ -543,9 +522,7 @@ const daObjCarry_dt_t daObjCarry_c::mData[] = {
         0,
         200,
         3,
-        0.0f,
-        0.0f,
-        0.0f,
+        {0.0f, 0.0f, 0.0f},
         60.0f,
         40.0f,
         50.0f,
@@ -587,9 +564,7 @@ const daObjCarry_dt_t daObjCarry_c::mData[] = {
         0,
         200,
         2,
-        0.0f,
-        28.0f,
-        0.0f,
+        {0.0f, 28.0f, 0.0f},
         48.0f,
         30.0f,
         30.0f,
@@ -631,9 +606,7 @@ const daObjCarry_dt_t daObjCarry_c::mData[] = {
         4,
         200,
         3,
-        0.0f,
-        48.0f,
-        0.0f,
+        {0.0f, 48.0f, 0.0f},
         68.0f,
         50.0f,
         50.0f,
@@ -716,6 +689,25 @@ const static dCcD_SrcCyl l_tg_cyl = {
 
 static const GXColor l_light_color = {0xFF, 0xFF, 0xFF, 0xFF};
 
+#if DEBUG
+static char* l_node_name[] = {
+    "小壷",              // Small pot
+    "大壷",              // Big pot
+    "小さい木箱",        // Small wooden box
+    "鉄玉",              // Iron ball
+    "樽",                // Barrel
+    "ドクロ",            // Skull
+    "ボックリの実",      // Deku nut
+    "小壷・赤茶色",      // Small pot, reddish brown
+    "光の玉（Ａ）",      // Light ball (A)
+    "光の玉（Ｂ）",      // Light ball (B)
+    "大壷・青色",        // Big pot, blue
+    "Ｌｖ８用テスト玉",  // Lv8 test ball
+    "Ｌｖ８用小壷",      // Lv8 small pot
+    "Ｌｖ８用大壷",      // Lv8 big pot
+};
+#endif
+
 static char* l_arcName[] = {
     "J_tubo_00", "J_tubo_01", "Kkiba_00",  "Y_ironbal", "J_taru00", "J_doku00", "Obj_bkl",
     "K_tubo02",  "Obj_ballS", "Obj_ballS", "D_aotubo0", "Obj_tama", "O_tuboS",  "O_tuboB",
@@ -743,6 +735,117 @@ static dJntColData_c kibako_jc_data = {1, 1, 0, 45.0f, kibako_jv_offset};
 
 static dJntColData_c taru_jc_data = {1, 1, 0, 45.0f, taru_jv_offset};
 
+#if DEBUG
+daObj_HIO_c::daObj_HIO_c(int i_type) {
+    mCount = 0;
+    mType = i_type;
+    mData = daObjCarry_c::mData[mType];
+}
+
+void daObj_HIO_c::entry() {
+    if (mCount == 0) {
+        daObj::HioThrow_c::init(this, l_node_name[mType]);
+    }
+    mCount++;
+}
+
+void daObj_HIO_c::remove() {
+    mCount--;
+    if (mCount == 0) {
+        daObj::HioThrow_c::clean(this);
+    }
+}
+
+void daObj_HIO_c::genMessage(JORMContext* ctx) {
+    ctx->genLabel("--持ち上げＯＢＪ--", 0);  // Lift OBJ
+    ctx->genLabel(l_node_name[mType], 0);
+    ctx->genLabel("【 移動性能 】", 0);  // Movement performance
+    ctx->genSlider("重力", &mData.m_gravity, -40.0f, 0.0f);
+    ctx->genSlider("垂直速度反射係数", &mData.m_reflectCoefY, 0.0f, 1.0f);
+    ctx->genSlider("水平速度反射係数", &mData.m_reflectCoefXZ, 0.0f, 1.0f);
+    ctx->genSlider("転がり角度", &mData.m_rollAngle, 1, 89);
+    ctx->genSlider("摩擦", &mData.m_friction, 0.0f, 1.0f);
+    ctx->genSlider("傾斜の影響", &mData.m_slopeInfluence, 0.0f, 100.0f);
+    ctx->genLabel("【 投げ性能 】", 0);  // Throwing performance
+    ctx->genSlider("鉛直初速度", &mData.m_throwInitSpeedY, 0.0f, 100.0f);
+    ctx->genSlider("水平初速度", &mData.m_throwInitSpeedXZ, 0.0f, 200.0f);
+    ctx->genSlider("狼・鉛直初速度", &mData.m_wolfThrowInitSpeedY, 0.0f, 100.0f);
+    ctx->genSlider("狼・水平初速度", &mData.m_wolfThrowInitSpeedXZ, 0.0f, 200.0f);
+    ctx->genSlider("浮力", &mData.m_Buoyancy, 0.0f, 40.0f);
+    ctx->genLabel("-- 壷系のみ --", 0);  // Pots only
+    ctx->genSlider("風の影響率", &mData.m_urnWindEffRatio, 0.0f, 1.0f);
+    ctx->genSlider("回転係数", &mData.m_urnRotateFactor, 0, 500);
+}
+
+daObj_HIO_common_c::daObj_HIO_common_c() {
+    mCount = 0;
+    mTestOn = 0;
+    mNoBgHitBreak = 0;
+    mWaterResist = 0.75f;
+    mWaterMaxSpeed = 100.0f;
+    mBokkuriChangeFrame = 25;
+    mBokkuriChangeStart = 15;
+    mDrawStop = 0;
+    mExecStop = 0;
+    mBreakItemSet = 0;
+    mScaleAdjust = 0;
+    mScale = cXyz(1.0f, 1.0f, 1.0f);
+    field_0x1c = 0;
+    mCannonReflectCoefXZ = 0.05f;
+    mKColor[0] = (GXColor){0x00, 0x3C, 0x8C, 0xFF};
+    mKColor[1] = (GXColor){0x8C, 0xD2, 0xFF, 0xFF};
+    mTevColor = (GXColorS10){0x82, 0xC8, 0xFA, 0xFF};
+}
+
+void daObj_HIO_common_c::entry() {
+    if (mCount == 0) {
+        daObj::HioThrow_c::init(this, "共通テスト用");  // For common testing
+    }
+    mCount++;
+}
+
+void daObj_HIO_common_c::remove() {
+    mCount--;
+    if (mCount == 0) {
+        daObj::HioThrow_c::clean(this);
+    }
+}
+
+void daObj_HIO_common_c::genMessage(JORMContext* ctx) {
+    ctx->genLabel("持ち上げＯＢＪ共通のテスト用", 0);  // For testing common lift OBJ features
+    ctx->genCheckBox("ここの機能ＯＮ", &mTestOn, 1);
+    ctx->genCheckBox("ＢＧヒット破壊無し", &mNoBgHitBreak, 1);
+    ctx->genSlider("水抵抗", &mWaterResist, 0.0f, 1.0f);
+    ctx->genSlider("水中最高速度", &mWaterMaxSpeed, 0.0f, 100.0f);
+    ctx->genCheckBox("Draw Stop", &mDrawStop, 1);
+    ctx->genCheckBox("ExecStop", &mExecStop, 1);
+    ctx->genCheckBox("破壊時のアイテム指定有効", &mBreakItemSet, 1);
+    ctx->genSlider("アイテム番号", &mBreakItemNo, 0, 255);
+    ctx->genLabel("--ボックリの実--", 0);  // Deku nut
+    ctx->genSlider("変化するフレーム", &mBokkuriChangeFrame, 1, 100);
+    ctx->genSlider("変化開始時間（落ちてから）", &mBokkuriChangeStart, 0, 100);
+    ctx->genLabel("-- 鉄玉 --", 0);  // Iron ball
+    ctx->genSlider("砲撃・水平速度反射係数", &mCannonReflectCoefXZ, 0.0f, 1.0f);
+    ctx->genCheckBox("スケール調整", &mScaleAdjust, 1);
+    ctx->genSlider("スケール", &mScale.x, 0.1f, 5.0f);
+    ctx->genLabel("-- 光の玉 --", 0);  // Light ball
+    ctx->genLabel("  cc_ball ", 0);
+    ctx->genSlider("カラレジ１Ｒ", &mTevColor.r, -0x400, 0x3FF);
+    ctx->genSlider("カラレジ１Ｇ", &mTevColor.g, -0x400, 0x3FF);
+    ctx->genSlider("カラレジ１Ｂ", &mTevColor.b, -0x400, 0x3FF);
+    ctx->genSlider("カラレジ１Ａ", &mTevColor.a, -0x400, 0x3FF);
+    ctx->genSlider("コンレジ１Ｒ", &mKColor[0].r, 0, 255);
+    ctx->genSlider("コンレジ１Ｇ", &mKColor[0].g, 0, 255);
+    ctx->genSlider("コンレジ１Ｂ", &mKColor[0].b, 0, 255);
+    ctx->genSlider("コンレジ１Ａ", &mKColor[0].a, 0, 255);
+    ctx->genLabel("  aa_hikari ", 0);
+    ctx->genSlider("コンレジ１Ｒ", &mKColor[1].r, 0, 255);
+    ctx->genSlider("コンレジ１Ｇ", &mKColor[1].g, 0, 255);
+    ctx->genSlider("コンレジ１Ｂ", &mKColor[1].b, 0, 255);
+    ctx->genSlider("コンレジ１Ａ", &mKColor[1].a, 0, 255);
+}
+#endif
+
 static f32 bound(cXyz* param_0, const cBgS_PolyInfo& param_1, f32 param_2) {
     cM3dGPla plane;
 
@@ -760,10 +863,13 @@ static f32 bound(cXyz* param_0, const cBgS_PolyInfo& param_1, f32 param_2) {
 }
 
 static void TgHitCallBackBase(fopAc_ac_c* i_tgActor, dCcD_GObjInf* i_tgObjInf,
-                              fopAc_ac_c* i_atActor, dCcD_GObjInf* i_atObjInf) {}
+                              fopAc_ac_c* i_atActor, dCcD_GObjInf* i_atObjInf) {
+    daObjCarry_c* objCarry = (daObjCarry_c*)i_tgActor;
+}
 
 static void TgHitCallBackBokkuri(fopAc_ac_c* i_tgActor, dCcD_GObjInf* i_tgObjInf,
                                  fopAc_ac_c* i_atActor, dCcD_GObjInf* i_atObjInf) {
+    UNUSED(i_tgObjInf);
     daObjCarry_c* objCarry = (daObjCarry_c*)i_tgActor;
     if (objCarry != NULL && i_atActor != NULL && i_atObjInf->ChkAtType(AT_TYPE_SHIELD_ATTACK) &&
         fopAcM_IsActor(i_atActor) && fopAcM_GetName(i_atActor) == fpcNm_ALINK_e)
@@ -775,10 +881,15 @@ static void TgHitCallBackBokkuri(fopAc_ac_c* i_tgActor, dCcD_GObjInf* i_tgObjInf
 }
 
 static void CoHitCallBackBase(fopAc_ac_c* i_coActorA, dCcD_GObjInf* i_coObjInfA,
-                              fopAc_ac_c* i_coActorB, dCcD_GObjInf* i_coObjInfB) {}
+                              fopAc_ac_c* i_coActorB, dCcD_GObjInf* i_coObjInfB) {
+    daObjCarry_c* objCarry = (daObjCarry_c*)i_coActorA;
+}
 
 static void CoHitCallBackBokkuri(fopAc_ac_c* i_coActorA, dCcD_GObjInf* i_coObjInfA,
                                  fopAc_ac_c* i_coActorB, dCcD_GObjInf* i_coObjInfB) {
+    UNUSED(i_coObjInfA);
+    UNUSED(i_coActorB);
+    UNUSED(i_coObjInfB);
     daObjCarry_c* objCarry = (daObjCarry_c*)i_coActorA;
 
     if (objCarry != NULL && i_coActorB != NULL) {
@@ -798,14 +909,12 @@ static void CoHitCallBackBokkuri(fopAc_ac_c* i_coActorA, dCcD_GObjInf* i_coObjIn
 }
 
 static void* s_swA_sub(void* i_actor, void* i_data) {
-    daObjSwBallA_c* swball = (daObjSwBallA_c*)i_actor;
-    daObjCarry_c* objCarry = (daObjCarry_c*)i_data;
+    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == fpcNm_Obj_SwBallA_e) {
+        daObjSwBallA_c* swball = (daObjSwBallA_c*)i_actor;
+        daObjCarry_c* objCarry = (daObjCarry_c*)i_data;
 
-    if (fopAcM_IsActor(swball) && fopAcM_GetName(swball) == fpcNm_Obj_SwBallA_e && swball != NULL &&
-        objCarry != NULL)
-    {
-        if (swball->getSwbit() == objCarry->getSwbit2()) {
-            return i_actor;
+        if (swball != NULL && objCarry != NULL && swball->getSwbit() == objCarry->getSwbit2()) {
+            return swball;
         }
     }
 
@@ -814,48 +923,69 @@ static void* s_swA_sub(void* i_actor, void* i_data) {
 
 static int l_sw_id;
 
-static void* s_sw_sub(void* i_actor, void* i_data) {
-    daObjSwBallB_c* swball = (daObjSwBallB_c*)i_actor;
+#if DEBUG
+daObj_HIO_c daObjCarry_c::mHIO[] = {
+    daObj_HIO_c(TYPE_TSUBO),     daObj_HIO_c(TYPE_OOTSUBO), daObj_HIO_c(TYPE_KIBAKO),
+    daObj_HIO_c(TYPE_IRON_BALL), daObj_HIO_c(TYPE_TARU),    daObj_HIO_c(TYPE_DOKURO),
+    daObj_HIO_c(TYPE_BOKKURI),   daObj_HIO_c(TYPE_TSUBO_2), daObj_HIO_c(TYPE_BALL_S),
+    daObj_HIO_c(TYPE_BALL_S_2),  daObj_HIO_c(TYPE_AOTSUBO), daObj_HIO_c(TYPE_LV8_BALL),
+    daObj_HIO_c(TYPE_TSUBO_S),   daObj_HIO_c(TYPE_TSUBO_B),
+};
 
-    if (fopAcM_IsActor(swball) && fopAcM_GetName(swball) == fpcNm_Obj_SwBallB_e && swball != NULL &&
-        swball->getID() == l_sw_id)
-    {
-        return i_actor;
+static daObj_HIO_common_c l_HIO;
+#endif
+
+static void* s_sw_sub(void* i_actor, void* i_data) {
+    UNUSED(i_data);
+
+    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == fpcNm_Obj_SwBallB_e) {
+        daObjSwBallB_c* swball = (daObjSwBallB_c*)i_actor;
+
+        if (swball != NULL && swball->getID() == l_sw_id) {
+            return swball;
+        }
     }
 
     return NULL;
 }
 
 static void* s_setA_sub(void* i_actor, void* i_data) {
-    daTagSetBall_c* tagball = (daTagSetBall_c*)i_actor;
+    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == fpcNm_Tag_SetBall_e) {
+        daTagSetBall_c* tagball = (daTagSetBall_c*)i_actor;
+        daObjCarry_c* objCarry = (daObjCarry_c*)i_data;
 
-    if (fopAcM_IsActor(tagball) && fopAcM_GetName(tagball) == fpcNm_Tag_SetBall_e && tagball &&
-        i_data != NULL && tagball->getType() == 0xF)
-    {
-        return i_actor;
+        if (tagball != NULL && objCarry != NULL && tagball->getType() == 0xF) {
+            return tagball;
+        }
     }
 
     return NULL;
 }
 
 static void* s_setB_sub(void* i_actor, void* i_data) {
-    daTagSetBall_c* tagball = (daTagSetBall_c*)i_actor;
+    if (fopAcM_IsActor(i_actor) && fopAcM_GetName(i_actor) == fpcNm_Tag_SetBall_e) {
+        daTagSetBall_c* tagball = (daTagSetBall_c*)i_actor;
+        daObjCarry_c* objCarry = (daObjCarry_c*)i_data;
 
-    if (fopAcM_IsActor(tagball) && fopAcM_GetName(tagball) == fpcNm_Tag_SetBall_e && tagball &&
-        i_data != NULL && tagball->getType() == 0)
-    {
-        return i_actor;
+        if (tagball != NULL && objCarry != NULL && tagball->getType() == 0) {
+            return tagball;
+        }
     }
 
     return NULL;
 }
 
 static int CheckCreateHeap(fopAc_ac_c* i_this) {
-    return ((daObjCarry_c*)i_this)->CreateHeap();
+    daObjCarry_c* a_this = (daObjCarry_c*)i_this;
+    return a_this->CreateHeap();
 }
 
 const daObjCarry_dt_t& daObjCarry_c::data() {
+#if DEBUG
+    return mHIO[mType].mData;
+#else
     return mData[mType];
+#endif
 }
 
 char* daObjCarry_c::getArcName() {
@@ -873,8 +1003,7 @@ BOOL daObjCarry_c::checkFlag(u8 i_flag) {
 void daObjCarry_c::initBaseMtx() {
     mRotAxis = cXyz::Zero;
     mRotation = 0;
-    field_0xd3c = ZeroQuat;
-    field_0xd4c = field_0xd3c;
+    field_0xd4c = field_0xd3c = ZeroQuat;
     setBaseMtx();
 }
 
@@ -888,6 +1017,7 @@ void daObjCarry_c::setBaseMtx() {
     }
 
     if (mType == TYPE_BOKKURI) {
+        daPy_py_c* player = daPy_getPlayerActorClass();
         mDoMtx_stack_c::transS(current.pos.x, current.pos.y + data().field_0x28, current.pos.z);
         mDoMtx_stack_c::transM(0.0f, scale.x * data().field_0x2c, 0.0f);
         mDoMtx_stack_c::concat(rot_mtx);
@@ -912,6 +1042,15 @@ void daObjCarry_c::setBaseMtx() {
     }
 
     mpModel->setBaseTRMtx(mDoMtx_stack_c::get());
+
+#if DEBUG
+    if (l_HIO.mScaleAdjust) {
+        scale.x = l_HIO.mScale.x;
+        scale.y = l_HIO.mScale.x;
+        scale.z = l_HIO.mScale.x;
+    }
+#endif
+
     mpModel->setBaseScale(scale);
 }
 
@@ -921,12 +1060,9 @@ int daObjCarry_c::preInit() {
     if (!mInitParams) {
         mItemNo = home.angle.x;
         field_0xd18 = home.angle.z;
-        home.angle.z = 0;
-        home.angle.x = 0;
-        current.angle.z = 0;
-        current.angle.x = 0;
-        shape_angle.z = 0;
-        shape_angle.x = 0;
+        home.angle.x = home.angle.z = 0;
+        current.angle.x = current.angle.z = 0;
+        shape_angle.x = shape_angle.z = 0;
         mOnMoveBG = checkOnMoveBg();
         mInitParams = true;
     }
@@ -935,7 +1071,7 @@ int daObjCarry_c::preInit() {
     return 1;
 }
 
-daObjCarry_c::daObjCarry_c() {}
+inline daObjCarry_c::daObjCarry_c() {}
 
 BOOL daObjCarry_c::checkBreakWolfAttack() {
     if (mType == TYPE_TSUBO   ||
@@ -1043,7 +1179,9 @@ int daObjCarry_c::Create() {
     }
 
     fopAcM_SetCullSize(this, fopAc_CULLSPHERE_CUSTOM_e);
-    fopAcM_setCullSizeSphere(this, data().m_cullsph_min_x, data().m_cullsph_min_y, data().m_cullsph_min_z, mpModel->getModelData()->getJointNodePointer(0)->getRadius() * data().scale);
+    J3DJoint* joint = mpModel->getModelData()->getJointNodePointer(0);
+    fopAcM_setCullSizeSphere(this, data().m_cullsph_min.x, data().m_cullsph_min.y,
+                             data().m_cullsph_min.z, joint->getRadius() * data().scale);
 
     cLib_onBit<u32>(attention_info.flags, fopAc_AttnFlag_CARRY_e);
     attention_info.distances[fopAc_attn_CARRY_e] = data().m_carry_attn_dist;
@@ -1059,18 +1197,21 @@ int daObjCarry_c::Create() {
     field_0xd70 = cM_rndF(100.0f);
     field_0xd04 = field_0xd70;
 
+    u32 tg_type;
     if (checkBreakWolfAttack()) {
-        mCyl.SetTgType(mCyl.GetTgType() | 0x20000000);
+        tg_type = mCyl.GetTgType();
+        mCyl.SetTgType(tg_type | 0x20000000);
     }
 
-    u32 tg_type = mCyl.GetTgType();
+    tg_type = mCyl.GetTgType();
     if (!checkCarryBoomerang()) {
         mCyl.SetTgType(tg_type & ~0x10000);
     }
 
     if (checkCarryHookshot()) {
         fopAcM_OnStatus(this, fopAcStts_UNK_0x80000_e);
-        mCyl.SetTgType(mCyl.GetTgType() | 0x4000);
+        tg_type = mCyl.GetTgType();
+        mCyl.SetTgType(tg_type | 0x4000);
     }
 
     if (checkCarryWolf()) {
@@ -1082,11 +1223,16 @@ int daObjCarry_c::Create() {
     }
 
     if (mType == TYPE_TSUBO || mType == TYPE_OOTSUBO || mType == TYPE_TSUBO_2 || mType == TYPE_AOTSUBO) {
-        mCyl.SetTgType(mCyl.GetTgType() | 0x2000000);
+        tg_type = mCyl.GetTgType();
+        mCyl.SetTgType(tg_type | 0x2000000);
     }
 
     if (mType != TYPE_TSUBO && mType != TYPE_TSUBO_2 && mType != TYPE_TSUBO_S && mType != TYPE_OOTSUBO && mType != TYPE_AOTSUBO && mType != TYPE_TSUBO_B) {
         mCyl.OnTgNoSlingHitInfSet();
+    }
+
+    if (mType == TYPE_TARU) {
+        // empty
     }
 
     if (!CreateInitCall()) {
@@ -1168,6 +1314,10 @@ int daObjCarry_c::CreateInit_ironball() {
         if (chkSttsFlag(l_saveID, 1)) {
             mDraw = true;
         }
+
+        // "Iron ball ID<%d>: set at Pos(%.2f,%.2f,%.2f)\n"
+        OS_REPORT("\x1B[33m鉄玉ID<%d>:Pos(%.2f,%.2f,%.2f)にセット\n\x1B[m", l_saveID, current.pos.x,
+                  current.pos.y, current.pos.z);
     }
 
     mAcch.SetLink();
@@ -1175,7 +1325,8 @@ int daObjCarry_c::CreateInit_ironball() {
 
     mode_init_wait();
 
-    mCyl.SetAtType(mCyl.GetAtType() | AT_TYPE_IRON_BALL);
+    u32 at_type = mCyl.GetAtType();
+    mCyl.SetAtType(at_type | AT_TYPE_IRON_BALL);
     mCyl.SetAtSe(6);
     return 1;
 }
@@ -1191,7 +1342,14 @@ int daObjCarry_c::CreateInit_taru() {
 
 int daObjCarry_c::CreateInit_dokuro() {
     mode_init_wait();
-    return fopAcM_isSwitch(this, getSwbit()) == FALSE ? TRUE : FALSE;
+
+    if (fopAcM_isSwitch(this, getSwbit())) {
+        // "Skull: the switch is ON, so it won't appear! <%d>\n"
+        OS_REPORT("ドクロ：スイッチＯＮなので出ません！<%d>\n", getSwbit());
+        return 0;
+    }
+
+    return 1;
 }
 
 int daObjCarry_c::CreateInit_bokkuri() {
@@ -1204,7 +1362,8 @@ int daObjCarry_c::CreateInit_bokkuri() {
 
     mSound.init(&current.pos, 1);
 
-    switch (getSetType()) {
+    u8 set_type = getSetType();
+    switch (set_type) {
     case 0:
         mode_init_wait();
         break;
@@ -1228,6 +1387,8 @@ int daObjCarry_c::CreateInit_bokkuri() {
         mode_init_growth();
         break;
     default:
+        // "Deku nut: the initial state setting is invalid\n"
+        OS_REPORT_ERROR("ボックリの実：初期状態設定が異常です\n");
         mode_init_wait();
     }
 
@@ -1322,6 +1483,11 @@ int daObjCarry_c::create() {
         if (!Create()) {
             return cPhs_ERROR_e;
         }
+
+#if DEBUG
+        mHIO[mType].entry();
+        l_HIO.entry();
+#endif
     }
 
     return phase_state;
@@ -1422,16 +1588,16 @@ int daObjCarry_c::checkCreate_LightBallA() {
             
             l_sw_id = -1;
 
-            for (int i = 0; i < 6; i++) {
-                static const u16 l_event_bitA[] = {
-                    dSv_event_flag_c::F_0551, /* Palace of Twilight - Palace of Twilight control use 1 */
-                    dSv_event_flag_c::F_0552, /* Palace of Twilight - Palace of Twilight control use 2 */
-                    dSv_event_flag_c::F_0553, /* Palace of Twilight - Palace of Twilight control use 3 */
-                    dSv_event_flag_c::F_0554, /* Palace of Twilight - Palace of Twilight control use 4 */
-                    dSv_event_flag_c::F_0555, /* Palace of Twilight - Palace of Twilight control use 5 */
-                    dSv_event_flag_c::F_0556, /* Palace of Twilight - Palace of Twilight control use 6 */
-                };
+            static const u16 l_event_bitA[] = {
+                dSv_event_flag_c::F_0551, /* Palace of Twilight - Palace of Twilight control use 1 */
+                dSv_event_flag_c::F_0552, /* Palace of Twilight - Palace of Twilight control use 2 */
+                dSv_event_flag_c::F_0553, /* Palace of Twilight - Palace of Twilight control use 3 */
+                dSv_event_flag_c::F_0554, /* Palace of Twilight - Palace of Twilight control use 4 */
+                dSv_event_flag_c::F_0555, /* Palace of Twilight - Palace of Twilight control use 5 */
+                dSv_event_flag_c::F_0556, /* Palace of Twilight - Palace of Twilight control use 6 */
+            };
 
+            for (int i = 0; i < 6; i++) {
                 if (dComIfGs_isEventBit(l_event_bitA[i])) {
                     l_sw_id = i;
                     break;
@@ -1565,16 +1731,16 @@ BOOL daObjCarry_c::checkCreate_LightBallB() {
             
             l_sw_id = -1;
 
-            for (int i = 0; i < 6; i++) {
-                static const u16 l_event_bitB[] = {
-                    dSv_event_flag_c::F_0557, /* Palace of Twilight - Palace of Twilight control use 7 */
-                    dSv_event_flag_c::F_0558, /* Palace of Twilight - Palace of Twilight control use 8 */
-                    dSv_event_flag_c::F_0559, /* Palace of Twilight - Palace of Twilight control use 9 */
-                    dSv_event_flag_c::F_0560, /* Palace of Twilight - Palace of Twilight control use 10 */
-                    dSv_event_flag_c::F_0561, /* Palace of Twilight - Palace of Twilight control use 11 */
-                    dSv_event_flag_c::F_0562, /* Palace of Twilight - Palace of Twilight control use 12 */
-                };
+            static const u16 l_event_bitB[] = {
+                dSv_event_flag_c::F_0557, /* Palace of Twilight - Palace of Twilight control use 7 */
+                dSv_event_flag_c::F_0558, /* Palace of Twilight - Palace of Twilight control use 8 */
+                dSv_event_flag_c::F_0559, /* Palace of Twilight - Palace of Twilight control use 9 */
+                dSv_event_flag_c::F_0560, /* Palace of Twilight - Palace of Twilight control use 10 */
+                dSv_event_flag_c::F_0561, /* Palace of Twilight - Palace of Twilight control use 11 */
+                dSv_event_flag_c::F_0562, /* Palace of Twilight - Palace of Twilight control use 12 */
+            };
 
+            for (int i = 0; i < 6; i++) {
                 if (dComIfGs_isEventBit(l_event_bitB[i])) {
                     l_sw_id = i;
                     break;
@@ -1616,18 +1782,18 @@ BOOL daObjCarry_c::checkCreate_LightBallB() {
 BOOL daObjCarry_c::checkCreate_Lv8Ball() {
     if (!fopAcM_isSwitch(this, getSwbit())) {
         return cPhs_NEXT_e;
-    }
+    } else {
+        fopAc_ac_c* var_r29 = (fopAc_ac_c*)fpcM_Search(s_swA_sub, this);
+        if (var_r29 == NULL) {
+            return cPhs_INIT_e;
+        }
 
-    fopAc_ac_c* var_r29 = (fopAc_ac_c*)fpcM_Search(s_swA_sub, this);
-    if (var_r29 == NULL) {
-        return cPhs_INIT_e;
+        current.pos = var_r29->home.pos;
+        old.pos = current.pos;
+        attention_info.position = current.pos;
+        eyePos = current.pos;
+        return cPhs_NEXT_e;
     }
-
-    current.pos = var_r29->home.pos;
-    old.pos = current.pos;
-    attention_info.position = current.pos;
-    eyePos = current.pos;
-    return cPhs_NEXT_e;
 }
 
 void daObjCarry_c::resetIconPosForLightBallA() {
@@ -1669,6 +1835,12 @@ void daObjCarry_c::resetIconPosForLightBallB() {
 }
 
 int daObjCarry_c::execute() {
+#if DEBUG
+    if (l_HIO.mExecStop) {
+        return 1;
+    }
+#endif
+
     mRecover = 0;
 
     if (prm_chk_type_ironball()) {
@@ -1912,6 +2084,35 @@ BOOL daObjCarry_c::checkCulling() {
 }
 
 int daObjCarry_c::draw() {
+#if DEBUG
+    if (l_HIO.mDrawStop) {
+        return 1;
+    }
+
+    if (KREG_S(7) == 10000) {
+        if (getRoomNo() != 0x3F) {
+            dDbVw_drawSphereOpa(current.pos, 60.0f, (GXColor){0x00, 0x00, 0xFF, 0xFF}, TRUE);
+        }
+
+        cXyz vec(0.0f, 100.0f, 0.0f);
+        cXyz start;
+        cXyz end;
+        start = current.pos;
+        end = vec;
+
+        s16 angle = KREG_S(0);
+        Quaternion quat;
+        quat.x = KREG_F(20) * cM_ssin(angle);
+        quat.y = KREG_F(21) * cM_ssin(angle);
+        quat.z = KREG_F(22) * cM_ssin(angle);
+        quat.w = cM_scos(angle);
+        mDoMtx_stack_c::quatS(&quat);
+        mDoMtx_stack_c::multVec(&end, &end);
+        end += current.pos;
+        dDbVw_drawLineOpa(start, end, (GXColor){0xFF, 0xFF, 0xFF, 0xFF}, TRUE, 12);
+    }
+#endif
+
     if (checkCulling()) {
         return 1;
     }
@@ -1935,6 +2136,17 @@ int daObjCarry_c::draw() {
             J3DGXColorS10* tev_color = material->getTevColor(1);
 
             if (strcmp(nametab->getName(i), "cc_ball") == 0) {
+#if DEBUG
+                tev_color->r = l_HIO.mTevColor.r;
+                tev_color->g = l_HIO.mTevColor.g;
+                tev_color->b = l_HIO.mTevColor.b;
+                tev_color->a = l_HIO.mTevColor.a;
+
+                tev_kcolor->r = l_HIO.mKColor[0].r;
+                tev_kcolor->g = l_HIO.mKColor[0].g;
+                tev_kcolor->b = l_HIO.mKColor[0].b;
+                tev_kcolor->a = l_HIO.mKColor[0].a;
+#else
                 tev_color->r = 0x82;
                 tev_color->g = 0xC8;
                 tev_color->b = 0xFA;
@@ -1944,11 +2156,19 @@ int daObjCarry_c::draw() {
                 tev_kcolor->g = 0x3C;
                 tev_kcolor->b = 0x8C;
                 tev_kcolor->a = 0xFF;
+#endif
             } else if (strcmp(nametab->getName(i), "aa_hikari") == 0) {
+#if DEBUG
+                tev_kcolor->r = l_HIO.mKColor[1].r;
+                tev_kcolor->g = l_HIO.mKColor[1].g;
+                tev_kcolor->b = l_HIO.mKColor[1].b;
+                tev_kcolor->a = l_HIO.mKColor[1].a;
+#else
                 tev_kcolor->r = 0x8C;
                 tev_kcolor->g = 0xD2;
                 tev_kcolor->b = 0xFF;
                 tev_kcolor->a = 0xFF;
+#endif
             }
         }
     }
@@ -1981,26 +2201,25 @@ void daObjCarry_c::debugDraw() {
         cXyz end = current.pos + (mRotAxis.norm() * 100.0f);
         end.y += 35.0f;
 
-        GXColor color = {0xFF, 0xFF, 0xFF, 0xFF};
-        dDbVw_drawLineOpa(start, end, color, TRUE, 12);
+        dDbVw_drawLineOpa(start, end, (GXColor){0xFF, 0xFF, 0xFF, 0xFF}, TRUE, 12);
     }
 
     if (KREG_S(8) == 20000) {
-        cXyz start(daPy_getPlayerActorClass()->current.pos);
+        daPy_py_c* player = daPy_getPlayerActorClass();
+        cXyz start(player->current.pos);
         cXyz end(home.pos);
-        GXColor color = {0xFF, 0xFF, 0xFF, 0xFF};
-        dDbVw_drawLineOpa(start, end, color, TRUE, 12);
+        dDbVw_drawLineOpa(start, end, (GXColor){0xFF, 0xFF, 0xFF, 0xFF}, TRUE, 12);
     }
 
     if (KREG_S(8) == 20001) {
-        cXyz start(daPy_getPlayerActorClass()->current.pos);
-        cXyz end(home.pos);
-        GXColor color = {0xFF, 0x00, 0x00, 0xFF};
-        dDbVw_drawLineOpa(start, end, color, TRUE, 12);
+        daPy_py_c* player = daPy_getPlayerActorClass();
+        cXyz start(player->current.pos);
+        cXyz end(current.pos);
+        dDbVw_drawLineOpa(start, end, (GXColor){0xFF, 0x00, 0x00, 0xFF}, TRUE, 12);
     }
 
     if (KREG_S(7) == 4000) {
-        GXColor color = {0xFF, 0x00, 0x00, 0xFF};
+        GXColor color = (GXColor){0xFF, 0x00, 0x00, 0xFF};
         cXyz sp80(0.0f, 0.0f, 100.0f);
         mDoMtx_stack_c::YrotS(current.angle.y);
         mDoMtx_stack_c::multVec(&sp80, &sp80);
@@ -2016,12 +2235,13 @@ void daObjCarry_c::debugDraw() {
     }
 
     if (KREG_S(7) == 5000) {
-        GXColor color = {0x00, 0x00, 0xFF, 0xFF};
+        GXColor color = (GXColor){0x00, 0x00, 0xFF, 0xFF};
         cXyz sp74(current.pos);
         cXyz sp68;
 
         int sp28;
-        if (fopAcM_getWaterStream(&current.pos, mAcch.m_gnd, &sp68, &sp28, 0)) {
+        int stream = fopAcM_getWaterStream(&current.pos, mAcch.m_gnd, &sp68, &sp28, 0);
+        if (stream) {
             cXyz sp5C = sp68 * 100.0f;
             sp5C += current.pos;
             dDbVw_drawArrowOpa(current.pos, sp5C, color, TRUE, 12);
@@ -2029,7 +2249,7 @@ void daObjCarry_c::debugDraw() {
     }
 
     if (mType == TYPE_KIBAKO || mType == TYPE_TARU) {
-        // mJntCol.debugDraw();
+        mJntCol.debugDraw();
     }
 #endif
 }
@@ -2120,6 +2340,12 @@ int daObjCarry_c::_delete() {
     }
 
     dComIfG_resDelete(&mPhaseReq, getArcName());
+
+#if DEBUG
+    mHIO[mType].remove();
+    l_HIO.remove();
+#endif
+
     return 1;
 }
 
@@ -2346,7 +2572,11 @@ int daObjCarry_c::mode_proc_wait() {
     } else {
         if (mCanCrashRoll) {
             daPy_py_c* player = dComIfGp_getLinkPlayer();
-            if (player->current.pos.absXZ(current.pos) < (500.0f + KREG_F(9)) && (player->checkFrontRollCrash() || player->checkWolfAttackReverse())) {
+            f32 dist = player->current.pos.absXZ(current.pos);
+            f32 crash_dist = 500.0f + KREG_F(9);
+            if (dist < crash_dist &&
+                (player->checkFrontRollCrash() || player->checkWolfAttackReverse()))
+            {
                 do_crash_roll = true;
                 mCanCrashRoll = false;
             }
@@ -2405,9 +2635,9 @@ void daObjCarry_c::mode_init_walk(u8 unused) {
 }
 
 int daObjCarry_c::mode_proc_walk() {
-    bool gnd_hit = mAcch.ChkGroundHit() != 0;
-    bool gnd_landing = mAcch.ChkGroundLanding() != 0;
-    bool gnd_away = mAcch.ChkGroundAway() != 0;
+    bool gnd_hit = mAcch.ChkGroundHit();
+    bool gnd_landing = mAcch.ChkGroundLanding();
+    bool gnd_away = mAcch.ChkGroundAway();
 
     if (gnd_hit) {
         field_0xcec = current.pos.y;
@@ -2740,7 +2970,8 @@ int daObjCarry_c::mode_proc_float() {
     f32 speed_target;
 
     int spC = 0;
-    if (fopAcM_getWaterStream(&current.pos, mAcch.m_gnd, &sp34, &spC, 0)) {
+    int stream = fopAcM_getWaterStream(&current.pos, mAcch.m_gnd, &sp34, &spC, 0);
+    if (stream) {
         s16 sp8 = cM_atan2s(sp34.x, sp34.z);
 
         cXyz sp28(speedF * cM_ssin(current.angle.y), 0.0f, speedF * cM_scos(current.angle.y));
@@ -2825,7 +3056,8 @@ int daObjCarry_c::mode_proc_sink() {
     cXyz sp24;
     f32 speed_target;
     int sp8 = 0;
-    if (fopAcM_getWaterStream(&current.pos, mAcch.m_gnd, &sp24, &sp8, 0)) {
+    int stream = fopAcM_getWaterStream(&current.pos, mAcch.m_gnd, &sp24, &sp8, 0);
+    if (stream) {
         s16 var_r27 = cM_atan2s(sp24.x, sp24.z);
 
         cXyz sp18(speedF * cM_ssin(current.angle.y), 0.0f, speedF * cM_scos(current.angle.y));
@@ -2925,8 +3157,7 @@ void daObjCarry_c::mode_init_boomCarry() {
     fopAcM_SetMaxFallSpeed(this, -100.0f);
 
     mStts.SetWeight(data().m_colliderWeight);
-    mCyl.GetTgHitGObj();
-    mBoomerangMove.initOffset(&current.pos);
+    mBoomerangMove.initOffset(&current.pos, mCyl.GetTgHitGObj());
 
     if (field_0xdb0 == 1) {
         field_0xdb0 = 0;
@@ -3029,8 +3260,7 @@ void daObjCarry_c::mode_init_hookCarry() {
     fopAcM_SetMaxFallSpeed(this, -100.0f);
     mStts.SetWeight(data().m_colliderWeight);
 
-    mCyl.GetTgHitGObj();
-    mBoomerangMove.initOffset(&current.pos);
+    mBoomerangMove.initOffset(&current.pos, mCyl.GetTgHitGObj());
 
     if (prm_chk_type_ironball()) {
         mAcch.ClrIronBall();
@@ -3123,11 +3353,13 @@ int daObjCarry_c::mode_proc_resetLightBall() {
 }
 
 BOOL daObjCarry_c::chkSinkAll() {
-    return mAcch.m_wtr.GetHeight() > current.pos.y + data().field_0x2c * 2.0f;
+    f32 water_height = mAcch.m_wtr.GetHeight();
+    return water_height > current.pos.y + data().field_0x2c * 2.0f;
 }
 
 BOOL daObjCarry_c::chkWaterLineIn() {
-    return mAcch.m_wtr.GetHeight() > current.pos.y + data().field_0x24;
+    f32 water_height = mAcch.m_wtr.GetHeight();
+    return water_height > current.pos.y + data().field_0x24;
 }
 
 BOOL daObjCarry_c::chkSinkObj() {
@@ -3157,9 +3389,13 @@ void daObjCarry_c::bg_check() {
                 cXyz sp94(speed);
                 cXyz sp88(speed);
 
-                f32 var_f31 = data().field_0x14;
+                f32 var_f31 = data().m_reflectCoefXZ;
                 if (mCannon) {
+#if DEBUG
+                    var_f31 = l_HIO.mCannonReflectCoefXZ;
+#else
                     var_f31 = 0.05f;
+#endif
                 }
 
                 switch (dComIfG_Bgsp().GetPolyAtt0(mAcchCir)) {
@@ -3205,8 +3441,8 @@ void daObjCarry_c::bg_check() {
         f32 temp_f30 = field_0xd1c.y;
 
         if (speed.abs() > 1.0f) {
-            f32 var_f29 = data().field_0x14;
-            f32 var_f28 = data().field_0x10;
+            f32 var_f29 = data().m_reflectCoefXZ;
+            f32 var_f28 = data().m_reflectCoefY;
 
             switch (dComIfG_Bgsp().GetPolyAtt0(mAcch.m_gnd)) {
             case 3:
@@ -3248,17 +3484,16 @@ void daObjCarry_c::bg_check() {
         }
 
         if (mType == TYPE_IRON_BALL) {
+            u32 sp2C;
             switch (dComIfG_Bgsp().GetPolyAtt0(mAcch.m_gnd)) {
-            case 13: {
-                u32 sp2C = std::sqrt((speedF * speedF) + (speed.y * speed.y));
+            case 13:
+                sp2C = std::sqrt((speedF * speedF) + (speed.y * speed.y));
                 mDoAud_seStart(Z2SE_OBJ_IRONBALL_HIT_SNOW, &current.pos, std::fabs(temp_f30), 0);
                 break;
-            }
-            case 8: {
-                u32 sp2C = std::sqrt((speedF * speedF) + (speed.y * speed.y));
+            case 8:
+                sp2C = std::sqrt((speedF * speedF) + (speed.y * speed.y));
                 mDoAud_seStart(Z2SE_OBJ_IRONBALL_HIT_ICE, &current.pos, std::fabs(temp_f30), 0);
                 break;
-            }
             default:
                 if (!fopAcM_checkCarryNow(this)) {
                     mDoAud_seStart(Z2SE_OBJ_IRONBALL_HIT, &current.pos, std::fabs(temp_f30), 0);
@@ -3369,9 +3604,11 @@ bool daObjCarry_c::check_bg_damage_proc_base() {
     bool gnd_landing = mAcch.ChkGroundLanding();
     bool wall_hit = mAcch.ChkWallHit();
     bool var_r30 = false;
+    int poly_att = 16;
 
     if (gnd_landing) {
-        var_r30 = dComIfG_Bgsp().GetPolyAtt0(mAcch.m_gnd) != 3;
+        poly_att = dComIfG_Bgsp().GetPolyAtt0(mAcch.m_gnd);
+        var_r30 = poly_att != 3;
     }
 
     if (mMode == MODE_DROP) {
@@ -3410,11 +3647,13 @@ bool daObjCarry_c::bg_damage_proc_kotubo() {
 }
 
 bool daObjCarry_c::bg_damage_proc_ootubo() {
-    return bg_damage_proc_kotubo();
+    bool rt = bg_damage_proc_kotubo();
+    return rt;
 }
 
 bool daObjCarry_c::bg_damage_proc_kibako() {
-    return bg_damage_proc_kotubo();
+    bool rt = bg_damage_proc_kotubo();
+    return rt;
 }
 
 bool daObjCarry_c::bg_damage_proc_ironball() {
@@ -3422,11 +3661,13 @@ bool daObjCarry_c::bg_damage_proc_ironball() {
 }
 
 bool daObjCarry_c::bg_damage_proc_taru() {
-    return bg_damage_proc_kotubo();
+    bool rt = bg_damage_proc_kotubo();
+    return rt;
 }
 
 bool daObjCarry_c::bg_damage_proc_dokuro() {
-    return bg_damage_proc_kotubo();
+    bool rt = bg_damage_proc_kotubo();
+    return rt;
 }
 
 bool daObjCarry_c::bg_damage_proc_bokkuri() {
@@ -3460,6 +3701,12 @@ bool daObjCarry_c::bg_damage_proc_Lv8Ball() {
 void daObjCarry_c::obj_break(bool i_createItem, bool i_cancelCarry, bool i_doBreakEff) {
     int item_no = getItemNo();
     int item_bit = getItemBit();
+
+#if DEBUG
+    if (l_HIO.mBreakItemSet) {
+        item_no = l_HIO.mBreakItemNo;
+    }
+#endif
 
     if (i_createItem) {
         if (getItemType() == 0) {
@@ -3563,6 +3810,7 @@ bool daObjCarry_c::cc_damage_proc_ironball() {
     bool var_r26 = false;
     bool var_r27 = true;
 
+#if VERSION != VERSION_WII_USA_R0
     if (mAcch.ChkGroundHit() && dComIfG_Bgsp().ChkPolySafe(mAcch.m_gnd) && dComIfG_Bgsp().ChkMoveBG_NoDABg(mAcch.m_gnd) && dComIfG_Bgsp().GetActorPointer(mAcch.m_gnd)) {
         s16 name = fopAcM_GetName(dComIfG_Bgsp().GetActorPointer(mAcch.m_gnd));
         if (name == fpcNm_Obj_YIblltray_e) {
@@ -3570,6 +3818,7 @@ bool daObjCarry_c::cc_damage_proc_ironball() {
             mStts.ClrCcMove();
         }
     }
+#endif
 
     if (mCyl.ChkTgHit() && var_r27) {
         dCcD_GObjInf* tg_hit_gobj = mCyl.GetTgHitGObj();
@@ -3840,58 +4089,55 @@ void daObjCarry_c::calc_rot_axis_base(u8 param_0) {
 
     if (fopAcM_checkCarryNow(this)) {
         if (field_0xd7b < 0) {
-            mDoMtx_quatSlerp(&field_0xd3c, &ZeroQuat, &field_0xd3c, 0.25f * daPy_getLinkPlayerActorClass()->getBaseAnimeFrameRate());
+            f32 rate = 0.25f * daPy_getLinkPlayerActorClass()->getBaseAnimeFrameRate();
+            mDoMtx_quatSlerp(&field_0xd3c, &ZeroQuat, &field_0xd3c, rate);
         } else {
             field_0xd7b--;
         }
-        return;
-    }
+    } else {
+        cXyz sp24 = current.pos - field_0xdec;
+        cXyz sp18(sp24.x, 0.0f, sp24.z);
 
-    cXyz sp24 = current.pos - field_0xdec;
-    cXyz sp18(sp24.x, 0.0f, sp24.z);
+        bool temp_r29 = sp24.normalizeRS();
+        bool temp_r28 = sp18.normalizeRS();
 
-    bool temp_r29 = sp24.normalizeRS();
-    bool temp_r28 = sp18.normalizeRS();
+        bool var_r26 = temp_r29 || temp_r28;
 
-    bool var_r26 = 1;
-    if (temp_r29 == 0 && temp_r28 == 0) {
-        var_r26 = 0;
-    }
-
-    if (temp_r28) {
-        mRotAxis = sp18;
-        mDoMtx_stack_c::YrotS(0x4000);
-        mDoMtx_stack_c::multVec(&mRotAxis, &mRotAxis);
-    } else if (temp_r29) {
-        mRotAxis = cXyz::BaseX;
-    }
-
-    if (mCtrl == 0) {
-        if (mAcch.ChkGroundHit()) {
-            mRotation = data().field_0x7c * (std::fabs(speedF) + std::fabs(speed.y));
-        } else {
-            mRotation = data().m_urnRotateFactor * (std::fabs(speedF) + std::fabs(speed.y));
+        if (temp_r28) {
+            mRotAxis = sp18;
+            mDoMtx_stack_c::YrotS(0x4000);
+            mDoMtx_stack_c::multVec(&mRotAxis, &mRotAxis);
+        } else if (temp_r29) {
+            mRotAxis = cXyz::BaseX;
         }
 
-        field_0xd4c.x = mRotAxis.x * cM_ssin(mRotation);
-        field_0xd4c.y = mRotAxis.y * cM_ssin(mRotation);
-        field_0xd4c.z = mRotAxis.z * cM_ssin(mRotation);
-        field_0xd4c.w = cM_scos(mRotation);
-    } else {
-        sp24 = current.pos - field_0xdec;
-        current.angle.y = cM_atan2s(sp24.x, sp24.z);
-
-        if (var_r26) {
-            mRotation = std::fabs(sp24.abs()) * data().m_urnRotateFactor;
+        if (mCtrl == 0) {
+            if (mAcch.ChkGroundHit()) {
+                mRotation = data().field_0x7c * (std::fabs(speedF) + std::fabs(speed.y));
+            } else {
+                mRotation = data().m_urnRotateFactor * (std::fabs(speedF) + std::fabs(speed.y));
+            }
 
             field_0xd4c.x = mRotAxis.x * cM_ssin(mRotation);
             field_0xd4c.y = mRotAxis.y * cM_ssin(mRotation);
             field_0xd4c.z = mRotAxis.z * cM_ssin(mRotation);
             field_0xd4c.w = cM_scos(mRotation);
-        }
-    }
+        } else {
+            sp24 = current.pos - field_0xdec;
+            current.angle.y = cM_atan2s(sp24.x, sp24.z);
 
-    field_0xd7b = param_0;
+            if (var_r26) {
+                mRotation = std::fabs(sp24.abs()) * data().m_urnRotateFactor;
+
+                field_0xd4c.x = mRotAxis.x * cM_ssin(mRotation);
+                field_0xd4c.y = mRotAxis.y * cM_ssin(mRotation);
+                field_0xd4c.z = mRotAxis.z * cM_ssin(mRotation);
+                field_0xd4c.w = cM_scos(mRotation);
+            }
+        }
+
+        field_0xd7b = param_0;
+    }
 }
 
 void daObjCarry_c::calc_rot_axis_tsubo() {
@@ -3994,11 +4240,8 @@ void daObjCarry_c::calc_rot_axis_bokkuri() {
     } else {
         mRotAxis = cXyz::Zero;
         mRotation = 0;
-        field_0xd60 = 0.0f;
-        field_0xd5c = 0.0f;
-        field_0xd68 = 0;
-        field_0xd66 = 0;
-        field_0xd64 = 0;
+        field_0xd5c = field_0xd60 = 0.0f;
+        field_0xd64 = field_0xd66 = field_0xd68 = 0;
     }
 }
 
@@ -4072,11 +4315,21 @@ void daObjCarry_c::exec_proc_taru() {}
 void daObjCarry_c::exec_proc_dokuro() {}
 
 void daObjCarry_c::exec_proc_bokkuri() {
+    u8 shrink_step = 0xFF / 24;
+#if DEBUG
+    shrink_step = 0xFF / l_HIO.mBokkuriChangeFrame;
+#endif
+
     switch (field_0xd79) {
     case 0:
         if (mAcch.ChkGroundLanding()) {
             field_0xd79 = 1;
-            field_0xd77 = 15;
+
+            u8 change_start = 15;
+#if DEBUG
+            change_start = l_HIO.mBokkuriChangeStart;
+#endif
+            field_0xd77 = change_start;
         }
         break;
     case 1:
@@ -4090,7 +4343,7 @@ void daObjCarry_c::exec_proc_bokkuri() {
         }
         break;
     case 2:
-        cLib_chaseUC(&field_0xd76, 0, 0xFF / 24);
+        cLib_chaseUC(&field_0xd76, 0, shrink_step);
         if (field_0xd76 == 0) {
             field_0xd75 = 0;
             field_0xd79 = 3;
@@ -4149,16 +4402,28 @@ void daObjCarry_c::exec_proc_LightBall() {
     mLightAtSph.SetC(current.pos);
     dComIfG_Ccsp()->Set(&mLightAtSph);
 
-    if (mCyl.ChkTgHit() && mCyl.GetTgHitObj()) {
-        mSound.startCollisionSE(mCyl.GetTgHitObjHitSeID(1), 2, NULL);
+#if DEBUG
+    mDalkmistInf.field_0xc = 750.0f + KREG_F(10);
+#endif
+
+    if (mCyl.ChkTgHit()) {
+        cCcD_Obj* hit_obj = mCyl.GetTgHitObj();
+        if (hit_obj != NULL) {
+            u32 se_id = mCyl.GetTgHitObjHitSeID(1);
+            mSound.startCollisionSE(se_id, 2, NULL);
+        }
     }
 
     mSound.framework(0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
 }
 
 void daObjCarry_c::exec_proc_Lv8Ball() {
-    if (mCyl.ChkTgHit() && mCyl.GetTgHitObj()) {
-        mSound.startCollisionSE(mCyl.GetTgHitObjHitSeID(1), 2, NULL);
+    if (mCyl.ChkTgHit()) {
+        cCcD_Obj* hit_obj = mCyl.GetTgHitObj();
+        if (hit_obj != NULL) {
+            u32 se_id = mCyl.GetTgHitObjHitSeID(1);
+            mSound.startCollisionSE(se_id, 2, NULL);
+        }
     }
 
     mSound.framework(0, dComIfGp_getReverb(fopAcM_GetRoomNo(this)));
@@ -4176,6 +4441,12 @@ void daObjCarry_c::bg_damage_proc_call() {
         &daObjCarry_c::bg_damage_proc_kotubo,    &daObjCarry_c::bg_damage_proc_ootubo,
     };
 
+#if DEBUG
+    if (mType != TYPE_IRON_BALL && l_HIO.mTestOn && l_HIO.mNoBgHitBreak) {
+        return;
+    }
+#endif
+
     if (field_0xdae == 0) {
         field_0xdae |= (this->*l_type_func[mType])();
     }
@@ -4192,6 +4463,12 @@ void daObjCarry_c::cc_damage_proc_call() {
         &daObjCarry_c::cc_damage_proc_ootubo,    &daObjCarry_c::cc_damage_proc_Lv8Ball,
         &daObjCarry_c::cc_damage_proc_kotubo,    &daObjCarry_c::cc_damage_proc_ootubo,
     };
+
+#if DEBUG
+    if (l_HIO.mTestOn && l_HIO.mNoBgHitBreak) {
+        return;
+    }
+#endif
 
     if (field_0xdae == 0) {
         field_0xdae |= (this->*l_type_func[mType])();
@@ -4293,11 +4570,14 @@ static int daObjCarry_Execute(daObjCarry_c* i_this) {
 }
 
 static int daObjCarry_Delete(daObjCarry_c* i_this) {
+    fopAcM_RegisterDeleteID(i_this, "Objcarry");
     return i_this->_delete();
 }
 
 static int daObjCarry_Create(fopAc_ac_c* i_this) {
-    return ((daObjCarry_c*)i_this)->create();
+    daObjCarry_c* a_this = (daObjCarry_c*)i_this;
+    fopAcM_RegisterCreateID(i_this, "Objcarry");
+    return a_this->create();
 }
 
 static actor_method_class l_daObjCarry_Method = {

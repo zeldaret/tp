@@ -118,7 +118,7 @@ inline void mDoMtx_multVecZero(CMtxP param_0, Vec* param_1) {
 }
 
 inline void mDoMtx_quatMultiply(const Quaternion* a, const Quaternion* b, Quaternion* ab) {
-    QUATMultiply(a,b,ab);
+    PSQUATMultiply(a,b,ab);
 }
 
 inline void mDoMtx_quatSlerp(const Quaternion* a, const Quaternion* b, Quaternion* ab, f32 param_4) {
