@@ -8667,7 +8667,7 @@ bool dCamera_c::rideCamera(s32 param_0) {
 
         f32 sp1B4;
         cXyz sp4E4 = sp4F0;
-        if (fabsf(sp4E4.y) < 200.0f) {
+        if (std::fabsf(sp4E4.y) < 200.0f) {
             sp4E4.y = 0.0f;
             sp4E4.x *= 0.5f;
             f32 sp1B0 = sp4E4.abs();
@@ -8717,7 +8717,7 @@ bool dCamera_c::rideCamera(s32 param_0) {
                 cSAngle spF8 = -mViewCache.mDirection.U();
                 sp4C0 = dCamMath::xyzRotateY(sp4C0, spF8);
                 cXyz sp4B4 = sp4C0;
-                if (fabsf(sp4B4.y) < 200.0f) {
+                if (std::fabsf(sp4B4.y) < 200.0f) {
                     sp4B4.y = 0.0f;
                     sp4B4.x *= 0.5f;
                     f32 sp19C = sp4B4.abs();
@@ -8733,7 +8733,7 @@ bool dCamera_c::rideCamera(s32 param_0) {
                 cSAngle spF4 = -mViewCache.mDirection.U();
                 sp4A8 = dCamMath::xyzRotateY(sp4A8, spF4);
                 cXyz sp49C = sp4A8;
-                if (fabsf(sp49C.y) < 200.0f) {
+                if (std::fabsf(sp49C.y) < 200.0f) {
                     sp49C.y = 0.0f;
                     sp49C.x *= 0.5f;
                     f32 sp198 = sp49C.abs();
@@ -8864,7 +8864,7 @@ bool dCamera_c::rideCamera(s32 param_0) {
                             }
 #endif
 
-                            if (fabsf(sp484.y) < 200.0f) {
+                            if (std::fabsf(sp484.y) < 200.0f) {
                                 sp484.y = 0.0f;
                                 sp484.x *= 0.5f;
                                 f32 sp18C = sp484.abs();
@@ -9065,12 +9065,12 @@ bool dCamera_c::rideCamera(s32 param_0) {
         var_f31 += val22 * (1.0f - val26) * sp1D0;
     } else if (wk->field_0x93 != 0) {
         cSAngle acStack_4ac = directionOf(wk->field_0x9c).Inv() - mViewCache.mDirection.U();
-        var_f31 = val24 * fabsf(acStack_4ac.Sin());
+        var_f31 = val24 * std::fabsf(acStack_4ac.Sin());
     } else if (mCamParam.Flag(param_0, 0x1000) != 0) {
         var_f31 = val22;
     } else {
         cSAngle acStack_4b0 = directionOf(wk->field_0x9c).Inv() - mViewCache.mDirection.U();
-        f32 sp168 = sp1D0 * fabsf(acStack_4b0.Sin());
+        f32 sp168 = sp1D0 * std::fabsf(acStack_4b0.Sin());
         var_f31 = val24 * sp168;
     }
 
@@ -9085,9 +9085,9 @@ bool dCamera_c::rideCamera(s32 param_0) {
     f32 sp164 = 8.0f;
     var_f31 *= wk->field_0x80;
     f32 sp160 = 0.05f;
-    if (!mCamParam.Flag(param_0, 0x40) && (fabsf(sp174) > sp160 || wk->field_0x90 != 0)) {
+    if (!mCamParam.Flag(param_0, 0x40) && (std::fabsf(sp174) > sp160 || wk->field_0x90 != 0)) {
         cSAngle sp8C = mViewCache.mDirection.U() + (cSAngle)(sp164 * dCamMath::rationalBezierRatio(sp174, 0.5f));
-        var_f31 = fabsf(sp174) - sp160;
+        var_f31 = std::fabsf(sp174) - sp160;
         sp11C.Val(mViewCache.mDirection.U() +
                         (sp8C - mViewCache.mDirection.U()) * var_f31);
         wk->field_0x90 = 1;
@@ -9164,7 +9164,7 @@ bool dCamera_c::rideCamera(s32 param_0) {
 
     if (sp0D) {
         mViewCache.mBank +=
-            (val23 * mPadInfo.mMainStick.mLastPosX - mViewCache.mBank) * (fabsf(sp1D0) * 0.01f);
+            (val23 * mPadInfo.mMainStick.mLastPosX - mViewCache.mBank) * (std::fabsf(sp1D0) * 0.01f);
         setFlag(0x400);
     } else {
         mViewCache.mBank += (cSAngle::_0 - mViewCache.mBank) * 0.05f;
