@@ -98,7 +98,7 @@ dNm_HIO_c::dNm_HIO_c() {
 }
 
 dName_c::dName_c(J2DPane* pane) {
-    nameIn.field_0xc = pane;
+    nameIn.mBasePane = pane;
     _create();
     init();
 }
@@ -132,7 +132,7 @@ void dName_c::_create() {
     stick = new STControl(5, 2, 2, 1, 0.9f, 0.5f, 0, 0x800);
     stick->setFirstWaitTime(5);
     nameIn.font = mDoExt_getMesgFont();
-    g_nmHIO.field_0x4 = -1;
+    g_nmHIO.mNo = -1;
     screenSet();
 
     mNextNameStr[0] = 0;
@@ -147,22 +147,22 @@ void dName_c::init() {
     mLastCurPos = mCurPos;
 
     for (int i = 0; i < 4; i++) {
-        field_0x30c[i][2] = 0;
+        mMojiCursorPos[i].mIsSet = 0;
     }
 
     mCharColumn = 0;
     mCharRow = 0;
     mPrevColumn = 0;
     mPrevRow = 0;
-    field_0x30c[0][0] = 0;
-    field_0x30c[0][1] = 0;
-    field_0x30c[0][2] = 1;
+    mMojiCursorPos[0].mColumn = 0;
+    mMojiCursorPos[0].mRow = 0;
+    mMojiCursorPos[0].mIsSet = 1;
 
     selectCursorMove();
     mSelProc = PROC_MOJI_SELECT;
-    field_0x2ac = mSelProc;
-    field_0x2ad = mSelProc;
-    field_0x2ae = field_0x2ac;
+    mReturnProc = mSelProc;
+    mLastSelProc = mSelProc;
+    mReturnLastSelProc = mReturnProc;
     #if REGION_PAL || REGION_JPN
     mMojiSet = MOJI_HIRA;
     #else
@@ -275,8 +275,8 @@ void dName_c::_move() {
     } else if (mDoCPd_c::getTrigB(PAD_1)) {
         if (mCurPos == 0) {
             mDoAud_seStart(Z2SE_SY_MENU_BACK, 0, 0, 0);
-            field_0x2ac = mSelProc;
-            field_0x2ae = mSelProc;
+            mReturnProc = mSelProc;
+            mReturnLastSelProc = mSelProc;
             mSelProc = PROC_WAIT;
             mIsInputEnd = true;
         } else {
@@ -450,7 +450,7 @@ void dName_c::MojiSelectAnm() {
     {
         selectCursorMove();
         mSelProc = PROC_MOJI_SELECT;
-        field_0x2ad = mSelProc;
+        mLastSelProc = mSelProc;
     }
 }
 
@@ -460,14 +460,14 @@ void dName_c::MojiSelectAnm2() {
     {
         menuCursorMove2();
         mSelProc = PROC_MENU_SELECT;
-        field_0x2ad = mSelProc;
+        mLastSelProc = mSelProc;
     }
 }
 
 void dName_c::MojiSelectAnm3() {}
 
 int dName_c::mojiChange(u8 idx) {
-    if (mChrInfo[idx].field_0x3 == 0 || mChrInfo[idx].mMojiSet == MOJI_EIGO ||
+    if (mChrInfo[idx].mIsSet == 0 || mChrInfo[idx].mMojiSet == MOJI_EIGO ||
         mChrInfo[idx].mCharacter == SJIS('　', 0x8140U))
     {
         return 0;
@@ -611,7 +611,7 @@ int dName_c::checkDakuon(int param_0, u8 param_1) {
         return 0;
     }
 
-    if (param_1 == 0 && mChrInfo[param_1].field_0x3 == 0) {
+    if (param_1 == 0 && mChrInfo[param_1].mIsSet == 0) {
         return 0;
     }
 
@@ -796,7 +796,7 @@ void dName_c::setMoji(int moji) {
                 mChrInfo[mCurPos].mColumn = mCharColumn;
                 mChrInfo[mCurPos].mRow = mCharRow;
                 mChrInfo[mCurPos].mMojiSet = mMojiSet;
-                mChrInfo[mCurPos].field_0x3 = 1;
+                mChrInfo[mCurPos].mIsSet = 1;
                 #if REGION_PAL
                 mChrInfo[mCurPos].mCharacter = moji & 0xFF;
                 #else
@@ -813,7 +813,7 @@ void dName_c::setMoji(int moji) {
             mChrInfo[mCurPos].mColumn = mCharColumn;
             mChrInfo[mCurPos].mRow = mCharRow;
             mChrInfo[mCurPos].mMojiSet = mMojiSet;
-            mChrInfo[mCurPos].field_0x3 = 1;
+            mChrInfo[mCurPos].mIsSet = 1;
             #if REGION_PAL
             mChrInfo[mCurPos].mCharacter = moji & 0xFF;
             #else
@@ -834,7 +834,7 @@ void dName_c::setNameText() {
     for (int i = 0; i < 8; i++) {
         //"\x1bCD\x1bCR\x1bCC[000000]\x1bGM[0]%c\x1bHM\x1bCC[ffffff]\x1bGM[0]%c"
         //"\x1bCD\x1bCR\x1bCC[000000]\x1bGM[0]%c%c\x1bHM\x1bCC[ffffff]\x1bGM[0]%c%c"
-        if (mChrInfo[i].field_0x3 != 0) {
+        if (mChrInfo[i].mIsSet != 0) {
             #if REGION_JPN
             if (mChrInfo[i].mMojiSet == 2) {
             #endif
@@ -910,9 +910,9 @@ void dName_c::selectCursorMove() {
     #else
     idx = 3;
     #endif
-    field_0x30c[idx][0] = mCharColumn;
-    field_0x30c[idx][1] = mCharRow;
-    field_0x30c[idx][2] = 1;
+    mMojiCursorPos[idx].mColumn = mCharColumn;
+    mMojiCursorPos[idx].mRow = mCharRow;
+    mMojiCursorPos[idx].mIsSet = 1;
 
     mMojiIcon[mCharRow + mCharColumn * 5]->getPanePtr()->scale(g_nmHIO.mSelCharScale,
                                                                g_nmHIO.mSelCharScale);
@@ -1047,7 +1047,7 @@ void dName_c::MenuSelectAnm() {
         mMenuText[prevMenu_i]->setWhite(JUtility::TColor(0x96, 0x96, 0x96, 0xFF));
         menuCursorMove();
         mSelProc = PROC_MENU_SELECT;
-        field_0x2ad = mSelProc;
+        mLastSelProc = mSelProc;
     }
 }
 
@@ -1070,7 +1070,7 @@ void dName_c::MenuSelectAnm2() {
         }
         selectCursorMove();
         mSelProc = PROC_MOJI_SELECT;
-        field_0x2ad = mSelProc;
+        mLastSelProc = mSelProc;
     }
 }
 
@@ -1097,8 +1097,8 @@ void dName_c::menuAbtnSelect() {
         int nameNum = nameCheck();
         if (nameNum != 0) {
             playNameSet(nameNum);
-            field_0x2ac = mSelProc;
-            field_0x2ae = mSelProc;
+            mReturnProc = mSelProc;
+            mReturnLastSelProc = mSelProc;
             mSelProc = PROC_WAIT;
             mIsInputEnd = 2;
         } else {
@@ -1125,7 +1125,7 @@ void dName_c::backSpace() {
             #else
             mChrInfo[7].mMojiSet = MOJI_EIGO;
             #endif
-            mChrInfo[7].field_0x3 = 1;
+            mChrInfo[7].mIsSet = 1;
             #if REGION_JPN
             // '　' (full-width space)
             mChrInfo[7].mCharacter = '\x81\x40';
@@ -1143,7 +1143,7 @@ void dName_c::backSpace() {
             #else
             mChrInfo[7].mMojiSet = MOJI_EIGO;
             #endif
-            mChrInfo[7].field_0x3 = 1;
+            mChrInfo[7].mIsSet = 1;
             #if REGION_JPN
             // '　' (full-width space)
             mChrInfo[7].mCharacter = '\x81\x40';
@@ -1249,8 +1249,8 @@ void dName_c::menuCursorMove2() {
 }
 
 void dName_c::selectCursorPosSet(int row) {
-    if (field_0x30c[mSelMenu][2] == 1) {
-        mCharColumn = field_0x30c[mSelMenu][0];
+    if (mMojiCursorPos[mSelMenu].mIsSet == 1) {
+        mCharColumn = mMojiCursorPos[mSelMenu].mColumn;
         mCharRow = row;
     } else {
         switch (mSelMenu) {
@@ -1275,9 +1275,9 @@ void dName_c::selectCursorPosSet(int row) {
         }
 
         mCharRow = row;
-        field_0x30c[mSelMenu][0] = mCharColumn;
-        field_0x30c[mSelMenu][1] = mCharRow;
-        field_0x30c[mSelMenu][2] = 1;
+        mMojiCursorPos[mSelMenu].mColumn = mCharColumn;
+        mMojiCursorPos[mSelMenu].mRow = mCharRow;
+        mMojiCursorPos[mSelMenu].mIsSet = 1;
     }
 }
 
@@ -1351,7 +1351,7 @@ void dName_c::screenSet() {
     archive = dComIfGp_getNameResArchive();
     nameIn.NameInScr->setPriority("zelda_player_name.blo", 0x100000, archive);
     dPaneClass_showNullPane(nameIn.NameInScr);
-    nameIn.field_0x10 = nameIn.NameInScr->search(MULTI_CHAR('name_n'));
+    nameIn.mNamePane = nameIn.NameInScr->search(MULTI_CHAR('name_n'));
 
     void* bpk = JKRGetNameResource("zelda_player_name.bpk", archive);
     JUT_ASSERT(0, bpk != NULL);
@@ -1496,8 +1496,8 @@ void dName_c::displayInit() {
     mSelIcon->setAlphaRate(0.0f);
     mCurColAnmF = 0;
     mCurTexAnmF = 0;
-    mSelProc = field_0x2ac;
-    field_0x2ad = field_0x2ae;
+    mSelProc = mReturnProc;
+    mLastSelProc = mReturnLastSelProc;
 
     for (int i = 0; i < 65; i++) {
         ((J2DTextBox*)mMojiIcon[i]->getPanePtr())
@@ -1519,7 +1519,7 @@ void dName_c::displayInit() {
         #else
         mChrInfo[i].mMojiSet = MOJI_EIGO;
         #endif
-        mChrInfo[i].field_0x3 = 1;
+        mChrInfo[i].mIsSet = 1;
         #if REGION_JPN
         // '　' (full-width space)
         mChrInfo[i].mCharacter = '\x81\x40';
@@ -1626,14 +1626,14 @@ s32 dName_c::getMenuPosIdx(u8 selPos) {
 }
 
 void dDlst_NameIN_c::draw() {
-    if (field_0xc != NULL) {
+    if (mBasePane != NULL) {
         Mtx m;
-        MtxP global_mtx = (MtxP)&field_0xc->getGlbMtx()[0][0];  // fake match?
+        MtxP global_mtx = (MtxP)&mBasePane->getGlbMtx()[0][0];  // fake match?
 
-        MTXScale(m, (field_0xc->getWidth() / field_0x10->getWidth()),
-                 (field_0xc->getHeight() / field_0x10->getHeight()), 1.0f);
+        MTXScale(m, (mBasePane->getWidth() / mNamePane->getWidth()),
+                 (mBasePane->getHeight() / mNamePane->getHeight()), 1.0f);
         MTXConcat(global_mtx, m, global_mtx);
-        field_0x10->setMtx(global_mtx);
+        mNamePane->setMtx(global_mtx);
     }
 
     J2DGrafContext* graf_ctx = dComIfGp_getCurrentGrafPort();
