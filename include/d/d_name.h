@@ -17,7 +17,7 @@ public:
     dNm_HIO_c();
     virtual ~dNm_HIO_c() {}
 
-    /* 0x04 */ s8 field_0x4;
+    /* 0x04 */ s8 mNo;
     /* 0x08 */ f32 mMenuScale;
     /* 0x0C */ f32 mSelCharScale;
     /* 0x10 */ u8 field_0x10;
@@ -32,8 +32,8 @@ public:
 
     /* 0x04 */ J2DScreen* NameInScr;
     /* 0x08 */ JUTFont* font;
-    /* 0x0C */ J2DPane* field_0xc;
-    /* 0x10 */ J2DPane* field_0x10;
+    /* 0x0C */ J2DPane* mBasePane;
+    /* 0x10 */ J2DPane* mNamePane;
 };
 
 class ChrInfo_c {
@@ -41,9 +41,17 @@ public:
     /* 0x0 */ u8 mColumn;
     /* 0x1 */ u8 mRow;
     /* 0x2 */ u8 mMojiSet;
-    /* 0x3 */ u8 field_0x3;
+    /* 0x3 */ u8 mIsSet;
     /* 0x4 */ int mCharacter;
 };  // Size: 0x8
+
+class MojiCursorPos_c {
+public:
+    /* 0x0 */ u8 mColumn;
+    /* 0x1 */ u8 mRow;
+    /* 0x2 */ u8 mIsSet;
+    /* 0x3 */ u8 field_0x3; // unused
+}; // Size: 0x4
 
 class dName_c {
 public:
@@ -150,9 +158,9 @@ private:
     /* 0x2A9 */ u8 mMojiSet;
     /* 0x2AA */ u8 mPrevMojiSet;
     /* 0x2AB */ u8 mSelProc;
-    /* 0x2AC */ u8 field_0x2ac;
-    /* 0x2AD */ u8 field_0x2ad;
-    /* 0x2AE */ u8 field_0x2ae;
+    /* 0x2AC */ u8 mReturnProc;
+    /* 0x2AD */ u8 mLastSelProc;
+    /* 0x2AE */ u8 mReturnLastSelProc;
     /* 0x2AF */ u8 mSelMenu;
     /* 0x2B0 */ u8 mPrevSelMenu;
     /* 0x2B1 */ u8 mCurPos;
@@ -161,7 +169,7 @@ private:
     /* 0x2B4 */ u8 mIsInputEnd;
     /* 0x2B5 */ char mInputStr[23];
     /* 0x2CC */ ChrInfo_c mChrInfo[8];
-    /* 0x30C */ u8 field_0x30c[4][4];  // ?
+    /* 0x30C */ MojiCursorPos_c mMojiCursorPos[4];
     /* 0x31C */ char mNextNameStr[24];
 };  // Size: 0x334
 
